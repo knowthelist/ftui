@@ -1,0 +1,13 @@
+ftui-label {
+  flex: 1;
+}
+
+ftui-label #wrapper {
+    flex-direction: row;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!--
+    /* FHEM tablet ui - FTUI */
+    /**
+    * UI builder framework for FHEM
+    *
+    * Version: 3.0.0
+    *
+    * Copyright (c) 2015-2019 Mario Stephan <mstephan@shared-files.de>
+    * Under MIT License (http://www.opensource.org/licenses/mit-license.php)
+    * https://github.com/knowthelist/ftui
+    */
+    -->
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <link href="css/ftui.css" rel="stylesheet">
+  <link href="css/ftui.theme.css" rel="stylesheet">
+  <script src="js/ftui.js" defer></script>
+
+  <meta name='debug' content='2'>
+
+  <title>FTUI Test-Simple</title>
+</head>
+
+<body>
+
+  <ftui-grid>
+
+    <ftui-grid-tile row="1" col="1" height="7" width="1">
+      <div class="vbox">
+        <ftui-tab class="round default" state-reading="dummy1" states='{"Wert1" : "on"}' view="View1"></ftui-tab>
+        <ftui-tab class="round" state-reading="dummy1" states='{"Wert2" : "on"}' view="View2"></ftui-tab>
+        <ftui-tab class="tab-text" text="auto" view="View1"></ftui-tab>
+        <ftui-tab class="tab-text text-right" text="hust" view="View2"></ftui-tab>
+        <ftui-tab class="tab-text" text="juhu" view="View1"></ftui-tab>
+      </div>
+    </ftui-grid-tile>
+
+    <ftui-tab-view id="View1">
+      <ftui-grid-tile row="1" col="2" height="2" width="2">
+        <header>BUTTONS</header>
+        <div class="row">
+          <ftui-button state-reading="dummy1" class="icon-brighter"></ftui-button>
+          <label class="text-left">Lamp1</label>
+          <ftui-button state-reading="dummy2" class="rounded"></ftui-button>
+          <label class="text-left">Lamp2</label>
+        </div>
+        <div class="row">
+          <ftui-button state-reading="dummy3" class="round"></ftui-button>
+          <label class="text-left">Lamp3</label>
+          <ftui-button state-reading="dummy4" class="round"></ftui-button>
+          <label class="text-left">Lamp4</label>
+        </div>
+      </ftui-grid-tile>
+
+      <ftui-grid-tile row="1" col="4" height="2" width="6">
+        <header>EXAMPLE21</header>
+        <ftui-button state-reading="SchrankLicht_Sw" states='{".*": "off", "on" : "on"}'
+          state-classes='{"set_on|set_off": "bg-blue", "on": "bg-seagreen", "off": "bg-gray"}' icon="fas fa-sync"
+          text="refresh" class="btn-text small">
+        </ftui-button>
+      </ftui-grid-tile>
+
+      <ftui-grid-tile row="1" col="10" height="2" width="3">
+        <header>CIRCLE</header>
+        <div class="vbox">
+          <ftui-button class="circle-thin" state-reading="dummy1"></ftui-button>
+          <ftui-button class="btn-rounded" state-reading="dummy1" text="Light" icon=""></ftui-button>
+
+
+          <ftui-button class="circle-thin" state-reading="dummy1" icon="" text="15" text-class="big"></ftui-button>
+        </div>
+      </ftui-grid-tile>
+
+      <ftui-grid-tile row="3" col="2" height="2" width="2">
+        <!--       <header>LABEL</header>
+      <div class="center">
+        <ftui-label text-reading="SatReceiver-channel" class="bigger thin"></ftui-label>
+      </div> -->
+        <ftui-button class="btn-square btn-full btn-royalblue" state-reading="dummy1" text-reading="dummy1"
+          text-class="big" show-state-as-text="true"></ftui-button>
+      </ftui-grid-tile>
+
+      <ftui-grid-tile row="3" col="4" height="2" width="6">
+        <header>EXAMPLE23</header>
+        <ftui-symbol state-reading="dummy3"></ftui-symbol>
+        <ftui-button state-reading="SchrankLicht_Sw" icon="mdi mdi-refresh" text="refresh" class="btn-text">
+        </ftui-button>
+      </ftui-grid-tile>
+
+      <ftui-grid-tile row="5" col="2" height="3" width="2">
+        <header>BUTTON SQUARE</header>
+        <div class="row">
+          <ftui-button class="btn-square btn-royalblue icon-brighter" state-reading="dummy1"></ftui-button>
+          <ftui-label text-reading="dummy1"></ftui-label>
+          <ftui-button class="btn-square btn-royalblue" state-reading="dummy1"></ftui-button>
+        </div>
+        <div class="row">
+          <ftui-button class="icon-brighter" state-reading="dummy2"></ftui-button>
+          <ftui-label text-reading="dummy2"></ftui-label>
+          <ftui-button class="" state-reading="dummy2"></ftui-button>
+        </div>
+        <div class="row">
+          <ftui-button class="btn-seagreen icon-brighter" state-reading="dummy3"></ftui-button>
+          <ftui-label text-reading="dummy3"></ftui-label>
+          <ftui-button class="btn-seagreen" state-reading="dummy3"></ftui-button>
+        </div>
+      </ftui-grid-tile>
+
+      <ftui-grid-tile row="3" col="10" height="2" width="3">
+        <header>SYMBOL</header>
+        <ftui-label text-reading="WebRadioInfo-Song" state-reading="WebRadioInfo-Song"
+          state-classes='{".*": "white",".*Morgen.*":"red"}'></ftui-label>
+      </ftui-grid-tile>
+
+      <ftui-grid-tile row="5" col="4" height="3" width="6">
+        <header>Button</header>
+        <div class="row">
+          <ftui-button state-reading="ftuitest" states='{"0": "0", "40": "40", "60": "60", "100": "100"}' icon=""
+            text-reading="ftuitest" state-classes='{"0": "bg-grey", "50": "bg-green"}' delay="600"
+            show-state-as-text="true">
+          </ftui-button>
+          <ftui-label text-reading="dummy3"></ftui-label>
+          <ftui-button class="btn-seagreen" state-reading="dummy3"></ftui-button>
+        </div>
+        <div class="row">
+
+          <ftui-button state-reading="dummy2" icon="" text-reading="dummy2" text-class="bigger">
+          </ftui-button>
+
+          <ftui-button state-reading="dummy2" state-classes='{"on": "green bg-grey", "off": "tomato bg-grey"}'
+            text="Pumpe" icon="">
+          </ftui-button>
+
+          <div class="fa-stack fa-2x">
+            <div class="fa-stack-2x ftui-circle-thin"></div>
+            <ftui-label text-reading="AvReceiver:subwoofer-temporary-level">
+            </ftui-label>
+          </div>
+
+          <ftui-button class="space-around" state-reading="dummy1" state-classes='{
+          ".*":"fa fa-lightbulb",
+          "Wert1": "fa fa-car green"
+        }' text-reading="dummy1:volume" text-classes='{
+          "9": "bg-red"
+        }'></ftui-button>
+
+          <ftui-label text-reading="AgroWeather" text-filter="part(6)" text-post="°C" class="big"></ftui-label>
+
+        </div>
+      </ftui-grid-tile>
+
+      <ftui-grid-tile row="5" col="10" height="3" width="3">
+        <header>EXAMPLE6</header>
+        <div class="hbox">
+          <div class="vbox">
+            <ftui-button state-reading="ftuitest" states='{"0": "0", "40": "40", "60": "60", "100": "100"}' icon=""
+              text-reading="ftuitest" state-classes='{"0": "bg-grey", "50": "bg-green"}' show-state-as-text="true">
+            </ftui-button>
+            <ftui-label text-reading="ftuitest"></ftui-label>
+          </div>
+          <div class="vbox">
+            <ftui-button state-reading="dummy1" icon-reading="dummy1" icon-classes='{"off": "mdi mdi-lightbulb",
+                                      "on": "mdi mdi-lightbulb-on"}'>
+            </ftui-button>
+            <ftui-symbol icon-reading="ftuitest" icon-class="bg-green bg-small" icon-classes='{ 
+                          "0": "mdi mdi-garage-open bigger red",
+                          "40": "mdi mdi-garage-alert bigger orange",
+                          "80": "mdi mdi-garage bigger"}'>
+            </ftui-symbol>
+            <ftui-symbol state-reading="ftuitest"></ftui-symbol>
+          </div>
+        </div>
+      </ftui-grid-tile>
+
+    </ftui-tab-view>
+
+    <ftui-tab-view id="View2">
+
+      <ftui-grid-tile row="1" col="2" height="2" width="2">
+        <header>BUTTONS</header>
+
+      </ftui-grid-tile>
+
+      <ftui-grid-tile row="1" col="4" height="2" width="6">
+        <header>EXAMPLE21</header>
+
+      </ftui-grid-tile>
+
+      <ftui-grid-tile row="1" col="10" height="2" width="3">
+        <header>CIRCLE</header>
+
+      </ftui-grid-tile>
+
+      <ftui-grid-tile row="3" col="2" height="2" width="2">
+
+      </ftui-grid-tile>
+
+      <ftui-grid-tile row="3" col="4" height="2" width="6">
+
+      </ftui-grid-tile>
+
+      <ftui-grid-tile row="5" col="2" height="3" width="2">
+        <header>BUTTON SQUARE</header>
+
+      </ftui-grid-tile>
+
+      <ftui-grid-tile row="3" col="10" height="2" width="3">
+        <header>SYMBOL</header>
+
+      </ftui-grid-tile>
+
+      <ftui-grid-tile row="5" col="4" height="3" width="6">
+        <header>Button</header>
+
+      </ftui-grid-tile>
+
+      <ftui-grid-tile row="5" col="10" height="3" width="3">
+        <header>EXAMPLE6</header>
+
+      </ftui-grid-tile>
+
+    </ftui-tab-view>
+
+  </ftui-grid>
+
+
+
+
+
+</body>
+
+</html>
