@@ -10,9 +10,6 @@ class FtuiLabel extends FtuiWidget {
     };
     super(defaults);
 
-    //const label = 
-
-    //this.insertAdjacentHTML('beforeend', label);
     this.elementText = this.querySelector('#text');
 
     ftui.addReading(this.stateReading).subscribe(param => this.onUpdateState(param));
@@ -38,9 +35,12 @@ class FtuiLabel extends FtuiWidget {
 
   onUpdateText(param) {
     if (ftui.isValid(param.value)) {
+      console.log(param)
       if (this.textFilter) {
         const part = value => input => ftui.getPart(input, value);
         const round = value => input => ftui.round(input, value);
+        const toDate = value => input => ftui.dateFromString(input, value);
+        const format = value => input => ftui.dateFormat(input, value);
         const add = value => input => input + value;
         const multiply = value => input => input * value;
         const pipe = (f1, ...fns) => (...args) => {

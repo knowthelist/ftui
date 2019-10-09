@@ -1,5 +1,8 @@
 ftui-label {
-  flex: 1;
+  flex: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 ftui-label #wrapper {

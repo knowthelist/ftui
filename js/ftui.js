@@ -977,6 +977,37 @@ class Ftui {
         : (m3) ? new Date(+m3[3], +m3[2] - 1, +m3[1], 0, -offset, 0, 0) : new Date();
   }
 
+  dateFormat(date, format) {
+    const YYYY = date.getFullYear().toString();
+    const YY = date.getYear().toString();
+    const MM = (date.getMonth() + 1).toString(); // getMonth() is zero-based
+    const dd = date.getDate().toString();
+    const hh = date.getHours().toString();
+    const mm = date.getMinutes().toString();
+    const ss = date.getSeconds().toString();
+    const eeee = date.eeee();
+    const eee = date.eee();
+    const ee = date.ee();
+    let ret = format;
+    ret = ret.replace('DD', (dd > 9) ? dd : '0' + dd);
+    ret = ret.replace('D', dd);
+    ret = ret.replace('MM', (MM > 9) ? MM : '0' + MM);
+    ret = ret.replace('M', MM);
+    ret = ret.replace('YYYY', YYYY);
+    ret = ret.replace('YY', YY);
+    ret = ret.replace('hh', (hh > 9) ? hh : '0' + hh);
+    ret = ret.replace('mm', (mm > 9) ? mm : '0' + mm);
+    ret = ret.replace('ss', (ss > 9) ? ss : '0' + ss);
+    ret = ret.replace('h', hh);
+    ret = ret.replace('m', mm);
+    ret = ret.replace('s', ss);
+    ret = ret.replace('eeee', eeee);
+    ret = ret.replace('eee', eee);
+    ret = ret.replace('ee', ee);
+  
+    return ret;
+  }
+
   diffMinutes(date1, date2) {
     const diff = new Date(date2 - date1);
     return (diff / 1000 / 60).toFixed(0);

@@ -57,10 +57,14 @@
 
       <ftui-grid-tile row="1" col="4" height="2" width="6">
         <header>EXAMPLE21</header>
-        <ftui-button state-reading="SchrankLicht_Sw" states='{".*": "off", "on" : "on"}'
-          state-classes='{"set_on|set_off": "bg-blue", "on": "bg-seagreen", "off": "bg-gray"}' icon="fas fa-sync"
-          text="refresh" class="btn-text small">
-        </ftui-button>
+        <div class="row">
+          <ftui-button state-reading="SchrankLicht_Sw" states='{".*": "off", "on" : "on"}'
+            state-classes='{"set_on|set_off": "bg-blue", "on": "bg-seagreen", "off": "bg-gray"}' icon="fas fa-sync"
+            text="refresh" class="btn-text small">
+          </ftui-button>
+          <ftui-button state-reading="SchrankLicht_Sw" icon="mdi mdi-refresh" text="refresh" class="btn-text">
+          </ftui-button>
+        </div>
       </ftui-grid-tile>
 
       <ftui-grid-tile row="1" col="10" height="2" width="3">
@@ -84,10 +88,39 @@
       </ftui-grid-tile>
 
       <ftui-grid-tile row="3" col="4" height="2" width="6">
-        <header>EXAMPLE23</header>
-        <ftui-symbol state-reading="dummy3"></ftui-symbol>
-        <ftui-button state-reading="SchrankLicht_Sw" icon="mdi mdi-refresh" text="refresh" class="btn-text">
-        </ftui-button>
+        <header>WEATHER</header>
+        <div class="row">
+          <div class="column">
+            <label>Heute</label>
+            <ftui-weather icon-reading="AgroWeather-fc0_weatherDay" text-reading="AgroWeather-fc0_weatherDay">
+            </ftui-weather>
+          </div>
+          <div class="column">
+            <label>Morgen</label>
+            <ftui-weather icon-reading="AgroWeather-fc1_weatherDay" text-reading="AgroWeather-fc1_weatherDay">
+            </ftui-weather>
+          </div>
+          <div class="column">
+            <ftui-label text-reading="AgroWeather-fc2_date" text-filter="toDate(), format('eeee')"></ftui-label>
+            <ftui-weather icon-reading="AgroWeather-fc2_weatherDay" text-reading="AgroWeather-fc2_weatherDay">
+            </ftui-weather>
+          </div>
+          <div class="column">
+            <ftui-label text-reading="AgroWeather-fc3_date" text-filter="toDate(), format('eeee')"></ftui-label>
+            <ftui-weather icon-reading="AgroWeather-fc3_weatherDay" text-reading="AgroWeather-fc3_weatherDay">
+            </ftui-weather>
+          </div>
+          <div class="column">
+            <ftui-label text-reading="AgroWeather-fc4_date" text-filter="toDate(), format('eeee')"></ftui-label>
+            <ftui-weather icon-reading="AgroWeather-fc4_weatherDay" text-reading="AgroWeather-fc4_weatherDay">
+            </ftui-weather>
+          </div>
+          <div class="column">
+            <ftui-label text-reading="AgroWeather-fc5_date" text-filter="toDate(), format('eeee')"></ftui-label>
+            <ftui-weather icon-reading="AgroWeather-fc5_weatherDay" text-reading="AgroWeather-fc5_weatherDay">
+            </ftui-weather>
+          </div>
+        </div>
       </ftui-grid-tile>
 
       <ftui-grid-tile row="5" col="2" height="3" width="2">
