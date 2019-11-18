@@ -1,0 +1,52 @@
+ftui-knob {
+  flex-direction: column;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+/*SVG*/
+ 
+svg {
+  margin: 0px;
+  padding: 0;
+  cursor: pointer;
+}
+ 
+ 
+.outline,
+.fill,
+.center,
+.needle,
+.scale {
+  pointer-events: none;
+}
+ 
+.outline[stroke=""] {
+  stroke: var(--gray);
+}
+ 
+.fill[stroke=""] {
+  stroke: var(--primary-color);
+}
+ 
+.needle[fill=""] {
+  fill: var(--red);
+}
+ 
+.scale {
+  stroke: var(--text-color);
+}
+ 
+text {
+  text-anchor: middle;
+  font: 12px verdana, sans-serif;
+  pointer-events: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}

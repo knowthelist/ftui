@@ -43,6 +43,7 @@ class FtuiLabel extends FtuiWidget {
         const format = value => input => ftui.dateFormat(input, value);
         const add = value => input => input + value;
         const multiply = value => input => input * value;
+        
         const pipe = (f1, ...fns) => (...args) => {
           return fns.reduce((res, fn) => fn(res), f1.apply(null, args));
         };

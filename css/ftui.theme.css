@@ -2,12 +2,14 @@
   --primary-color: #aa6900;
   --secondary-color: #505050;
   --background-color: #2A2A2A;
+  --text-color: #bbb;
 
   --page-background-color: #000000;
   --page-color: #eeeeee;
   --grid-background-color: var(--background-color);
   --grid-header-color: #8c8c8c;
   --grid-header-background-color: #262626;
+
   --grey: #4d4d4d;
   --grey32: #525252;
   --grey66: #8a8a8a;

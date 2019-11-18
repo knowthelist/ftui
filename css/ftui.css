@@ -219,6 +219,150 @@ a:active {
   background-color: var(--transparent) !important;
 }
 
+.bg-grey, .btn-grey {
+  background-color: var(--grey);
+}
+
+.bg-grey32 {
+  background-color: var(--grey32) !important;
+}
+
+.bg-gray, .btn-gray {
+  background-color: var(--grey) !important;
+}
+
+.bg-gray-trans, .btn-gray-trans {
+  background-color: var(--gray-trans) !important;
+}
+
+.bg-lightgray, .btn-lightgray {
+  background-color: var(--lightgray) !important;
+}
+
+.bg-orange, .btn-orange {
+  background-color: var(--orange) !important;
+}
+
+.bg-red, .btn-red {
+  background-color: var(--red) !important;
+}
+
+.bg-tomato {
+  background-color: var(--tomato) !important;
+}
+
+.bg-green, .btn-green {
+  background-color: var(--green) !important;
+}
+
+.bg-seagreen {
+  background-color: var(--seagreen) !important;
+}
+
+.bg-mint, .btn-mint {
+  background-color: var(--mint) !important;
+}
+
+.bg-ligthblue, .btn-ligthblue {
+  background-color: var(--ligthblue) !important;
+}
+
+.bg-blue, .btn-blue {
+  background-color: var(--blue)!important;
+}
+
+.bg-royalblue {
+  background-color: var(--royalblue) !important;
+}
+
+.bg-white, .btn-white {
+  background-color: var(--white) !important;
+}
+
+.bg-black, .btn-black {
+  background-color: var(--black) !important;
+}
+
+.bg-yellow, .btn-yellow {
+  background-color: var(--yellow) !important;
+}
+
+.bg-transparent, .btn-transparent {
+  background-color: var(--transparent) !important;
+}
+
+.stroke-grey {
+  stroke: var(--grey) !important;
+}
+
+.stroke-grey32 {
+  stroke: var(--grey32) !important;
+}
+
+.stroke-gray, .btn-gray {
+  stroke: var(--grey) !important;
+}
+
+.stroke-gray-trans, .btn-gray-trans {
+  stroke: var(--gray-trans) !important;
+}
+
+.stroke-lightgray, .btn-lightgray {
+  stroke: var(--lightgray) !important;
+}
+
+.stroke-orange, .btn-orange {
+  stroke: var(--orange) !important;
+}
+
+.stroke-red, .btn-red {
+  stroke: var(--red) !important;
+}
+
+.stroke-tomato {
+  stroke: var(--tomato) !important;
+}
+
+.stroke-green, .btn-green {
+  stroke: var(--green) !important;
+}
+
+.stroke-seagreen {
+  stroke: var(--seagreen) !important;
+}
+
+.stroke-mint, .btn-mint {
+  stroke: var(--mint) !important;
+}
+
+.stroke-ligthblue, .btn-ligthblue {
+  stroke: var(--ligthblue) !important;
+}
+
+.stroke-blue, .btn-blue {
+  stroke: var(--blue) !important;
+}
+
+.stroke-royalblue {
+  stroke: var(--royalblue) !important;
+}
+
+.stroke-white, .btn-white {
+  stroke: var(--white) !important;
+}
+
+.stroke-black, .btn-black {
+  stroke: var(--black) !important;
+}
+
+.stroke-yellow, .btn-yellow {
+  stroke: var(--yellow) !important;
+}
+
+.stroke-transparent, .btn-transparent {
+  stroke: var(--transparent) !important;
+}
+
 .black {
   color: var(--black) !important;
 }

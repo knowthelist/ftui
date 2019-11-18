@@ -50,6 +50,7 @@ class Ftui {
     this.init();
   }
 
+  // Notify subjets for Reading observation
   Notifications(id) {
     let notification = id && this.notifications[id];
     if (!notification) {
@@ -1031,10 +1032,6 @@ class Ftui {
     return ret;
   }
 
-  mapColor(value) {
-    return this.getStyle('.' + value, 'color') || value;
-  }
-
   round(number, precision) {
     const shift = (number, precision, reverseShift) => {
       if (reverseShift) {
@@ -1201,7 +1198,7 @@ class Ftui {
   }
 }
 
-// -------------Notifications----------
+// -------------Subject - Observer Pattern----------
 class Notification {
   constructor() {
     this.observers = [];

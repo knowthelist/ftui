@@ -9,7 +9,7 @@ Version 3
 Caution! This version is not compatible with older fhem-tablet-ui versions.
 
 
-![](http://knowthelist.github.io/fhem-tablet-ui/fhem-tablet-ui-example_new.png)
+![](http://knowthelist.github.io/fhem-tablet-ui/ftui3.png)
 
 Requires
 -------
@@ -49,6 +49,7 @@ Widgets
 - label
 - symbol
 - button
+- knob
 
 
 Button

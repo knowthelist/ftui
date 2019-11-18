@@ -35,7 +35,6 @@ export default class FtuiButton extends FtuiSymbol {
       super.onUpdateState({ value: this.value });
     }
   }
-
 }
 
 ftui.appendStyleLink(ftui.config.basedir + 'css/ftui.button.css', false);

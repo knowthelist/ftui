@@ -18,7 +18,10 @@ export default class FtuiWidget extends HTMLElement {
   }
 
   updateReading(reading, value) {
-    const cmdl = [this.cmd, reading, value].join(' ');
+    const match = /^([^-]*)-(.*)$/.exec(reading);
+    const deviceName = match ? match[1] : reading;
+    const readingName = match ? match[2] : null;
+    const cmdl = [this.cmd, deviceName, readingName, value].join(' ');
     if (this.delay) {
       this.delayedSubmitCommand(cmdl);
     } else {
