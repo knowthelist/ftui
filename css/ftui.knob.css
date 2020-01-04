@@ -40,10 +40,17 @@ svg {
 .scale {
   stroke: var(--text-color);
 }
+
+.value {
+  font-size: 2.5em;
+  fill: var(--text-color);
+  font-weight: lighter;
+}
  
 text {
   text-anchor: middle;
-  font: 12px verdana, sans-serif;
+  font-size: 0.8em;
+  font-weight: lighter;
   pointer-events: none;
   -webkit-user-select: none;
   -moz-user-select: none;

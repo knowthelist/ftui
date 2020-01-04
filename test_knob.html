@@ -9,7 +9,7 @@
     *
     * Version: 3.0.0
     *
-    * Copyright (c) 2015-2019 Mario Stephan <mstephan@shared-files.de>
+    * Copyright (c) 2015-2020 Mario Stephan <mstephan@shared-files.de>
     * Under MIT License (http://www.opensource.org/licenses/mit-license.php)
     * https://github.com/knowthelist/fhem-tablet-ui
     */
@@ -42,7 +42,7 @@
       <ftui-knob value-reading="AvReceiver-volume"
                  max="50"
                  state-reading="AvReceiver-volume"
-                 state-classes='{"0": "stroke-gray", "10": "stroke-blue", "20": "stroke-seagreen"}'
+                 state-classes='{"0": "stroke-grey", "10": "stroke-orange", "30": "stroke-red"}'
       >
       </ftui-knob>
     </ftui-grid-tile>
@@ -84,6 +84,17 @@
                  has-scale-text="true"
                  has-scale="true"
                  has-arc="false"
+      >
+      </ftui-knob>
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="1" col="4" height="1" width="1">
+      <header>Value Text </header>
+      <ftui-knob value-reading="AvReceiver-volume"
+                 max="50"
+                 has-scale="true"
+                 has-arc="false"
+                 has-value-text="true"
       >
       </ftui-knob>
     </ftui-grid-tile>

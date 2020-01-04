@@ -25,6 +25,7 @@ ftui-symbol #icon {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    position: relative;
 }
 
 ftui-symbol.active #icon,
@@ -34,4 +35,18 @@ ftui-symbol #icon.active  {
 
 ftui-symbol #icon:before {
     font-size: 2em;
+}
+
+ftui-symbol #icon > #badge:not(:empty) {
+  position: absolute;
+  top: -1em;
+  right: -1em;
+  color: white;
+  border-radius: 50%;
+  background: #e22b49;
+  width: 2em;
+  height: 2em;
+  text-align: center;
+  line-height: 2em;
+  font-size: 0.9em;
 }

@@ -2,6 +2,7 @@ export default class FtuiWidget extends HTMLElement {
   constructor(defaults) {
     super();
 
+    // put HTML attributes into widget parameters
     const attributes = {};
     [...this.attributes].forEach(attr => {
       const name = attr.name.replace(/-([a-z])/g, (char) => { return char[1].toUpperCase() });
@@ -18,7 +19,7 @@ export default class FtuiWidget extends HTMLElement {
   }
 
   updateReading(reading, value) {
-    const match = /^([^-]*)-(.*)$/.exec(reading);
+    const match = /^([^-:]*)[-:](.*)$/.exec(reading);
     const deviceName = match ? match[1] : reading;
     const readingName = match ? match[2] : null;
     const cmdl = [this.cmd, deviceName, readingName, value].join(' ');

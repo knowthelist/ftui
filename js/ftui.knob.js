@@ -19,6 +19,7 @@ export default class FtuiKnob extends FtuiWidget {
       needleColor: '',
       hasScale: false,
       hasScaleText: false,
+      hasValueText: false,
       hasArc: true
     };
     super(Object.assign(defaults, attributes));
@@ -47,24 +48,14 @@ export default class FtuiKnob extends FtuiWidget {
 
     this.isDragging = false;
 
-    this.svg.addEventListener('mousedown', evt => {
-      this.isDragging = true;
-      const mouseAngle = this.getMouseAngle(this.svg, evt);
-      this.onChange(mouseAngle);
-    }, false);
-    this.svg.addEventListener('mouseup', () => {
-      this.isDragging = false;
-    }, false);
-    this.svg.addEventListener('mouseout', () => {
-      this.isDragging = false;
-    }, false);
+    this.svg.addEventListener('touchstart', (evt) => this.onDownEvent(evt), false);
+    this.svg.addEventListener('mousedown', (evt) => this.onDownEvent(evt), false);
+    this.svg.addEventListener('touchend', (evt) => this.onOutEvent(evt), false);
+    this.svg.addEventListener('mouseup', (evt) => this.onOutEvent(evt), false);
+    this.svg.addEventListener('mouseout', (evt) => this.onOutEvent(evt), false);
+    this.svg.addEventListener('touchmove', (evt) => this.onMoveEvent(evt), false);
+    this.svg.addEventListener('mousemove', (evt) => this.onMoveEvent(evt), false);
 
-    this.svg.addEventListener('mousemove', (evt) => {
-      if (this.isDragging) {
-        const mouseAngle = this.getMouseAngle(this.svg, evt);
-        this.onChange(mouseAngle);
-      }
-    }, false);
 
     this.draw(this.valueToAngle(this.min));
   }
@@ -82,8 +73,30 @@ export default class FtuiKnob extends FtuiWidget {
     </svg>`;
   }
 
+  onOutEvent(evt) {
+    evt.preventDefault();
+    this.isDragging = false;
+  }
+
+  onDownEvent(evt) {
+    evt.preventDefault();
+    this.isDragging = true;
+    const mouseAngle = this.getMouseAngle(this.svg, evt);
+    this.onChange(mouseAngle);
+  }
+
+  onMoveEvent(evt) {
+    evt.preventDefault();
+    if (this.isDragging) {
+      const mouseAngle = this.getMouseAngle(this.svg, evt);
+      this.onChange(mouseAngle);
+    }
+  }
+
   onUpdateValue(param) {
-    this.draw(this.valueToAngle(param.value));
+    if (!this.isDragging) {
+      this.draw(this.valueToAngle(param.value));
+    }
   }
 
   onUpdateState(param) {
@@ -110,7 +123,11 @@ export default class FtuiKnob extends FtuiWidget {
       if (this.hasArc === true || this.hasArc === 'true') {
         this.drawArc(angle);
       }
+      if (this.hasValueText === true || this.hasValueText === 'true') {
+        this.drawValue(this.angleToValue(angle));
+      }
       this.drawNeedle(angle);
+
       return true;
     }
     return false;
@@ -121,7 +138,7 @@ export default class FtuiKnob extends FtuiWidget {
   drawScale() {
     const upperRadius = this.radius + 5;
     const lowerRadius = this.radius - this.strokeWidth
-    const textRadius = this.radius + this.strokeWidth + 5
+    const textRadius = this.radius + this.strokeWidth + 4
 
     this.clearRect(this.scale);
 
@@ -158,25 +175,43 @@ export default class FtuiKnob extends FtuiWidget {
     this.fill.setAttributeNS(null, 'd',
       this.describeArc(this.centerX, this.centerY, this.radius - 5, this.startAngle + 360, angle));
     this.outline.setAttributeNS(null, 'd',
-      this.describeArc(this.centerX, this.centerY, this.radius - 5, this.startAngle + 360, this.endAngle + 360));  
+      this.describeArc(this.centerX, this.centerY, this.radius - 5, this.startAngle + 360, this.endAngle + 360));
   }
 
   drawNeedle(angle) {
 
-    const nx1 = this.centerX + 2 * Math.cos((angle - 45) * this.radian);
-    const ny1 = this.centerY + 2 * Math.sin((angle - 45) * this.radian);
+    const lowerRadius = (this.hasValueText === true || this.hasValueText === 'true')
+      ? this.radius * 0.4 : this.radius * 0.1;
+    const expansion = (this.hasValueText === true || this.hasValueText === 'true')
+      ? 3 : 15;
 
-    const nx2 = this.centerX + (this.radius) * Math.cos((angle - 1) * this.radian);
-    const ny2 = this.centerY + (this.radius) * Math.sin((angle - 1) * this.radian);
+    const nx1 = this.centerX + lowerRadius * Math.cos((angle - expansion) * this.radian);
+    const ny1 = this.centerY + lowerRadius * Math.sin((angle - expansion) * this.radian);
 
-    const nx3 = this.centerX + (this.radius) * Math.cos((angle + 1) * this.radian);
-    const ny3 = this.centerY + (this.radius) * Math.sin((angle + 1) * this.radian);
+    const nx2 = this.centerX + this.radius * Math.cos((angle - 1) * this.radian);
+    const ny2 = this.centerY + this.radius * Math.sin((angle - 1) * this.radian);
 
-    const nx4 = this.centerX + 2 * Math.cos((angle + 45) * this.radian);
-    const ny4 = this.centerY + 2 * Math.sin((angle + 45) * this.radian);
+    const nx3 = this.centerX + this.radius * Math.cos((angle + 1) * this.radian);
+    const ny3 = this.centerY + this.radius * Math.sin((angle + 1) * this.radian);
+
+    const nx4 = this.centerX + lowerRadius * Math.cos((angle + expansion) * this.radian);
+    const ny4 = this.centerY + lowerRadius * Math.sin((angle + expansion) * this.radian);
 
     const points = nx1 + ',' + ny1 + ' ' + nx2 + ',' + ny2 + ' ' + nx3 + ',' + ny3 + ' ' + nx4 + ',' + ny4;
     this.needle.setAttributeNS(null, 'points', points);
+  }
+
+  drawValue(value) {
+    const scaleText = document.createElementNS(this.NS, 'text');
+    const scaleTextObj = {
+      class: 'value',
+      x: this.centerX,
+      y: this.centerY,
+      'alignment-baseline': 'middle'
+    };
+    this.setSVGAttributes(scaleText, scaleTextObj);
+    scaleText.textContent = value;
+    this.scale.appendChild(scaleText);
   }
 
   // helpers
@@ -231,8 +266,10 @@ export default class FtuiKnob extends FtuiWidget {
 
   getMouseAngle(elmt, evt) {
     const clientRect = elmt.getBoundingClientRect();
-    const x = Math.round(evt.clientX - clientRect.left - this.centerX);
-    const y = Math.round(evt.clientY - clientRect.top - this.centerY);
+    const clientX = evt.touches ? evt.touches[0].clientX : evt.clientX;
+    const clientY = evt.touches ? evt.touches[0].clientY : evt.clientY;
+    const x = Math.round(clientX - clientRect.left - this.centerX);
+    const y = Math.round(clientY - clientRect.top - this.centerY);
     let angle = Math.atan2(y, x) * 180 / Math.PI;
     angle = angle < 0 ? angle + 360 : angle;
     return Math.floor(angle);

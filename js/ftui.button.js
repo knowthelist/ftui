@@ -24,7 +24,7 @@ export default class FtuiButton extends FtuiSymbol {
     if (this.showStateAsText) {
       this.onUpdateText({ value: this.value });
     }
-    this.updateReading(this.stateReading, this.value);
+    this.updateReading(this.setReading || this.stateReading, this.value);
   }
 
   onUpdateState(param) {

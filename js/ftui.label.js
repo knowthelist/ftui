@@ -35,8 +35,8 @@ class FtuiLabel extends FtuiWidget {
 
   onUpdateText(param) {
     if (ftui.isValid(param.value)) {
-      console.log(param)
       if (this.textFilter) {
+        // console.log(param )
         const part = value => input => ftui.getPart(input, value);
         const round = value => input => ftui.round(input, value);
         const toDate = value => input => ftui.dateFromString(input, value);
@@ -47,7 +47,7 @@ class FtuiLabel extends FtuiWidget {
         const pipe = (f1, ...fns) => (...args) => {
           return fns.reduce((res, fn) => fn(res), f1.apply(null, args));
         };
-        const fn = eval('pipe(' + this.textFilter + ')');
+        const fn = eval('pipe(' + this.textFilter.replace(/\|/g,',') + ')');
 
         this.elementText.innerHTML = fn(param.value);
       } else {

@@ -14,7 +14,9 @@ export default class FtuiWeather extends FtuiSymbol {
         'wolkig': 'wi wi-day-cloudy',
         'bedeckt': 'wi wi-cloudy',
         'heiter': 'wi wi-day-sunny-overcast',
-        'sonnig': 'wi wi-day-sunny'
+        'sonnig': 'wi wi-day-sunny',
+        'Sprühregen': 'wi wi-day-rain-mix',
+        'Schneeregen': 'wi wi-sleet'
       },
       text: '',
       textClass: ''

@@ -795,56 +795,34 @@ section {
   font-weight: bold !important;
 }
 
-/* Flexbox layout */
-
-.hbox, .vbox, .box, .has_vbox {
-  display: flex !important;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
+.w-100 {
   width: 100%;
 }
 
-.card {
-  display: flex !important;
-  width: 97%;
-  justify-content: initial;
-  align-items: initial;
-}
-
-.w100, .full-width, width-100 {
-  width: 100% !important;
-}
-
-.h100, .full-height, .height-100 {
+.h-100 {
   height: 100%;
+}
+
+/* Flexbox layout */
+
+.hbox, .vbox, .box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .box, .hbox, .box.horizontal {
   flex-direction: row;
-  /*flex: 0 1 auto;*/
   flex: 1;
-}
-
-main>.box, main>.hbox, main>.box.horizontal {
-  align-items: stretch;
-  height: 100%;
 }
 
 .vbox {
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-around;
   justify-content: space-around;
 }
 
-.vbox, .card, .box.vertical, .has_vbox, .has_center {
+.vbox, .box.vertical {
   flex-direction: column;
   flex: 1;
-}
-
-.card>.box.horizontal:only-of-type, .card>.hbox:only-of-type, .card>.vbox:only-of-type, .card>.box.vertical:only-of-type {
-  flex-grow: 1;
-  margin-top: 0;
 }
 
 .shrink-0, .shrink-0x {
@@ -924,8 +902,6 @@ main>.box, main>.hbox, main>.box.horizontal {
 }
 
 .box.horizontal.items-space-around, .hbox.items-space-around, .vbox.items-space-around, .card.items-space-around, .hbox.space, .vbox.space {
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-around;
   justify-content: space-around;
 }
 
@@ -955,16 +931,6 @@ main>.box, main>.hbox, main>.box.horizontal {
 
 .box.vertical.items-center, .vbox.items-center {
   align-items: center;
-}
-
-.card {
-  margin: 4px;
-  justify-content: flex-start;
-}
-
-.card>header {
-  width: 100%;
-  flex-grow: 0;
 }
 
 @media screen and (min-width: 480px) {
@@ -1277,6 +1243,7 @@ div[data-type="link"]>div.fa {
 
 .row label, [class*=row-] label {
   display: flex;
+  flex: 1;
   justify-content: center;
   align-self: center;
 }
@@ -1290,8 +1257,8 @@ div[data-type="link"]>div.fa {
 }
 
 .column label {
-  flex: auto;
   display: flex;
+  flex: 1;
   flex-direction: column;
   justify-content: center;
 }
@@ -1902,16 +1869,6 @@ img.mini, .mini>img, .mini>.weather-icon>img {
 .labelright[data-type="pagetab"] .label {
   padding-top: 0px;
   padding-left: 52px;
-}
-
-.badge {
-  display: inline-block;
-  height: 1.5em;
-  line-height: 1.5em;
-  vertical-align: middle;
-  width: 1.5em;
-  background-color: #aa2200;
-  border-radius: 1em;
 }
 
 #warn.digits2 {

@@ -28,6 +28,21 @@ ftui-button #icon {
     justify-content: center;
     align-items: center;
     border-radius: 5px;
+    position: relative;
+}
+
+ftui-button #icon > #badge:not(:empty) {
+  position: absolute;
+  top: -1em;
+  right: -1em;
+  color: white;
+  border-radius: 50%;
+  background: #e22b49;
+  width: 2em;
+  height: 2em;
+  text-align: center;
+  line-height: 2em;
+  font-size: 0.9em;
 }
 
 ftui-button.space-around #icon {
@@ -123,6 +138,10 @@ ftui-button.circle-thin #icon {
 ftui-button.circle-thin #icon.active {
     border-color: var(--primary-color);
     color: var(--primary-color);
+}
+
+ftui-button.circle-thin #icon.white {
+  border-color: var(--white);
 }
 
 /* colors */

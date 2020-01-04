@@ -9,7 +9,7 @@
     *
     * Version: 3.0.0
     *
-    * Copyright (c) 2015-2019 Mario Stephan <mstephan@shared-files.de>
+    * Copyright (c) 2015-2020 Mario Stephan <mstephan@shared-files.de>
     * Under MIT License (http://www.opensource.org/licenses/mit-license.php)
     * https://github.com/knowthelist/ftui
     */
@@ -31,9 +31,9 @@
     <ftui-grid-tile row="1" col="1" height="7" width="1">
       <div class="vbox">
         <ftui-tab class="round default" state-reading="dummy1" states='{"Wert1" : "on"}' view="View1"></ftui-tab>
-        <ftui-tab class="round" state-reading="dummy1" states='{"Wert2" : "on"}' view="View2"></ftui-tab>
+        <ftui-tab class="round"         state-reading="dummy1" states='{"Wert2" : "on"}' view="View2"></ftui-tab>
         <ftui-tab class="tab-text" text="auto" view="View1"></ftui-tab>
-        <ftui-tab class="tab-text text-right" text="hust" view="View2"></ftui-tab>
+        <ftui-tab class="tab-text text-right" text="Sonos" view="View2"></ftui-tab>
         <ftui-tab class="tab-text" text="juhu" view="View1"></ftui-tab>
       </div>
     </ftui-grid-tile>
@@ -62,7 +62,7 @@
             state-classes='{"set_on|set_off": "bg-blue", "on": "bg-seagreen", "off": "bg-gray"}' icon="fas fa-sync"
             text="refresh" class="btn-text small">
           </ftui-button>
-          <ftui-button state-reading="SchrankLicht_Sw" icon="mdi mdi-refresh" text="refresh" class="btn-text">
+          <ftui-button state-reading="SchrankLicht_Sw" badge-reading="ftuitest:state" icon="mdi mdi-refresh" text="refresh" class="btn-text">
           </ftui-button>
         </div>
       </ftui-grid-tile>
@@ -168,7 +168,7 @@
             show-state-as-text="true">
           </ftui-button>
           <ftui-label text-reading="dummy3"></ftui-label>
-          <ftui-button class="btn-seagreen" state-reading="dummy3"></ftui-button>
+          <ftui-button class="btn-seagreen" state-reading="dummy3"><span class="badge"></span></ftui-button>
         </div>
         <div class="row">
 
@@ -179,11 +179,12 @@
             text="Pumpe" icon="">
           </ftui-button>
 
-          <div class="fa-stack fa-2x">
-            <div class="fa-stack-2x ftui-circle-thin"></div>
-            <ftui-label text-reading="AvReceiver:subwoofer-temporary-level">
-            </ftui-label>
-          </div>
+          <ftui-knob value-reading="AvReceiver-volume"
+          max="50"
+          has-scale="true"
+          has-arc="false"
+          has-value-text="true">
+          </ftui-knob>
 
           <ftui-button class="space-around" state-reading="dummy1" state-classes='{
           ".*":"fa fa-lightbulb",
@@ -225,13 +226,63 @@
     <ftui-tab-view id="View2">
 
       <ftui-grid-tile row="1" col="2" height="2" width="2">
-        <header>BUTTONS</header>
-
+        <header>Küche</header>
+        <ftui-button class="circle-thin"
+            state-reading="Sonos_Kueche:transportState"
+            set-reading="Sonos_Kueche" 
+            states='{"PLAYING": "play", "PAUSED_PLAYBACK|STOPPED": "stop"}' 
+            state-classes='{"play": "fa fa-pause", "stop": "fa fa-play"}'
+            icon=""
+            icon-class="white">
+        </ftui-button>
+        <div class="vbox">
+          <ftui-label text-reading="Sonos_Kueche:transportState"></ftui-label>
+          <ftui-label text-reading="Sonos_Kueche:currentTitle"></ftui-label>
+          <ftui-label text-reading="Sonos_Kueche:currentArtist"></ftui-label>
+          <ftui-label text-reading="Sonos_Kueche:currentSenderInfo"></ftui-label>
+        </div>
       </ftui-grid-tile>
 
       <ftui-grid-tile row="1" col="4" height="2" width="6">
-        <header>EXAMPLE21</header>
-
+        <header>Jalousie</header>
+        <div class="hbox">
+          <div class="vbox">
+            <ftui-symbol class="bigger"
+                  icon-reading="KinderzimmerJalousieLinks"
+                  icon-classes='{ 
+                    "down": "mdi mdi-format-vertical-align-bottom active",
+                    "0": "mdi mdi-window-shutter-open",
+                    "40": "mdi mdi-window-shutter-alert active",
+                    "80": "mdi mdi-window-shutter active",
+                    "up": "mdi mdi-format-vertical-align-top active"}'>
+            </ftui-symbol>
+            <label>Kinderzimmer Links</label>
+          </div>
+          <div class="vbox">
+            <ftui-symbol class="bigger"
+                  icon-reading="KinderzimmerJalousieRechts"
+                  icon-classes='{ 
+                    "down": "mdi mdi-format-vertical-align-bottom active",
+                    "0": "mdi mdi-window-shutter-open",
+                    "40": "mdi mdi-window-shutter-alert active",
+                    "80": "mdi mdi-window-shutter active",
+                    "up": "mdi mdi-format-vertical-align-top active"}'>
+            </ftui-symbol>
+            <label>Kinderzimmer Rechts</label>
+          </div>
+          <div class="vbox">
+            <ftui-symbol class="bigger"
+                  icon-reading="WohnzimmerJalousieRechts"
+                  icon-classes='{ 
+                    "down": "mdi mdi-format-vertical-align-bottom active",
+                    "0": "mdi mdi-window-shutter-open",
+                    "40": "mdi mdi-window-shutter-alert active",
+                    "80": "mdi mdi-window-shutter active",
+                    "up": "mdi mdi-format-vertical-align-top active"}'>
+            </ftui-symbol>
+            <label>Wohnzimmer Rechts</label>
+          </div>
+        </div>
       </ftui-grid-tile>
 
       <ftui-grid-tile row="1" col="10" height="2" width="3">
