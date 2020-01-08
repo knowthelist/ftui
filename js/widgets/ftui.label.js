@@ -14,7 +14,6 @@ class FtuiLabel extends FtuiWidget {
 
     ftui.getReadingEvents(this.stateReading).subscribe(param => this.onUpdateState(param));
     ftui.getReadingEvents(this.textReading).subscribe(param => this.onUpdateText(param));
-
   }
 
   template() {
