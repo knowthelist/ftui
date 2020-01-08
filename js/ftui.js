@@ -1,3 +1,5 @@
+import Events from './events.js';
+
 class Ftui {
   constructor() {
     this.version = '3.3.0';
@@ -8,22 +10,27 @@ class Ftui {
       basedir: '',
       fhemDir: '',
       debuglevel: 0,
-      doLongPoll: true,
+      enableInstantUpdates: true,
       lang: 'de',
       toastPosition: 'bottomLeft',
-      shortpollInterval: 0
+      refreshInterval: 0,
+      refresh: {},
+      update: {}
     };
-    this.poll = {
-      short: {
+    this.states = {
+      width: 0,
+      lastSetOnline: 0,
+      lastRefresh: 0,
+      fhemConnectionIsRestarting: false,
+      isOffline: false,
+      refresh: {
         lastTimestamp: new Date(),
         timer: null,
         request: null,
         result: null,
         lastErrorToast: null
       },
-      long: {
-        xhr: null,
-        currLine: 0,
+      update: {
         lastUpdateTimestamp: new Date(),
         lastEventTimestamp: new Date(),
         timer: null,
@@ -31,55 +38,26 @@ class Ftui {
         lastErrorToast: null
       }
     };
-    this.states = {
-      width: 0,
-      lastSetOnline: 0,
-      lastShortpoll: 0,
-      longPollRestart: false,
-      inits: []
-    };
-    this.parameterData = {};
-    this.paramIdMap = {};
-    this.timestampMap = {};
-    this.subscriptions = {};
-    this.subscriptionTs = {};
+    this.readings = new Map();
     this.scripts = [];
-    this.notifications = {};
 
-
+    // start FTUI
     this.init();
   }
 
-  // Notify subjets for Reading observation
-  Notifications(id) {
-    let notification = id && this.notifications[id];
-    if (!notification) {
-      notification = new Notification();
-      if (id) {
-        this.notifications[id] = notification;
-      }
-    }
-    return notification;
-  }
-
-
-
   init() {
-    //this.hideWidgets('html');
-
     this.config.meta = document.getElementsByTagName('META');
-    const longpoll = this.getMetaString('longpoll', '1');
-    this.config.doLongPoll = (longpoll !== '0');
-    this.config.shortPollFilter = this.getMetaString('shortpoll_filter');
-    this.config.longPollFilter = this.getMetaString('longpoll_filter');
+    this.config.enableInstantUpdates = (this.getMetaString('enable_instant_updates', '1') !== '0');
+    this.config.refreshFilter = this.getMetaString('refresh_filter');
+    this.config.updateFilter = this.getMetaString('update_filter');
 
     this.config.debuglevel = this.getMetaNumber('debug');
-    this.config.maxLongpollAge = this.getMetaNumber('longpoll_maxage', 240);
+    this.config.maxUpdateAge = this.getMetaNumber('last_update_maxage', 240);
     this.config.DEBUG = (this.config.debuglevel > 0);
     this.config.TOAST = this.getMetaNumber('toast', 5); // 1,2,3...= n Toast-Messages, 0: No Toast-Messages
     this.config.toastPosition = this.getMetaString('toast_position', 'bottomLeft');
-    this.config.shortpollInterval = this.getMetaNumber('shortpoll_only_interval', 30);
-    this.config.shortPollDelay = this.getMetaString('shortpoll_restart_delay', 3000);
+    this.config.refreshInterval = this.getMetaNumber('refresh_only_interval', 30);
+    this.config.refreshDelay = this.getMetaString('refresh_restart_delay', 3000);
     // self path
     const url = window.location.pathname;
     this.config.filename = url.substring(url.lastIndexOf('/') + 1);
@@ -93,13 +71,10 @@ class Ftui {
     this.log(1, 'FHEM dir: ' + this.config.fhemDir);
     // lang
     const userLang = navigator.language || navigator.userLanguage;
-    this.config.lang = this.getMetaString('lang', ((this.isValid(userLang)) ? userLang.split('-')[0] : 'de'));
+    this.config.lang = this.getMetaString('lang', ((this.isDefined(userLang)) ? userLang.split('-')[0] : 'de'));
     // credentials
     this.config.username = this.getMetaString('username');
     this.config.password = this.getMetaString('password');
-    // subscriptions
-    this.devs = [this.config.webDevice];
-    this.reads = ['STATE'];
 
     const initDeferreds = [this.getCSrf()];
 
@@ -111,19 +86,6 @@ class Ftui {
     } else {
       this.configureToast();
     }
-
-    // after the page became visible, check server connection
-    document.addEventListener('visibilitychange', () => {
-      if (document.visibilityState === 'hidden') {
-        // page is hidden
-      } else {
-        // page is visible
-        this.log(1, 'Page became visible again -> start healthCheck in 3 secondes ');
-        setTimeout(() => {
-          this.healthCheck();
-        }, 3000);
-      }
-    });
 
     try {
       // try to use localStorage
@@ -159,13 +121,16 @@ class Ftui {
     });
 
     document.addEventListener('initWidgetsDone', () => {
-      // restart longpoll
-      this.states.longPollRestart = true;
-      this.restartLongPoll();
+      // restart  connection
+      if (this.config.enableInstantUpdates) {
+        this.states.fhemConnectionIsRestarting = true;
+        this.restartFhemConnection();
+      }
+      // add missing header links
       this.initHeaderLinks();
 
-      // start shortpoll delayed
-      this.startShortPollInterval(500);
+      // start Refresh delayed
+      this.startRefreshInterval(500);
 
       // trigger refreshs
       this.triggerEvent('changedSelection');
@@ -176,8 +141,7 @@ class Ftui {
     }, 60000);
   }
 
-  initPage(area) {
-    area = (this.isValid(area)) ? area : 'html';
+  initPage(area = 'html') {
     window.performance.mark('start initPage-' + area);
 
     this.states.startTime = new Date();
@@ -193,44 +157,35 @@ class Ftui {
     }).catch(error => {
       this.log(1, 'initWidgets -' + error, 'error');
     });
-
   }
 
   initWidgets(area) {
     const initDefer = this.deferred();
-    area = (this.isValid(area)) ? area : 'html';
     const widgetTypes = [];
     // Fetch all the children of <ftui-*> that are not defined yet.
-    const undefineWidgets = this.selectElements(':not(:defined)', area);
+    const undefinedWidgets = this.selectElements(':not(:defined)', area);
 
-    undefineWidgets.forEach(elem => {
-      const type = elem.localName;
-      // ToDo: use filter
-      if (!widgetTypes.includes(type)) {
-        widgetTypes.push(type);
+    undefinedWidgets.forEach(elem => {
+      if (!widgetTypes.includes(elem.localName)) {
+        widgetTypes.push(elem.localName);
       }
     });
 
-
     const regexp = new RegExp('^ftui-[a-z]+$', 'i');
-    widgetTypes
-      .filter(type => {
+    widgetTypes.filter(type => {
+      const match = regexp.test(type);
+      return match;
+    }).forEach(type => {
+      this.dynamicload(this.config.basedir + 'js/widgets/' + type.replace('-', '.') + '.js', true, 'module')
+    });
 
-        const match = regexp.test(type);
-        return match;
-      })
-      .forEach(type => {
-        this.dynamicload(this.config.basedir + 'js/' + type.replace('-', '.') + '.js', true, 'module')
-      });
-
-    const promises = [...undefineWidgets].map(widget => {
-      //console.log(widget);
+    const promises = [...undefinedWidgets].map(widget => {
       return customElements.whenDefined(widget.localName);
     });
 
     // get current values of readings not before all widgets are loaded
     Promise.all(promises).then(() => {
-      this.updateParameters();
+      this.createFilterParameter();
       this.log(1, 'initWidgets - Done');
       const event = new CustomEvent('initWidgetsDone', { area: area });
       document.dispatchEvent(event);
@@ -273,134 +228,95 @@ class Ftui {
     }
   }
 
-  parseDeviceReading(deviceReading) {
-    const [, device, reading] = /^([^-:]+)[-:](.*)$/.exec(deviceReading) || ['', deviceReading, 'STATE'];
+  parseReadingId(readingID) {
+    const [, device, reading] = /^([^-:]+)[-:](.*)$/.exec(readingID) || ['', readingID, 'STATE'];
     const paramid = (reading === 'STATE') ? device : [device, reading].join('-');
     return [paramid, device, reading];
   }
 
-  addReading(deviceReading) {
-    if (this.isValid(deviceReading)) {
-      const [paramid, device, reading] = this.parseDeviceReading(deviceReading);
-      if (!this.subscriptions[paramid]) {
-        this.subscriptions[paramid] = { device: device, reading: reading };
+  getReadingEvents(readingName) {
+    if (this.isDefined(readingName)) {
+      const [readingId, device, reading] = this.parseReadingId(readingName);
+      if (!this.readings.has(readingId)) {
+        this.readings.set(readingId, { data: {}, events: new Events(), device: device, reading: reading });
       }
-      return this.Notifications(paramid);
+      return this.readings.get(readingId).events;
     } else {
+      // empty dummy object
       return { subscribe: () => { } }
     }
   }
 
-  updateParameters() {
+  getReadingData(readingID) {
+    const id = readingID.replace(':', '-');
+    if (this.readings.has(id)) {
+      return this.readings.get(id).data;
+    } else {
+      return null;
+    }
+  }
 
-    this.devs = [... new Set(Object.values(this.subscriptions).map(value => (value.device)))];
-    this.reads = [... new Set(Object.values(this.subscriptions).map(value => (value.reading)))];
+  updateReadingData(readingID, readingData, doPublish) {
+    this.log(3, ['updateReading - update for ', readingID].join(''));
+    const reading = this.readings.get(readingID);
+    reading.data = readingData;
+    if (doPublish) {
+      reading.events.publish(readingData);
+    }
+  }
 
-    // build filter
-    const devicelist = (this.devs.length) ? this.devs.join() : '.*';
-    const readinglist = (this.reads.length) ? this.reads.join(' ') : '';
+  createFilterParameter() {
+    const readingsArray = Array.from(this.readings.values());
+    const devs = [... new Set(readingsArray.map(value => value.device))];
+    const reads = [... new Set(readingsArray.map(value => value.reading))];
+    const devicelist = devs.length ? devs.join() : '.*';
+    const readinglist = reads.length ? reads.join(' ') : '';
 
-    this.poll.long.filter = this.config.longPollFilter ? this.config.longPollFilter : devicelist + ', ' + readinglist;
-    this.poll.short.filter = this.config.shortPollFilter ? this.config.shortPollFilter : devicelist + ' ' + readinglist;
+    this.config.update.filter = this.config.updateFilter ? this.config.updateFilter : devicelist + ', ' + readinglist;
+    this.config.refresh.filter = this.config.refreshFilter ? this.config.refreshFilter : devicelist + ' ' + readinglist;
 
-    // force shortpoll
-    this.states.lastShortpoll = 0;
+    // force Refresh
+    this.states.lastRefresh = 0;
   }
 
   isFhemWebInternal(deviceName) {
     return deviceName.includes('FHEMWEB') && deviceName.match(/WEB_\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}_\d{5}/);
   }
 
-  startLongpoll() {
-    this.log(2, 'startLongpoll: ' + this.config.doLongPoll);
-    this.poll.long.lastEventTimestamp = new Date();
-    if (this.config.doLongPoll) {
-      this.config.shortpollInterval = this.getMetaNumber('shortpoll_interval', 15 * 60); // 15 minutes
-      this.poll.long.timer = setTimeout(() => {
-        this.longPoll();
-      }, 0);
-    }
-  }
-
-  stopLongpoll() {
-    this.log(2, 'stopLongpoll');
-    clearInterval(this.poll.long.timer);
-    if (this.poll.long.websocket) {
-      if (ftui.poll.long.websocket.readyState === WebSocket.OPEN) {
-        this.poll.long.websocket.close();
-      }
-      this.poll.long.websocket = undefined;
-      this.log(2, 'stopped websocket');
-    }
-  }
-
-  restartLongPoll(msg, error) {
-    this.log(2, 'restartLongpoll');
-    let delay;
-    clearTimeout(this.poll.long.timer);
-    if (msg) {
-      this.toast('Disconnected from FHEM<br>' + msg, error);
-    }
-
-    this.stopLongpoll();
-
-    if (this.states.longPollRestart) {
-      delay = 0;
-    } else {
-      this.toast('Retry to connect in 10 seconds');
-      delay = 10000;
-    }
-
-    this.poll.long.timer = setTimeout(() => {
-      this.startLongpoll();
-    }, delay);
-  }
-
   forceRefresh() {
-    this.states.lastShortpoll = 0;
-    this.shortPoll();
+    this.states.lastRefresh = 0;
+    this.refresh();
   }
 
-  startShortPollInterval(delay) {
-    this.log(1, 'shortpoll: start in (ms):' + (delay || this.config.shortpollInterval * 1000));
-    clearInterval(this.poll.short.timer);
-    this.poll.short.timer = setTimeout(() => {
+  startRefreshInterval(delay) {
+    this.log(1, 'refresh: start in (ms):' + (delay || this.config.refreshInterval * 1000));
+    clearInterval(this.states.refresh.timer);
+    this.states.refresh.timer = setTimeout(() => {
       // get current values of readings every x seconds
-      this.shortPoll();
-      this.startShortPollInterval();
-    }, (delay || this.config.shortpollInterval * 1000));
+      this.refresh();
+      this.startRefreshInterval();
+    }, (delay || this.config.refreshInterval * 1000));
   }
 
-  shortPoll(silent) {
+  refresh(silent) {
     const ltime = Date.now() / 1000;
-    if ((ltime - this.states.lastShortpoll) < this.config.shortpollInterval) { return; }
-    this.log(1, 'start shortpoll');
-    window.performance.mark('start shortpoll');
-    this.states.lastShortpoll = ltime;
+    if ((ltime - this.states.lastRefresh) < this.config.refreshInterval) { return; }
+    this.log(1, 'start refresh');
+    window.performance.mark('start refresh');
+    this.states.lastRefresh = ltime;
 
     // invalidate all readings for detection of outdated ones
-    // let i = this.devs.length;
-    // while (i--) {
-    //   const params = this.deviceStates[this.devs[i]];
-    //   for (const reading in params) {
-    //     params[reading].valid = false;
-    //   }
-    // }
+    this.readings.forEach((reading) => reading.data.valid = false);
+
     window.performance.mark('start get jsonlist2');
-    this.poll.short.request =
-      this.sendToFhem('jsonlist2 ' + this.poll.short.filter)
+    this.states.refresh.request =
+      this.sendToFhem('jsonlist2 ' + this.config.refresh.filter)
         .then(res => res.json())
-        .then(fhemJSON => this.parseShortpollResult(fhemJSON, silent)
-        )
-    // .catch(error => {
-    //   this.log(1, 'shortPoll: request failed: 111111' + error, 'error');
-    //   this.poll.short.result = error;
-    //   this.states.lastSetOnline = 0;
-    //   this.states.lastShortpoll = 0;
-    // });
+        .then(fhemJSON => this.parseRefreshResult(fhemJSON, silent)
+        );
   }
 
-  parseShortpollResult(fhemJSON, silent) {
+  parseRefreshResult(fhemJSON, silent) {
 
     window.performance.mark('end get jsonlist2');
     window.performance.measure('get jsonlist2', 'start get jsonlist2', 'end get jsonlist2');
@@ -410,38 +326,38 @@ class Ftui {
     if (fhemJSON && fhemJSON.Results) {
       fhemJSON.Results.forEach(device => {
         if (!this.isFhemWebInternal(device.Name)) {
-          this.parseShortpollReading(device.Name, device.Internals);
-          this.parseShortpollReading(device.Name, device.Attributes);
-          this.parseShortpollReading(device.Name, device.Readings);
+          this.parseRefreshResultSection(device.Name, device.Internals);
+          this.parseRefreshResultSection(device.Name, device.Attributes);
+          this.parseRefreshResultSection(device.Name, device.Readings);
         }
       });
 
       // finished
-      window.performance.mark('end shortpoll');
-      window.performance.measure('shortpoll', 'start shortpoll', 'end shortpoll');
-      const duration = window.performance.getEntriesByName('shortpoll', 'measure')[0].duration;
+      window.performance.mark('end refresh');
+      window.performance.measure('refresh', 'start refresh', 'end refresh');
+      const duration = window.performance.getEntriesByName('refresh', 'measure')[0].duration;
       if (this.config.debuglevel > 1) {
         const paramCount = fhemJSON.Results.length;
         this.toast('Full refresh done in ' +
           duration.toFixed(0) + 'ms for ' +
           paramCount + ' parameter(s)');
       }
-      this.log(1, 'shortPoll: Done');
-      if (this.poll.short.lastErrorToast) {
-        this.poll.short.lastErrorToast.reset();
+      this.log(1, 'refresh: Done');
+      if (this.states.refresh.lastErrorToast) {
+        this.states.refresh.lastErrorToast.reset();
       }
-      this.poll.short.duration = duration * 1000;
-      this.poll.short.lastTimestamp = new Date();
-      this.poll.short.result = 'ok';
+      this.states.refresh.duration = duration * 1000;
+      this.states.refresh.lastTimestamp = new Date();
+      this.states.refresh.result = 'ok';
 
       if (!silent) {
         this.onUpdateDone();
       }
     } else {
       const err = 'request failed: Result is null';
-      this.log(1, 'shortPoll: ' + err);
-      this.poll.short.result = err;
-      this.toast('<u>ShortPoll ' + err + ' </u><br>', 'error');
+      this.log(1, 'refresh: ' + err);
+      this.states.refresh.result = err;
+      this.toast('<u>Refresh ' + err + ' </u><br>', 'error');
 
     }
     window.performance.mark('end read jsonlist2');
@@ -457,80 +373,76 @@ class Ftui {
     }
   }
 
-  parseShortpollReading(device, section) {
+  parseRefreshResultSection(device, section) {
     for (const reading in section) {
-      const paramerId = (reading === 'STATE') ? device : [device, reading].join('-');
-      let deviceReading = section[reading];
-      if (typeof deviceReading !== 'object') {
-        // this.log(5,'paramid='+paramid+' newParam='+newParam);
-
-        deviceReading = {
-          'Value': deviceReading,
+      const parameterId = (reading === 'STATE') ? device : [device, reading].join('-');
+      let parameter = section[reading];
+      if (typeof parameter !== 'object') {
+        parameter = {
+          'Value': parameter,
           'Time': ''
         };
       }
 
       // is there a subscription, then check and update widgets
-      if (this.subscriptions[paramerId]) {
-        const param = this.parameterData[paramerId] || {};
-        const isUpdate = (!param || param.value !== deviceReading.Value || param.time !== deviceReading.Time);
+      if (this.readings.has(parameterId)) {
+        const parameterData = this.getReadingData(parameterId);
+        const doPublish = (parameterData.value !== parameter.Value || parameterData.time !== parameter.Time);
 
-        this.log(5, ['handleUpdate()', ' paramerId=', paramerId, ' value=', deviceReading.Value,
-          ' time=', deviceReading.Time, ' isUpdate=', isUpdate].join(''));
+        this.log(5, ['handleUpdate()', ' paramerId=', parameterId, ' value=', parameter.Value,
+          ' time=', parameter.Time, ' isUpdate=', doPublish].join(''));
 
         // write into internal cache object
-        param.value = deviceReading.Value;
-        param.time = deviceReading.Time;
-        param.update = new Date().format('YYYY-MM-DD hh:mm:ss');
+        parameterData.valid = true;
+        parameterData.value = parameter.Value;
+        parameterData.time = parameter.Time;
+        parameterData.update = new Date().format('YYYY-MM-DD hh:mm:ss');
 
         // update widgets only if necessary
-        if (isUpdate) {
-          this.log(3, ['handleUpdate() publish update for ', paramerId].join(''));
-          this.parameterData[paramerId] = param;
-          // console.log(paramerId, this.parameterData[paramerId], param.value);
-          this.Notifications(paramerId).publish(param);
-        }
+        this.updateReadingData(parameterId, parameterData, doPublish);
       }
     }
   }
 
-  longPoll() {
+  startFhemConnection() {
 
-    if (this.poll.long.websocket) {
-      this.log(3, 'valid this.poll.long.websocket found');
+    if (this.states.update.websocket) {
+      this.log(3, 'valid this.states.update.websocket found');
       return;
     }
-    if (this.poll.long.lastErrorToast) {
-      this.poll.long.lastErrorToast.reset();
+    if (this.states.update.lastErrorToast) {
+      this.states.update.lastErrorToast.reset();
     }
     if (this.config.debuglevel > 1) {
-      this.toast('Longpoll started');
+      this.toast('FHEM connection started');
     }
-    this.poll.long.URL = this.config.fhemDir.replace(/^http/i, 'ws') + '?XHR=1&inform=type=status;filter=' +
-      this.poll.long.filter + ';since=' + this.poll.long.lastEventTimestamp.getTime() + ';fmt=JSON' +
+    this.states.update.URL = this.config.fhemDir.replace(/^http/i, 'ws') + '?XHR=1&inform=type=status;filter=' +
+      this.config.update.filter + ';since=' + this.states.update.lastEventTimestamp.getTime() + ';fmt=JSON' +
       '&timestamp=' + Date.now();
     // "&fwcsrf=" + this.config.csrf;
 
-    this.log(1, 'websockets URL=' + this.poll.long.URL);
-    this.states.longPollRestart = false;
+    this.log(1, 'websockets URL=' + this.states.update.URL);
+    this.states.fhemConnectionIsRestarting = false;
+    this.states.update.lastEventTimestamp = new Date();
+    this.config.refreshInterval = this.getMetaNumber('refresh_interval', 15 * 60); // 15 minutes
 
-    this.poll.long.websocket = new WebSocket(this.poll.long.URL);
-    this.poll.long.websocket.onclose = (event) => {
+    this.states.update.websocket = new WebSocket(this.states.update.URL);
+    this.states.update.websocket.onclose = (event) => {
       let reason;
       if (event.code == 1000) {
         reason = 'Normal closure, meaning that the purpose for which the connection was established has been fulfilled.';
       } else if (event.code == 1001) {
         reason = 'An endpoint is "going away", such as a server going down or a browser having navigated away from a page.';
-      } else if (event.code == 1002) { 
-        reason = 'An endpoint is terminating the connection due to a protocol error'; 
+      } else if (event.code == 1002) {
+        reason = 'An endpoint is terminating the connection due to a protocol error';
       } else if (event.code == 1003) {
         reason = 'An endpoint is terminating the connection because it has received a type of data it cannot accept (e.g., an endpoint that understands only text data MAY send this if it receives a binary message).';
-      } else if (event.code == 1004) { 
-        reason = 'Reserved. The specific meaning might be defined in the future.'; 
-      } else if (event.code == 1005) { 
-        reason = 'No status code was actually present.'; 
-      } else if (event.code == 1006) { 
-        reason = 'The connection was closed abnormally, e.g., without sending or receiving a Close control frame'; 
+      } else if (event.code == 1004) {
+        reason = 'Reserved. The specific meaning might be defined in the future.';
+      } else if (event.code == 1005) {
+        reason = 'No status code was actually present.';
+      } else if (event.code == 1006) {
+        reason = 'The connection was closed abnormally, e.g., without sending or receiving a Close control frame';
       } else if (event.code == 1007) {
         reason = 'An endpoint is terminating the connection because it has received data within a message that was not consistent with the type of the message (e.g., non-UTF-8 [http://tools.ietf.org/html/rfc3629] data within a text message).';
       } else if (event.code == 1008) {
@@ -548,57 +460,84 @@ class Ftui {
       } else { reason = 'Unknown reason'; }
       this.log(1, 'websocket (url=' + event.target.url + ') closed!  reason=' + reason);
       // if current socket closes then restart websocket
-      if (event.target.url === this.poll.long.URL) {
-        this.restartLongPoll(reason);
+      if (event.target.url === this.states.update.URL) {
+        this.restartFhemConnection(reason);
       }
     };
-    this.poll.long.websocket.onerror = (event) => {
-      this.log(1, 'Error while longpoll: ' + event.data);
-      if (this.config.debuglevel > 1 && event.target.url === this.poll.long.URL) {
-        this.poll.long.lastErrorToast = this.toast('Error while longpoll', 'error');
+    this.states.update.websocket.onerror = (event) => {
+      this.log(1, 'Error with fhem connection');
+      if (this.config.debuglevel > 1 && event.target.url === this.states.update.URL) {
+        this.states.update.lastErrorToast = this.toast('Error with fhem connection', 'error');
       }
 
     };
-    this.poll.long.websocket.onmessage = (msg) => {
-      this.handleLongpollUpdates(msg.data);
+    this.states.update.websocket.onmessage = (msg) => {
+      this.handleFhemEvent(msg.data);
     };
   }
 
-  handleLongpollUpdates(data) {
-    const lines = data.split(/\n/);
-    lines.forEach(line => {
-      this.log(5, line);
-      const lastChar = line.slice(-1);
-      if (this.isValid(line) && line !== '' && lastChar === ']' && !this.isFhemWebInternal(line)) {
+  stopFhemConnection() {
+    this.log(2, 'stopFhemConnection');
+    clearInterval(this.states.update.timer);
+    if (this.states.update.websocket) {
+      if (ftui.states.update.websocket.readyState === WebSocket.OPEN) {
+        this.states.update.websocket.close();
+      }
+      this.states.update.websocket = null;
+      this.log(2, 'stopped websocket');
+    }
+  }
 
-        const dataJSON = JSON.parse(line);
-        const id = dataJSON[0];
-        const value = dataJSON[1];
-        const html = dataJSON[2];
-        const isSTATE = (value !== html);
+  restartFhemConnection(msg, error) {
+    this.log(2, 'restartFhemConnection');
+    let delay;
+    clearTimeout(this.states.update.timer);
+    if (msg) {
+      this.toast('Disconnected from FHEM<br>' + msg, error);
+    }
+
+    this.stopFhemConnection();
+
+    if (this.states.fhemConnectionIsRestarting) {
+      delay = 0;
+    } else {
+      this.toast('Retry to connect in 10 seconds');
+      delay = 10000;
+    }
+
+    this.states.update.timer = setTimeout(() => {
+      this.startFhemConnection();
+    }, delay);
+  }
+
+  handleFhemEvent(data) {
+    data.split(/\n/).forEach(line => {
+      if (this.isDefined(line) && line !== '' && line.endsWith(']') && !this.isFhemWebInternal(line)) {
+        const [id, value, html] = JSON.parse(line);
         const isTimestamp = id.match(/-ts$/);
-        const isTrigger = (value === '' && html === '');
-        const paramId = isTimestamp ? id.replace(/-ts$/, '') : id;
-        const param = this.parameterData[paramId] || {};
+        const parameterId = isTimestamp ? id.replace(/-ts$/, '') : id;
 
-        this.log(4, dataJSON);
-        param.update = new Date().format('YYYY-MM-DD hh:mm:ss');
-        if (isTimestamp) {
-          param.time = value;
-        } else if (isSTATE) {
-          param.time = param.update;
-          param.value = value;
-        } else if (!isTimestamp) {
-          param.value = value;
-        }
-        this.parameterData[paramId] = param;
+        if (this.readings.has(parameterId)) {
+          const parameterData = this.readings.get(parameterId).data;
+          const isSTATE = (value !== html);
+          const isTrigger = (value === '' && html === '');
+          const doPublish = (isTimestamp || isSTATE || isTrigger);
 
-        if (isTimestamp || isSTATE || isTrigger) {
-          this.Notifications(paramId).publish(param);
+          parameterData.update = new Date().format('YYYY-MM-DD hh:mm:ss');
+          parameterData.valid = true;
+          if (isTimestamp) {
+            parameterData.time = value;
+          } else if (isSTATE) {
+            parameterData.time = parameterData.update;
+            parameterData.value = value;
+          } else if (!isTimestamp) {
+            parameterData.value = value;
+          }
+          this.updateReadingData(parameterId, parameterData, doPublish);
         }
       }
     });
-    this.poll.long.lastEventTimestamp = new Date();
+    this.states.update.lastEventTimestamp = new Date();
   }
 
   sendFhemCommand(cmdline) {
@@ -634,14 +573,27 @@ class Ftui {
   }
 
   checkInvalidElements() {
-    this.selectAll('.autohide[data-get]').forEach(elem => {
-      const valid = elem.getReading('get').valid;
-      if (valid && valid === true) {
-        elem.classList.remove('invalid');
+    this.selectAll('[hide-invalid][state-reading]').forEach(elem => {
+      const reading = this.getReadingData(elem.stateReading);
+      if (reading && reading.valid === true) {
+        elem.classList.remove('is-invalid');
       } else {
-        elem.classList.add('invalid');
+        elem.classList.add('is-invalid');
       }
     });
+    this.selectAll('[hide-invalid][text-reading]').forEach(elem => {
+      const reading = this.getReadingData(elem.textReading);
+      if (reading && reading.valid === true) {
+        elem.classList.remove('is-invalid');
+      } else {
+        elem.classList.add('is-invalid');
+      }
+    });
+  }
+
+  updateOnlineStatus() {
+    ftui.log(5, 'online offline');
+    if (navigator.onLine) { this.setOnline(); } else { this.setOffline(); }
   }
 
   setOnline() {
@@ -649,16 +601,11 @@ class Ftui {
     if ((ltime - this.states.lastSetOnline) > 60) {
       if (this.config.DEBUG) this.toast('FHEM connected');
       this.states.lastSetOnline = ltime;
-      // force shortpoll
-      this.states.lastShortpoll = 0;
-      this.startShortPollInterval(1000);
-      if (!this.config.doLongPoll) {
-        const longpoll = this.selectAll('meta[name="longpoll"]["content"]').content || '1';
-        this.config.doLongPoll = (longpoll != '0');
-        this.states.longPollRestart = false;
-        if (this.config.doLongPoll) {
-          this.startLongpoll();
-        }
+      // force refresh
+      this.states.lastRefresh = 0;
+      this.startRefreshInterval(1000);
+      if (this.config.enableInstantUpdates) {
+        this.startFhemConnection();
       }
       this.log(1, 'FTUI is online');
     }
@@ -666,19 +613,9 @@ class Ftui {
 
   setOffline() {
     if (this.config.DEBUG) this.toast('Lost connection to FHEM');
-    this.config.doLongPoll = false;
-    this.states.longPollRestart = true;
-    clearInterval(this.poll.short.timer);
-    this.stopLongpoll();
+    clearInterval(this.states.refresh.timer);
+    this.stopFhemConnection();
     this.log(1, 'FTUI is offline');
-  }
-
-  getDeviceParameter(devname, paraname) {
-    if (devname && devname.length) {
-      const params = this.deviceStates[devname];
-      return (params && params[paraname]) ? params[paraname] : null;
-    }
-    return null;
   }
 
   dynamicload(url, async, type = 'text/javascript') {
@@ -741,13 +678,13 @@ class Ftui {
   }
 
   healthCheck() {
-    const timeDiff = new Date() - this.poll.long.lastEventTimestamp;
-    if (timeDiff / 1000 > this.config.maxLongpollAge &&
-      this.config.maxLongpollAge > 0 &&
-      this.config.doLongPoll) {
-      this.log(1, 'No longpoll event since ' + timeDiff / 1000 + 'secondes -> restart polling');
+    const timeDiff = new Date() - this.states.update.lastEventTimestamp;
+    if (timeDiff / 1000 > this.config.maxUpdateAge &&
+      this.config.maxUpdateAge > 0 &&
+      this.config.enableInstantUpdates) {
+      this.log(1, 'No update event since ' + timeDiff / 1000 + 'secondes -> restart connection');
       this.setOnline();
-      this.restartLongPoll();
+      this.restartFhemConnection();
     }
   }
 
@@ -787,15 +724,15 @@ class Ftui {
       const d = max - min;
       s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
       switch (max) {
-      case r:
-        h = (g - b) / d + (g < b ? 6 : 0);
-        break;
-      case g:
-        h = (b - r) / d + 2;
-        break;
-      case b:
-        h = (r - g) / d + 4;
-        break;
+        case r:
+          h = (g - b) / d + (g < b ? 6 : 0);
+          break;
+        case g:
+          h = (b - r) / d + 2;
+          break;
+        case b:
+          h = (r - g) / d + 4;
+          break;
       }
       h /= 6;
     }
@@ -884,13 +821,13 @@ class Ftui {
   }
 
   getPart(value, part) {
-    if (this.isValid(part)) {
+    if (this.isDefined(part)) {
       if (this.isNumeric(part)) {
-        const tokens = (this.isValid(value)) ? value.toString().split(' ') : '';
+        const tokens = (this.isDefined(value)) ? value.toString().split(' ') : '';
         return (tokens.length >= part && part > 0) ? tokens[part - 1] : value;
       } else {
         let ret = '';
-        if (this.isValid(value)) {
+        if (this.isDefined(value)) {
           const matches = value.match(new RegExp('^' + part + '$'));
           if (matches) {
             for (let i = 1, len = matches.length; i < len; i++) {
@@ -961,7 +898,7 @@ class Ftui {
     return array.indexOf(find);
   }
 
-  isValid(v) {
+  isDefined(v) {
     return (typeof v !== 'undefined');
   }
 
@@ -1004,7 +941,7 @@ class Ftui {
     ret = ret.replace('eeee', eeee);
     ret = ret.replace('eee', eee);
     ret = ret.replace('ee', ee);
-  
+
     return ret;
   }
 
@@ -1040,10 +977,6 @@ class Ftui {
       return +(numArray[0] + 'e' + (numArray[1] ? (+numArray[1] + precision) : precision));
     };
     return shift(Math.round(shift(number, precision, false)), precision, true);
-  }
-
-  parseJsonFromString(str) {
-    return JSON.parse(str);
   }
 
   getAndroidVersion(ua) {
@@ -1197,23 +1130,6 @@ class Ftui {
   }
 }
 
-// -------------Subject - Observer Pattern----------
-class Notification {
-  constructor() {
-    this.observers = [];
-  }
-
-  subscribe(observer, context) {
-    if (void 0 === context) { context = observer; }
-    this.observers.push({ observer: observer });
-  }
-
-  publish(args) {
-    this.observers.forEach(topic => topic.observer(args));
-  }
-}
-
-
 
 // global helper functions
 
@@ -1222,7 +1138,7 @@ String.prototype.toDate = function () {
 };
 
 String.prototype.parseJson = function () {
-  return ftui.parseJsonFromString(this);
+  return ftui.parseJSON(this);
 };
 
 String.prototype.toMinFromMs = function () {
@@ -1277,7 +1193,7 @@ Date.prototype.ago = function (format) {
   const strUnits = (ftui.config.lang === 'de') ? ['Tag(e)', 'Stunde(n)', 'Minute(n)', 'Sekunde(n)'] : ['day(s)', 'hour(s)', 'minute(s)',
     'second(s)'];
   let ret;
-  if (ftui.isValid(format)) {
+  if (ftui.isDefined(format)) {
     ret = format.replace('dd', days);
     ret = ret.replace('hh', (hours > 9) ? hours : '0' + hours);
     ret = ret.replace('mm', (minutes > 9) ? minutes : '0' + minutes);
@@ -1399,9 +1315,19 @@ window.addEventListener('beforeunload', () => {
   ftui.setOffline();
 });
 
-window.addEventListener('online offline', () => {
-  ftui.log(5, 'online offline');
-  if (navigator.onLine) { ftui.setOnline(); } else { ftui.setOffline(); }
+window.addEventListener('online', () => { ftui.updateOnlineStatus() });
+window.addEventListener('offline', () => { ftui.updateOnlineStatus() });
+// after the page became visible, check server connection
+document.addEventListener('visibilitychange', () => {
+  if (document.visibilityState === 'hidden') {
+    // page is hidden
+  } else {
+    // page is visible
+    ftui.log(1, 'Page became visible again -> start healthCheck in 3 secondes ');
+    setTimeout(() => {
+      ftui.healthCheck();
+    }, 3000);
+  }
 });
 
 window.onerror = function (msg, url, lineNo, columnNo, error) {

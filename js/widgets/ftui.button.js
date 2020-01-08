@@ -20,7 +20,7 @@ export default class FtuiButton extends FtuiSymbol {
   onClicked() {
     this.stateIndex = ++this.stateIndex % this.stateArray.length;
     this.value = this.stateArray[this.stateIndex];
-    this.setMatchingClasses(this.elementIcon, this.stateClasses, this.value);
+    super.onUpdateState({ value: this.value });
     if (this.showStateAsText) {
       this.onUpdateText({ value: this.value });
     }

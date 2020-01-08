@@ -17,7 +17,7 @@
   <link rel="icon" href="favicon.ico" type="image/x-icon" />
   <link href="css/ftui.css" rel="stylesheet">
   <link href="css/ftui.theme.css" rel="stylesheet">
-  <script src="js/ftui.js" defer></script>
+  <script type="module" src="js/ftui.js" defer></script>
 
   <meta name='debug' content='2'>
 
@@ -179,19 +179,24 @@
             text="Pumpe" icon="">
           </ftui-button>
 
-          <ftui-knob value-reading="AvReceiver-volume"
-          max="50"
-          has-scale="true"
-          has-arc="false"
-          has-value-text="true">
+          <ftui-knob value-reading="dummy1-volume"
+            cmd="setreading"
+            max="50"
+            has-scale="true"
+            has-arc="false"
+            has-value-text="true">
           </ftui-knob>
 
-          <ftui-button class="space-around" state-reading="dummy1" state-classes='{
-          ".*":"fa fa-lightbulb",
-          "Wert1": "fa fa-car green"
-        }' text-reading="dummy1:volume" text-classes='{
-          "9": "bg-red"
-        }'></ftui-button>
+          <ftui-button class="space-around" 
+            state-reading="dummy1-mute" 
+            state-classes='{ ".*" : "" }' 
+            icon-reading="dummy1-mute" 
+            icon-classes='{
+                "on":"fas fa-volume-mute",
+                "off": "fas fa-volume-up" }' 
+            cmd="setreading"
+            text-reading="dummy1-volume" 
+            text-classes='{ "9": "tomato" }'></ftui-button>
 
           <ftui-label text-reading="AgroWeather" text-filter="part(6)" text-post="°C" class="big"></ftui-label>
 
@@ -205,7 +210,7 @@
             <ftui-button state-reading="ftuitest" states='{"0": "0", "40": "40", "60": "60", "100": "100"}' icon=""
               text-reading="ftuitest" state-classes='{"0": "bg-grey", "50": "bg-green"}' show-state-as-text="true">
             </ftui-button>
-            <ftui-label text-reading="ftuitest"></ftui-label>
+            <ftui-label text-reading="ftuitest:temp" hide-invalid></ftui-label>
           </div>
           <div class="vbox">
             <ftui-button state-reading="dummy1" icon-reading="dummy1" icon-classes='{"off": "mdi mdi-lightbulb",
@@ -237,9 +242,9 @@
         </ftui-button>
         <div class="vbox">
           <ftui-label text-reading="Sonos_Kueche:transportState"></ftui-label>
-          <ftui-label text-reading="Sonos_Kueche:currentTitle"></ftui-label>
-          <ftui-label text-reading="Sonos_Kueche:currentArtist"></ftui-label>
-          <ftui-label text-reading="Sonos_Kueche:currentSenderInfo"></ftui-label>
+          <ftui-label text-reading="Sonos_Kueche:currentTitle" hide-empty></ftui-label>
+          <ftui-label text-reading="Sonos_Kueche:currentArtist" hide-empty></ftui-label>
+          <ftui-label text-reading="Sonos_Kueche:currentSenderInfo" hide-empty></ftui-label>
         </div>
       </ftui-grid-tile>
 
@@ -286,8 +291,13 @@
       </ftui-grid-tile>
 
       <ftui-grid-tile row="1" col="10" height="2" width="3">
-        <header>CIRCLE</header>
-
+        <header>VOLUME</header>
+        <ftui-knob value-reading="Sonos_Kueche:Volume"
+          max="50"
+          has-scale="true"
+          has-arc="false"
+          has-value-text="true">
+        </ftui-knob>
       </ftui-grid-tile>
 
       <ftui-grid-tile row="3" col="2" height="2" width="2">

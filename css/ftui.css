@@ -814,6 +814,7 @@ section {
 .box, .hbox, .box.horizontal {
   flex-direction: row;
   flex: 1;
+  width: 100%;
 }
 
 .vbox {
@@ -823,6 +824,7 @@ section {
 .vbox, .box.vertical {
   flex-direction: column;
   flex: 1;
+  height: 100%;
 }
 
 .shrink-0, .shrink-0x {
@@ -1241,9 +1243,10 @@ div[data-type="link"]>div.fa {
   justify-content: space-around;
 }
 
-.row label, [class*=row-] label {
+.row label, [class*=row-] label, .vbox label {
   display: flex;
   flex: 1;
+  flex-direction: column;
   justify-content: center;
   align-self: center;
 }
@@ -2251,7 +2254,7 @@ img.faded {
   filter: invert(0.5) sepia(1) saturate(0);
 }
 
-.autohide.invalid, .hide, .widget-hide {
+[hide-invalid].is-invalid, .hide {
   display: none !important;
 }
 

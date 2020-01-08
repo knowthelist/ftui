@@ -6,7 +6,9 @@ with a clear intention: Keep it short and simple!
 
 Version 3 
 
-Caution! This version is not compatible with older fhem-tablet-ui versions.
+Caution! 
+ * This version is not compatible with older fhem-tablet-ui versions.
+ * This version is under construction.
 
 
 ![](http://knowthelist.github.io/fhem-tablet-ui/ftui3.png)
@@ -44,18 +46,26 @@ Usage
 Widgets
 ------
 
-- tab
-- grid
-- label
-- symbol
-- button
-- knob
+- Tab
+- Grid
+- Label
+- Symbol
+- [Button](#button)
+- Knob
 
 
-Button
---------
+#### Button
 
-show-state-as-text  boolean
+| Attribute     | Type | Default | Description | Example |
+| ------------- |------|------------|---------|---------|
+| cmd | string | "set" | FHEM command| cmd="setreading"|
+| states | object | '{ ".*": "on", "off": "off" }' | reading to state mapping | states='{"PLAYING": "play", "PAUSED_PLAYBACK\|STOPPED": "stop"}' |
+| icon | string | "mdi mdi-lightbulb-outline" | css classes to create icon | icon="fa fa-car"|
+| icon-class | string | "" | css classes to style icon | icon-class="tomato"|
+| text | string | "" | css classes to create icon | icon="fa fa-car"|
+| text-class | string | "" | css classes to style icon | icon-class="tomato"|
+
+  ... to be continued
 
 Donation
 --------

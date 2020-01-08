@@ -19,9 +19,7 @@ export default class FtuiWidget extends HTMLElement {
   }
 
   updateReading(reading, value) {
-    const match = /^([^-:]*)[-:](.*)$/.exec(reading);
-    const deviceName = match ? match[1] : reading;
-    const readingName = match ? match[2] : null;
+    const [, deviceName, readingName]= /^([^-:]*)[-:](.*)$/.exec(reading) || [null, reading, null];
     const cmdl = [this.cmd, deviceName, readingName, value].join(' ');
     if (this.delay) {
       this.delayedSubmitCommand(cmdl);
@@ -43,5 +41,12 @@ export default class FtuiWidget extends HTMLElement {
   matchingClasses(attribute, value) {
     const matchValue = ftui.matchingValue(attribute, value);
     return matchValue ? matchValue.split(' ').filter(String) : [];
+  }
+
+  setMatchingClasses(element, classes, value) {
+    if (classes) {
+      element.classList.remove(...this.allClasses(classes));
+      element.classList.add(...this.matchingClasses(classes, value));
+    }
   }
 }

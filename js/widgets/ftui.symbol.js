@@ -19,10 +19,10 @@ export default class FtuiSymbol extends FtuiWidget {
     this.elementText = this.querySelector('#text');
     this.elementBadge = this.querySelector('#badge');
 
-    ftui.addReading(this.stateReading).subscribe(param => this.onUpdateState(param));
-    ftui.addReading(this.iconReading).subscribe(param => this.onUpdateIcon(param));
-    ftui.addReading(this.textReading).subscribe(param => this.onUpdateText(param));
-    ftui.addReading(this.badgeReading).subscribe(param => this.onUpdateBadge(param));
+    ftui.getReadingEvents(this.stateReading).subscribe(param => this.onUpdateState(param));
+    ftui.getReadingEvents(this.iconReading).subscribe(param => this.onUpdateIcon(param));
+    ftui.getReadingEvents(this.textReading).subscribe(param => this.onUpdateText(param));
+    ftui.getReadingEvents(this.badgeReading).subscribe(param => this.onUpdateBadge(param));
   }
 
   template() {
@@ -54,21 +54,14 @@ export default class FtuiSymbol extends FtuiWidget {
   }
 
   onUpdateText(param) {
-    if (ftui.isValid(param.value)) {
+    if (ftui.isDefined(param.value)) {
       this.elementText.innerHTML = param.value;
     }
     this.setMatchingClasses(this.elementText, this.textClasses, param.value);
   }
 
   onUpdateBadge(param) {
-    this.elementBadge.innerHTML = (ftui.isValid(param.value) && param.value > 0) ? param.value : '';
-  }
-
-  setMatchingClasses(element, classes, value) {
-    if (classes) {
-      element.classList.remove(...this.allClasses(classes));
-      element.classList.add(...this.matchingClasses(classes, value));
-    }
+    this.elementBadge.innerHTML = (ftui.isDefined(param.value) && param.value > 0) ? param.value : '';
   }
 
 }

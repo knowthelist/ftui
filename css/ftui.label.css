@@ -5,6 +5,10 @@ ftui-label {
   justify-content: center;
 }
 
+ftui-label.is-empty {
+  flex: initial;
+}
+
 ftui-label #wrapper {
     flex-direction: row;
     flex: 1;

@@ -24,8 +24,8 @@ export default class FtuiKnob extends FtuiWidget {
     };
     super(Object.assign(defaults, attributes));
 
-    ftui.addReading(this.valueReading).subscribe(param => this.onUpdateValue(param));
-    ftui.addReading(this.stateReading).subscribe(param => this.onUpdateState(param));
+    ftui.getReadingEvents(this.valueReading).subscribe(param => this.onUpdateValue(param));
+    ftui.getReadingEvents(this.stateReading).subscribe(param => this.onUpdateState(param));
 
     this.svg = this.querySelector('.typeRange');
     this.outline = this.querySelector('.outline');
@@ -100,7 +100,7 @@ export default class FtuiKnob extends FtuiWidget {
   }
 
   onUpdateState(param) {
-    if (ftui.isValid(param.value)) {
+    if (ftui.isDefined(param.value)) {
       if (this.stateClasses) {
         this.fill.classList.remove(...this.allClasses(this.stateClasses));
         this.fill.classList.add(...this.matchingClasses(this.stateClasses, param.value));

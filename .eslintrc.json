@@ -44,7 +44,8 @@
         "no-unused-vars": [
             "error",
             {
-                "varsIgnorePattern": "^Modul_*|^depends_*|Ftui*|part|toNumber|round|add|multiply|pipe"
+                "varsIgnorePattern": 
+                "^Modul_*|^depends_*|Ftui*|part|toNumber|round|add|multiply|pipe|toDate|format"
             }
         ],
         "jquery/no-ajax": 2,
