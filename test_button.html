@@ -26,65 +26,44 @@
 </head>
 
 <!-- loads more than twice times faster than ftui version 2.*-->
+
 <body>
-  <ftui-grid base-height="250">
-    <ftui-grid-tile row="1" col="1" height="14" width="3">
-        <header>SIMPLE</header>
-        <ftui-button state-reading="dummy1"></ftui-button>
+  <ftui-grid base-width="150" base-height="150">
+
+    <ftui-grid-tile row="1" col="1" height="1" width="1" class="round">
+      <header>SIMPLE</header>
+      <div class="cell">
         <ftui-button state-reading="dummy2"></ftui-button>
-        <ftui-button state-reading="dummy1"></ftui-button>
-        <ftui-button state-reading="dummy2"></ftui-button>
-        <ftui-button state-reading="dummy1"></ftui-button>
-        <ftui-button state-reading="dummy2"></ftui-button>
-        <ftui-button state-reading="dummy1"></ftui-button>
-        <ftui-button state-reading="dummy2"></ftui-button>
-        <ftui-button state-reading="dummy1"></ftui-button>
-        <ftui-button state-reading="dummy2"></ftui-button>
-        <ftui-button state-reading="dummy1"></ftui-button>
-        <ftui-button state-reading="dummy2"></ftui-button>
-        <ftui-button state-reading="dummy1"></ftui-button>
-        <ftui-button state-reading="dummy2"></ftui-button>
-        <ftui-button state-reading="dummy1"></ftui-button>
-        <ftui-button state-reading="dummy2"></ftui-button>
-        <ftui-button state-reading="dummy1"></ftui-button>
-        <ftui-button state-reading="dummy2"></ftui-button>
-        <ftui-button state-reading="dummy1"></ftui-button>
-        <ftui-button state-reading="dummy2"></ftui-button>
-        <ftui-button state-reading="dummy1"></ftui-button>
-        <ftui-button state-reading="dummy2"></ftui-button>
-        <ftui-button state-reading="dummy1"></ftui-button>
-        <ftui-button state-reading="dummy2"></ftui-button>
-        <ftui-button state-reading="dummy1"></ftui-button>
-        <ftui-button state-reading="dummy2"></ftui-button>
-        <ftui-button state-reading="dummy1"></ftui-button>
-        <ftui-button state-reading="dummy2"></ftui-button>
-        <ftui-button state-reading="dummy1"></ftui-button>
-        <ftui-button state-reading="dummy2"></ftui-button>
-        <ftui-button state-reading="dummy1"></ftui-button>
-        <ftui-button state-reading="dummy2"></ftui-button>
-        <ftui-button state-reading="dummy1"></ftui-button>
-        <ftui-button state-reading="dummy2"></ftui-button>
-        <ftui-button state-reading="dummy1"></ftui-button>
-        <ftui-button state-reading="dummy2"></ftui-button>
-        <ftui-button state-reading="dummy1"></ftui-button>
-        <ftui-button state-reading="dummy2"></ftui-button>
-        <ftui-button state-reading="dummy1"></ftui-button>
-        <ftui-button state-reading="dummy2"></ftui-button>
-        <ftui-button state-reading="dummy1"></ftui-button>
-        <ftui-button state-reading="dummy2"></ftui-button>
-        <ftui-button state-reading="dummy1"></ftui-button>
-        <ftui-button state-reading="dummy2"></ftui-button>
-        <ftui-button state-reading="dummy1"></ftui-button>
-        <ftui-button state-reading="dummy2"></ftui-button>
-        <ftui-button state-reading="dummy1"></ftui-button>
-        <ftui-button state-reading="dummy2"></ftui-button>
-        <ftui-button state-reading="dummy1"></ftui-button>
-        <ftui-button state-reading="dummy2"></ftui-button>
-        <ftui-button state-reading="dummy1"></ftui-button>
-        <ftui-button state-reading="dummy2"></ftui-button>
-        <ftui-button state-reading="dummy1"></ftui-button>
-        <ftui-button state-reading="dummy2"></ftui-button>
-      </ftui-grid-tile>
+        <label>Dummy2</label>
+      </div>
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="1" col="2" height="3" width="1">
+      <header>States</header>
+
+      <div class="cell">
+        <ftui-button state-reading="Stehlampe" state-map='{"on|dim.*": "on", "off|0": "off"}'>
+        </ftui-button>
+        <label>Stehlampe</label>
+      </div>
+
+      <div class="cell">
+        <ftui-button state-reading="dummy1" state-map='{"Wert.*": "set", "on": "on", "off": "off"}'
+          state-classes='{"set": "bg-blue", "on": "bg-seagreen", "off": "bg-gray"}'>
+        </ftui-button>
+        <label>Dummy1</label>
+      </div>
+
+      <div class="cell">
+        <ftui-button class="circle-thin" state-reading="Sonos_Kueche:transportState" set-reading="Sonos_Kueche"
+          states='["play", "stop"]' state-map='{"PLAYING": "play", "PAUSED_PLAYBACK|STOPPED": "stop"}'
+          state-classes='{"play": "fa fa-pause", "stop": "fa fa-play"}' icon="" icon-class="white">
+        </ftui-button>
+        <label>Kitchen</label>
+      </div>
+
+    </ftui-grid-tile>
+
   </ftui-grid>
 </body>
 

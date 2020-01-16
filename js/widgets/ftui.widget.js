@@ -19,7 +19,7 @@ export default class FtuiWidget extends HTMLElement {
   }
 
   updateReading(reading, value) {
-    const [, deviceName, readingName]= /^([^-:]*)[-:](.*)$/.exec(reading) || [null, reading, null];
+    const [, deviceName, readingName] = /^([^-:]*)[-:](.*)$/.exec(reading) || [null, reading, null];
     const cmdl = [this.cmd, deviceName, readingName, value].join(' ');
     if (this.delay) {
       this.delayedSubmitCommand(cmdl);

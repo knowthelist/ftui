@@ -1,31 +1,14 @@
-ftui-weather {
-  flex: auto;
+ftui-weather #icon {
+  border-radius: 50%;
+  background-color: transparent;
   display: flex;
   flex-direction: column;
   justify-content: center;
-}
-
-ftui-weather #wrapper {
-    flex-direction: row;
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    width: 100%;
-}
-
-ftui-weather #icon {
-    border-radius: 50%;
-    background-color: transparent;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  align-items: center;
 }
 
 ftui-weather #icon:before {
-    font-size: 3.125em;
+  font-size: 3.125em;
 }
 
 ftui-weather #text {

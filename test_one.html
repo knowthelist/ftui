@@ -9,51 +9,82 @@
     *
     * Version: 3.0.0
     *
-    * Copyright (c) 2015-2020 Mario Stephan <mstephan@shared-files.de>
+    * Copyright (c) 2015-2019 Mario Stephan <mstephan@shared-files.de>
     * Under MIT License (http://www.opensource.org/licenses/mit-license.php)
     * https://github.com/knowthelist/fhem-tablet-ui
     */
     -->
   <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <meta name='debug' content='2'>
+  <meta name='toast_position' content='topCenter'>
+
   <link href="css/ftui.css" rel="stylesheet">
   <link href="css/ftui.theme.css" rel="stylesheet">
   <script type="module" src="js/ftui.js" defer></script>
 
-  <meta name='debug' content='2'>
-
-  <title>FTUI Test-Simple</title>
+  <title>FHEM-Tablet-UI</title>
 </head>
 
+<!-- loads more than twice times faster than ftui version 2.*-->
 <body>
-  <ftui-grid base-width="120" base-height="120">
-
-
-    <ftui-grid-tile row="1" col="1" height="1" width="3">
-      <header>Original</header>
-      <div class="row">
-        <label>MasterPlayerPlaying</label>
-        <ftui-label text-reading="Sonos:MasterPlayerPlaying"></ftui-label>
-      </div>
-    </ftui-grid-tile>
-
-    <ftui-grid-tile row="2" col="2" height="1" width="1">
-      <header>text-filter part4</header>
-      <ftui-label text-reading="AgroWeather:state" text-filter="part(4)"></ftui-label>
-      </ftui-label>
-    </ftui-grid-tile>
-
-    <ftui-grid-tile row="3" col="3" height="1" width="1">
-      <header>text-filter x2</header>
-      <ftui-label text-reading="AgroWeather:state" text-filter="part(4) | parseInt | multiply(2) | round(1)"></ftui-label>
-      </ftui-label>
-    </ftui-grid-tile>
-    
-    <ftui-grid-tile row="4" col="4" height="1" width="1">
-      <header>text-filter regexec</header>
-      <ftui-label text-reading="AgroWeather:state" text-filter="part('.*T:(.*)H:.*')" text-pre="<" text-post=">">
-      </ftui-label>
-    </ftui-grid-tile>
-
+  <ftui-grid base-height="250">
+    <ftui-grid-tile row="1" col="1" height="14" width="3">
+        <header>SIMPLE</header>
+        <ftui-button state-reading="dummy1"></ftui-button>
+        <ftui-button state-reading="dummy2"></ftui-button>
+        <ftui-button state-reading="dummy1"></ftui-button>
+        <ftui-button state-reading="dummy2"></ftui-button>
+        <ftui-button state-reading="dummy1"></ftui-button>
+        <ftui-button state-reading="dummy2"></ftui-button>
+        <ftui-button state-reading="dummy1"></ftui-button>
+        <ftui-button state-reading="dummy2"></ftui-button>
+        <ftui-button state-reading="dummy1"></ftui-button>
+        <ftui-button state-reading="dummy2"></ftui-button>
+        <ftui-button state-reading="dummy1"></ftui-button>
+        <ftui-button state-reading="dummy2"></ftui-button>
+        <ftui-button state-reading="dummy1"></ftui-button>
+        <ftui-button state-reading="dummy2"></ftui-button>
+        <ftui-button state-reading="dummy1"></ftui-button>
+        <ftui-button state-reading="dummy2"></ftui-button>
+        <ftui-button state-reading="dummy1"></ftui-button>
+        <ftui-button state-reading="dummy2"></ftui-button>
+        <ftui-button state-reading="dummy1"></ftui-button>
+        <ftui-button state-reading="dummy2"></ftui-button>
+        <ftui-button state-reading="dummy1"></ftui-button>
+        <ftui-button state-reading="dummy2"></ftui-button>
+        <ftui-button state-reading="dummy1"></ftui-button>
+        <ftui-button state-reading="dummy2"></ftui-button>
+        <ftui-button state-reading="dummy1"></ftui-button>
+        <ftui-button state-reading="dummy2"></ftui-button>
+        <ftui-button state-reading="dummy1"></ftui-button>
+        <ftui-button state-reading="dummy2"></ftui-button>
+        <ftui-button state-reading="dummy1"></ftui-button>
+        <ftui-button state-reading="dummy2"></ftui-button>
+        <ftui-button state-reading="dummy1"></ftui-button>
+        <ftui-button state-reading="dummy2"></ftui-button>
+        <ftui-button state-reading="dummy1"></ftui-button>
+        <ftui-button state-reading="dummy2"></ftui-button>
+        <ftui-button state-reading="dummy1"></ftui-button>
+        <ftui-button state-reading="dummy2"></ftui-button>
+        <ftui-button state-reading="dummy1"></ftui-button>
+        <ftui-button state-reading="dummy2"></ftui-button>
+        <ftui-button state-reading="dummy1"></ftui-button>
+        <ftui-button state-reading="dummy2"></ftui-button>
+        <ftui-button state-reading="dummy1"></ftui-button>
+        <ftui-button state-reading="dummy2"></ftui-button>
+        <ftui-button state-reading="dummy1"></ftui-button>
+        <ftui-button state-reading="dummy2"></ftui-button>
+        <ftui-button state-reading="dummy1"></ftui-button>
+        <ftui-button state-reading="dummy2"></ftui-button>
+        <ftui-button state-reading="dummy1"></ftui-button>
+        <ftui-button state-reading="dummy2"></ftui-button>
+        <ftui-button state-reading="dummy1"></ftui-button>
+        <ftui-button state-reading="dummy2"></ftui-button>
+        <ftui-button state-reading="dummy1"></ftui-button>
+        <ftui-button state-reading="dummy2"></ftui-button>
+        <ftui-button state-reading="dummy1"></ftui-button>
+        <ftui-button state-reading="dummy2"></ftui-button>
+      </ftui-grid-tile>
   </ftui-grid>
 </body>
 

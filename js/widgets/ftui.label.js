@@ -17,10 +17,9 @@ class FtuiLabel extends FtuiWidget {
   }
 
   template() {
-    return `<div id="wrapper">
-    <span id="pre">${this.textPre}</span>
+    return `<span id="pre">${this.textPre}</span>
     <span id="text">${this.text}</span>
-    <span id="post">${this.textPost}</span></div>`;
+    <span id="post">${this.textPost}</span>`;
   }
 
   onUpdateState(param) {

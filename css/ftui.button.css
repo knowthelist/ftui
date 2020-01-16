@@ -1,21 +1,3 @@
-ftui-button {
-  cursor: auto;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-ftui-button #wrapper {
-    flex-direction: row;
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    width: 100%;
-}
-
 /* default */
 ftui-button #icon {
     cursor: pointer;
@@ -61,6 +43,11 @@ ftui-button.text-right #icon {
   flex-direction: row;
 }
 
+ftui-button.btn-full {
+  width: 100%;
+  height: 100%;
+}
+
 ftui-button.btn-full #icon {
   width: 100%;
   height: 100%;
@@ -80,7 +67,6 @@ ftui-button.icon-brighter #icon {
   color: rgba(255, 255, 255, 0.3);
 }
 
-
 /* round */
 
 ftui-button.rounded #icon {
@@ -90,7 +76,6 @@ ftui-button.rounded #icon {
 ftui-button.round #icon {
   border-radius: 50%;
 }
-
 
 /* style: btn-text */
 

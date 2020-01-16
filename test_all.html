@@ -29,9 +29,9 @@
   <ftui-grid>
 
     <ftui-grid-tile row="1" col="1" height="7" width="1">
-      <div class="vbox">
-        <ftui-tab class="round default" state-reading="dummy1" states='{"Wert1" : "on"}' view="View1"></ftui-tab>
-        <ftui-tab class="round"         state-reading="dummy1" states='{"Wert2" : "on"}' view="View2"></ftui-tab>
+      <div class="column">
+        <ftui-tab class="round default" state-reading="ftuitest" state-map='{"1" : "on"}' view="View1"></ftui-tab>
+        <ftui-tab class="round" state-reading="ftuitest" state-map='{"2" : "on"}' view="View2"></ftui-tab>
         <ftui-tab class="tab-text" text="auto" view="View1"></ftui-tab>
         <ftui-tab class="tab-text text-right" text="Sonos" view="View2"></ftui-tab>
         <ftui-tab class="tab-text" text="juhu" view="View1"></ftui-tab>
@@ -42,47 +42,53 @@
       <ftui-grid-tile row="1" col="2" height="2" width="2">
         <header>BUTTONS</header>
         <div class="row">
-          <ftui-button state-reading="dummy1" class="icon-brighter"></ftui-button>
-          <label class="text-left">Lamp1</label>
-          <ftui-button state-reading="dummy2" class="rounded"></ftui-button>
-          <label class="text-left">Lamp2</label>
+          <div class="cell">
+            <ftui-button state-reading="dummy1" class="icon-brighter"></ftui-button>
+            <label class="text-left">Lamp1</label>
+          </div>
+          <div class="row">
+            <div class="cell">
+              <ftui-button state-reading="dummy2" class="rounded"></ftui-button>
+              <label class="text-left">Lamp2</label>
+            </div>
+          </div>
         </div>
         <div class="row">
-          <ftui-button state-reading="dummy3" class="round"></ftui-button>
-          <label class="text-left">Lamp3</label>
-          <ftui-button state-reading="dummy4" class="round"></ftui-button>
-          <label class="text-left">Lamp4</label>
+          <div class="cell">
+            <ftui-button state-reading="dummy3" class="round"></ftui-button>
+            <label class="text-left">Lamp3</label>
+          </div>
+          <div class="cell">
+            <ftui-button state-reading="dummy4" class="round"></ftui-button>
+            <label class="text-left">Lamp4</label>
+          </div>
         </div>
       </ftui-grid-tile>
 
       <ftui-grid-tile row="1" col="4" height="2" width="6">
         <header>EXAMPLE21</header>
         <div class="row">
-          <ftui-button state-reading="SchrankLicht_Sw" states='{".*": "off", "on" : "on"}'
-            state-classes='{"set_on|set_off": "bg-blue", "on": "bg-seagreen", "off": "bg-gray"}' icon="fas fa-sync"
-            text="refresh" class="btn-text small">
+
+          <ftui-button state-reading="SchrankLicht_Sw" state-map='{"set_on|set_off": "set", "on": "on", "off": "off"}'
+            state-classes='{"set": "bg-blue", "on": "bg-seagreen", "off": "bg-gray"}' icon="fas fa-sync" text="refresh"
+            class="btn-text small">
           </ftui-button>
-          <ftui-button state-reading="SchrankLicht_Sw" badge-reading="ftuitest:state" icon="mdi mdi-refresh" text="refresh" class="btn-text">
+          <ftui-button state-reading="SchrankLicht_Sw" badge-reading="ftuitest:state" icon="mdi mdi-refresh"
+            text="refresh" class="btn-text">
           </ftui-button>
         </div>
       </ftui-grid-tile>
 
       <ftui-grid-tile row="1" col="10" height="2" width="3">
         <header>CIRCLE</header>
-        <div class="vbox">
+        <div class="row">
           <ftui-button class="circle-thin" state-reading="dummy1"></ftui-button>
           <ftui-button class="btn-rounded" state-reading="dummy1" text="Light" icon=""></ftui-button>
-
-
           <ftui-button class="circle-thin" state-reading="dummy1" icon="" text="15" text-class="big"></ftui-button>
         </div>
       </ftui-grid-tile>
 
       <ftui-grid-tile row="3" col="2" height="2" width="2">
-        <!--       <header>LABEL</header>
-      <div class="center">
-        <ftui-label text-reading="SatReceiver-channel" class="bigger thin"></ftui-label>
-      </div> -->
         <ftui-button class="btn-square btn-full btn-royalblue" state-reading="dummy1" text-reading="dummy1"
           text-class="big" show-state-as-text="true"></ftui-button>
       </ftui-grid-tile>
@@ -95,42 +101,42 @@
             <ftui-weather icon-reading="AgroWeather-fc0_weatherDay" text-reading="AgroWeather-fc0_weatherDay">
             </ftui-weather>
             <ftui-label text-reading="AgroWeather-fc0_tempMax"
-                    text-classes='{"-365.0": "blue", "4.0": "white", "20.0": "red"}'></ftui-label>
+              text-classes='{"-365.0": "blue", "4.0": "white", "20.0": "red"}'></ftui-label>
           </div>
           <div class="column">
             <label>Morgen</label>
             <ftui-weather icon-reading="AgroWeather-fc1_weatherDay" text-reading="AgroWeather-fc1_weatherDay">
             </ftui-weather>
             <ftui-label text-reading="AgroWeather-fc1_tempMax"
-                  text-classes='{"-365.0": "blue", "4.0": "white", "20.0": "red"}'></ftui-label>
+              text-classes='{"-365.0": "blue", "4.0": "white", "20.0": "red"}'></ftui-label>
           </div>
           <div class="column">
             <ftui-label text-reading="AgroWeather-fc2_date" text-filter="toDate(), format('eeee')"></ftui-label>
             <ftui-weather icon-reading="AgroWeather-fc2_weatherDay" text-reading="AgroWeather-fc2_weatherDay">
             </ftui-weather>
             <ftui-label text-reading="AgroWeather-fc2_tempMax"
-            text-classes='{"-365.0": "blue", "4.0": "white", "20.0": "red"}'></ftui-label>
+              text-classes='{"-365.0": "blue", "4.0": "white", "20.0": "red"}'></ftui-label>
           </div>
           <div class="column">
             <ftui-label text-reading="AgroWeather-fc3_date" text-filter="toDate(), format('eeee')"></ftui-label>
             <ftui-weather icon-reading="AgroWeather-fc3_weatherDay" text-reading="AgroWeather-fc3_weatherDay">
             </ftui-weather>
             <ftui-label text-reading="AgroWeather-fc3_tempMax"
-            text-classes='{"-365.0": "blue", "4.0": "white", "20.0": "red"}'></ftui-label>
+              text-classes='{"-365.0": "blue", "4.0": "white", "20.0": "red"}'></ftui-label>
           </div>
           <div class="column">
             <ftui-label text-reading="AgroWeather-fc4_date" text-filter="toDate(), format('eeee')"></ftui-label>
             <ftui-weather icon-reading="AgroWeather-fc4_weatherDay" text-reading="AgroWeather-fc4_weatherDay">
-            </ftui-weather>            
+            </ftui-weather>
             <ftui-label text-reading="AgroWeather-fc4_tempMax"
-            text-classes='{"-365.0": "blue", "4.0": "white", "20.0": "red"}'></ftui-label>
+              text-classes='{"-365.0": "blue", "4.0": "white", "20.0": "red"}'></ftui-label>
           </div>
           <div class="column">
             <ftui-label text-reading="AgroWeather-fc5_date" text-filter="toDate(), format('eeee')"></ftui-label>
             <ftui-weather icon-reading="AgroWeather-fc5_weatherDay" text-reading="AgroWeather-fc5_weatherDay">
             </ftui-weather>
             <ftui-label text-reading="AgroWeather-fc5_tempMax"
-            text-classes='{"-365.0": "blue", "4.0": "white", "20.0": "red"}'></ftui-label>
+              text-classes='{"-365.0": "blue", "4.0": "white", "20.0": "red"}'></ftui-label>
           </div>
         </div>
       </ftui-grid-tile>
@@ -155,17 +161,16 @@
       </ftui-grid-tile>
 
       <ftui-grid-tile row="3" col="10" height="2" width="3">
-        <header>SYMBOL</header>
-        <ftui-label text-reading="WebRadioInfo-Song"
-                    text-classes='{".*": "white", ".*Morgen.*": "red"}'></ftui-label>
+        <header>LABEL</header>
+        <ftui-label class="cell" text-reading="WebRadioInfo-Song" text-classes='{".*": "white", ".*Morgen.*": "red"}'>
+        </ftui-label>
       </ftui-grid-tile>
 
       <ftui-grid-tile row="5" col="4" height="3" width="6">
         <header>Button</header>
         <div class="row">
-          <ftui-button state-reading="ftuitest" states='{"0": "0", "40": "40", "60": "60", "100": "100"}' icon=""
-            text-reading="ftuitest" state-classes='{"0": "bg-grey", "50": "bg-green"}' delay="600"
-            show-state-as-text="true">
+          <ftui-button state-reading="ftuitest" states='["0", "40", "60", "100"]' icon="" text-reading="ftuitest"
+            state-classes='{"0": "bg-grey", "50": "bg-green"}' delay="600" show-state-as-text="true">
           </ftui-button>
           <ftui-label text-reading="dummy3"></ftui-label>
           <ftui-button class="btn-seagreen" state-reading="dummy3"><span class="badge"></span></ftui-button>
@@ -179,23 +184,14 @@
             text="Pumpe" icon="">
           </ftui-button>
 
-          <ftui-knob value-reading="dummy1-volume"
-            cmd="setreading"
-            max="50"
-            has-scale="true"
-            has-arc="false"
+          <ftui-knob value-reading="dummy1-volume" cmd="setreading" max="50" has-scale="true" has-arc="false"
             has-value-text="true">
           </ftui-knob>
 
-          <ftui-button class="space-around" 
-            state-reading="dummy1-mute" 
-            state-classes='{ ".*" : "" }' 
-            icon-reading="dummy1-mute" 
-            icon-classes='{
-                "on":"fas fa-volume-mute",
-                "off": "fas fa-volume-up" }' 
-            cmd="setreading"
-            text-reading="dummy1-volume" 
+          <ftui-button class="space-around" state-reading="dummy1-mute" state-classes='{ ".*" : "" }'
+            icon-reading="dummy1-mute" icon-classes='{
+                "on": "fas fa-volume-mute",
+                "off": "fas fa-volume-up" }' cmd="setreading" text-reading="dummy1-volume"
             text-classes='{ "9": "tomato" }'></ftui-button>
 
           <ftui-label text-reading="AgroWeather" text-filter="part(6)" text-post="°C" class="big"></ftui-label>
@@ -205,14 +201,14 @@
 
       <ftui-grid-tile row="5" col="10" height="3" width="3">
         <header>EXAMPLE6</header>
-        <div class="hbox">
-          <div class="vbox">
-            <ftui-button state-reading="ftuitest" states='{"0": "0", "40": "40", "60": "60", "100": "100"}' icon=""
-              text-reading="ftuitest" state-classes='{"0": "bg-grey", "50": "bg-green"}' show-state-as-text="true">
+        <div class="row">
+          <div class="column">
+            <ftui-button state-reading="ftuitest" states='["0", "40", "60", "100"]' icon="" text-reading="ftuitest"
+              state-classes='{"0": "bg-grey", "50": "bg-green"}' show-state-as-text="true">
             </ftui-button>
             <ftui-label text-reading="ftuitest:temp" hide-invalid></ftui-label>
           </div>
-          <div class="vbox">
+          <div class="column">
             <ftui-button state-reading="dummy1" icon-reading="dummy1" icon-classes='{"off": "mdi mdi-lightbulb",
                                       "on": "mdi mdi-lightbulb-on"}'>
             </ftui-button>
@@ -232,15 +228,13 @@
 
       <ftui-grid-tile row="1" col="2" height="2" width="2">
         <header>Küche</header>
-        <ftui-button class="circle-thin"
-            state-reading="Sonos_Kueche:transportState"
-            set-reading="Sonos_Kueche" 
-            states='{"PLAYING": "play", "PAUSED_PLAYBACK|STOPPED": "stop"}' 
-            state-classes='{"play": "fa fa-pause", "stop": "fa fa-play"}'
-            icon=""
-            icon-class="white">
-        </ftui-button>
-        <div class="vbox">
+        <div class="cell">
+          <ftui-button class="circle-thin" state-reading="Sonos_Kueche:transportState" set-reading="Sonos_Kueche"
+            states='["play", "stop"]' state-map='{"PLAYING": "play", "PAUSED_PLAYBACK|STOPPED": "stop"}'
+            state-classes='{"play": "fa fa-pause", "stop": "fa fa-play"}' icon="" icon-class="white">
+          </ftui-button>
+        </div>
+        <div class="cell">
           <ftui-label text-reading="Sonos_Kueche:transportState"></ftui-label>
           <ftui-label text-reading="Sonos_Kueche:currentTitle" hide-empty></ftui-label>
           <ftui-label text-reading="Sonos_Kueche:currentArtist" hide-empty></ftui-label>
@@ -250,11 +244,9 @@
 
       <ftui-grid-tile row="1" col="4" height="2" width="6">
         <header>Jalousie</header>
-        <div class="hbox">
-          <div class="vbox">
-            <ftui-symbol class="bigger"
-                  icon-reading="KinderzimmerJalousieLinks"
-                  icon-classes='{ 
+        <div class="row">
+          <div class="cell">
+            <ftui-symbol class="bigger" icon-reading="KinderzimmerJalousieLinks" icon-classes='{ 
                     "down": "mdi mdi-format-vertical-align-bottom active",
                     "0": "mdi mdi-window-shutter-open",
                     "40": "mdi mdi-window-shutter-alert active",
@@ -263,10 +255,8 @@
             </ftui-symbol>
             <label>Kinderzimmer Links</label>
           </div>
-          <div class="vbox">
-            <ftui-symbol class="bigger"
-                  icon-reading="KinderzimmerJalousieRechts"
-                  icon-classes='{ 
+          <div class="cell">
+            <ftui-symbol class="bigger" icon-reading="KinderzimmerJalousieRechts" icon-classes='{ 
                     "down": "mdi mdi-format-vertical-align-bottom active",
                     "0": "mdi mdi-window-shutter-open",
                     "40": "mdi mdi-window-shutter-alert active",
@@ -275,10 +265,8 @@
             </ftui-symbol>
             <label>Kinderzimmer Rechts</label>
           </div>
-          <div class="vbox">
-            <ftui-symbol class="bigger"
-                  icon-reading="WohnzimmerJalousieRechts"
-                  icon-classes='{ 
+          <div class="cell">
+            <ftui-symbol class="bigger" icon-reading="WohnzimmerJalousieRechts" icon-classes='{ 
                     "down": "mdi mdi-format-vertical-align-bottom active",
                     "0": "mdi mdi-window-shutter-open",
                     "40": "mdi mdi-window-shutter-alert active",
@@ -292,10 +280,7 @@
 
       <ftui-grid-tile row="1" col="10" height="2" width="3">
         <header>VOLUME</header>
-        <ftui-knob value-reading="Sonos_Kueche:Volume"
-          max="50"
-          has-scale="true"
-          has-arc="false"
+        <ftui-knob class="cell" value-reading="Sonos_Kueche:Volume" max="50" has-scale="true" has-arc="false"
           has-value-text="true">
         </ftui-knob>
       </ftui-grid-tile>

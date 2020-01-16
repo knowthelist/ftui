@@ -10,22 +10,24 @@ ftui-grid  ftui-grid-tile {
   position: absolute;
   display: flex;
   flex-direction: column;
-  justify-content: center;
 }
 
 ftui-grid ftui-grid-tile.round {
-  border-radius: 17px;
+  border-radius: 1.5em;
 }
 
 ftui-grid ftui-grid-tile header {
   color: var(--grid-header-color);
   background: var(--grid-header-background-color);
-  margin-bottom: auto;
-  font-size: 0.85em;
   font-weight: bold;
-  line-height: 2em;
+  padding: 0.25em;
   width: 100%;
   text-align: center;
+}
+
+ftui-grid ftui-grid-tile.round header {
+  border-top-right-radius: 1em;
+  border-top-left-radius: 1em;
 }
 
 ftui-grid ftui-grid-tile header.transparent,
