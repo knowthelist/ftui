@@ -1,0 +1,44 @@
+ftui-slider:not([vertical]) {
+  width: calc(100% - 2em) ;
+}
+
+ftui-slider[vertical="true"] {
+  height: calc(100% - 2em) ;
+  width: 2em;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+}
+
+ftui-slider .rangeable-handle {
+  border-color: var(--primary-color);
+}
+
+ftui-slider .rangeable-tooltip::before {
+  border-color: var(--primary-color) transparent transparent;
+}
+
+ftui-slider .rangeable-progress, ftui-slider .rangeable-tooltip {
+  background-color: var(--primary-color);
+}
+
+ftui-slider:not([ruler="true"]) .sliderticks {
+  display: none;
+}
+
+ftui-slider .sliderticks {
+  display: flex;
+  justify-content: space-between;
+}
+
+ftui-slider:not([vertical]) .sliderticks span{
+  margin-top: 0.5em;
+}
+
+ftui-slider[vertical="true"] .sliderticks {
+  flex-direction: column-reverse;
+}
+
+ftui-slider[vertical="true"] .sliderticks span{
+  margin-right: 0.5em;
+}

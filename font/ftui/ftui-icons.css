@@ -1,0 +1,53 @@
+@font-face {
+  font-family: 'FTUI-icons';
+  src: url('FTUI-icons.woff') format('woff'), url('FTUI-icons.ttf') format('truetype'), url('FTUI-icons.svg') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="ftui-"], [class*=" ftui-"] {
+  font-family: 'FTUI-icons' !important;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.ftui-mail-thin:before {
+  content: "\e901";
+}
+
+.ftui-download-thin:before {
+  content: "\e902";
+}
+
+.ftui-search-thin:before {
+  content: "\e903";
+}
+
+.ftui-cloud-thin:before {
+  content: "\e904";
+}
+
+.ftui-thermo-thin:before {
+  content: "\e905";
+}
+
+.ftui-thermo:before {
+  content: "\e900";
+}
+
+.ftui-door:before {
+  content: "\ea00";
+}
+
+.ftui-window:before {
+  content: "\ea01";
+}
+
+.ftui-circle-thin:before {
+  content: "\e906";
+}

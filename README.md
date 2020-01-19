@@ -59,7 +59,7 @@ Widgets
 | Attribute     | Type | Default | Description | Example |
 | ------------- |------|------------|---------|---------|
 | cmd | string | "set" | FHEM command| cmd="setreading"|
-| states | object | '{ ".*": "on", "off": "off" }' | reading to state mapping | states='{"PLAYING": "play", "PAUSED_PLAYBACK\|STOPPED": "stop"}' |
+| states | object | '["on", "off"]' | reading to state mapping | states='["play", "stop"]' |
 | icon | string | "mdi mdi-lightbulb-outline" | css classes to create icon | icon="fa fa-car"|
 | icon-class | string | "" | css classes to style icon | icon-class="tomato"|
 | text | string | "" | css classes to create icon | icon="fa fa-car"|

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!--
+    /* FHEM tablet ui */
+    /**
+    * UI builder framework for FHEM
+    *
+    * Version: 3.0.0
+    *
+    * Copyright (c) 2015-2020 Mario Stephan <mstephan@shared-files.de>
+    * Under MIT License (http://www.opensource.org/licenses/mit-license.php)
+    * https://github.com/knowthelist/ftui
+    */
+    -->
+  <base href="../" />
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <link href="ftui.css" rel="stylesheet">
+  <link href="theme/ftui.theme.css" rel="stylesheet">
+  <script src="ftui.js" defer></script>
+
+  <meta name='debug' content='2'>
+
+  <title>FTUI Test-Simple</title>
+</head>
+
+<body>
+  <ftui-grid base-width="200" base-height="200">
+
+
+    <ftui-grid-tile row="1" col="1" height="1" width="1">
+      <header>DEFAULT</header>
+      <div class="cell">
+        <ftui-knob value-reading="AvReceiver-volume" max="50">
+        </ftui-knob>
+      </div>
+    </ftui-grid-tile>
+
+
+    <ftui-grid-tile row="2" col="1" height="1" width="1">
+      <header>State Classes</header>
+      <div class="cell">
+        <ftui-knob value-reading="AvReceiver-volume" max="50" state-reading="AvReceiver-volume"
+          state-classes='{"0": "stroke-grey", "10": "stroke-orange", "30": "stroke-red"}'>
+        </ftui-knob>
+      </div>
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="1" col="2" height="1" width="1">
+      <header>ALL</header>
+      <div class="cell">
+        <ftui-knob value-reading="AvReceiver-volume" max="50" has-scale="true" has-arc="true" has-scale-text="true">
+        </ftui-knob>
+      </div>
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="2" col="2" height="1" width="1">
+      <header>Fill Color</header>
+      <div class="cell">
+        <ftui-knob value-reading="AvReceiver-volume" max="50" fill-color="#55da33">
+        </ftui-knob>
+      </div>
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="1" col="3" height="1" width="1">
+      <header>Scale </header>
+      <div class="cell">
+        <ftui-knob value-reading="AvReceiver-volume" max="50" has-scale="true" has-arc="false">
+        </ftui-knob>
+      </div>
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="2" col="3" height="1" width="1">
+      <header>Scale Text</header>
+      <div class="cell">
+        <ftui-knob value-reading="AvReceiver-volume" max="50" has-scale-text="true" has-scale="true" has-arc="false">
+        </ftui-knob>
+      </div>
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="1" col="4" height="1" width="1">
+      <header>Value Text</header>
+      <div class="cell">
+        <ftui-knob value-reading="AvReceiver-volume" max="50" has-scale="true" has-arc="false" has-value-text="true">
+        </ftui-knob>
+      </div>
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="2" col="4" height="1" width="1">
+      <header>Stroke Width</header>
+      <div class="cell">
+        <ftui-knob value-reading="AvReceiver-volume" max="50" stroke-width="25">
+        </ftui-knob>
+      </div>
+    </ftui-grid-tile>
+
+  </ftui-grid>
+</body>
+
+</html>
