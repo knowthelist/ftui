@@ -14,7 +14,7 @@ export default class FtuiSymbol extends FtuiWidget {
   constructor(attributes) {
     const defaults = {
       stateClasses: { 'off': '', 'on': 'active' },
-      stateMap: { 'off': 'off', 'on': 'on' },
+      stateMap: { '.*': 'off', '1|open|true|On|on': 'on' },
       icon: 'fa ftui-window',
       iconClass: '',
       text: '',

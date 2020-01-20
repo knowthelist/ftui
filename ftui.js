@@ -298,7 +298,6 @@ class Ftui {
   }
 
   parseRefreshResult(fhemJSON, silent) {
-
     window.performance.mark('end get jsonlist2');
     window.performance.measure('get jsonlist2', 'start get jsonlist2', 'end get jsonlist2');
     window.performance.mark('start read jsonlist2');
@@ -386,7 +385,6 @@ class Ftui {
   }
 
   startFhemConnection() {
-
     if (this.states.update.websocket) {
       this.log(3, 'valid this.states.update.websocket found');
       return;
@@ -629,7 +627,6 @@ class Ftui {
   }
 
   getCSrf() {
-
     return fetch(this.config.fhemDir + '?XHR=1', {
       cache: 'no-cache'
     })
@@ -1019,16 +1016,24 @@ class Ftui {
 
   matchingValue(mapAttribute, searchKey) {
     if (ftui.isDefined(mapAttribute)) {
-      let matchValue = null;
       const map = this.parseObject(mapAttribute);
-      Object.entries(map).forEach(([key, value]) => {
-        if (searchKey === key ||
-          parseFloat(searchKey) >= parseFloat(key) ||
-          searchKey.match('^' + key + '$')) {
-          matchValue = value;
-        }
-      });
-      return matchValue;
+      const filteredKeys = Object.keys(map)
+        .filter(key => {
+          return (
+            searchKey === key ||
+            parseFloat(searchKey) >= parseFloat(key) ||
+            searchKey.match('^' + key + '$')
+          );
+        })
+        .map(key => key)
+        .sort((a, b) => {
+          const a1 = typeof a;
+          const b1 = typeof b;
+          return a1 < b1 ? -1 : a1 > b1 ? 1 : a < b ? -1 : a > b ? 1 : 0;
+        });
+
+      // take last item of matching keys 
+      return map[filteredKeys.slice(-1)[0]];
     } else {
       return null;
     }
