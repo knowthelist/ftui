@@ -1027,7 +1027,9 @@ class Ftui {
         })
         .map(key => key)
         .sort((a, b) => {
-          if (isNaN(a) && isNaN(b)) return a < b ? -1 : a == b ? 0 : 1;
+          if (a === '.*') return -1;
+          else if (b === '.*') return 1;
+          else if (isNaN(a) && isNaN(b)) return a < b ? -1 : a == b ? 0 : 1;
           else if (isNaN(a)) return 1;
           else if (isNaN(b)) return -1;
           else return a - b;
