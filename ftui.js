@@ -1027,11 +1027,11 @@ class Ftui {
         })
         .map(key => key)
         .sort((a, b) => {
-          const a1 = typeof a;
-          const b1 = typeof b;
-          return a1 < b1 ? -1 : a1 > b1 ? 1 : a < b ? -1 : a > b ? 1 : 0;
+          if (isNaN(a) && isNaN(b)) return a < b ? -1 : a == b ? 0 : 1;
+          else if (isNaN(a)) return 1;
+          else if (isNaN(b)) return -1;
+          else return a - b;
         });
-
       // take last item of matching keys 
       return map[filteredKeys.slice(-1)[0]];
     } else {
