@@ -20,9 +20,6 @@ export default class FtuiButton extends FtuiSymbol {
     };
     super(Object.assign(defaults, attributes));
 
-    this.stateMap = ftui.parseObject(this.stateMap);
-    this.states = ftui.parseArray(this.states);
-
     this.addEventListener('click', this.onClicked);
   }
 

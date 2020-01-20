@@ -60,9 +60,7 @@ export default class FtuiSlider extends FtuiWidget {
       // send to fhem
       this.sendReadingChange(this.valueReading, this.value);
     }
-
   }
-
 }
 
 ftui.appendStyleLink(ftui.config.basedir + 'widget/css/ftui.slider.css');

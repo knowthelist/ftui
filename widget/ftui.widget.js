@@ -15,7 +15,7 @@ export default class FtuiWidget extends HTMLElement {
     const attributes = {};
     [...this.attributes].forEach(attr => {
       const name = attr.name.replace(/-([a-z])/g, (char) => { return char[1].toUpperCase() });
-      attributes[name] = attr.value
+      attributes[name] = attr.value;
     });
     Object.assign(this, defaults, attributes);
 

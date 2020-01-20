@@ -33,23 +33,21 @@ class FtuiLabel extends FtuiWidget {
 
   onUpdateState(param) {
     if (ftui.isDefined(param.value)) {
-      if (this.stateClasses) {
-        this.setMatchingClasses(this.elementText, this.stateClasses, param.value);
-      }
+      const value = ftui.matchingValue(this.stateMap, param.value) || param.value;
+      this.setMatchingClasses(this.elementText, this.stateClasses, value);
     }
   }
 
   onUpdateText(param) {
     if (ftui.isDefined(param.value)) {
-      this.text = this.textFilter ? this.filteredText(param.value) : param.value;
+      const text = ftui.matchingValue(this.textMap, param.value) || param.value;
+      this.text = this.textFilter ? this.filteredText(text) : text;
       this.elementText.innerHTML = this.text;
 
-      if (this.textClasses) {
-        this.setMatchingClasses(this.elementText, this.textClasses, this.text);
-      }
+      this.setMatchingClasses(this.elementText, this.textClasses, this.text);
 
       // auto hide
-      if (ftui.isDefined(this.hideEmpty) || this.hideEmpty ) {
+      if (ftui.isDefined(this.hideEmpty) || this.hideEmpty) {
         if (this.text === '') {
           this.classList.add('is-empty');
         } else {

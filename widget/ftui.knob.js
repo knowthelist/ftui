@@ -65,7 +65,6 @@ export default class FtuiKnob extends FtuiWidget {
     this.svg.addEventListener('touchmove', (evt) => this.onMoveEvent(evt), false);
     this.svg.addEventListener('mousemove', (evt) => this.onMoveEvent(evt), false);
 
-
     this.draw(this.valueToAngle(this.min));
   }
 
@@ -82,6 +81,20 @@ export default class FtuiKnob extends FtuiWidget {
     </svg>`;
   }
 
+  // FHEM event handler
+  onUpdateValue(param) {
+    if (!this.isDragging) {
+      this.draw(this.valueToAngle(param.value));
+    }
+  }
+
+  onUpdateState(param) {
+    if (ftui.isDefined(param.value)) {
+      this.setMatchingClasses(this.fill, this.stateClasses, param.value);
+    }
+  }
+
+  // DOM event handler
   onOutEvent(evt) {
     evt.preventDefault();
     this.isDragging = false;
@@ -99,21 +112,6 @@ export default class FtuiKnob extends FtuiWidget {
     if (this.isDragging) {
       const mouseAngle = this.getMouseAngle(this.svg, evt);
       this.onChange(mouseAngle);
-    }
-  }
-
-  onUpdateValue(param) {
-    if (!this.isDragging) {
-      this.draw(this.valueToAngle(param.value));
-    }
-  }
-
-  onUpdateState(param) {
-    if (ftui.isDefined(param.value)) {
-      if (this.stateClasses) {
-        this.fill.classList.remove(...this.allClasses(this.stateClasses));
-        this.fill.classList.add(...this.matchingClasses(this.stateClasses, param.value));
-      }
     }
   }
 
@@ -247,14 +245,11 @@ export default class FtuiKnob extends FtuiWidget {
     let normAngle = (angle - 360 >= this.startAngle) ? angle - 360 : angle;
     normAngle = (normAngle < this.startAngle) ? this.startAngle : (normAngle > this.endAngle) ? this.endAngle : normAngle;
     const value = Math.round((((normAngle - this.startAngle) * (max - min)) / this.rangeAngle) + min);
-    //console.log(value,min,max,angle,normAngle)
-
 
     return value
   }
 
   describeArc(x, y, radius, startArc, endArc) {
-
     const start = this.polarToCartesian(x, y, radius, endArc);
     const end = this.polarToCartesian(x, y, radius, startArc);
 

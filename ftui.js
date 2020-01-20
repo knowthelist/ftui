@@ -641,7 +641,9 @@ class Ftui {
 
   scheduleHealthCheck() {
     // request dummy fhem event
-    this.states.update.websocket.send('uptime');
+    if (ftui.states.update.websocket.readyState === WebSocket.OPEN) {
+      this.states.update.websocket.send('uptime');
+    }
     // check in 3 seconds
     setTimeout(() => {
       ftui.healthCheck();
@@ -1016,16 +1018,20 @@ class Ftui {
   }
 
   matchingValue(mapAttribute, searchKey) {
-    let matchValue = null;
-    const map = this.parseObject(mapAttribute);
-    Object.entries(map).forEach(([key, value]) => {
-      if (searchKey === key ||
-        parseFloat(searchKey) >= parseFloat(key) ||
-        searchKey.match('^' + key + '$')) {
-        matchValue = value;
-      }
-    });
-    return matchValue;
+    if (ftui.isDefined(mapAttribute)) {
+      let matchValue = null;
+      const map = this.parseObject(mapAttribute);
+      Object.entries(map).forEach(([key, value]) => {
+        if (searchKey === key ||
+          parseFloat(searchKey) >= parseFloat(key) ||
+          searchKey.match('^' + key + '$')) {
+          matchValue = value;
+        }
+      });
+      return matchValue;
+    } else {
+      return null;
+    }
   }
 
   // DOM functions
@@ -1229,13 +1235,25 @@ menu && menu.addEventListener('click', event => {
   event.target.classList.toggle('show');
 });
 
+// initially loading the page
+// or navigating to the page from another page in the same window or tab
+window.addEventListener('pageshow', () => {
+  if (!window.ftui) {
+    // load FTUI
+    window.ftui = new Ftui();
+  } else {
+    // navigating from another page
+    ftui.setOnline();
+  }
+});
+
 window.addEventListener('beforeunload', () => {
   ftui.log(5, 'beforeunload');
   ftui.setOffline();
 });
 
-window.addEventListener('online', () => { ftui.updateOnlineStatus() });
-window.addEventListener('offline', () => { ftui.updateOnlineStatus() });
+window.addEventListener('online', () => ftui.updateOnlineStatus());
+window.addEventListener('offline', () => ftui.updateOnlineStatus());
 // after the page became visible, check server connection
 document.addEventListener('visibilitychange', () => {
   if (document.visibilityState === 'hidden') {
@@ -1269,6 +1287,3 @@ class Events {
     this.observers.forEach(topic => topic.observer(args));
   }
 }
-
-// start FTUI
-window.ftui = new Ftui();

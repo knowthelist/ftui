@@ -72,7 +72,6 @@ export default class FtuiSymbol extends FtuiWidget {
   onUpdateBadge(param) {
     this.elementBadge.innerHTML = (ftui.isDefined(param.value) && param.value > 0) ? param.value : '';
   }
-
 }
 
 ftui.appendStyleLink(ftui.config.basedir + 'widget/css/ftui.symbol.css');

@@ -22,28 +22,6 @@ body {
   font-family: robotothin, sans-serif;
 }
 
-
-
-a:link {
-  text-decoration: none;
-  color: #aa6900;
-}
-
-a:visited {
-  text-decoration: none;
-  color: #aa6900;
-}
-
-a:hover {
-  text-decoration: none;
-  color: #cccccc;
-}
-
-a:active {
-  text-decoration: none;
-  color: #cccccc;
-}
-
 /* colors */
 
 .bg-grey, .btn-grey {
