@@ -29,7 +29,7 @@
 <!-- loads more than twice times faster than ftui version 2.*-->
 
 <body>
-  <ftui-grid base-width="150" base-height="150">
+  <ftui-grid base-width="150" base-height="120">
 
     <ftui-grid-tile row="1" col="1" height="1" width="1" class="round">
       <header>SIMPLE</header>
@@ -63,6 +63,22 @@
         <label>Kitchen</label>
       </div>
 
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="1" col="3" height="2" width="1" class="round">
+      <header>MAP</header>
+      
+      <div class="cell">
+        <ftui-button state-reading="ftuitest" state-classes='{"off": "bg-grey", "on": "bg-green"}'></ftui-button>
+        <label>use default map</label>
+      </div>
+      
+      <div class="cell">
+        <ftui-button state-reading="ftuitest" states='["0", "40", "60", "100"]' state-map="" icon="" text-reading="ftuitest"
+          state-classes='{"0": "bg-grey", "50": "bg-green"}' show-state-as-text="true">
+        </ftui-button>
+        <label>without map</label>
+      </div>
     </ftui-grid-tile>
 
   </ftui-grid>

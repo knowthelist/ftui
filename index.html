@@ -15,9 +15,9 @@
     */
     -->
   <link rel="icon" href="favicon.ico" type="image/x-icon" />
-  <link href="css/ftui.css" rel="stylesheet">
-  <link href="css/ftui.theme.css" rel="stylesheet">
-  <script type="module" src="js/ftui.js" defer></script>
+  <link href="ftui.css" rel="stylesheet">
+  <link href="theme/ftui.theme.css" rel="stylesheet">
+  <script src="ftui.js" defer></script>
 
   <meta name='debug' content='2'>
 
@@ -169,7 +169,7 @@
       <ftui-grid-tile row="5" col="4" height="3" width="6">
         <header>Button</header>
         <div class="row">
-          <ftui-button state-reading="ftuitest" states='["0", "40", "60", "100"]' icon="" text-reading="ftuitest"
+          <ftui-button state-reading="ftuitest" states='["0", "40", "60", "100"]' state-map="" icon="" text-reading="ftuitest"
             state-classes='{"0": "bg-grey", "50": "bg-green"}' delay="600" show-state-as-text="true">
           </ftui-button>
           <ftui-label text-reading="dummy3"></ftui-label>
@@ -203,7 +203,7 @@
         <header>EXAMPLE6</header>
         <div class="row">
           <div class="column">
-            <ftui-button state-reading="ftuitest" states='["0", "40", "60", "100"]' icon="" text-reading="ftuitest"
+            <ftui-button state-reading="ftuitest" states='["0", "40", "60", "100"]' state-map="" icon="" text-reading="ftuitest"
               state-classes='{"0": "bg-grey", "50": "bg-green"}' show-state-as-text="true">
             </ftui-button>
             <ftui-label text-reading="ftuitest:temp" hide-invalid></ftui-label>
@@ -294,13 +294,16 @@
       </ftui-grid-tile>
 
       <ftui-grid-tile row="5" col="2" height="3" width="2">
-        <header>BUTTON SQUARE</header>
-
+        <header>SYMBOL</header>
+        <ftui-symbol state-reading="ftuitest"></ftui-symbol>
       </ftui-grid-tile>
 
       <ftui-grid-tile row="3" col="10" height="2" width="3">
-        <header>SYMBOL</header>
-
+        <header>SLIDER</header>
+        <div class="cell">
+          <ftui-slider value-reading="dummy3" max="70" ruler="true">
+          </ftui-slider>
+        </div>
       </ftui-grid-tile>
 
       <ftui-grid-tile row="5" col="4" height="3" width="6">

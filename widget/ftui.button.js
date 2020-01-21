@@ -20,6 +20,8 @@ export default class FtuiButton extends FtuiSymbol {
     };
     super(Object.assign(defaults, attributes));
 
+    this.states = ftui.parseArray(this.states);
+
     this.addEventListener('click', this.onClicked);
   }
 
@@ -34,7 +36,6 @@ export default class FtuiButton extends FtuiSymbol {
   onClicked() {
     this.stateIndex = ++this.stateIndex % this.states.length;
     this.value = this.states[this.stateIndex];
-    
     super.onUpdateState({ value: this.value });
 
     if (this.showStateAsText) {
