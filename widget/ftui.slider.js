@@ -7,10 +7,10 @@
 * https://github.com/knowthelist/ftui
 */
 
-import FtuiWidget from './ftui.widget.js';
-import Rangeable from '../lib/rangeable/rangeable.min.js';
+import { FtuiWidget } from './ftui.widget.js';
+import { Rangeable } from '../lib/rangeable/rangeable.min.js';
 
-export default class FtuiSlider extends FtuiWidget {
+export class FtuiSlider extends FtuiWidget {
 
   constructor(attributes) {
     const defaults = {

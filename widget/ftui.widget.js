@@ -7,7 +7,7 @@
 * https://github.com/knowthelist/ftui
 */
 
-export default class FtuiWidget extends HTMLElement {
+export class FtuiWidget extends HTMLElement {
   constructor(defaults) {
     super();
 

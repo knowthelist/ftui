@@ -7,9 +7,9 @@
 * https://github.com/knowthelist/ftui
 */
 
-import FtuiWidget from './ftui.widget.js';
+import { FtuiWidget } from './ftui.widget.js';
 
-export default class FtuiSymbol extends FtuiWidget {
+export class FtuiSymbol extends FtuiWidget {
 
   constructor(attributes) {
     const defaults = {

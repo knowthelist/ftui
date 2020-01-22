@@ -679,12 +679,8 @@ div[data-type="link"]>div.fa {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
   flex: 1;
-}
-
-.cell label {
-  padding: 0.375em;
 }
 
 .cell.align-right {

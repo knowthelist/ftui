@@ -11,7 +11,9 @@ ftui-slider[vertical="true"] {
 }
 
 ftui-slider .rangeable-handle {
-  border-color: var(--primary-color);
+  border: none;
+  width: 2em;
+  height: 2em;
 }
 
 ftui-slider .rangeable-tooltip::before {

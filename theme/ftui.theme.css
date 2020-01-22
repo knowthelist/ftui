@@ -2,10 +2,10 @@
   --primary-color: #aa6900;
   --secondary-color: #505050;
   --background-color: #2A2A2A;
-  --text-color: #bbb;
+  --text-color: #eeeeee;
+  --inactiv-text-color: #A39B9B;
 
   --page-background-color: #000000;
-  --page-color: #eeeeee;
   --grid-background-color: var(--background-color);
   --grid-header-color: #8c8c8c;
   --grid-header-background-color: #424242;
@@ -35,7 +35,7 @@
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Ubuntu', 'Helvetica Neue', sans-serif;
   font-size: small;
-  color: var(--page-color);
+  color: var(--text-color);
   background: var(--page-background-color);
   -webkit-font-smoothing: antialiased;
 }

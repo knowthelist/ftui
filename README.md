@@ -52,6 +52,8 @@ Widgets
 - Symbol
 - [Button](#button)
 - Knob
+- Slider
+- Checkbox
 
 
 #### Button

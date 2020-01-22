@@ -7,9 +7,9 @@
 * https://github.com/knowthelist/ftui
 */
 
-import FtuiSymbol from './ftui.symbol.js';
+import { FtuiSymbol } from './ftui.symbol.js';
 
-export default class FtuiWeather extends FtuiSymbol {
+class FtuiWeather extends FtuiSymbol {
 
   constructor(attributes) {
     const defaults = {

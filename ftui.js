@@ -69,14 +69,14 @@ class Ftui {
     this.config.refreshDelay = this.getMetaString('refresh_restart_delay', 3);
     // self path
     const url = window.location.pathname;
-    this.config.filename = url.substring(url.lastIndexOf('/') + 1);
-    this.log(1, 'Filename: ' + this.config.filename);
     const fhemUrl = this.getMetaString('fhemweb_url');
+    this.config.filename = url.substring(url.lastIndexOf('/') + 1);
     this.config.fhemDir = fhemUrl || window.location.origin + '/fhem/';
     if (fhemUrl && new RegExp('^((?!http://|https://).)*$').test(fhemUrl)) {
       this.config.fhemDir = window.location.origin + '/' + fhemUrl + '/';
     }
     this.config.fhemDir = this.config.fhemDir.replace('///', '//');
+    this.log(1, 'Filename: ' + this.config.filename);
     this.log(1, 'FHEM dir: ' + this.config.fhemDir);
     // lang
     const userLang = navigator.language || navigator.userLanguage;
@@ -85,39 +85,12 @@ class Ftui {
     this.config.username = this.getMetaString('username');
     this.config.password = this.getMetaString('password');
 
-    const initDeferreds = [this.getCSrf()];
-
     this.loadStyles();
     this.loadLibs();
-
-    try {
-      // try to use localStorage
-      localStorage.setItem('ftui_version', this.version);
-      localStorage.removeItem('ftui_version');
-    } catch (e) {
-      // there was an error so...
-      this.toast('You are in Privacy Mode<br>Please deactivate Privacy Mode and then reload the page.', 'error');
-    }
-
-    // detect clickEventType
-    const android = this.getAndroidVersion();
-    const iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-    const hasTouch = ((android && parseFloat(android) < 5) || iOS);
-    this.config.clickEventType = (hasTouch) ? 'touchstart' : 'mousedown';
-    this.config.moveEventType = ((hasTouch) ? 'touchmove' : 'mousemove');
-    this.config.releaseEventType = ((hasTouch) ? 'touchend' : 'mouseup');
-    this.config.leaveEventType = ((hasTouch) ? 'touchleave' : 'mouseout');
-    this.config.enterEventType = ((hasTouch) ? 'touchenter' : 'mouseenter');
-
-    // add background for modal dialogs
-    const shade = `<div id="shade" class="hide"/>`;
-    document.body.insertAdjacentHTML('beforeend', shade);
-    document.getElementById('shade').addEventListener(this.config.clickEventType, () => {
-      this.triggerEvent('shadeClicked');
-    });
+    this.appendOverlay();
 
     // init Page after CSFS Token has been retrieved
-    Promise.all(initDeferreds).then(() => {
+    Promise.all( [this.fetchCSrf()] ).then(() => {
       this.initPage('html');
     }).catch(error => {
       this.log(1, 'initDeferreds -' + error, 'error');
@@ -376,7 +349,7 @@ class Ftui {
         parameterData.valid = true;
         parameterData.value = parameter.Value;
         parameterData.time = parameter.Time;
-        parameterData.update = new Date().format('YYYY-MM-DD hh:mm:ss');
+        parameterData.update = ftui.dateFormat(new Date(), 'YYYY-MM-DD hh:mm:ss');
 
         // update widgets only if necessary
         this.updateReadingData(parameterId, parameterData, doPublish);
@@ -475,7 +448,7 @@ class Ftui {
           const isTrigger = (value === '' && html === '');
           const doPublish = (isTimestamp || isSTATE || isTrigger);
 
-          parameterData.update = new Date().format('YYYY-MM-DD hh:mm:ss');
+          parameterData.update = ftui.dateFormat(new Date(), 'YYYY-MM-DD hh:mm:ss');
           parameterData.valid = true;
           if (isTimestamp) {
             parameterData.time = value;
@@ -622,11 +595,10 @@ class Ftui {
       this.log(3, 'dynamic load not neccesary for:' + url);
       deferred = this.scripts[i].deferred;
     }
-
     return deferred.promise();
   }
 
-  getCSrf() {
+  fetchCSrf() {
     return fetch(this.config.fhemDir + '?XHR=1', {
       cache: 'no-cache'
     })
@@ -654,6 +626,16 @@ class Ftui {
       this.setOnline();
     }
   }
+
+  appendOverlay() {
+    const shade = `<div id="overlay" class="hide"/>`;
+    document.body.insertAdjacentHTML('beforeend', shade);
+    document.getElementById('overlay').addEventListener('click', () => {
+      this.triggerEvent('overlayClicked');
+    });
+  }
+
+
 
   // helper functions
 
@@ -742,22 +724,16 @@ class Ftui {
     if (start_color.length == 3) {
       start_color = start_color.replace(/(.)/g, '$1$1');
     }
-
     if (end_color.length == 3) {
       end_color = end_color.replace(/(.)/g, '$1$1');
     }
 
     // get colors
     const start_red = parseInt(start_color.substr(0, 2), 16);
-
     const start_green = parseInt(start_color.substr(2, 2), 16);
-
     const start_blue = parseInt(start_color.substr(4, 2), 16);
-
     const end_red = parseInt(end_color.substr(0, 2), 16);
-
     const end_green = parseInt(end_color.substr(2, 2), 16);
-
     const end_blue = parseInt(end_color.substr(4, 2), 16);
 
     // calculate new color
@@ -771,9 +747,7 @@ class Ftui {
 
     // ensure 2 digits by color
     if (diff_red.length == 1) { diff_red = '0' + diff_red; }
-
     if (diff_green.length == 1) { diff_green = '0' + diff_green; }
-
     if (diff_blue.length == 1) { diff_blue = '0' + diff_blue; }
 
     return '#' + diff_red + diff_green + diff_blue;
@@ -811,8 +785,8 @@ class Ftui {
 
   precision(a) {
     const s = a + '';
-
     const d = s.indexOf('.') + 1;
+
     return !d ? 0 : s.length - d;
   }
 
@@ -825,14 +799,16 @@ class Ftui {
     const m = str.match(/(\d+)-(\d+)-(\d+)[_\s](\d+):(\d+):(\d+).*/);
     const m2 = str.match(/^(\d+)$/);
     const m3 = str.match(/(\d\d).(\d\d).(\d\d\d\d)/);
-
     const offset = new Date().getTimezoneOffset();
+
     return (m) ? new Date(+m[1], +m[2] - 1, +m[3], +m[4], +m[5], +m[6])
       : (m2) ? new Date(70, 0, 1, 0, 0, m2[1], 0)
         : (m3) ? new Date(+m3[3], +m3[2] - 1, +m3[1], 0, -offset, 0, 0) : new Date();
   }
 
   dateFormat(date, format) {
+    const weekday_de = ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'];
+    const weekday = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     const YYYY = date.getFullYear().toString();
     const YY = date.getYear().toString();
     const MM = (date.getMonth() + 1).toString(); // getMonth() is zero-based
@@ -840,9 +816,10 @@ class Ftui {
     const hh = date.getHours().toString();
     const mm = date.getMinutes().toString();
     const ss = date.getSeconds().toString();
-    const eeee = date.eeee();
-    const eee = date.eee();
-    const ee = date.ee();
+    const d = date.getDay();
+    const eeee = (ftui.config.lang === 'de') ? weekday_de[d] : weekday[d];
+    const eee = eeee.substr(1, 3);
+    const ee = eeee.substr(1, 2);
     let ret = format;
     ret = ret.replace('DD', (dd > 9) ? dd : '0' + dd);
     ret = ret.replace('D', dd);
@@ -895,12 +872,6 @@ class Ftui {
       return +(numArray[0] + 'e' + (numArray[1] ? (+numArray[1] + precision) : precision));
     };
     return shift(Math.round(shift(number, precision, false)), precision, true);
-  }
-
-  getAndroidVersion(ua) {
-    ua = (ua || navigator.userAgent).toLowerCase();
-    const match = ua.match(/android\s([0-9.]*)/);
-    return match ? match[1] : false;
   }
 
   toast(text, error) {
@@ -1062,181 +1033,6 @@ class Ftui {
   }
 }
 
-
-// global helper functions
-
-String.prototype.toDate = function () {
-  return ftui.dateFromString(this);
-};
-
-String.prototype.parseJson = function () {
-  return ftui.parseJSON(this);
-};
-
-String.prototype.toMinFromMs = function () {
-  let x = Number(this) / 1000;
-  const ss = (Math.floor(x % 60)).toString();
-  const mm = (Math.floor(x /= 60)).toString();
-  return mm + ':' + (ss[1] ? ss : '0' + ss[0]);
-};
-
-String.prototype.toMinFromSec = function () {
-  let x = Number(this);
-  const ss = (Math.floor(x % 60)).toString();
-  const mm = (Math.floor(x /= 60)).toString();
-  return mm + ':' + (ss[1] ? ss : '0' + ss[0]);
-};
-
-String.prototype.toHoursFromMin = function () {
-  const x = Number(this);
-  const hh = (Math.floor(x / 60)).toString();
-  const mm = (x - (hh * 60)).toString();
-  return hh + ':' + (mm[1] ? mm : '0' + mm[0]);
-};
-
-String.prototype.toHoursFromSec = function () {
-  const x = Number(this);
-  const hh = (Math.floor(x / 3600)).toString();
-  const ss = (Math.floor(x % 60)).toString();
-  const mm = (Math.floor(x / 60) - (hh * 60)).toString();
-  return hh + ':' + (mm[1] ? mm : '0' + mm[0]) + ':' + (ss[1] ? ss : '0' + ss[0]);
-};
-
-String.prototype.addFactor = function (factor) {
-  const x = Number(this);
-  return x * factor;
-};
-
-Date.prototype.addMinutes = function (minutes) {
-  return new Date(this.getTime() + minutes * 60000);
-};
-
-Date.prototype.ago = function (format) {
-  const now = new Date();
-  const ms = (now - this);
-  let x = ms / 1000;
-  const seconds = Math.floor(x % 60);
-  x /= 60;
-  const minutes = Math.floor(x % 60);
-  x /= 60;
-  const hours = Math.floor(x % 24);
-  x /= 24;
-  const days = Math.floor(x);
-  const strUnits = (ftui.config.lang === 'de') ? ['Tag(e)', 'Stunde(n)', 'Minute(n)', 'Sekunde(n)'] : ['day(s)', 'hour(s)', 'minute(s)',
-    'second(s)'];
-  let ret;
-  if (ftui.isDefined(format)) {
-    ret = format.replace('dd', days);
-    ret = ret.replace('hh', (hours > 9) ? hours : '0' + hours);
-    ret = ret.replace('mm', (minutes > 9) ? minutes : '0' + minutes);
-    ret = ret.replace('ss', (seconds > 9) ? seconds : '0' + seconds);
-    ret = ret.replace('h', hours);
-    ret = ret.replace('m', minutes);
-    ret = ret.replace('s', seconds);
-  } else {
-    ret = (days > 0) ? days + ' ' + strUnits[0] + ' ' : '';
-    ret += (hours > 0) ? hours + ' ' + strUnits[1] + ' ' : '';
-    ret += (minutes > 0) ? minutes + ' ' + strUnits[2] + ' ' : '';
-    ret += seconds + ' ' + strUnits[3];
-  }
-  return ret;
-};
-
-Date.prototype.format = function (format) {
-  const YYYY = this.getFullYear().toString();
-  const YY = this.getYear().toString();
-  const MM = (this.getMonth() + 1).toString(); // getMonth() is zero-based
-  const dd = this.getDate().toString();
-  const hh = this.getHours().toString();
-  const mm = this.getMinutes().toString();
-  const ss = this.getSeconds().toString();
-  const eeee = this.eeee();
-  const eee = this.eee();
-  const ee = this.ee();
-  let ret = format;
-  ret = ret.replace('DD', (dd > 9) ? dd : '0' + dd);
-  ret = ret.replace('D', dd);
-  ret = ret.replace('MM', (MM > 9) ? MM : '0' + MM);
-  ret = ret.replace('M', MM);
-  ret = ret.replace('YYYY', YYYY);
-  ret = ret.replace('YY', YY);
-  ret = ret.replace('hh', (hh > 9) ? hh : '0' + hh);
-  ret = ret.replace('mm', (mm > 9) ? mm : '0' + mm);
-  ret = ret.replace('ss', (ss > 9) ? ss : '0' + ss);
-  ret = ret.replace('h', hh);
-  ret = ret.replace('m', mm);
-  ret = ret.replace('s', ss);
-  ret = ret.replace('eeee', eeee);
-  ret = ret.replace('eee', eee);
-  ret = ret.replace('ee', ee);
-
-  return ret;
-};
-
-Date.prototype.yyyymmdd = function () {
-  const yyyy = this.getFullYear().toString();
-  const mm = (this.getMonth() + 1).toString(); // getMonth() is zero-based
-  const dd = this.getDate().toString();
-  return yyyy + '-' + (mm[1] ? mm : '0' + mm[0]) + '-' + (dd[1] ? dd : '0' + dd[0]); // padding
-};
-
-Date.prototype.ddmmyyyy = function () {
-  const yyyy = this.getFullYear().toString();
-  const mm = (this.getMonth() + 1).toString(); // getMonth() is zero-based
-  const dd = this.getDate().toString();
-  return (dd[1] ? dd : '0' + dd[0]) + '.' + (mm[1] ? mm : '0' + mm[0]) + '.' + yyyy; // padding
-};
-
-Date.prototype.hhmm = function () {
-  const hh = this.getHours().toString();
-  const mm = this.getMinutes().toString();
-  return (hh[1] ? hh : '0' + hh[0]) + ':' + (mm[1] ? mm : '0' + mm[0]); // padding
-};
-
-Date.prototype.hhmmss = function () {
-  const hh = this.getHours().toString();
-  const mm = this.getMinutes().toString();
-  const ss = this.getSeconds().toString();
-  return (hh[1] ? hh : '0' + hh[0]) + ':' + (mm[1] ? mm : '0' + mm[0]) + ':' + (ss[1] ? ss : '0' + ss[0]); // padding
-};
-
-Date.prototype.ddmm = function () {
-  const mm = (this.getMonth() + 1).toString(); // getMonth() is zero-based
-  const dd = this.getDate().toString();
-  return (dd[1] ? dd : '0' + dd[0]) + '.' + (mm[1] ? mm : '0' + mm[0]) + '.'; // padding
-};
-
-Date.prototype.ddmmhhmm = function () {
-  const MM = (this.getMonth() + 1).toString(); // getMonth() is zero-based
-  const dd = this.getDate().toString();
-  const hh = this.getHours().toString();
-  const mm = this.getMinutes().toString();
-  return (dd[1] ? dd : '0' + dd[0]) + '.' + (MM[1] ? MM : '0' + MM[0]) + '. ' +
-    (hh[1] ? hh : '0' + hh[0]) + ':' + (mm[1] ? mm : '0' + mm[0]);
-};
-
-Date.prototype.eeee = function () {
-  const weekday_de = ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'];
-  const weekday = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-  if (ftui.config.lang === 'de') { return weekday_de[this.getDay()]; }
-  return weekday[this.getDay()];
-};
-
-Date.prototype.eee = function () {
-  const weekday_de = ['Son', 'Mon', 'Die', 'Mit', 'Don', 'Fre', 'Sam'];
-  const weekday = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-  if (ftui.config.lang === 'de') { return weekday_de[this.getDay()]; }
-  return weekday[this.getDay()];
-};
-
-Date.prototype.ee = function () {
-  const weekday_de = ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'];
-  const weekday = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
-  if (ftui.config.lang === 'de') { return weekday_de[this.getDay()]; }
-  return weekday[this.getDay()];
-};
-
-
 const menu = document.querySelector('#menu');
 menu && menu.addEventListener('click', event => {
   event.target.classList.toggle('show');
@@ -1280,6 +1076,7 @@ window.onerror = function (msg, url, lineNo, columnNo, error) {
 
 // helper classes
 
+// Event observable
 class Events {
   constructor() {
     this.observers = [];

@@ -7,9 +7,9 @@
 * https://github.com/knowthelist/ftui
 */
 
-import FtuiSymbol from './ftui.symbol.js';
+import { FtuiSymbol } from './ftui.symbol.js';
 
-export default class FtuiButton extends FtuiSymbol {
+export class FtuiButton extends FtuiSymbol {
 
   constructor(attributes) {
     const defaults = {

@@ -7,8 +7,8 @@
 * https://github.com/knowthelist/ftui
 */
 
-import FtuiWidget from './ftui.widget.js';
-import FtuiButton from './ftui.button.js';
+import { FtuiWidget } from './ftui.widget.js';
+import { FtuiButton } from './ftui.button.js';
 
 class FtuiTabView extends FtuiWidget {
 
