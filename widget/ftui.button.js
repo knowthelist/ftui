@@ -36,6 +36,7 @@ export class FtuiButton extends FtuiSymbol {
   onClicked() {
     this.stateIndex = ++this.stateIndex % this.states.length;
     this.value = this.states[this.stateIndex];
+    //console.log(this.value, this.stateIndex, this.states[this.stateIndex])
     super.onUpdateState({ value: this.value });
 
     if (this.showStateAsText) {

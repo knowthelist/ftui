@@ -46,7 +46,7 @@ class FtuiCheckbox extends FtuiWidget {
 
   // FHEM event handler
   onUpdateState(param) {
-    this.value = ftui.matchingValue(this.stateMap, param.value) || param.value;
+    this.value = ftui.getMatchingValue(this.stateMap, param.value) || param.value;
     const index = this.states.indexOf(this.value);
     if (index > -1) {
       this.elementInput.checked = index === 1;

@@ -1,3 +1,27 @@
 ftui-label.is-empty {
   display: none;
 }
+
+
+ftui-label.round,
+ftui-label.square {
+  background-color: var(--secondary-color);
+  width: 4em;
+  height: 4em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+ftui-label.round {
+  border-radius: 50%;
+}
+
+ftui-label.square {
+  border-radius: 10%;
+}
+
+ftui-label.outline {
+  background-color: var(--grid-background-color);
+  border: 0.25em solid var(--secondary-color);
+}

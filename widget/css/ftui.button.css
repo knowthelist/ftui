@@ -27,10 +27,6 @@ ftui-button #icon > #badge:not(:empty) {
   font-size: 0.9em;
 }
 
-ftui-button.space-around #icon {
-  justify-content: space-around;
-}
-
 ftui-button #icon.active {
     background-color: var(--primary-color);
 }
@@ -112,21 +108,31 @@ ftui-button.btn-text #icon:before {
 
 /* circle-thin */
 
-ftui-button.circle-thin #icon {
-    background-color: transparent;
-    color: var(--secondary-color);
-    line-height: 3.5em;
-    border-radius: 50%;
-    border: 0.25em solid var(--secondary-color);
+ftui-button.round #icon,
+ftui-button.square #icon{
+  background-color: var(--secondary-color);
+  color: var(--secondary-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-ftui-button.circle-thin #icon.active {
-    border-color: var(--primary-color);
-    color: var(--primary-color);
+ftui-button.round #icon{
+  border-radius: 50%;
 }
 
-ftui-button.circle-thin #icon.white {
-  border-color: var(--white);
+ftui-button.square #icon{
+  border-radius: 10%;
+}
+
+ftui-button.outline #icon{
+  background-color: var(--grid-background-color);
+  border: 0.25em solid var(--secondary-color);
+}
+
+ftui-button.outline #icon.active {
+  border-color: var(--primary-color);
+  color: var(--primary-color);
 }
 
 /* colors */

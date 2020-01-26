@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!--
+    /* FHEM tablet ui */
+    /**
+    * UI builder framework for FHEM
+    *
+    * Version: 3.0.0
+    *
+    * Copyright (c) 2015-2020 Mario Stephan <mstephan@shared-files.de>
+    * Under MIT License (http://www.opensource.org/licenses/mit-license.php)
+    * https://github.com/knowthelist/ftui
+    */
+    -->
+  <base href="../" />
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <link href="ftui.css" rel="stylesheet">
+  <link href="theme/ftui.theme.css" rel="stylesheet">
+  <script src="ftui.js" defer></script>
+
+  <meta name='debug' content='2'>
+
+  <title>FTUI Example Circlemenu</title>
+</head>
+
+<body>
+  <ftui-grid base-width="70" base-height="150">
+
+
+    <ftui-grid-tile row="1" col="1" height="1" width="2">
+      <header>DEFAULT</header>
+
+      <div class="cell">
+        <ftui-circlemenu>
+          <ul>
+            <li>
+              <ftui-symbol state-reading="dummy1"></ftui-symbol>
+            </li>
+            <li>
+              <ftui-button state-reading="Stehlampe" state-map='{"on|dim.*": "on", "off|0": "off"}'></ftui-button>
+            </li>
+            <li>
+              <ftui-button state-reading="Stehlampe" state-map='{"on|dim.*": "on", "off|0": "off"}'></ftui-button>
+            </li>
+            <li>
+              <ftui-button state-reading="Stehlampe" state-map='{"on|dim.*": "on", "off|0": "off"}'></ftui-button>
+            </li>
+            <li>
+              <ftui-button state-reading="Stehlampe" state-map='{"on|dim.*": "on", "off|0": "off"}'></ftui-button>
+            </li>
+          </ul>
+
+
+        </ftui-circlemenu>
+      </div>
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="1" col="3" height="1" width="3">
+      <header>BIG</header>
+      <div class="row">
+      <div class="column">
+        <ftui-circlemenu>
+          <ul>
+            <li>
+              <ftui-symbol state-reading="dummy1" class=""></ftui-symbol>
+            </li>
+            <li>
+              <ftui-button state-reading="SchrankLicht_Sw" state-map='{"on|dim.*": "on", "off|0": "off"}'></ftui-button>
+            </li>
+            <li>
+              <ftui-button state-reading="Stehlampe" state-map='{"on|dim.*": "on", "off|0": "off"}'></ftui-button>
+            </li>
+            <li>
+              <ftui-button state-reading="Stehlampe" state-map='{"on|dim.*": "on", "off|0": "off"}'></ftui-button>
+            </li>
+            <li>
+              <ftui-button state-reading="Stehlampe" state-map='{"on|dim.*": "on", "off|0": "off"}'></ftui-button>
+            </li>
+          </ul>
+        </ftui-circlemenu>
+      </div>
+      <div class="column">
+        <ftui-circlemenu>
+          <ul>
+            <li>
+              <ftui-symbol state-reading="dummy1" class="big"></ftui-symbol>
+            </li>
+            <li>
+              <ftui-button state-reading="Stehlampe" state-map='{"on|dim.*": "on", "off|0": "off"}'></ftui-button>
+            </li>
+            <li>
+              <ftui-button state-reading="Stehlampe" state-map='{"on|dim.*": "on", "off|0": "off"}'></ftui-button>
+            </li>
+            <li>
+              <ftui-button state-reading="Stehlampe" state-map='{"on|dim.*": "on", "off|0": "off"}'></ftui-button>
+            </li>
+            <li>
+              <ftui-button state-reading="Stehlampe" state-map='{"on|dim.*": "on", "off|0": "off"}'></ftui-button>
+            </li>
+          </ul>
+        </ftui-circlemenu>
+      </div>
+    </div>
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="1" col="6" height="1" width="2">
+      <header>DIRECTION</header>
+
+      <div class="cell">
+        <ftui-circlemenu direction="bottom-half">
+          <ul>
+            <li>
+              <ftui-symbol state-reading="dummy1"></ftui-symbol>
+            </li>
+            <li>
+              <ftui-button state-reading="Stehlampe" state-map='{"on|dim.*": "on", "off|0": "off"}'></ftui-button>
+            </li>
+            <li>
+              <ftui-button state-reading="Stehlampe" state-map='{"on|dim.*": "on", "off|0": "off"}'></ftui-button>
+            </li>
+            <li>
+              <ftui-button state-reading="Stehlampe" state-map='{"on|dim.*": "on", "off|0": "off"}'></ftui-button>
+            </li>
+            <li>
+              <ftui-button state-reading="Stehlampe" state-map='{"on|dim.*": "on", "off|0": "off"}'></ftui-button>
+            </li>
+          </ul>
+        </ftui-circlemenu>
+      </div>
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="2" col="1" height="1" width="2">
+      <header>KEEPOPEN</header>
+
+      <div class="cell">
+        <ftui-circlemenu keep-open="true" direction="horizontal-right">
+          <ul>
+            <li>
+              <ftui-symbol state-reading="dummy1"></ftui-symbol>
+            </li>
+            <li>
+              <ftui-button state-reading="Stehlampe" state-map='{"on|dim.*": "on", "off|0": "off"}'></ftui-button>
+            </li>
+            <li>
+              <ftui-button state-reading="Stehlampe" state-map='{"on|dim.*": "on", "off|0": "off"}'></ftui-button>
+            </li>
+            <li>
+              <ftui-button state-reading="Stehlampe" state-map='{"on|dim.*": "on", "off|0": "off"}'></ftui-button>
+            </li>
+            <li>
+              <ftui-button state-reading="Stehlampe" state-map='{"on|dim.*": "on", "off|0": "off"}'></ftui-button>
+            </li>
+          </ul>
+        </ftui-circlemenu>
+      </div>
+    </ftui-grid-tile>
+
+
+    <ftui-grid-tile row="2" col="3" height="1" width="3">
+      <header>FULL-BAR</header>
+
+      <div class="cell">
+        <ftui-circlemenu keep-open="true">
+          <ul>
+            <li>
+              <ftui-label  class="round outline" text-class="bigger" text-reading="AvReceiver:subwoofer-temporary-level"></ftui-label>
+            </li>
+            <li>
+              <ftui-button 
+                  class="round outline" 
+                  text-class="bigger" text-class="big" text="-15" icon=""
+                  set-reading="AvReceiver:subwoofer-temporary-level" states='[-15]'
+                  state-reading="AvReceiver:subwoofer-temporary-level" state-map=""
+                  state-classes='{"-15": "active", ".*":"white"}'>
+            </ftui-button>
+            </li>
+            <li>
+              <ftui-button 
+                  class="round outline" 
+                  text-class="bigger" text-class="big" text="-10" icon=""
+                  set-reading="AvReceiver:subwoofer-temporary-level" states='[-10]'
+                  state-reading="AvReceiver:subwoofer-temporary-level" state-map=""
+                  state-classes='{"-10": "active", ".*":"white"}'>
+            </ftui-button>
+            </li>
+            <li>
+              <ftui-button 
+                  class="round outline" 
+                  text-class="bigger" text-class="big" text="-5" icon=""
+                  set-reading="AvReceiver:subwoofer-temporary-level" states='[-5]'
+                  state-reading="AvReceiver:subwoofer-temporary-level" state-map=""
+                  state-classes='{"-5": "active", ".*":"white"}'>
+            </ftui-button>
+            </li>
+            <li>
+              <ftui-button 
+                  class="round outline" 
+                  text-class="bigger" text-class="big" text="0" icon=""
+                  set-reading="AvReceiver:subwoofer-temporary-level" states='[0]'
+                  state-reading="AvReceiver:subwoofer-temporary-level" state-map=""
+                  state-classes='{"0": "active", ".*":"white"}'>
+            </ftui-button>
+            </li>
+            <li>
+              <ftui-button 
+                  class="round outline" 
+                  text-class="bigger" text-class="big" text="5" icon=""
+                  set-reading="AvReceiver:subwoofer-temporary-level" states='[5]'
+                  state-reading="AvReceiver:subwoofer-temporary-level"
+                  state-classes='{"5": "active", ".*":"white"}'>
+            </ftui-button>
+            </li>
+            <li>
+              <ftui-button 
+                  class="round outline" 
+                  text-class="bigger" text-class="big" text="10" icon=""
+                  set-reading="AvReceiver:subwoofer-temporary-level" states='[10]'
+                  state-reading="AvReceiver:subwoofer-temporary-level" state-map=""
+                  state-classes='{"10": "active", ".*":"white"}'>
+            </ftui-button>
+            </li>
+            <li>
+              <ftui-button 
+                  class="round outline" 
+                  text-class="bigger" text-class="big" text="12" icon=""
+                  set-reading="AvReceiver:subwoofer-temporary-level" states='[12]'
+                  state-reading="AvReceiver:subwoofer-temporary-level" state-map=""
+                  state-classes='{"12": "active", ".*":"white"}'>
+            </ftui-button>
+            </li>
+          </ul>
+        </ftui-circlemenu>
+      </div>
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="3" col="3" height="1" width="3">
+      <header>FULL-BAR</header>
+
+      <div class="cell">
+        <ftui-circlemenu keep-open="true">
+          <ul>
+            <li>
+              <ftui-label class="round outline" text-class="bigger" text-reading="AvReceiver:subwoofer-temporary-level"></ftui-label>
+            </li>
+            <li>
+              <ftui-button 
+                  class="round outline" 
+                  text-class="bigger" text-class="big" text="-15" icon=""
+                  set-reading="AvReceiver:subwoofer-temporary-level" states='[-15]'
+                  state-reading="AvReceiver:subwoofer-temporary-level" state-map=""
+                  state-classes='{"[-]15": "active", ".*":"white"}'>
+            </ftui-button>
+            </li>
+            <li>
+              <ftui-button 
+                  class="round outline" 
+                  text-class="bigger" text-class="big" text="-10" icon=""
+                  set-reading="AvReceiver:subwoofer-temporary-level" states='[-10]'
+                  state-reading="AvReceiver:subwoofer-temporary-level" state-map=""
+                  state-classes='{"[-]10": "active", ".*":"white"}'>
+            </ftui-button>
+            </li>
+            <li>
+              <ftui-button 
+                  class="round outline" 
+                  text-class="bigger" text-class="big" text="-5" icon=""
+                  set-reading="AvReceiver:subwoofer-temporary-level" states='[-5]'
+                  state-reading="AvReceiver:subwoofer-temporary-level" state-map=""
+                  state-classes='{"[-]5": "active", ".*":"white"}'>
+            </ftui-button>
+            </li>
+            <li>
+              <ftui-button 
+                  class="round outline" 
+                  text-class="bigger" text-class="big" text="0" icon=""
+                  set-reading="AvReceiver:subwoofer-temporary-level" states='[0]'
+                  state-reading="AvReceiver:subwoofer-temporary-level" state-map=""
+                  state-classes='{"[0]": "active", ".*":"white"}'>
+            </ftui-button>
+            </li>
+            <li>
+              <ftui-button 
+                  class="round outline" 
+                  text-class="bigger" text-class="big" text="5" icon=""
+                  set-reading="AvReceiver:subwoofer-temporary-level" states='[5]'
+                  state-reading="AvReceiver:subwoofer-temporary-level"
+                  state-classes='{"[5]": "active", ".*":"white"}'>
+            </ftui-button>
+            </li>
+            <li>
+              <ftui-button 
+                  class="round outline" 
+                  text-class="bigger" text-class="big" text="10" icon=""
+                  set-reading="AvReceiver:subwoofer-temporary-level" states='[10]'
+                  state-reading="AvReceiver:subwoofer-temporary-level" state-map=""
+                  state-classes='{"[1]0": "active", ".*":"white"}'>
+            </ftui-button>
+            </li>
+            <li>
+              <ftui-button 
+                  class="round outline" 
+                  text-class="bigger" text-class="big" text="12" icon=""
+                  set-reading="AvReceiver:subwoofer-temporary-level" states='[12]'
+                  state-reading="AvReceiver:subwoofer-temporary-level" state-map=""
+                  state-classes='{"[1]2": "active", ".*":"white"}'>
+            </ftui-button>
+            </li>
+          </ul>
+        </ftui-circlemenu>
+      </div>
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="2" col="6" height="1" width="2">
+      <header>VERTICAL</header>
+
+      <div class="cell">
+        <ftui-circlemenu direction="vertical">
+          <ul>
+            <li>
+              <ftui-symbol state-reading="dummy1" class="big"></ftui-symbol>
+            </li>
+            <li>
+              <ftui-button state-reading="Stehlampe" state-map='{"on|dim.*": "on", "off|0": "off"}'></ftui-button>
+            </li>
+            <li>
+              <ftui-button state-reading="Stehlampe" state-map='{"on|dim.*": "on", "off|0": "off"}'></ftui-button>
+            </li>
+            <li>
+              <ftui-button state-reading="Stehlampe" state-map='{"on|dim.*": "on", "off|0": "off"}'></ftui-button>
+            </li>
+            <li>
+              <ftui-button state-reading="Stehlampe" state-map='{"on|dim.*": "on", "off|0": "off"}'></ftui-button>
+            </li>
+          </ul>
+        </ftui-circlemenu>
+      </div>
+    </ftui-grid-tile>
+
+  </ftui-grid>
+</body>
+
+</html>

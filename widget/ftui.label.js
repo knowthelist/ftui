@@ -15,7 +15,10 @@ export class FtuiLabel extends FtuiWidget {
     const defaults = {
       textPre: '',
       text: '',
-      textPost: ''
+      textPost: '',
+      preClass: '',
+      textClass: '',
+      postClass: ''
     };
     super(defaults);
 
@@ -26,21 +29,21 @@ export class FtuiLabel extends FtuiWidget {
   }
 
   template() {
-    return `<span id="pre">${this.textPre}</span>
-    <span id="text">${this.text}</span>
-    <span id="post">${this.textPost}</span>`;
+    return `<span id="pre" class="${this.preClass}">${this.textPre}</span>
+            <span id="text" class="${this.textClass}">${this.text}</span>
+            <span id="post" class="${this.postClass}">${this.textPost}</span>`;
   }
 
   onUpdateState(param) {
     if (ftui.isDefined(param.value)) {
-      const value = ftui.matchingValue(this.stateMap, param.value) || param.value;
+      const value = ftui.getMatchingValue(this.stateMap, param.value) || param.value;
       this.setMatchingClasses(this.elementText, this.stateClasses, value);
     }
   }
 
   onUpdateText(param) {
     if (ftui.isDefined(param.value)) {
-      const text = ftui.matchingValue(this.textMap, param.value) || param.value;
+      const text = ftui.getMatchingValue(this.textMap, param.value) || param.value;
       this.text = this.textFilter ? this.filteredText(text) : text;
       this.elementText.innerHTML = this.text;
 

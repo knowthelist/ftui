@@ -794,6 +794,10 @@ class Ftui {
     return (typeof v !== 'undefined');
   }
 
+  isString(v) {
+    return (typeof v !== 'string');
+  }
+
   // global date format functions
   dateFromString(str) {
     const m = str.match(/(\d+)-(\d+)-(\d+)[_\s](\d+):(\d+):(\d+).*/);
@@ -970,7 +974,7 @@ class Ftui {
   }
 
   parseJSON(json) {
-    let parsed;
+    let parsed = {};
     if (json) {
       try {
         parsed = JSON.parse(json);
@@ -985,15 +989,15 @@ class Ftui {
     return !isNaN(parseFloat(value)) && isFinite(value);
   }
 
-  matchingValue(mapAttribute, searchKey) {
-    if (ftui.isDefined(mapAttribute)) {
+  getMatchingValue(mapAttribute, searchKey) {
+    if (this.isDefined(mapAttribute)) {
       const map = this.parseObject(mapAttribute);
       const filteredKeys = Object.keys(map)
         .filter(key => {
           return (
             searchKey === key ||
             parseFloat(searchKey) >= parseFloat(key) ||
-            searchKey.match('^' + key + '$')
+            String(searchKey).match('^' + key + '$')
           );
         })
         .map(key => key)

@@ -43,20 +43,22 @@ export class FtuiWidget extends HTMLElement {
     }
   }
 
-  allClasses(attribute) {
+  getAllClasses(attribute) {
     const map = ftui.parseObject(attribute);
-    return Object.values(map).map(value => value).join(' ').split(' ').filter(String);
+    return map ?
+      Object.values(map).map(value => value).join(' ').split(' ').filter(String) :
+      '';
   }
 
-  matchingClasses(attribute, value) {
-    const matchValue = ftui.matchingValue(attribute, value);
+  getMatchingClasses(attribute, value) {
+    const matchValue = ftui.getMatchingValue(attribute, value);
     return matchValue ? matchValue.split(' ').filter(String) : [];
   }
 
   setMatchingClasses(element, classes, value) {
     if (classes) {
-      element.classList.remove(...this.allClasses(classes));
-      element.classList.add(...this.matchingClasses(classes, value));
+      element.classList.remove(...this.getAllClasses(classes));
+      element.classList.add(...this.getMatchingClasses(classes, value));
     }
   }
 }

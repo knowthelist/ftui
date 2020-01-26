@@ -14,7 +14,7 @@ export class FtuiSymbol extends FtuiWidget {
   constructor(attributes) {
     const defaults = {
       stateClasses: { 'off': '', 'on': 'active' },
-      stateMap: { '.*': 'off', '(1|open|true|On|on)': 'on' },
+      stateMap: { '(0|closed|false|Off|off)': 'off', '(1|open|true|On|on)': 'on' },
       icon: 'fa ftui-window',
       iconClass: '',
       text: '',
@@ -43,7 +43,8 @@ export class FtuiSymbol extends FtuiWidget {
   }
 
   onUpdateState(param) {
-    this.value = ftui.matchingValue(this.stateMap, param.value) || param.value;
+    this.value = ftui.getMatchingValue(this.stateMap, param.value) || param.value;
+    //console.log(this.value, this.stateMap, param.value)
     this.setMatchingClasses(this.elementIcon, this.stateClasses, this.value);
   }
 

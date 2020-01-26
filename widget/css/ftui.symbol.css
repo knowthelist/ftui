@@ -2,13 +2,13 @@ ftui-symbol #icon {
     border-radius: 50%;
     background-color: transparent;
     color: var(--secondary-color);
-    width: 4em;
-    height: 4em;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     position: relative;
+    width: 4em;
+    height: 4em;
 }
 
 ftui-symbol.active #icon,
@@ -17,7 +17,17 @@ ftui-symbol #icon.active  {
 }
 
 ftui-symbol #icon:before {
-    font-size: 2em;
+    font-size: 3em;
+}
+
+ftui-symbol.circle-thin #icon {
+  background-color: transparent;
+  border-radius: 50%;
+  border: 0.25em solid var(--secondary-color);
+}
+
+ftui-symbol.circle-thin #icon:before {
+  font-size: 2em;
 }
 
 ftui-symbol #icon > #badge:not(:empty) {

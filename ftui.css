@@ -19,7 +19,7 @@ body {
 }
 
 .robotothin {
-  font-family: robotothin, sans-serif;
+  font-family: "HelveticaNeue-UltraLight", "Segoe UI", "Roboto Light", sans-serif;
 }
 
 /* colors */
@@ -855,17 +855,17 @@ div[data-type="link"]>div.fa {
 }
 
 .grande.thin {
-  font-family: robotothin, sans-serif;
+  font-family: "HelveticaNeue-UltraLight", "Segoe UI", "Roboto Light", sans-serif;
 }
 
 .great.thin, .tall.thin {
-  font-family: robotothin, sans-serif;
+  font-family: "HelveticaNeue-UltraLight", "Segoe UI", "Roboto Light", sans-serif;
   font-weight: normal !important;
 }
 
 .gigantic {
   font-size: 144px !important;
-  font-family: robotothin, sans-serif;
+  font-family: "HelveticaNeue-UltraLight", "Segoe UI", "Roboto Light", sans-serif;
   line-height: 120px;
 }
 
