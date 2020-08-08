@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!--
+    /* FHEM tablet ui */
+    /**
+    * UI builder framework for FHEM
+    *
+    * Version: 3.0.0
+    *
+    * Copyright (c) 2015-2020 Mario Stephan <mstephan@shared-files.de>
+    * Under MIT License (http://www.opensource.org/licenses/mit-license.php)
+    * https://github.com/knowthelist/ftui
+    */
+    -->
+  <base href="../" />
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <meta name='debug' content='2'>
+  <meta name='toast_position' content='topCenter'>
+
+  <link href="ftui.css" rel="stylesheet">
+  <link href="themes/ftui.theme.css" rel="stylesheet">
+  <script src="ftui.main.js"></script>
+
+  <title>FHEM-Tablet-UI</title>
+</head>
+
+<!-- loads more than twice times faster than ftui version 2.*-->
+
+<body>
+  <ftui-grid base-width="150" base-height="120">
+
+    <ftui-grid-tile row="1" col="1" height="1" width="1" class="round">
+      <header>SIMPLE</header>
+      <div class="cell">
+        <ftui-button (value)="dummy2">on/off</ftui-button>
+        <label>default button</label>
+      </div>
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="1" col="2" height="3" width="1">
+      <header>States</header>
+
+      <div class="cell">
+        <ftui-button [value]="Stehlampe | map('on|dim.*: on, off|0: off')" (value)="Stehlampe">
+          on/off
+        </ftui-button>
+        <label>Stehlampe</label>
+      </div>
+
+      <div class="cell">
+        <ftui-button [(value)]="dummy1" [color]="dummy1 | map('Wert.*: danger, on: success, off: medium')">dummy1
+        </ftui-button>
+        <label>on/off/set</label>
+      </div>
+
+      <div class="cell">
+        <ftui-button 
+          id="huhu"
+          [(value)]="dummy2" 
+          [color]="dummy2 | map('play: danger, stop: medium')"
+          states="play,stop">
+          <ftui-label [text]="dummy2"></ftui-label>
+        </ftui-button>
+      </div>
+
+
+      <div class="cell">
+        <ftui-button [(value)]="ftuitest" fill="outline" color="success">
+          <ftui-icon [name]="ftuitest | map('on:lightbulb-on-outline, off:lightbulb-outline')"></ftui-icon>
+        </ftui-button>
+        <label>Kitchen</label>
+      </div>
+
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="1" col="3" height="4" width="1" class="round">
+      <header>PUSH</header>
+
+      <div class="cell">
+        <ftui-button class="contrast-low" (value)="dummy2" states="up">
+          UP
+        </ftui-button>
+
+        <ftui-button (value)="dummy2" states="down">
+          DOWN
+        </ftui-button>
+      </div>
+
+      <div class="cell align-center">
+        <ftui-button (value)="dummy2" states="up">
+          <ftui-icon name="caret-up" color="dark"></ftui-icon>
+        </ftui-button>
+
+        <ftui-button (value)="dummy2" states="down">
+          <ftui-icon name="caret-down" color="dark"></ftui-icon>
+        </ftui-button>
+      </div>
+
+      <div class="cell align-center">
+
+      </div>
+
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="1" col="4" height="3" width="1">
+      <header>STATES</header>
+
+      <div class="cell">
+        <ftui-button fill="outline" shape="circle"
+          [value]="Sonos_Kueche:transportState | map('PLAYING: play, PAUSED_PLAYBACK|STOPPED: pause')"
+          (value)="Sonos_Kueche"
+          states="play, pause">
+          <ftui-icon
+              [name]="Sonos_Kueche:transportState  | map('PLAYING: stop, PAUSED_PLAYBACK|STOPPED: play');
+              Sonos_Kueche | map('play: stop, pause: play')"
+              >
+          </ftui-icon> 
+        </ftui-button> 
+
+        <ftui-button shape="circle" 
+          [(value)]="dummy1" 
+          [fill]="dummy1 | map('off: outline, on: solid')">
+          <ftui-icon name="lightbulb-outline"></ftui-icon> 
+        </ftui-button>
+        
+        <ftui-button shape="circle" fill="outline"
+          [(value)]="dummy1" 
+          states="Val1,Val2,Val3">
+        <ftui-icon name="lightbulb-outline"></ftui-icon> 
+      </ftui-button>
+
+      </div>
+
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="1" col="5" height="3" width="1">
+      <header>CONTRASTS</header>
+
+    </ftui-grid-tile>
+
+  </ftui-grid>
+</body>
+
+</html>

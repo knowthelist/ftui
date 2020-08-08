@@ -1,0 +1,1644 @@
+[class^="ftui-"], [class*=" ftui-"] {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
+}
+
+/* ==========================================
+Single-colored icons can be modified like so:
+.ftui-name {
+  font-size: 32px;
+  color: red;
+}
+========================================== */
+
+.ftui-asterisk {
+  width: 0.9285714285714285em;
+}
+
+.ftui-plus {
+  width: 0.7857142857142857em;
+}
+
+.ftui-question {
+  width: 0.62em;
+}
+
+.ftui-minus {
+  width: 0.7857142857142857em;
+}
+
+.ftui-music {
+  width: 0.8571428571428571em;
+}
+
+.ftui-search1 {
+  width: 0.9285714285714285em;
+}
+
+.ftui-star1 {
+  width: 0.9285714285714285em;
+}
+
+.ftui-star-o {
+  width: 0.9285714285714285em;
+}
+
+.ftui-user {
+  width: 0.7142857142857142em;
+}
+
+.ftui-film {
+  width: 1.0714285714285714em;
+}
+
+.ftui-th-large {
+  width: 0.9285714285714285em;
+}
+
+.ftui-close {
+  width: 0.7857142857142857em;
+}
+
+.ftui-search-plus {
+  width: 0.9285714285714285em;
+}
+
+.ftui-search-minus {
+  width: 0.9285714285714285em;
+}
+
+.ftui-power-off {
+  width: 0.8571428571428571em;
+}
+
+.ftui-cog {
+  width: 0.8571428571428571em;
+}
+
+.ftui-trash-o {
+  width: 0.7857142857142857em;
+}
+
+.ftui-home1 {
+  width: 0.9285714285714285em;
+}
+
+.ftui-file-o {
+  width: 0.8571428571428571em;
+}
+
+.ftui-clock-o {
+  width: 0.8571428571428571em;
+}
+
+.ftui-road {
+  width: 1.0714285714285714em;
+}
+
+.ftui-download {
+  width: 0.9285714285714285em;
+}
+
+.ftui-arrow-circle-o-down {
+  width: 0.8571428571428571em;
+}
+
+.ftui-arrow-circle-o-up {
+  width: 0.8571428571428571em;
+}
+
+.ftui-inbox1 {
+  width: 0.8571428571428571em;
+}
+
+.ftui-play-circle-o {
+  width: 0.8571428571428571em;
+}
+
+.ftui-repeat1 {
+  width: 0.8571428571428571em;
+}
+
+.ftui-refresh1 {
+  width: 0.8571428571428571em;
+}
+
+.ftui-lock {
+  width: 0.6428571428571428em;
+}
+
+.ftui-flag1 {
+  width: 1.0357142857142856em;
+}
+
+.ftui-headphones {
+  width: 0.9285714285714285em;
+}
+
+.ftui-volume-off {
+  width: 0.42857142857142855em;
+}
+
+.ftui-volume-down {
+  width: 0.6428571428571428em;
+}
+
+.ftui-volume-up {
+  width: 0.9285714285714285em;
+}
+
+.ftui-qrcode {
+  width: 0.7857142857142857em;
+}
+
+.ftui-tag1 {
+  width: 0.8454285714285714em;
+}
+
+.ftui-tags {
+  width: 1.0597142857142856em;
+}
+
+.ftui-book1 {
+  width: 0.9302142857142857em;
+}
+
+.ftui-bookmark1 {
+  width: 0.7142857142857142em;
+}
+
+.ftui-print {
+  width: 0.9285714285714285em;
+}
+
+.ftui-camera1 {
+  width: 1.0714285714285714em;
+}
+
+.ftui-image {
+  width: 1.0714285714285714em;
+}
+
+.ftui-pencil {
+  width: 0.8454285714285714em;
+}
+
+.ftui-map-marker {
+  width: 0.5714285714285714em;
+}
+
+.ftui-adjust1 {
+  width: 0.8571428571428571em;
+}
+
+.ftui-tint {
+  width: 0.5714285714285714em;
+}
+
+.ftui-edit {
+  width: 1.0005714285714284em;
+}
+
+.ftui-share-square-o {
+  width: 0.9319285714285714em;
+}
+
+.ftui-check-square-o {
+  width: 0.9324999999999999em;
+}
+
+.ftui-step-backward {
+  width: 0.5714285714285714em;
+}
+
+.ftui-backward {
+  width: 0.9932857142857143em;
+}
+
+.ftui-play {
+  width: 0.7896428571428571em;
+}
+
+.ftui-pause1 {
+  width: 0.8571428571428571em;
+}
+
+.ftui-stop {
+  width: 0.8571428571428571em;
+}
+
+.ftui-forward1 {
+  width: 0.8638571428571428em;
+}
+
+.ftui-step-forward {
+  width: 0.5714285714285714em;
+}
+
+.ftui-eject1 {
+  width: 0.8582857142857142em;
+}
+
+.ftui-chevron-left {
+  width: 0.75em;
+}
+
+.ftui-chevron-right {
+  width: 0.6785714285714285em;
+}
+
+.ftui-plus-circle {
+  width: 0.8571428571428571em;
+}
+
+.ftui-minus-circle {
+  width: 0.8571428571428571em;
+}
+
+.ftui-times-circle {
+  width: 0.8571428571428571em;
+}
+
+.ftui-check-circle {
+  width: 0.8571428571428571em;
+}
+
+.ftui-question-circle {
+  width: 0.8571428571428571em;
+}
+
+.ftui-info-circle {
+  width: 0.8571428571428571em;
+}
+
+.ftui-crosshairs {
+  width: 0.8571428571428571em;
+}
+
+.ftui-times-circle-o {
+  width: 0.8571428571428571em;
+}
+
+.ftui-check-circle-o {
+  width: 0.8571428571428571em;
+}
+
+.ftui-ban {
+  width: 0.8571428571428571em;
+}
+
+.ftui-arrow-left {
+  width: 0.8928571428571428em;
+}
+
+.ftui-arrow-right {
+  width: 0.8214285714285714em;
+}
+
+.ftui-arrow-up {
+  width: 0.9285714285714285em;
+}
+
+.ftui-arrow-down {
+  width: 0.9285714285714285em;
+}
+
+.ftui-expand1 {
+  width: 0.8571428571428571em;
+}
+
+.ftui-compress1 {
+  width: 0.8571428571428571em;
+}
+
+.ftui-exclamation-circle {
+  width: 0.8571428571428571em;
+}
+
+.ftui-gift {
+  width: 0.8571428571428571em;
+}
+
+.ftui-fire {
+  width: 0.7857142857142857em;
+}
+
+.ftui-plane {
+  width: 0.803em;
+}
+
+.ftui-calendar {
+  width: 0.9285714285714285em;
+}
+
+.ftui-retweet {
+  width: 1.0714285714285714em;
+}
+
+.ftui-shopping-cart {
+  width: 0.9285714285714285em;
+}
+
+.ftui-folder1 {
+  width: 0.9285714285714285em;
+}
+
+.ftui-folder-open {
+  width: 1.0485714285714285em;
+}
+
+.ftui-arrows-v {
+  width: 0.42857142857142855em;
+}
+
+.ftui-bar-chart {
+  width: 1.1428571428571428em;
+}
+
+.ftui-key {
+  width: 0.9391428571428571em;
+}
+
+.ftui-cogs {
+  width: 1.0714285714285714em;
+}
+
+.ftui-thumbs-o-up {
+  width: 0.8571428571428571em;
+}
+
+.ftui-thumbs-o-down {
+  width: 0.8571428571428571em;
+}
+
+.ftui-star-half {
+  width: 0.46428571428571425em;
+}
+
+.ftui-sign-out {
+  width: 0.875em;
+}
+
+.ftui-thumb-tack {
+  width: 0.6428571428571428em;
+}
+
+.ftui-sign-in {
+  width: 0.8571428571428571em;
+}
+
+.ftui-trophy {
+  width: 0.9285714285714285em;
+}
+
+.ftui-upload {
+  width: 0.9285714285714285em;
+}
+
+.ftui-lemon-o {
+  width: 0.8565714285714285em;
+}
+
+.ftui-phone1 {
+  width: 0.7857142857142857em;
+}
+
+.ftui-bookmark-o {
+  width: 0.7142857142857142em;
+}
+
+.ftui-phone-square {
+  width: 0.8571428571428571em;
+}
+
+.ftui-unlock {
+  width: 0.9285714285714285em;
+}
+
+.ftui-credit-card {
+  width: 1.0714285714285714em;
+}
+
+.ftui-feed {
+  width: 0.7862857142857141em;
+}
+
+.ftui-hdd-o {
+  width: 0.8571428571428571em;
+}
+
+.ftui-certificate {
+  width: 0.8571428571428571em;
+}
+
+.ftui-hand-o-up {
+  width: 0.8571428571428571em;
+}
+
+.ftui-hand-o-down {
+  width: 0.8571428571428571em;
+}
+
+.ftui-arrow-circle-left {
+  width: 0.8571428571428571em;
+}
+
+.ftui-arrow-circle-right {
+  width: 0.8571428571428571em;
+}
+
+.ftui-arrow-circle-up {
+  width: 0.8571428571428571em;
+}
+
+.ftui-arrow-circle-down {
+  width: 0.8571428571428571em;
+}
+
+.ftui-globe {
+  width: 0.8571428571428571em;
+}
+
+.ftui-wrench {
+  width: 0.9391428571428571em;
+}
+
+.ftui-filter1 {
+  width: 0.7857142857142857em;
+}
+
+.ftui-arrows-alt {
+  width: 0.8571428571428571em;
+}
+
+.ftui-group1 {
+  width: 1.0714285714285714em;
+}
+
+.ftui-chain {
+  width: 0.9285714285714285em;
+}
+
+.ftui-cloud5 {
+  width: 1.0714285714285714em;
+}
+
+.ftui-flask {
+  width: 0.9285714285714285em;
+}
+
+.ftui-cut {
+  width: 0.9977857142857142em;
+}
+
+.ftui-paperclip {
+  width: 0.7857142857142857em;
+}
+
+.ftui-floppy-o {
+  width: 0.8571428571428571em;
+}
+
+.ftui-square {
+  width: 0.8571428571428571em;
+}
+
+.ftui-bars {
+  width: 0.8571428571428571em;
+}
+
+.ftui-list-ol {
+  width: 1.008357142857143em;
+}
+
+.ftui-table {
+  width: 0.9285714285714285em;
+}
+
+.ftui-magic {
+  width: 0.9436428571428571em;
+}
+
+.ftui-truck {
+  width: 1.0357142857142856em;
+}
+
+.ftui-money1 {
+  width: 1.0714285714285714em;
+}
+
+.ftui-caret-down {
+  width: 0.5714285714285714em;
+}
+
+.ftui-caret-up {
+  width: 0.5714285714285714em;
+}
+
+.ftui-caret-left {
+  width: 0.39285714285714285em;
+}
+
+.ftui-caret-right {
+  width: 0.3214285714285714em;
+}
+
+.ftui-columns {
+  width: 0.9285714285714285em;
+}
+
+.ftui-sort1 {
+  width: 0.5714285714285714em;
+}
+
+.ftui-sort-desc {
+  width: 0.5714285714285714em;
+}
+
+.ftui-sort-asc {
+  width: 0.5714285714285714em;
+}
+
+.ftui-rotate-left {
+  width: 0.8571428571428571em;
+}
+
+.ftui-gavel1 {
+  width: 1.0105714285714285em;
+}
+
+.ftui-bolt1 {
+  width: 0.5005714285714286em;
+}
+
+.ftui-umbrella {
+  width: 0.9285714285714285em;
+}
+
+.ftui-lightbulb-o {
+  width: 0.5714285714285714em;
+}
+
+.ftui-cloud-download {
+  width: 1.0714285714285714em;
+}
+
+.ftui-cloud-upload {
+  width: 1.0714285714285714em;
+}
+
+.ftui-user-md {
+  width: 0.7857142857142857em;
+}
+
+.ftui-stethoscope {
+  width: 0.7857142857142857em;
+}
+
+.ftui-coffee {
+  width: 1.0357142857142856em;
+}
+
+.ftui-cutlery {
+  width: 0.7857142857142857em;
+}
+
+.ftui-file-text-o {
+  width: 0.8571428571428571em;
+}
+
+.ftui-building-o {
+  width: 0.7857142857142857em;
+}
+
+.ftui-hospital-o {
+  width: 0.7857142857142857em;
+}
+
+.ftui-ambulance {
+  width: 1.107142857142857em;
+}
+
+.ftui-fighter-jet {
+  width: 1.0714285714285714em;
+}
+
+.ftui-beer {
+  width: 0.9642857142857142em;
+}
+
+.ftui-h-square {
+  width: 0.8571428571428571em;
+}
+
+.ftui-plus-square {
+  width: 0.8571428571428571em;
+}
+
+.ftui-angle-double-left {
+  width: 0.5892857142857143em;
+}
+
+.ftui-angle-double-right {
+  width: 0.5535714285714285em;
+}
+
+.ftui-angle-double-up {
+  width: 0.6428571428571428em;
+}
+
+.ftui-angle-double-down {
+  width: 0.6428571428571428em;
+}
+
+.ftui-angle-left {
+  width: 0.375em;
+}
+
+.ftui-angle-right {
+  width: 0.33928571428571425em;
+}
+
+.ftui-angle-up {
+  width: 0.6428571428571428em;
+}
+
+.ftui-angle-down {
+  width: 0.6428571428571428em;
+}
+
+.ftui-desktop {
+  width: 1.0714285714285714em;
+}
+
+.ftui-laptop {
+  width: 1.0714285714285714em;
+}
+
+.ftui-tablet1 {
+  width: 0.6428571428571428em;
+}
+
+.ftui-mobile {
+  width: 0.42857142857142855em;
+}
+
+.ftui-circle-o {
+  width: 0.8571428571428571em;
+}
+
+.ftui-quote-right {
+  width: 0.9285714285714285em;
+}
+
+.ftui-circle {
+  width: 0.8571428571428571em;
+}
+
+.ftui-folder-o {
+  width: 0.9285714285714285em;
+}
+
+.ftui-folder-open-o {
+  width: 1.0652857142857142em;
+}
+
+.ftui-smile-o {
+  width: 0.8571428571428571em;
+}
+
+.ftui-frown-o {
+  width: 0.8571428571428571em;
+}
+
+.ftui-meh-o {
+  width: 0.8571428571428571em;
+}
+
+.ftui-gamepad {
+  width: 1.0714285714285714em;
+}
+
+.ftui-keyboard-o {
+  width: 1.0714285714285714em;
+}
+
+.ftui-flag-o {
+  width: 1.0357142857142856em;
+}
+
+.ftui-flag-checkered {
+  width: 1.0357142857142856em;
+}
+
+.ftui-terminal {
+  width: 0.934142857142857em;
+}
+
+.ftui-code1 {
+  width: 1.0714285714285714em;
+}
+
+.ftui-mail-reply-all {
+  width: 0.996642857142857em;
+}
+
+.ftui-star-half-empty {
+  width: 0.9285714285714285em;
+}
+
+.ftui-location-arrow {
+  width: 0.7862857142857141em;
+}
+
+.ftui-crop1 {
+  width: 0.9302142857142857em;
+}
+
+.ftui-code-fork {
+  width: 0.5714285714285714em;
+}
+
+.ftui-chain-broken {
+  width: 0.9285714285714285em;
+}
+
+.ftui-info1 {
+  width: 0.3571428571428571em;
+}
+
+.ftui-exclamation {
+  width: 0.3571428571428571em;
+}
+
+.ftui-eraser {
+  width: 1.0714285714285714em;
+}
+
+.ftui-puzzle-piece {
+  width: 0.9285714285714285em;
+}
+
+.ftui-microphone {
+  width: 0.6428571428571428em;
+}
+
+.ftui-microphone-slash {
+  width: 0.7857142857142857em;
+}
+
+.ftui-shield1 {
+  width: 0.7142857142857142em;
+}
+
+.ftui-calendar-o {
+  width: 0.9285714285714285em;
+}
+
+.ftui-fire-extinguisher {
+  width: 0.7807142857142857em;
+}
+
+.ftui-rocket {
+  width: 0.9447857142857142em;
+}
+
+.ftui-chevron-circle-left {
+  width: 0.8571428571428571em;
+}
+
+.ftui-chevron-circle-right {
+  width: 0.8571428571428571em;
+}
+
+.ftui-chevron-circle-up {
+  width: 0.8571428571428571em;
+}
+
+.ftui-chevron-circle-down {
+  width: 0.8571428571428571em;
+}
+
+.ftui-unlock-alt {
+  width: 0.6428571428571428em;
+}
+
+.ftui-bullseye {
+  width: 0.8571428571428571em;
+}
+
+.ftui-ellipsis-h {
+  width: 0.7857142857142857em;
+}
+
+.ftui-ellipsis-v {
+  width: 0.21428571428571427em;
+}
+
+.ftui-rss-square {
+  width: 0.8571428571428571em;
+}
+
+.ftui-play-circle {
+  width: 0.8571428571428571em;
+}
+
+.ftui-minus-square {
+  width: 0.8571428571428571em;
+}
+
+.ftui-minus-square-o {
+  width: 0.7857142857142857em;
+}
+
+.ftui-level-up {
+  width: 0.5730714285714286em;
+}
+
+.ftui-level-down {
+  width: 0.5730714285714286em;
+}
+
+.ftui-check-square {
+  width: 0.8571428571428571em;
+}
+
+.ftui-pencil-square {
+  width: 0.8571428571428571em;
+}
+
+.ftui-external-link-square {
+  width: 0.8571428571428571em;
+}
+
+.ftui-share-square {
+  width: 0.8571428571428571em;
+}
+
+.ftui-compass1 {
+  width: 0.8571428571428571em;
+}
+
+.ftui-caret-square-o-down {
+  width: 0.8571428571428571em;
+}
+
+.ftui-caret-square-o-up {
+  width: 0.8571428571428571em;
+}
+
+.ftui-caret-square-o-right {
+  width: 0.8571428571428571em;
+}
+
+.ftui-eur {
+  width: 0.5664285714285714em;
+}
+
+.ftui-gbp {
+  width: 0.5692142857142857em;
+}
+
+.ftui-dollar {
+  width: 0.5697857142857142em;
+}
+
+.ftui-file {
+  width: 0.8571428571428571em;
+}
+
+.ftui-file-text {
+  width: 0.8571428571428571em;
+}
+
+.ftui-sort-alpha-asc {
+  width: 0.9430714285714284em;
+}
+
+.ftui-sort-alpha-desc {
+  width: 0.9430714285714284em;
+}
+
+.ftui-sort-amount-asc {
+  width: 1.0162142857142857em;
+}
+
+.ftui-sort-amount-desc {
+  width: 1.0162142857142857em;
+}
+
+.ftui-sort-numeric-asc {
+  width: 0.8454285714285714em;
+}
+
+.ftui-sort-numeric-desc {
+  width: 0.8454285714285714em;
+}
+
+.ftui-thumbs-up {
+  width: 0.8928571428571428em;
+}
+
+.ftui-thumbs-down {
+  width: 0.8928571428571428em;
+}
+
+.ftui-stack-overflow {
+  width: 0.8571428571428571em;
+}
+
+.ftui-instagram {
+  width: 0.8571428571428571em;
+}
+
+.ftui-flickr {
+  width: 0.8571428571428571em;
+}
+
+.ftui-bitbucket {
+  width: 0.790142857142857em;
+}
+
+.ftui-bitbucket-square {
+  width: 0.8571428571428571em;
+}
+
+.ftui-long-arrow-down {
+  width: 0.42857142857142855em;
+}
+
+.ftui-long-arrow-up {
+  width: 0.42857142857142855em;
+}
+
+.ftui-long-arrow-left {
+  width: 1.0357142857142856em;
+}
+
+.ftui-long-arrow-right {
+  width: 0.9642857142857142em;
+}
+
+.ftui-apple {
+  width: 0.7773571428571427em;
+}
+
+.ftui-windows {
+  width: 0.9285714285714285em;
+}
+
+.ftui-android1 {
+  width: 0.7857142857142857em;
+}
+
+.ftui-linux {
+  width: 0.8939999999999999em;
+}
+
+.ftui-trello {
+  width: 0.8571428571428571em;
+}
+
+.ftui-female {
+  width: 0.7142857142857142em;
+}
+
+.ftui-male {
+  width: 0.5714285714285714em;
+}
+
+.ftui-gittip {
+  width: 0.8571428571428571em;
+}
+
+.ftui-moon-o {
+  width: 0.8236428571428571em;
+}
+
+.ftui-bug {
+  width: 0.9285714285714285em;
+}
+
+.ftui-renren {
+  width: 0.8571428571428571em;
+}
+
+.ftui-pagelines {
+  width: 0.7823571428571428em;
+}
+
+.ftui-stack-exchange {
+  width: 0.7142857142857142em;
+}
+
+.ftui-arrow-circle-o-right {
+  width: 0.8571428571428571em;
+}
+
+.ftui-arrow-circle-o-left {
+  width: 0.8571428571428571em;
+}
+
+.ftui-caret-square-o-left {
+  width: 0.8571428571428571em;
+}
+
+.ftui-dot-circle-o {
+  width: 0.8571428571428571em;
+}
+
+.ftui-wheelchair {
+  width: 0.9090714285714285em;
+}
+
+.ftui-plus-square-o {
+  width: 0.7857142857142857em;
+}
+
+.ftui-space-shuttle {
+  width: 1.2142857142857142em;
+}
+
+.ftui-slack {
+  width: 0.9285714285714285em;
+}
+
+.ftui-envelope-square {
+  width: 0.8571428571428571em;
+}
+
+.ftui-bank {
+  width: 1.0714285714285714em;
+}
+
+.ftui-graduation-cap {
+  width: 1.2857142857142856em;
+}
+
+.ftui-stumbleupon-circle {
+  width: 0.8571428571428571em;
+}
+
+.ftui-delicious {
+  width: 0.8571428571428571em;
+}
+
+.ftui-joomla {
+  width: 0.8571428571428571em;
+}
+
+.ftui-building {
+  width: 0.7857142857142857em;
+}
+
+.ftui-child {
+  width: 0.7142857142857142em;
+}
+
+.ftui-paw {
+  width: 0.9285714285714285em;
+}
+
+.ftui-spoon {
+  width: 0.42857142857142855em;
+}
+
+.ftui-cube {
+  width: 0.9285714285714285em;
+}
+
+.ftui-cubes {
+  width: 1.2142857142857142em;
+}
+
+.ftui-steam-square {
+  width: 0.8571428571428571em;
+}
+
+.ftui-recycle {
+  width: 1.0022142857142857em;
+}
+
+.ftui-automobile {
+  width: 1.1428571428571428em;
+}
+
+.ftui-cab {
+  width: 1.1428571428571428em;
+}
+
+.ftui-tree {
+  width: 0.8571428571428571em;
+}
+
+.ftui-spotify {
+  width: 0.8571428571428571em;
+}
+
+.ftui-database {
+  width: 0.8571428571428571em;
+}
+
+.ftui-paper-plane {
+  width: 1.0011428571428571em;
+}
+
+.ftui-paper-plane-o {
+  width: 1.0005714285714284em;
+}
+
+.ftui-history1 {
+  width: 0.8571428571428571em;
+}
+
+.ftui-ftui-circle-thin1 {
+  width: 0.8571428571428571em;
+}
+
+.ftui-sliders {
+  width: 0.8571428571428571em;
+}
+
+.ftui-share-alt {
+  width: 0.8571428571428571em;
+}
+
+.ftui-share-alt-square {
+  width: 0.8571428571428571em;
+}
+
+.ftui-plug {
+  width: 1.0067142857142857em;
+}
+
+.ftui-newspaper-o {
+  width: 1.1428571428571428em;
+}
+
+.ftui-wifi1 {
+  width: 1.1428571428571428em;
+}
+
+.ftui-calculator {
+  width: 0.9285714285714285em;
+}
+
+.ftui-bell-slash {
+  width: 1.1428571428571428em;
+}
+
+.ftui-bell-slash-o {
+  width: 1.1428571428571428em;
+}
+
+.ftui-trash {
+  width: 0.7857142857142857em;
+}
+
+.ftui-at {
+  width: 0.8571428571428571em;
+}
+
+.ftui-eyedropper {
+  width: 1.0178571428571428em;
+}
+
+.ftui-paint-brush {
+  width: 0.9988571428571428em;
+}
+
+.ftui-area-chart {
+  width: 1.1428571428571428em;
+}
+
+.ftui-pie-chart {
+  width: 0.9642857142857142em;
+}
+
+.ftui-line-chart {
+  width: 1.1428571428571428em;
+}
+
+.ftui-toggle-off {
+  width: 1.1428571428571428em;
+}
+
+.ftui-toggle-on {
+  width: 1.1428571428571428em;
+}
+
+.ftui-bicycle {
+  width: 1.2857142857142856em;
+}
+
+.ftui-bus {
+  width: 0.8571428571428571em;
+}
+
+.ftui-connectdevelop {
+  width: 1.1428571428571428em;
+}
+
+.ftui-leanpub {
+  width: 1.1428571428571428em;
+}
+
+.ftui-sellsy {
+  width: 1.1428571428571428em;
+}
+
+.ftui-cart-plus {
+  width: 0.9285714285714285em;
+}
+
+.ftui-cart-arrow-down {
+  width: 0.9285714285714285em;
+}
+
+.ftui-diamond {
+  width: 1.1428571428571428em;
+}
+
+.ftui-ship {
+  width: 1.1428571428571428em;
+}
+
+.ftui-user-secret {
+  width: 0.7857142857142857em;
+}
+
+.ftui-motorcycle1 {
+  width: 1.3019285714285713em;
+}
+
+.ftui-street-view {
+  width: 0.7857142857142857em;
+}
+
+.ftui-venus {
+  width: 0.63em;
+}
+
+.ftui-mars {
+  width: 0.8571428571428571em;
+}
+
+.ftui-mercury {
+  width: 0.6428571428571428em;
+}
+
+.ftui-intersex {
+  width: 0.7728571428571428em;
+}
+
+.ftui-transgender-alt {
+  width: 0.9285714285714285em;
+}
+
+.ftui-mars-double {
+  width: 1.0602857142857143em;
+}
+
+.ftui-venus-mars {
+  width: 1.1199999999999999em;
+}
+
+.ftui-mars-stroke {
+  width: 0.8571428571428571em;
+}
+
+.ftui-mars-stroke-v {
+  width: 0.63em;
+}
+
+.ftui-mars-stroke-h {
+  width: 1.0552142857142857em;
+}
+
+.ftui-neuter {
+  width: 0.6428571428571428em;
+}
+
+.ftui-genderless {
+  width: 0.6428571428571428em;
+}
+
+.ftui-whatsapp {
+  width: 0.8571428571428571em;
+}
+
+.ftui-user-plus {
+  width: 1.1428571428571428em;
+}
+
+.ftui-user-times {
+  width: 1.1378571428571427em;
+}
+
+.ftui-bed {
+  width: 1.1428571428571428em;
+}
+
+.ftui-train1 {
+  width: 0.8571428571428571em;
+}
+
+.ftui-subway1 {
+  width: 0.8571428571428571em;
+}
+
+.ftui-battery {
+  width: 1.2857142857142856em;
+}
+
+.ftui-battery-3 {
+  width: 1.2857142857142856em;
+}
+
+.ftui-battery-2 {
+  width: 1.2857142857142856em;
+}
+
+.ftui-battery-1 {
+  width: 1.2857142857142856em;
+}
+
+.ftui-battery-0 {
+  width: 1.2857142857142856em;
+}
+
+.ftui-mouse-pointer {
+  width: 0.6456428571428571em;
+}
+
+.ftui-sticky-note {
+  width: 0.8571428571428571em;
+}
+
+.ftui-sticky-note-o {
+  width: 0.8571428571428571em;
+}
+
+.ftui-balance-scale {
+  width: 1.2142857142857142em;
+}
+
+.ftui-hourglass-o {
+  width: 0.8571428571428571em;
+}
+
+.ftui-hourglass-1 {
+  width: 0.8571428571428571em;
+}
+
+.ftui-hourglass-2 {
+  width: 0.8571428571428571em;
+}
+
+.ftui-hourglass-3 {
+  width: 0.8571428571428571em;
+}
+
+.ftui-hourglass {
+  width: 0.8571428571428571em;
+}
+
+.ftui-hand-grab-o {
+  width: 0.8571428571428571em;
+}
+
+.ftui-hand-paper-o {
+  width: 0.9107142857142857em;
+}
+
+.ftui-hand-lizard-o {
+  width: 1.1428571428571428em;
+}
+
+.ftui-hand-spock-o {
+  width: 1.0714285714285714em;
+}
+
+.ftui-hand-pointer-o {
+  width: 0.9285714285714285em;
+}
+
+.ftui-hand-peace-o {
+  width: 0.8571428571428571em;
+}
+
+.ftui-odnoklassniki {
+  width: 0.7142857142857142em;
+}
+
+.ftui-odnoklassniki-square {
+  width: 0.8571428571428571em;
+}
+
+.ftui-get-pocket {
+  width: 0.9597857142857142em;
+}
+
+.ftui-wikipedia-w {
+  width: 1.2857142857142856em;
+}
+
+.ftui-television {
+  width: 1.0714285714285714em;
+}
+
+.ftui-calendar-plus-o {
+  width: 0.9285714285714285em;
+}
+
+.ftui-calendar-minus-o {
+  width: 0.9285714285714285em;
+}
+
+.ftui-calendar-times-o {
+  width: 0.9285714285714285em;
+}
+
+.ftui-calendar-check-o {
+  width: 0.9285714285714285em;
+}
+
+.ftui-map-pin {
+  width: 0.5714285714285714em;
+}
+
+.ftui-map-o {
+  width: 1.1428571428571428em;
+}
+
+.ftui-credit-card-alt {
+  width: 1.2857142857142856em;
+}
+
+.ftui-fort-awesome {
+  width: 0.9285714285714285em;
+}
+
+.ftui-usb1 {
+  width: 1.2857142857142856em;
+}
+
+.ftui-mixcloud {
+  width: 1.2857142857142856em;
+}
+
+.ftui-pause-circle {
+  width: 0.8571428571428571em;
+}
+
+.ftui-pause-circle-o {
+  width: 0.8571428571428571em;
+}
+
+.ftui-stop-circle {
+  width: 0.8571428571428571em;
+}
+
+.ftui-stop-circle-o {
+  width: 0.8571428571428571em;
+}
+
+.ftui-shopping-basket {
+  width: 1.1428571428571428em;
+}
+
+.ftui-bluetooth1 {
+  width: 0.8571428571428571em;
+}
+
+.ftui-bluetooth-b {
+  width: 0.5714285714285714em;
+}
+
+.ftui-percent {
+  width: 0.8571428571428571em;
+}
+
+.ftui-wpforms {
+  width: 0.8571428571428571em;
+}
+
+.ftui-wheelchair-alt {
+  width: 0.8582857142857142em;
+}
+
+.ftui-question-circle-o {
+  width: 0.8571428571428571em;
+}
+
+.ftui-blind {
+  width: 0.7902142857142858em;
+}
+
+.ftui-volume-control-phone {
+  width: 0.7857142857142857em;
+}
+
+.ftui-braille {
+  width: 1.2142857142857142em;
+}
+
+.ftui-assistive-listening-systems {
+  width: 1.0045em;
+}
+
+.ftui-american-sign-language-interpreting {
+  width: 1.2857142857142856em;
+}
+
+.ftui-sign-language {
+  width: 0.9257857142857142em;
+}
+
+.ftui-snapchat-ghost {
+  width: 0.9285714285714285em;
+}
+
+.ftui-fa {
+  width: 0.8777857142857142em;
+}
+
+.ftui-handshake-o {
+  width: 1.2857142857142856em;
+}
+
+.ftui-address-book {
+  width: 0.9285714285714285em;
+}
+
+.ftui-address-book-o {
+  width: 0.9285714285714285em;
+}
+
+.ftui-address-card {
+  width: 1.1428571428571428em;
+}
+
+.ftui-address-card-o {
+  width: 1.1428571428571428em;
+}
+
+.ftui-user-o {
+  width: 0.8571428571428571em;
+}
+
+.ftui-id-badge {
+  width: 0.7142857142857142em;
+}
+
+.ftui-drivers-license {
+  width: 1.1428571428571428em;
+}
+
+.ftui-drivers-license-o {
+  width: 1.1428571428571428em;
+}
+
+.ftui-thermometer1 {
+  width: 0.5714285714285714em;
+}
+
+.ftui-thermometer-3 {
+  width: 0.5714285714285714em;
+}
+
+.ftui-thermometer-2 {
+  width: 0.5714285714285714em;
+}
+
+.ftui-thermometer-1 {
+  width: 0.5714285714285714em;
+}
+
+.ftui-thermometer-0 {
+  width: 0.5714285714285714em;
+}
+
+.ftui-shower {
+  width: 1.0714285714285714em;
+}
+
+.ftui-podcast {
+  width: 0.8482142857142857em;
+}
+
+.ftui-window-restore {
+  width: 1.1428571428571428em;
+}
+
+.ftui-microchip {
+  width: 0.8571428571428571em;
+}
+
+.ftui-snowflake-o {
+  width: 0.9285714285714285em;
+}

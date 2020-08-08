@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!--
+    /* FHEM tablet ui */
+    /**
+    * UI builder framework for FHEM
+    *
+    * Version: 3.0.0
+    *
+    * Copyright (c) 2015-2019 Mario Stephan <mstephan@shared-files.de>
+    * Under MIT License (http://www.opensource.org/licenses/mit-license.php)
+    * https://github.com/knowthelist/ftui
+    */
+    -->
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <meta name='debug' content='2'>
+  <meta name='toast_position' content='topCenter'>
+
+  <base href="../" />
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <link href="ftui.css" rel="stylesheet">
+  <link href="themes/ftui.theme.css" rel="stylesheet">
+
+  <script src="ftui.js" defer></script>
+  <title>FHEM-Tablet-UI</title>
+</head>
+
+<!-- loads more than twice times faster than ftui version 2.*-->
+
+<body>
+  <ftui-grid base-height="240">
+    <ftui-grid-tile row="1" col="1" height="14" width="3">
+      <header>SIMPLE</header>
+      <div class="cell align-space-around">
+        <ftui-button value-reading="dummy1" color-map="on: primary, '.*': medium"><ftui-icon color="light"></ftui-icon></ftui-button>
+        <ftui-button value-reading="dummy1" color-map="on: primary, '.*': medium"><ftui-icon color="dark"></ftui-icon></ftui-button>
+        <ftui-button value-reading="dummy1" color-map="on: primary, '.*': medium"><ftui-icon></ftui-icon></ftui-button>
+        <ftui-button value-reading="dummy2">TEXT</ftui-button>
+        <ftui-button value-reading="dummy1" color="danger"><ftui-icon></ftui-icon></ftui-button>
+        <ftui-button value-reading="dummy2" color="danger">text</ftui-button>
+        <ftui-button value-reading="dummy1" fill="outline"><ftui-icon></ftui-icon></ftui-button>
+        <ftui-button value-reading="dummy2" fill="outline">text</ftui-button>
+        <ftui-button value-reading="dummy1" color="danger" fill="outline"><ftui-icon></ftui-icon></ftui-button>
+        <ftui-button value-reading="dummy2" color="danger" fill="outline">TEXT</ftui-button>
+        <ftui-button inner-text-reading="dummy1" inner-text-map=".*: ?value?"></ftui-button>
+        <ftui-button fill="outline"
+          value-reading="ftuitest"
+          click-map="value: [0, 40, 60, 100]"><ftui-label text-reading="ftuitest"></ftui-label>
+        </ftui-button>
+        <ftui-button value-reading="dummy2"><ftui-label text-reading="ftuitest"></ftui-label></ftui-button>
+        <ftui-button value-reading="dummy1"></ftui-button>
+        <ftui-button value-reading="dummy2"></ftui-button>
+        <ftui-button value-reading="dummy1"></ftui-button>
+        <ftui-button value-reading="dummy2"></ftui-button>
+        <ftui-button value-reading="dummy1"></ftui-button>
+        <ftui-button value-reading="dummy2"></ftui-button>
+        <ftui-button value-reading="dummy1"></ftui-button>
+        <ftui-button value-reading="dummy2"></ftui-button>
+        <ftui-button value-reading="dummy1"></ftui-button>
+        <ftui-button value-reading="dummy2"></ftui-button>
+        <ftui-button value-reading="dummy1"></ftui-button>
+        <ftui-button value-reading="dummy2"></ftui-button>
+        <ftui-button value-reading="dummy1"></ftui-button>
+        <ftui-button value-reading="dummy2"></ftui-button>
+        <ftui-button value-reading="dummy1"></ftui-button>
+        <ftui-button value-reading="dummy2"></ftui-button>
+        <ftui-button value-reading="dummy1"></ftui-button>
+        <ftui-button value-reading="dummy2"></ftui-button>
+        <ftui-button value-reading="dummy1"></ftui-button>
+        <ftui-button value-reading="dummy2"></ftui-button>
+        <ftui-button value-reading="dummy1"></ftui-button>
+        <ftui-button value-reading="dummy2"></ftui-button>
+        <ftui-button value-reading="dummy1"></ftui-button>
+        <ftui-button value-reading="dummy2"></ftui-button>
+        <ftui-button value-reading="dummy1"></ftui-button>
+        <ftui-button value-reading="dummy2"></ftui-button>
+        <ftui-button value-reading="dummy1"></ftui-button>
+        <ftui-button value-reading="dummy2"></ftui-button>
+        <ftui-button value-reading="dummy1"></ftui-button>
+        <ftui-button value-reading="dummy2"></ftui-button>
+        <ftui-button value-reading="dummy1"></ftui-button>
+        <ftui-button value-reading="dummy2"></ftui-button>
+        <ftui-button value-reading="dummy1"></ftui-button>
+        <ftui-button value-reading="dummy2"></ftui-button>
+        <ftui-button value-reading="dummy1"></ftui-button>
+        <ftui-button value-reading="dummy2"></ftui-button>
+        <ftui-button value-reading="dummy1"></ftui-button>
+        <ftui-button value-reading="dummy2"></ftui-button>
+        <ftui-button value-reading="dummy1"></ftui-button>
+        <ftui-button value-reading="dummy2"></ftui-button>
+        <ftui-button value-reading="dummy1"></ftui-button>
+        <ftui-button value-reading="dummy2"></ftui-button>
+        <ftui-button value-reading="dummy1"></ftui-button>
+        <ftui-button value-reading="dummy2"></ftui-button>
+    </ftui-grid-tile>
+    </div>
+  </ftui-grid>
+</body>
+
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!--
+    /* FHEM tablet ui */
+    /**
+    * UI builder framework for FHEM
+    *
+    * Version: 3.0.0
+    *
+    * Copyright (c) 2015-2019 Mario Stephan <mstephan@shared-files.de>
+    * Under MIT License (http://www.opensource.org/licenses/mit-license.php)
+    * https://github.com/knowthelist/ftui
+    */
+    -->
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <meta name='debug' content='2'>
+  <meta name='toast_position' content='topCenter'>
+
+  <base href="../" />
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <link href="ftui.css" rel="stylesheet">
+  <link href="themes/ftui.theme.css" rel="stylesheet">
+
+  <script src="ftui.js" defer></script>
+  <title>FHEM-Tablet-UI</title>
+</head>
+
+<!-- loads more than twice times faster than ftui version 2.*-->
+
+<body>
+  <ftui-grid base-height="240">
+
+    <ftui-grid-tile row="1" col="1" height="1" width="1">
+      <header>SIMPLE</header>
+      <div class="cell">
+        <ftui-icon [name]="dummy1 { on:lightbulb-on-outline, off:lightbulb-outline }"></ftui-icon>
+      </div>
+    </ftui-grid-tile>
+    
+    <ftui-grid-tile row="1" col="2" height="1" width="1">
+      <header>MULTI</header>
+      <div class="cell">
+        <ftui-icon 
+          [color]="dummy1 { on:success, off:danger }
+          dummy2 { on:warning, off:light }">
+        </ftui-icon>
+      </div>
+    </ftui-grid-tile>
+
+  </ftui-grid>
+</body>
+
+</html>

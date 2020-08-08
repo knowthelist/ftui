@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name='debug' content='2'>
+  <script src="https://luke-chang.github.io/js-spatial-navigation/spatial_navigation.js"></script>
+  <script type="module" src="ftui.js" defer></script>
+  <script>
+
+    window.addEventListener('DOMContentLoaded', function () {
+
+      const setStyle = (elem) => {
+        if (elem.value === 'on') {
+          elem.classList.add('active');
+        } else {
+          elem.classList.remove('active');
+        }
+      };
+
+      const sendValue = (elem) => {
+        const [, device, reading] = ftui.parseReadingId(elem.dataset.get);
+        const commandLine = ['set', device, reading, elem.value].join(' ');
+        ftui.sendFhemCommand(commandLine);
+      }
+
+      const onToggle = (event) => {
+        event.target.value = event.target.value === 'on' ? 'off' : 'on';
+        setStyle(event.target);
+        sendValue(event.target);
+      };
+
+      document.querySelectorAll('.button').forEach(item => {
+        ftui.getReadingEvents(item.dataset.get).subscribe(param => {
+          item.value = param.value;
+          setStyle(item);
+        });
+        item.addEventListener('click', onToggle, false);
+        item.addEventListener('sn:enter-up', onToggle, false);
+      });
+
+      // Initialize
+      SpatialNavigation.init();
+
+      // Define navigable elements (anchors and elements with "focusable" class).
+      SpatialNavigation.add({
+        selector: '.button'
+      });
+
+      // Make the *currently existing* navigable elements focusable.
+      SpatialNavigation.makeFocusable();
+
+      // Focus the first navigable element.
+      SpatialNavigation.focus();
+    });
+  </script>
+  <style>
+    html,
+    body {
+      height: 100%;
+      width: 100%;
+      background: #eee;
+    }
+
+    .button {
+      border-radius: 50%;
+      width: 10vw;
+      height: 10vw;
+      background: #444;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      border: solid 1px white;
+      margin: 1em;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+      transition: transform 0.2s ease-in-out;
+    }
+
+    .button.fa {
+      display: flex;
+    }
+
+    .button::before {
+      font-size: 6vw;
+    }
+
+    .button.active {
+      background-color: #d44;
+    }
+
+    .button:focus {
+      transform: scale(1.25, 1.25);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    main {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-around;
+      height: 100%;
+      width: 100%;
+    }
+
+    .row {
+      display: flex;
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <div class="row">
+      <div class="button fa fa-car" data-get="SchrankLicht_Sw"></div>
+      <div class="button fa fa-trailer"></div>
+      <div class="button fa fa-bath"></div>
+      <div class="button fa fa-couch"></div>
+      <div class="button fa fa-shower"></div>
+      <div class="button fa fa-coffee"></div>
+      <div class="button fa fa-fan"></div>
+    </div>
+    <div class="row">
+      <div class="button fa fa-door-closed" data-get="HUEDevice5"></div>
+      <div class="button fa fa-bed"></div>
+      <div class="button fa fa-lightbulb"></div>
+      <div class="button fa fa-plug"></div>
+      <div class="button fa fa-snowflake"></div>
+      <div class="button fa fa-toilet-paper"></div>
+      <div class="button fa fa-tv"></div>
+    </div>
+  </main>
+</body>

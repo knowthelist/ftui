@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!--
+    /* FHEM tablet ui */
+    /**
+    * UI builder framework for FHEM
+    *
+    * Version: 3.0.0
+    *
+    * Copyright (c) 2015-2020 Mario Stephan <mstephan@shared-files.de>
+    * Under MIT License (http://www.opensource.org/licenses/mit-license.php)
+    * https://github.com/knowthelist/ftui
+    */
+    -->
+  <base href = "../" />
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <meta name='debug' content='2'>
+  <meta name='toast_position' content='topCenter'>
+
+  <link href="ftui.css" rel="stylesheet">
+  <link href="themes/ftui.theme.css" rel="stylesheet">
+  <script src="ftui.js" defer></script>
+
+  <title>FHEM-Tablet-UI</title>
+</head>
+
+<!-- loads more than twice times faster than ftui version 2.*-->
+
+<body>
+  <ftui-grid base-width="150" base-height="120">
+
+    <ftui-grid-tile row="1" col="2" height="3" width="1">
+      <header>States</header>
+
+      <div class="cell">
+        <ftui-button id="dudu" fill="outline" shape="circle"
+          [value]="Sonos_Kueche:transportState | map('PLAYING: play, PAUSED_PLAYBACK|STOPPED: pause')"
+          [hidden]="dummy1 | toBool()"
+          on-value="Sonos_Kueche"
+          states="play, pause">
+          <ftui-icon
+              [name]="Sonos_Kueche:transportState  | map('PLAYING: stop, PAUSED_PLAYBACK|STOPPED: play-solid');
+              Sonos_Kueche | map('play: stop, pause: play-solid')"
+              >
+          </ftui-icon> 
+        </ftui-button> 
+        <ftui-label
+        [text]="dummy1;dummy2"
+        >
+    </ftui-label> 
+
+      </div>        
+      <!--
+      <div class="cell">
+        <ftui-button 
+          [value]="dummy1"
+          [color]="dummy1 | map('on:success, off:medium')"
+          (value)="dummy1"
+          color="medium"
+          >
+
+          <ftui-icon
+            [name]="dummy1 | map('.*:lightbulb-on, off:lightbulb')"
+            >
+          </ftui-icon>
+        </ftui-button> -->
+
+        <!-- 
+
+          output.attributes.value.values=[on,off]
+          output.attributes.value.readings.dummy1.cmd="set"
+          output.attributes.value.readings.dummy2.cmd="setreading"
+
+          (value)="set dummy1:xyz [on,off]"
+          (value)="dummy1:xyz [on,off]"
+          (value)="dummy1 [on,off]"
+
+          event => fix in component
+
+          array     [on,off]
+          source    value
+          reading   dummy1:xyz
+          cmd       set
+
+        -->
+
+      </div>
+
+    </ftui-grid-tile>
+
+  </ftui-grid>
+</body>
+
+</html>

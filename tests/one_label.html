@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!--
+    /* FHEM tablet ui */
+    /**
+    * UI builder framework for FHEM
+    *
+    * Version: 3.0.0
+    *
+    * Copyright (c) 2015-2020 Mario Stephan <mstephan@shared-files.de>
+    * Under MIT License (http://www.opensource.org/licenses/mit-license.php)
+    * https://github.com/knowthelist/ftui
+    */
+    -->
+  <base href = "../" />
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <meta name='debug' content='2'>
+  <meta name='toast_position' content='topCenter'>
+
+  <link href="ftui.css" rel="stylesheet">
+  <link href="themes/ftui.theme.css" rel="stylesheet">
+  <script src="ftui.js" defer></script>
+
+  <title>FHEM-Tablet-UI</title>
+</head>
+
+<!-- loads more than twice times faster than ftui version 2.*-->
+
+<body>
+  <ftui-grid base-width="150" base-height="120">
+
+    <ftui-grid-tile row="1" col="1" height="3" width="1">
+      <header>States</header>
+
+      <div class="cell">
+
+        <ftui-label
+          [text]="dummy1:state:value | map('on = 1, off = 2, .* = 0') , add(100)">
+        </ftui-label>
+
+      <ftui-icon 
+        [name]="dummy1 | map('on: play,off: stop')"
+        color="warning">
+      </ftui-icon>
+      
+      <ftui-label
+        [text]="dummy1 | map('on:AN,off:AUS')">
+      </ftui-label>
+      
+      <ftui-label id="MMMMMMMM"
+        [text]="dummy1">
+      </ftui-label>
+      
+      <ftui-label
+        [text]="dummy1:state:time">
+      </ftui-label>
+      </div>
+
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="1" col="2" height="1" width="2">
+      <header>States</header>
+
+      <div class="cell">
+      
+      <ftui-label
+        [text]="WebRadioInfo:Song">
+      </ftui-label>
+      </div>
+
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="1" col="4" height="1" width="2">
+      <header>States</header>
+
+      <div class="cell">
+      
+      <ftui-label
+        [text]="AgroWeather:fc0_date | toDate() , format('eeee')">
+      </ftui-label>
+      </div>
+    </ftui-grid-tile>
+
+  </ftui-grid>
+</body>
+
+</html>

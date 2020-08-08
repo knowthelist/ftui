@@ -1,0 +1,20 @@
+:host {
+  --color-base: currentColor;
+}
+
+:host svg { 
+  width: 2.25em;
+  height: 2.25em;
+  margin-top: 0.175em;
+  fill: currentColor;
+}
+
+:host svg[viewBox="0 0 448 512"] { 
+  width: 1.5em;
+  height: 1.5em;
+}
+
+:host([color]) svg {
+  fill: var(--color-base) !important;
+  color: var(--color-base);
+  }

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!--
+    /* FHEM tablet ui */
+    /**
+    * UI builder framework for FHEM
+    *
+    * Version: 3.0.0
+    *
+    * Copyright (c) 2015-2020 Mario Stephan <mstephan@shared-files.de>
+    * Under MIT License (http://www.opensource.org/licenses/mit-license.php)
+    * https://github.com/knowthelist/ftui
+    */
+    -->
+  <base href = "../" />
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <meta name='debug' content='2'>
+  <meta name='toast_position' content='topCenter'>
+
+  <style>
+    body {
+      display: flex;
+      flex-direction: row;
+    }
+
+    textarea {
+    width: 300px;
+    height: 150px;
+  }
+  </style>
+
+
+
+</head>
+
+
+
+<body>
+  <textarea class="left" rows="1" cols="10"></textarea>
+  <textarea class="right" rows="1" cols="10"></textarea>
+</body>
+
+<script  type="module">
+  import { parseHocon } from './libs/hocon/hocon.js';
+
+  const input = document.querySelector(".left");
+  const output = document.querySelector(".right");
+
+  input.value = localStorage.getItem('input')
+  output.value = JSON.stringify(parseHocon(input.value ));
+
+
+input.addEventListener('input', function(event) {
+  const text = input.value;
+  localStorage.setItem('input', text)
+
+  output.value = JSON.stringify(parseHocon(text));
+})</script>
+
+</html>

@@ -1,3 +1,5 @@
+
+
 class Ftui {
   constructor() {
     this.version = '3.3.0';
@@ -15,14 +17,10 @@ class Ftui {
       refresh: {},
       update: {},
       styleList: [
-        'lib/vanilla-notify/vanilla-notify.css',
-        'font/ftui/ftui-icons.css',
-        'font/materialdesignicons/materialdesignicons.min.css',
-        'font/fontawesome/all.min.css',
-        'font/ftui/ftui-icons.css'
+        'modules/vanilla-notify/vanilla-notify.css'
       ],
       libList: [
-        'lib/vanilla-notify/vanilla-notify.min.js'
+        'modules/vanilla-notify/vanilla-notify.min.js'
       ]
     };
     this.states = {
@@ -35,15 +33,13 @@ class Ftui {
         lastTimestamp: new Date(),
         timer: null,
         request: null,
-        result: null,
-        lastErrorToast: null
+        result: null
       },
       update: {
         lastUpdateTimestamp: new Date(),
         lastEventTimestamp: new Date(),
         timer: null,
-        result: null,
-        lastErrorToast: null
+        result: null
       }
     };
 
@@ -90,13 +86,13 @@ class Ftui {
     this.appendOverlay();
 
     // init Page after CSFS Token has been retrieved
-    Promise.all( [this.fetchCSrf()] ).then(() => {
+    Promise.all([this.fetchCSrf()]).then(() => {
       this.initPage('html');
     }).catch(error => {
       this.log(1, 'initDeferreds -' + error, 'error');
     });
 
-    document.addEventListener('initWidgetsDone', () => {
+    document.addEventListener('initComponentsDone', () => {
       // restart  connection
       if (this.config.enableInstantUpdates) {
         this.states.fhemConnectionIsRestarting = true;
@@ -123,55 +119,59 @@ class Ftui {
     this.log(2, 'initPage - area=' + area);
 
     this.log(1, 'init templates - Done');
-    this.initWidgets(area).then(() => {
+    this.initComponents(area).then(() => {
       window.performance.mark('end initPage-' + area);
       window.performance.measure('initPage-' + area, 'start initPage-' + area, 'end initPage-' + area);
       const dur = 'initPage (' + area + '): in ' + (new Date() - this.states.startTime) + 'ms';
       if (this.config.debuglevel > 1) this.toast(dur);
       this.log(1, dur);
     }).catch(error => {
-      this.log(1, 'initWidgets -' + error, 'error');
+      this.log(1, 'initComponents -' + error, 'error');
     });
   }
 
-  initWidgets(area) {
+  initComponents(area) {
     const initDefer = this.deferred();
-    const widgetTypes = [];
-    // Fetch all the children of <ftui-*> that are not defined yet.
-    const undefinedWidgets = this.selectElements(':not(:defined)', area);
+    const componentTypes = [];
+    const undefinedComponents = this.selectElements(':not(:defined)', area);
 
-    undefinedWidgets.forEach(elem => {
-      if (!widgetTypes.includes(elem.localName)) {
-        widgetTypes.push(elem.localName);
+    // Fetch all the children of <ftui-*> that are not defined yet.
+    undefinedComponents.forEach(elem => {
+      if (!componentTypes.includes(elem.localName)) {
+        componentTypes.push(elem.localName);
       }
     });
 
-    const regexp = new RegExp('^ftui-[a-z]+$', 'i');
-    widgetTypes.filter(type => {
-      const match = regexp.test(type);
-      return match;
-    }).forEach(type => {
-      this.dynamicload(this.config.basedir + 'widget/' + type.replace('-', '.') + '.js', true, 'module')
+    componentTypes.forEach(type => {
+        const nameParts = type.split('-');
+        const group = nameParts[1];
+        const name = nameParts[2] ? nameParts[1] + '-' +nameParts[2] : nameParts[1];
+        this.loadModule(`./components/${group}/${name}.component.js`)
+      });
+
+    const promises = [...undefinedComponents].map(component => {
+      return customElements.whenDefined(component.localName);
     });
 
-    const promises = [...undefinedWidgets].map(widget => {
-      return customElements.whenDefined(widget.localName);
-    });
-
-    // get current values of readings not before all widgets are loaded
-    Promise.all(promises).then(() => {
-      this.createFilterParameter();
-      this.log(1, 'initWidgets - Done');
-      const event = new CustomEvent('initWidgetsDone', { area: area });
-      document.dispatchEvent(event);
-
-      initDefer.resolve();
-    })
+    // get current values of readings not before all components are loaded
+    Promise.all(promises)
+      .then(() => {
+        this.createFilterParameter();
+        this.log(1, 'initComponents - Done');
+        const event = new CustomEvent('initComponentsDone', { area: area });
+        document.dispatchEvent(event);
+        initDefer.resolve();
+      })
       .catch(error => {
-        this.log(1, 'initWidgets -' + error, 'error');
+        this.log(1, 'initComponents -' + error, 'error');
       });
     return initDefer.promise();
   }
+
+  async loadModule(path) {
+    await import(path);
+  }
+
 
   loadLibs() {
     this.config.libList.forEach((lib) => this.dynamicload(this.config.basedir + lib), false);
@@ -181,8 +181,16 @@ class Ftui {
     this.config.styleList.forEach((link) => this.appendStyleLink(this.config.basedir + link));
   }
 
-  parseReadingId(readingID) {
-    const [, device, reading] = /^([^-:]+)[-:](.*)$/.exec(readingID) || ['', readingID, ''];
+  getReadingID(device, reading) {
+    return (reading === 'STATE') ? device : [device, reading].join('-');
+  }
+
+  /**
+   * Parses a given readingId and returns parameter id, device name and reading name
+   * @param  {} readingId
+   */
+  parseReadingId(readingId) {
+    const [, device, reading] = /^(.+)[-:\s](.*)$/.exec(readingId) || ['', readingId, ''];
     const paramid = (reading) ? [device, reading].join('-') : device;
     return [paramid, device, reading];
   }
@@ -200,12 +208,26 @@ class Ftui {
     }
   }
 
+  // ToDo: Do not repeat yourself 
   getReadingData(readingID) {
     const id = readingID.replace(':', '-');
     if (this.readings.has(id)) {
       return this.readings.get(id).data;
     } else {
       return null;
+    }
+  }
+
+  updateReadingValue(readingID, value) {
+    const reading = this.readings.get(readingID);
+    if (reading?.data) {
+      const now = ftui.dateFormat(new Date(), 'YYYY-MM-DD hh:mm:ss');
+      reading.data.id = readingID;
+      reading.data.valid = true;
+      reading.data.value = value;
+      reading.data.time = now;
+      reading.data.update = now
+      reading.events.publish(reading.data);
     }
   }
 
@@ -217,6 +239,7 @@ class Ftui {
       reading.events.publish(readingData);
     }
   }
+  // end ToDo
 
   createFilterParameter() {
     const readingsArray = Array.from(this.readings.values());
@@ -253,8 +276,11 @@ class Ftui {
 
   refresh(silent) {
     const ltime = Date.now() / 1000;
-    if (this.config.refresh.filter.length < 2 ||
-      (ltime - this.states.lastRefresh) < this.config.refreshInterval) { return; }
+    if (
+      this.config.refresh.filter
+      && this.config.refresh.filter.length < 2
+      || (ltime - this.states.lastRefresh) < this.config.refreshInterval
+    ) { return; }
     this.log(1, 'start refresh');
     window.performance.mark('start refresh');
     this.states.lastRefresh = ltime;
@@ -296,9 +322,6 @@ class Ftui {
           paramCount + ' parameter(s)');
       }
       this.log(1, 'refresh: Done');
-      if (this.states.refresh.lastErrorToast) {
-        this.states.refresh.lastErrorToast.reset();
-      }
       this.states.refresh.duration = duration * 1000;
       this.states.refresh.lastTimestamp = new Date();
       this.states.refresh.result = 'ok';
@@ -328,7 +351,7 @@ class Ftui {
 
   parseRefreshResultSection(device, section) {
     for (const reading in section) {
-      const parameterId = (reading === 'STATE') ? device : [device, reading].join('-');
+      const parameterId = this.getReadingID(device, reading);
       let parameter = section[reading];
       if (typeof parameter !== 'object') {
         parameter = {
@@ -337,21 +360,23 @@ class Ftui {
         };
       }
 
-      // is there a subscription, then check and update widgets
+      // is there a subscription, then check and update components
       if (this.readings.has(parameterId)) {
         const parameterData = this.getReadingData(parameterId);
         const doPublish = (parameterData.value !== parameter.Value || parameterData.time !== parameter.Time);
+        const now = ftui.dateFormat(new Date(), 'YYYY-MM-DD hh:mm:ss');
 
         this.log(5, ['handleUpdate()', ' paramerId=', parameterId, ' value=', parameter.Value,
           ' time=', parameter.Time, ' isUpdate=', doPublish].join(''));
 
         // write into internal cache object
+        parameterData.id = parameterId;
         parameterData.valid = true;
         parameterData.value = parameter.Value;
-        parameterData.time = parameter.Time;
-        parameterData.update = ftui.dateFormat(new Date(), 'YYYY-MM-DD hh:mm:ss');
+        parameterData.time = parameter.Time || now;
+        parameterData.update = now
 
-        // update widgets only if necessary
+        // update components only if necessary
         this.updateReadingData(parameterId, parameterData, doPublish);
       }
     }
@@ -361,9 +386,6 @@ class Ftui {
     if (this.states.update.websocket) {
       this.log(3, 'valid this.states.update.websocket found');
       return;
-    }
-    if (this.states.update.lastErrorToast) {
-      this.states.update.lastErrorToast.reset();
     }
     if (this.config.debuglevel > 1) {
       this.toast('FHEM connection started');
@@ -392,7 +414,7 @@ class Ftui {
     this.states.update.websocket.onerror = (event) => {
       this.log(1, 'Error with fhem connection');
       if (this.config.debuglevel > 1 && event.target.url === this.states.update.URL) {
-        this.states.update.lastErrorToast = this.toast('Error with fhem connection', 'error');
+        this.toast('Error with fhem connection', 'error');
       }
 
     };
@@ -449,6 +471,7 @@ class Ftui {
           const doPublish = (isTimestamp || isSTATE || isTrigger);
 
           parameterData.update = ftui.dateFormat(new Date(), 'YYYY-MM-DD hh:mm:ss');
+          parameterData.id = parameterId;
           parameterData.valid = true;
           if (isTimestamp) {
             parameterData.time = value;
@@ -478,10 +501,11 @@ class Ftui {
     }
   }
 
-  sendToFhem(cmdline = '') {
+  sendToFhem(cmdline = '', async = '0') {
     const url = new URL(this.config.fhemDir);
     const params = {
       cmd: cmdline,
+      asyncCmd: async,
       fwcsrf: this.config.csrf,
       XHR: '1'
     };
@@ -523,12 +547,13 @@ class Ftui {
   }
 
   updateOnlineStatus() {
-    ftui.log(5, 'online offline');
+    this.log(2, 'online offline');
     if (navigator.onLine) { this.setOnline(); } else { this.setOffline(); }
   }
 
   setOnline() {
     const ltime = Date.now() / 1000;
+    this.log(2, 'setOnline', ltime, this.states.lastSetOnline);
     if ((ltime - this.states.lastSetOnline) > 60) {
       if (this.config.enableDebug) this.toast('FHEM connected');
       this.states.lastSetOnline = ltime;
@@ -573,7 +598,11 @@ class Ftui {
         script.async = !!(async);
         script.src = url;
         script.onload = () => {
-          this.log(3, 'dynamidynamic load done:' + url);
+          this.log(3, 'dynamicload load done:' + url);
+          deferred.resolve();
+        };
+        script.onerror = (error) => {
+          this.error(3, 'dynamicload load failure:', url, error);
           deferred.resolve();
         };
         document.getElementsByTagName('head')[0].appendChild(script);
@@ -610,7 +639,8 @@ class Ftui {
 
   scheduleHealthCheck() {
     // request dummy fhem event
-    if (ftui.states.update.websocket.readyState === WebSocket.OPEN) {
+    if (ftui.states.update.websocket &&
+      ftui.states.update.websocket.readyState === WebSocket.OPEN) {
       this.states.update.websocket.send('uptime');
     }
     // check in 3 seconds
@@ -639,7 +669,7 @@ class Ftui {
 
   // helper functions
 
-  delay(callback, delay = 0) {
+  debounce(callback, delay = 0) {
     let handle;
     return (...args) => {
       clearTimeout(handle);
@@ -790,12 +820,20 @@ class Ftui {
     return !d ? 0 : s.length - d;
   }
 
-  isDefined(v) {
-    return (typeof v !== 'undefined');
+  isVisible(element) {
+    return (element.offsetParent !== null);
   }
 
-  isString(v) {
-    return (typeof v !== 'string');
+  isDefined(value) {
+    return (typeof value !== 'undefined');
+  }
+
+  isString(value) {
+    return (typeof value === 'string' && !this.isNumeric(value));
+  }
+
+  isNumeric(value) {
+    return !isNaN(parseFloat(value)) && isFinite(value);
   }
 
   // global date format functions
@@ -822,8 +860,8 @@ class Ftui {
     const ss = date.getSeconds().toString();
     const d = date.getDay();
     const eeee = (ftui.config.lang === 'de') ? weekday_de[d] : weekday[d];
-    const eee = eeee.substr(1, 3);
-    const ee = eeee.substr(1, 2);
+    const eee = eeee.substr(0, 3);
+    const ee = eeee.substr(0, 2);
     let ret = format;
     ret = ret.replace('DD', (dd > 9) ? dd : '0' + dd);
     ret = ret.replace('D', dd);
@@ -904,15 +942,17 @@ class Ftui {
     }
   }
 
-  log(level, text, error) {
+  log(level, ...args) {
     if (this.config.debuglevel >= level) {
-      if (error) {
-        // eslint-disable-next-line no-console
-        console.error(text);
-      } else {
-        // eslint-disable-next-line no-console
-        console.log(text);
-      }
+      // eslint-disable-next-line no-console
+      console.log.apply(this, args);
+    }
+  }
+
+  error(level, ...args) {
+    if (this.config.debuglevel >= level) {
+      // eslint-disable-next-line no-console
+      console.error.apply(this, args);
     }
   }
 
@@ -985,32 +1025,49 @@ class Ftui {
     return parsed;
   }
 
-  isNumeric(value) {
-    return !isNaN(parseFloat(value)) && isFinite(value);
+  isEqual(pattern, value) {
+    return value === pattern ||
+      parseFloat(value) === parseFloat(pattern) ||
+      String(value).match('^' + pattern + '$');
   }
 
-  getMatchingValue(mapAttribute, searchKey) {
-    if (this.isDefined(mapAttribute)) {
-      const map = this.parseObject(mapAttribute);
-      const filteredKeys = Object.keys(map)
-        .filter(key => {
-          return (
-            searchKey === key ||
-            parseFloat(searchKey) >= parseFloat(key) ||
-            String(searchKey).match('^' + key + '$')
-          );
-        })
-        .map(key => key)
-        .sort((a, b) => {
-          if (a === '.*') return -1;
-          else if (b === '.*') return 1;
-          else if (isNaN(a) && isNaN(b)) return a < b ? -1 : a == b ? 0 : 1;
-          else if (isNaN(a)) return 1;
-          else if (isNaN(b)) return -1;
-          else return a - b;
-        });
+  isEqualOrGreater(pattern, value) {
+    return value === pattern ||
+      parseFloat(value) >= parseFloat(pattern) ||
+      String(value).match('^' + pattern + '$');
+  }
+
+  getMatchingValue(map, searchKey) {
+    const key = this.getMatchingKey(map, searchKey);
+    return map[key];
+  }
+
+  getMatchingKey(map, searchKey) {
+    if (this.isDefined(map)) {
+      //console.log(map,searchKey)
+      const filteredKeys =
+        this.getMatchingKeys(map, searchKey)
+          .sort((a, b) => {
+            if (a === '.*') return -1;
+            else if (b === '.*') return 1;
+            else if (isNaN(a) && isNaN(b)) return a < b ? -1 : a == b ? 0 : 1;
+            else if (isNaN(a)) return 1;
+            else if (isNaN(b)) return -1;
+            else return a - b;
+          });
       // take last item of matching keys 
-      return map[filteredKeys.slice(-1)[0]];
+      return filteredKeys.slice(-1)[0];
+    } else {
+      return null;
+    }
+  }
+
+  getMatchingKeys(map, searchKey) {
+    if (this.isDefined(map)) {
+      //console.log(map)
+      return Object.keys(map)
+        .filter(key => this.isEqualOrGreater(key, searchKey))
+        .map(key => key);
     } else {
       return null;
     }
@@ -1037,49 +1094,6 @@ class Ftui {
   }
 }
 
-const menu = document.querySelector('#menu');
-menu && menu.addEventListener('click', event => {
-  event.target.classList.toggle('show');
-});
-
-// initially loading the page
-// or navigating to the page from another page in the same window or tab
-window.addEventListener('pageshow', () => {
-  if (!window.ftui) {
-    // load FTUI
-    window.ftui = new Ftui();
-  } else {
-    // navigating from another page
-    ftui.setOnline();
-  }
-});
-
-window.addEventListener('beforeunload', () => {
-  ftui.log(5, 'beforeunload');
-  ftui.setOffline();
-});
-
-window.addEventListener('online', () => ftui.updateOnlineStatus());
-window.addEventListener('offline', () => ftui.updateOnlineStatus());
-// after the page became visible, check server connection
-document.addEventListener('visibilitychange', () => {
-  if (document.visibilityState === 'hidden') {
-    // page is hidden
-  } else {
-    // page is visible
-    ftui.log(1, 'Page became visible again -> start healthCheck in 3 secondes ');
-    ftui.scheduleHealthCheck();
-  }
-});
-
-window.onerror = function (msg, url, lineNo, columnNo, error) {
-  const file = url.split('/').pop();
-  ftui.toast([file + ':' + lineNo, error].join('<br/>'), 'error');
-  return false;
-};
-
-// helper classes
-
 // Event observable
 class Events {
   constructor() {
@@ -1095,3 +1109,5 @@ class Events {
     this.observers.forEach(topic => topic.observer(args));
   }
 }
+
+export const ftui = new Ftui();

@@ -1,0 +1,57 @@
+:host svg {
+  margin: 0px;
+  padding: 0;
+  cursor: pointer;
+}
+ 
+ 
+:host .outline,
+:host .fill,
+:host .center,
+:host .needle,
+:host .scale {
+  pointer-events: none;
+}
+ 
+:host .outline[stroke=""] {
+  stroke: var(--gray);
+}
+ 
+/* :host .fill[stroke=""] {
+  stroke: var(--primary-color);
+} */
+
+
+
+:host .fill {
+  stroke: var(--color-base);
+}
+ 
+/* :host .needle[fill=""] {
+  fill: var(--primary-color);
+} */
+ 
+:host .needle {
+  fill: var(--color-base);
+}
+
+:host .scale {
+  stroke: var(--text-color);
+}
+
+:host .value {
+  font-size: 2.5em;
+  fill: var(--text-color);
+  font-weight: lighter;
+}
+ 
+:host text {
+  text-anchor: middle;
+  font-size: 0.8em;
+  font-weight: lighter;
+  pointer-events: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}

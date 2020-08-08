@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!--
+    /* FHEM tablet ui */
+    /**
+    * UI builder framework for FHEM
+    *
+    * Version: 3.0.0
+    *
+    * Copyright (c) 2015-2019 Mario Stephan <mstephan@shared-files.de>
+    * Under MIT License (http://www.opensource.org/licenses/mit-license.php)
+    * https://github.com/knowthelist/ftui
+    */
+    -->
+  <base href="../" />
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <link href="ftui.css" rel="stylesheet">
+  <link href="themes/ftui.theme.css" rel="stylesheet">
+  <script src="ftui.main.js"></script>
+
+  <meta name='debug' content='3'>
+
+  <title>FTUI Example Symbol</title>
+</head>
+
+<body>
+  <ftui-grid base-width="70" base-height="70">
+
+    <ftui-grid-tile row="1" col="1" height="1" width="3">
+      <div class="cell tall">Icons</div>
+    </ftui-grid-tile>
+    <ftui-grid-tile row="2" col="1" height="9" width="3">
+      <header>SINGLE</header>
+
+      <div class="cell">
+        <!-- binding short-->
+        <ftui-icon [name]="dummy1 | map('on:lightbulb-on-outline, off:lightbulb-outline')" [rgb]="HUEDevice6:rgb">
+        </ftui-icon>
+
+        <ftui-icon name="anchor"></ftui-icon>
+
+
+        <ftui-label text-reading="dummy1"></ftui-label>
+      </div>
+
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="1" col="4" height="10" width="3">
+      <header>MULTIPLE</header>
+
+      <div class="cell">
+
+        <ftui-label [text]="dummy1"></ftui-label>
+        <!-- binding short-->
+        <ftui-icon [name]="dummy1 | map('on: lightbulb-on-outline, off: lightbulb-outline')"
+          [color]="ftuitest | map('0: success, 50: warning, 80: danger')">
+        </ftui-icon>
+
+        <!-- binding long-->
+        <ftui-icon bind-name="dummy1 | map('on: lightbulb-on-outline, off: lightbulb-outline')"
+          bind-color="ftuitest | map('0: success, 50: warning, 80: danger')">
+        </ftui-icon>
+
+        <ftui-icon>
+        </ftui-icon>
+
+      </div>
+
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="1" col="7" height="2" width="3">
+      <header>BIG</header>
+
+      <div class="cell big">
+        <ftui-icon name="battery-0" color="light"
+          [name]="ftuitest | map('0:battery-0, 25: battery-1, 50:battery-2, 75: battery-3, 100: battery')"
+          [color]="ftuitest | map('0:danger, 50:warning, 75: success')">
+        </ftui-icon>
+        <ftui-label [text]="ftuitest"></ftui-label>
+      </div>
+
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="3" col="7" height="8" width="3">
+      <header></header>
+
+      <div class="cell">
+
+      </div>
+
+    </ftui-grid-tile>
+
+  </ftui-grid>
+</body>
+
+</html>

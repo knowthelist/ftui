@@ -6,6 +6,8 @@ with a clear intention: Keep it short and simple!
 
 Version 3 
 
+FTUI >3.0 uses Web Components technologies ![](https://developer.mozilla.org/en-US/docs/Web/Web_Components)
+
 Caution! 
  * This version is not compatible with older fhem-tablet-ui versions.
  * This version is under construction.
@@ -24,26 +26,24 @@ Install
  
 Usage
 ------
-* Just add some of the FTUI webcomponents to your HTML code
+* Just add some of the FTUI web components to your HTML code
 
 ```html
-<ftui-button state-reading="dummy1"></ftui-button>
+<ftui-button (value)="dummy1">on/off</ftui-button>
 ```
 
 ```html
-<ftui-label text-reading="dummy1"></ftui-label>
+<ftui-label [value]="dummy1"></ftui-label>
 ```
 
 ```html
-<ftui-symbol state-reading="ftuitest" 
-              state-classes='{ 
-                "0": "mdi mdi-garage",
-                "40": "mdi mdi-garage-alert active",
-                "80": "mdi mdi-garage-open active"}'>
-</ftui-symbol>
+<ftui-icon 
+    [name]="dummy1 | map('on: lightbulb-on-outline, off: lightbulb-outline')"
+    [color]="ftuitest | map('0: success, 50: warning, 80: danger')">
+</ftui-icon>
 ```
 
-Widgets
+Components
 ------
 
 - Tab
@@ -55,9 +55,10 @@ Widgets
 - Slider
 - Checkbox
 
+ ... to be continued
 
 #### Button
-
+<!-- 
 | Attribute     | Type | Default | Description | Example |
 | ------------- |------|------------|---------|---------|
 | cmd | string | "set" | FHEM command| cmd="setreading"|
@@ -65,9 +66,26 @@ Widgets
 | icon | string | "mdi mdi-lightbulb-outline" | css classes to create icon | icon="fa fa-car"|
 | icon-class | string | "" | css classes to style icon | icon-class="tomato"|
 | text | string | "" | css classes to create icon | icon="fa fa-car"|
-| text-class | string | "" | css classes to style icon | icon-class="tomato"|
+| text-class | string | "" | css classes to style icon | icon-class="tomato"| -->
 
   ... to be continued
+
+Configuration
+-----------
+
+The get and set parameter of all components are in
+
+HOCON (Human-Optimized Config Object Notation)
+
+The primary goal of HOCON is: keep the semantics (tree structure; set of types; encoding/escaping) from JSON, but make it more convenient as a human-editable config file format.
+
+Informal spec:
+https://github.com/lightbend/config/blob/master/HOCON.md
+
+playground to check syntax:
+https://hocon-playground.herokuapp.com
+
+ ... to be continued
 
 Donation
 --------

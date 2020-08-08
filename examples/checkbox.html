@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!--
+    /* FHEM tablet ui */
+    /**
+    * UI builder framework for FHEM
+    *
+    * Version: 3.0.0
+    *
+    * Copyright (c) 2015-2020 Mario Stephan <mstephan@shared-files.de>
+    * Under MIT License (http://www.opensource.org/licenses/mit-license.php)
+    * https://github.com/knowthelist/ftui
+    */
+    -->
+  <base href="../" />
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <link href="ftui.css" rel="stylesheet">
+  <link href="themes/ftui.theme.css" rel="stylesheet">
+  <script src="ftui.main.js"></script>
+
+  <meta name='debug' content='2'>
+
+  <title>FTUI Example Checkbox</title>
+</head>
+
+<body>
+  <ftui-grid base-width="70" base-height="150">
+
+
+    <ftui-grid-tile row="1" col="1" height="1" width="2">
+      <header>DEFAULT</header>
+
+      <div class="cell">
+        <ftui-checkbox [value]="dummy1"></ftui-checkbox>
+      </div>
+
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="1" col="3" height="1" width="2">
+      <header>TEXTES</header>
+
+      <div class="cell">
+        <ftui-checkbox [(value)]="dummy1" texts='on,off'></ftui-checkbox>
+        <ftui-checkbox [value]="dummy1" texts='1,0'></ftui-checkbox>
+      </div>
+
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="1" col="5" height="1" width="2">
+      <header>COLORS</header>
+
+      <div class="cell">
+        <ftui-checkbox [(value)]="dummy1" color="warning"></ftui-checkbox>
+        <ftui-checkbox [color]="dummy2"></ftui-checkbox>
+      </div>
+
+    </ftui-grid-tile>
+  </ftui-grid>
+</body>
+
+</html>
