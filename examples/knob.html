@@ -32,7 +32,7 @@
     <ftui-grid-tile row="1" col="1" height="1" width="1">
       <header>DEFAULT</header>
       <div class="cell">
-        <ftui-knob value-reading="AvReceiver-volume" max="50">
+        <ftui-knob [(value)]="AvReceiver-volume" max="50">
         </ftui-knob>
       </div>
     </ftui-grid-tile>
@@ -79,7 +79,7 @@
     <ftui-grid-tile row="2" col="3" height="1" width="1">
       <header>Scale Text</header>
       <div class="cell">
-        <ftui-knob value-reading="AvReceiver-volume3" max="50" hasScaleText hasScale hasArc>
+        <ftui-knob [(value)]="AvReceiver-volume3" max="50" hasScaleText hasScale hasArc>
         </ftui-knob>
       </div>
     </ftui-grid-tile>
@@ -87,7 +87,7 @@
     <ftui-grid-tile row="1" col="4" height="1" width="1">
       <header>Value Text</header>
       <div class="cell">
-        <ftui-knob value-reading="AvReceiver-volume" max="50" hasScale hasArc hasValueText>
+        <ftui-knob [(value)]="AvReceiver-volume" max="50" hasScale hasArc hasValueText>
         </ftui-knob>
       </div>
     </ftui-grid-tile>
@@ -95,7 +95,7 @@
     <ftui-grid-tile row="2" col="4" height="1" width="1">
       <header>Stroke Width</header>
       <div class="cell">
-        <ftui-knob value-reading="AvReceiver-volume" max="50" strokeWidth="25">
+        <ftui-knob [(value)]="AvReceiver-volume" max="50" strokeWidth="25">
         </ftui-knob>
       </div>
     </ftui-grid-tile>
