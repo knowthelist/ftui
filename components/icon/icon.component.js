@@ -27,7 +27,7 @@ export class FtuiIcon extends FtuiElement {
     return {
       type: 'svg',
       path: 'icons',
-      name: 'lightbulb',
+      name: '',
       color: '',
       rgb: ''
     };
@@ -38,6 +38,7 @@ export class FtuiIcon extends FtuiElement {
   }
 
   onAttributeChanged(name, oldValue, newValue) {
+    console.log(this.id,name, oldValue, newValue)
     switch (name) {
       case 'name':
         this.fetchIcon(`${this.path}/${newValue}.${this.type}`);

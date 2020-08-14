@@ -1,4 +1,4 @@
-[class^="ftui-"], [class*=" ftui-"] {
+[class^="/"], [class*=" /"] {
   display: inline-block;
   width: 1em;
   height: 1em;
@@ -9,1636 +9,1636 @@
 
 /* ==========================================
 Single-colored icons can be modified like so:
-.ftui-name {
+./name {
   font-size: 32px;
   color: red;
 }
 ========================================== */
 
-.ftui-asterisk {
+./asterisk {
   width: 0.9285714285714285em;
 }
 
-.ftui-plus {
+./plus {
   width: 0.7857142857142857em;
 }
 
-.ftui-question {
+./question {
   width: 0.62em;
 }
 
-.ftui-minus {
+./minus {
   width: 0.7857142857142857em;
 }
 
-.ftui-music {
+./music {
   width: 0.8571428571428571em;
 }
 
-.ftui-search1 {
+./search1 {
   width: 0.9285714285714285em;
 }
 
-.ftui-star1 {
+./star1 {
   width: 0.9285714285714285em;
 }
 
-.ftui-star-o {
+./star-o {
   width: 0.9285714285714285em;
 }
 
-.ftui-user {
+./user {
   width: 0.7142857142857142em;
 }
 
-.ftui-film {
+./film {
   width: 1.0714285714285714em;
 }
 
-.ftui-th-large {
+./th-large {
   width: 0.9285714285714285em;
 }
 
-.ftui-close {
+./close {
   width: 0.7857142857142857em;
 }
 
-.ftui-search-plus {
+./search-plus {
   width: 0.9285714285714285em;
 }
 
-.ftui-search-minus {
+./search-minus {
   width: 0.9285714285714285em;
 }
 
-.ftui-power-off {
+./power-off {
   width: 0.8571428571428571em;
 }
 
-.ftui-cog {
+./cog {
   width: 0.8571428571428571em;
 }
 
-.ftui-trash-o {
+./trash-o {
   width: 0.7857142857142857em;
 }
 
-.ftui-home1 {
+./home1 {
   width: 0.9285714285714285em;
 }
 
-.ftui-file-o {
+./file-o {
   width: 0.8571428571428571em;
 }
 
-.ftui-clock-o {
+./clock-o {
   width: 0.8571428571428571em;
 }
 
-.ftui-road {
+./road {
   width: 1.0714285714285714em;
 }
 
-.ftui-download {
+./download {
   width: 0.9285714285714285em;
 }
 
-.ftui-arrow-circle-o-down {
+./arrow-circle-o-down {
   width: 0.8571428571428571em;
 }
 
-.ftui-arrow-circle-o-up {
+./arrow-circle-o-up {
   width: 0.8571428571428571em;
 }
 
-.ftui-inbox1 {
+./inbox1 {
   width: 0.8571428571428571em;
 }
 
-.ftui-play-circle-o {
+./play-circle-o {
   width: 0.8571428571428571em;
 }
 
-.ftui-repeat1 {
+./repeat1 {
   width: 0.8571428571428571em;
 }
 
-.ftui-refresh1 {
+./refresh1 {
   width: 0.8571428571428571em;
 }
 
-.ftui-lock {
+./lock {
   width: 0.6428571428571428em;
 }
 
-.ftui-flag1 {
+./flag1 {
   width: 1.0357142857142856em;
 }
 
-.ftui-headphones {
+./headphones {
   width: 0.9285714285714285em;
 }
 
-.ftui-volume-off {
+./volume-off {
   width: 0.42857142857142855em;
 }
 
-.ftui-volume-down {
+./volume-down {
   width: 0.6428571428571428em;
 }
 
-.ftui-volume-up {
+./volume-up {
   width: 0.9285714285714285em;
 }
 
-.ftui-qrcode {
+./qrcode {
   width: 0.7857142857142857em;
 }
 
-.ftui-tag1 {
+./tag1 {
   width: 0.8454285714285714em;
 }
 
-.ftui-tags {
+./tags {
   width: 1.0597142857142856em;
 }
 
-.ftui-book1 {
+./book1 {
   width: 0.9302142857142857em;
 }
 
-.ftui-bookmark1 {
+./bookmark1 {
   width: 0.7142857142857142em;
 }
 
-.ftui-print {
+./print {
   width: 0.9285714285714285em;
 }
 
-.ftui-camera1 {
+./camera1 {
   width: 1.0714285714285714em;
 }
 
-.ftui-image {
+./image {
   width: 1.0714285714285714em;
 }
 
-.ftui-pencil {
+./pencil {
   width: 0.8454285714285714em;
 }
 
-.ftui-map-marker {
+./map-marker {
   width: 0.5714285714285714em;
 }
 
-.ftui-adjust1 {
+./adjust1 {
   width: 0.8571428571428571em;
 }
 
-.ftui-tint {
+./tint {
   width: 0.5714285714285714em;
 }
 
-.ftui-edit {
+./edit {
   width: 1.0005714285714284em;
 }
 
-.ftui-share-square-o {
+./share-square-o {
   width: 0.9319285714285714em;
 }
 
-.ftui-check-square-o {
+./check-square-o {
   width: 0.9324999999999999em;
 }
 
-.ftui-step-backward {
+./step-backward {
   width: 0.5714285714285714em;
 }
 
-.ftui-backward {
+./backward {
   width: 0.9932857142857143em;
 }
 
-.ftui-play {
+./play {
   width: 0.7896428571428571em;
 }
 
-.ftui-pause1 {
+./pause1 {
   width: 0.8571428571428571em;
 }
 
-.ftui-stop {
+./stop {
   width: 0.8571428571428571em;
 }
 
-.ftui-forward1 {
+./forward1 {
   width: 0.8638571428571428em;
 }
 
-.ftui-step-forward {
+./step-forward {
   width: 0.5714285714285714em;
 }
 
-.ftui-eject1 {
+./eject1 {
   width: 0.8582857142857142em;
 }
 
-.ftui-chevron-left {
+./chevron-left {
   width: 0.75em;
 }
 
-.ftui-chevron-right {
+./chevron-right {
   width: 0.6785714285714285em;
 }
 
-.ftui-plus-circle {
+./plus-circle {
   width: 0.8571428571428571em;
 }
 
-.ftui-minus-circle {
+./minus-circle {
   width: 0.8571428571428571em;
 }
 
-.ftui-times-circle {
+./times-circle {
   width: 0.8571428571428571em;
 }
 
-.ftui-check-circle {
+./check-circle {
   width: 0.8571428571428571em;
 }
 
-.ftui-question-circle {
+./question-circle {
   width: 0.8571428571428571em;
 }
 
-.ftui-info-circle {
+./info-circle {
   width: 0.8571428571428571em;
 }
 
-.ftui-crosshairs {
+./crosshairs {
   width: 0.8571428571428571em;
 }
 
-.ftui-times-circle-o {
+./times-circle-o {
   width: 0.8571428571428571em;
 }
 
-.ftui-check-circle-o {
+./check-circle-o {
   width: 0.8571428571428571em;
 }
 
-.ftui-ban {
+./ban {
   width: 0.8571428571428571em;
 }
 
-.ftui-arrow-left {
+./arrow-left {
   width: 0.8928571428571428em;
 }
 
-.ftui-arrow-right {
+./arrow-right {
   width: 0.8214285714285714em;
 }
 
-.ftui-arrow-up {
+./arrow-up {
   width: 0.9285714285714285em;
 }
 
-.ftui-arrow-down {
+./arrow-down {
   width: 0.9285714285714285em;
 }
 
-.ftui-expand1 {
+./expand1 {
   width: 0.8571428571428571em;
 }
 
-.ftui-compress1 {
+./compress1 {
   width: 0.8571428571428571em;
 }
 
-.ftui-exclamation-circle {
+./exclamation-circle {
   width: 0.8571428571428571em;
 }
 
-.ftui-gift {
+./gift {
   width: 0.8571428571428571em;
 }
 
-.ftui-fire {
+./fire {
   width: 0.7857142857142857em;
 }
 
-.ftui-plane {
+./plane {
   width: 0.803em;
 }
 
-.ftui-calendar {
+./calendar {
   width: 0.9285714285714285em;
 }
 
-.ftui-retweet {
+./retweet {
   width: 1.0714285714285714em;
 }
 
-.ftui-shopping-cart {
+./shopping-cart {
   width: 0.9285714285714285em;
 }
 
-.ftui-folder1 {
+./folder1 {
   width: 0.9285714285714285em;
 }
 
-.ftui-folder-open {
+./folder-open {
   width: 1.0485714285714285em;
 }
 
-.ftui-arrows-v {
+./arrows-v {
   width: 0.42857142857142855em;
 }
 
-.ftui-bar-chart {
+./bar-chart {
   width: 1.1428571428571428em;
 }
 
-.ftui-key {
+./key {
   width: 0.9391428571428571em;
 }
 
-.ftui-cogs {
+./cogs {
   width: 1.0714285714285714em;
 }
 
-.ftui-thumbs-o-up {
+./thumbs-o-up {
   width: 0.8571428571428571em;
 }
 
-.ftui-thumbs-o-down {
+./thumbs-o-down {
   width: 0.8571428571428571em;
 }
 
-.ftui-star-half {
+./star-half {
   width: 0.46428571428571425em;
 }
 
-.ftui-sign-out {
+./sign-out {
   width: 0.875em;
 }
 
-.ftui-thumb-tack {
+./thumb-tack {
   width: 0.6428571428571428em;
 }
 
-.ftui-sign-in {
+./sign-in {
   width: 0.8571428571428571em;
 }
 
-.ftui-trophy {
+./trophy {
   width: 0.9285714285714285em;
 }
 
-.ftui-upload {
+./upload {
   width: 0.9285714285714285em;
 }
 
-.ftui-lemon-o {
+./lemon-o {
   width: 0.8565714285714285em;
 }
 
-.ftui-phone1 {
+./phone1 {
   width: 0.7857142857142857em;
 }
 
-.ftui-bookmark-o {
+./bookmark-o {
   width: 0.7142857142857142em;
 }
 
-.ftui-phone-square {
+./phone-square {
   width: 0.8571428571428571em;
 }
 
-.ftui-unlock {
+./unlock {
   width: 0.9285714285714285em;
 }
 
-.ftui-credit-card {
+./credit-card {
   width: 1.0714285714285714em;
 }
 
-.ftui-feed {
+./feed {
   width: 0.7862857142857141em;
 }
 
-.ftui-hdd-o {
+./hdd-o {
   width: 0.8571428571428571em;
 }
 
-.ftui-certificate {
+./certificate {
   width: 0.8571428571428571em;
 }
 
-.ftui-hand-o-up {
+./hand-o-up {
   width: 0.8571428571428571em;
 }
 
-.ftui-hand-o-down {
+./hand-o-down {
   width: 0.8571428571428571em;
 }
 
-.ftui-arrow-circle-left {
+./arrow-circle-left {
   width: 0.8571428571428571em;
 }
 
-.ftui-arrow-circle-right {
+./arrow-circle-right {
   width: 0.8571428571428571em;
 }
 
-.ftui-arrow-circle-up {
+./arrow-circle-up {
   width: 0.8571428571428571em;
 }
 
-.ftui-arrow-circle-down {
+./arrow-circle-down {
   width: 0.8571428571428571em;
 }
 
-.ftui-globe {
+./globe {
   width: 0.8571428571428571em;
 }
 
-.ftui-wrench {
+./wrench {
   width: 0.9391428571428571em;
 }
 
-.ftui-filter1 {
+./filter1 {
   width: 0.7857142857142857em;
 }
 
-.ftui-arrows-alt {
+./arrows-alt {
   width: 0.8571428571428571em;
 }
 
-.ftui-group1 {
+./group1 {
   width: 1.0714285714285714em;
 }
 
-.ftui-chain {
+./chain {
   width: 0.9285714285714285em;
 }
 
-.ftui-cloud5 {
+./cloud5 {
   width: 1.0714285714285714em;
 }
 
-.ftui-flask {
+./flask {
   width: 0.9285714285714285em;
 }
 
-.ftui-cut {
+./cut {
   width: 0.9977857142857142em;
 }
 
-.ftui-paperclip {
+./paperclip {
   width: 0.7857142857142857em;
 }
 
-.ftui-floppy-o {
+./floppy-o {
   width: 0.8571428571428571em;
 }
 
-.ftui-square {
+./square {
   width: 0.8571428571428571em;
 }
 
-.ftui-bars {
+./bars {
   width: 0.8571428571428571em;
 }
 
-.ftui-list-ol {
+./list-ol {
   width: 1.008357142857143em;
 }
 
-.ftui-table {
+./table {
   width: 0.9285714285714285em;
 }
 
-.ftui-magic {
+./magic {
   width: 0.9436428571428571em;
 }
 
-.ftui-truck {
+./truck {
   width: 1.0357142857142856em;
 }
 
-.ftui-money1 {
+./money1 {
   width: 1.0714285714285714em;
 }
 
-.ftui-caret-down {
+./caret-down {
   width: 0.5714285714285714em;
 }
 
-.ftui-caret-up {
+./caret-up {
   width: 0.5714285714285714em;
 }
 
-.ftui-caret-left {
+./caret-left {
   width: 0.39285714285714285em;
 }
 
-.ftui-caret-right {
+./caret-right {
   width: 0.3214285714285714em;
 }
 
-.ftui-columns {
+./columns {
   width: 0.9285714285714285em;
 }
 
-.ftui-sort1 {
+./sort1 {
   width: 0.5714285714285714em;
 }
 
-.ftui-sort-desc {
+./sort-desc {
   width: 0.5714285714285714em;
 }
 
-.ftui-sort-asc {
+./sort-asc {
   width: 0.5714285714285714em;
 }
 
-.ftui-rotate-left {
+./rotate-left {
   width: 0.8571428571428571em;
 }
 
-.ftui-gavel1 {
+./gavel1 {
   width: 1.0105714285714285em;
 }
 
-.ftui-bolt1 {
+./bolt1 {
   width: 0.5005714285714286em;
 }
 
-.ftui-umbrella {
+./umbrella {
   width: 0.9285714285714285em;
 }
 
-.ftui-lightbulb-o {
+./lightbulb {
   width: 0.5714285714285714em;
 }
 
-.ftui-cloud-download {
+./cloud-download {
   width: 1.0714285714285714em;
 }
 
-.ftui-cloud-upload {
+./cloud-upload {
   width: 1.0714285714285714em;
 }
 
-.ftui-user-md {
+./user-md {
   width: 0.7857142857142857em;
 }
 
-.ftui-stethoscope {
+./stethoscope {
   width: 0.7857142857142857em;
 }
 
-.ftui-coffee {
+./coffee {
   width: 1.0357142857142856em;
 }
 
-.ftui-cutlery {
+./cutlery {
   width: 0.7857142857142857em;
 }
 
-.ftui-file-text-o {
+./file-text-o {
   width: 0.8571428571428571em;
 }
 
-.ftui-building-o {
+./building-o {
   width: 0.7857142857142857em;
 }
 
-.ftui-hospital-o {
+./hospital-o {
   width: 0.7857142857142857em;
 }
 
-.ftui-ambulance {
+./ambulance {
   width: 1.107142857142857em;
 }
 
-.ftui-fighter-jet {
+./fighter-jet {
   width: 1.0714285714285714em;
 }
 
-.ftui-beer {
+./beer {
   width: 0.9642857142857142em;
 }
 
-.ftui-h-square {
+./h-square {
   width: 0.8571428571428571em;
 }
 
-.ftui-plus-square {
+./plus-square {
   width: 0.8571428571428571em;
 }
 
-.ftui-angle-double-left {
+./angle-double-left {
   width: 0.5892857142857143em;
 }
 
-.ftui-angle-double-right {
+./angle-double-right {
   width: 0.5535714285714285em;
 }
 
-.ftui-angle-double-up {
+./angle-double-up {
   width: 0.6428571428571428em;
 }
 
-.ftui-angle-double-down {
+./angle-double-down {
   width: 0.6428571428571428em;
 }
 
-.ftui-angle-left {
+./angle-left {
   width: 0.375em;
 }
 
-.ftui-angle-right {
+./angle-right {
   width: 0.33928571428571425em;
 }
 
-.ftui-angle-up {
+./angle-up {
   width: 0.6428571428571428em;
 }
 
-.ftui-angle-down {
+./angle-down {
   width: 0.6428571428571428em;
 }
 
-.ftui-desktop {
+./desktop {
   width: 1.0714285714285714em;
 }
 
-.ftui-laptop {
+./laptop {
   width: 1.0714285714285714em;
 }
 
-.ftui-tablet1 {
+./tablet1 {
   width: 0.6428571428571428em;
 }
 
-.ftui-mobile {
+./mobile {
   width: 0.42857142857142855em;
 }
 
-.ftui-circle-o {
+./circle-o {
   width: 0.8571428571428571em;
 }
 
-.ftui-quote-right {
+./quote-right {
   width: 0.9285714285714285em;
 }
 
-.ftui-circle {
+./circle {
   width: 0.8571428571428571em;
 }
 
-.ftui-folder-o {
+./folder-o {
   width: 0.9285714285714285em;
 }
 
-.ftui-folder-open-o {
+./folder-open-o {
   width: 1.0652857142857142em;
 }
 
-.ftui-smile-o {
+./smile-o {
   width: 0.8571428571428571em;
 }
 
-.ftui-frown-o {
+./frown-o {
   width: 0.8571428571428571em;
 }
 
-.ftui-meh-o {
+./meh-o {
   width: 0.8571428571428571em;
 }
 
-.ftui-gamepad {
+./gamepad {
   width: 1.0714285714285714em;
 }
 
-.ftui-keyboard-o {
+./keyboard-o {
   width: 1.0714285714285714em;
 }
 
-.ftui-flag-o {
+./flag-o {
   width: 1.0357142857142856em;
 }
 
-.ftui-flag-checkered {
+./flag-checkered {
   width: 1.0357142857142856em;
 }
 
-.ftui-terminal {
+./terminal {
   width: 0.934142857142857em;
 }
 
-.ftui-code1 {
+./code1 {
   width: 1.0714285714285714em;
 }
 
-.ftui-mail-reply-all {
+./mail-reply-all {
   width: 0.996642857142857em;
 }
 
-.ftui-star-half-empty {
+./star-half-empty {
   width: 0.9285714285714285em;
 }
 
-.ftui-location-arrow {
+./location-arrow {
   width: 0.7862857142857141em;
 }
 
-.ftui-crop1 {
+./crop1 {
   width: 0.9302142857142857em;
 }
 
-.ftui-code-fork {
+./code-fork {
   width: 0.5714285714285714em;
 }
 
-.ftui-chain-broken {
+./chain-broken {
   width: 0.9285714285714285em;
 }
 
-.ftui-info1 {
+./info1 {
   width: 0.3571428571428571em;
 }
 
-.ftui-exclamation {
+./exclamation {
   width: 0.3571428571428571em;
 }
 
-.ftui-eraser {
+./eraser {
   width: 1.0714285714285714em;
 }
 
-.ftui-puzzle-piece {
+./puzzle-piece {
   width: 0.9285714285714285em;
 }
 
-.ftui-microphone {
+./microphone {
   width: 0.6428571428571428em;
 }
 
-.ftui-microphone-slash {
+./microphone-slash {
   width: 0.7857142857142857em;
 }
 
-.ftui-shield1 {
+./shield1 {
   width: 0.7142857142857142em;
 }
 
-.ftui-calendar-o {
+./calendar-o {
   width: 0.9285714285714285em;
 }
 
-.ftui-fire-extinguisher {
+./fire-extinguisher {
   width: 0.7807142857142857em;
 }
 
-.ftui-rocket {
+./rocket {
   width: 0.9447857142857142em;
 }
 
-.ftui-chevron-circle-left {
+./chevron-circle-left {
   width: 0.8571428571428571em;
 }
 
-.ftui-chevron-circle-right {
+./chevron-circle-right {
   width: 0.8571428571428571em;
 }
 
-.ftui-chevron-circle-up {
+./chevron-circle-up {
   width: 0.8571428571428571em;
 }
 
-.ftui-chevron-circle-down {
+./chevron-circle-down {
   width: 0.8571428571428571em;
 }
 
-.ftui-unlock-alt {
+./unlock-alt {
   width: 0.6428571428571428em;
 }
 
-.ftui-bullseye {
+./bullseye {
   width: 0.8571428571428571em;
 }
 
-.ftui-ellipsis-h {
+./ellipsis-h {
   width: 0.7857142857142857em;
 }
 
-.ftui-ellipsis-v {
+./ellipsis-v {
   width: 0.21428571428571427em;
 }
 
-.ftui-rss-square {
+./rss-square {
   width: 0.8571428571428571em;
 }
 
-.ftui-play-circle {
+./play-circle {
   width: 0.8571428571428571em;
 }
 
-.ftui-minus-square {
+./minus-square {
   width: 0.8571428571428571em;
 }
 
-.ftui-minus-square-o {
+./minus-square-o {
   width: 0.7857142857142857em;
 }
 
-.ftui-level-up {
+./level-up {
   width: 0.5730714285714286em;
 }
 
-.ftui-level-down {
+./level-down {
   width: 0.5730714285714286em;
 }
 
-.ftui-check-square {
+./check-square {
   width: 0.8571428571428571em;
 }
 
-.ftui-pencil-square {
+./pencil-square {
   width: 0.8571428571428571em;
 }
 
-.ftui-external-link-square {
+./external-link-square {
   width: 0.8571428571428571em;
 }
 
-.ftui-share-square {
+./share-square {
   width: 0.8571428571428571em;
 }
 
-.ftui-compass1 {
+./compass1 {
   width: 0.8571428571428571em;
 }
 
-.ftui-caret-square-o-down {
+./caret-square-o-down {
   width: 0.8571428571428571em;
 }
 
-.ftui-caret-square-o-up {
+./caret-square-o-up {
   width: 0.8571428571428571em;
 }
 
-.ftui-caret-square-o-right {
+./caret-square-o-right {
   width: 0.8571428571428571em;
 }
 
-.ftui-eur {
+./eur {
   width: 0.5664285714285714em;
 }
 
-.ftui-gbp {
+./gbp {
   width: 0.5692142857142857em;
 }
 
-.ftui-dollar {
+./dollar {
   width: 0.5697857142857142em;
 }
 
-.ftui-file {
+./file {
   width: 0.8571428571428571em;
 }
 
-.ftui-file-text {
+./file-text {
   width: 0.8571428571428571em;
 }
 
-.ftui-sort-alpha-asc {
+./sort-alpha-asc {
   width: 0.9430714285714284em;
 }
 
-.ftui-sort-alpha-desc {
+./sort-alpha-desc {
   width: 0.9430714285714284em;
 }
 
-.ftui-sort-amount-asc {
+./sort-amount-asc {
   width: 1.0162142857142857em;
 }
 
-.ftui-sort-amount-desc {
+./sort-amount-desc {
   width: 1.0162142857142857em;
 }
 
-.ftui-sort-numeric-asc {
+./sort-numeric-asc {
   width: 0.8454285714285714em;
 }
 
-.ftui-sort-numeric-desc {
+./sort-numeric-desc {
   width: 0.8454285714285714em;
 }
 
-.ftui-thumbs-up {
+./thumbs-up {
   width: 0.8928571428571428em;
 }
 
-.ftui-thumbs-down {
+./thumbs-down {
   width: 0.8928571428571428em;
 }
 
-.ftui-stack-overflow {
+./stack-overflow {
   width: 0.8571428571428571em;
 }
 
-.ftui-instagram {
+./instagram {
   width: 0.8571428571428571em;
 }
 
-.ftui-flickr {
+./flickr {
   width: 0.8571428571428571em;
 }
 
-.ftui-bitbucket {
+./bitbucket {
   width: 0.790142857142857em;
 }
 
-.ftui-bitbucket-square {
+./bitbucket-square {
   width: 0.8571428571428571em;
 }
 
-.ftui-long-arrow-down {
+./long-arrow-down {
   width: 0.42857142857142855em;
 }
 
-.ftui-long-arrow-up {
+./long-arrow-up {
   width: 0.42857142857142855em;
 }
 
-.ftui-long-arrow-left {
+./long-arrow-left {
   width: 1.0357142857142856em;
 }
 
-.ftui-long-arrow-right {
+./long-arrow-right {
   width: 0.9642857142857142em;
 }
 
-.ftui-apple {
+./apple {
   width: 0.7773571428571427em;
 }
 
-.ftui-windows {
+./windows {
   width: 0.9285714285714285em;
 }
 
-.ftui-android1 {
+./android1 {
   width: 0.7857142857142857em;
 }
 
-.ftui-linux {
+./linux {
   width: 0.8939999999999999em;
 }
 
-.ftui-trello {
+./trello {
   width: 0.8571428571428571em;
 }
 
-.ftui-female {
+./female {
   width: 0.7142857142857142em;
 }
 
-.ftui-male {
+./male {
   width: 0.5714285714285714em;
 }
 
-.ftui-gittip {
+./gittip {
   width: 0.8571428571428571em;
 }
 
-.ftui-moon-o {
+./moon-o {
   width: 0.8236428571428571em;
 }
 
-.ftui-bug {
+./bug {
   width: 0.9285714285714285em;
 }
 
-.ftui-renren {
+./renren {
   width: 0.8571428571428571em;
 }
 
-.ftui-pagelines {
+./pagelines {
   width: 0.7823571428571428em;
 }
 
-.ftui-stack-exchange {
+./stack-exchange {
   width: 0.7142857142857142em;
 }
 
-.ftui-arrow-circle-o-right {
+./arrow-circle-o-right {
   width: 0.8571428571428571em;
 }
 
-.ftui-arrow-circle-o-left {
+./arrow-circle-o-left {
   width: 0.8571428571428571em;
 }
 
-.ftui-caret-square-o-left {
+./caret-square-o-left {
   width: 0.8571428571428571em;
 }
 
-.ftui-dot-circle-o {
+./dot-circle-o {
   width: 0.8571428571428571em;
 }
 
-.ftui-wheelchair {
+./wheelchair {
   width: 0.9090714285714285em;
 }
 
-.ftui-plus-square-o {
+./plus-square-o {
   width: 0.7857142857142857em;
 }
 
-.ftui-space-shuttle {
+./space-shuttle {
   width: 1.2142857142857142em;
 }
 
-.ftui-slack {
+./slack {
   width: 0.9285714285714285em;
 }
 
-.ftui-envelope-square {
+./envelope-square {
   width: 0.8571428571428571em;
 }
 
-.ftui-bank {
+./bank {
   width: 1.0714285714285714em;
 }
 
-.ftui-graduation-cap {
+./graduation-cap {
   width: 1.2857142857142856em;
 }
 
-.ftui-stumbleupon-circle {
+./stumbleupon-circle {
   width: 0.8571428571428571em;
 }
 
-.ftui-delicious {
+./delicious {
   width: 0.8571428571428571em;
 }
 
-.ftui-joomla {
+./joomla {
   width: 0.8571428571428571em;
 }
 
-.ftui-building {
+./building {
   width: 0.7857142857142857em;
 }
 
-.ftui-child {
+./child {
   width: 0.7142857142857142em;
 }
 
-.ftui-paw {
+./paw {
   width: 0.9285714285714285em;
 }
 
-.ftui-spoon {
+./spoon {
   width: 0.42857142857142855em;
 }
 
-.ftui-cube {
+./cube {
   width: 0.9285714285714285em;
 }
 
-.ftui-cubes {
+./cubes {
   width: 1.2142857142857142em;
 }
 
-.ftui-steam-square {
+./steam-square {
   width: 0.8571428571428571em;
 }
 
-.ftui-recycle {
+./recycle {
   width: 1.0022142857142857em;
 }
 
-.ftui-automobile {
+./automobile {
   width: 1.1428571428571428em;
 }
 
-.ftui-cab {
+./cab {
   width: 1.1428571428571428em;
 }
 
-.ftui-tree {
+./tree {
   width: 0.8571428571428571em;
 }
 
-.ftui-spotify {
+./spotify {
   width: 0.8571428571428571em;
 }
 
-.ftui-database {
+./database {
   width: 0.8571428571428571em;
 }
 
-.ftui-paper-plane {
+./paper-plane {
   width: 1.0011428571428571em;
 }
 
-.ftui-paper-plane-o {
+./paper-plane-o {
   width: 1.0005714285714284em;
 }
 
-.ftui-history1 {
+./history1 {
   width: 0.8571428571428571em;
 }
 
-.ftui-ftui-circle-thin1 {
+./ftui-circle-thin1 {
   width: 0.8571428571428571em;
 }
 
-.ftui-sliders {
+./sliders {
   width: 0.8571428571428571em;
 }
 
-.ftui-share-alt {
+./share-alt {
   width: 0.8571428571428571em;
 }
 
-.ftui-share-alt-square {
+./share-alt-square {
   width: 0.8571428571428571em;
 }
 
-.ftui-plug {
+./plug {
   width: 1.0067142857142857em;
 }
 
-.ftui-newspaper-o {
+./newspaper-o {
   width: 1.1428571428571428em;
 }
 
-.ftui-wifi1 {
+./wifi1 {
   width: 1.1428571428571428em;
 }
 
-.ftui-calculator {
+./calculator {
   width: 0.9285714285714285em;
 }
 
-.ftui-bell-slash {
+./bell-slash {
   width: 1.1428571428571428em;
 }
 
-.ftui-bell-slash-o {
+./bell-slash-o {
   width: 1.1428571428571428em;
 }
 
-.ftui-trash {
+./trash {
   width: 0.7857142857142857em;
 }
 
-.ftui-at {
+./at {
   width: 0.8571428571428571em;
 }
 
-.ftui-eyedropper {
+./eyedropper {
   width: 1.0178571428571428em;
 }
 
-.ftui-paint-brush {
+./paint-brush {
   width: 0.9988571428571428em;
 }
 
-.ftui-area-chart {
+./area-chart {
   width: 1.1428571428571428em;
 }
 
-.ftui-pie-chart {
+./pie-chart {
   width: 0.9642857142857142em;
 }
 
-.ftui-line-chart {
+./line-chart {
   width: 1.1428571428571428em;
 }
 
-.ftui-toggle-off {
+./toggle-off {
   width: 1.1428571428571428em;
 }
 
-.ftui-toggle-on {
+./toggle-on {
   width: 1.1428571428571428em;
 }
 
-.ftui-bicycle {
+./bicycle {
   width: 1.2857142857142856em;
 }
 
-.ftui-bus {
+./bus {
   width: 0.8571428571428571em;
 }
 
-.ftui-connectdevelop {
+./connectdevelop {
   width: 1.1428571428571428em;
 }
 
-.ftui-leanpub {
+./leanpub {
   width: 1.1428571428571428em;
 }
 
-.ftui-sellsy {
+./sellsy {
   width: 1.1428571428571428em;
 }
 
-.ftui-cart-plus {
+./cart-plus {
   width: 0.9285714285714285em;
 }
 
-.ftui-cart-arrow-down {
+./cart-arrow-down {
   width: 0.9285714285714285em;
 }
 
-.ftui-diamond {
+./diamond {
   width: 1.1428571428571428em;
 }
 
-.ftui-ship {
+./ship {
   width: 1.1428571428571428em;
 }
 
-.ftui-user-secret {
+./user-secret {
   width: 0.7857142857142857em;
 }
 
-.ftui-motorcycle1 {
+./motorcycle1 {
   width: 1.3019285714285713em;
 }
 
-.ftui-street-view {
+./street-view {
   width: 0.7857142857142857em;
 }
 
-.ftui-venus {
+./venus {
   width: 0.63em;
 }
 
-.ftui-mars {
+./mars {
   width: 0.8571428571428571em;
 }
 
-.ftui-mercury {
+./mercury {
   width: 0.6428571428571428em;
 }
 
-.ftui-intersex {
+./intersex {
   width: 0.7728571428571428em;
 }
 
-.ftui-transgender-alt {
+./transgender-alt {
   width: 0.9285714285714285em;
 }
 
-.ftui-mars-double {
+./mars-double {
   width: 1.0602857142857143em;
 }
 
-.ftui-venus-mars {
+./venus-mars {
   width: 1.1199999999999999em;
 }
 
-.ftui-mars-stroke {
+./mars-stroke {
   width: 0.8571428571428571em;
 }
 
-.ftui-mars-stroke-v {
+./mars-stroke-v {
   width: 0.63em;
 }
 
-.ftui-mars-stroke-h {
+./mars-stroke-h {
   width: 1.0552142857142857em;
 }
 
-.ftui-neuter {
+./neuter {
   width: 0.6428571428571428em;
 }
 
-.ftui-genderless {
+./genderless {
   width: 0.6428571428571428em;
 }
 
-.ftui-whatsapp {
+./whatsapp {
   width: 0.8571428571428571em;
 }
 
-.ftui-user-plus {
+./user-plus {
   width: 1.1428571428571428em;
 }
 
-.ftui-user-times {
+./user-times {
   width: 1.1378571428571427em;
 }
 
-.ftui-bed {
+./bed {
   width: 1.1428571428571428em;
 }
 
-.ftui-train1 {
+./train1 {
   width: 0.8571428571428571em;
 }
 
-.ftui-subway1 {
+./subway1 {
   width: 0.8571428571428571em;
 }
 
-.ftui-battery {
+./battery {
   width: 1.2857142857142856em;
 }
 
-.ftui-battery-3 {
+./battery-3 {
   width: 1.2857142857142856em;
 }
 
-.ftui-battery-2 {
+./battery-2 {
   width: 1.2857142857142856em;
 }
 
-.ftui-battery-1 {
+./battery-1 {
   width: 1.2857142857142856em;
 }
 
-.ftui-battery-0 {
+./battery-0 {
   width: 1.2857142857142856em;
 }
 
-.ftui-mouse-pointer {
+./mouse-pointer {
   width: 0.6456428571428571em;
 }
 
-.ftui-sticky-note {
+./sticky-note {
   width: 0.8571428571428571em;
 }
 
-.ftui-sticky-note-o {
+./sticky-note-o {
   width: 0.8571428571428571em;
 }
 
-.ftui-balance-scale {
+./balance-scale {
   width: 1.2142857142857142em;
 }
 
-.ftui-hourglass-o {
+./hourglass-o {
   width: 0.8571428571428571em;
 }
 
-.ftui-hourglass-1 {
+./hourglass-1 {
   width: 0.8571428571428571em;
 }
 
-.ftui-hourglass-2 {
+./hourglass-2 {
   width: 0.8571428571428571em;
 }
 
-.ftui-hourglass-3 {
+./hourglass-3 {
   width: 0.8571428571428571em;
 }
 
-.ftui-hourglass {
+./hourglass {
   width: 0.8571428571428571em;
 }
 
-.ftui-hand-grab-o {
+./hand-grab-o {
   width: 0.8571428571428571em;
 }
 
-.ftui-hand-paper-o {
+./hand-paper-o {
   width: 0.9107142857142857em;
 }
 
-.ftui-hand-lizard-o {
+./hand-lizard-o {
   width: 1.1428571428571428em;
 }
 
-.ftui-hand-spock-o {
+./hand-spock-o {
   width: 1.0714285714285714em;
 }
 
-.ftui-hand-pointer-o {
+./hand-pointer-o {
   width: 0.9285714285714285em;
 }
 
-.ftui-hand-peace-o {
+./hand-peace-o {
   width: 0.8571428571428571em;
 }
 
-.ftui-odnoklassniki {
+./odnoklassniki {
   width: 0.7142857142857142em;
 }
 
-.ftui-odnoklassniki-square {
+./odnoklassniki-square {
   width: 0.8571428571428571em;
 }
 
-.ftui-get-pocket {
+./get-pocket {
   width: 0.9597857142857142em;
 }
 
-.ftui-wikipedia-w {
+./wikipedia-w {
   width: 1.2857142857142856em;
 }
 
-.ftui-television {
+./television {
   width: 1.0714285714285714em;
 }
 
-.ftui-calendar-plus-o {
+./calendar-plus-o {
   width: 0.9285714285714285em;
 }
 
-.ftui-calendar-minus-o {
+./calendar-minus-o {
   width: 0.9285714285714285em;
 }
 
-.ftui-calendar-times-o {
+./calendar-times-o {
   width: 0.9285714285714285em;
 }
 
-.ftui-calendar-check-o {
+./calendar-check-o {
   width: 0.9285714285714285em;
 }
 
-.ftui-map-pin {
+./map-pin {
   width: 0.5714285714285714em;
 }
 
-.ftui-map-o {
+./map-o {
   width: 1.1428571428571428em;
 }
 
-.ftui-credit-card-alt {
+./credit-card-alt {
   width: 1.2857142857142856em;
 }
 
-.ftui-fort-awesome {
+./fort-awesome {
   width: 0.9285714285714285em;
 }
 
-.ftui-usb1 {
+./usb1 {
   width: 1.2857142857142856em;
 }
 
-.ftui-mixcloud {
+./mixcloud {
   width: 1.2857142857142856em;
 }
 
-.ftui-pause-circle {
+./pause-circle {
   width: 0.8571428571428571em;
 }
 
-.ftui-pause-circle-o {
+./pause-circle-o {
   width: 0.8571428571428571em;
 }
 
-.ftui-stop-circle {
+./stop-circle {
   width: 0.8571428571428571em;
 }
 
-.ftui-stop-circle-o {
+./stop-circle-o {
   width: 0.8571428571428571em;
 }
 
-.ftui-shopping-basket {
+./shopping-basket {
   width: 1.1428571428571428em;
 }
 
-.ftui-bluetooth1 {
+./bluetooth1 {
   width: 0.8571428571428571em;
 }
 
-.ftui-bluetooth-b {
+./bluetooth-b {
   width: 0.5714285714285714em;
 }
 
-.ftui-percent {
+./percent {
   width: 0.8571428571428571em;
 }
 
-.ftui-wpforms {
+./wpforms {
   width: 0.8571428571428571em;
 }
 
-.ftui-wheelchair-alt {
+./wheelchair-alt {
   width: 0.8582857142857142em;
 }
 
-.ftui-question-circle-o {
+./question-circle-o {
   width: 0.8571428571428571em;
 }
 
-.ftui-blind {
+./blind {
   width: 0.7902142857142858em;
 }
 
-.ftui-volume-control-phone {
+./volume-control-phone {
   width: 0.7857142857142857em;
 }
 
-.ftui-braille {
+./braille {
   width: 1.2142857142857142em;
 }
 
-.ftui-assistive-listening-systems {
+./assistive-listening-systems {
   width: 1.0045em;
 }
 
-.ftui-american-sign-language-interpreting {
+./american-sign-language-interpreting {
   width: 1.2857142857142856em;
 }
 
-.ftui-sign-language {
+./sign-language {
   width: 0.9257857142857142em;
 }
 
-.ftui-snapchat-ghost {
+./snapchat-ghost {
   width: 0.9285714285714285em;
 }
 
-.ftui-fa {
+./fa {
   width: 0.8777857142857142em;
 }
 
-.ftui-handshake-o {
+./handshake-o {
   width: 1.2857142857142856em;
 }
 
-.ftui-address-book {
+./address-book {
   width: 0.9285714285714285em;
 }
 
-.ftui-address-book-o {
+./address-book-o {
   width: 0.9285714285714285em;
 }
 
-.ftui-address-card {
+./address-card {
   width: 1.1428571428571428em;
 }
 
-.ftui-address-card-o {
+./address-card-o {
   width: 1.1428571428571428em;
 }
 
-.ftui-user-o {
+./user-o {
   width: 0.8571428571428571em;
 }
 
-.ftui-id-badge {
+./id-badge {
   width: 0.7142857142857142em;
 }
 
-.ftui-drivers-license {
+./drivers-license {
   width: 1.1428571428571428em;
 }
 
-.ftui-drivers-license-o {
+./drivers-license-o {
   width: 1.1428571428571428em;
 }
 
-.ftui-thermometer1 {
+./thermometer1 {
   width: 0.5714285714285714em;
 }
 
-.ftui-thermometer-3 {
+./thermometer-3 {
   width: 0.5714285714285714em;
 }
 
-.ftui-thermometer-2 {
+./thermometer-2 {
   width: 0.5714285714285714em;
 }
 
-.ftui-thermometer-1 {
+./thermometer-1 {
   width: 0.5714285714285714em;
 }
 
-.ftui-thermometer-0 {
+./thermometer-0 {
   width: 0.5714285714285714em;
 }
 
-.ftui-shower {
+./shower {
   width: 1.0714285714285714em;
 }
 
-.ftui-podcast {
+./podcast {
   width: 0.8482142857142857em;
 }
 
-.ftui-window-restore {
+./window-restore {
   width: 1.1428571428571428em;
 }
 
-.ftui-microchip {
+./microchip {
   width: 0.8571428571428571em;
 }
 
-.ftui-snowflake-o {
+./snowflake-o {
   width: 0.9285714285714285em;
 }

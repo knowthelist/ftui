@@ -15,14 +15,14 @@
     */
     -->
   <base href="../" />
-  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <script src="ftui.js"></script>
   <link href="ftui.css" rel="stylesheet">
   <link href="themes/ftui.theme.css" rel="stylesheet">
-  <script src="ftui.main.js"></script>
+  <link href="favicon.ico" rel="icon" type="image/x-icon" />
 
   <meta name='debug' content='3'>
 
-  <title>FTUI Example Symbol</title>
+  <title>FTUI Example Icon</title>
 </head>
 
 <body>
@@ -60,7 +60,7 @@
 
         <!-- binding long-->
         <ftui-icon bind-name="dummy1 | map('on: lightbulb-on-outline, off: lightbulb-outline')"
-          bind-color="ftuitest | map('0: success, 50: warning, 80: danger')">
+          bind:color="ftuitest | map('0: success, 50: warning, 80: danger')">
         </ftui-icon>
 
         <ftui-icon>

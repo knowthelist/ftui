@@ -48,7 +48,7 @@ input:focus {
   font-size: 16px;
   margin-right: 1.5em;
   float: left;
-  width: 13em;
+  width: 12em;
 }
 svg {
   color: #000;
@@ -139,9 +139,6 @@ p {
   font-size: 16px;
 }
 .fs1 {
-  font-size: 32px;
-}
-.fs2 {
   font-size: 32px;
 }
 .name {

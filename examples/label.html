@@ -15,10 +15,10 @@
     */
     -->
   <base href="../" />
-  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <script src="ftui.js"></script>
   <link href="ftui.css" rel="stylesheet">
   <link href="themes/ftui.theme.css" rel="stylesheet">
-  <script src="ftui.main.js"></script>
+  <link href="favicon.ico" rel="icon" type="image/x-icon" />
 
   <meta name='debug' content='2'>
 
@@ -86,8 +86,7 @@
       <div class="cell">
         <ftui-icon [name]="dummy1 | map('on: window-open,off: window-closed')"></ftui-icon>
         <ftui-label [text]="dummy1 | map('on: offen, off: geschlossen')"></ftui-label>
-        <ftui-icon 
-          [name]="dummy1 | map('on: window-open, off: window-closed')"
+        <ftui-icon [name]="dummy1 | map('on: window-open, off: window-closed')"
           [color]="dummy1 | map('on: danger, off: medium')">
         </ftui-icon>
       </div>

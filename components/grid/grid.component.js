@@ -9,7 +9,7 @@
 
 import { FtuiElement } from '../element.component.js';
 import { FtuiGridTile } from './grid-tile.component.js';
-import { ftui } from '../../ftui.js';
+import { ftui } from '../../modules/ftui/ftui.module.js';
 
 class FtuiGrid extends FtuiElement {
 

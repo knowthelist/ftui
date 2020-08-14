@@ -9,7 +9,8 @@ export default {
       'heiter': './icons/sun.svg',
       'sonnig': './icons/sun.svg',
       'Sprühregen': './icons/rainy.svg',
-      'Schneeregen': './icons/weather3.svg'
+      'Schneeregen': './icons/weather3.svg',
+      'unterschiedlich bewölkt, vereinzelt Schauer und Gewitter': './icons/sunny-sleet-storm.svg'
     }
   }
 }

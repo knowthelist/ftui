@@ -8,7 +8,7 @@
 */
 
 
-import { ftui } from '../ftui.js';
+import { ftui } from '../modules/ftui/ftui.module.js';
 import { FtuiBinding } from '../modules/ftui/ftui.binding.js';
 
 let uid = 0;

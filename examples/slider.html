@@ -15,10 +15,11 @@
     */
     -->
   <base href="../" />
-  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <script src="ftui.js"></script>
   <link href="ftui.css" rel="stylesheet">
   <link href="themes/ftui.theme.css" rel="stylesheet">
-  <script src="ftui.main.js"></script>
+  <link href="favicon.ico" rel="icon" type="image/x-icon" />
+
   <meta name='debug' content='2'>
 
   <title>FTUI Test-Slider</title>
@@ -31,48 +32,48 @@
     <ftui-grid-tile row="1" col="1" height="1" width="3">
       <header>DEFAULT</header>
       <div class="cell">
-          <ftui-slider value="20" max="50">
-          </ftui-slider>
+        <ftui-slider value="20" max="50">
+        </ftui-slider>
       </div>
     </ftui-grid-tile>
 
     <ftui-grid-tile row="1" col="4" height="2" width="3">
       <header>VERTICAL</header>
       <div class="cell">
-          <ftui-slider id="huha" [(value)]="ftuitest" max="60" vertical="true">
-          </ftui-slider>
+        <ftui-slider id="huha" [(value)]="ftuitest" max="60" vertical="true">
+        </ftui-slider>
       </div>
     </ftui-grid-tile>
 
     <ftui-grid-tile row="1" col="7" height="1" width="3">
       <header>TOOLTIP</header>
       <div class="cell">
-          <ftui-slider [value]="ftuitest" max="70" tooltips="always">
-          </ftui-slider>
+        <ftui-slider [value]="ftuitest" max="70" tooltips="always">
+        </ftui-slider>
       </div>
     </ftui-grid-tile>
 
     <ftui-grid-tile row="2" col="7" height="1" width="6">
       <header>TOOLTIP</header>
       <div class="cell">
-          <ftui-slider [value]="ftuitest" max="70" tooltips="always">
-          </ftui-slider>
+        <ftui-slider [value]="ftuitest" max="70" tooltips="always">
+        </ftui-slider>
       </div>
     </ftui-grid-tile>
 
     <ftui-grid-tile row="2" col="7" height="1" width="6">
       <header>RULER</header>
       <div class="cell">
-          <ftui-slider [value]="ftuitest" max="70" ruler="true">
-          </ftui-slider>
+        <ftui-slider [value]="ftuitest" max="70" ruler="true">
+        </ftui-slider>
       </div>
     </ftui-grid-tile>
 
     <ftui-grid-tile row="1" col="10" height="1" width="2">
       <header>VERTICAL RULER</header>
       <div class="cell">
-          <ftui-slider [(value)]="ftuitest" min="10" max="70"  vertical="true" ruler="true">
-          </ftui-slider>
+        <ftui-slider [(value)]="ftuitest" min="10" max="70" vertical="true" ruler="true">
+        </ftui-slider>
       </div>
     </ftui-grid-tile>
 

@@ -1,5 +1,5 @@
 import { parseHocon } from '../hocon/hocon.min.js';
-import { ftui } from '../../ftui.js';
+import { ftui } from './ftui.module.js';
 
 
 export class FtuiBinding {
@@ -123,11 +123,11 @@ export class FtuiBinding {
         this.initInputBinding({ name: attr.name.slice(1, -1), value: attr.value });
       } else if (attr.name.startsWith('(') && attr.name.endsWith(')')) {
         this.initOutputBinding({ name: attr.name.slice(1, -1), value: attr.value });
-      } else if (attr.name.startsWith('bind-')) {
+      } else if (attr.name.startsWith('bind:')) {
         this.initInputBinding({ name: attr.name.slice(5), value: attr.value });
-      } else if (attr.name.startsWith('on-')) {
+      } else if (attr.name.startsWith('on:')) {
         this.initOutputBinding({ name: attr.name.slice(3), value: attr.value });
-      } else if (attr.name.startsWith('bindon-')) {
+      } else if (attr.name.startsWith('bindon:')) {
         this.initInputBinding({ name: attr.name.slice(7), value: attr.value });
         this.initOutputBinding({ name: attr.name.slice(7), value: attr.value });
       } else {

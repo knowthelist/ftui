@@ -18,9 +18,14 @@
   --lightred: rgb(219, 72, 70);
   --tomato: rgb(238, 92, 66);
   --green: #32a054;
-  --seagreen: #315233;
+  --seagreen: #365a38;
   --mint: #5bc995;
-  --blue: #436D8D;
+  --blue: #436D8D; 
+  --blue1: #20639b;
+  --blue2: #173f5f;
+  --green1: #3caea3;
+  --yellow1: #f6d55c;
+  --red1: #ed553b;
   --ligthblue: #6699FF;
   --royalblue: #394b98;
   --white: #ffffff;
@@ -29,13 +34,13 @@
   --yellow: #ffe066;
   --transparent: transparent;
 
-  --primary-color: var(--green);
-  --secondary-color: var(--gray33);
+  --primary-color: var(--blue1);
+  --secondary-color: var(--blue2);
 
-  --success-color: var(--green);
+  --success-color: var(--green1);
   --info-color: var(--ligthblue);
-  --warning-color: var(--yellow);
-  --danger-color: var(--tomato);
+  --warning-color: var(--yellow1);
+  --danger-color: var(--red1);
   --light-color: var(--gray75);
   --medium-color: var(--gray50);
   --dark-color: var(--gray25);
@@ -60,12 +65,17 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* "primary", "secondary", "tertiary", "success", "warning", "danger", "light", "medium", and "dark"
-ffc971 */
+/* "primary", "secondary", "tertiary", "success", "warning", "danger", "light", "medium", and "dark" */
+
 [color="primary"] {
   --color-base: var(--primary-color);
   --color-contrast: var(--white);
   --color-shade: var(--seagreen);
+}
+
+[color="secondary"] {
+  --color-base: var(--secondary-color);
+  --color-contrast: var(--white);
 }
 
 [color="light"] {
@@ -90,11 +100,15 @@ ffc971 */
 
 [color="warning"] {
   --color-base: var(--warning-color);
-  --color-contrast: var(--white);
+  --color-contrast: var(--black);
 }
 
 [color="danger"],
 [color="error"] {
   --color-base: var(--danger-color);
   --color-contrast: var(--white);
+}
+
+[color="transparent"] {
+  --color-base: var(--background-color);
 }

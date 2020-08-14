@@ -17,9 +17,9 @@ export class FtuiLabel extends FtuiElement {
 
   template() {
     return `
-    <style> @import "components/label/label.component.css"; </style>
-    <slot></slot>
-  `;
+      <style> @import "components/label/label.component.css"; </style>
+      <slot></slot>
+    `;
   }
 
   static get defaults() {

@@ -15,10 +15,10 @@
     */
     -->
   <base href="../" />
-  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <script src="ftui.js"></script>
   <link href="ftui.css" rel="stylesheet">
   <link href="themes/ftui.theme.css" rel="stylesheet">
-  <script src="ftui.main.js"></script>
+  <link href="favicon.ico" rel="icon" type="image/x-icon" />
 
   <meta name='debug' content='2'>
 
@@ -28,7 +28,7 @@
 <body>
   <ftui-grid base-width="200" base-height="200">
 
-<!-- 
+    <!-- 
     <ftui-grid-tile row="1" col="1" height="1" width="1">
       <header>DEFAULT</header>
       <div class="cell">
@@ -48,14 +48,13 @@
       </div>
     </ftui-grid-tile> -->
 
-<!--     hasScale has-arc="true" has-scale-text="true" hasValueText -->
+    <!--     hasScale has-arc="true" has-scale-text="true" hasValueText -->
 
     <ftui-grid-tile row="1" col="2" height="1" width="1">
       <header>ALL</header>
       <div class="cell">
-        <ftui-knob [(value)]="AvReceiver-volume" max="50" 
-        [color]="AvReceiver-volume | map('0: success, 10: warning, 30: danger')"
-        >
+        <ftui-knob [(value)]="AvReceiver-volume" max="50"
+          [color]="AvReceiver-volume | map('0: success, 10: warning, 30: danger')">
         </ftui-knob>
       </div>
     </ftui-grid-tile>

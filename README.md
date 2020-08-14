@@ -43,6 +43,55 @@ Usage
 </ftui-icon>
 ```
 
+Binding
+------
+
+no binding - fix value
+
+```html
+<ftui-label color="danger"></ftui-label>
+```
+
+Input binding
+---
+
+bind a FHEM reading to a attribute. Changes of the reading changes the attribute
+
+```html
+<ftui-label bind:color="dummy1:color"></ftui-label>
+```
+
+short format
+```html
+<ftui-label [color]="dummy1:color"></ftui-label>
+```
+
+Output binding
+---
+
+on attribute changes set the FHEM reading
+
+```html
+<ftui-button on:value="dummy1"></ftui-button>
+```
+
+short format
+```html
+<ftui-button (value)="dummy1"></ftui-button>
+```
+
+Two way binding
+
+```html
+<ftui-button bindon:value="dummy1"></ftui-button>
+```
+
+short syntax ("banana in a box")
+```html
+<ftui-button [(value)]="dummy1"></ftui-button>
+```
+
+
 Components
 ------
 
