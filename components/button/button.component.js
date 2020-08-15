@@ -71,7 +71,7 @@ export class FtuiButton extends FtuiElement {
   getNextValue() {
     const states = this.states.split(/[;,:]/).map(item => item.trim());
     let currentIndex = states.findIndex((pattern) => ftui.isEqual(pattern, this.value));
-    // increase index to the next value in possible values array
+    // increase the index to the next value in the array of possible values
     currentIndex = ++currentIndex % states.length;
     return states[currentIndex];
   }

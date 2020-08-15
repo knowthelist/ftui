@@ -49,7 +49,7 @@ Binding
 no binding - fix value
 
 ```html
-<ftui-label color="danger"></ftui-label>
+<ftui-label color="danger">demo</ftui-label>
 ```
 
 Input binding
@@ -58,12 +58,12 @@ Input binding
 bind a FHEM reading to a attribute. Changes of the reading changes the attribute
 
 ```html
-<ftui-label bind:color="dummy1:color"></ftui-label>
+<ftui-label bind:color="dummy1:color">demo</ftui-label>
 ```
 
 short format
 ```html
-<ftui-label [color]="dummy1:color"></ftui-label>
+<ftui-label [color]="dummy1:color">demo</ftui-label>
 ```
 
 Output binding

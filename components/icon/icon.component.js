@@ -38,7 +38,6 @@ export class FtuiIcon extends FtuiElement {
   }
 
   onAttributeChanged(name, oldValue, newValue) {
-    console.log(this.id,name, oldValue, newValue)
     switch (name) {
       case 'name':
         this.fetchIcon(`${this.path}/${newValue}.${this.type}`);

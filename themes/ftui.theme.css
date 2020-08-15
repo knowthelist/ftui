@@ -1,3 +1,5 @@
+@import "./color-attribute.css"; 
+
 :root {
 
   /* primary color */
@@ -45,6 +47,17 @@
   --medium-color: var(--gray50);
   --dark-color: var(--gray25);
 
+  --primary-contrast-color: var(--white);
+  --secondary-contrast-color: var(--white);
+
+  --success-contrast-color: var(--white);
+  --info-contrast-color: var(--white);
+  --warning-contrast-color: var(--black);
+  --danger-contrast-color: var(--white);
+  --light-contrast-color: var(--blacvk);
+  --medium-contrast-color: var(--white);
+  --dark-contrast-color: var(--white);
+
 
   --background-color: var(--gray15);
   --text-color: var(--gray75);
@@ -63,52 +76,4 @@ body {
   color: var(--text-color);
   background: var(--page-background-color);
   -webkit-font-smoothing: antialiased;
-}
-
-/* "primary", "secondary", "tertiary", "success", "warning", "danger", "light", "medium", and "dark" */
-
-[color="primary"] {
-  --color-base: var(--primary-color);
-  --color-contrast: var(--white);
-  --color-shade: var(--seagreen);
-}
-
-[color="secondary"] {
-  --color-base: var(--secondary-color);
-  --color-contrast: var(--white);
-}
-
-[color="light"] {
-  --color-base: var(--light-color);
-  --color-contrast: var(--black);
-}
-
-[color="medium"] {
-  --color-base: var(--medium-color);
-  --color-contrast: var(--white);
-}
-
-[color="dark"] {
-  --color-base: var(--dark-color);
-  --color-contrast: var(--white);
-}
-
-[color="success"] {
-  --color-base: var(--success-color);
-  --color-contrast: var(--white);
-}
-
-[color="warning"] {
-  --color-base: var(--warning-color);
-  --color-contrast: var(--black);
-}
-
-[color="danger"],
-[color="error"] {
-  --color-base: var(--danger-color);
-  --color-contrast: var(--white);
-}
-
-[color="transparent"] {
-  --color-base: var(--background-color);
 }

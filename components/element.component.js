@@ -11,7 +11,7 @@
 import { ftui } from '../modules/ftui/ftui.module.js';
 import { FtuiBinding } from '../modules/ftui/ftui.binding.js';
 
-let uid = 0;
+let uids= {};
 
 export class FtuiElement extends HTMLElement {
 
@@ -19,7 +19,10 @@ export class FtuiElement extends HTMLElement {
     super();
 
     if (!this.id) {
-      this.id = `${this.localName}-${uid++}`;
+      if (!uids[this.localName]) {
+        uids[this.localName] = 1;
+      }
+      this.id = `${this.localName}-${uids[this.localName]++}`;
     }
 
     this.defaults = defaultAttributes;
@@ -55,7 +58,6 @@ export class FtuiElement extends HTMLElement {
       this.onAttributeChanged(name, oldValue, newValue);
     }
     if (this.isAction) {
-      this.isAction = false;
       this.binding.handleAttributeChanged(name);
     }
   }

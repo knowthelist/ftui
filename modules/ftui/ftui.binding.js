@@ -31,7 +31,7 @@ export class FtuiBinding {
   }
 
   get unbindAttributes() {
-    return Object.assign(this.element.defaults, this.private.unbindAttributes);
+    return Object.assign(this.element.defaults || {}, this.private.unbindAttributes);
   }
 
   get outputAttributes() {
@@ -46,8 +46,10 @@ export class FtuiBinding {
         const value = readingData[attributeAssingment.source];
         const filteredValue = this.filterText(value, attributeAssingment.filter);
         if (ftui.isDefined(filteredValue)) {
-          ftui.log(3, `${this.id}  -  onReadingEvent: set this.${attribute}=${filteredValue}`);
-          this.element[attribute] = filteredValue;
+          if (this.element[attribute] !== filteredValue) {
+            ftui.log(3, `${this.element.id}  -  onReadingEvent: set this.${attribute}=${filteredValue}`);
+            this.element[attribute] = filteredValue;
+          }
         }
       });
   }
