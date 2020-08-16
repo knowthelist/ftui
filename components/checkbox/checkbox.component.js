@@ -33,7 +33,7 @@ class FtuiCheckbox extends FtuiElement {
     return `
     <style> @import "components/checkbox/checkbox.component.css"; </style>
     
-      <input type="checkbox" class="checkbox" id="${this.id}" checked>
+      <input type="checkbox" class="checkbox" id="${this.id}">
       <label class="label" for="${this.id}">
           <span class="inner"></span>
           <span class="switch"></span>
@@ -64,12 +64,9 @@ class FtuiCheckbox extends FtuiElement {
 
   changeState() {
     const index = this.getStates().indexOf(this.value);
+    console.log(this.id, this.value, index)
     if (index > -1) {
-      if (index === 1) {
-        this.elementInput.setAttribute('checked', '');
-      } else {
-        this.elementInput.removeAttribute('checked');
-      }
+      this.elementInput.checked = index === 1 ? true : false;
     }
   }
 

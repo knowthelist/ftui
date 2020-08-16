@@ -232,7 +232,7 @@ class Ftui {
   }
 
   updateReadingData(readingID, readingData, doPublish) {
-    this.log(3, ['updateReadingData - update for ', readingID].join(''));
+    this.log(3, 'updateReadingData - update for ', readingID, 'readingData=', readingData, 'doPublish=', doPublish);
     const reading = this.readings.get(readingID);
     reading.data = readingData;
     if (doPublish) {

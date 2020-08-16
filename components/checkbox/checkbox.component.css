@@ -47,8 +47,8 @@
 :host .inner:after {
   content: attr(data-text-on);
   padding-right: 0.325em;
-  background-color: var(--secondary-color);
-  color: var(--inactiv-text-color);
+  background-color: var(--dark-color);
+  color: var(--inactive-text-color);
   text-align: right;
 }
 

@@ -61,7 +61,7 @@
 
   --background-color: var(--gray15);
   --text-color: var(--gray75);
-  --inactiv-text-color: #A39B9B;
+  --inactive-text-color: #A39B9B;
 
   --page-background-color: var(--fullblack);
   --grid-background-color: var(--background-color);
