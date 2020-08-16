@@ -24,9 +24,8 @@ export class FtuiSlider extends FtuiElement {
     this.maxElement = this.shadowRoot.querySelector('.numbers #max');
 
     this.rangeable = new Rangeable(this.input, {
-      
-      vertical: this.vertical,
-      tooltips: this.tooltips,
+      vertical: this.isVertical,
+      tooltips: this.hasTooltips,
       min: this.min,
       max: this.max,
       step: this.step,
@@ -71,8 +70,8 @@ export class FtuiSlider extends FtuiElement {
       min: 0,
       max: 100,
       value: -99,
-      vertical: false,
-      tooltips: true,
+      isVertical: false,
+      hasTooltips: true,
       type: 'single',
       color: 'primary',
     }

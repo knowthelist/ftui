@@ -22,7 +22,7 @@ Requires
 Install
 -------
  * copy the whole tree into the corresponding folder of your FHEM server /\<fhem-path\>/www/tablet
- * call http://\<fhem-url\>:8083/fhem/tablet/test_all.html
+ * call http://\<fhem-url\>:8083/fhem/tablet/index.html
  
 Usage
 ------

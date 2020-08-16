@@ -2,8 +2,7 @@
   width: calc(100% - 3.5em);
 }
 
-:host([vertical="true"]),
-:host([vertical]) {
+:host([isVertical]) {
   height: calc(100% - 2em);
   width: initial;
   display: flex;
@@ -11,8 +10,7 @@
   justify-content: center;
 }
 
-:host([vertical="true"]) .mapper,
-:host([vertical]) .mapper {
+:host([isVertical]) .mapper {
   display: flex;
   flex-direction: row-reverse;
 }
@@ -39,8 +37,7 @@
   border-color: transparent var(--color-base) transparent transparent;
 }
 
-:host(:not([ruler="true"])) .ruler,
-:host(:not([ruler])) .ruler {
+:host(:not([hasRuler])) .ruler {
   display: none;
 }
 
@@ -58,39 +55,31 @@
   width: 0.125em;
 }
 
-:host(:not([vertical="true"])) .numbers #min,
-:host(:not([vertical])) .numbers #min {
+:host(:not([isVertical])) .numbers #min {
   margin-left: -0.5em;
 }
 
-:host(:not([vertical="true"])) .numbers #max,
-:host(:not([vertical])) .numbers #max {
+:host(:not([isVertical])) .numbers #max {
   margin-right: -0.5em;
 }
 
-:host([vertical="true"]) .ruler,
-:host([vertical]) .ruler {
+:host([isVertical]) .ruler {
   display: flex;
   flex-direction: row-reverse;
 }
 
-
-:host([vertical="true"]) .ticks,
-:host([vertical]) .ticks,
-:host([vertical="true"]) .numbers,
-:host([vertical]) .numbers {
+:host([isVertical]) .ticks,
+:host([isVertical]) .numbers {
   flex-direction: column-reverse;
   height: 100%;
 }
 
-:host([vertical="true"]) .numbers #max,
-:host([vertical]) .numbers #max {
+:host([isVertical]) .numbers #max {
   margin-bottom: -0.5em;
   margin-right: 0.125em;
 }
 
-:host([vertical="true"]) .ticks span,
-:host([vertical]) .ticks span {
+:host([isVertical]) .ticks span {
   margin-right: 0.5em;
   height: 0.125em;
   width: 0.5em;
