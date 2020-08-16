@@ -8,6 +8,7 @@
 */
 
 import { FtuiElement } from '../element.component.js';
+import { ftui } from '../../modules/ftui/ftui.module.js';
 import { decorate } from '../../modules/ftui/ftui.decorate.js';
 import { action } from '../../modules/ftui/ftui.decorators.js';
 

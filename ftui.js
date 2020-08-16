@@ -9,7 +9,7 @@ menu && menu.addEventListener('click', event => {
 
 async function main() { 
   const module = await import("./modules/ftui/ftui.module.js");
-  this.ftui = module.ftui;
+  window.ftui = module.ftui;
 }
 
 window.addEventListener('load', function(){

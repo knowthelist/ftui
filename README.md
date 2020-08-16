@@ -6,7 +6,7 @@ with a clear intention: Keep it short and simple!
 
 Version 3 
 
-FTUI >3.0 uses Web Components technologies ![](https://developer.mozilla.org/en-US/docs/Web/Web_Components)
+FTUI >3.0 uses Web Components technologies https://developer.mozilla.org/en-US/docs/Web/Web_Components
 
 Caution! 
  * This version is not compatible with older fhem-tablet-ui versions.

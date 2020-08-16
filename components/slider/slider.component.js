@@ -24,12 +24,15 @@ export class FtuiSlider extends FtuiElement {
     this.maxElement = this.shadowRoot.querySelector('.numbers #max');
 
     this.rangeable = new Rangeable(this.input, {
+      
       vertical: this.vertical,
       tooltips: this.tooltips,
       min: this.min,
       max: this.max,
       step: this.step,
-      onChange: (value) => this.onSliderChanged(value)
+      onStart: () => this.onSliderStart(),
+      onChange: (value) => this.onSliderChanged(Number(value)),
+      onEnd: () => this.onSliderEnd()
     });
 
 
@@ -43,8 +46,8 @@ export class FtuiSlider extends FtuiElement {
 
   template() {
     return `
-    <style> @import "libs/rangeable/rangeable.min.css"; </style>
-    <style> @import "components/slider/slider.component.css"</style>
+    <style> @import "modules/rangeable/rangeable.min.css"; </style>
+    <style> @import "components/slider/slider.component.css"; </style>
 
     <div class="mapper">
       <input type="range" orient="vertical">
@@ -67,7 +70,7 @@ export class FtuiSlider extends FtuiElement {
       step: 1,
       min: 0,
       max: 100,
-      value: 0,
+      value: -99,
       vertical: false,
       tooltips: true,
       type: 'single',
@@ -94,11 +97,21 @@ export class FtuiSlider extends FtuiElement {
     this.rangeable.update();
   }
 
+  onSliderStart() {
+    this.isDragging = true;
+  }
+
   // @action
   onSliderChanged(value) {
-    if (this.value !== value) {
-      this.value = value;
+    if (this.value !== null && this.value !== value) {
+      if (this.isDragging ) {
+        this.value = value;
+      }
     }
+  }
+
+  onSliderEnd() {
+    this.isDragging = false;
   }
 }
 

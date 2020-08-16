@@ -744,7 +744,7 @@ export class Rangeable {
 
         if (intersect) {
           // Format the combined tooltip.
-          // Only show single value if they both match, otherwise show both seperated by a hyphen
+          // Only show single value if they both match, otherwise show both separated by a hyphen
           nodes.tooltip[2].textContent =
             values[0] === values[1] ? format.call(this, values[0]) : `${format.call(this, values[0])} - ${format.call(this, values[1])}`;
         }

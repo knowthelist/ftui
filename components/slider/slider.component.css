@@ -24,7 +24,7 @@
 }
 
 .rangeable-track {
-  background-color: var(--secondary-color);
+  background-color: var(--dark-color);
 }
 
 .rangeable-tooltip::before {
@@ -33,6 +33,10 @@
 
 .rangeable-progress, .rangeable-tooltip {
   background-color: var(--color-base);
+}
+
+.rangeable-container.rangeable-vertical .rangeable-tooltip::before {
+  border-color: transparent var(--color-base) transparent transparent;
 }
 
 :host(:not([ruler="true"])) .ruler,
@@ -75,7 +79,7 @@
 :host([vertical]) .ticks,
 :host([vertical="true"]) .numbers,
 :host([vertical]) .numbers {
-  flex-direction: column;
+  flex-direction: column-reverse;
   height: 100%;
 }
 

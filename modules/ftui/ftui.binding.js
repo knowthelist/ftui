@@ -133,7 +133,7 @@ export class FtuiBinding {
         this.initInputBinding({ name: attr.name.slice(7), value: attr.value });
         this.initOutputBinding({ name: attr.name.slice(7), value: attr.value });
       } else {
-        this.private.unbindAttributes[attr.name] = attr.value;
+        this.private.unbindAttributes[attr.name] = ftui.isNumeric(attr.value) ? Number(attr.value) : attr.value;
       }
     });
   }

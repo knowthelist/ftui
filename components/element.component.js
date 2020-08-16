@@ -81,15 +81,27 @@ export class FtuiElement extends HTMLElement {
     Object.entries(attributes).forEach(([key, defaultValue]) => {
       if (typeof attributes[key] === 'boolean') {
         this.defineBooleanProperty(key);
+        this.initBooleanAttribute(key, defaultValue);
       } else if (typeof attributes[key] === 'number') {
         this.defineNumberProperty(key);
+        this.initAttribute(key, defaultValue);
       } else {
-        this.defineStringProperty(key)
-      }
-      if (!this.hasAttribute(key)) {
-        this.setAttribute(key, defaultValue);
+        this.defineStringProperty(key);
+        this.initAttribute(key, defaultValue);
       }
     })
+  }
+
+  initAttribute(key, value) {
+    if (!this.hasAttribute(key) ) {
+      this.setAttribute(key, value);
+    }
+  }
+  
+  initBooleanAttribute(key, value) {
+    if (!this.hasAttribute(key) && value ) {
+      this.setAttribute(key, '');
+    }
   }
 
   defineBooleanProperty(key) {
@@ -97,7 +109,7 @@ export class FtuiElement extends HTMLElement {
       get() { return this.hasAttribute(key); },
       set(value) {
         if (value) {
-          this.setAttribute(key, value);
+          this.setAttribute(key, '');
         } else {
           this.removeAttribute(key);
         }
