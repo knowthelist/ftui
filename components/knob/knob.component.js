@@ -17,9 +17,9 @@ class FtuiKnob extends FtuiElement {
 
     super(Object.assign(FtuiKnob.defaults, attributes));
 
-    this.outlineColor = '';
-    this.fillColor = '';
-    this.needleColor = '';
+    if ( !this.hasScale && !this.hasScaleText && !this.hasValueText && !this.hasArc && !this.hasNeedle) {
+      this.hasArc = true;
+    }
 
     this.svg = this.shadowRoot.querySelector('.typeRange');
     this.outline = this.shadowRoot.querySelector('.outline');
@@ -59,9 +59,9 @@ class FtuiKnob extends FtuiElement {
    
       <g class="scale" stroke="gray"></g>
    
-      <path class="outline" d="" fill="none" stroke="${this.outlineColor}" stroke-width="${this.strokeWidth}" />
+      <path class="outline" d="" fill="none" stroke-width="${this.strokeWidth}" />
       <path class="fill" d="" fill="none" stroke-width="${this.strokeWidth}" />
-      <polygon class="needle" fill="${this.needleColor}" />
+      <polygon class="needle" />
    
     </svg>`;
   }
@@ -72,7 +72,7 @@ class FtuiKnob extends FtuiElement {
       endAngle: 30,
       value: 0,
       min: 0,
-      max: 40,
+      max: 100,
       offsetY: 20,
       height: '150',
       width: '150',
@@ -81,11 +81,9 @@ class FtuiKnob extends FtuiElement {
       hasScale: false,
       hasScaleText: false,
       hasValueText: false,
-      hasArc: true,
-      outlineColor: '',
-      fillColor: '',
+      hasArc: false,
+      hasNeedle: false,
       color: 'primary',
-      needleColor: '',
     };
   }
 
@@ -140,11 +138,10 @@ class FtuiKnob extends FtuiElement {
       }
       if (this.hasValueText) {
         this.drawValue(this.angleToValue(angle));
-      } else {
-        this.clearElement(this.outline);
       }
-
-      this.drawNeedle(angle);
+      if (this.hasNeedle) {
+        this.drawNeedle(angle);
+      }
 
       return true;
     }

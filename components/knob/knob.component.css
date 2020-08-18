@@ -4,7 +4,6 @@
   cursor: pointer;
 }
  
- 
 :host .outline,
 :host .fill,
 :host .center,
@@ -13,26 +12,16 @@
   pointer-events: none;
 }
  
-:host .outline[stroke=""] {
-  stroke: var(--gray);
+:host .outline {
+  stroke: var(--outline-color, var(--dark-color));
 }
- 
-/* :host .fill[stroke=""] {
-  stroke: var(--primary-color);
-} */
-
-
 
 :host .fill {
-  stroke: var(--color-base);
+  stroke: var(--fill-color, var(--color-base));
 }
  
-/* :host .needle[fill=""] {
-  fill: var(--primary-color);
-} */
- 
 :host .needle {
-  fill: var(--color-base);
+  fill: var(--needle-color, var(--color-base));
 }
 
 :host .scale {

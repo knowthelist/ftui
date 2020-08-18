@@ -22,55 +22,55 @@
 
   <meta name='debug' content='2'>
 
+  <style>
+    #myKnob1 {
+      --needle-color: #da3745;
+    }
+  </style>
   <title>FTUI Test-Simple</title>
 </head>
 
 <body>
   <ftui-grid base-width="200" base-height="200">
 
-    <!-- 
     <ftui-grid-tile row="1" col="1" height="1" width="1">
       <header>DEFAULT</header>
       <div class="cell">
-        <ftui-knob [(value)]="AvReceiver-volume" max="50">
-        </ftui-knob>
+        <ftui-knob value="33"></ftui-knob>
       </div>
     </ftui-grid-tile>
-
 
     <ftui-grid-tile row="2" col="1" height="1" width="1">
       <header>Color Binding</header>
       <div class="cell">
-        <ftui-knob [(value)]="ftuitest" max="50" 
-        color="warning"
-  >
+        <ftui-knob [(value)]="ftuitest"
+        color="warning">
         </ftui-knob>
       </div>
-    </ftui-grid-tile> -->
-
-    <!--     hasScale has-arc="true" has-scale-text="true" hasValueText -->
+    </ftui-grid-tile>
 
     <ftui-grid-tile row="1" col="2" height="1" width="1">
       <header>ALL</header>
       <div class="cell">
-        <ftui-knob [(value)]="AvReceiver-volume" max="50"
+        <ftui-knob hasScale hasArc hasScaleText hasValueText hasNeedle
+          [(value)]="AvReceiver-volume" max="50"
           [color]="AvReceiver-volume | map('0: success, 10: warning, 30: danger')">
         </ftui-knob>
       </div>
     </ftui-grid-tile>
 
     <ftui-grid-tile row="2" col="2" height="1" width="1">
-      <header>Fill Color11</header>
+      <header>Fill Color</header>
       <div class="cell">
-        <ftui-knob [(value)]="dummy1" max="50" fill-color="#55da33">
+        <ftui-knob [(value)]="dummy1" color="danger">
         </ftui-knob>
       </div>
     </ftui-grid-tile>
 
     <ftui-grid-tile row="1" col="3" height="1" width="1">
-      <header>Scale 22</header>
+      <header>Scale</header>
       <div class="cell">
-        <ftui-knob [(value)]="dummy1" max="50" hasScale>
+        <ftui-knob [(value)]="dummy1" hasScale hasNeedle>
         </ftui-knob>
       </div>
     </ftui-grid-tile>
@@ -78,7 +78,7 @@
     <ftui-grid-tile row="2" col="3" height="1" width="1">
       <header>Scale Text</header>
       <div class="cell">
-        <ftui-knob [(value)]="AvReceiver-volume3" max="50" hasScaleText hasScale hasArc>
+        <ftui-knob [(value)]="AvReceiver-volume" max="50" hasScaleText hasScale hasNeedle>
         </ftui-knob>
       </div>
     </ftui-grid-tile>
@@ -86,7 +86,7 @@
     <ftui-grid-tile row="1" col="4" height="1" width="1">
       <header>Value Text</header>
       <div class="cell">
-        <ftui-knob [(value)]="AvReceiver-volume" max="50" hasScale hasArc hasValueText>
+        <ftui-knob [(value)]="AvReceiver-volume" max="50" hasArc hasValueText>
         </ftui-knob>
       </div>
     </ftui-grid-tile>
@@ -95,6 +95,22 @@
       <header>Stroke Width</header>
       <div class="cell">
         <ftui-knob [(value)]="AvReceiver-volume" max="50" strokeWidth="25">
+        </ftui-knob>
+      </div>
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="1" col="5" height="1" width="1">
+      <header>Needle</header>
+      <div class="cell">
+        <ftui-knob [(value)]="AvReceiver-volume" max="50" hasArc hasValueText hasNeedle>
+        </ftui-knob>
+      </div>
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="2" col="5" height="1" width="1">
+      <header>Custom Needle Color</header>
+      <div class="cell">
+        <ftui-knob id="myKnob1" [(value)]="dummy1" hasScaleText hasScale hasNeedle>
         </ftui-knob>
       </div>
     </ftui-grid-tile>
