@@ -58,10 +58,10 @@ export class FtuiBinding {
  * Stores the attribute value for each defined target reading
  * and sends it to FHEM
  */
-  handleAttributeChanged(name) {
+  handleAttributeChanged(attributeName) {
     const targetReadings = this.config?.output?.attributes[name]?.readings || [];
     Object.entries(targetReadings).forEach(([readingId, options]) => {
-      const value = options.value = '$value' ? this.element[name] : options.value;
+      const value = options.value === '$value' ? this.element[attributeName] : options.value;
       const [parameterId, deviceName, readingName] = ftui.parseReadingId(readingId);
       const cmdline = [options.cmd, deviceName, readingName, value].join(' ');
       // update storage

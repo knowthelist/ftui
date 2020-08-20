@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!--
+    /* FHEM tablet ui - FTUI */
+    /**
+    * UI builder framework for FHEM
+    *
+    * Version: 3.0.0
+    *
+    * Copyright (c) 2015-2020 Mario Stephan <mstephan@shared-files.de>
+    * Under MIT License (http://www.opensource.org/licenses/mit-license.php)
+    * https://github.com/knowthelist/ftui
+    */
+    -->
+  <base href="../" />
+  <script src="ftui.js"></script>
+  <link href="ftui.css" rel="stylesheet">
+  <link href="themes/ftui.theme.css" rel="stylesheet">
+  <link href="favicon.ico" rel="icon" type="image/x-icon" />
+
+  <title>FTUI Example Tab</title>
+</head>
+
+<body>
+
+  <ftui-grid>
+
+    <ftui-grid-tile row="1" col="1" height="5" width="1">
+      <div class="column">
+        <ftui-tab [value]="ftuitest | map('1: on, .*: off')"  view="View1" default>Tab1</ftui-tab>
+        <ftui-tab [value]="ftuitest | map('2: on, .*: off')"  view="View2">Tab2</ftui-tab>
+        <ftui-tab [value]="ftuitest | map('3: on, .*: off')"  view="View3">Tab3</ftui-tab>
+        <ftui-tab [value]="ftuitest | map('4: on, .*: off')"  view="View4">Tab4</ftui-tab>
+        <ftui-tab [value]="ftuitest | map('5: on, .*: off')"  view="View5">Tab5</ftui-tab>
+      </div>
+    </ftui-grid-tile>
+
+    <ftui-tab-view id="View1">
+      <ftui-grid-tile row="1" col="2" height="5" width="9">
+      <div class="cell huge">Tab1</div>
+      </ftui-grid-tile>
+    </ftui-tab-view>
+
+    <ftui-tab-view id="View2">
+      <ftui-grid-tile row="1" col="2" height="5" width="9">
+        <div class="cell huge">Tab2</div>
+        </ftui-grid-tile>
+    </ftui-tab-view>
+
+    <ftui-tab-view id="View3">
+      <ftui-grid-tile row="1" col="2" height="5" width="9">
+        <div class="cell huge">Tab3</div>
+        </ftui-grid-tile>
+    </ftui-tab-view>
+
+    <ftui-tab-view id="View4">
+      <ftui-grid-tile row="1" col="2" height="5" width="9">
+        <div class="cell huge">Tab4</div>
+        </ftui-grid-tile>
+    </ftui-tab-view>
+
+    <ftui-tab-view id="View5">
+      <ftui-grid-tile row="1" col="2" height="5" width="9">
+        <div class="cell huge">Tab5</div>
+        </ftui-grid-tile>
+    </ftui-tab-view>
+  </ftui-grid>
+
+
+
+
+
+</body>
+
+</html>

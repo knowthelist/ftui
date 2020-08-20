@@ -12,8 +12,9 @@ import { FtuiIcon } from '../icon/icon.component.js';
 import { FtuiButton } from '../button/button.component.js';
 
 export class FtuiButtonNice extends FtuiElement {
-  constructor() {
-    super();
+  constructor(attributes) {
+
+    super(Object.assign(FtuiButtonNice.defaults, attributes));
   }
 
   template() {
@@ -24,9 +25,17 @@ export class FtuiButtonNice extends FtuiElement {
           (value)="${this.set || this.get}" 
           [color]="${this.get} | map('${this.getOn || 'on'}:primary, ${this.getOff || 'off'}:dark')"
           states="${this.states || 'on,off'}">
-        <ftui-icon name="lightbulb" color="transparent"></ftui-icon>
+        <ftui-icon name="${this.icon}" color="transparent"></ftui-icon>
       </ftui-button>
       `;
+  }
+
+  static get defaults() {
+    return {
+      icon: '',
+      get: '',
+      set: ''
+    };
   }
 }
 
