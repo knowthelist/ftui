@@ -35,7 +35,7 @@ export function parseHocon(text, ignoreDots = false) {
     let isInCurly = false;
     let isInArray = false;
     let isReadingValue = false;
-    let isReadSeperator = false;
+    let isReadSeparator = false;
     let isInlineComment = false;
     let possibleComment = false;
     let isInMultilineString = false;
@@ -176,10 +176,10 @@ export function parseHocon(text, ignoreDots = false) {
           case ':':
           case '=':
           {
-            if (isReadSeperator)
-              throw new hoconException('Already met seperator');
+            if (isReadSeparator)
+              throw new hoconException('Already met separator');
             isReadingValue = true;
-            isReadSeperator = true;
+            isReadSeparator = true;
 
             currentKey = currentKey.trim();
 
@@ -300,7 +300,7 @@ export function parseHocon(text, ignoreDots = false) {
         isKeyInQuotes = false;
         isReadingValue = false;
       }
-      isReadSeperator = false;
+      isReadSeparator = false;
       currentKey = '';
       currentValue = '';
     }

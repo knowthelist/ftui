@@ -32,7 +32,7 @@ export class FtuiButtonNice extends FtuiElement {
 
   static get defaults() {
     return {
-      icon: '',
+      icon: 'lightbulb',
       get: '',
       set: ''
     };

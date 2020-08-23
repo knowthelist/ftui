@@ -190,7 +190,7 @@ class Ftui {
    * @param  {} readingId
    */
   parseReadingId(readingId) {
-    const [, device, reading] = /^(.+)[-:\s](.*)$/.exec(readingId) || ['', readingId, ''];
+    const [, device, reading] = /([^-:\s]*)[-:\s](.*)/.exec(readingId) || ['', readingId, ''];
     const paramid = (reading) ? [device, reading].join('-') : device;
     return [paramid, device, reading];
   }
@@ -1064,7 +1064,6 @@ class Ftui {
 
   getMatchingKeys(map, searchKey) {
     if (this.isDefined(map)) {
-      //console.log(map)
       return Object.keys(map)
         .filter(key => this.isEqualOrGreater(key, searchKey))
         .map(key => key);

@@ -59,7 +59,7 @@ export class FtuiBinding {
  * and sends it to FHEM
  */
   handleAttributeChanged(attributeName) {
-    const targetReadings = this.config?.output?.attributes[name]?.readings || [];
+    const targetReadings = this.config?.output?.attributes[attributeName]?.readings || [];
     Object.entries(targetReadings).forEach(([readingId, options]) => {
       const value = options.value === '$value' ? this.element[attributeName] : options.value;
       const [parameterId, deviceName, readingName] = ftui.parseReadingId(readingId);
@@ -227,7 +227,8 @@ export class FtuiBinding {
       };
       try {
         const pipeNotInQuotes = /\|(?=([^']*'[^']*')*[^']*$)/g;
-        const fn = eval('pipe(' + filter.replace(pipeNotInQuotes, ',') + ')');
+        filter = filter.replace(pipeNotInQuotes, ',').replace('^','"').replace('$','"');
+        const fn = eval('pipe(' + filter + ')');
         return fn(text);
       } catch (e) {
         this.element.classList.add('has-error');

@@ -45,7 +45,7 @@
 
 :host([fill="outline"]) {
   --border-radius: 10px;
-  --border-width: 1px;
+  --border-width: 2px;
   --border-style: solid;
   --border-color: var(--color-base);
   --background: transparent;
@@ -88,7 +88,7 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 100%;
+/*   height: 100%; */
   -moz-user-select: none;
   -ms-user-select: none;
   -khtml-user-select: none;
