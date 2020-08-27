@@ -27,7 +27,6 @@ class FtuiKnob extends FtuiElement {
     this.scale = this.shadowRoot.querySelector('.scale');
     this.needle = this.shadowRoot.querySelector('.needle');
 
-
     this.rangeAngle = Math.abs(parseInt(this.endAngle) - parseInt(this.startAngle));
     this.radian = Math.PI / 180;
 
@@ -50,6 +49,8 @@ class FtuiKnob extends FtuiElement {
     this.svg.addEventListener('mouseout', (evt) => this.onOutEvent(evt), false);
     this.svg.addEventListener('touchmove', (evt) => this.onMoveEvent(evt), false);
     this.svg.addEventListener('mousemove', (evt) => this.onMoveEvent(evt), false);
+
+    this.draw(this.valueToAngle(this.value));
   }
 
   template() {
@@ -70,7 +71,7 @@ class FtuiKnob extends FtuiElement {
     return {
       startAngle: -210,
       endAngle: 30,
-      value: 0,
+      value: -1,
       min: 0,
       max: 100,
       offsetY: 20,
@@ -92,6 +93,7 @@ class FtuiKnob extends FtuiElement {
   }
 
   onAttributeChanged(name, oldValue, newValue) {
+    console.log(this.id, oldValue, newValue);
     if (oldValue !== newValue) {
       if (!this.isDragging) {
         this.draw(this.valueToAngle(this.value));
@@ -128,6 +130,7 @@ class FtuiKnob extends FtuiElement {
   }
 
   draw(angle) {
+    console.log(this.id, 'draw');
     if ((angle <= this.endAngle || angle >= 360 + this.startAngle) && angle >= this.startAngle) {
       this.drawScale();
       if (this.hasArc) {

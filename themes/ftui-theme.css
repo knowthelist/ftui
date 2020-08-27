@@ -1,4 +1,4 @@
-@import "./color-attribute.css"; 
+@import "./color-attributes.css"; 
 
 :root {
 
@@ -59,14 +59,17 @@
   --dark-contrast-color: var(--white);
 
 
-  --background-color: var(--gray15);
+  --header-color: var(--gray15);
+  --content-color: var(--fullblack);
+  --footer-color: var(--gray15);
   --text-color: var(--gray75);
   --inactive-text-color: #A39B9B;
 
-  --page-background-color: var(--fullblack);
-  --grid-background-color: var(--background-color);
+  --grid-background-color: var(--gray15);
   --grid-header-color: var(--gray55);
   --grid-header-background-color: var(--gray30);
+
+  --border-color: var(--gray55);
 
 }
 
@@ -74,6 +77,6 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Ubuntu', 'Helvetica Neue', sans-serif;
   font-size: small;
   color: var(--text-color);
-  background: var(--page-background-color);
+  background: var(--content-color);
   -webkit-font-smoothing: antialiased;
 }

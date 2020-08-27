@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!--
+    /* FHEM tablet ui - FTUI */
+    /**
+    * UI builder framework for FHEM
+    *
+    * Version: 3.0.0
+    *
+    * Copyright (c) 2015-2020 Mario Stephan <mstephan@shared-files.de>
+    * Under MIT License (http://www.opensource.org/licenses/mit-license.php)
+    * https://github.com/knowthelist/ftui
+    */
+    -->
+  <base href="../" />
+  <script src="ftui.js"></script>
+  <link href="ftui.css" rel="stylesheet">
+  <link href="themes/bright-theme.css" rel="stylesheet">
+  <link href="favicon.ico" rel="icon" type="image/x-icon" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+
+  <title>FTUI Mobile Example</title>
+</head>
+
+<body>
+
+    <ftui-tab-view id="View1">
+
+      <div class="cell huge">Tab1</div>
+
+    </ftui-tab-view>
+
+    <ftui-tab-view id="View2">
+
+        <div class="cell huge" style="height: 1350px">Tab2</div>
+   
+    </ftui-tab-view>
+
+    <ftui-tab-view id="View3">
+
+      <div class="cell huge">Tab3</div>
+ 
+  </ftui-tab-view>
+
+  <footer class="row fixed border-top" >
+    <ftui-tab [value]="ftuitest | map('1: on, .*: off')" fill="clear" direction="vertical" view="View1" default>
+      <ftui-icon name="home1"></ftui-icon>
+      <label class="small">Tab1</label>
+    </ftui-tab>
+    <ftui-tab [value]="ftuitest | map('2: on, .*: off')" fill="clear" direction="vertical" view="View2">
+      <ftui-icon name="cog"></ftui-icon>
+      <label class="small">Tab2</label>
+    </ftui-tab>
+    <ftui-tab [value]="ftuitest | map('3: on, .*: off')" fill="clear" direction="vertical" view="View3">
+      <ftui-icon name="clock-o"></ftui-icon>
+      <label class="small">Tab3</label>
+    </ftui-tab>
+  </footer>
+
+</body>
+
+</html>

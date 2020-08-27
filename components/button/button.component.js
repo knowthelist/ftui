@@ -31,11 +31,7 @@ export class FtuiButton extends FtuiElement {
       <style> @import "components/button/button.component.css"; </style>
 
       <span class="button-inner">
-        <slot name="top"></slot>
-        <slot name="start"></slot>
         <slot></slot>
-        <slot name="end"></slot>
-        <slot name="bottom"></slot>
       </span>
       `;
   }
@@ -47,6 +43,7 @@ export class FtuiButton extends FtuiElement {
       color: 'primary',
       size: 'normal',
       shape: 'normal',
+      direction: 'horizontal',
       value: 'off'
     };
   }

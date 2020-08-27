@@ -78,6 +78,11 @@
   color: var(--color-contrast);
 }
 
+/* direction */
+:host([direction="vertical"]) .button-inner {
+  flex-direction: column;
+}
+
 :host(.activated) .button-inner {
   --color-base: var(--color-shade);
 }
@@ -88,7 +93,6 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-/*   height: 100%; */
   -moz-user-select: none;
   -ms-user-select: none;
   -khtml-user-select: none;
@@ -104,6 +108,9 @@
   border-color: var(--border-color);
 }
 
+.vertical {
+
+}
 ::slotted(ftui-icon) {
   font-size: 0.75em;
 }

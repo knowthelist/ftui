@@ -17,7 +17,7 @@ Caution!
 
 Requires
 -------
-* FTUI >3.0 uses pure ES7 javascript only
+* FTUI >3.0 uses pure ES2020 javascript only
 
 Install
 -------
@@ -53,7 +53,7 @@ no binding - fix value
 ```
 
 Input binding
----
+--------
 
 bind a FHEM reading to a attribute. Changes of the reading changes the attribute
 
@@ -67,7 +67,7 @@ short format
 ```
 
 Output binding
----
+--------
 
 on attribute changes set the FHEM reading
 
@@ -98,31 +98,87 @@ Components
 - Tab
 - Grid
 - Label
-- Symbol
+- Icon
 - [Button](#button)
 - Knob
 - Slider
 - Checkbox
+- Circlemenu
+- Weather
 
  ... to be continued
 
 #### Button
-<!-- 
-| Attribute     | Type | Default | Description | Example |
-| ------------- |------|------------|---------|---------|
-| cmd | string | "set" | FHEM command| cmd="setreading"|
-| states | object | '["on", "off"]' | reading to state mapping | states='["play", "stop"]' |
-| icon | string | "mdi mdi-lightbulb-outline" | css classes to create icon | icon="fa fa-car"|
-| icon-class | string | "" | css classes to style icon | icon-class="tomato"|
-| text | string | "" | css classes to create icon | icon="fa fa-car"|
-| text-class | string | "" | css classes to style icon | icon-class="tomato"| -->
+
+color
+--------
+
+| **Description**     | The color to use from color palette.  | 
+| **Type**  | "primary" \| "secondary" \| "success" \| "warning" \| "danger" \| "light" \| "medium" \| "dark" |
+| **Default** | "primary" |
+
+
+fill
+--------
+
+| **Description**     | .  | 
+| **Type**  | "clear" \| "outline" \| "solid" |
+| **Default** | "solid" |
+
+
+size
+--------
+
+| **Description**     | .  | 
+| **Type**  | "small" \| "large" |
+| **Default** | "normal" |
+
+
+shape
+--------
+
+| **Description**     | .  | 
+| **Type**  | "round" \| "circle" | 
+| **Default** | "normal" |
+
+
+value
+--------
+
+| **Description**     | .  | 
+| **Type**  | String |
+| **Default** | "off" |
+
+
+states
+--------
+
+| **Description**     | .  | 
+| **Type**  | String list comma separated |
+| **Default** | "on,off'" |
+
 
   ... to be continued
 
-Configuration
------------
+  #### Icon
 
-The get and set parameter of all components are in
+  (List of all icons)[https://knowthelist.github.io/ftui/icons/demo.html]
+
+Examples
+------
+
+[Tab](https://knowthelist.github.io/ftui/examples/tab.html)
+[Grid](https://knowthelist.github.io/ftui/examples/grid.html)
+[Label](https://knowthelist.github.io/ftui/examples/label.html)
+[Icon](https://knowthelist.github.io/ftui/examples/icon.html)
+[Button](https://knowthelist.github.io/ftui/examples/button.html)
+[Knob](https://knowthelist.github.io/ftui/examples/knob.html)
+[Slider](https://knowthelist.github.io/ftui/examples/slider.html)
+[Checkbox](https://knowthelist.github.io/ftui/examples/checkbox.html)
+[Circlemenu](https://knowthelist.github.io/ftui/examples/circlemenu.html)
+
+HOCON
+-----------
 
 HOCON (Human-Optimized Config Object Notation)
 

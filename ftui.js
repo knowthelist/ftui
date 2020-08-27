@@ -9,7 +9,7 @@ menu && menu.addEventListener('click', event => {
 
 async function main() { 
   const module = await import("./modules/ftui/ftui.module.js");
-  window.ftui = module.ftui;
+  ftui = module.ftui;
 }
 
 window.addEventListener('load', function(){
@@ -24,19 +24,19 @@ window.addEventListener('pageshow', () => {
   //  window.ftui = new Ftui();
  // } else { 
     // navigating from another page
-    if (this.ftui) {
-      this.ftui.setOnline();
+    if (ftui) {
+      ftui.setOnline();
     }
 // }
 });
 
 window.addEventListener('beforeunload', () => {
-  this.ftui.log(5, 'beforeunload');
-  this.ftui.setOffline();
+  ftui.log(5, 'beforeunload');
+  ftui.setOffline();
 });
 
-window.addEventListener('online', () => this.ftui.updateOnlineStatus());
-window.addEventListener('offline', () => this.ftui.updateOnlineStatus());
+window.addEventListener('online', () => ftui.updateOnlineStatus());
+window.addEventListener('offline', () => ftui.updateOnlineStatus());
 
 // after the page became visible, check server connection
 document.addEventListener('visibilitychange', () => {
@@ -44,13 +44,13 @@ document.addEventListener('visibilitychange', () => {
     // page is hidden
   } else {
     // page is visible
-    this.ftui.log(1, 'Page became visible again -> start healthCheck in 3 secondes ');
-    this.ftui.scheduleHealthCheck();
+    ftui.log(1, 'Page became visible again -> start healthCheck in 3 secondes ');
+    ftui.scheduleHealthCheck();
   }
 });
 
 window.onerror = function (msg, url, lineNo, columnNo, error) {
   const file = url.split('/').pop();
-  this.ftui.toast([file + ':' + lineNo, error].join('<br/>'), 'error');
+  ftui.toast([file + ':' + lineNo, error].join('<br/>'), 'error');
   return false;
 };
