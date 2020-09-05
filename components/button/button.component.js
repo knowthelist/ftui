@@ -9,8 +9,6 @@
 
 import { FtuiElement } from '../element.component.js';
 import { ftui } from '../../modules/ftui/ftui.module.js';
-import { decorate } from '../../modules/ftui/ftui.decorate.js';
-import { action } from '../../modules/ftui/ftui.decorators.js';
 
 
 export class FtuiButton extends FtuiElement {
@@ -60,7 +58,6 @@ export class FtuiButton extends FtuiElement {
     this.classList.remove('activated');
   }
 
-  // @action
   onClickEvent() {
     this.playEffect();
     this.value = this.getNextValue();
@@ -69,6 +66,7 @@ export class FtuiButton extends FtuiElement {
   getNextValue() {
     const states = String(this.states).split(/[;,:]/).map(item => item.trim());
     let currentIndex = states.findIndex((pattern) => ftui.isEqual(pattern, this.value));
+    console.log(states,currentIndex,this.value)
     // increase the index to the next value in the array of possible values
     currentIndex = ++currentIndex % states.length;
     return states[currentIndex];
@@ -81,9 +79,5 @@ export class FtuiButton extends FtuiElement {
     }, 100);
   }
 }
-
-decorate(FtuiButton, {
-  onClickEvent: [action],
-});
 
 window.customElements.define('ftui-button', FtuiButton);

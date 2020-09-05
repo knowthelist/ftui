@@ -2,33 +2,59 @@ import { parseHocon } from '../hocon/hocon.min.js';
 import { ftui } from './ftui.module.js';
 
 
-export class FtuiBinding {
+export class ftuiBinding {
 
   constructor(element) {
 
     this.private = {
       unbindAttributes: {},
       config: '',
-      outputAttributes: new Set()
+      outputAttributes: new Set(),
+      observer: null,
+      isChanging: {}
     }
 
     this.element = element;
     this.readAttributes(element.attributes);
 
+
     try {
       this.config = parseHocon(this.private.config);
     } catch (e) {
       this.element.classList.add('has-error');
-      ftui.error(1, e.toString());
+      ftui.error(e.toString());
     }
 
     if (this.config?.input?.readings) {
-      // subscribe events from all readings from this.config.input
+      // subscribe input events (from FHEM reading to component)
       Object.keys(this.config.input.readings).forEach((reading) => {
         ftui.getReadingEvents(reading).subscribe((param) => this.onReadingEvent(param));
       });
     }
+
+    // subscribe output events (from component to FHEM reading)
+    if (this.private.outputAttributes.size > 0) {
+      this.private.observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+          if (mutation.type == "attributes") {
+            const attributeName = mutation.attributeName;
+            const attributeValue = mutation.target[attributeName] || mutation.target.getAttribute(attributeName);
+            this.handleAttributeChanged(attributeName, attributeValue);
+            this.private.isChanging[attributeName] = false;
+          }
+        });
+      });
+      this.private.observer.observe(this.element, {
+        attributeFilter: this.outputAttributes,
+        /* subtree: true, */
+      });
+
+    }
+
+    // define debounced function
+    this.debouncedSubmitCommand = ftui.debounce(this.submitCommand, this.element.debounce);
   }
+
 
   get unbindAttributes() {
     return Object.assign(this.element.defaults || {}, this.private.unbindAttributes);
@@ -42,12 +68,15 @@ export class FtuiBinding {
   onReadingEvent(readingData) {
     const readingAttributeMap = this.config.input.readings[readingData.id].attributes;
     Object.entries(readingAttributeMap)
-      .forEach(([attribute, attributeAssingment]) => {
-        const value = readingData[attributeAssingment.source];
-        const filteredValue = this.filterText(value, attributeAssingment.filter);
+      .forEach(([attribute, options]) => {
+        const value = readingData[options.source];
+        const filteredValue = this.filterText(value, options.filter);
         if (ftui.isDefined(filteredValue)) {
-          if (this.element[attribute] !== filteredValue) {
+          if (String(this.element[attribute]) !== String(filteredValue)) {
             ftui.log(3, `${this.element.id}  -  onReadingEvent: set this.${attribute}=${filteredValue}`);
+            // avoid endless loop
+            this.private.isChanging[attribute] = true;
+            // change element's property
             this.element[attribute] = filteredValue;
           }
         }
@@ -58,28 +87,48 @@ export class FtuiBinding {
  * Stores the attribute value for each defined target reading
  * and sends it to FHEM
  */
-  handleAttributeChanged(attributeName) {
-    const targetReadings = this.config?.output?.attributes[attributeName]?.readings || [];
-    Object.entries(targetReadings).forEach(([readingId, options]) => {
-      const value = options.value === '$value' ? this.element[attributeName] : options.value;
-      const [parameterId, deviceName, readingName] = ftui.parseReadingId(readingId);
-      const cmdline = [options.cmd, deviceName, readingName, value].join(' ');
-      // update storage
-      ftui.updateReadingValue(parameterId, value);
-      // notify FHEM
-      this.element.sendCommand(cmdline);
-    });
+  handleAttributeChanged(attributeName, attributeValue) {
+    if (!this.private.isChanging[attributeName]) {
+      const targetReadings = this.config?.output?.attributes[attributeName]?.readings || [];
+      Object.entries(targetReadings).forEach(([readingId, options]) => {
+
+        //const attributeValue = this.element[attributeName];
+        const filteredValue = this.filterText(attributeValue, options.filter);
+        const value = String(options.value).replaceAll('$value', filteredValue);
+        const [parameterId, deviceName, readingName] = ftui.parseReadingId(readingId);
+        const cmdline = [options.cmd, deviceName, readingName, value].join(' ');
+
+        // update storage
+        ftui.updateReadingValue(parameterId, value);
+        // notify FHEM
+        this.sendCommand(cmdline);
+      });
+    }
+  }
+
+  // TODO: find a better name
+  sendCommand(cmdl) {
+    if (this.element.debounce) {
+      this.debouncedSubmitCommand(cmdl);
+    } else {
+      this.submitCommand(cmdl);
+    }
+  }
+
+  submitCommand(cmdl) {
+    if (ftui.sendFhemCommand(cmdl)) {
+      ftui.toast(cmdl);
+    }
   }
 
   initInputBinding(attribute) {
 
     /* 
-    in 
+    in    "dummy1:state:value | map('on:1,off:0')" 
     
-    "dummy1" 
-    "dummy1:state:value" 
-     "dummy1:state:value | map(on:1,off:0)" 
-     */
+    out   input.readings.GartenTemp.attributes.text.source="value"
+          input.readings.GartenTemp.attributes.text.filter="map('10:low,30:high')""
+    */
 
     const semicolonNotInQuotes = /;(?=(?:[^']*'[^']*')*[^']*$)/;
 
@@ -89,49 +138,53 @@ export class FtuiBinding {
       this.private.config += `input.readings.${readingID}.attributes.${attribute.name}.source = "${source}"\n`;
       this.private.config += `input.readings.${readingID}.attributes.${attribute.name}.filter = "${filter}"\n`;
     });
-
-    /* out
-    
-    input.readings.GartenTemp.attributes.text.source=value
-    input.readings.GartenTemp.attributes.text.filter={10:low,30:high}
-
-    */
   }
 
 
   initOutputBinding(attribute) {
 
     /* 
-    in    (value)="dummy1 [on,off]"
-
-    out   output.attributes.value.values=[on,off]
-          output.attributes.value.readings.dummy1.cmd="set"
+    in    "map('true:on,false:off') | dummy1"
+ 
+    out   output.attributes.value.readings.dummy1.cmd="set"
+          output.attributes.value.readings.dummy1.value="$value"
+          output.attributes.value.readings.dummy1.filter="map('true:on,false:off')"
     */
-    const { cmd, readingID, value } = this.parseOutputBinding(attribute.value);
+    const { cmd, readingID, value, filter } = this.parseOutputBinding(attribute.value);
 
     this.private.config += `output.attributes.${attribute.name}.readings.${readingID}.cmd = "${cmd}"\n`;
     this.private.config += `output.attributes.${attribute.name}.readings.${readingID}.value = "${value}"\n`;
+    this.private.config += `output.attributes.${attribute.name}.readings.${readingID}.filter = "${filter}"\n`;
 
     this.private.outputAttributes.add(attribute.name);
+  }
+
+  initEventListener(attribute) {
+    this.element.addEventListener(attribute.name, 
+      this.evalInContext.bind(this.element, attribute.value)
+    );
   }
 
   readAttributes(attributes) {
 
     [...attributes].forEach(attr => {
-      if (attr.name.startsWith('[(') && attr.name.endsWith(')]')) {
-        this.initInputBinding({ name: attr.name.slice(2, -2), value: attr.value });
-        this.initOutputBinding({ name: attr.name.slice(2, -2), value: attr.value });
-      } else if (attr.name.startsWith('[') && attr.name.endsWith(']')) {
-        this.initInputBinding({ name: attr.name.slice(1, -1), value: attr.value });
-      } else if (attr.name.startsWith('(') && attr.name.endsWith(')')) {
-        this.initOutputBinding({ name: attr.name.slice(1, -1), value: attr.value });
-      } else if (attr.name.startsWith('bind:')) {
-        this.initInputBinding({ name: attr.name.slice(5), value: attr.value });
-      } else if (attr.name.startsWith('on:')) {
-        this.initOutputBinding({ name: attr.name.slice(3), value: attr.value });
-      } else if (attr.name.startsWith('bindon:')) {
-        this.initInputBinding({ name: attr.name.slice(7), value: attr.value });
-        this.initOutputBinding({ name: attr.name.slice(7), value: attr.value });
+      const name = attr.name.replace(/-([a-z])/g, (char) => { return char[1].toUpperCase() });
+      if (name.startsWith('[(') && name.endsWith(')]')) {
+        this.initInputBinding({ name: name.slice(2, -2), value: attr.value });
+        this.initOutputBinding({ name: name.slice(2, -2), value: attr.value });
+      } else if (name.startsWith('((') && name.endsWith('))')) {
+        this.initEventListener({ name: name.slice(2, -2), value: attr.value });
+      } else if (name.startsWith('[') && name.endsWith(']')) {
+        this.initInputBinding({ name: name.slice(1, -1), value: attr.value });
+      } else if (name.startsWith('(') && name.endsWith(')')) {
+        this.initOutputBinding({ name: name.slice(1, -1), value: attr.value });
+      } else if (name.startsWith('bind:')) {
+        this.initInputBinding({ name: name.slice(5), value: attr.value });
+      } else if (name.startsWith('on:')) {
+        this.initOutputBinding({ name: name.slice(3), value: attr.value });
+      } else if (name.startsWith('bindon:')) {
+        this.initInputBinding({ name: name.slice(7), value: attr.value });
+        this.initOutputBinding({ name: name.slice(7), value: attr.value });
       } else {
         this.private.unbindAttributes[attr.name] = ftui.isNumeric(attr.value) ? Number(attr.value) : attr.value;
       }
@@ -198,15 +251,17 @@ export class FtuiBinding {
   }
 
   parseOutputBinding(attrText) {
-
+    const attrTextItems = attrText.split('|');
+    const lastItem = attrTextItems.pop().trim();
     const [, cmd = 'set', device, reading = 'STATE', value = '$value'] =
       /^(?:(set|setreading)\s)?((?:[^-:\s])*)(?:[-:\s]((?:(?!\$value)[^\s])*))?(?:\s(.*)?)?$/
-        .exec(attrText);
+        .exec(lastItem);
 
     return {
       cmd,
       readingID: ftui.getReadingID(device, reading),
-      value
+      value,
+      filter: attrTextItems.join('|')
     }
   }
 
@@ -227,16 +282,20 @@ export class FtuiBinding {
       };
       try {
         const pipeNotInQuotes = /\|(?=([^']*'[^']*')*[^']*$)/g;
-        filter = filter.replace(pipeNotInQuotes, ',').replace('^','"').replace('$','"');
+        filter = filter.replace(pipeNotInQuotes, ',').replace('^', '"').replace('$', '"');
         const fn = eval('pipe(' + filter + ')');
         return fn(text);
       } catch (e) {
         this.element.classList.add('has-error');
-        ftui.error(1, e.toString());
+        ftui.error(e.toString());
       }
 
     } else {
       return text;
     }
+  }
+
+  evalInContext(command) {
+    eval(command);
   }
 }

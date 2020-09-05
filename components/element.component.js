@@ -9,7 +9,6 @@
 
 
 import { ftui } from '../modules/ftui/ftui.module.js';
-import { FtuiBinding } from '../modules/ftui/ftui.binding.js';
 
 let uids= {};
 
@@ -26,18 +25,12 @@ export class FtuiElement extends HTMLElement {
     }
 
     this.defaults = defaultAttributes;
-    this.binding = new FtuiBinding(this);
 
-    this.initProperties(this.binding.unbindAttributes);
+   this.initProperties(this.defaults);
 
     if (typeof this.template === 'function') {
       this.createShadowRoot();
     }
-
-    ftui.log(3, `${this.id} -  constructor: binding.config=`, this.binding.config);
-
-    // define debounced function
-    this.debouncedSubmitCommand = ftui.debounce(this.submitCommand, this.debounce);
   }
 
   createShadowRoot() {
@@ -56,24 +49,6 @@ export class FtuiElement extends HTMLElement {
     if (typeof this.onAttributeChanged === 'function') {
       // call the hook function of the instance
       this.onAttributeChanged(name, oldValue, newValue);
-    }
-    if (this.isAction) {
-      this.binding.handleAttributeChanged(name);
-    }
-  }
-
-  // TODO: find a better name
-  sendCommand(cmdl) {
-    if (this.debounce) {
-      this.debouncedSubmitCommand(cmdl);
-    } else {
-      this.submitCommand(cmdl);
-    }
-  }
-
-  submitCommand(cmdl) {
-    if (ftui.sendFhemCommand(cmdl)) {
-      ftui.toast(cmdl);
     }
   }
 

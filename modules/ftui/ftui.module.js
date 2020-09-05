@@ -1,4 +1,5 @@
-
+import { ftuiBinding } from './ftui.binding.js';
+import { Subject } from './ftui.subject.js';
 
 class Ftui {
   constructor() {
@@ -89,7 +90,7 @@ class Ftui {
     Promise.all([this.fetchCSrf()]).then(() => {
       this.initPage('html');
     }).catch(error => {
-      this.log(1, 'initDeferreds -' + error, 'error');
+      this.error('initDeferreds -' + error, 'error');
     });
 
     document.addEventListener('initComponentsDone', () => {
@@ -126,7 +127,7 @@ class Ftui {
       if (this.config.debuglevel > 1) this.toast(dur);
       this.log(1, dur);
     }).catch(error => {
-      this.log(1, 'initComponents -' + error, 'error');
+      this.error('Error: initComponents - ' + error);
     });
   }
 
@@ -137,7 +138,7 @@ class Ftui {
 
     // Fetch all the children of <ftui-*> that are not defined yet.
     undefinedComponents.forEach(elem => {
-      if (!componentTypes.includes(elem.localName)) {
+      if (elem.localName.startsWith('ftui-') && !componentTypes.includes(elem.localName)) {
         componentTypes.push(elem.localName);
       }
     });
@@ -153,17 +154,30 @@ class Ftui {
       return customElements.whenDefined(component.localName);
     });
 
+
+
     // get current values of readings not before all components are loaded
     Promise.all(promises)
       .then(() => {
+        
+        // init ftui binding
+        const selectors = ['[ftuiBinding]', ...componentTypes ];
+        const bindElements = this.selectElements(selectors.join(', '), area);
+        bindElements.forEach((element) => {
+          //console.log(area,element.attributes, element.getAttribute('view'));
+          element.binding = new ftuiBinding(element);
+        });
+
         this.createFilterParameter();
+
         this.log(1, 'initComponents - Done');
         const event = new CustomEvent('initComponentsDone', { area: area });
         document.dispatchEvent(event);
         initDefer.resolve();
       })
       .catch(error => {
-        this.log(1, 'initComponents -' + error, 'error');
+        this.error('Error: initComponents - ' + error);
+        console.log(error)
       });
     return initDefer.promise();
   }
@@ -199,7 +213,7 @@ class Ftui {
     if (this.isDefined(readingName)) {
       const [readingId, device, reading] = this.parseReadingId(readingName);
       if (!this.readings.has(readingId)) {
-        this.readings.set(readingId, { data: {}, events: new Events(), device: device, reading: reading });
+        this.readings.set(readingId, { data: {}, events: new Subject(), device: device, reading: reading });
       }
       return this.readings.get(readingId).events;
     } else {
@@ -602,7 +616,7 @@ class Ftui {
           deferred.resolve();
         };
         script.onerror = (error) => {
-          this.error(3, 'dynamicload load failure:', url, error);
+          this.error('dynamicload load failure:', url, error);
           deferred.resolve();
         };
         document.getElementsByTagName('head')[0].appendChild(script);
@@ -949,11 +963,9 @@ class Ftui {
     }
   }
 
-  error(level, ...args) {
-    if (this.config.debuglevel >= level) {
+  error(...args) {
       // eslint-disable-next-line no-console
       console.error.apply(this, args);
-    }
   }
 
   deferred() {
@@ -1019,7 +1031,7 @@ class Ftui {
       try {
         parsed = JSON.parse(json);
       } catch (e) {
-        this.log(1, 'Error while parseJSON: error=' + e + ' json=' + json, 'error');
+        this.error('Error while parseJSON: error=' + e + ' json=' + json, 'error');
       }
     }
     return parsed;
@@ -1039,7 +1051,7 @@ class Ftui {
 
   getMatchingValue(map, searchKey) {
     const key = this.getMatchingKey(map, searchKey);
-    return map[key];
+    return this.isDefined(map[key]) ? map[key] : searchKey;
   }
 
   getMatchingKey(map, searchKey) {
@@ -1090,22 +1102,6 @@ class Ftui {
     return Array.prototype.slice.call(document.querySelectorAll('*')).filter((el) => {
       return el.tagName.match(regEx);
     });
-  }
-}
-
-// Event observable
-class Events {
-  constructor() {
-    this.observers = [];
-  }
-
-  subscribe(observer, context) {
-    if (void 0 === context) { context = observer; }
-    this.observers.push({ observer: observer });
-  }
-
-  publish(args) {
-    this.observers.forEach(topic => topic.observer(args));
   }
 }
 

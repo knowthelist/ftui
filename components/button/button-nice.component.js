@@ -19,7 +19,7 @@ export class FtuiButtonNice extends FtuiElement {
 
   template() {
     return `
-      <style> @import "themes/color-attribute.css"; </style>
+      <style> @import "themes/color-attributes.css"; </style>
       <ftui-button shape="circle" color="dark" 
           [value]="${this.get}" 
           (value)="${this.set || this.get}" 

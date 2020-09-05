@@ -26,7 +26,8 @@ class FtuiTab extends FtuiButton {
   static get defaults() {
     return {
       group: 'default',
-      color: 'dark'
+      color: 'dark',
+      view: ''
     };
   }
 

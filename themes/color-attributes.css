@@ -44,5 +44,5 @@
 }
 
 [color="transparent"] {
-  --color-base: var(--background-color);
+  --color-base: var(--content-color);
 }

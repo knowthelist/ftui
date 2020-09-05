@@ -8,8 +8,6 @@
 */
 
 import { FtuiElement } from '../element.component.js';
-import { decorate } from '../../modules/ftui/ftui.decorate.js';
-import { action } from '../../modules/ftui/ftui.decorators.js';
 
 class FtuiKnob extends FtuiElement {
 
@@ -93,7 +91,6 @@ class FtuiKnob extends FtuiElement {
   }
 
   onAttributeChanged(name, oldValue, newValue) {
-    console.log(this.id, oldValue, newValue);
     if (oldValue !== newValue) {
       if (!this.isDragging) {
         this.draw(this.valueToAngle(this.value));
@@ -122,7 +119,6 @@ class FtuiKnob extends FtuiElement {
     }
   }
 
-  // @action
   onChange(angle) {
     if (this.draw(angle)) {
       this.value = this.angleToValue(angle);
@@ -130,7 +126,6 @@ class FtuiKnob extends FtuiElement {
   }
 
   draw(angle) {
-    console.log(this.id, 'draw');
     if ((angle <= this.endAngle || angle >= 360 + this.startAngle) && angle >= this.startAngle) {
       this.drawScale();
       if (this.hasArc) {
@@ -307,9 +302,5 @@ class FtuiKnob extends FtuiElement {
     }
   }
 }
-
-decorate(FtuiKnob, {
-  onChange: [action],
-});
 
 window.customElements.define('ftui-knob', FtuiKnob);

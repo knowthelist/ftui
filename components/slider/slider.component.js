@@ -9,8 +9,6 @@
 
 import { FtuiElement } from '../element.component.js';
 import { Rangeable } from '../../modules/rangeable/rangeable.min.js';
-import { decorate } from '../../modules/ftui/ftui.decorate.js';
-import { action } from '../../modules/ftui/ftui.decorators.js';
 
 
 export class FtuiSlider extends FtuiElement {
@@ -92,7 +90,7 @@ export class FtuiSlider extends FtuiElement {
     this.input.min = this.min;
     this.maxElement.innerHTML = this.max;
     this.input.max = this.max;
-    this.rangeable.setValue(this.value);
+    this.rangeable.setValue(Number(this.value));
     this.rangeable.update();
   }
 
@@ -100,7 +98,6 @@ export class FtuiSlider extends FtuiElement {
     this.isDragging = true;
   }
 
-  // @action
   onSliderChanged(value) {
     if (this.value !== null && this.value !== value) {
       if (this.isDragging ) {
@@ -113,9 +110,5 @@ export class FtuiSlider extends FtuiElement {
     this.isDragging = false;
   }
 }
-
-decorate(FtuiSlider, {
-  onSliderChanged: [action],
-});
 
 window.customElements.define('ftui-slider', FtuiSlider);

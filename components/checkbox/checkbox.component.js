@@ -8,8 +8,6 @@
 */
 
 import { FtuiElement } from '../element.component.js';
-import { decorate } from '../../modules/ftui/ftui.decorate.js';
-import { action } from '../../modules/ftui/ftui.decorators.js';
 
 class FtuiCheckbox extends FtuiElement {
 
@@ -64,13 +62,11 @@ class FtuiCheckbox extends FtuiElement {
 
   changeState() {
     const index = this.getStates().indexOf(this.value);
-    console.log(this.id, this.value, index)
     if (index > -1) {
       this.elementInput.checked = index === 1 ? true : false;
     }
   }
 
-  // @action
   onClicked() {
     const stateIndex = this.elementInput.checked ? 1 : 0;
     const value = this.getStates()[stateIndex];
@@ -83,9 +79,5 @@ class FtuiCheckbox extends FtuiElement {
     return this.states.split(/[;,:]/).map(item => item.trim());
   }
 }
-
-decorate(FtuiCheckbox, {
-  onClicked: [action],
-});
 
 window.customElements.define('ftui-checkbox', FtuiCheckbox);

@@ -195,7 +195,7 @@
       <header>State Mapping</header>
 
       <div class="cell">
-        <ftui-button [value]="Stehlampe | map('on|dim.*: on, off|0: off')" (value)="Stehlampe">
+        <ftui-button [value]="Stehlampe | map('on|dim.*: on, off|0: off')" (value)="set dummy1 $value; set Stehlampe $value">
           on,off
         </ftui-button>
       </div>
