@@ -19,15 +19,12 @@ window.addEventListener('load', function(){
 // initially loading the page
 // or navigating to the page from another page in the same window or tab
 window.addEventListener('pageshow', () => {
-  //if (!window.ftui) {
+  if (typeof ftui === 'undefined') {
     // load FTUI
-  //  window.ftui = new Ftui();
- // } else { 
-    // navigating from another page
-    if (ftui) {
+    main();
+   } else { 
       ftui.setOnline();
-    }
-// }
+   }
 });
 
 window.addEventListener('beforeunload', () => {

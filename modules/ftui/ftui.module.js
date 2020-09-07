@@ -154,17 +154,14 @@ class Ftui {
       return customElements.whenDefined(component.localName);
     });
 
-
-
     // get current values of readings not before all components are loaded
     Promise.all(promises)
       .then(() => {
         
         // init ftui binding
-        const selectors = ['[ftuiBinding]', ...componentTypes ];
+        const selectors = ['[ftuiBinding]'];
         const bindElements = this.selectElements(selectors.join(', '), area);
         bindElements.forEach((element) => {
-          //console.log(area,element.attributes, element.getAttribute('view'));
           element.binding = new ftuiBinding(element);
         });
 
@@ -568,7 +565,7 @@ class Ftui {
   setOnline() {
     const ltime = Date.now() / 1000;
     this.log(2, 'setOnline', ltime, this.states.lastSetOnline);
-    if ((ltime - this.states.lastSetOnline) > 60) {
+    if ((ltime - this.states.lastSetOnline) > 3) {
       if (this.config.enableDebug) this.toast('FHEM connected');
       this.states.lastSetOnline = ltime;
       this.states.isOffline = false;

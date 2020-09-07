@@ -38,6 +38,12 @@ class FtuiGrid extends FtuiElement {
     }
   }
 
+  template() {
+    return `<style> @import "components/grid/grid.component.css"; </style>
+    <slot></slot>
+        `;
+  }
+
   configureGrid() {
     let highestCol = -1;
     let highestRow = -1;
@@ -83,5 +89,4 @@ class FtuiGrid extends FtuiElement {
   }
 }
 
-ftui.appendStyleLink(ftui.config.basedir + 'components/grid/grid.component.css');
 window.customElements.define('ftui-grid', FtuiGrid);

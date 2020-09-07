@@ -20,7 +20,7 @@
   <link href="themes/ftui-theme.css" rel="stylesheet">
   <link href="favicon.ico" rel="icon" type="image/x-icon" />
 
-  <meta name='debug' content='2'>
+  <meta name='debug' content='0'>
 
   <title>FTUI Example Circlemenu</title>
 </head>
@@ -28,30 +28,21 @@
 <body>
   <ftui-grid base-width="70" base-height="150">
 
-
     <ftui-grid-tile row="1" col="1" height="1" width="2">
       <header>DEFAULT</header>
 
       <div class="cell">
         <ftui-circlemenu>
-          <ul>
-            <li>
-              <ftui-icon name="home1"></ftui-icon>
-            </li>
-            <li>
-              <ftui-button-nice get="dummy1"></ftui-button-nice>
-            </li>
-            <li>
-              <ftui-button-nice get="dummy2"></ftui-button-nice>
-            </li>
-            <li>
-              <ftui-button-nice get="dummy3"></ftui-button-nice>
-            </li>
-            <li>
-              <ftui-button-nice get="ftuitest"></ftui-button-nice>
-            </li>
-          </ul>
 
+              <ftui-icon name="home1"></ftui-icon>
+
+              <ftui-button-nice get="dummy1"></ftui-button-nice>
+
+              <ftui-button-nice get="dummy2"></ftui-button-nice>
+
+              <ftui-button-nice get="dummy3"></ftui-button-nice>
+
+              <ftui-button-nice get="ftuitest"></ftui-button-nice>
 
         </ftui-circlemenu>
       </div>
@@ -62,44 +53,32 @@
       <div class="row">
         <div class="column">
           <ftui-circlemenu>
-            <ul>
-              <li>
+
                 <ftui-icon name="home1"></ftui-icon>
-              </li>
-              <li>
+
                 <ftui-button-nice get="dummy1"></ftui-button-nice>
-              </li>
-              <li>
+ 
                 <ftui-button-nice get="dummy2"></ftui-button-nice>
-              </li>
-              <li>
+  
                 <ftui-button-nice get="dummy3"></ftui-button-nice>
-              </li>
-              <li>
+    
                 <ftui-button-nice get="ftuitest"></ftui-button-nice>
-              </li>
-            </ul>
+
           </ftui-circlemenu>
         </div>
         <div class="column big">
-          <ftui-circlemenu>
-            <ul>
-              <li>
+          <ftui-circlemenu circleRadius="4">
+
                 <ftui-icon name="home1"></ftui-icon>
-              </li>
-              <li>
+
                 <ftui-button-nice get="dummy1"></ftui-button-nice>
-              </li>
-              <li>
+
                 <ftui-button-nice get="dummy2"></ftui-button-nice>
-              </li>
-              <li>
+
                 <ftui-button-nice get="dummy3"></ftui-button-nice>
-              </li>
-              <li>
+      
                 <ftui-button-nice get="ftuitest"></ftui-button-nice>
-              </li>
-            </ul>
+
           </ftui-circlemenu>
         </div>
       </div>
@@ -110,23 +89,17 @@
 
       <div class="cell">
         <ftui-circlemenu direction="bottom-half">
-          <ul>
-            <li>
+
               <ftui-icon name="home1"></ftui-icon>
-            </li>
-            <li>
+
               <ftui-button-nice get="dummy1"></ftui-button-nice>
-            </li>
-            <li>
+ 
               <ftui-button-nice get="dummy2"></ftui-button-nice>
-            </li>
-            <li>
+  
               <ftui-button-nice get="dummy3"></ftui-button-nice>
-            </li>
-            <li>
+
               <ftui-button-nice get="ftuitest"></ftui-button-nice>
-            </li>
-          </ul>
+
         </ftui-circlemenu>
       </div>
     </ftui-grid-tile>
@@ -136,23 +109,17 @@
 
       <div class="cell">
         <ftui-circlemenu keepOpen direction="horizontal-right">
-          <ul>
-            <li>
+
               <ftui-icon name="home1"></ftui-icon>
-            </li>
-            <li>
+
               <ftui-button-nice get="dummy1"></ftui-button-nice>
-            </li>
-            <li>
+
               <ftui-button-nice get="dummy2"></ftui-button-nice>
-            </li>
-            <li>
+
               <ftui-button-nice get="dummy3"></ftui-button-nice>
-            </li>
-            <li>
+
               <ftui-button-nice get="ftuitest"></ftui-button-nice>
-            </li>
-          </ul>
+
         </ftui-circlemenu>
       </div>
     </ftui-grid-tile>
@@ -162,108 +129,90 @@
       <div class="row">
         <div class="column">
           <ftui-circlemenu keepOpen>
-            <ul>
-              <li>
+
                 <ftui-button shape="circle" fill="outline" color="light">
                   <ftui-label class="big" [text]="AvReceiver:subwoofer-temporary-level"></ftui-label>
                 </ftui-button>
-              </li>
-              <li>
+
                 <ftui-button shape="circle" fill="outline" (value)="AvReceiver:subwoofer-temporary-level" states='-15'
                   [color]="AvReceiver:subwoofer-temporary-level | map('^[-]15$: primary, .*: light')">
                   <span class="big">-15</span>
                 </ftui-button>
-              </li>
-              <li>
+
                 <ftui-button shape="circle" fill="outline" (value)="AvReceiver:subwoofer-temporary-level" states='-10'
                   [color]="AvReceiver:subwoofer-temporary-level | map('^[-]10$: primary, .*: light')">
                   <span class="big">-10</span>
                 </ftui-button>
-              </li>
-              <li>
+
                 <ftui-button shape="circle" fill="outline" (value)="AvReceiver:subwoofer-temporary-level" states='-5'
                   [color]="AvReceiver:subwoofer-temporary-level | map('^[-]5$: primary, .*: light')">
                   <span class="big">-5</span>
                 </ftui-button>
-              </li>
-              <li>
+
                 <ftui-button shape="circle" fill="outline" (value)="AvReceiver:subwoofer-temporary-level" states='0'
                   [color]="AvReceiver:subwoofer-temporary-level | map('^[0]$: primary, .*: light')">
                   <span class="big">0</span>
                 </ftui-button>
-              </li>
-              <li>
+ 
                 <ftui-button shape="circle" fill="outline" (value)="AvReceiver:subwoofer-temporary-level" states='5'
                   [color]="AvReceiver:subwoofer-temporary-level | map('^[5]$: primary, .*: light')">
                   <span class="big">5</span>
                 </ftui-button>
-              </li>
-              <li>
+ 
                 <ftui-button shape="circle" fill="outline" (value)="AvReceiver:subwoofer-temporary-level" states='10'
                   [color]="AvReceiver:subwoofer-temporary-level | map('^[1]0$: primary, .*: light')">
                   <span class="big">10</span>
                 </ftui-button>
-              </li>
-              <li>
+
                 <ftui-button shape="circle" fill="outline" (value)="AvReceiver:subwoofer-temporary-level" states='12'
                   [color]="AvReceiver:subwoofer-temporary-level | map('^[1]2$: primary, .*: light')">
                   <span class="big">12</span>
                 </ftui-button>
-              </li>
-            </ul>
+
           </ftui-circlemenu>
         Dot</div>
         <div class="column">
           <ftui-circlemenu keepOpen>
-            <ul>
-              <li>
+
                 <ftui-button shape="circle" fill="outline" color="light">
                   <ftui-label class="big" [text]="AvReceiver:subwoofer-temporary-level"></ftui-label>
                 </ftui-button>
-              </li>
-              <li>
+
                 <ftui-button shape="circle" fill="outline" (value)="AvReceiver:subwoofer-temporary-level" states='-15'
                   [color]="AvReceiver:subwoofer-temporary-level | map('-15: primary, .*: light')">
                   <span class="big">-15</span>
                 </ftui-button>
-              </li>
-              <li>
+
                 <ftui-button shape="circle" fill="outline" (value)="AvReceiver:subwoofer-temporary-level" states='-10'
                   [color]="AvReceiver:subwoofer-temporary-level | map('-10: primary, .*: light')">
                   <span class="big">-10</span>
                 </ftui-button>
-              </li>
-              <li>
+
                 <ftui-button shape="circle" fill="outline" (value)="AvReceiver:subwoofer-temporary-level" states='-5'
                   [color]="AvReceiver:subwoofer-temporary-level | map('-5: primary, .*: light')">
                   <span class="big">-5</span>
                 </ftui-button>
-              </li>
-              <li>
+    
                 <ftui-button shape="circle" fill="outline" (value)="AvReceiver:subwoofer-temporary-level" states='0'
                   [color]="AvReceiver:subwoofer-temporary-level | map('0: primary, .*: light')">
                   <span class="big">0</span>
                 </ftui-button>
-              </li>
-              <li>
+
                 <ftui-button shape="circle" fill="outline" (value)="AvReceiver:subwoofer-temporary-level" states='5'
                   [color]="AvReceiver:subwoofer-temporary-level | map('5: primary, .*: light')">
                   <span class="big">5</span>
                 </ftui-button>
-              </li>
-              <li>
+
                 <ftui-button shape="circle" fill="outline" (value)="AvReceiver:subwoofer-temporary-level" states='10'
                   [color]="AvReceiver:subwoofer-temporary-level | map('10: primary, .*: light')">
                   <span class="big">10</span>
                 </ftui-button>
-              </li>
-              <li>
+
                 <ftui-button shape="circle" fill="outline" (value)="AvReceiver:subwoofer-temporary-level" states='12'
                   [color]="AvReceiver:subwoofer-temporary-level | map('12: primary, .*: light')">
                   <span class="big">12</span>
                 </ftui-button>
-              </li>
-            </ul>
+
           </ftui-circlemenu>
         Band</div>
       </div>
@@ -274,23 +223,17 @@
 
       <div class="cell">
         <ftui-circlemenu direction="vertical">
-          <ul>
-            <li>
+
               <ftui-icon name="home1"></ftui-icon>
-            </li>
-            <li>
+
               <ftui-button-nice get="dummy1"></ftui-button-nice>
-            </li>
-            <li>
+
               <ftui-button-nice get="dummy2"></ftui-button-nice>
-            </li>
-            <li>
+
               <ftui-button-nice get="dummy3"></ftui-button-nice>
-            </li>
-            <li>
+
               <ftui-button-nice get="ftuitest"></ftui-button-nice>
-            </li>
-          </ul>
+
         </ftui-circlemenu>
       </div>
     </ftui-grid-tile>

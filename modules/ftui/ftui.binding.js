@@ -17,7 +17,6 @@ export class ftuiBinding {
     this.element = element;
     this.readAttributes(element.attributes);
 
-
     try {
       this.config = parseHocon(this.private.config);
     } catch (e) {
@@ -160,7 +159,7 @@ export class ftuiBinding {
   }
 
   initEventListener(attribute) {
-    this.element.addEventListener(attribute.name, 
+    this.element.addEventListener(attribute.name,
       this.evalInContext.bind(this.element, attribute.value)
     );
   }

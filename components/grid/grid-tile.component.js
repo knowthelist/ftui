@@ -20,6 +20,11 @@ export class FtuiGridTile extends FtuiElement {
     };
     super(defaults);
   }
+  
+  template() {
+    return `<style> @import "components/grid/grid-tile.component.css"; </style>
+    <slot></slot>`;
+  }
 }
 
 window.customElements.define('ftui-grid-tile', FtuiGridTile);

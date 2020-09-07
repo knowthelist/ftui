@@ -1,5 +1,5 @@
 /* 
-* Circle mneu lib module for FTUI version 3
+* Circle menu lib module for FTUI version 3
 *
 * Copyright (c) 2020 Mario Stephan <mstephan@shared-files.de>
 * Under MIT License (http://www.opensource.org/licenses/mit-license.php)
@@ -42,8 +42,8 @@ export class CircleMenu {
   }
 
   init() {
-    this.menu_items = this.element.querySelectorAll('li:not(:first-child)');
-    this.firstItem = this.element.querySelector('li:first-child');
+    this.menu_items = this.element.querySelectorAll('*:not(:first-child)');
+    this.firstItem = this.element.querySelector('*:first-child');
     this.submenus = [];
     const directions = {
       'vertical': [-400, 0],
@@ -79,7 +79,7 @@ export class CircleMenu {
 
     this.initCss();
     this.item_count = this.menu_items.length;
-    this._step = (this.options.angle.end - this.options.angle.start) / (this.item_count -1);
+    this._step = (this.options.angle.end - this.options.angle.start) / (this.item_count - 1);
     this.menu_items.forEach((item, index) => {
       const angle = (this.options.angle.start + (this._step * index)) * (Math.PI / 180);
       const linearRadius = this.options.circle_radius * 0.75;
@@ -89,14 +89,14 @@ export class CircleMenu {
       // vertical
       if (this.options.angle.start < -360) { x = 0; y = index * linearRadius + linearRadius; }
       // vertical-top
-      if (this.options.angle.start < -790) { x = 0; y = -(index * linearRadius + linearRadius * 0.75); }	
+      if (this.options.angle.start < -790) { x = 0; y = -(index * linearRadius + linearRadius * 0.75); }
       // horizontal
       if (this.options.angle.start > 360) { x = index * linearRadius + linearRadius; y = 0; }
       // horizontal-left
       if (this.options.angle.start > 790) { x = -(index * linearRadius + linearRadius); y = 0; }
-      
-      item.posX = x-2;
-      item.posY = y-2;
+
+      item.posX = x - 1.5;
+      item.posY = y - 1.5;
 
       item.addEventListener(this.options.close_event, () => {
         this.select(index + 2);
@@ -142,7 +142,7 @@ export class CircleMenu {
       this.element.addEventListener('mouseleave', () => {
         this.close();
       });
-    } else if (this.options.trigger === 'click') {
+    } else if (this.options.trigger === 'click' && this.firstItem) {
       this.firstItem.addEventListener('click', (evt) => {
         evt.preventDefault();
         if (this._state === 'closed' || this._state === 'closing') {
@@ -208,7 +208,7 @@ export class CircleMenu {
           item.style.top = '-2em';
           item.style.left = '-2em';
           item.style.transform = 'scale(0)';
-          item.style.zIndex = parseInt(item.style.zIndex)- 100;
+          item.style.zIndex = parseInt(item.style.zIndex) - 100;
         }, start + Math.abs(this.options.step_in) * index));
       });
       this._timeouts.push(setTimeout(() => {
@@ -233,8 +233,8 @@ export class CircleMenu {
 
     if (this._state === 'open' || this._state === 'opening') {
       this.clearTimeouts();
-      const set_other = this.element.querySelectorAll('li:not(:nth-child(' + index + ')):not(:first-child)');
-      const selected = this.element.querySelector('li:nth-child(' + index + ')');
+      const set_other = this.element.querySelectorAll('*:not(:nth-child(' + index + ')):not(:first-child)');
+      const selected = this.element.querySelector('*:nth-child(' + index + ')');
       this.trigger('select', selected);
       this.menu_items.forEach((item) => {
         item.style.transition = 'all 500ms ease-out';
@@ -252,7 +252,7 @@ export class CircleMenu {
   }
 
   clearTimeouts() {
-    for ( const timeout of this._timeouts ) {
+    for (const timeout of this._timeouts) {
       clearTimeout(timeout);
     }
     this._timeouts = [];

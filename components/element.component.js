@@ -9,8 +9,9 @@
 
 
 import { ftui } from '../modules/ftui/ftui.module.js';
+import { ftuiBinding } from '../modules/ftui/ftui.binding.js';
 
-let uids= {};
+let uids = {};
 
 export class FtuiElement extends HTMLElement {
 
@@ -26,11 +27,13 @@ export class FtuiElement extends HTMLElement {
 
     this.defaults = defaultAttributes;
 
-   this.initProperties(this.defaults);
+    this.initProperties(this.defaults);
 
     if (typeof this.template === 'function') {
       this.createShadowRoot();
     }
+
+    this.binding = new ftuiBinding(this);
   }
 
   createShadowRoot() {
@@ -68,13 +71,13 @@ export class FtuiElement extends HTMLElement {
   }
 
   initAttribute(key, value) {
-    if (!this.hasAttribute(key) ) {
+    if (!this.hasAttribute(key)) {
       this.setAttribute(key, value);
     }
   }
-  
+
   initBooleanAttribute(key, value) {
-    if (!this.hasAttribute(key) && value ) {
+    if (!this.hasAttribute(key) && value) {
       this.setAttribute(key, '');
     }
   }

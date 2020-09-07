@@ -20,10 +20,10 @@ export class FtuiButtonNice extends FtuiElement {
   template() {
     return `
       <style> @import "themes/color-attributes.css"; </style>
-      <ftui-button shape="circle" color="dark" 
+      <ftui-button shape="circle" color="medium" 
           [value]="${this.get}" 
           (value)="${this.set || this.get}" 
-          [color]="${this.get} | map('${this.getOn || 'on'}:primary, ${this.getOff || 'off'}:dark')"
+          [color]="${this.get} | map('${this.getOn || 'on'}:primary, ${this.getOff || 'off'}:medium')"
           states="${this.states || 'on,off'}">
         <ftui-icon name="${this.icon}" color="transparent"></ftui-icon>
       </ftui-button>

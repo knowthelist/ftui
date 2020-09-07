@@ -1,0 +1,24 @@
+:host {
+  background-color: var(--grid-background-color);
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+}
+
+:host([shape="round"]) {
+  border-radius: 1.5em;
+}
+
+:host ::slotted(header) {
+  color: var(--grid-header-color);
+  background: var(--grid-header-background-color);
+  font-weight: bold;
+  padding: 0.25em;
+  width: 100%;
+  text-align: center;
+}
+
+:host([shape="round"]) ::slotted(header) {
+  border-top-right-radius: 1em;
+  border-top-left-radius: 1em;
+}

@@ -29,6 +29,11 @@ export class FtuiCircleMenu extends FtuiElement {
     });
   }
 
+  template() {
+    return `<style> @import "components/circlemenu/circlemenu.component.css"; </style>
+      <slot></slot>`;
+  }
+
   static get defaults() {
     return {
       circleRadius: 6,
@@ -39,5 +44,4 @@ export class FtuiCircleMenu extends FtuiElement {
   }
 }
 
-ftui.appendStyleLink(ftui.config.basedir + 'components/circlemenu/circlemenu.component.css');
 window.customElements.define('ftui-circlemenu', FtuiCircleMenu);

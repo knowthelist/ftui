@@ -1,30 +1,20 @@
-ftui-circlemenu {
+:host {
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
+  min-width: 1px;
+  min-height: 1px;
 }
 
-ftui-circlemenu ul{
-  position:absolute;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-width: 1px;
-  min-height: 1px;;
-} 
-
-ftui-circlemenu  li:first-child {
+:host ::slotted(*:first-child) {
   cursor: pointer; 
   transform: translateZ(0); 
+  position: absolute;
 }
 
-ftui-circlemenu li {
+:host ::slotted(*) {
   position: absolute;
   z-index: 1;
   opacity: 1;
-}
-
-ftui-circlemenu a{
-  text-decoration: none;
-  color:#fff;
 }

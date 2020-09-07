@@ -1,37 +1,6 @@
-ftui-grid {
+:host {
   position: relative;
   display: block;
   width: 100vw;
   height: 100vh;
-}
-
-ftui-grid  ftui-grid-tile {
-  background-color: var(--grid-background-color);
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-}
-
-ftui-grid ftui-grid-tile.round {
-  border-radius: 1.5em;
-}
-
-ftui-grid ftui-grid-tile header {
-  color: var(--grid-header-color);
-  background: var(--grid-header-background-color);
-  font-weight: bold;
-  padding: 0.25em;
-  width: 100%;
-  text-align: center;
-}
-
-ftui-grid ftui-grid-tile.round header {
-  border-top-right-radius: 1em;
-  border-top-left-radius: 1em;
-}
-
-ftui-grid ftui-grid-tile header.transparent,
-.dialog > header.transparent,
-.card > header.transparent {
-  background: transparent;
 }
