@@ -8,7 +8,7 @@
 */
 
 import { FtuiButton } from '../button/button.component.js';
-import { ftui } from '../../modules/ftui/ftui.module.js';
+import * as ftui from '../../modules/ftui/ftui.helper.js';
 
 class FtuiTab extends FtuiButton {
 

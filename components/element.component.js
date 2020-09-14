@@ -8,14 +8,13 @@
 */
 
 
-import { ftui } from '../modules/ftui/ftui.module.js';
-import { ftuiBinding } from '../modules/ftui/ftui.binding.js';
+import { log, toBool } from '../modules/ftui/ftui.helper.js';
 
 let uids = {};
 
 export class FtuiElement extends HTMLElement {
 
-  constructor(defaultAttributes) {
+  constructor(attributes) {
     super();
 
     if (!this.id) {
@@ -25,7 +24,7 @@ export class FtuiElement extends HTMLElement {
       this.id = `${this.localName}-${uids[this.localName]++}`;
     }
 
-    this.defaults = defaultAttributes;
+    this.defaults = Object.assign(FtuiElement.defaults, attributes);
 
     this.initProperties(this.defaults);
 
@@ -33,7 +32,10 @@ export class FtuiElement extends HTMLElement {
       this.createShadowRoot();
     }
 
-    this.binding = new ftuiBinding(this);
+    if (window.ftuiApp) {
+      ftuiApp.attachBinding(this);
+    }
+   
   }
 
   createShadowRoot() {
@@ -43,15 +45,31 @@ export class FtuiElement extends HTMLElement {
     this.shadowRoot.appendChild(elemTemplate.content.cloneNode(true));
   }
 
+  static get defaults() {
+    return {
+      hidden: false,
+      disabled: false
+    };
+  }
+
   static get observedAttributes() {
-    return ['disabled', 'hidden'];
+    return [...Object.keys(FtuiElement.defaults)];
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
-    ftui.log(3, `${this.id} -  attributeChangedCallback name=${name}, oldValue=${oldValue}, newValue=${newValue}`)
+    log(3, `${this.id} -  attributeChangedCallback name=${name}, oldValue=${oldValue}, newValue=${newValue}`)
     if (typeof this.onAttributeChanged === 'function') {
       // call the hook function of the instance
       this.onAttributeChanged(name, oldValue, newValue);
+    }
+    switch (name) {
+      case 'hidden':
+        this.style.display = newValue !== null ? 'none' : '';
+        break;
+      case 'disabled':
+        this.style.filter = newValue !== null ? 'invert(0.5) sepia(1) saturate(0) blur(1px)' : '';
+        this.style.pointerEvents = newValue !== null ? 'none' : '';
+        break;
     }
   }
 

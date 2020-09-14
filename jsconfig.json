@@ -3,7 +3,8 @@
     "target": "ES2020"
   },
   "files": [
-    "./modules/ftui/ftui.module.js",
+    "modules/ftui/ftui.helper.js",
+    "modules/ftui/ftui.app.js"
   ],
   "include": [
     "./**/*.js"

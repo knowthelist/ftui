@@ -641,17 +641,12 @@ img.faded {
   filter: invert(0.5) sepia(1) saturate(0);
 } */
 
-[hide-invalid].is-invalid, .hide, [hidden] {
-  display: none !important;
+.hidden {
+  display: none;
 }
 
 .has-error {
   border: dashed 2px red;
-}
-
-[disabled] {
-  filter: invert(0.5) sepia(1) saturate(0) blur(1px);
-  pointer-events: none;
 }
 
 .shake {

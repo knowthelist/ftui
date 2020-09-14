@@ -9,7 +9,7 @@
 
 import { FtuiElement } from '../element.component.js';
 import { FtuiGridTile } from './grid-tile.component.js';
-import { ftui } from '../../modules/ftui/ftui.module.js';
+import * as ftui from '../../modules/ftui/ftui.helper.js';
 
 class FtuiGrid extends FtuiElement {
 
@@ -25,14 +25,15 @@ class FtuiGrid extends FtuiElement {
     };
     super(defaults);
 
+    this.windowWidth = 0;
     this.configureGrid();
 
     if (this.resize) {
       window.addEventListener('resize', () => {
-        if (ftui.states.width !== window.innerWidth) {
-          clearTimeout(ftui.states.delayResize);
-          ftui.states.delayResize = setTimeout(this.configureGrid, 500);
-          ftui.states.width = window.innerWidth;
+        if (this.windowWidth !== window.innerWidth) {
+          clearTimeout(this.resizeTimerHandle);
+          this.resizeTimerHandle= setTimeout(this.configureGrid, 500);
+          this.windowWidth = window.innerWidth;
         }
       });
     }

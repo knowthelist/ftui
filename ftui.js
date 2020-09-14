@@ -1,5 +1,5 @@
 
-let ftui;
+
 
 // TODO: needs to be refactored
 /* const menu = document.querySelector('#menu');
@@ -8,8 +8,8 @@ menu && menu.addEventListener('click', event => {
 }); */
 
 async function main() { 
-  const module = await import("./modules/ftui/ftui.module.js");
-  ftui = module.ftui;
+  const ftuiModule = await import("./modules/ftui/ftui.app.js");
+  window.ftuiApp = ftuiModule.ftuiApp;
 }
 
 window.addEventListener('load', function(){
@@ -19,21 +19,21 @@ window.addEventListener('load', function(){
 // initially loading the page
 // or navigating to the page from another page in the same window or tab
 window.addEventListener('pageshow', () => {
-  if (typeof ftui === 'undefined') {
+  if (typeof ftuiApp === 'undefined') {
     // load FTUI
     main();
    } else { 
-      ftui.setOnline();
+      ftuiApp.setOnline();
    }
 });
 
 window.addEventListener('beforeunload', () => {
-  ftui.log(5, 'beforeunload');
-  ftui.setOffline();
+  ftuiApp.log(5, 'beforeunload');
+  ftuiApp.setOffline();
 });
 
-window.addEventListener('online', () => ftui.updateOnlineStatus());
-window.addEventListener('offline', () => ftui.updateOnlineStatus());
+window.addEventListener('online', () => ftuiApp.checkOnlineStatus());
+window.addEventListener('offline', () => ftuiApp.checkOnlineStatus());
 
 // after the page became visible, check server connection
 document.addEventListener('visibilitychange', () => {
@@ -41,13 +41,13 @@ document.addEventListener('visibilitychange', () => {
     // page is hidden
   } else {
     // page is visible
-    ftui.log(1, 'Page became visible again -> start healthCheck in 3 secondes ');
-    ftui.scheduleHealthCheck();
+    ftuiApp.log(1, 'Page became visible again -> start healthCheck in 3 secondes ');
+    ftuiApp.checkConnection();
   }
 });
 
 window.onerror = function (msg, url, lineNo, columnNo, error) {
   const file = url.split('/').pop();
-  ftui.toast([file + ':' + lineNo, error].join('<br/>'), 'error');
+  ftuiApp.toast([file + ':' + lineNo, error].join('<br/>'), 'error');
   return false;
 };

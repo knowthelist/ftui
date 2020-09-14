@@ -1,8 +1,9 @@
 import { parseHocon } from '../hocon/hocon.min.js';
-import { ftui } from './ftui.module.js';
+import * as ftui from './ftui.helper.js';
+import { fhemService } from './fhem.service.js';
 
 
-export class ftuiBinding {
+export class FtuiBinding {
 
   constructor(element) {
 
@@ -27,7 +28,7 @@ export class ftuiBinding {
     if (this.config?.input?.readings) {
       // subscribe input events (from FHEM reading to component)
       Object.keys(this.config.input.readings).forEach((reading) => {
-        ftui.getReadingEvents(reading).subscribe((param) => this.onReadingEvent(param));
+        fhemService.getReadingEvents(reading).subscribe((param) => this.onReadingEvent(param));
       });
     }
 
@@ -38,7 +39,9 @@ export class ftuiBinding {
           if (mutation.type == "attributes") {
             const attributeName = mutation.attributeName;
             const attributeValue = mutation.target[attributeName] || mutation.target.getAttribute(attributeName);
-            this.handleAttributeChanged(attributeName, attributeValue);
+            if (!this.private.isChanging[attributeName]) {
+              this.handleAttributeChanged(attributeName, attributeValue);
+            }
             this.private.isChanging[attributeName] = false;
           }
         });
@@ -51,9 +54,8 @@ export class ftuiBinding {
     }
 
     // define debounced function
-    this.debouncedSubmitCommand = ftui.debounce(this.submitCommand, this.element.debounce);
+    this.debouncedSubmitCommand = ftui.debounce(fhemService.submitCommand, this.element.debounce);
   }
-
 
   get unbindAttributes() {
     return Object.assign(this.element.defaults || {}, this.private.unbindAttributes);
@@ -66,14 +68,17 @@ export class ftuiBinding {
   // received events from FHEM
   onReadingEvent(readingData) {
     const readingAttributeMap = this.config.input.readings[readingData.id].attributes;
+    console.log(readingData, readingAttributeMap)
     Object.entries(readingAttributeMap)
       .forEach(([attribute, options]) => {
-        const value = readingData[options.source];
-        const filteredValue = this.filterText(value, options.filter);
+        const value = readingData[options.property];
+        const filteredValue = this.filter(value, options.filter);
+        console.log(this.element.id, 'attribute:', attribute, 'value:', value, 'filteredValue:', filteredValue, 'isDefined:', ftui.isDefined(filteredValue))
         if (ftui.isDefined(filteredValue)) {
+          console.log('element[attribute]:', String(this.element[attribute]), 'filteredValue:', String(filteredValue))
           if (String(this.element[attribute]) !== String(filteredValue)) {
-            ftui.log(3, `${this.element.id}  -  onReadingEvent: set this.${attribute}=${filteredValue}`);
-            // avoid endless loop
+            ftui.log(1, `${this.element.id}  -  onReadingEvent: set this.${attribute}=${filteredValue}`);
+            // avoid endless loops
             this.private.isChanging[attribute] = true;
             // change element's property
             this.element[attribute] = filteredValue;
@@ -87,22 +92,20 @@ export class ftuiBinding {
  * and sends it to FHEM
  */
   handleAttributeChanged(attributeName, attributeValue) {
-    if (!this.private.isChanging[attributeName]) {
-      const targetReadings = this.config?.output?.attributes[attributeName]?.readings || [];
-      Object.entries(targetReadings).forEach(([readingId, options]) => {
+    const targetReadings = this.config?.output?.attributes[attributeName]?.readings || [];
+    Object.entries(targetReadings).forEach(([readingId, options]) => {
 
-        //const attributeValue = this.element[attributeName];
-        const filteredValue = this.filterText(attributeValue, options.filter);
-        const value = String(options.value).replaceAll('$value', filteredValue);
-        const [parameterId, deviceName, readingName] = ftui.parseReadingId(readingId);
-        const cmdline = [options.cmd, deviceName, readingName, value].join(' ');
+      //const attributeValue = this.element[attributeName];
+      const filteredValue = this.filter(attributeValue, options.filter);
+      const value = String(options.value).replaceAll('$value', filteredValue);
+      const [parameterId, deviceName, readingName] = ftui.parseReadingId(readingId);
+      const cmdline = [options.cmd, deviceName, readingName, value].join(' ');
 
-        // update storage
-        ftui.updateReadingValue(parameterId, value);
-        // notify FHEM
-        this.sendCommand(cmdline);
-      });
-    }
+      // update storage
+      fhemService.updateReadingValue(parameterId, value);
+      // notify FHEM
+      this.sendCommand(cmdline);
+    });
   }
 
   // TODO: find a better name
@@ -110,13 +113,7 @@ export class ftuiBinding {
     if (this.element.debounce) {
       this.debouncedSubmitCommand(cmdl);
     } else {
-      this.submitCommand(cmdl);
-    }
-  }
-
-  submitCommand(cmdl) {
-    if (ftui.sendFhemCommand(cmdl)) {
-      ftui.toast(cmdl);
+      fhemService.submitCommand(cmdl);
     }
   }
 
@@ -125,16 +122,16 @@ export class ftuiBinding {
     /* 
     in    "dummy1:state:value | map('on:1,off:0')" 
     
-    out   input.readings.GartenTemp.attributes.text.source="value"
+    out   input.readings.GartenTemp.attributes.text.property="value"
           input.readings.GartenTemp.attributes.text.filter="map('10:low,30:high')""
     */
 
     const semicolonNotInQuotes = /;(?=(?:[^']*'[^']*')*[^']*$)/;
 
     attribute.value.split(semicolonNotInQuotes).forEach((attrValue, idx) => {
-      const { readingID, source, filter } = this.parseInputBinding(attrValue);
+      const { readingID, property, filter } = this.parseInputBinding(attrValue);
 
-      this.private.config += `input.readings.${readingID}.attributes.${attribute.name}.source = "${source}"\n`;
+      this.private.config += `input.readings.${readingID}.attributes.${attribute.name}.property = "${property}"\n`;
       this.private.config += `input.readings.${readingID}.attributes.${attribute.name}.filter = "${filter}"\n`;
     });
   }
@@ -171,8 +168,8 @@ export class ftuiBinding {
       if (name.startsWith('[(') && name.endsWith(')]')) {
         this.initInputBinding({ name: name.slice(2, -2), value: attr.value });
         this.initOutputBinding({ name: name.slice(2, -2), value: attr.value });
-      } else if (name.startsWith('((') && name.endsWith('))')) {
-        this.initEventListener({ name: name.slice(2, -2), value: attr.value });
+      } else if (name.startsWith('@')) {
+        this.initEventListener({ name: name.slice(1), value: attr.value });
       } else if (name.startsWith('[') && name.endsWith(']')) {
         this.initInputBinding({ name: name.slice(1, -1), value: attr.value });
       } else if (name.startsWith('(') && name.endsWith(')')) {
@@ -192,11 +189,11 @@ export class ftuiBinding {
 
   parseInputBinding(attrText) {
     let index = 0;
-    let sourceIndex = 0;
+    let propertyIndex = 0;
     let isFilter = false;
     let device = '';
     let reading = '';
-    let source = '';
+    let property = '';
     let filter = '';
     let currentValue = '';
 
@@ -215,8 +212,8 @@ export class ftuiBinding {
 
       if (c === ':' || c === '|' || index === attrText.length) {
         index === attrText.length ? currentValue += c : null;
-        sourceIndex++;
-        switch (sourceIndex) {
+        propertyIndex++;
+        switch (propertyIndex) {
           case 1:
             {
               device = currentValue.trim();
@@ -229,7 +226,7 @@ export class ftuiBinding {
             }
           case 3:
             {
-              source = currentValue.trim();
+              property = currentValue.trim();
               break;
             }
         }
@@ -244,7 +241,7 @@ export class ftuiBinding {
 
     return {
       readingID: ftui.getReadingID(device, reading),
-      source: source || 'value',
+      property: property || 'value',
       filter
     }
   }
@@ -264,12 +261,12 @@ export class ftuiBinding {
     }
   }
 
-  filterText(text, filter = '') {
+  filter(text, filter = '') {
     if (filter !== '') {
       const part = value => input => ftui.getPart(input, value);
       const round = value => input => ftui.round(input, value);
       const toDate = value => input => ftui.dateFromString(input, value);
-      const toBool = () => input => (['on', 'On', 'ON', '1', 'true', 'TRUE'].includes(input));
+      const toBool = () => input => ftui.toBool(input);
       const format = value => input => ftui.dateFormat(input, value);
       const toInt = value => input => parseInt(input, value);
       const add = value => input => input + value;
