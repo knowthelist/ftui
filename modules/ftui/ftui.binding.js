@@ -52,9 +52,6 @@ export class FtuiBinding {
       });
 
     }
-
-    // define debounced function
-    this.debouncedSubmitCommand = ftui.debounce(fhemService.submitCommand, this.element.debounce);
   }
 
   get unbindAttributes() {
@@ -111,7 +108,7 @@ export class FtuiBinding {
   // TODO: find a better name
   sendCommand(cmdl) {
     if (this.element.debounce) {
-      this.debouncedSubmitCommand(cmdl);
+      fhemService.debouncedSubmitCommand(this.element.debounce, cmdl);
     } else {
       fhemService.submitCommand(cmdl);
     }

@@ -195,11 +195,11 @@ export function round(number, precision) {
   return shift(Math.round(shift(number, precision, false)), precision, true);
 }
 
-export function debounce(callback, delay = 0) {
+export function debounce(callback, context = this) {
   let handle;
-  return (...args) => {
+  return (delay, ...args) => {
     clearTimeout(handle);
-    handle = setTimeout(callback.bind(this), delay, ...args);
+    handle = setTimeout(callback.bind(context), delay, ...args);
   }
 }
 

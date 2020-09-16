@@ -30,6 +30,10 @@ class FhemService {
       }
     };
 
+
+    // define debounced function
+    this.debouncedSubmitCommand = ftui.debounce(this.submitCommand, this);
+
     this.debugEvents = new Subject();
     this.errorEvents = new Subject();
 
