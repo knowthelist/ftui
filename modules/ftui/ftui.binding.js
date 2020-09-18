@@ -8,7 +8,6 @@ export class FtuiBinding {
   constructor(element) {
 
     this.private = {
-      unbindAttributes: {},
       config: '',
       outputAttributes: new Set(),
       observer: null,
@@ -54,10 +53,6 @@ export class FtuiBinding {
     }
   }
 
-  get unbindAttributes() {
-    return Object.assign(this.element.defaults || {}, this.private.unbindAttributes);
-  }
-
   get outputAttributes() {
     return [...this.private.outputAttributes];
   }
@@ -96,22 +91,17 @@ export class FtuiBinding {
       const filteredValue = this.filter(attributeValue, options.filter);
       const value = String(options.value).replaceAll('$value', filteredValue);
       const [parameterId, deviceName, readingName] = ftui.parseReadingId(readingId);
-      const cmdline = [options.cmd, deviceName, readingName, value].join(' ');
+      const cmdLine = [options.cmd, deviceName, readingName, value].join(' ');
 
       // update storage
       fhemService.updateReadingValue(parameterId, value);
       // notify FHEM
-      this.sendCommand(cmdline);
+      if (this.element.debounce) {
+        fhemService.debouncedUpdateFhem(this.element.debounce, cmdLine);
+      } else {
+        fhemService.updateFhem(cmdLine);
+      }
     });
-  }
-
-  // TODO: find a better name
-  sendCommand(cmdl) {
-    if (this.element.debounce) {
-      fhemService.debouncedSubmitCommand(this.element.debounce, cmdl);
-    } else {
-      fhemService.submitCommand(cmdl);
-    }
   }
 
   initInputBinding(attribute) {
@@ -178,9 +168,7 @@ export class FtuiBinding {
       } else if (name.startsWith('bindon:')) {
         this.initInputBinding({ name: name.slice(7), value: attr.value });
         this.initOutputBinding({ name: name.slice(7), value: attr.value });
-      } else {
-        this.private.unbindAttributes[attr.name] = ftui.isNumeric(attr.value) ? Number(attr.value) : attr.value;
-      }
+      } 
     });
   }
 
@@ -275,7 +263,7 @@ export class FtuiBinding {
       };
       try {
         const pipeNotInQuotes = /\|(?=([^']*'[^']*')*[^']*$)/g;
-        filter = filter.replace(pipeNotInQuotes, ',').replace('^', '"').replace('$', '"');
+        filter = filter.replace(pipeNotInQuotes, ',').replaceAll('`', '"').replaceAll('´', '"');
         const fn = eval('pipe(' + filter + ')');
         return fn(text);
       } catch (e) {

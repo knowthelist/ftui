@@ -127,7 +127,7 @@ export function dateFromString(str) {
       : (m3) ? new Date(+m3[3], +m3[2] - 1, +m3[1], 0, -offset, 0, 0) : new Date();
 }
 
-export function dateFormat(date, format) {
+export function dateFormat(date, format, lang = 'de') {
   const weekday_de = ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'];
   const weekday = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
   const YYYY = date.getFullYear().toString();
@@ -138,7 +138,7 @@ export function dateFormat(date, format) {
   const mm = date.getMinutes().toString();
   const ss = date.getSeconds().toString();
   const d = date.getDay();
-  const eeee = (this.config?.lang === 'de') ? weekday_de[d] : weekday[d];
+  const eeee = (lang === 'de') ? weekday_de[d] : weekday[d];
   const eee = eeee.substr(0, 3);
   const ee = eeee.substr(0, 2);
   let ret = format;

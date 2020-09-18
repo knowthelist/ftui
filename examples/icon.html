@@ -28,7 +28,7 @@
   <ftui-grid base-width="70" base-height="70">
 
     <ftui-grid-tile row="1" col="1" height="1" width="3">
-      <div class="cell tall">Icons</div>
+      <h1 class="cell">Icons</h1>
     </ftui-grid-tile>
     <ftui-grid-tile row="2" col="1" height="9" width="3">
       <header>SINGLE</header>
@@ -38,10 +38,7 @@
         <ftui-icon [name]="dummy1 | map('on:lightbulb-on-outline, off:lightbulb-outline')" [rgb]="HUEDevice6:rgb">
         </ftui-icon>
 
-        <ftui-icon name="anchor"></ftui-icon>
-
-
-        <ftui-label text-reading="dummy1"></ftui-label>
+        <ftui-label [text]="dummy1"></ftui-label>
       </div>
 
     </ftui-grid-tile>
@@ -74,7 +71,7 @@
 
       <div class="cell big">
         <ftui-icon name="battery-0" color="light"
-          [name]="ftuitest | map('0:battery-0, 25: battery-1, 50:battery-2, 75: battery-3, 100: battery')"
+          [name]="ftuitest | map('`.*`:battery-0, 25: battery-1, 50:battery-2, 75: battery-3, 100: battery')"
           [color]="ftuitest | map('0:danger, 50:warning, 75: success')">
         </ftui-icon>
         <ftui-label [text]="ftuitest"></ftui-label>
@@ -83,10 +80,28 @@
     </ftui-grid-tile>
 
     <ftui-grid-tile row="3" col="7" height="8" width="3">
-      <header></header>
+      <header>WINDOW</header>
 
-      <div class="cell">
+      <div class="row">
+        <div class="column">
 
+          <ftui-label [text]="dummy1"></ftui-label>
+
+          <ftui-icon class="big" 
+            [name]="dummy1 | map('on: window-open, off: window-closed')">
+          </ftui-icon>
+
+        </div>
+        <div class="column">
+
+          <ftui-label [text]="dummy1 | map('on: offen, off: geschlossen')"></ftui-label>
+
+          <ftui-icon class="big" 
+            [name]="dummy1 | map('on: window-open, off: window-closed')"
+            [color]="dummy1 | map('on: danger, off: medium')">
+          </ftui-icon>
+
+        </div>
       </div>
 
     </ftui-grid-tile>

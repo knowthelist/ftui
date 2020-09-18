@@ -74,56 +74,56 @@ export class FtuiElement extends HTMLElement {
   }
 
   initProperties(attributes) {
-    Object.entries(attributes).forEach(([key, defaultValue]) => {
-      if (typeof attributes[key] === 'boolean') {
-        this.defineBooleanProperty(key);
-        this.initBooleanAttribute(key, defaultValue);
-      } else if (typeof attributes[key] === 'number') {
-        this.defineNumberProperty(key);
-        this.initAttribute(key, defaultValue);
+    Object.entries(attributes).forEach(([name, defaultValue]) => {
+      if (typeof attributes[name] === 'boolean') {
+        this.defineBooleanProperty(name);
+        this.initBooleanAttribute(name, defaultValue);
+      } else if (typeof attributes[name] === 'number') {
+        this.defineNumberProperty(name);
+        this.initAttribute(name, defaultValue);
       } else {
-        this.defineStringProperty(key);
-        this.initAttribute(key, defaultValue);
+        this.defineStringProperty(name);
+        this.initAttribute(name, defaultValue);
       }
     })
   }
 
-  initAttribute(key, value) {
-    if (!this.hasAttribute(key)) {
-      this.setAttribute(key, value);
+  initAttribute(name, value) {
+    if (!this.hasAttribute(name)) {
+      this.setAttribute(name, value);
     }
   }
 
-  initBooleanAttribute(key, value) {
-    if (!this.hasAttribute(key) && value) {
-      this.setAttribute(key, '');
+  initBooleanAttribute(name, value) {
+    if (!this.hasAttribute(name) && value) {
+      this.setAttribute(name, '');
     }
   }
 
-  defineBooleanProperty(key) {
-    Object.defineProperty(this, key, {
-      get() { return this.hasAttribute(key); },
+  defineBooleanProperty(name) {
+    Object.defineProperty(this, name, {
+      get() { return this.hasAttribute(name); },
       set(value) {
         if (value) {
-          this.setAttribute(key, '');
+          this.setAttribute(name, '');
         } else {
-          this.removeAttribute(key);
+          this.removeAttribute(name);
         }
       }
     });
   }
 
-  defineNumberProperty(key) {
-    Object.defineProperty(this, key, {
-      get() { return Number(this.getAttribute(key)); },
-      set(value) { this.setAttribute(key, value); }
+  defineNumberProperty(name) {
+    Object.defineProperty(this, name, {
+      get() { return Number(this.getAttribute(name)); },
+      set(value) { this.setAttribute(name, value); }
     });
   }
 
-  defineStringProperty(key) {
-    Object.defineProperty(this, key, {
-      get() { return this.getAttribute(key); },
-      set(value) { this.setAttribute(key, value); }
+  defineStringProperty(name) {
+    Object.defineProperty(this, name, {
+      get() { return this.getAttribute(name); },
+      set(value) { this.setAttribute(name, value); }
     });
   }
 }

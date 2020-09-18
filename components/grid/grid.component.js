@@ -32,7 +32,7 @@ class FtuiGrid extends FtuiElement {
       window.addEventListener('resize', () => {
         if (this.windowWidth !== window.innerWidth) {
           clearTimeout(this.resizeTimerHandle);
-          this.resizeTimerHandle= setTimeout(this.configureGrid, 500);
+          this.resizeTimerHandle = setTimeout(this.configureGrid, 500);
           this.windowWidth = window.innerWidth;
         }
       });

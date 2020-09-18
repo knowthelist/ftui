@@ -32,7 +32,7 @@ class FhemService {
 
 
     // define debounced function
-    this.debouncedSubmitCommand = ftui.debounce(this.submitCommand, this);
+    this.debouncedUpdateFhem = ftui.debounce(this.updateFhem, this);
 
     this.debugEvents = new Subject();
     this.errorEvents = new Subject();
@@ -141,7 +141,7 @@ class FhemService {
 
     window.performance.mark('start get jsonlist2');
     this.states.refresh.request =
-      this.postCommand('jsonlist2 ' + this.config.refresh.filter)
+      this.sendCommand('jsonlist2 ' + this.config.refresh.filter)
         .then(res => res.json())
         .then(fhemJSON => this.parseRefreshResult(fhemJSON)
         );
@@ -327,26 +327,18 @@ class FhemService {
     this.states.connection.lastEventTimestamp = new Date();
   }
 
-  submitCommand(cmdl) {
-    if (fhemService.sendFhemCommand(cmdl)) {
-      this.debugEvents.publish(cmdl);
-    }
-  }
-
-  sendFhemCommand(cmdline) {
+  updateFhem(cmdLine) {
     if (!this.states.isOffline) {
-      this.postCommand(cmdline)
-        .then(this.handleFetchErrors)
+      this.sendCommand(cmdLine)
         .then(response => ftui.log(3, response))
-        .catch(error => this.errorEvents.publish('<u>FHEM Command failed</u><br>' + error + '<br>cmd=' + cmdline));
-      return true;
+        .catch(error => this.errorEvents.publish('<u>FHEM Command failed</u><br>' + error + '<br>cmd=' + cmdLine));
+      this.debugEvents.publish(cmdLine);
     } else {
       this.errorEvents.publish('<u>App is offline</u><br>sendToFhem failed');
-      return false;
     }
   }
-
-  postCommand(cmdline = '', async = '0') {
+  
+  sendCommand(cmdline = '', async = '0') {
     const url = new URL(this.config.fhemDir);
     const params = {
       cmd: cmdline,
