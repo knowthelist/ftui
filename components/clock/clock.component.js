@@ -13,11 +13,11 @@ import { dateFormat } from '../../modules/ftui/ftui.helper.js';
 
 export class FtuiClock extends FtuiElement {
 
-  constructor(attributes) {
+  constructor(properties) {
 
-    super(Object.assign(FtuiClock.defaults, attributes));
+    super(Object.assign(FtuiClock.properties, properties));
 
-    this.element = this.shadowRoot.querySelector('#outlet');
+    this.outlet = this.shadowRoot.querySelector('#outlet');
     this.update();
     this.startInterval();
     this.getFhemTime();
@@ -27,7 +27,7 @@ export class FtuiClock extends FtuiElement {
     return `<div id="outlet"></div>`;
   }
 
-  static get defaults() {
+  static get properties() {
     return {
       format: 'hh:mm:ss',
       serverDiff: 0,
@@ -48,7 +48,7 @@ export class FtuiClock extends FtuiElement {
   }
 
   update() {
-    this.element.innerHTML = dateFormat(this.getDateTime(), this.format);
+    this.outlet.innerHTML = dateFormat(this.getDateTime(), this.format);
   }
 
   getDateTime() {

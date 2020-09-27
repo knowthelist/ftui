@@ -21,7 +21,7 @@
   <link href="favicon.ico" rel="icon" type="image/x-icon" />
 
 
-  <title>FTUI Example Clock</title>
+  <title>FTUI Example Dropdown</title>
 </head>
 
 <body>
@@ -31,22 +31,36 @@
     <ftui-grid-tile row="1" col="1" height="1" width="1">
       <header>DEFAULT</header>
       <div class="cell">
-        <ftui-clock></ftui-clock>
+
+        <ftui-dropdown></ftui-dropdown>
+      
       </div>
     </ftui-grid-tile>
 
     <ftui-grid-tile row="1" col="2" height="1" width="1">
-      <header>FHEM TIME</header>
+      <header>VALUE BINDING</header>
       <div class="cell">
-        <ftui-clock isFhemTime></ftui-clock>
+
+        <ftui-dropdown list=",item1,item2,item3" (value)="dummy1"></ftui-dropdown>
+      
       </div>
     </ftui-grid-tile>
 
     <ftui-grid-tile row="1" col="3" height="1" width="1">
-      <header>Format</header>
-      <div class="column">
-        <ftui-clock format="eeee" class="bigger"></ftui-clock>
-        <ftui-clock format="hh:mm" class="tall thin"></ftui-clock>
+      <header>LIST BINDING</header>
+      <div class="cell">
+
+        <ftui-dropdown [list]="ftuitest:list" [(value)]="ftuitest" @value-change="console.log($event.detail.value)"></ftui-dropdown>
+
+      </div>
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="1" col="4" height="1" width="1">
+      <header>AUDIO</header>
+      <div class="cell">
+
+        <ftui-dropdown [list]="AvReceiver:inputList" [(value)]="AvReceiver:input"></ftui-dropdown>
+
       </div>
     </ftui-grid-tile>
 

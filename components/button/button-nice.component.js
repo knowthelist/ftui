@@ -12,9 +12,9 @@ import { FtuiIcon } from '../icon/icon.component.js';
 import { FtuiButton } from '../button/button.component.js';
 
 export class FtuiButtonNice extends FtuiElement {
-  constructor(attributes) {
+  constructor(properties) {
 
-    super(Object.assign(FtuiButtonNice.defaults, attributes));
+    super(Object.assign(FtuiButtonNice.properties, properties));
   }
 
   template() {
@@ -30,7 +30,7 @@ export class FtuiButtonNice extends FtuiElement {
       `;
   }
 
-  static get defaults() {
+  static get properties() {
     return {
       icon: 'lightbulb',
       get: '',

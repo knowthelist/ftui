@@ -14,7 +14,7 @@ let uids = {};
 
 export class FtuiElement extends HTMLElement {
 
-  constructor(attributes) {
+  constructor(properties) {
     super();
 
     if (!this.id) {
@@ -24,9 +24,9 @@ export class FtuiElement extends HTMLElement {
       this.id = `${this.localName}-${uids[this.localName]++}`;
     }
 
-    this.defaults = Object.assign(FtuiElement.defaults, attributes);
+    this.properties = Object.assign(FtuiElement.properties, properties);
 
-    this.initProperties(this.defaults);
+    this.initProperties(this.properties);
 
     if (typeof this.template === 'function') {
       this.createShadowRoot();
@@ -45,7 +45,7 @@ export class FtuiElement extends HTMLElement {
     this.shadowRoot.appendChild(elemTemplate.content.cloneNode(true));
   }
 
-  static get defaults() {
+  static get properties() {
     return {
       hidden: false,
       disabled: false
@@ -53,7 +53,7 @@ export class FtuiElement extends HTMLElement {
   }
 
   static get observedAttributes() {
-    return [...Object.keys(FtuiElement.defaults)];
+    return [...Object.keys(FtuiElement.properties)];
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
@@ -73,12 +73,18 @@ export class FtuiElement extends HTMLElement {
     }
   }
 
-  initProperties(attributes) {
-    Object.entries(attributes).forEach(([name, defaultValue]) => {
-      if (typeof attributes[name] === 'boolean') {
+
+  emitChangeEvent(attribute, value) {
+    const event = new CustomEvent(attribute + 'Change', { detail : { value }});
+    this.dispatchEvent(event);
+  }
+
+  initProperties(properties) {
+    Object.entries(properties).forEach(([name, defaultValue]) => {
+      if (typeof properties[name] === 'boolean') {
         this.defineBooleanProperty(name);
         this.initBooleanAttribute(name, defaultValue);
-      } else if (typeof attributes[name] === 'number') {
+      } else if (typeof properties[name] === 'number') {
         this.defineNumberProperty(name);
         this.initAttribute(name, defaultValue);
       } else {

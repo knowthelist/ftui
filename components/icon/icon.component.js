@@ -11,8 +11,8 @@ import { FtuiElement } from '../element.component.js';
 
 export class FtuiIcon extends FtuiElement {
 
-  constructor(attributes) {
-    super(Object.assign(FtuiIcon.defaults, attributes));
+  constructor(properties) {
+    super(Object.assign(FtuiIcon.properties, properties));
     this.elementIcon = this.shadowRoot.querySelector('#icon');
   }
 
@@ -23,7 +23,7 @@ export class FtuiIcon extends FtuiElement {
       `;
   }
 
-  static get defaults() {
+  static get properties() {
     return {
       type: 'svg',
       path: 'icons',
@@ -34,7 +34,7 @@ export class FtuiIcon extends FtuiElement {
   }
 
   static get observedAttributes() {
-    return [...Object.keys(FtuiIcon.defaults), ...super.observedAttributes];
+    return [...Object.keys(FtuiIcon.properties), ...super.observedAttributes];
   }
 
   onAttributeChanged(name, oldValue, newValue) {

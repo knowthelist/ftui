@@ -12,9 +12,9 @@ import * as ftui from '../../modules/ftui/ftui.helper.js';
 
 class FtuiTab extends FtuiButton {
 
-  constructor(attributes) {
+  constructor(properties) {
 
-    super(Object.assign(FtuiTab.defaults, attributes));
+    super(Object.assign(FtuiTab.properties, properties));
 
     this.addEventListener('click', this.onClicked);
 
@@ -23,7 +23,7 @@ class FtuiTab extends FtuiButton {
     }
   }
 
-  static get defaults() {
+  static get properties() {
     return {
       group: 'default',
       color: 'dark',
@@ -32,7 +32,7 @@ class FtuiTab extends FtuiButton {
   }
 
   static get observedAttributes() {
-    return [...Object.keys(FtuiTab.defaults), ...super.observedAttributes];
+    return [...Object.keys(FtuiTab.properties), ...super.observedAttributes];
   }
 
   onClicked() {

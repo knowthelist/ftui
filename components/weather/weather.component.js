@@ -12,12 +12,12 @@ import map from './weather.map.js';
 
 class FtuiWeather extends FtuiIcon {
 
-  constructor(attributes) {
+  constructor(properties) {
 
-    super(Object.assign(FtuiWeather.defaults, attributes));
+    super(Object.assign(FtuiWeather.properties, properties));
   }
 
-  static get defaults() {
+  static get properties() {
     return {
       provider: 'proplanta',
       iconSet: 'meteocons',
@@ -28,7 +28,7 @@ class FtuiWeather extends FtuiIcon {
   }
 
   static get observedAttributes() {
-    return [...Object.keys(FtuiWeather.defaults), ...super.observedAttributes];
+    return [...Object.keys(FtuiWeather.properties), ...super.observedAttributes];
   }
 
   onAttributeChanged(name, oldValue, newValue) {

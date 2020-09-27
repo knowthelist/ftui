@@ -12,9 +12,9 @@ import { isEqual } from '../../modules/ftui/ftui.helper.js';
 
 
 export class FtuiButton extends FtuiElement {
-  constructor(attributes) {
+  constructor(properties) {
 
-    super(Object.assign(FtuiButton.defaults, attributes));
+    super(Object.assign(FtuiButton.properties, properties));
 
     this.addEventListener('touchstart', this.onDownEvent);
     this.addEventListener('mousedown', this.onDownEvent);
@@ -34,7 +34,7 @@ export class FtuiButton extends FtuiElement {
       `;
   }
 
-  static get defaults() {
+  static get properties() {
     return {
       states: 'on,off',
       fill: 'solid',
@@ -47,7 +47,7 @@ export class FtuiButton extends FtuiElement {
   }
 
   static get observedAttributes() {
-    return [...Object.keys(FtuiButton.defaults), ...super.observedAttributes];
+    return [...Object.keys(FtuiButton.properties), ...super.observedAttributes];
   }
 
   onDownEvent() {

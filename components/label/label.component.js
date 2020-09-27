@@ -11,8 +11,8 @@ import { FtuiElement } from '../element.component.js';
 
 export class FtuiLabel extends FtuiElement {
 
-  constructor(attributes) {
-    super(Object.assign(FtuiLabel.defaults, attributes));
+  constructor(properties) {
+    super(Object.assign(FtuiLabel.properties, properties));
 
     this.mainSlotElement = this.shadowRoot.querySelector('slot:not([name])');
   }
@@ -24,7 +24,7 @@ export class FtuiLabel extends FtuiElement {
     `;
   }
 
-  static get defaults() {
+  static get properties() {
     return {
       text: '',
       color: ''
@@ -32,7 +32,7 @@ export class FtuiLabel extends FtuiElement {
   }
 
   static get observedAttributes() {
-    return [...Object.keys(FtuiLabel.defaults), ...super.observedAttributes];
+    return [...Object.keys(FtuiLabel.properties), ...super.observedAttributes];
   }
 
   onAttributeChanged(name) {

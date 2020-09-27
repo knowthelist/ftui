@@ -11,9 +11,9 @@ import { FtuiElement } from '../element.component.js';
 
 class FtuiCheckbox extends FtuiElement {
 
-  constructor(attributes) {
+  constructor(properties) {
 
-    super(Object.assign(FtuiCheckbox.defaults, attributes));
+    super(Object.assign(FtuiCheckbox.properties, properties));
 
     this.parentElement.addEventListener('click', () => this.onClicked());
 
@@ -39,7 +39,7 @@ class FtuiCheckbox extends FtuiElement {
     `;
   }
 
-  static get defaults() {
+  static get properties() {
     return {
       states: 'off,on',
       texts: ',',
@@ -49,7 +49,7 @@ class FtuiCheckbox extends FtuiElement {
   }
 
   static get observedAttributes() {
-    return [...Object.keys(FtuiCheckbox.defaults), ...super.observedAttributes];
+    return [...Object.keys(FtuiCheckbox.properties), ...super.observedAttributes];
   }
 
   onAttributeChanged(name) {

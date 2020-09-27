@@ -12,10 +12,10 @@ import { FtuiElement } from '../element.component.js';
 class FtuiTabView extends FtuiElement {
 
   constructor() {
-    super(FtuiTabView.defaults);
+    super(FtuiTabView.properties);
   }
 
-  static get defaults() {
+  static get properties() {
     return {
       group: 'default',
       hidden: true
@@ -23,7 +23,7 @@ class FtuiTabView extends FtuiElement {
   }
 
   static get observedAttributes() {
-    return [...Object.keys(FtuiTabView.defaults), ...super.observedAttributes];
+    return [...Object.keys(FtuiTabView.properties), ...super.observedAttributes];
   }
 
 }

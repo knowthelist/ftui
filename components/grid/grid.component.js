@@ -14,7 +14,7 @@ import * as ftui from '../../modules/ftui/ftui.helper.js';
 class FtuiGrid extends FtuiElement {
 
   constructor() {
-    const defaults = {
+    const properties = {
       minX: 0,
       minY: 0,
       baseWidth: 0,
@@ -23,7 +23,7 @@ class FtuiGrid extends FtuiElement {
       rows: 0,
       margin: 8
     };
-    super(defaults);
+    super(properties);
 
     this.windowWidth = 0;
     this.configureGrid();

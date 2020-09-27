@@ -12,9 +12,9 @@ import { CircleMenu } from '../../modules/circle-menu/circle-menu.min.js';
 
 export class FtuiCircleMenu extends FtuiElement {
 
-  constructor(attributes) {
+  constructor(properties) {
 
-    super(Object.assign(FtuiCircleMenu.defaults, attributes));
+    super(Object.assign(FtuiCircleMenu.properties, properties));
 
     this.circlemenu = new CircleMenu(this, {
       trigger: 'click',
@@ -34,7 +34,7 @@ export class FtuiCircleMenu extends FtuiElement {
       <slot></slot>`;
   }
 
-  static get defaults() {
+  static get properties() {
     return {
       circleRadius: 6,
       keepOpen: false,

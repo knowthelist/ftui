@@ -32,7 +32,7 @@ export class FtuiBinding {
     }
 
     // subscribe output events (from component to FHEM reading)
-    if (this.private.outputAttributes.size > 0) {
+     if (this.private.outputAttributes.size > 0) {
       this.private.observer = new MutationObserver((mutations) => {
         mutations.forEach((mutation) => {
           if (mutation.type == "attributes") {
@@ -50,7 +50,7 @@ export class FtuiBinding {
         /* subtree: true, */
       });
 
-    }
+   }
   }
 
   get outputAttributes() {
@@ -276,7 +276,7 @@ export class FtuiBinding {
     }
   }
 
-  evalInContext(command) {
+  evalInContext(command, $event) {
     eval(command);
   }
 }

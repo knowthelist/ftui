@@ -11,9 +11,9 @@ import { FtuiElement } from '../element.component.js';
 
 class FtuiKnob extends FtuiElement {
 
-  constructor(attributes) {
+  constructor(properties) {
 
-    super(Object.assign(FtuiKnob.defaults, attributes));
+    super(Object.assign(FtuiKnob.properties, properties));
 
     if ( !this.hasScale && !this.hasScaleText && !this.hasValueText && !this.hasArc && !this.hasNeedle) {
       this.hasArc = true;
@@ -65,7 +65,7 @@ class FtuiKnob extends FtuiElement {
     </svg>`;
   }
 
-  static get defaults() {
+  static get properties() {
     return {
       startAngle: -210,
       endAngle: 30,
@@ -87,7 +87,7 @@ class FtuiKnob extends FtuiElement {
   }
 
   static get observedAttributes() {
-    return [...Object.keys(FtuiKnob.defaults), ...super.observedAttributes];
+    return [...Object.keys(FtuiKnob.properties), ...super.observedAttributes];
   }
 
   onAttributeChanged(name, oldValue, newValue) {

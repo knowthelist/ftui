@@ -12,13 +12,13 @@ import { FtuiElement } from '../element.component.js';
 export class FtuiGridTile extends FtuiElement {
 
   constructor() {
-    const defaults = {
+    const properties = {
       row: 0,
       col: 0,
       height: 0,
       width: 0,
     };
-    super(defaults);
+    super(properties);
   }
   
   template() {

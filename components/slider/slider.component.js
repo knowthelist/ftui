@@ -13,9 +13,9 @@ import { Rangeable } from '../../modules/rangeable/rangeable.min.js';
 
 export class FtuiSlider extends FtuiElement {
 
-  constructor(attributes) {
+  constructor(properties) {
 
-    super(Object.assign(FtuiSlider.defaults, attributes));
+    super(Object.assign(FtuiSlider.properties, properties));
 
     this.input = this.shadowRoot.querySelector('input');
     this.minElement = this.shadowRoot.querySelector('.numbers #min');
@@ -61,7 +61,7 @@ export class FtuiSlider extends FtuiElement {
     </div>`;
   }
 
-  static get defaults() {
+  static get properties() {
     return {
       debounce: 200,
       step: 1,
@@ -76,7 +76,7 @@ export class FtuiSlider extends FtuiElement {
   }
 
   static get observedAttributes() {
-    return [...Object.keys(FtuiSlider.defaults), ...super.observedAttributes];
+    return [...Object.keys(FtuiSlider.properties), ...super.observedAttributes];
   }
 
   onAttributeChanged(name, oldValue, newValue) {

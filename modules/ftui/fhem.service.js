@@ -302,7 +302,6 @@ class FhemService {
         const [id, value, html] = JSON.parse(line);
         const isTimestamp = id.match(/-ts$/);
         const parameterId = isTimestamp ? id.replace(/-ts$/, '') : id;
-        console.log(line)
         if (this.readings.has(parameterId)) {
           const parameterData = this.readings.get(parameterId).data;
           const isSTATE = (value !== html);
