@@ -32,7 +32,7 @@ export class FtuiBinding {
     }
 
     // subscribe output events (from component to FHEM reading)
-     if (this.private.outputAttributes.size > 0) {
+    if (this.private.outputAttributes.size > 0) {
       this.private.observer = new MutationObserver((mutations) => {
         mutations.forEach((mutation) => {
           if (mutation.type == "attributes") {
@@ -50,7 +50,7 @@ export class FtuiBinding {
         /* subtree: true, */
       });
 
-   }
+    }
   }
 
   get outputAttributes() {
@@ -60,14 +60,11 @@ export class FtuiBinding {
   // received events from FHEM
   onReadingEvent(readingData) {
     const readingAttributeMap = this.config.input.readings[readingData.id].attributes;
-    console.log(readingData, readingAttributeMap)
     Object.entries(readingAttributeMap)
       .forEach(([attribute, options]) => {
         const value = readingData[options.property];
         const filteredValue = this.filter(value, options.filter);
-        console.log(this.element.id, 'attribute:', attribute, 'value:', value, 'filteredValue:', filteredValue, 'isDefined:', ftui.isDefined(filteredValue))
         if (ftui.isDefined(filteredValue)) {
-          console.log('element[attribute]:', String(this.element[attribute]), 'filteredValue:', String(filteredValue))
           if (String(this.element[attribute]) !== String(filteredValue)) {
             ftui.log(1, `${this.element.id}  -  onReadingEvent: set this.${attribute}=${filteredValue}`);
             // avoid endless loops
@@ -168,7 +165,7 @@ export class FtuiBinding {
       } else if (name.startsWith('bindon:')) {
         this.initInputBinding({ name: name.slice(7), value: attr.value });
         this.initOutputBinding({ name: name.slice(7), value: attr.value });
-      } 
+      }
     });
   }
 
@@ -249,13 +246,14 @@ export class FtuiBinding {
   filter(text, filter = '') {
     if (filter !== '') {
       const part = value => input => ftui.getPart(input, value);
-      const round = value => input => ftui.round(input, value);
       const toDate = value => input => ftui.dateFromString(input, value);
       const toBool = () => input => ftui.toBool(input);
-      const format = value => input => ftui.dateFormat(input, value);
       const toInt = value => input => parseInt(input, value);
+      const format = value => input => ftui.dateFormat(input, value);
+      const round = value => input => ftui.round(input, value);
       const add = value => input => input + value;
       const multiply = value => input => input * value;
+      const replace = (find, replace) => input => String(input).replace(find, replace);
       const map = value => input => ftui.getMatchingValue(parseHocon(value, true), input);
 
       const pipe = (f1, ...fns) => (...args) => {

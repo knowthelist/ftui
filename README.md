@@ -105,64 +105,30 @@ Components
 - Checkbox
 - Circlemenu
 - Weather
+- Dropdown
+- Colorpicker
 
  ... to be continued
 
-#### Button
-
-color
---------
-
-| **Description**     | The color to use from color palette.  | 
-| **Type**  | "primary" \| "secondary" \| "success" \| "warning" \| "danger" \| "light" \| "medium" \| "dark" |
-| **Default** | "primary" |
+### Button
 
 
-fill
---------
+| Attribute | Description | Type | Default |
+|-----------|-------------|-------|---------|
+| <b>color</b> |The color to use from color palette.|<code>"primary" \| "secondary" \| "success" \| "warning" \| "danger" \| "light" \| "medium" \| "dark"</code>| <code>"primary"</code>|
+| <b>fill</b> |.|<code>"clear" \| "outline" \| "solid" </code>| <code>"solid"</code>|
+| <b>size</b> |.|<code>"small" \| "normal" \| "large" </code>| <code>"normal"</code>|
+| <b>shape</b> |.|<code>"round" \| "normal" \| "circle" </code>| <code>"normal"</code>|
+| <b>value</b> |.|String| <code>"off"</code> |
+| <b>states</b> |.|String list comma separated| <code>"on,off"</code>|
 
-| **Description**     | .  | 
-| **Type**  | "clear" \| "outline" \| "solid" |
-| **Default** | "solid" |
-
-
-size
---------
-
-| **Description**     | .  | 
-| **Type**  | "small" \| "large" |
-| **Default** | "normal" |
-
-
-shape
---------
-
-| **Description**     | .  | 
-| **Type**  | "round" \| "circle" | 
-| **Default** | "normal" |
-
-
-value
---------
-
-| **Description**     | .  | 
-| **Type**  | String |
-| **Default** | "off" |
-
-
-states
---------
-
-| **Description**     | .  | 
-| **Type**  | String list comma separated |
-| **Default** | "on,off'" |
 
 
   ... to be continued
 
   #### Icon
 
-  (List of all icons)[https://knowthelist.github.io/ftui/icons/demo.html]
+  [List of all icons](https://knowthelist.github.io/ftui/icons/demo.html)
 
 Examples
 ------
@@ -176,6 +142,10 @@ Examples
 [Slider](https://knowthelist.github.io/ftui/examples/slider.html)
 [Checkbox](https://knowthelist.github.io/ftui/examples/checkbox.html)
 [Circlemenu](https://knowthelist.github.io/ftui/examples/circlemenu.html)
+[Dropdown](https://knowthelist.github.io/ftui/examples/dropdown.html)
+[Colorpicker](https://knowthelist.github.io/ftui/examples/colorpicker.html)
+
+
 
 HOCON
 -----------

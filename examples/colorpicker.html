@@ -21,45 +21,45 @@
   <link href="favicon.ico" rel="icon" type="image/x-icon" />
 
 
-  <title>FTUI Example Dropdown</title>
+  <title>FTUI Example Colorpicker</title>
 </head>
 
 <body>
 
-  <ftui-grid baseWidth="150" baseHeight="150">
+  <ftui-grid baseWidth="250" baseHeight="250">
 
     <ftui-grid-tile row="1" col="1" height="1" width="1">
       <header>DEFAULT</header>
       <div class="cell">
 
-        <ftui-dropdown></ftui-dropdown>
+        <ftui-colorpicker></ftui-colorpicker>
       
       </div>
     </ftui-grid-tile>
 
     <ftui-grid-tile row="1" col="2" height="1" width="1">
-      <header>VALUES</header>
+      <header>BINDING</header>
       <div class="cell">
 
-        <ftui-dropdown list=",item1,item2,item3" value="item2"></ftui-dropdown>
+        <ftui-colorpicker [hex]="ftuitest:rgb" (hex)="setreading ftuitest:rgb"></ftui-colorpicker>
       
       </div>
     </ftui-grid-tile>
 
     <ftui-grid-tile row="1" col="3" height="1" width="1">
-      <header>LIST BINDING</header>
+      <header>HUE-DEVICE</header>
       <div class="cell">
 
-        <ftui-dropdown [list]="ftuitest:list" [(value)]="ftuitest" @value-change="console.log($event.detail)"></ftui-dropdown>
-
+        <ftui-colorpicker [hex]="HUEDevice6:rgb" (hex)="replace('#','') | HUEDevice6:rgb"></ftui-colorpicker>
+      
       </div>
     </ftui-grid-tile>
 
     <ftui-grid-tile row="1" col="4" height="1" width="1">
-      <header>AUDIO</header>
+      <header>CHANGE EVENT</header>
       <div class="cell">
 
-        <ftui-dropdown [list]="AvReceiver:inputList" [(value)]="AvReceiver:input"></ftui-dropdown>
+        <ftui-colorpicker @color-change="console.log($event.detail.hexString)"></ftui-colorpicker>
 
       </div>
     </ftui-grid-tile>
