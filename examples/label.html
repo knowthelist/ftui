@@ -66,16 +66,14 @@
     <ftui-grid-tile row="3" col="3" height="1" width="1">
       <header>text-filter x2</header>
       <div class="cell">
-        <ftui-label [text]="AgroWeather:state | part(4) | parseInt | multiply(2) | round(1)">
-        </ftui-label>
+        <ftui-label [text]="AgroWeather:state | part(4) | toInt() | multiply(2) | round(1) "></ftui-label>
       </div>
     </ftui-grid-tile>
 
     <ftui-grid-tile row="4" col="4" height="1" width="1">
       <header>text-filter regexec</header>
       <div class="cell">
-        <ftui-label [text]="AgroWeather:state | part('.*T:(.*)H:.*')" text-pre="<" text-post=">">
-        </ftui-label>
+        <ftui-label [text]="AgroWeather:state | part('.*T:(.*)H:.*')"></ftui-label>
       </div>
     </ftui-grid-tile>
 

@@ -107,11 +107,12 @@ Components
 - Weather
 - Dropdown
 - Colorpicker
+- [Image](#image)
+- [Badge](#badge)
 
  ... to be continued
 
 ### Button
-
 
 | Attribute | Description | Type | Default |
 |-----------|-------------|-------|---------|
@@ -122,7 +123,27 @@ Components
 | <b>value</b> |.|String| <code>"off"</code> |
 | <b>states</b> |.|String list comma separated| <code>"on,off"</code>|
 
+### Image
 
+| Attribute | Description | Type | Default |
+|-----------|-------------|-------|---------|
+| <b>base</b> |Front part of the URL.|String| <code>""</code>|
+| <b>src</b> |Image part of the URL or full URL.|String| <code>""</code>|
+| <b>width</b> |Force a certain image width.|Number \| "auto"</code>| <code>"auto"</code>|
+| <b>height</b> |Force a certain image height.|Number \| "auto"| <code>"auto"</code>|
+| <b>interval</b> |Reloading every x secondes.|Number| <code>0</code> |
+| <b>refresh</b> |Changes of this attribute triggers a reload.|String list comma separated| <code>""</code>|
+| <b>nocache</b> |Bypass cache on next reload.|Boolean| <code>false</code>|
+
+### Badge
+
+Badges can be used as a notification that contain a number or other characters. They show that there are additional items associated with an element and indicate how many items there are.
+The element disappears if the value is 0 or empty.
+
+| Attribute | Description | Type | Default |
+|-----------|-------------|-------|---------|
+| <b>color</b> |The color to use from color palette.|<code>"primary" \| "secondary" \| "success" \| "warning" \| "danger" \| "light" \| "medium" \| "dark"</code>| <code>"primary"</code>|
+| <b>text</b> |Text to display inside.|String| <code>""</code>|
 
   ... to be continued
 
@@ -133,18 +154,19 @@ Components
 Examples
 ------
 
-[Tab](https://knowthelist.github.io/ftui/examples/tab.html)
-[Grid](https://knowthelist.github.io/ftui/examples/grid.html)
-[Label](https://knowthelist.github.io/ftui/examples/label.html)
-[Icon](https://knowthelist.github.io/ftui/examples/icon.html)
-[Button](https://knowthelist.github.io/ftui/examples/button.html)
-[Knob](https://knowthelist.github.io/ftui/examples/knob.html)
-[Slider](https://knowthelist.github.io/ftui/examples/slider.html)
-[Checkbox](https://knowthelist.github.io/ftui/examples/checkbox.html)
-[Circlemenu](https://knowthelist.github.io/ftui/examples/circlemenu.html)
-[Dropdown](https://knowthelist.github.io/ftui/examples/dropdown.html)
-[Colorpicker](https://knowthelist.github.io/ftui/examples/colorpicker.html)
-
+- [Tab](https://knowthelist.github.io/ftui/examples/tab.html) 
+- [Grid](https://knowthelist.github.io/ftui/examples/grid.html)
+- [Label](https://knowthelist.github.io/ftui/examples/label.html)
+- [Icon](https://knowthelist.github.io/ftui/examples/icon.html)
+- [Button](https://knowthelist.github.io/ftui/examples/button.html)
+- [Knob](https://knowthelist.github.io/ftui/examples/knob.html)
+- [Slider](https://knowthelist.github.io/ftui/examples/slider.html)
+- [Checkbox](https://knowthelist.github.io/ftui/examples/checkbox.html)
+- [Circlemenu](https://knowthelist.github.io/ftui/examples/circlemenu.html)
+- [Dropdown](https://knowthelist.github.io/ftui/examples/dropdown.html)
+- [Colorpicker](https://knowthelist.github.io/ftui/examples/colorpicker.html)
+- [Image](https://knowthelist.github.io/ftui/examples/image.html)
+- [Badge](https://knowthelist.github.io/ftui/examples/badge.html)
 
 
 HOCON

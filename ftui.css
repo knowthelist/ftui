@@ -925,3 +925,12 @@ img.faded {
   -ms-transform: scale(1.3);
   transform: scale(1.3);
 }
+
+/* components specials */
+
+/* icon badge */
+ftui-icon ~ ftui-badge {
+  position: absolute;
+  margin-top: -1em;
+  margin-left: 1em;
+}

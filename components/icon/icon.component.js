@@ -20,6 +20,7 @@ export class FtuiIcon extends FtuiElement {
     return `
         <style> @import "components/icon/icon.component.css"; </style>
         <span id="icon"></span>
+        <slot></slot>
       `;
   }
 

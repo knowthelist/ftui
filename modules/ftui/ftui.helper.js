@@ -1,3 +1,23 @@
+export function getPart(value, part) {
+  if (this.isDefined(part)) {
+    if (this.isNumeric(part)) {
+      const tokens = (this.isDefined(value)) ? value.toString().split(' ') : '';
+      return (tokens.length >= part && part > 0) ? tokens[part - 1] : value;
+    } else {
+      let ret = '';
+      if (this.isDefined(value)) {
+        const matches = value.match(new RegExp('^' + part + '$'));
+        if (matches) {
+          for (let i = 1, len = matches.length; i < len; i++) {
+            ret += matches[i];
+          }
+        }
+      }
+      return ret;
+    }
+  }
+  return value;
+}
 
 export function isEqual(pattern, value) {
   return value === pattern ||

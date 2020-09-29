@@ -248,7 +248,7 @@ export class FtuiBinding {
       const part = value => input => ftui.getPart(input, value);
       const toDate = value => input => ftui.dateFromString(input, value);
       const toBool = () => input => ftui.toBool(input);
-      const toInt = value => input => parseInt(input, value);
+      const toInt = () => input => parseInt(input, 10);
       const format = value => input => ftui.dateFormat(input, value);
       const round = value => input => ftui.round(input, value);
       const add = value => input => input + value;
