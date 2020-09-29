@@ -1,5 +1,6 @@
 :host {
-  background-color: var(--grid-background-color);
+  --color-base: var(--grid-background-color);
+  background-color: var(--color-base);
   position: absolute;
   display: flex;
   flex-direction: column;
@@ -21,4 +22,8 @@
 :host([shape="round"]) ::slotted(header) {
   border-top-right-radius: 1em;
   border-top-left-radius: 1em;
+}
+
+:host([color]) {
+  background-color: var(--color-base);
 }

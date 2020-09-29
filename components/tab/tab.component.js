@@ -60,7 +60,7 @@ class FtuiTab extends FtuiButton {
     this.color = 'primary';
 
     // emit event
-    ftui.triggerEvent('tabVisiblityChanged');
+    ftui.triggerEvent('ftuiVisiblityChanged');
   }
 
   onAttributeChanged(name, oldValue, newValue) {

@@ -8,6 +8,7 @@
 */
 
 import { FtuiElement } from '../element.component.js';
+import * as ftui from '../../modules/ftui/ftui.helper.js';
 import { Rangeable } from '../../modules/rangeable/rangeable.min.js';
 
 
@@ -34,7 +35,7 @@ export class FtuiSlider extends FtuiElement {
 
 
     // force re-render if visible 
-    document.addEventListener('tabVisiblityChanged', () => {
+    document.addEventListener('ftuiVisiblityChanged', () => {
       if (ftui.isVisible(this)) {
         this.rangeable.update();
       }

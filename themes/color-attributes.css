@@ -12,7 +12,8 @@
   --color-contrast: var(--secondary-contrast-color);
 }
 
-[color="light"] {
+[color="light"],
+[color="white"] {
   --color-base: var(--light-color);
   --color-contrast: var(--light-contrast-color);
 }
@@ -27,18 +28,21 @@
   --color-contrast: var(--dark-contrast-color);
 }
 
-[color="success"] {
+[color="success"],
+[color="green"] {
   --color-base: var(--success-color);
   --color-contrast: var(--success-contrast-color);
 }
 
-[color="warning"] {
+[color="warning"],
+[color="yellow"] {
   --color-base: var(--warning-color);
   --color-contrast: var(--warning-contrast-color);
 }
 
 [color="danger"],
-[color="error"] {
+[color="error"],
+[color="red"] {
   --color-base: var(--danger-color);
   --color-contrast: var(--danger-contrast-color);
 }

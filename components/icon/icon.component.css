@@ -17,4 +17,4 @@
 :host([color]) svg {
   fill: var(--color-base) !important;
   color: var(--color-base);
-  }
+}

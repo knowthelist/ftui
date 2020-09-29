@@ -8,7 +8,7 @@
 */
 
 import { FtuiElement } from '../element.component.js';
-import { isEqual } from '../../modules/ftui/ftui.helper.js';
+import * as ftui from '../../modules/ftui/ftui.helper.js';
 
 
 export class FtuiButton extends FtuiElement {
@@ -65,8 +65,7 @@ export class FtuiButton extends FtuiElement {
 
   getNextValue() {
     const states = String(this.states).split(/[;,:]/).map(item => item.trim());
-    let currentIndex = states.findIndex((pattern) => isEqual(pattern, this.value));
-    console.log(states,currentIndex,this.value)
+    let currentIndex = states.findIndex((pattern) => ftui.isEqual(pattern, this.value));
     // increase the index to the next value in the array of possible values
     currentIndex = ++currentIndex % states.length;
     return states[currentIndex];
