@@ -50,7 +50,6 @@ export class FtuiIcon extends FtuiElement {
   }
 
   loadIcon(name) {
-    console.log(name)
     if (name.endsWith('svg')) {
       fetch(name)
         .then(response => response.text())
