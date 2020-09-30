@@ -30,7 +30,7 @@ export class FtuiIcon extends FtuiElement {
       path: 'icons',
       name: '',
       color: '',
-      rgb: ''
+      rgb: '',
     };
   }
 
@@ -41,7 +41,7 @@ export class FtuiIcon extends FtuiElement {
   onAttributeChanged(name, oldValue, newValue) {
     switch (name) {
       case 'name':
-        this.fetchIcon(`${this.path}/${newValue}.${this.type}`);
+        this.loadIcon(`${this.path}/${newValue}.${this.type}`);
         break;
       case 'rgb':
         this.elementIcon.style.color = `#${newValue.replace('#', '')}`;
@@ -49,12 +49,17 @@ export class FtuiIcon extends FtuiElement {
     }
   }
 
-  fetchIcon(name) {
-    fetch(name)
-      .then(response => response.text())
-      .then(svg => {
-        this.elementIcon.innerHTML = svg;
-      });
+  loadIcon(name) {
+    console.log(name)
+    if (name.endsWith('svg')) {
+      fetch(name)
+        .then(response => response.text())
+        .then(svg => {
+          this.elementIcon.innerHTML = svg;
+        });
+    } else {
+      this.elementIcon.innerHTML = `<img src="${name}"></img>`;
+    }
   }
 }
 

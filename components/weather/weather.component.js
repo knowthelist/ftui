@@ -34,7 +34,7 @@ class FtuiWeather extends FtuiIcon {
   onAttributeChanged(name, oldValue, newValue) {
     switch (name) {
       case 'condition':
-        this.fetchIcon(map[this.provider]?.[this.iconSet]?.[newValue] || 'icons/none.svg');
+        this.loadIcon(map[this.provider]?.[this.iconSet]?.[newValue] || 'icons/none.svg');
         break;
       default:
        super.onAttributeChanged(name, oldValue, newValue);
