@@ -3,10 +3,14 @@
   --color: var(--primary-contrast-color, #fff);
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
-  padding-left: 0.3em;
-  padding-right: 0.3em;
-  padding-top: 0.2em;
-  padding-bottom: 0.2em;
+  --padding-left: 0.3em;
+  --padding-right: 0.3em;
+  --padding-top: 0.2em;
+  --padding-bottom: 0.2em;
+  padding-top:var(--padding-top);
+  padding-bottom:var(--padding-bottom);
+  padding-left:var(--padding-left);
+  padding-right:var(--padding-right);
   min-width: 1.5em;
   min-height: 1.5em;
   background: var(--background);
