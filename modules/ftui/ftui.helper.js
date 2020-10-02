@@ -237,9 +237,9 @@ export function parseReadingId(readingId) {
   return [paramid, device, reading];
 }
 
-export function triggerEvent(eventName) {
+export function triggerEvent(eventName, source = document) {
   const event = new CustomEvent(eventName);
-  document.dispatchEvent(event);
+  source.dispatchEvent(event);
 }
 
 export function deferred() {

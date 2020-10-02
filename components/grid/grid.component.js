@@ -26,6 +26,7 @@ class FtuiGrid extends FtuiElement {
     super(properties);
 
     this.windowWidth = 0;
+    this.tiles = this.querySelectorAll('ftui-grid-tile');
     this.configureGrid();
 
     if (this.resize) {
@@ -53,7 +54,7 @@ class FtuiGrid extends FtuiElement {
     let cols = 0;
     let rows = 0;
 
-    this.querySelectorAll('ftui-grid-tile').forEach(item => {
+    this.tiles.forEach(item => {
       const colVal = Number(item.col) + Number(item.width) - 1;
       if (colVal > highestCol) { highestCol = colVal; }
       const rowVal = Number(item.row) + Number(item.height) - 1;
@@ -73,7 +74,7 @@ class FtuiGrid extends FtuiElement {
       baseHeight = this.minY;
     }
 
-    this.querySelectorAll('ftui-grid-tile').forEach(item => {
+    this.tiles.forEach(item => {
       const style = item.style;
       style.width = (item.width * baseWidth - this.margin) + 'px';
       style.height = (item.height * baseHeight - this.margin) + 'px';
