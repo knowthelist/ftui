@@ -11,7 +11,7 @@ import { FtuiElement } from '../element.component.js';
 import { FtuiGridTile } from './grid-tile.component.js';
 import * as ftui from '../../modules/ftui/ftui.helper.js';
 
-class FtuiGrid extends FtuiElement {
+export class FtuiGrid extends FtuiElement {
 
   constructor() {
     const properties = {

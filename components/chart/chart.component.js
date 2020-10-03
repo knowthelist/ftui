@@ -23,8 +23,8 @@ export class FtuiChart extends FtuiElement {
     this.configuration = {
       type: 'line',
       data: {
-         labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
-        datasets: [] 
+        labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
+        datasets: []
       },
       options: {
         title: {
@@ -43,6 +43,8 @@ export class FtuiChart extends FtuiElement {
     this.dataElements.forEach(dataElement => dataElement.addEventListener('dataChanged', () => this.updateDatasets()));
 
     this.chart = new Chart(this.chartElement, this.configuration);
+
+    // TODO: Why does the size not fit sometimes?
     this.chartElement.style.height = this.width;
     this.chartElement.style.width = this.height;
 
@@ -82,16 +84,12 @@ export class FtuiChart extends FtuiElement {
   updateDatasets() {
     this.configuration.data.datasets = [];
     this.dataElements.forEach(dataElement => {
-      console.log(dataElement)
-      this.configuration.data.datasets.push(
-        {
-          label: dataElement.label,
-          data: dataElement.data,
-          fill: dataElement.fill,
-          backgroundColor: dataElement.backgroundColor,
-          borderColor: dataElement.borderColor
-        }
-      )
+      const dataset = {};
+      Object.keys(FtuiChartData.properties).forEach(property => {
+        dataset[property] = dataElement[property];
+      });
+      dataset.data = dataElement.data;
+      this.configuration.data.datasets.push(dataset);
     });
     this.chart.update();
   }
