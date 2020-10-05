@@ -9,7 +9,8 @@
 
 import { FtuiElement } from '../element.component.js';
 import { FtuiChartData } from './chart-data.component.js';
-import { Chart } from '../../modules/chart.js/chart.min.js';
+import { Chart } from '../../modules/chart.js/chart.js';
+import '../../modules/chart.js/chartjs-adapter-date-fns.bundle.min.js';
 
 
 export class FtuiChart extends FtuiElement {
@@ -23,24 +24,31 @@ export class FtuiChart extends FtuiElement {
     this.configuration = {
       type: 'line',
       data: {
-        labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
         datasets: []
       },
       options: {
+        responsive: true,
         title: {
-          display: false,
+          display: true,
+          text: 'Custom Chart Title'
         },
         scales: {
-          yAxes: [{
-            ticks: {
-              reverse: false
+          x: {
+            type: 'time',
+            time: {
+              parser: 'yyyy-MM-dd_HH:mm:ss'
             }
-          }]
+          },
+          y: {
+            scaleLabel: {
+              labelString: 'value'
+            }
+          }
         }
       }
-    }
+    };
 
-    this.dataElements.forEach(dataElement => dataElement.addEventListener('dataChanged', () => this.updateDatasets()));
+    this.dataElements.forEach(dataElement => dataElement.addEventListener('ftuiDataChanged', () => this.updateDatasets()));
 
     this.chart = new Chart(this.chartElement, this.configuration);
 
