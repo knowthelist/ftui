@@ -109,6 +109,7 @@ Components
 - Colorpicker
 - [Image](#image)
 - [Badge](#badge)
+- [Speak](#speak)
 
  ... to be continued
 
@@ -145,6 +146,18 @@ The element disappears if the value is 0 or empty.
 | <b>color</b> |The color to use from color palette.|<code>"primary" \| "secondary" \| "success" \| "warning" \| "danger" \| "light" \| "medium" \| "dark"</code>| <code>"primary"</code>|
 | <b>text</b> |Text to display inside.|String| <code>""</code>|
 
+### Speak
+
+Speak uses the browser's Web Speech API to synthesize text to speech.
+
+| Attribute | Description | Type | Default |
+|-----------|-------------|-------|---------|
+| <b>lang</b> |Language of the utterance.|<code>"en-US" \| "de-DE"</code>| the user-agent default |
+| <b>pitch</b> |Pitch at which the utterance will be spoken at.|Float| <code>0.9</code>|
+| <b>rate</b> |Speed at which the utterance will be spoken at.|Float| <code>1.0</code>|
+| <b>volume</b> |Volume that the utterance will be spoken at.|Float| <code>1.0</code>|
+| <b>text</b> |Text that will be synthesized when the utterance is spoken.|String| <code>""</code>|
+
   ... to be continued
 
   #### Icon
@@ -167,6 +180,7 @@ Examples
 - [Colorpicker](https://knowthelist.github.io/ftui/examples/colorpicker.html)
 - [Image](https://knowthelist.github.io/ftui/examples/image.html)
 - [Badge](https://knowthelist.github.io/ftui/examples/badge.html)
+- [Speak](https://knowthelist.github.io/ftui/examples/speak.html)
 
 
 HOCON
