@@ -8,7 +8,7 @@
 */
 
 
-import { log, toBool } from '../modules/ftui/ftui.helper.js';
+import * as ftuiHelper from '../modules/ftui/ftui.helper.js';
 
 let uids = {};
 
@@ -56,8 +56,12 @@ export class FtuiElement extends HTMLElement {
     return [...Object.keys(FtuiElement.properties)];
   }
 
+  static convertToAttributes(properties) {
+    return Object.keys(properties).map(property => ftuiHelper.toKebabCase(property));
+  }
+
   attributeChangedCallback(name, oldValue, newValue) {
-    log(3, `${this.id} -  attributeChangedCallback name=${name}, oldValue=${oldValue}, newValue=${newValue}`)
+    ftuiHelper.log(3, `${this.id} -  attributeChangedCallback name=${name}, oldValue=${oldValue}, newValue=${newValue}`)
     if (typeof this.onAttributeChanged === 'function') {
       // call the hook function of the instance
       this.onAttributeChanged(name, oldValue, newValue);
@@ -81,55 +85,56 @@ export class FtuiElement extends HTMLElement {
 
   initProperties(properties) {
     Object.entries(properties).forEach(([name, defaultValue]) => {
+      const attr = ftuiHelper.toKebabCase(name);
       if (typeof properties[name] === 'boolean') {
-        this.defineBooleanProperty(name);
-        this.initBooleanAttribute(name, defaultValue);
+        this.defineBooleanProperty(name, attr);
+        this.initBooleanAttribute(attr, defaultValue);
       } else if (typeof properties[name] === 'number') {
-        this.defineNumberProperty(name);
-        this.initAttribute(name, defaultValue);
+        this.defineNumberProperty(name, attr);
+        this.initAttribute(attr, defaultValue);
       } else {
-        this.defineStringProperty(name);
-        this.initAttribute(name, defaultValue);
+        this.defineStringProperty(name, attr);
+        this.initAttribute(attr, defaultValue);
       }
     })
   }
 
-  initAttribute(name, value) {
-    if (!this.hasAttribute(name)) {
-      this.setAttribute(name, value);
+  initAttribute(attr, value) {
+    if (!this.hasAttribute(attr)) {
+      this.setAttribute(attr, value);
     }
   }
 
-  initBooleanAttribute(name, value) {
-    if (!this.hasAttribute(name) && value) {
-      this.setAttribute(name, '');
+  initBooleanAttribute(attr, value) {
+    if (!this.hasAttribute(attr) && value) {
+      this.setAttribute(attr, '');
     }
   }
 
-  defineBooleanProperty(name) {
+  defineBooleanProperty(name, attr) {
     Object.defineProperty(this, name, {
-      get() { return this.hasAttribute(name); },
+      get() { return this.hasAttribute(attr); },
       set(value) {
         if (value) {
-          this.setAttribute(name, '');
+          this.setAttribute(attr, '');
         } else {
-          this.removeAttribute(name);
+          this.removeAttribute(attr);
         }
       }
     });
   }
 
-  defineNumberProperty(name) {
+  defineNumberProperty(name, attr) {
     Object.defineProperty(this, name, {
-      get() { return Number(this.getAttribute(name)); },
-      set(value) { this.setAttribute(name, value); }
+      get() { return Number(this.getAttribute(attr)); },
+      set(value) { this.setAttribute(attr, value); }
     });
   }
 
-  defineStringProperty(name) {
+  defineStringProperty(name, attr) {
     Object.defineProperty(this, name, {
-      get() { return this.getAttribute(name); },
-      set(value) { this.setAttribute(name, value); }
+      get() { return this.getAttribute(attr); },
+      set(value) { this.setAttribute(attr, value); }
     });
   }
 }

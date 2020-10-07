@@ -22,11 +22,6 @@ body {
   opacity: 0;
 }
 
-.robotothin {
-  font-family: "HelveticaNeue-UltraLight", "Segoe UI", "Roboto Light", sans-serif;
-}
-
-
 /* nav */
 
 #header-nav {
@@ -67,14 +62,6 @@ header.fixed#header-nav+main#panel {
 
 .bold {
   font-weight: bold;
-}
-
-.w-100 {
-  width: 100%;
-}
-
-.h-100 {
-  height: 100%;
 }
 
 .lift {
@@ -371,6 +358,23 @@ header.fixed#header-nav+main#panel {
 
 .h-100 {
   height: 100%;
+}
+
+
+.w-20 {
+  width: 20%;
+}
+
+.w-50 {
+  width: 50%;
+}
+
+.w-60 {
+  width: 60%;
+}
+
+.w-100 {
+  width: 100%;
 }
 
 .text-left {

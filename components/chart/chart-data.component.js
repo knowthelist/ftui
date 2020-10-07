@@ -36,7 +36,7 @@ export class FtuiChartData extends FtuiElement {
   }
 
   static get observedAttributes() {
-    return [...Object.keys(FtuiChartData.properties), ...super.observedAttributes];
+    return [...this.convertToAttributes(FtuiChartData.properties), ...super.observedAttributes];
   }
 
   get startDate() {

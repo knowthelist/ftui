@@ -87,7 +87,7 @@ class FtuiKnob extends FtuiElement {
   }
 
   static get observedAttributes() {
-    return [...Object.keys(FtuiKnob.properties), ...super.observedAttributes];
+    return [...this.convertToAttributes(FtuiKnob.properties), ...super.observedAttributes];
   }
 
   onAttributeChanged(name, oldValue, newValue) {

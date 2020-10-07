@@ -9,7 +9,6 @@
 
 import { FtuiElement } from '../element.component.js';
 import { FtuiGridTile } from './grid-tile.component.js';
-import * as ftui from '../../modules/ftui/ftui.helper.js';
 
 export class FtuiGrid extends FtuiElement {
 

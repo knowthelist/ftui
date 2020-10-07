@@ -52,7 +52,7 @@
     <ftui-grid-tile row="1" col="2" height="1" width="1">
       <header>ALL</header>
       <div class="cell">
-        <ftui-knob hasScale hasArc hasScaleText hasValueText hasNeedle
+        <ftui-knob has-scale has-arc has-scale-text has-value-text has-needle
           [(value)]="AvReceiver-volume" max="50"
           [color]="AvReceiver-volume | map('0: success, 10: warning, 30: danger')">
         </ftui-knob>
@@ -70,7 +70,7 @@
     <ftui-grid-tile row="1" col="3" height="1" width="1">
       <header>Scale</header>
       <div class="cell">
-        <ftui-knob [(value)]="dummy1" hasScale hasNeedle>
+        <ftui-knob [(value)]="dummy1" has-scale has-needle>
         </ftui-knob>
       </div>
     </ftui-grid-tile>
@@ -78,7 +78,7 @@
     <ftui-grid-tile row="2" col="3" height="1" width="1">
       <header>Scale Text</header>
       <div class="cell">
-        <ftui-knob [(value)]="AvReceiver-volume" max="50" hasScaleText hasScale hasNeedle>
+        <ftui-knob [(value)]="AvReceiver-volume" max="50" has-scale-text has-scale has-needle>
         </ftui-knob>
       </div>
     </ftui-grid-tile>
@@ -86,7 +86,7 @@
     <ftui-grid-tile row="1" col="4" height="1" width="1">
       <header>Value Text</header>
       <div class="cell">
-        <ftui-knob [(value)]="AvReceiver-volume" max="50" hasArc hasValueText>
+        <ftui-knob [(value)]="AvReceiver-volume" max="50" has-arc has-value-text>
         </ftui-knob>
       </div>
     </ftui-grid-tile>
@@ -94,7 +94,7 @@
     <ftui-grid-tile row="2" col="4" height="1" width="1">
       <header>Stroke Width</header>
       <div class="cell">
-        <ftui-knob [(value)]="AvReceiver-volume" max="50" strokeWidth="25">
+        <ftui-knob [(value)]="AvReceiver-volume" max="50" stroke-width="25">
         </ftui-knob>
       </div>
     </ftui-grid-tile>
@@ -102,7 +102,7 @@
     <ftui-grid-tile row="1" col="5" height="1" width="1">
       <header>Needle</header>
       <div class="cell">
-        <ftui-knob [(value)]="AvReceiver-volume" max="50" hasArc hasValueText hasNeedle>
+        <ftui-knob [(value)]="AvReceiver-volume" max="50" has-arc has-value-text has-needle>
         </ftui-knob>
       </div>
     </ftui-grid-tile>
@@ -110,7 +110,7 @@
     <ftui-grid-tile row="2" col="5" height="1" width="1">
       <header>Custom Needle Color</header>
       <div class="cell">
-        <ftui-knob id="myKnob1" [(value)]="dummy1" hasScaleText hasScale hasNeedle>
+        <ftui-knob id="myKnob1" [(value)]="dummy1" has-scale-text has-scale has-needle>
         </ftui-knob>
       </div>
     </ftui-grid-tile>

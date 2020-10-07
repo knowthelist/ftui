@@ -32,7 +32,7 @@ export class FtuiLabel extends FtuiElement {
   }
 
   static get observedAttributes() {
-    return [...Object.keys(FtuiLabel.properties), ...super.observedAttributes];
+    return [...this.convertToAttributes(FtuiLabel.properties), ...super.observedAttributes];
   }
 
   onAttributeChanged(name) {

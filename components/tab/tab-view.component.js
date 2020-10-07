@@ -23,7 +23,7 @@ class FtuiTabView extends FtuiElement {
   }
 
   static get observedAttributes() {
-    return [...Object.keys(FtuiTabView.properties), ...super.observedAttributes];
+    return [...this.convertToAttributes(FtuiTabView.properties), ...super.observedAttributes];
   }
 
 }

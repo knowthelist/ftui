@@ -1,5 +1,5 @@
 import { parseHocon } from '../hocon/hocon.min.js';
-import * as ftui from './ftui.helper.js';
+import * as ftuiHelper from './ftui.helper.js';
 import { fhemService } from './fhem.service.js';
 
 
@@ -21,7 +21,7 @@ export class FtuiBinding {
       this.config = parseHocon(this.private.config);
     } catch (e) {
       this.element.classList.add('has-error');
-      ftui.error(e.toString());
+      ftuiHelper.error(e.toString());
     }
 
     if (this.config?.input?.readings) {
@@ -64,9 +64,9 @@ export class FtuiBinding {
       .forEach(([attribute, options]) => {
         const value = readingData[options.property];
         const filteredValue = this.filter(value, options.filter);
-        if (ftui.isDefined(filteredValue)) {
+        if (ftuiHelper.isDefined(filteredValue)) {
           if (String(this.element[attribute]) !== String(filteredValue)) {
-            ftui.log(1, `${this.element.id}  -  onReadingEvent: set this.${attribute}=${filteredValue}`);
+            ftuiHelper.log(1, `${this.element.id}  -  onReadingEvent: set this.${attribute}=${filteredValue}`);
             // avoid endless loops
             this.private.isChanging[attribute] = true;
             // change element's property
@@ -87,7 +87,7 @@ export class FtuiBinding {
       //const attributeValue = this.element[attributeName];
       const filteredValue = this.filter(attributeValue, options.filter);
       const value = String(options.value).replaceAll('$value', filteredValue);
-      const [parameterId, deviceName, readingName] = ftui.parseReadingId(readingId);
+      const [parameterId, deviceName, readingName] = ftuiHelper.parseReadingId(readingId);
       const cmdLine = [options.cmd, deviceName, readingName, value].join(' ');
 
       // update storage
@@ -148,7 +148,7 @@ export class FtuiBinding {
   readAttributes(attributes) {
 
     [...attributes].forEach(attr => {
-      const name = attr.name.replace(/-([a-z])/g, (char) => { return char[1].toUpperCase() });
+      const name = ftuiHelper.toCamelCase(attr.name);
       if (name.startsWith('[(') && name.endsWith(')]')) {
         this.initInputBinding({ name: name.slice(2, -2), value: attr.value });
         this.initOutputBinding({ name: name.slice(2, -2), value: attr.value });
@@ -222,7 +222,7 @@ export class FtuiBinding {
     reading = reading.length > 0 ? reading : 'STATE';
 
     return {
-      readingID: ftui.getReadingID(device, reading),
+      readingID: ftuiHelper.getReadingID(device, reading),
       property: property || 'value',
       filter
     }
@@ -237,7 +237,7 @@ export class FtuiBinding {
 
     return {
       cmd,
-      readingID: ftui.getReadingID(device, reading),
+      readingID: ftuiHelper.getReadingID(device, reading),
       value,
       filter: attrTextItems.join('|')
     }
@@ -245,16 +245,16 @@ export class FtuiBinding {
 
   filter(text, filter = '') {
     if (filter !== '') {
-      const part = value => input => ftui.getPart(input, value);
-      const toDate = value => input => ftui.dateFromString(input, value);
-      const toBool = () => input => ftui.toBool(input);
+      const part = value => input => ftuiHelper.getPart(input, value);
+      const toDate = value => input => ftuiHelper.dateFromString(input, value);
+      const toBool = () => input => ftuiHelper.toBool(input);
       const toInt = () => input => parseInt(input, 10);
-      const format = value => input => ftui.dateFormat(input, value);
-      const round = value => input => ftui.round(input, value);
+      const format = value => input => ftuiHelper.dateFormat(input, value);
+      const round = value => input => ftuiHelper.round(input, value);
       const add = value => input => input + value;
       const multiply = value => input => input * value;
       const replace = (find, replace) => input => String(input).replace(find, replace);
-      const map = value => input => ftui.getMatchingValue(parseHocon(value, true), input);
+      const map = value => input => ftuiHelper.getMatchingValue(parseHocon(value, true), input);
 
       const pipe = (f1, ...fns) => (...args) => {
         return fns.reduce((res, fn) => fn(res), f1.apply(null, args));
@@ -266,7 +266,7 @@ export class FtuiBinding {
         return fn(text);
       } catch (e) {
         this.element.classList.add('has-error');
-        ftui.error(e.toString());
+        ftuiHelper.error(e.toString());
       }
 
     } else {

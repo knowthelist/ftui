@@ -32,7 +32,7 @@ class FtuiTab extends FtuiButton {
   }
 
   static get observedAttributes() {
-    return [...Object.keys(FtuiTab.properties), ...super.observedAttributes];
+    return [...this.convertToAttributes(FtuiTab.properties), ...super.observedAttributes];
   }
 
   onClicked() {

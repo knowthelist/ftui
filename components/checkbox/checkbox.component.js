@@ -49,7 +49,7 @@ class FtuiCheckbox extends FtuiElement {
   }
 
   static get observedAttributes() {
-    return [...Object.keys(FtuiCheckbox.properties), ...super.observedAttributes];
+    return [...this.convertToAttributes(FtuiCheckbox.properties), ...super.observedAttributes];
   }
 
   onAttributeChanged(name) {

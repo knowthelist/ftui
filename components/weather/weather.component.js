@@ -28,7 +28,7 @@ class FtuiWeather extends FtuiIcon {
   }
 
   static get observedAttributes() {
-    return [...Object.keys(FtuiWeather.properties), ...super.observedAttributes];
+    return [...this.convertToAttributes(FtuiWeather.properties), ...super.observedAttributes];
   }
 
   onAttributeChanged(name, oldValue, newValue) {

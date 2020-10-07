@@ -36,7 +36,7 @@ export class FtuiImage extends FtuiElement {
   }
 
   static get observedAttributes() {
-    return [...Object.keys(FtuiImage.properties), ...super.observedAttributes];
+    return [...this.convertToAttributes(FtuiImage.properties), ...super.observedAttributes];
   }
 
   onAttributeChanged(name) {

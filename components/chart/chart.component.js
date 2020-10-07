@@ -76,7 +76,7 @@ export class FtuiChart extends FtuiElement {
   }
 
   static get observedAttributes() {
-    return [...Object.keys(FtuiChart.properties), ...super.observedAttributes];
+    return [...this.convertToAttributes(FtuiChart.properties), ...super.observedAttributes];
   }
 
   onAttributeChanged(name) {

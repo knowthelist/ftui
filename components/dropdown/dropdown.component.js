@@ -36,7 +36,7 @@ export class FtuiDropdown extends FtuiElement {
   }
 
   static get observedAttributes() {
-    return [...Object.keys(FtuiDropdown.properties), ...super.observedAttributes];
+    return [...this.convertToAttributes(FtuiDropdown.properties), ...super.observedAttributes];
   }
 
   onAttributeChanged(name) {

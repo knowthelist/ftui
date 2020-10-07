@@ -26,7 +26,7 @@
 
 <body>
 
-  <ftui-grid baseWidth="250" baseHeight="250">
+  <ftui-grid base-width="250" base-height="250">
 
     <ftui-grid-tile row="1" col="1" height="1" width="1">
       <header>DEFAULT</header>
@@ -64,6 +64,22 @@
       </div>
     </ftui-grid-tile>
 
+    <ftui-grid-tile row="2" col="1" height="1" width="1">
+      <header>RGB-SLIDER</header>
+      <div class="row">
+        <div class="column w-20 h-60"><span>R</span><span>G</span><span>B</span></div>
+        <ftui-colorpicker [hex]="HUEDevice6:rgb" (hex)="replace('#','') | HUEDevice6:rgb" has-red-slider has-green-slider has-blue-slider></ftui-colorpicker>
+
+      </div>
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="2" col="2" height="1" width="1">
+      <header>HORIZONTAL</header>
+      <div class="row">
+        <ftui-colorpicker [hex]="HUEDevice6:rgb" (hex)="replace('#','') | HUEDevice6:rgb" direction="horizontal" has-hue-slider has-value-slider></ftui-colorpicker>
+
+      </div>
+    </ftui-grid-tile>
   </ftui-grid>
 
 </body>

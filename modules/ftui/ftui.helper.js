@@ -114,6 +114,8 @@ export function precision(a) {
   return !d ? 0 : s.length - d;
 }
 
+// checker
+
 export function isVisible(element) {
   return (element.offsetParent !== null);
 }
@@ -134,6 +136,22 @@ export function toBool(value) {
   return ['on', 'On', 'ON', '1', true, 1, 'true', 'TRUE'].includes(value);
 }
 
+// converter
+export function toCamelCase(string) {
+  return string.replace(/-([a-z])/g, (char) => { return char[1].toUpperCase() });
+}
+
+export function toKebabCase(string) {
+  return string
+    .replace(/([a-z])([A-Z])/g, '$1-$2')
+    .replace(/[\s_]+/g, '-')
+    .toLowerCase()
+}
+
+export function capitalize (s) {
+  if (typeof s !== 'string') return ''
+  return s.charAt(0).toUpperCase() + s.slice(1);
+}
 
 // global date format functions
 export function dateFromString(str) {

@@ -35,7 +35,7 @@ export class FtuiIcon extends FtuiElement {
   }
 
   static get observedAttributes() {
-    return [...Object.keys(FtuiIcon.properties), ...super.observedAttributes];
+    return [...this.convertToAttributes(FtuiIcon.properties), ...super.observedAttributes];
   }
 
   onAttributeChanged(name, oldValue, newValue) {

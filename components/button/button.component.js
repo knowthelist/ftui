@@ -47,7 +47,7 @@ export class FtuiButton extends FtuiElement {
   }
 
   static get observedAttributes() {
-    return [...Object.keys(FtuiButton.properties), ...super.observedAttributes];
+    return [...this.convertToAttributes(FtuiButton.properties), ...super.observedAttributes];
   }
 
   onDownEvent() {

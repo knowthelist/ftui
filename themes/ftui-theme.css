@@ -28,7 +28,7 @@
   --green1: #3caea3;
   --yellow1: #f6d55c;
   --red1: #ed553b;
-  --ligthblue: #6699FF;
+  --lightblue: #6699FF;
   --royalblue: #394b98;
   --white: #ffffff;
   --black: #111111;
@@ -40,7 +40,7 @@
   --secondary-color: var(--blue2);
 
   --success-color: var(--green1);
-  --info-color: var(--ligthblue);
+  --info-color: var(--lightblue);
   --warning-color: var(--yellow1);
   --danger-color: var(--red1);
   --light-color: var(--gray75);

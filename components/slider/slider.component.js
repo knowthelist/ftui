@@ -77,7 +77,7 @@ export class FtuiSlider extends FtuiElement {
   }
 
   static get observedAttributes() {
-    return [...Object.keys(FtuiSlider.properties), ...super.observedAttributes];
+    return [...this.convertToAttributes(FtuiSlider.properties), ...super.observedAttributes];
   }
 
   onAttributeChanged(name, oldValue, newValue) {
