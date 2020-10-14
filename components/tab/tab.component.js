@@ -10,6 +10,7 @@
 import { FtuiButton } from '../button/button.component.js';
 import * as ftui from '../../modules/ftui/ftui.helper.js';
 
+
 class FtuiTab extends FtuiButton {
 
   constructor(properties) {
@@ -18,15 +19,22 @@ class FtuiTab extends FtuiButton {
 
     this.addEventListener('click', this.onClicked);
 
-    if (this.hasAttribute('default')) {
+    if (this.hasAttribute('active')) {
       this.onClicked();
     }
   }
 
+  template() {
+    return `<style> @import "components/tab/tab.component.css"; </style>`
+    + super.template();
+  }
+
   static get properties() {
     return {
+      active: false,
       group: 'default',
-      color: 'dark',
+      color: '',
+      fill: 'clear',
       view: ''
     };
   }
@@ -51,13 +59,13 @@ class FtuiTab extends FtuiButton {
     ftui.selectAll('ftui-tab').forEach(elem => {
       if (elem.group === this.group && elem.id !== this.id) {
         elem.value = 'off';
-        elem.color = 'dark';
+        elem.active = false;
       }
     });
 
     // activate clicked tab
     this.value = 'on'
-    this.color = 'primary';
+    this.active = true;
 
     // emit event
     ftui.triggerEvent('ftuiVisiblityChanged');

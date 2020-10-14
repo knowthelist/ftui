@@ -13,9 +13,8 @@ import * as ftuiHelper from '../../modules/ftui/ftui.helper.js';
 
 export class FtuiSpeak extends FtuiElement {
   constructor(properties) {
-
     super(Object.assign(FtuiSpeak.properties, properties));
-
+    
     this.findVoice();
   }
 
@@ -48,11 +47,10 @@ export class FtuiSpeak extends FtuiElement {
   }
 
   speakText(text) {
-    const utter = new SpeechSynthesisUtterance();
+    const utter = new SpeechSynthesisUtterance(text);
     utter.rate = this.rate;
     utter.pitch = this.pitch;
     utter.volume = this.volume;
-    utter.text = text;
     if (ftuiHelper.isDefined(this.synthVoice)) {
       utter.voice = this.synthVoice;
     }

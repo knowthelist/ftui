@@ -14,9 +14,9 @@
   margin-bottom: 0.25em; */
   letter-spacing: -.025em;
   cursor: pointer;
-  border-color: var(--color-base);
+  border-color: var(--color-base, #20639b);
   background: transparent;
-  color: var(--color-base);
+  color: var(--color-base, #20639b);
 }
 
 /* size */
@@ -108,9 +108,6 @@
   border-color: var(--border-color);
 }
 
-.vertical {
-
-}
 ::slotted(ftui-icon) {
   font-size: 0.75em;
 }

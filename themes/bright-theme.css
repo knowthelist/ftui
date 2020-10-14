@@ -71,6 +71,10 @@
   --grid-header-color: var(--gray55);
   --grid-header-background-color: var(--gray30);
 
+  --tab-color: var(--medium-color);
+  --tab-contrast-color: var(--primary-contrast-color);
+  --tab-active-color: var(--primary-color);
+
   --border-color: var(--gray75);
 
 }

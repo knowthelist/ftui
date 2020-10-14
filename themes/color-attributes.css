@@ -48,5 +48,6 @@
 }
 
 [color="transparent"] {
-  --color-base: var(--content-color);
+  --color-base: var(--grid-background-color);
+  --color-contrast: var(--medium-color);
 }

@@ -28,13 +28,15 @@
   <ftui-grid>
 
     <ftui-grid-tile row="1" col="1" height="5" width="1">
-      <div class="column">
-        <ftui-tab [value]="ftuitest | map('1: on, .*: off')"  view="View1" default>Tab1</ftui-tab>
-        <ftui-tab [value]="ftuitest | map('2: on, .*: off')"  view="View2">Tab2</ftui-tab>
-        <ftui-tab [value]="ftuitest | map('3: on, .*: off')"  view="View3">Tab3</ftui-tab>
-        <ftui-tab [value]="ftuitest | map('4: on, .*: off')"  view="View4">Tab4</ftui-tab>
-        <ftui-tab [value]="ftuitest | map('5: on, .*: off')"  view="View5">Tab5</ftui-tab>
-      </div>
+        <div class="column">
+          <ftui-tab view="View1" active><ftui-icon name="home1"></ftui-icon></ftui-tab>
+          <ftui-tab view="View2"><ftui-icon name="music"></ftui-icon></ftui-tab>
+          <ftui-tab view="View3" class="large">Tab3</ftui-tab>
+          <ftui-tab view="View4" fill="solid">Tab4</ftui-tab>
+          <ftui-tab view="View5" fill="solid">Tab5</ftui-tab>
+          <ftui-tab view="View6" fill="solid" shape="circle"><ftui-icon name="music"></ftui-icon></ftui-tab>
+          <ftui-tab view="View7" fill="solid" shape="circle"><ftui-icon name="music"></ftui-icon></ftui-tab>
+        </div>
     </ftui-grid-tile>
 
     <ftui-tab-view id="View1">

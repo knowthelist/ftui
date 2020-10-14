@@ -1,6 +1,6 @@
 :host {
-  --color-base: var(--grid-background-color);
-  background-color: var(--color-base);
+  --color-base: var(--grid-background-color, #333333);
+  background: var(--color-base);
   position: absolute;
   display: flex;
   flex-direction: column;
@@ -25,5 +25,9 @@
 }
 
 :host([color]) {
-  background-color: var(--color-base);
+  background: var(--color-base);
+}
+
+:host ::slotted(.row) {
+  flex: 1;
 }

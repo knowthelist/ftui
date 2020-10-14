@@ -211,10 +211,10 @@ header.fixed#header-nav+main#panel {
 
 /* row column cell */
 
-.row, [class*=row-] {
+.row {
   display: flex;
   flex-direction: row;
-  flex: 1;
+/*   flex: 1; */
   justify-content: space-around;
   align-items: center;
 }
@@ -371,6 +371,10 @@ header.fixed#header-nav+main#panel {
 
 .w-60 {
   width: 60%;
+}
+
+.w-80 {
+  width: 80%;
 }
 
 .w-100 {

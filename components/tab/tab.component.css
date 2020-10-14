@@ -1,0 +1,20 @@
+
+:host {
+   --color-base: var(--tab-color, #666666);
+   --color-contrast: var(--tab-active-color, #20639b);
+} 
+
+:host([active]) {
+  --color-base: var(--tab-active-color, #20639b);
+  --color-contrast: var(--tab-color, #666666);
+} 
+
+:host([fill="solid"]) {
+  --color-base: var(--tab-color, #20639b);
+  --color-contrast: var(--tab-contrast-color, #ffffff);
+} 
+
+:host([fill="solid"][active]) {
+  --color-base: var(--tab-active-color, #20639b);
+  --color-contrast: var(--tab-contrast-color, #ffffff);
+}

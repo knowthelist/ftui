@@ -67,7 +67,6 @@ export class FtuiColorpicker extends FtuiElement {
   }
 
   onAttributeChanged(name) {
-    console.log(name)
     switch (name) {
       case 'has-wheel':
       case 'has-hue-slider':
