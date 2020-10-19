@@ -14,13 +14,13 @@ export class FtuiLabel extends FtuiElement {
   constructor(properties) {
     super(Object.assign(FtuiLabel.properties, properties));
 
-    this.mainSlotElement = this.shadowRoot.querySelector('slot:not([name])');
+    this.mainSlotElement = this.shadowRoot.querySelector('slot[name="content"]');
   }
 
   template() {
     return `
       <style> @import "components/label/label.component.css"; </style>
-      <slot name="start"></slot><slot></slot><slot name="end"></slot>
+      <slot></slot><slot name="start"></slot><slot name="content"></slot><slot name="end"></slot>
     `;
   }
 
@@ -38,7 +38,7 @@ export class FtuiLabel extends FtuiElement {
   onAttributeChanged(name) {
     switch (name) {
       case 'text':
-        this.mainSlotElement.innerHTML = this.text;
+        this.mainSlotElement.innerText = this.text;
         break;
     }
   }

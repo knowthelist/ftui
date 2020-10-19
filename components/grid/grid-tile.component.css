@@ -4,6 +4,7 @@
   position: absolute;
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 :host([shape="round"]) {
@@ -26,6 +27,7 @@
 
 :host([color]) {
   background: var(--color-base);
+  color: var(--color-contrast);
 }
 
 :host ::slotted(.row) {

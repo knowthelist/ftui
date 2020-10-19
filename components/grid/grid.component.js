@@ -20,7 +20,8 @@ export class FtuiGrid extends FtuiElement {
       baseHeight: 0,
       cols: 0,
       rows: 0,
-      margin: 8
+      margin: 8,
+      resize: false
     };
     super(properties);
 
@@ -32,7 +33,7 @@ export class FtuiGrid extends FtuiElement {
       window.addEventListener('resize', () => {
         if (this.windowWidth !== window.innerWidth) {
           clearTimeout(this.resizeTimerHandle);
-          this.resizeTimerHandle = setTimeout(this.configureGrid, 500);
+          this.resizeTimerHandle = setTimeout(() => this.configureGrid(), 500);
           this.windowWidth = window.innerWidth;
         }
       });
@@ -62,7 +63,6 @@ export class FtuiGrid extends FtuiElement {
 
     cols = (this.cols > 0) ? this.cols : highestCol;
     rows = (this.rows > 0) ? this.rows : highestRow;
-
     baseWidth = (this.baseWidth > 0) ? this.baseWidth : (window.innerWidth - this.margin) / cols;
     baseHeight = (this.baseHeight > 0) ? this.baseHeight : (window.innerHeight - this.margin) / rows;
 

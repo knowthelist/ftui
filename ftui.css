@@ -214,9 +214,9 @@ header.fixed#header-nav+main#panel {
 .row {
   display: flex;
   flex-direction: row;
-/*   flex: 1; */
   justify-content: space-around;
   align-items: center;
+  width: 100%;
 }
 
 .column {
@@ -234,6 +234,7 @@ header.fixed#header-nav+main#panel {
   align-items: center;
   justify-content: space-evenly;
   flex: 1;
+  width: 100%;
 }
 
 .cell.align-right {
@@ -242,6 +243,14 @@ header.fixed#header-nav+main#panel {
 
 .cell.align-left {
   align-items: start;
+}
+
+.cell > .align-left {
+  align-self: end;
+}
+
+.cell > .align-right {
+  align-self: start;
 }
 
 .cell.align-bottom {
@@ -394,11 +403,11 @@ header.fixed#header-nav+main#panel {
 }
 
 .top-align {
-  vertical-align: top !important;
+  vertical-align: top;
 }
 
 .bottom-align {
-  vertical-align: bottom !important;
+  vertical-align: bottom;
 }
 
 /* end Rom column cell */
@@ -423,7 +432,6 @@ header.fixed#header-nav+main#panel {
   /* IE */
 }
 
-
 .darker {
   color: #8C8C8C;
 }
@@ -438,45 +446,45 @@ header.fixed#header-nav+main#panel {
 
 .great.thin, .tall.thin {
   font-family: "HelveticaNeue-UltraLight", "Segoe UI", "Roboto Light", sans-serif;
-  font-weight: normal !important;
+  font-weight: normal;
 }
 
 .gigantic {
-  font-size: 144px !important;
+  font-size: 144px;
   font-family: "HelveticaNeue-UltraLight", "Segoe UI", "Roboto Light", sans-serif;
   line-height: 120px;
 }
 
 .grande {
-  font-size: 600% !important;
+  font-size: 600%;
 }
 
 .huge {
-  font-size: 500% !important;
+  font-size: 500%;
 }
 
 .great {
-  font-size: 450% !important;
+  font-size: 450%;
 }
 
 .tall {
-  font-size: 350% !important;
+  font-size: 350%;
 }
 
 .xxxxl {
-  font-size: 300% !important;
+  font-size: 300%;
 }
 
 .bigger, .xxxl {
-  font-size: 200% !important;
+  font-size: 200%;
 }
 
 .xxl {
-  font-size: 175% !important;
+  font-size: 175%;
 }
 
 .big, .xl {
-  font-size: 150% !important;
+  font-size: 150%;
 }
 
 .large.thin {
@@ -484,23 +492,23 @@ header.fixed#header-nav+main#panel {
 }
 
 .large, .l {
-  font-size: 125% !important;
+  font-size: 125%;
 }
 
 .normal {
-  font-size: 100% !important;
+  font-size: 100%;
 }
 
 .small {
-  font-size: 80% !important;
+  font-size: 80%;
 }
 
 .tiny {
-  font-size: 60% !important;
+  font-size: 60%;
 }
 
 .mini {
-  font-size: 50% !important;
+  font-size: 50%;
 }
 
 /* end font sizes */
@@ -514,16 +522,11 @@ header.fixed#header-nav+main#panel {
   border-top: 1px solid var(--border-color);
 }
 
-
-
 /* toDo: sort */
 
 * {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
-
-
-
 
 ul, ol {
   list-style: none;

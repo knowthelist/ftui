@@ -28,6 +28,7 @@
   --color-contrast: var(--dark-contrast-color);
 }
 
+[color="ok"],
 [color="success"],
 [color="green"] {
   --color-base: var(--success-color);
@@ -50,4 +51,9 @@
 [color="transparent"] {
   --color-base: var(--grid-background-color);
   --color-contrast: var(--medium-color);
+}
+
+[color="blue"] {
+  --color-base: var(--lightblue);
+  --color-contrast: var(--dark-color);
 }

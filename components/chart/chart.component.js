@@ -19,6 +19,7 @@ export class FtuiChart extends FtuiElement {
     super(Object.assign(FtuiChart.properties, properties));
 
     this.dataElements = this.querySelectorAll('ftui-chart-data');
+    this.chartContainer = this.shadowRoot.querySelector('#container');
     this.chartElement = this.shadowRoot.querySelector('#chart');
 
     this.configuration = {
@@ -53,25 +54,26 @@ export class FtuiChart extends FtuiElement {
     this.chart = new Chart(this.chartElement, this.configuration);
 
     // TODO: Why does the size not fit sometimes?
-    this.chartElement.style.height = this.width;
-    this.chartElement.style.width = this.height;
-
+    this.chartContainer.style.width = this.width;
+    this.chartContainer.style.height = this.height;
     this.updateDatasets();
+
   }
 
   template() {
     return `
       <style> @import "components/chart/chart.component.css"; </style>
-
-      <canvas id="chart"></canvas>
+      <div id="container">
+        <canvas id="chart"></canvas>
+      </div>
       <slot></slot>`;
   }
 
   static get properties() {
     return {
       title: '',
-      height: '100%',
-      width: '100%'
+      width: '400px',
+      height: '200px'
     };
   }
 
