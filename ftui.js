@@ -7,8 +7,8 @@ menu && menu.addEventListener('click', event => {
   event.target.classList.toggle('show');
 }); */
 
-async function main() { 
-  const ftuiModule = await import("./modules/ftui/ftui.app.js");
+async function main() {
+  const ftuiModule = await import('./modules/ftui/ftui.app.js');
   window.ftuiApp = ftuiModule.ftuiApp;
 }
 
@@ -22,9 +22,9 @@ window.addEventListener('pageshow', () => {
   if (typeof ftuiApp === 'undefined') {
     // load FTUI
     main();
-   } else { 
-      ftuiApp.setOnline();
-   }
+  } else {
+    ftuiApp.setOnline();
+  }
 });
 
 window.addEventListener('beforeunload', () => {

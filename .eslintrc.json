@@ -1,49 +1,57 @@
 {
-    "env": {
-        "browser": true,
-        "es7": true
-    },
+  "env": {
+    "browser": true,
+    "es6": true
+  },
+  "extends": [
+    "eslint:recommended"
+  ],
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaVersion": 11
+  },
+  "eslintConfig": {
     "globals": {
-        "ftui": true,
-        "Modul_widget": true,
-        "Widget": true,
-        "FtuiWidget": true,
-        "vNotify": true
-    },
-    "extends": [
-        "eslint:recommended"
-    ],
-    "parserOptions": {
-        "sourceType": "module",
-        "ecmaVersion": 8
-    },
-    "rules": {
-        "indent": [
-            "error",
-            2,
-            { "SwitchCase": 1 }
-        ],
-        "quotes": [
-            "error",
-            "single",
-            { "allowTemplateLiterals": true }
-        ],
-        "no-var": [
-            "error"
-        ],
-        "prefer-const": [
-            "error",
-            {
-                "destructuring": "any",
-                "ignoreReadBeforeAssign": false
-            }
-        ],
-        "no-unused-vars": [
-            "error",
-            {
-                "varsIgnorePattern": 
-                "^Modul_*|^depends_*|Ftui*|part|toNumber|round|add|multiply|pipe|toDate|format"
-            }
-        ]
+      "ftuiApp": "readable"
     }
+  },
+  "rules": {
+    "indent": [
+      "error",
+      2,
+      {
+        "SwitchCase": 1
+      }
+    ],
+    "quotes": [
+      "error",
+      "single",
+      {
+        "allowTemplateLiterals": true
+      }
+    ],
+    "eol-last": [
+      "error",
+      "always"
+    ],
+    "no-trailing-spaces": [
+      "error"
+    ],
+    "no-var": [
+      "error"
+    ],
+    "prefer-const": [
+      "error",
+      {
+        "destructuring": "any",
+        "ignoreReadBeforeAssign": false
+      }
+    ],
+    "no-unused-vars": [
+      "error",
+      {
+        "varsIgnorePattern": ""
+      }
+    ]
+  }
 }

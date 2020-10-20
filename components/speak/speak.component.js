@@ -1,9 +1,9 @@
-/* 
+/*
 * Speak component for FTUI version 3
 *
 * Copyright (c) 2020 Mario Stephan <mstephan@shared-files.de>
 * Under MIT License (http://www.opensource.org/licenses/mit-license.php)
-* 
+*
 * https://github.com/knowthelist/ftui
 */
 
@@ -14,7 +14,7 @@ import * as ftuiHelper from '../../modules/ftui/ftui.helper.js';
 export class FtuiSpeak extends FtuiElement {
   constructor(properties) {
     super(Object.assign(FtuiSpeak.properties, properties));
-    
+
     this.findVoice();
   }
 

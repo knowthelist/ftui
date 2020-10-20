@@ -1,13 +1,14 @@
-/* 
+/*
 * Grid component for FTUI version 3
 *
 * Copyright (c) 2019-2020 Mario Stephan <mstephan@shared-files.de>
 * Under MIT License (http://www.opensource.org/licenses/mit-license.php)
-* 
+*
 * https://github.com/knowthelist/ftui
 */
 
 import { FtuiElement } from '../element.component.js';
+// eslint-disable-next-line no-unused-vars
 import { FtuiGridTile } from './grid-tile.component.js';
 
 export class FtuiGrid extends FtuiElement {
@@ -21,7 +22,7 @@ export class FtuiGrid extends FtuiElement {
       cols: 0,
       rows: 0,
       margin: 8,
-      resize: false
+      responsive: false
     };
     super(properties);
 
@@ -29,7 +30,7 @@ export class FtuiGrid extends FtuiElement {
     this.tiles = this.querySelectorAll('ftui-grid-tile');
     this.configureGrid();
 
-    if (this.resize) {
+    if (this.responsive) {
       window.addEventListener('resize', () => {
         if (this.windowWidth !== window.innerWidth) {
           clearTimeout(this.resizeTimerHandle);
@@ -43,7 +44,7 @@ export class FtuiGrid extends FtuiElement {
   template() {
     return `<style> @import "components/grid/grid.component.css"; </style>
     <slot></slot>
-        `;
+    `;
   }
 
   configureGrid() {

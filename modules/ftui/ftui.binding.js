@@ -35,7 +35,7 @@ export class FtuiBinding {
     if (this.private.outputAttributes.size > 0) {
       this.private.observer = new MutationObserver((mutations) => {
         mutations.forEach((mutation) => {
-          if (mutation.type == "attributes") {
+          if (mutation.type == 'attributes') {
             const attributeName = mutation.attributeName;
             const attributeValue = mutation.target[attributeName] || mutation.target.getAttribute(attributeName);
             if (!this.private.isChanging[attributeName]) {
@@ -103,9 +103,9 @@ export class FtuiBinding {
 
   initInputBinding(attribute) {
 
-    /* 
-    in    "dummy1:state:value | map('on:1,off:0')" 
-    
+    /*
+    in    "dummy1:state:value | map('on:1,off:0')"
+
     out   input.readings.GartenTemp.attributes.text.property="value"
           input.readings.GartenTemp.attributes.text.filter="map('10:low,30:high')""
     */
@@ -123,9 +123,9 @@ export class FtuiBinding {
 
   initOutputBinding(attribute) {
 
-    /* 
+    /*
     in    "map('true:on,false:off') | dummy1"
- 
+
     out   output.attributes.value.readings.dummy1.cmd="set"
           output.attributes.value.readings.dummy1.value="$value"
           output.attributes.value.readings.dummy1.filter="map('true:on,false:off')"
@@ -197,20 +197,20 @@ export class FtuiBinding {
         propertyIndex++;
         switch (propertyIndex) {
           case 1:
-            {
-              device = currentValue.trim();
-              break;
-            }
+          {
+            device = currentValue.trim();
+            break;
+          }
           case 2:
-            {
-              reading = currentValue.trim();
-              break;
-            }
+          {
+            reading = currentValue.trim();
+            break;
+          }
           case 3:
-            {
-              property = currentValue.trim();
-              break;
-            }
+          {
+            property = currentValue.trim();
+            break;
+          }
         }
         currentValue = '';
         continue;

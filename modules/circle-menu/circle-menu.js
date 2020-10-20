@@ -1,11 +1,11 @@
-/* 
+/*
 * Circle menu lib module for FTUI version 3
 *
 * Copyright (c) 2020 Mario Stephan <mstephan@shared-files.de>
 * Under MIT License (http://www.opensource.org/licenses/mit-license.php)
-* 
+*
 * https://github.com/knowthelist/ftui
-* 
+*
 * adapted from https://github.com/zikes/circle-menu
 * Copyright (c) Jason Hutchinson (zikes@zikes.me)
 * DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE

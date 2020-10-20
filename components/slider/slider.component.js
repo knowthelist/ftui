@@ -1,9 +1,9 @@
-/* 
+/*
 * Slider component for FTUI version 3
 *
 * Copyright (c) 2020 Mario Stephan <mstephan@shared-files.de>
 * Under MIT License (http://www.opensource.org/licenses/mit-license.php)
-* 
+*
 * https://github.com/knowthelist/ftui
 */
 
@@ -34,7 +34,7 @@ export class FtuiSlider extends FtuiElement {
     });
 
 
-    // force re-render if visible 
+    // force re-render if visible
     document.addEventListener('ftuiVisiblityChanged', () => {
       if (ftui.isVisible(this)) {
         this.rangeable.update();

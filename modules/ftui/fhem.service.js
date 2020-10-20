@@ -57,7 +57,7 @@ class FhemService {
     }
   }
 
-  // ToDo: Do not repeat yourself 
+  // ToDo: Do not repeat yourself
   getReadingData(readingID) {
     const id = readingID.replace(':', '-');
     if (this.readings.has(id)) {
@@ -336,7 +336,7 @@ class FhemService {
       this.errorEvents.publish('<u>App is offline</u><br>sendToFhem failed');
     }
   }
-  
+
   sendCommand(cmdline = '', async = '0') {
     const url = new URL(this.config.fhemDir);
     const params = {
@@ -404,5 +404,5 @@ class FhemService {
 
 }
 
-// instance singleton here 
+// instance singleton here
 export const fhemService = new FhemService();

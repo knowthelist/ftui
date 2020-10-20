@@ -1,16 +1,16 @@
-/* 
+/*
 * Base component for FTUI version 3
 *
 * Copyright (c) 2019-2020 Mario Stephan <mstephan@shared-files.de>
 * Under MIT License (http://www.opensource.org/licenses/mit-license.php)
-* 
+*
 * https://github.com/knowthelist/ftui
 */
 
 
 import * as ftuiHelper from '../modules/ftui/ftui.helper.js';
 
-let uids = {};
+const uids = {};
 
 export class FtuiElement extends HTMLElement {
 
@@ -35,7 +35,7 @@ export class FtuiElement extends HTMLElement {
     if (window.ftuiApp) {
       ftuiApp.attachBinding(this);
     }
-   
+
   }
 
   createShadowRoot() {

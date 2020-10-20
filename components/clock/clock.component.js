@@ -1,9 +1,9 @@
-/* 
+/*
 * Clock component for FTUI version 3
 *
 * Copyright (c) 2020 Mario Stephan <mstephan@shared-files.de>
 * Under MIT License (http://www.opensource.org/licenses/mit-license.php)
-* 
+*
 * https://github.com/knowthelist/ftui
 */
 
@@ -60,7 +60,7 @@ export class FtuiClock extends FtuiElement {
     const s = now.getSeconds();
     const ms = now.getMilliseconds();
     const waitMs = this.format.includes('s') ? 1000 - ms * 1 : 60000 - s * 1000 - ms * 1;
-    const tid = setTimeout(() => {
+    setTimeout(() => {
       this.update();
       this.startInterval();
     }, waitMs);

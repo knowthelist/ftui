@@ -1,9 +1,9 @@
-/* 
+/*
 * Knob component for FTUI version 3
 *
 * Copyright (c) 2019-2020 Mario Stephan <mstephan@shared-files.de>
 * Under MIT License (http://www.opensource.org/licenses/mit-license.php)
-* 
+*
 * https://github.com/knowthelist/ftui
 */
 
@@ -33,7 +33,7 @@ class FtuiKnob extends FtuiElement {
     this.W = parseInt(window.getComputedStyle(this.svg, null).getPropertyValue('width'));
     this.H = parseInt(window.getComputedStyle(this.svg, null).getPropertyValue('height'));
 
-    // ~~(..) is a faster Math.floor 
+    // ~~(..) is a faster Math.floor
     this.centerX = ~~(this.W / 2);
     this.centerY = ~~(this.H / 2) + this.offsetY;
     this.radius = ~~(this.centerX / (this.hasScaleText ? 1.5 : 1.1));

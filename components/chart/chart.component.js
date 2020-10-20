@@ -1,15 +1,16 @@
-/* 
+/*
 * Chart component for FTUI version 3
 *
 * Copyright (c) 2020 Mario Stephan <mstephan@shared-files.de>
 * Under MIT License (http://www.opensource.org/licenses/mit-license.php)
-* 
+*
 * https://github.com/knowthelist/ftui
 */
 
 import { FtuiElement } from '../element.component.js';
 import { FtuiChartData } from './chart-data.component.js';
 import { Chart } from '../../modules/chart.js/chart.js';
+import { getStylePropertyValue } from '../../modules/ftui/ftui.helper.js';
 import '../../modules/chart.js/chartjs-adapter-date-fns.bundle.min.js';
 
 
@@ -31,18 +32,56 @@ export class FtuiChart extends FtuiElement {
         responsive: true,
         title: {
           display: true,
-          text: 'Custom Chart Title'
+          text: 'Custom Chart Title',
+          font: {
+            size: getStylePropertyValue('--chart-title-font-size') || 16,
+            style: '500',
+            color: getStylePropertyValue('--light-color')
+          }
+        },
+        legend: {
+          labels: {
+            usePointStyle: true,
+            boxWidth: 6,
+            padding: 8,
+            font: {
+              size: getStylePropertyValue('--chart-legend-font-size') || 13
+            },
+            filter: item => item.text
+          }
         },
         scales: {
           x: {
             type: 'time',
             time: {
-              parser: 'yyyy-MM-dd_HH:mm:ss'
+              parser: 'yyyy-MM-dd_HH:mm:ss',
+              displayFormats: { millisecond: 'HH:mm:ss.SSS', second: 'HH:mm:ss', minute: 'HH:mm', hour: 'HH:mm', day: 'D. MMM' }
+            },
+            gridLines: {
+              color: getStylePropertyValue('--dark-color')
+            },
+            ticks: {
+              maxRotation: 0,
+              autoSkip: true,
+              autoSkipPadding: 30,
+              font: {
+                size: getStylePropertyValue('--chart-tick-font-size')|| 11
+              }
             }
           },
           y: {
             scaleLabel: {
               labelString: 'value'
+            },
+            gridLines: {
+              color: getStylePropertyValue('--dark-color')
+            },
+            ticks: {
+              autoSkip: true,
+              autoSkipPadding: 30,
+              font: {
+                size: getStylePropertyValue('--chart-tick-font-size') || 11
+              }
             }
           }
         }
@@ -51,18 +90,20 @@ export class FtuiChart extends FtuiElement {
 
     this.dataElements.forEach(dataElement => dataElement.addEventListener('ftuiDataChanged', () => this.updateDatasets()));
 
+    Chart.defaults.font.color = getStylePropertyValue('--chart-text-color');
+    Chart.defaults.font.family = getStylePropertyValue('--chart-font-family');
     this.chart = new Chart(this.chartElement, this.configuration);
 
-    // TODO: Why does the size not fit sometimes?
     this.chartContainer.style.width = this.width;
     this.chartContainer.style.height = this.height;
-    this.updateDatasets();
 
+    this.updateDatasets();
   }
 
   template() {
     return `
       <style> @import "components/chart/chart.component.css"; </style>
+
       <div id="container">
         <canvas id="chart"></canvas>
       </div>
@@ -72,8 +113,7 @@ export class FtuiChart extends FtuiElement {
   static get properties() {
     return {
       title: '',
-      width: '400px',
-      height: '200px'
+      width: '100%'
     };
   }
 

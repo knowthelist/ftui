@@ -75,6 +75,8 @@
   --tab-contrast-color: var(--gray20);
   --tab-active-color: var(--primary-color);
 
+  --chart-text-color: var(--gray55);
+
   --border-color: var(--gray55);
 
 }

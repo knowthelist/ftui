@@ -49,7 +49,7 @@ export function getMatchingKey(map, searchKey) {
           else if (isNaN(b)) return -1;
           else return a - b;
         });
-    // take last item of matching keys 
+    // take last item of matching keys
     return filteredKeys.slice(-1)[0];
   } else {
     return null;
@@ -137,6 +137,7 @@ export function toBool(value) {
 }
 
 // converter
+
 export function toCamelCase(string) {
   return string.replace(/-([a-z])/g, (char) => { return char[1].toUpperCase() });
 }
@@ -153,7 +154,8 @@ export function capitalize (s) {
   return s.charAt(0).toUpperCase() + s.slice(1);
 }
 
-// global date format functions
+// date functions
+
 export function dateFromString(str) {
   const m = str.match(/(\d+)-(\d+)-(\d+)[_\s](\d+):(\d+):(\d+).*/);
   const m2 = str.match(/^(\d+)$/);
@@ -270,4 +272,8 @@ export function deferred() {
     return promise;
   };
   return defer;
+}
+
+export function getStylePropertyValue(property, element = document.body) {
+  return getComputedStyle(element).getPropertyValue(property).trim();
 }

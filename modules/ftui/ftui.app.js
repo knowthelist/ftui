@@ -46,7 +46,6 @@ class FtuiApp {
     this.config.refreshInterval = this.getMetaNumber('refresh_interval', 15 * 60); // 15 minutes
     this.config.refreshDelay = this.getMetaString('refresh_restart_delay', 3);
     // self path
-    const url = window.location.pathname;
     const fhemUrl = this.getMetaString('fhemweb_url');
     this.config.fhemDir = fhemUrl || window.location.origin + '/fhem/';
     if (fhemUrl && new RegExp('^((?!http://|https://).)*$').test(fhemUrl)) {
@@ -101,7 +100,7 @@ class FtuiApp {
       if (this.config.debuglevel > 1) this.toast(dur);
       ftui.log(1, dur);
     }).catch(error => {
-      tui.error('Error: initComponents - ' + error);
+      ftui.error('Error: initComponents - ' + error);
     });
   }
 
@@ -235,5 +234,5 @@ class FtuiApp {
 
 }
 
-// instance singleton here 
+// instance singleton here
 export const ftuiApp = new FtuiApp();

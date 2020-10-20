@@ -1,9 +1,9 @@
-/* 
+/*
 * Tab component for FTUI version 3
 *
 * Copyright (c) 2020 Mario Stephan <mstephan@shared-files.de>
 * Under MIT License (http://www.opensource.org/licenses/mit-license.php)
-* 
+*
 * https://github.com/knowthelist/ftui
 */
 
@@ -75,7 +75,7 @@ class FtuiTab extends FtuiButton {
     switch (name) {
       case 'value':
         if (newValue === 'on' && oldValue !== 'on') {
-         this.onClicked();
+          this.onClicked();
         }
         break;
     }
