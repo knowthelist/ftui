@@ -23,7 +23,7 @@ export class FtuiChartData extends FtuiElement {
       this.backgroundColor = Chart.helpers.color(this.borderColor).alpha(0.2).rgbString();
     }
 
-    this.fetchLogItems(this.log, this.file, this.spec);
+    this.fetch();
   }
 
   static get properties() {
@@ -41,7 +41,8 @@ export class FtuiChartData extends FtuiElement {
       file: '-',
       spec: '4:.*',
       unit: '°C',
-      timeUnit: 'day'
+      timeUnit: 'day',
+      update: ''
     };
   }
 
@@ -70,6 +71,10 @@ export class FtuiChartData extends FtuiElement {
         break;
     }
     return ftuiHelper.dateFormat(date, 'YYYY-MM-DD_hh:mm:ss');
+  }
+
+  fetch() {
+    this.fetchLogItems(this.log, this.file, this.spec);
   }
 
   fetchLogItems(log, file, spec) {
@@ -103,6 +108,9 @@ export class FtuiChartData extends FtuiElement {
           this.backgroundColor = Chart.helpers.color(this.borderColor).alpha(0.2).rgbString();
         }
         this.pointBackgroundColor = this.borderColor;
+        break;
+      case 'update':
+        this.fetch();
         break;
     }
     if (ftuiHelper.isDefined(this.data)) {
