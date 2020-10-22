@@ -261,7 +261,7 @@ export class FtuiBinding {
       };
       try {
         const pipeNotInQuotes = /\|(?=([^']*'[^']*')*[^']*$)/g;
-        filter = filter.replace(pipeNotInQuotes, ',').replaceAll('`', '"').replaceAll('´', '"');
+        filter = filter.replace(pipeNotInQuotes, ',').replace(/`/g, '"').replace(/´/, '"');
         const fn = eval('pipe(' + filter + ')');
         return fn(text);
       } catch (e) {

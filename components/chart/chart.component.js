@@ -65,7 +65,7 @@ export class FtuiChart extends FtuiElement {
               autoSkip: true,
               autoSkipPadding: 30,
               font: {
-                size: getStylePropertyValue('--chart-tick-font-size')|| 11
+                size: getStylePropertyValue('--chart-tick-font-size') || 11
               }
             }
           },
@@ -96,8 +96,6 @@ export class FtuiChart extends FtuiElement {
 
     this.chartContainer.style.width = this.width;
     this.chartContainer.style.height = this.height;
-
-    this.updateDatasets();
   }
 
   template() {
@@ -142,6 +140,9 @@ export class FtuiChart extends FtuiElement {
       this.configuration.data.datasets.push(dataset);
     });
     this.chart.update();
+    // disable animation after first update
+    this.configuration.options.animation.duration = 0;
+
   }
 
 }

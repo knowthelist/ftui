@@ -76,7 +76,7 @@ class FtuiTab extends FtuiButton {
   onAttributeChanged(name, oldValue, newValue) {
     switch (name) {
       case 'value':
-        if (newValue === 'on' && oldValue !== 'on') {
+        if (newValue === 'on' && oldValue !== 'on' && this.value !== newValue) {
           this.onClicked();
         }
         break;
