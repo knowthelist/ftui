@@ -18,10 +18,6 @@ class FtuiTab extends FtuiButton {
     super(Object.assign(FtuiTab.properties, properties));
 
     this.addEventListener('click', this.onClicked);
-
-    if (this.hasAttribute('active')) {
-      this.onClicked();
-    }
   }
 
   template() {
@@ -41,6 +37,12 @@ class FtuiTab extends FtuiButton {
 
   static get observedAttributes() {
     return [...this.convertToAttributes(FtuiTab.properties), ...super.observedAttributes];
+  }
+
+  connectedCallback() {
+    if (this.hasAttribute('active')) {
+      this.onClicked();
+    }
   }
 
   onClicked() {

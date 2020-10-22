@@ -22,7 +22,7 @@ export class FtuiGrid extends FtuiElement {
       cols: 0,
       rows: 0,
       margin: 8,
-      responsive: false
+      resize: false
     };
     super(properties);
 
@@ -30,7 +30,7 @@ export class FtuiGrid extends FtuiElement {
     this.tiles = this.querySelectorAll('ftui-grid-tile');
     this.configureGrid();
 
-    if (this.responsive) {
+    if (this.resize) {
       window.addEventListener('resize', () => {
         if (this.windowWidth !== window.innerWidth) {
           clearTimeout(this.resizeTimerHandle);
