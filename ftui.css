@@ -471,7 +471,7 @@ header.fixed#header-nav+main#panel {
   font-size: 350%;
 }
 
-.xxxxl {
+.large, .xxxxl {
   font-size: 300%;
 }
 
@@ -485,14 +485,6 @@ header.fixed#header-nav+main#panel {
 
 .big, .xl {
   font-size: 150%;
-}
-
-.large.thin {
-  letter-spacing: 1.1px;
-}
-
-.large, .l {
-  font-size: 125%;
 }
 
 .normal {

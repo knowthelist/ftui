@@ -31,8 +31,8 @@ export class FtuiChart extends FtuiElement {
       options: {
         responsive: true,
         title: {
-          display: true,
-          text: 'Custom Chart Title',
+          display: false,
+          text: '',
           font: {
             size: getStylePropertyValue('--chart-title-font-size') || 16,
             style: '500',
@@ -111,7 +111,8 @@ export class FtuiChart extends FtuiElement {
   static get properties() {
     return {
       title: '',
-      width: '100%'
+      width: '100%',
+      height: 'auto'
     };
   }
 

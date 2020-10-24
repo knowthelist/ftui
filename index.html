@@ -48,10 +48,10 @@
         </div>
       </ftui-grid-tile>
       <ftui-grid-tile row="1" col="4" height="2" width="2" shape="round" 
-        [color]="WCLuft | map('0:ok, 1000:warning, 2000:danger')">
+        [color]="WCLuft | map('1000:warning, 2000:danger')">
         <div class="cell w-80">
           <label class="big align-left">CO²</label>
-          <ftui-label id="co2" class="bigger" [text]="WCLuft | part(1) | toInt()">
+          <ftui-label class="bigger" [text]="WCLuft | part(1) | toInt()">
             <span slot="end" class="mini">ppm</span>
           </ftui-label>
         </div>
@@ -60,8 +60,18 @@
       <ftui-grid-tile row="3" col="2" height="2" width="2" shape="round">
 3
       </ftui-grid-tile>
-      <ftui-grid-tile row="3" col="4" height="2" width="2" shape="round">
-4
+      <ftui-grid-tile row="3" col="4" height="2" width="3" shape="round">
+        <div class="column">
+          <div class="row h-50">
+            <label>Humidity</label>
+            <ftui-label class="large" [text]="THSensorWZ:humidity">
+              <span slot="end" class="mini">%</span>
+            </ftui-label>
+          </div>
+          <ftui-chart  class="row" width="150px" height="75px">
+            <ftui-chart-data fill log="FileLog_THSensorWZ" spec="4:THSensorWZ.humidity" [update]="THSensorWZ:state:time"></ftui-chart-data>
+          </ftui-chart>
+        </div>
       </ftui-grid-tile>
 
 <!--       <ftui-grid-tile row="2" col="3" height="2" width="2" shape="round">
