@@ -55,7 +55,7 @@ export class FtuiChart extends FtuiElement {
             type: 'time',
             time: {
               parser: 'yyyy-MM-dd_HH:mm:ss',
-              displayFormats: { millisecond: 'HH:mm:ss.SSS', second: 'HH:mm:ss', minute: 'HH:mm', hour: 'HH:mm', day: 'D. MMM' }
+              displayFormats: { millisecond: 'HH:mm:ss.SSS', second: 'HH:mm:ss', minute: 'HH:mm', hour: 'HH:mm', day: 'd. MMM' }
             },
             gridLines: {
               color: getStylePropertyValue('--dark-color')

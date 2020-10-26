@@ -41,7 +41,7 @@
 
     <ftui-tab-view id="View1">
       <ftui-grid-tile row="1" col="2" height="2" width="2" shape="round" color="primary">
-        <div class="column">
+        <div class="cell">
           <ftui-clock format="ee" class="bigger"></ftui-clock>
           <ftui-clock format="DD" class="tall"></ftui-clock>
 <!--           <ftui-clock format="hh:mm" class="tall thin"></ftui-clock> -->
@@ -51,7 +51,7 @@
         [color]="WCLuft | map('1000:warning, 2000:danger')">
         <div class="cell w-80">
           <label class="big align-left">CO²</label>
-          <ftui-label class="bigger" [text]="WCLuft | part(1) | toInt()">
+          <ftui-label class="large" [text]="WCLuft | part(1) | toInt()">
             <span slot="end" class="mini">ppm</span>
           </ftui-label>
         </div>
@@ -62,7 +62,7 @@
       </ftui-grid-tile>
       <ftui-grid-tile row="3" col="4" height="2" width="3" shape="round">
         <div class="column">
-          <div class="row h-50">
+          <div class="row h-70">
             <label>Humidity</label>
             <ftui-label class="large" [text]="THSensorWZ:humidity">
               <span slot="end" class="mini">%</span>
@@ -74,10 +74,24 @@
         </div>
       </ftui-grid-tile>
 
-<!--       <ftui-grid-tile row="2" col="3" height="2" width="2" shape="round">
-5
+      <ftui-grid-tile row="1" col="15" height="2" width="2" shape="round">
+        <ftui-circlemenu direction="vertical">
+
+          <ftui-icon name="home1"></ftui-icon>
+
+          <ftui-button [(value)]="dummy.P1" fill="outline" shape="circle">
+            <ftui-icon [name]="dummy.P1 | map('on:lightbulb-on, off:lightbulb-off')"></ftui-icon>
+          </ftui-button>
+
+          <ftui-button-nice get="dummy2"></ftui-button-nice>
+
+          <ftui-button-nice get="dummy3"></ftui-button-nice>
+
+          <ftui-button-nice get="ftuitest"></ftui-button-nice>
+
+    </ftui-circlemenu>
       </ftui-grid-tile>
-      <ftui-grid-tile row="3" col="2" height="4" width="4" shape="round">
+<!--  <ftui-grid-tile row="3" col="2" height="4" width="4" shape="round">
 
       </ftui-grid-tile> -->
 <!--       <ftui-grid-tile row="3" col="4" height="2" width="2" shape="round">

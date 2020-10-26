@@ -208,7 +208,7 @@
           [value]="Sonos_Kueche:transportState | map('PLAYING: play, PAUSED_PLAYBACK|STOPPED: pause')"
           (value)="Sonos_Kueche" states="play, pause">
           <ftui-icon [name]="Sonos_Kueche:transportState  | map('PLAYING: stop, PAUSED_PLAYBACK|STOPPED: play');
-              Sonos_Kueche | map('play: stop, pause: play')">
+              Sonos_Kueche:state | map('play: stop, pause: play')">
           </ftui-icon>
         </ftui-button>
       </div>

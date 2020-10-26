@@ -6,7 +6,7 @@ with a clear intention: Keep it short and simple!
 
 Version 3 
 
-FTUI >3.0 uses Web Components technologies https://developer.mozilla.org/en-US/docs/Web/Web_Components
+FTUI >3.0 uses [Web Components technologies](https://developer.mozilla.org/en-US/docs/Web/Web_Components)
 
 Caution! 
  * This version is not compatible with older fhem-tablet-ui versions.
@@ -110,6 +110,7 @@ Components
 - [Image](#image)
 - [Badge](#badge)
 - [Speak](#speak)
+- [Chart](#chart)
 
  ... to be continued
 
@@ -160,9 +161,17 @@ Speak uses the browser's Web Speech API to synthesize text to speech.
 
   ... to be continued
 
-  #### Icon
+### Chart
 
-  [List of all icons](https://knowthelist.github.io/ftui/icons/demo.html)
+The Chart component uses [Chart.js](https://www.chartjs.org/docs/latest/) to render charts.
+
+| Attribute | Description | Type | Default |
+|-----------|-------------|-------|---------|
+
+
+#### Icon
+
+[List of all icons](https://knowthelist.github.io/ftui/icons/demo.html)
 
 Examples
 ------
@@ -181,22 +190,8 @@ Examples
 - [Image](https://knowthelist.github.io/ftui/examples/image.html)
 - [Badge](https://knowthelist.github.io/ftui/examples/badge.html)
 - [Speak](https://knowthelist.github.io/ftui/examples/speak.html)
+- [Chart](https://knowthelist.github.io/ftui/examples/chart.html)
 
-
-HOCON
------------
-
-HOCON (Human-Optimized Config Object Notation)
-
-The primary goal of HOCON is: keep the semantics (tree structure; set of types; encoding/escaping) from JSON, but make it more convenient as a human-editable config file format.
-
-Informal spec:
-https://github.com/lightbend/config/blob/master/HOCON.md
-
-playground to check syntax:
-https://hocon-playground.herokuapp.com
-
- ... to be continued
 
 Donation
 --------

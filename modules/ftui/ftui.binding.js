@@ -15,21 +15,16 @@ export class FtuiBinding {
     }
 
     this.element = element;
+    this.config = {
+      input: { readings: {} },
+      output: { attributes: {} }
+    };
     this.readAttributes(element.attributes);
 
-    try {
-      this.config = parseHocon(this.private.config);
-    } catch (e) {
-      this.element.classList.add('has-error');
-      ftuiHelper.error(e.toString());
-    }
-
-    if (this.config?.input?.readings) {
-      // subscribe input events (from FHEM reading to component)
-      Object.keys(this.config.input.readings).forEach((reading) => {
-        fhemService.getReadingEvents(reading).subscribe((param) => this.onReadingEvent(param));
-      });
-    }
+    // subscribe input events (from FHEM reading to component)
+    Object.keys(this.config.input.readings).forEach((reading) => {
+      fhemService.getReadingEvents(reading).subscribe((param) => this.onReadingEvent(param));
+    });
 
     // subscribe output events (from component to FHEM reading)
     if (this.private.outputAttributes.size > 0) {
@@ -47,9 +42,7 @@ export class FtuiBinding {
       });
       this.private.observer.observe(this.element, {
         attributeFilter: this.outputAttributes,
-        /* subtree: true, */
       });
-
     }
   }
 
@@ -102,39 +95,28 @@ export class FtuiBinding {
   }
 
   initInputBinding(attribute) {
-
-    /*
-    in    "dummy1:state:value | map('on:1,off:0')"
-
-    out   input.readings.GartenTemp.attributes.text.property="value"
-          input.readings.GartenTemp.attributes.text.filter="map('10:low,30:high')""
-    */
-
     const semicolonNotInQuotes = /;(?=(?:[^']*'[^']*')*[^']*$)/;
 
     attribute.value.split(semicolonNotInQuotes).forEach((attrValue, idx) => {
       const { readingID, property, filter } = this.parseInputBinding(attrValue);
 
-      this.private.config += `input.readings.${readingID}.attributes.${attribute.name}.property = "${property}"\n`;
-      this.private.config += `input.readings.${readingID}.attributes.${attribute.name}.filter = "${filter}"\n`;
+      if (!this.config.input.readings[readingID]) {
+        this.config.input.readings[readingID] = { attributes: {} };
+      }
+      const readingConfig = this.config.input.readings[readingID];
+      readingConfig.attributes[attribute.name] = { property, filter };
     });
   }
 
 
   initOutputBinding(attribute) {
-
-    /*
-    in    "map('true:on,false:off') | dummy1"
-
-    out   output.attributes.value.readings.dummy1.cmd="set"
-          output.attributes.value.readings.dummy1.value="$value"
-          output.attributes.value.readings.dummy1.filter="map('true:on,false:off')"
-    */
     const { cmd, readingID, value, filter } = this.parseOutputBinding(attribute.value);
 
-    this.private.config += `output.attributes.${attribute.name}.readings.${readingID}.cmd = "${cmd}"\n`;
-    this.private.config += `output.attributes.${attribute.name}.readings.${readingID}.value = "${value}"\n`;
-    this.private.config += `output.attributes.${attribute.name}.readings.${readingID}.filter = "${filter}"\n`;
+    if (!this.config.output.attributes[attribute.name]) {
+      this.config.output.attributes[attribute.name] = { readings: {} };
+    }
+    const attributeConfig = this.config.output.attributes[attribute.name];
+    attributeConfig.readings[readingID] = { cmd, value, filter }
 
     this.private.outputAttributes.add(attribute.name);
   }
@@ -197,20 +179,20 @@ export class FtuiBinding {
         propertyIndex++;
         switch (propertyIndex) {
           case 1:
-          {
-            device = currentValue.trim();
-            break;
-          }
+            {
+              device = currentValue.trim();
+              break;
+            }
           case 2:
-          {
-            reading = currentValue.trim();
-            break;
-          }
+            {
+              reading = currentValue.trim();
+              break;
+            }
           case 3:
-          {
-            property = currentValue.trim();
-            break;
-          }
+            {
+              property = currentValue.trim();
+              break;
+            }
         }
         currentValue = '';
         continue;
