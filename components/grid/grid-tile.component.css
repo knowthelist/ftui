@@ -12,6 +12,10 @@
   border-radius: 1.5em;
 }
 
+:host ::slotted(:not(:only-child)) {
+  margin-bottom: auto;
+}
+
 :host ::slotted(header) {
   color: var(--grid-header-color);
   background: var(--grid-header-background-color);

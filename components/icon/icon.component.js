@@ -52,10 +52,16 @@ export class FtuiIcon extends FtuiElement {
   loadIcon(name) {
     if (name.endsWith('svg')) {
       fetch(name)
-        .then(response => response.text())
+        .then(response => {
+          if (response.headers.get("Content-Type").startsWith('text/html') ) {
+            throw new Error(`icon '${name}' not found`);
+          } 
+          return response.text()
+        })
         .then(svg => {
           this.elementIcon.innerHTML = svg;
-        });
+        })
+        .catch(error => console.error(error));
     } else {
       this.elementIcon.innerHTML = `<img src="${name}"></img>`;
     }
