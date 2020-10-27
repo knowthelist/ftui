@@ -20,15 +20,22 @@
   <link href="themes/ftui-theme.css" rel="stylesheet">
   <link href="favicon.ico" rel="icon" type="image/x-icon" />
 
+  <meta name='viewport' content='width=device-width'>
+  
   <title>FTUI Example Icon</title>
 </head>
 
 <body>
   
   <ftui-grid base-width="70" base-height="70">
-
     <ftui-grid-tile row="1" col="1" height="1" width="3">
-      <h1 class="cell">Icons</h1>
+      <header>TEST IT</header>
+      <div class="row">
+
+        <ftui-button [(value)]="dummy1">on,off</ftui-button>
+        <ftui-button [(value)]="ftuitest" states="0,1,2,10,50,100">0,1,2,10,50,100</ftui-button>
+
+      </div>
     </ftui-grid-tile>
     <ftui-grid-tile row="2" col="1" height="9" width="3">
       <header>SINGLE</header>

@@ -3,14 +3,14 @@
 }
 
 :host svg { 
-  width: 2.25em;
-  height: 2.25em;
+  width: var(--icon-width, 2.25em);
+  height: var(--icon-height, 2.25em);
   margin-top: 0.175em;
   fill: currentColor;
 }
 :host img { 
-  width: 2.25em;
-  height: 2.25em;
+  width: var(--icon-width, 2.25em);
+  height: var(--icon-height, 2.25em);
 }
 
 :host svg[viewBox="0 0 448 512"] { 
