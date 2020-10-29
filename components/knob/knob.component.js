@@ -15,15 +15,16 @@ class FtuiKnob extends FtuiElement {
 
     super(Object.assign(FtuiKnob.properties, properties));
 
-    if ( !this.hasScale && !this.hasScaleText && !this.hasValueText && !this.hasArc && !this.hasNeedle) {
+    if (!this.hasScale && !this.hasScaleText && !this.hasValueText && !this.hasArc && !this.hasNeedle) {
       this.hasArc = true;
     }
 
-    this.svg = this.shadowRoot.querySelector('.typeRange');
+    this.svg = this.shadowRoot.querySelector('.svg');
     this.outline = this.shadowRoot.querySelector('.outline');
     this.fill = this.shadowRoot.querySelector('.fill');
     this.scale = this.shadowRoot.querySelector('.scale');
     this.needle = this.shadowRoot.querySelector('.needle');
+    this.handle = this.shadowRoot.querySelector(".handle");
 
     this.rangeAngle = Math.abs(parseInt(this.endAngle) - parseInt(this.startAngle));
     this.radian = Math.PI / 180;
@@ -54,13 +55,14 @@ class FtuiKnob extends FtuiElement {
   template() {
     return `
     <style> @import "components/knob/knob.component.css"</style>
-    <svg class="typeRange" height="${this.height}" width="${this.width}" focusable="false">
+    <svg class="svg" height="${this.height}" width="${this.width}" focusable="false">
    
       <g class="scale" stroke="gray"></g>
    
       <path class="outline" d="" fill="none" stroke-width="${this.strokeWidth}" />
       <path class="fill" d="" fill="none" stroke-width="${this.strokeWidth}" />
       <polygon class="needle" />
+      <circle class="handle" r="9" fill="none" />
    
     </svg>`;
   }
@@ -70,6 +72,7 @@ class FtuiKnob extends FtuiElement {
       startAngle: -210,
       endAngle: 30,
       value: -1,
+      unit: '',
       min: 0,
       max: 100,
       offsetY: 20,
@@ -81,7 +84,10 @@ class FtuiKnob extends FtuiElement {
       hasScaleText: false,
       hasValueText: false,
       hasArc: false,
+      hasHandle: false,
       hasNeedle: false,
+      readonly: false,
+      type: 'default',
       color: 'primary',
     };
   }
@@ -93,6 +99,33 @@ class FtuiKnob extends FtuiElement {
   onAttributeChanged(name, oldValue, newValue) {
     if (oldValue !== newValue) {
       if (!this.isDragging) {
+        if (name === 'type') {
+          switch (newValue) {
+            case 'handle':
+              this.hasArc = true;
+              this.hasHandle = true;
+              this.hasScale = false;
+              this.hasNeedle = false;
+              this.strokeWidth = 5;
+              break;
+            case 'arc':
+              this.hasArc = true;
+              this.hasHandle = false;
+              this.hasScale = false;
+              this.hasNeedle = false;
+              this.strokeWidth = 15;
+              break;
+            case 'scale':
+              this.hasArc = false;
+              this.hasHandle = false;
+              this.hasScale = true;
+              this.hasNeedle = true;
+              this.strokeWidth = 15;
+              break;
+            default:
+              break;
+          }
+        }
         this.draw(this.valueToAngle(this.value));
       }
     }
@@ -120,7 +153,7 @@ class FtuiKnob extends FtuiElement {
   }
 
   onChange(angle) {
-    if (this.draw(angle)) {
+    if (!this.readonly && this.draw(angle)) {
       this.value = this.angleToValue(angle);
     }
   }
@@ -128,19 +161,27 @@ class FtuiKnob extends FtuiElement {
   draw(angle) {
     if ((angle <= this.endAngle || angle >= 360 + this.startAngle) && angle >= this.startAngle) {
       this.drawScale();
+
       if (this.hasArc) {
         this.drawArc(angle);
       } else {
-        this.clearElement(this.fill);
-        this.clearElement(this.outline);
+        this.hideElement(this.fill);
+        this.hideElement(this.outline);
       }
       if (this.hasValueText) {
-        this.drawValue(this.angleToValue(angle));
+        this.drawValue();
+      }
+      if (this.unit) {
+        this.drawUnit();
       }
       if (this.hasNeedle) {
         this.drawNeedle(angle);
       }
-
+      if (this.hasHandle) {
+        this.drawHandle(angle);
+      } else {
+        this.hideElement(this.handle);
+      }
       return true;
     }
     return false;
@@ -188,12 +229,15 @@ class FtuiKnob extends FtuiElement {
   drawArc(angle) {
     this.fill.setAttributeNS(null, 'd',
       this.describeArc(this.centerX, this.centerY, this.radius - 5, this.startAngle + 360, angle));
+    this.fill.setAttributeNS(null, 'stroke-width', this.strokeWidth);
+    this.fill.style.display = '';
     this.outline.setAttributeNS(null, 'd',
       this.describeArc(this.centerX, this.centerY, this.radius - 5, this.startAngle + 360, this.endAngle + 360));
+    this.outline.setAttributeNS(null, 'stroke-width', this.strokeWidth);
+    this.outline.style.display = '';
   }
 
   drawNeedle(angle) {
-
     const lowerRadius = (this.hasValueText || this.hasValueText === 'true')
       ? this.radius * 0.4 : this.radius * 0.1;
     const expansion = (this.hasValueText || this.hasValueText === 'true')
@@ -215,16 +259,38 @@ class FtuiKnob extends FtuiElement {
     this.needle.setAttributeNS(null, 'points', points);
   }
 
-  drawValue(value) {
+  drawHandle(angle) {
+    const hx = this.centerX + (this.radius * 0.9) * Math.cos(angle * this.radian);
+    const hy = this.centerY + (this.radius * 0.9) * Math.sin(angle * this.radian);
+
+    this.handle.setAttributeNS(null, "cx", hx);
+    this.handle.setAttributeNS(null, "cy", hy);
+    this.handle.style.display = '';
+  }
+
+  drawValue() {
     const scaleText = document.createElementNS(this.NS, 'text');
     const scaleTextObj = {
       class: 'value',
       x: this.centerX,
-      y: this.centerY,
+      y: this.centerY + (this.unit ? -5 : 0),
       'alignment-baseline': 'middle'
     };
     this.setSVGAttributes(scaleText, scaleTextObj);
-    scaleText.textContent = value;
+    scaleText.textContent = this.value;
+    this.scale.appendChild(scaleText);
+  }
+
+  drawUnit() {
+    const scaleText = document.createElementNS(this.NS, 'text');
+    const scaleTextObj = {
+      class: 'unit',
+      x: this.centerX,
+      y: this.centerY + 20,
+      'alignment-baseline': 'middle'
+    };
+    this.setSVGAttributes(scaleText, scaleTextObj);
+    scaleText.textContent = this.unit;
     this.scale.appendChild(scaleText);
   }
 
@@ -292,8 +358,8 @@ class FtuiKnob extends FtuiElement {
     }
   }
 
-  clearElement(node) {
-    node.parentNode?.removeChild(node);
+  hideElement(node) {
+    node.style.display = 'none';
   }
 
   setSVGAttributes(elem, oAtt) {

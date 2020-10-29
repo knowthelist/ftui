@@ -79,7 +79,7 @@ export class FtuiElement extends HTMLElement {
 
 
   emitChangeEvent(attribute, value) {
-    const event = new CustomEvent(attribute + 'Change', { detail : value });
+    const event = new CustomEvent(attribute + 'Change', { detail: value });
     this.dispatchEvent(event);
   }
 
@@ -113,7 +113,10 @@ export class FtuiElement extends HTMLElement {
 
   defineBooleanProperty(name, attr) {
     Object.defineProperty(this, name, {
-      get() { return this.hasAttribute(attr); },
+      get() {
+        return this.hasAttribute(attr)
+          && this.getAttribute(attr) !== 'false';
+      },
       set(value) {
         if (value) {
           this.setAttribute(attr, '');

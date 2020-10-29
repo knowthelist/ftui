@@ -652,6 +652,13 @@ img.faded {
   border: dashed 2px red;
 }
 
+.spin {
+  animation-name: spin;
+  animation-duration: 4000ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
 .shake {
   animation: shake 100ms ease-in-out infinite;
 }
@@ -677,15 +684,6 @@ img.faded {
   }
   100% {
     opacity: 0;
-  }
-}
-
-@-webkit-keyframes marquee {
-  0% {
-    text-indent: 100%
-  }
-  100% {
-    text-indent: 0%
   }
 }
 
@@ -851,24 +849,6 @@ img.faded {
   }
 }
 
-@-webkit-keyframes fail-shake {
-  8%, 41% {
-    -webkit-transform: translateX(-10px);
-  }
-  25%, 58% {
-    -webkit-transform: translateX(10px);
-  }
-  75% {
-    -webkit-transform: translateX(-5px);
-  }
-  92% {
-    -webkit-transform: translateX(5px);
-  }
-  0%, 100% {
-    -webkit-transform: translateX(0);
-  }
-}
-
 @keyframes fail-shake {
   8%, 41% {
     transform: translateX(-10px);
@@ -885,6 +865,11 @@ img.faded {
   0%, 100% {
     transform: translateX(0);
   }
+}
+
+@keyframes spin {
+  from {transform:rotate(0deg);}
+  to {transform:rotate(360deg);}
 }
 
 .flashNow {

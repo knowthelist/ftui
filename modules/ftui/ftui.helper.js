@@ -123,6 +123,9 @@ export function isVisible(element) {
 export function isDefined(value) {
   return (typeof value !== 'undefined');
 }
+export function isUndefined(value) {
+  return !isDefined(value);
+}
 
 export function isString(value) {
   return (typeof value === 'string' && !this.isNumeric(value));

@@ -40,12 +40,14 @@
     </ftui-grid-tile>
 
     <ftui-tab-view id="View1">
+
       <ftui-grid-tile row="1" col="2" height="2" width="2" shape="round" color="primary">
         <div class="cell">
           <ftui-clock format="ee" class="bigger"></ftui-clock>
           <ftui-clock format="DD" class="tall"></ftui-clock>
         </div>
       </ftui-grid-tile>
+
       <ftui-grid-tile row="1" col="4" height="2" width="2" shape="round" 
         [color]="WCLuft | map('1000:warning, 2000:danger')">
         <div class="cell w-80">
@@ -54,11 +56,13 @@
             <span slot="end" class="mini">ppm</span>
           </ftui-label>
         </div>
+      </ftui-grid-tile>
 
-      </ftui-grid-tile>
       <ftui-grid-tile row="3" col="2" height="2" width="2" shape="round">
-3
+        <ftui-knob [value]="THSensorWZ:temperature" width="120" offset-y="10" 
+                   type="handle" min="19" max="25" unit="°C" readonly has-value-text></ftui-knob>
       </ftui-grid-tile>
+
       <ftui-grid-tile row="3" col="4" height="2" width="3" shape="round">
         <div class="column">
           <div class="row h-40">
@@ -79,7 +83,7 @@
           <ftui-icon name="home1"></ftui-icon>
 
           <ftui-button [(value)]="dummy.P1" fill="outline" shape="circle">
-            <ftui-icon [name]="dummy.P1 | map('on:lightbulb-on, off:lightbulb-off')"></ftui-icon>
+            <ftui-icon [name]="dummy1 | map('on:lightbulb-on, off:lightbulb-off, `.*`:none')"></ftui-icon>
           </ftui-button>
 
           <ftui-button-nice get="dummy2"></ftui-button-nice>

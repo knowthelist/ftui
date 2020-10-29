@@ -56,14 +56,16 @@ export class FtuiBinding {
     Object.entries(readingAttributeMap)
       .forEach(([attribute, options]) => {
         const value = readingData[options.property];
-        const filteredValue = this.filter(value, options.filter);
-        if (ftuiHelper.isDefined(filteredValue)) {
-          if (String(this.element[attribute]) !== String(filteredValue)) {
-            ftuiHelper.log(1, `${this.element.id}  -  onReadingEvent: set this.${attribute}=${filteredValue}`);
-            // avoid endless loops
-            this.private.isChanging[attribute] = true;
-            // change element's property
-            this.element[attribute] = filteredValue;
+        if (ftuiHelper.isDefined(value)) {
+          const filteredValue = this.filter(value, options.filter);
+          if (ftuiHelper.isDefined(filteredValue)) {
+            if (String(this.element[attribute]) !== String(filteredValue)) {
+              ftuiHelper.log(1, `${this.element.id}  -  onReadingEvent: set this.${attribute}=${filteredValue}`);
+              // avoid endless loops
+              this.private.isChanging[attribute] = true;
+              // change element's property
+              this.element[attribute] = filteredValue;
+            }
           }
         }
       });

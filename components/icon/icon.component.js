@@ -54,7 +54,7 @@ export class FtuiIcon extends FtuiElement {
       fetch(name)
         .then(response => {
           if (response.headers.get("Content-Type").startsWith('text/html') ) {
-            throw new Error(`icon '${name}' not found`);
+            throw new Error(`${this.id} - icon '${name}' not found`);
           } 
           return response.text()
         })
