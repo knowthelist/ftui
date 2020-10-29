@@ -13,7 +13,7 @@ Caution!
  * This version is under construction.
 
 
-![](http://knowthelist.github.io/fhem-tablet-ui/ftui3.png)
+![](http://knowthelist.github.io/ftui/screenshot.png)
 
 Requires
 -------
