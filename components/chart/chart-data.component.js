@@ -31,6 +31,7 @@ export class FtuiChartData extends FtuiElement {
     return {
       label: '',
       fill: false,
+      hidden: false,
       pointBackgroundColor: primaryColor,
       backgroundColor: '',
       borderColor: primaryColor,
