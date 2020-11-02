@@ -1,0 +1,74 @@
+:host {
+  position: relative;
+  width: 5em;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+:host .checkbox {
+  display: none;
+}
+
+:host .label {
+  display: block;
+  overflow: hidden;
+  cursor: pointer;
+  border-radius: 2.25em;
+}
+
+:host .inner {
+  display: block;
+  width: 200%;
+  margin-left: -100%;
+  transition: margin 0.2s ease-in 0s;
+}
+
+:host .inner:before, :host .inner:after {
+  display: block;
+  float: left;
+  width: 50%;
+  height: 2.25em;
+  padding: 0;
+  line-height: 2.25em;
+  font-size: 1.25em;
+  color: white;
+  font-family: Trebuchet, Arial, sans-serif;
+  box-sizing: border-box;
+}
+
+:host .inner:before {
+  content: attr(data-text-off);
+  padding-left: 0.325em;
+  background-color: var(--color-base);
+  color: var(--text-color);
+}
+
+:host .inner:after {
+  content: attr(data-text-on);
+  padding-right: 0.325em;
+  background-color: var(--dark-color);
+  color: var(--inactive-text-color);
+  text-align: right;
+}
+
+:host .switch {
+  display: block;
+  width: 2.5em;
+  height: 2.5em;
+  margin: 0px;
+  background: #FFFFFF;
+  position: absolute;
+  border: 2px solid #E3E3E3;
+  border-radius: 2.25em;
+  right: 2.1em;
+  transition: all 0.2s ease-in 0s;
+}
+
+:host .checkbox:checked+.label .inner {
+  margin-left: 0;
+}
+
+:host .checkbox:checked+.label .switch {
+  right: 0.075em;
+}

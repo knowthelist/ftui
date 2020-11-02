@@ -1,0 +1,1644 @@
+[class^="/"], [class*=" /"] {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
+}
+
+/* ==========================================
+Single-colored icons can be modified like so:
+./name {
+  font-size: 32px;
+  color: red;
+}
+========================================== */
+
+./asterisk {
+  width: 0.9285714285714285em;
+}
+
+./plus {
+  width: 0.7857142857142857em;
+}
+
+./question {
+  width: 0.62em;
+}
+
+./minus {
+  width: 0.7857142857142857em;
+}
+
+./music {
+  width: 0.8571428571428571em;
+}
+
+./search1 {
+  width: 0.9285714285714285em;
+}
+
+./star1 {
+  width: 0.9285714285714285em;
+}
+
+./star-o {
+  width: 0.9285714285714285em;
+}
+
+./user {
+  width: 0.7142857142857142em;
+}
+
+./film {
+  width: 1.0714285714285714em;
+}
+
+./th-large {
+  width: 0.9285714285714285em;
+}
+
+./close {
+  width: 0.7857142857142857em;
+}
+
+./search-plus {
+  width: 0.9285714285714285em;
+}
+
+./search-minus {
+  width: 0.9285714285714285em;
+}
+
+./power-off {
+  width: 0.8571428571428571em;
+}
+
+./cog {
+  width: 0.8571428571428571em;
+}
+
+./trash-o {
+  width: 0.7857142857142857em;
+}
+
+./home1 {
+  width: 0.9285714285714285em;
+}
+
+./file-o {
+  width: 0.8571428571428571em;
+}
+
+./clock-o {
+  width: 0.8571428571428571em;
+}
+
+./road {
+  width: 1.0714285714285714em;
+}
+
+./download {
+  width: 0.9285714285714285em;
+}
+
+./arrow-circle-o-down {
+  width: 0.8571428571428571em;
+}
+
+./arrow-circle-o-up {
+  width: 0.8571428571428571em;
+}
+
+./inbox1 {
+  width: 0.8571428571428571em;
+}
+
+./play-circle-o {
+  width: 0.8571428571428571em;
+}
+
+./repeat1 {
+  width: 0.8571428571428571em;
+}
+
+./refresh1 {
+  width: 0.8571428571428571em;
+}
+
+./lock {
+  width: 0.6428571428571428em;
+}
+
+./flag1 {
+  width: 1.0357142857142856em;
+}
+
+./headphones {
+  width: 0.9285714285714285em;
+}
+
+./volume-off {
+  width: 0.42857142857142855em;
+}
+
+./volume-down {
+  width: 0.6428571428571428em;
+}
+
+./volume-up {
+  width: 0.9285714285714285em;
+}
+
+./qrcode {
+  width: 0.7857142857142857em;
+}
+
+./tag1 {
+  width: 0.8454285714285714em;
+}
+
+./tags {
+  width: 1.0597142857142856em;
+}
+
+./book1 {
+  width: 0.9302142857142857em;
+}
+
+./bookmark1 {
+  width: 0.7142857142857142em;
+}
+
+./print {
+  width: 0.9285714285714285em;
+}
+
+./camera1 {
+  width: 1.0714285714285714em;
+}
+
+./image {
+  width: 1.0714285714285714em;
+}
+
+./pencil {
+  width: 0.8454285714285714em;
+}
+
+./map-marker {
+  width: 0.5714285714285714em;
+}
+
+./adjust1 {
+  width: 0.8571428571428571em;
+}
+
+./tint {
+  width: 0.5714285714285714em;
+}
+
+./edit {
+  width: 1.0005714285714284em;
+}
+
+./share-square-o {
+  width: 0.9319285714285714em;
+}
+
+./check-square-o {
+  width: 0.9324999999999999em;
+}
+
+./step-backward {
+  width: 0.5714285714285714em;
+}
+
+./backward {
+  width: 0.9932857142857143em;
+}
+
+./play {
+  width: 0.7896428571428571em;
+}
+
+./pause1 {
+  width: 0.8571428571428571em;
+}
+
+./stop {
+  width: 0.8571428571428571em;
+}
+
+./forward1 {
+  width: 0.8638571428571428em;
+}
+
+./step-forward {
+  width: 0.5714285714285714em;
+}
+
+./eject1 {
+  width: 0.8582857142857142em;
+}
+
+./chevron-left {
+  width: 0.75em;
+}
+
+./chevron-right {
+  width: 0.6785714285714285em;
+}
+
+./plus-circle {
+  width: 0.8571428571428571em;
+}
+
+./minus-circle {
+  width: 0.8571428571428571em;
+}
+
+./times-circle {
+  width: 0.8571428571428571em;
+}
+
+./check-circle {
+  width: 0.8571428571428571em;
+}
+
+./question-circle {
+  width: 0.8571428571428571em;
+}
+
+./info-circle {
+  width: 0.8571428571428571em;
+}
+
+./crosshairs {
+  width: 0.8571428571428571em;
+}
+
+./times-circle-o {
+  width: 0.8571428571428571em;
+}
+
+./check-circle-o {
+  width: 0.8571428571428571em;
+}
+
+./ban {
+  width: 0.8571428571428571em;
+}
+
+./arrow-left {
+  width: 0.8928571428571428em;
+}
+
+./arrow-right {
+  width: 0.8214285714285714em;
+}
+
+./arrow-up {
+  width: 0.9285714285714285em;
+}
+
+./arrow-down {
+  width: 0.9285714285714285em;
+}
+
+./expand1 {
+  width: 0.8571428571428571em;
+}
+
+./compress1 {
+  width: 0.8571428571428571em;
+}
+
+./exclamation-circle {
+  width: 0.8571428571428571em;
+}
+
+./gift {
+  width: 0.8571428571428571em;
+}
+
+./fire {
+  width: 0.7857142857142857em;
+}
+
+./plane {
+  width: 0.803em;
+}
+
+./calendar {
+  width: 0.9285714285714285em;
+}
+
+./retweet {
+  width: 1.0714285714285714em;
+}
+
+./shopping-cart {
+  width: 0.9285714285714285em;
+}
+
+./folder1 {
+  width: 0.9285714285714285em;
+}
+
+./folder-open {
+  width: 1.0485714285714285em;
+}
+
+./arrows-v {
+  width: 0.42857142857142855em;
+}
+
+./bar-chart {
+  width: 1.1428571428571428em;
+}
+
+./key {
+  width: 0.9391428571428571em;
+}
+
+./cogs {
+  width: 1.0714285714285714em;
+}
+
+./thumbs-o-up {
+  width: 0.8571428571428571em;
+}
+
+./thumbs-o-down {
+  width: 0.8571428571428571em;
+}
+
+./star-half {
+  width: 0.46428571428571425em;
+}
+
+./sign-out {
+  width: 0.875em;
+}
+
+./thumb-tack {
+  width: 0.6428571428571428em;
+}
+
+./sign-in {
+  width: 0.8571428571428571em;
+}
+
+./trophy {
+  width: 0.9285714285714285em;
+}
+
+./upload {
+  width: 0.9285714285714285em;
+}
+
+./lemon-o {
+  width: 0.8565714285714285em;
+}
+
+./phone1 {
+  width: 0.7857142857142857em;
+}
+
+./bookmark-o {
+  width: 0.7142857142857142em;
+}
+
+./phone-square {
+  width: 0.8571428571428571em;
+}
+
+./unlock {
+  width: 0.9285714285714285em;
+}
+
+./credit-card {
+  width: 1.0714285714285714em;
+}
+
+./feed {
+  width: 0.7862857142857141em;
+}
+
+./hdd-o {
+  width: 0.8571428571428571em;
+}
+
+./certificate {
+  width: 0.8571428571428571em;
+}
+
+./hand-o-up {
+  width: 0.8571428571428571em;
+}
+
+./hand-o-down {
+  width: 0.8571428571428571em;
+}
+
+./arrow-circle-left {
+  width: 0.8571428571428571em;
+}
+
+./arrow-circle-right {
+  width: 0.8571428571428571em;
+}
+
+./arrow-circle-up {
+  width: 0.8571428571428571em;
+}
+
+./arrow-circle-down {
+  width: 0.8571428571428571em;
+}
+
+./globe {
+  width: 0.8571428571428571em;
+}
+
+./wrench {
+  width: 0.9391428571428571em;
+}
+
+./filter1 {
+  width: 0.7857142857142857em;
+}
+
+./arrows-alt {
+  width: 0.8571428571428571em;
+}
+
+./group1 {
+  width: 1.0714285714285714em;
+}
+
+./chain {
+  width: 0.9285714285714285em;
+}
+
+./cloud5 {
+  width: 1.0714285714285714em;
+}
+
+./flask {
+  width: 0.9285714285714285em;
+}
+
+./cut {
+  width: 0.9977857142857142em;
+}
+
+./paperclip {
+  width: 0.7857142857142857em;
+}
+
+./floppy-o {
+  width: 0.8571428571428571em;
+}
+
+./square {
+  width: 0.8571428571428571em;
+}
+
+./bars {
+  width: 0.8571428571428571em;
+}
+
+./list-ol {
+  width: 1.008357142857143em;
+}
+
+./table {
+  width: 0.9285714285714285em;
+}
+
+./magic {
+  width: 0.9436428571428571em;
+}
+
+./truck {
+  width: 1.0357142857142856em;
+}
+
+./money1 {
+  width: 1.0714285714285714em;
+}
+
+./caret-down {
+  width: 0.5714285714285714em;
+}
+
+./caret-up {
+  width: 0.5714285714285714em;
+}
+
+./caret-left {
+  width: 0.39285714285714285em;
+}
+
+./caret-right {
+  width: 0.3214285714285714em;
+}
+
+./columns {
+  width: 0.9285714285714285em;
+}
+
+./sort1 {
+  width: 0.5714285714285714em;
+}
+
+./sort-desc {
+  width: 0.5714285714285714em;
+}
+
+./sort-asc {
+  width: 0.5714285714285714em;
+}
+
+./rotate-left {
+  width: 0.8571428571428571em;
+}
+
+./gavel1 {
+  width: 1.0105714285714285em;
+}
+
+./bolt1 {
+  width: 0.5005714285714286em;
+}
+
+./umbrella {
+  width: 0.9285714285714285em;
+}
+
+./lightbulb {
+  width: 0.5714285714285714em;
+}
+
+./cloud-download {
+  width: 1.0714285714285714em;
+}
+
+./cloud-upload {
+  width: 1.0714285714285714em;
+}
+
+./user-md {
+  width: 0.7857142857142857em;
+}
+
+./stethoscope {
+  width: 0.7857142857142857em;
+}
+
+./coffee {
+  width: 1.0357142857142856em;
+}
+
+./cutlery {
+  width: 0.7857142857142857em;
+}
+
+./file-text-o {
+  width: 0.8571428571428571em;
+}
+
+./building-o {
+  width: 0.7857142857142857em;
+}
+
+./hospital-o {
+  width: 0.7857142857142857em;
+}
+
+./ambulance {
+  width: 1.107142857142857em;
+}
+
+./fighter-jet {
+  width: 1.0714285714285714em;
+}
+
+./beer {
+  width: 0.9642857142857142em;
+}
+
+./h-square {
+  width: 0.8571428571428571em;
+}
+
+./plus-square {
+  width: 0.8571428571428571em;
+}
+
+./angle-double-left {
+  width: 0.5892857142857143em;
+}
+
+./angle-double-right {
+  width: 0.5535714285714285em;
+}
+
+./angle-double-up {
+  width: 0.6428571428571428em;
+}
+
+./angle-double-down {
+  width: 0.6428571428571428em;
+}
+
+./angle-left {
+  width: 0.375em;
+}
+
+./angle-right {
+  width: 0.33928571428571425em;
+}
+
+./angle-up {
+  width: 0.6428571428571428em;
+}
+
+./angle-down {
+  width: 0.6428571428571428em;
+}
+
+./desktop {
+  width: 1.0714285714285714em;
+}
+
+./laptop {
+  width: 1.0714285714285714em;
+}
+
+./tablet1 {
+  width: 0.6428571428571428em;
+}
+
+./mobile {
+  width: 0.42857142857142855em;
+}
+
+./circle-o {
+  width: 0.8571428571428571em;
+}
+
+./quote-right {
+  width: 0.9285714285714285em;
+}
+
+./circle {
+  width: 0.8571428571428571em;
+}
+
+./folder-o {
+  width: 0.9285714285714285em;
+}
+
+./folder-open-o {
+  width: 1.0652857142857142em;
+}
+
+./smile-o {
+  width: 0.8571428571428571em;
+}
+
+./frown-o {
+  width: 0.8571428571428571em;
+}
+
+./meh-o {
+  width: 0.8571428571428571em;
+}
+
+./gamepad {
+  width: 1.0714285714285714em;
+}
+
+./keyboard-o {
+  width: 1.0714285714285714em;
+}
+
+./flag-o {
+  width: 1.0357142857142856em;
+}
+
+./flag-checkered {
+  width: 1.0357142857142856em;
+}
+
+./terminal {
+  width: 0.934142857142857em;
+}
+
+./code1 {
+  width: 1.0714285714285714em;
+}
+
+./mail-reply-all {
+  width: 0.996642857142857em;
+}
+
+./star-half-empty {
+  width: 0.9285714285714285em;
+}
+
+./location-arrow {
+  width: 0.7862857142857141em;
+}
+
+./crop1 {
+  width: 0.9302142857142857em;
+}
+
+./code-fork {
+  width: 0.5714285714285714em;
+}
+
+./chain-broken {
+  width: 0.9285714285714285em;
+}
+
+./info1 {
+  width: 0.3571428571428571em;
+}
+
+./exclamation {
+  width: 0.3571428571428571em;
+}
+
+./eraser {
+  width: 1.0714285714285714em;
+}
+
+./puzzle-piece {
+  width: 0.9285714285714285em;
+}
+
+./microphone {
+  width: 0.6428571428571428em;
+}
+
+./microphone-slash {
+  width: 0.7857142857142857em;
+}
+
+./shield1 {
+  width: 0.7142857142857142em;
+}
+
+./calendar-o {
+  width: 0.9285714285714285em;
+}
+
+./fire-extinguisher {
+  width: 0.7807142857142857em;
+}
+
+./rocket {
+  width: 0.9447857142857142em;
+}
+
+./chevron-circle-left {
+  width: 0.8571428571428571em;
+}
+
+./chevron-circle-right {
+  width: 0.8571428571428571em;
+}
+
+./chevron-circle-up {
+  width: 0.8571428571428571em;
+}
+
+./chevron-circle-down {
+  width: 0.8571428571428571em;
+}
+
+./unlock-alt {
+  width: 0.6428571428571428em;
+}
+
+./bullseye {
+  width: 0.8571428571428571em;
+}
+
+./ellipsis-h {
+  width: 0.7857142857142857em;
+}
+
+./ellipsis-v {
+  width: 0.21428571428571427em;
+}
+
+./rss-square {
+  width: 0.8571428571428571em;
+}
+
+./play-circle {
+  width: 0.8571428571428571em;
+}
+
+./minus-square {
+  width: 0.8571428571428571em;
+}
+
+./minus-square-o {
+  width: 0.7857142857142857em;
+}
+
+./level-up {
+  width: 0.5730714285714286em;
+}
+
+./level-down {
+  width: 0.5730714285714286em;
+}
+
+./check-square {
+  width: 0.8571428571428571em;
+}
+
+./pencil-square {
+  width: 0.8571428571428571em;
+}
+
+./external-link-square {
+  width: 0.8571428571428571em;
+}
+
+./share-square {
+  width: 0.8571428571428571em;
+}
+
+./compass1 {
+  width: 0.8571428571428571em;
+}
+
+./caret-square-o-down {
+  width: 0.8571428571428571em;
+}
+
+./caret-square-o-up {
+  width: 0.8571428571428571em;
+}
+
+./caret-square-o-right {
+  width: 0.8571428571428571em;
+}
+
+./eur {
+  width: 0.5664285714285714em;
+}
+
+./gbp {
+  width: 0.5692142857142857em;
+}
+
+./dollar {
+  width: 0.5697857142857142em;
+}
+
+./file {
+  width: 0.8571428571428571em;
+}
+
+./file-text {
+  width: 0.8571428571428571em;
+}
+
+./sort-alpha-asc {
+  width: 0.9430714285714284em;
+}
+
+./sort-alpha-desc {
+  width: 0.9430714285714284em;
+}
+
+./sort-amount-asc {
+  width: 1.0162142857142857em;
+}
+
+./sort-amount-desc {
+  width: 1.0162142857142857em;
+}
+
+./sort-numeric-asc {
+  width: 0.8454285714285714em;
+}
+
+./sort-numeric-desc {
+  width: 0.8454285714285714em;
+}
+
+./thumbs-up {
+  width: 0.8928571428571428em;
+}
+
+./thumbs-down {
+  width: 0.8928571428571428em;
+}
+
+./stack-overflow {
+  width: 0.8571428571428571em;
+}
+
+./instagram {
+  width: 0.8571428571428571em;
+}
+
+./flickr {
+  width: 0.8571428571428571em;
+}
+
+./bitbucket {
+  width: 0.790142857142857em;
+}
+
+./bitbucket-square {
+  width: 0.8571428571428571em;
+}
+
+./long-arrow-down {
+  width: 0.42857142857142855em;
+}
+
+./long-arrow-up {
+  width: 0.42857142857142855em;
+}
+
+./long-arrow-left {
+  width: 1.0357142857142856em;
+}
+
+./long-arrow-right {
+  width: 0.9642857142857142em;
+}
+
+./apple {
+  width: 0.7773571428571427em;
+}
+
+./windows {
+  width: 0.9285714285714285em;
+}
+
+./android1 {
+  width: 0.7857142857142857em;
+}
+
+./linux {
+  width: 0.8939999999999999em;
+}
+
+./trello {
+  width: 0.8571428571428571em;
+}
+
+./female {
+  width: 0.7142857142857142em;
+}
+
+./male {
+  width: 0.5714285714285714em;
+}
+
+./gittip {
+  width: 0.8571428571428571em;
+}
+
+./moon-o {
+  width: 0.8236428571428571em;
+}
+
+./bug {
+  width: 0.9285714285714285em;
+}
+
+./renren {
+  width: 0.8571428571428571em;
+}
+
+./pagelines {
+  width: 0.7823571428571428em;
+}
+
+./stack-exchange {
+  width: 0.7142857142857142em;
+}
+
+./arrow-circle-o-right {
+  width: 0.8571428571428571em;
+}
+
+./arrow-circle-o-left {
+  width: 0.8571428571428571em;
+}
+
+./caret-square-o-left {
+  width: 0.8571428571428571em;
+}
+
+./dot-circle-o {
+  width: 0.8571428571428571em;
+}
+
+./wheelchair {
+  width: 0.9090714285714285em;
+}
+
+./plus-square-o {
+  width: 0.7857142857142857em;
+}
+
+./space-shuttle {
+  width: 1.2142857142857142em;
+}
+
+./slack {
+  width: 0.9285714285714285em;
+}
+
+./envelope-square {
+  width: 0.8571428571428571em;
+}
+
+./bank {
+  width: 1.0714285714285714em;
+}
+
+./graduation-cap {
+  width: 1.2857142857142856em;
+}
+
+./stumbleupon-circle {
+  width: 0.8571428571428571em;
+}
+
+./delicious {
+  width: 0.8571428571428571em;
+}
+
+./joomla {
+  width: 0.8571428571428571em;
+}
+
+./building {
+  width: 0.7857142857142857em;
+}
+
+./child {
+  width: 0.7142857142857142em;
+}
+
+./paw {
+  width: 0.9285714285714285em;
+}
+
+./spoon {
+  width: 0.42857142857142855em;
+}
+
+./cube {
+  width: 0.9285714285714285em;
+}
+
+./cubes {
+  width: 1.2142857142857142em;
+}
+
+./steam-square {
+  width: 0.8571428571428571em;
+}
+
+./recycle {
+  width: 1.0022142857142857em;
+}
+
+./automobile {
+  width: 1.1428571428571428em;
+}
+
+./cab {
+  width: 1.1428571428571428em;
+}
+
+./tree {
+  width: 0.8571428571428571em;
+}
+
+./spotify {
+  width: 0.8571428571428571em;
+}
+
+./database {
+  width: 0.8571428571428571em;
+}
+
+./paper-plane {
+  width: 1.0011428571428571em;
+}
+
+./paper-plane-o {
+  width: 1.0005714285714284em;
+}
+
+./history1 {
+  width: 0.8571428571428571em;
+}
+
+./ftui-circle-thin1 {
+  width: 0.8571428571428571em;
+}
+
+./sliders {
+  width: 0.8571428571428571em;
+}
+
+./share-alt {
+  width: 0.8571428571428571em;
+}
+
+./share-alt-square {
+  width: 0.8571428571428571em;
+}
+
+./plug {
+  width: 1.0067142857142857em;
+}
+
+./newspaper-o {
+  width: 1.1428571428571428em;
+}
+
+./wifi1 {
+  width: 1.1428571428571428em;
+}
+
+./calculator {
+  width: 0.9285714285714285em;
+}
+
+./bell-slash {
+  width: 1.1428571428571428em;
+}
+
+./bell-slash-o {
+  width: 1.1428571428571428em;
+}
+
+./trash {
+  width: 0.7857142857142857em;
+}
+
+./at {
+  width: 0.8571428571428571em;
+}
+
+./eyedropper {
+  width: 1.0178571428571428em;
+}
+
+./paint-brush {
+  width: 0.9988571428571428em;
+}
+
+./area-chart {
+  width: 1.1428571428571428em;
+}
+
+./pie-chart {
+  width: 0.9642857142857142em;
+}
+
+./line-chart {
+  width: 1.1428571428571428em;
+}
+
+./toggle-off {
+  width: 1.1428571428571428em;
+}
+
+./toggle-on {
+  width: 1.1428571428571428em;
+}
+
+./bicycle {
+  width: 1.2857142857142856em;
+}
+
+./bus {
+  width: 0.8571428571428571em;
+}
+
+./connectdevelop {
+  width: 1.1428571428571428em;
+}
+
+./leanpub {
+  width: 1.1428571428571428em;
+}
+
+./sellsy {
+  width: 1.1428571428571428em;
+}
+
+./cart-plus {
+  width: 0.9285714285714285em;
+}
+
+./cart-arrow-down {
+  width: 0.9285714285714285em;
+}
+
+./diamond {
+  width: 1.1428571428571428em;
+}
+
+./ship {
+  width: 1.1428571428571428em;
+}
+
+./user-secret {
+  width: 0.7857142857142857em;
+}
+
+./motorcycle1 {
+  width: 1.3019285714285713em;
+}
+
+./street-view {
+  width: 0.7857142857142857em;
+}
+
+./venus {
+  width: 0.63em;
+}
+
+./mars {
+  width: 0.8571428571428571em;
+}
+
+./mercury {
+  width: 0.6428571428571428em;
+}
+
+./intersex {
+  width: 0.7728571428571428em;
+}
+
+./transgender-alt {
+  width: 0.9285714285714285em;
+}
+
+./mars-double {
+  width: 1.0602857142857143em;
+}
+
+./venus-mars {
+  width: 1.1199999999999999em;
+}
+
+./mars-stroke {
+  width: 0.8571428571428571em;
+}
+
+./mars-stroke-v {
+  width: 0.63em;
+}
+
+./mars-stroke-h {
+  width: 1.0552142857142857em;
+}
+
+./neuter {
+  width: 0.6428571428571428em;
+}
+
+./genderless {
+  width: 0.6428571428571428em;
+}
+
+./whatsapp {
+  width: 0.8571428571428571em;
+}
+
+./user-plus {
+  width: 1.1428571428571428em;
+}
+
+./user-times {
+  width: 1.1378571428571427em;
+}
+
+./bed {
+  width: 1.1428571428571428em;
+}
+
+./train1 {
+  width: 0.8571428571428571em;
+}
+
+./subway1 {
+  width: 0.8571428571428571em;
+}
+
+./battery {
+  width: 1.2857142857142856em;
+}
+
+./battery-3 {
+  width: 1.2857142857142856em;
+}
+
+./battery-2 {
+  width: 1.2857142857142856em;
+}
+
+./battery-1 {
+  width: 1.2857142857142856em;
+}
+
+./battery-0 {
+  width: 1.2857142857142856em;
+}
+
+./mouse-pointer {
+  width: 0.6456428571428571em;
+}
+
+./sticky-note {
+  width: 0.8571428571428571em;
+}
+
+./sticky-note-o {
+  width: 0.8571428571428571em;
+}
+
+./balance-scale {
+  width: 1.2142857142857142em;
+}
+
+./hourglass-o {
+  width: 0.8571428571428571em;
+}
+
+./hourglass-1 {
+  width: 0.8571428571428571em;
+}
+
+./hourglass-2 {
+  width: 0.8571428571428571em;
+}
+
+./hourglass-3 {
+  width: 0.8571428571428571em;
+}
+
+./hourglass {
+  width: 0.8571428571428571em;
+}
+
+./hand-grab-o {
+  width: 0.8571428571428571em;
+}
+
+./hand-paper-o {
+  width: 0.9107142857142857em;
+}
+
+./hand-lizard-o {
+  width: 1.1428571428571428em;
+}
+
+./hand-spock-o {
+  width: 1.0714285714285714em;
+}
+
+./hand-pointer-o {
+  width: 0.9285714285714285em;
+}
+
+./hand-peace-o {
+  width: 0.8571428571428571em;
+}
+
+./odnoklassniki {
+  width: 0.7142857142857142em;
+}
+
+./odnoklassniki-square {
+  width: 0.8571428571428571em;
+}
+
+./get-pocket {
+  width: 0.9597857142857142em;
+}
+
+./wikipedia-w {
+  width: 1.2857142857142856em;
+}
+
+./television {
+  width: 1.0714285714285714em;
+}
+
+./calendar-plus-o {
+  width: 0.9285714285714285em;
+}
+
+./calendar-minus-o {
+  width: 0.9285714285714285em;
+}
+
+./calendar-times-o {
+  width: 0.9285714285714285em;
+}
+
+./calendar-check-o {
+  width: 0.9285714285714285em;
+}
+
+./map-pin {
+  width: 0.5714285714285714em;
+}
+
+./map-o {
+  width: 1.1428571428571428em;
+}
+
+./credit-card-alt {
+  width: 1.2857142857142856em;
+}
+
+./fort-awesome {
+  width: 0.9285714285714285em;
+}
+
+./usb1 {
+  width: 1.2857142857142856em;
+}
+
+./mixcloud {
+  width: 1.2857142857142856em;
+}
+
+./pause-circle {
+  width: 0.8571428571428571em;
+}
+
+./pause-circle-o {
+  width: 0.8571428571428571em;
+}
+
+./stop-circle {
+  width: 0.8571428571428571em;
+}
+
+./stop-circle-o {
+  width: 0.8571428571428571em;
+}
+
+./shopping-basket {
+  width: 1.1428571428571428em;
+}
+
+./bluetooth1 {
+  width: 0.8571428571428571em;
+}
+
+./bluetooth-b {
+  width: 0.5714285714285714em;
+}
+
+./percent {
+  width: 0.8571428571428571em;
+}
+
+./wpforms {
+  width: 0.8571428571428571em;
+}
+
+./wheelchair-alt {
+  width: 0.8582857142857142em;
+}
+
+./question-circle-o {
+  width: 0.8571428571428571em;
+}
+
+./blind {
+  width: 0.7902142857142858em;
+}
+
+./volume-control-phone {
+  width: 0.7857142857142857em;
+}
+
+./braille {
+  width: 1.2142857142857142em;
+}
+
+./assistive-listening-systems {
+  width: 1.0045em;
+}
+
+./american-sign-language-interpreting {
+  width: 1.2857142857142856em;
+}
+
+./sign-language {
+  width: 0.9257857142857142em;
+}
+
+./snapchat-ghost {
+  width: 0.9285714285714285em;
+}
+
+./fa {
+  width: 0.8777857142857142em;
+}
+
+./handshake-o {
+  width: 1.2857142857142856em;
+}
+
+./address-book {
+  width: 0.9285714285714285em;
+}
+
+./address-book-o {
+  width: 0.9285714285714285em;
+}
+
+./address-card {
+  width: 1.1428571428571428em;
+}
+
+./address-card-o {
+  width: 1.1428571428571428em;
+}
+
+./user-o {
+  width: 0.8571428571428571em;
+}
+
+./id-badge {
+  width: 0.7142857142857142em;
+}
+
+./drivers-license {
+  width: 1.1428571428571428em;
+}
+
+./drivers-license-o {
+  width: 1.1428571428571428em;
+}
+
+./thermometer1 {
+  width: 0.5714285714285714em;
+}
+
+./thermometer-3 {
+  width: 0.5714285714285714em;
+}
+
+./thermometer-2 {
+  width: 0.5714285714285714em;
+}
+
+./thermometer-1 {
+  width: 0.5714285714285714em;
+}
+
+./thermometer-0 {
+  width: 0.5714285714285714em;
+}
+
+./shower {
+  width: 1.0714285714285714em;
+}
+
+./podcast {
+  width: 0.8482142857142857em;
+}
+
+./window-restore {
+  width: 1.1428571428571428em;
+}
+
+./microchip {
+  width: 0.8571428571428571em;
+}
+
+./snowflake-o {
+  width: 0.9285714285714285em;
+}

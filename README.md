@@ -6,55 +6,192 @@ with a clear intention: Keep it short and simple!
 
 Version 3 
 
-Caution! This version is not compatible with older fhem-tablet-ui versions.
+FTUI >3.0 uses [Web Components technologies](https://developer.mozilla.org/en-US/docs/Web/Web_Components)
+
+Caution! 
+ * This version is not compatible with older fhem-tablet-ui versions.
+ * This version is under construction.
 
 
-![](http://knowthelist.github.io/fhem-tablet-ui/fhem-tablet-ui-example_new.png)
+![](http://knowthelist.github.io/ftui/screenshot.png)
 
 Requires
 -------
-* FTUI >3.0 uses pure ES7 javascript only
+* FTUI >3.0 uses pure ES2020 javascript only
 
 Install
 -------
  * copy the whole tree into the corresponding folder of your FHEM server /\<fhem-path\>/www/tablet
- * call http://\<fhem-url\>:8083/fhem/tablet/test_all.html
+ * call http://\<fhem-url\>:8083/fhem/tablet/index.html
  
 Usage
 ------
-* Just add some of the FTUI webcomponents to your HTML code
+* Just add some of the FTUI web components to your HTML code
 
 ```html
-<ftui-button state-reading="dummy1"></ftui-button>
+<ftui-button (value)="dummy1">on/off</ftui-button>
 ```
 
 ```html
-<ftui-label text-reading="dummy1"></ftui-label>
+<ftui-label [value]="dummy1"></ftui-label>
 ```
 
 ```html
-<ftui-symbol state-reading="ftuitest" 
-              state-classes='{ 
-                "0": "mdi mdi-garage",
-                "40": "mdi mdi-garage-alert active",
-                "80": "mdi mdi-garage-open active"}'>
-</ftui-symbol>
+<ftui-icon 
+    [name]="dummy1 | map('on: lightbulb-on-outline, off: lightbulb-outline')"
+    [color]="ftuitest | map('0: success, 50: warning, 80: danger')">
+</ftui-icon>
 ```
 
-Widgets
+Binding
 ------
 
-- tab
-- grid
-- label
-- symbol
-- button
+no binding - fix value
 
+```html
+<ftui-label color="danger">demo</ftui-label>
+```
 
-Button
+Input binding
 --------
 
-show-state-as-text  boolean
+bind a FHEM reading to a attribute. Changes of the reading changes the attribute
+
+```html
+<ftui-label bind:color="dummy1:color">demo</ftui-label>
+```
+
+short format
+```html
+<ftui-label [color]="dummy1:color">demo</ftui-label>
+```
+
+Output binding
+--------
+
+on attribute changes set the FHEM reading
+
+```html
+<ftui-button on:value="dummy1"></ftui-button>
+```
+
+short format
+```html
+<ftui-button (value)="dummy1"></ftui-button>
+```
+
+Two way binding
+
+```html
+<ftui-button bindon:value="dummy1"></ftui-button>
+```
+
+short syntax ("banana in a box")
+```html
+<ftui-button [(value)]="dummy1"></ftui-button>
+```
+
+
+Components
+------
+
+- Tab
+- Grid
+- Label
+- Icon
+- [Button](#button)
+- Knob
+- Slider
+- Checkbox
+- Circlemenu
+- Weather
+- Dropdown
+- Colorpicker
+- [Image](#image)
+- [Badge](#badge)
+- [Speak](#speak)
+- [Chart](#chart)
+
+ ... to be continued
+
+### Button
+
+| Attribute | Description | Type | Default |
+|-----------|-------------|-------|---------|
+| <b>color</b> |The color to use from color palette.|<code>"primary" \| "secondary" \| "success" \| "warning" \| "danger" \| "light" \| "medium" \| "dark"</code>| <code>"primary"</code>|
+| <b>fill</b> |.|<code>"clear" \| "outline" \| "solid" </code>| <code>"solid"</code>|
+| <b>size</b> |.|<code>"small" \| "normal" \| "large" </code>| <code>"normal"</code>|
+| <b>shape</b> |.|<code>"round" \| "normal" \| "circle" </code>| <code>"normal"</code>|
+| <b>value</b> |.|String| <code>"off"</code> |
+| <b>states</b> |.|String list comma separated| <code>"on,off"</code>|
+
+### Image
+
+| Attribute | Description | Type | Default |
+|-----------|-------------|-------|---------|
+| <b>base</b> |Front part of the URL.|String| <code>""</code>|
+| <b>src</b> |Image part of the URL or full URL.|String| <code>""</code>|
+| <b>width</b> |Force a certain image width.|Number \| "auto"</code>| <code>"auto"</code>|
+| <b>height</b> |Force a certain image height.|Number \| "auto"| <code>"auto"</code>|
+| <b>interval</b> |Reloading every x secondes.|Number| <code>0</code> |
+| <b>refresh</b> |Changes of this attribute triggers a reload.|String list comma separated| <code>""</code>|
+| <b>nocache</b> |Bypass cache on next reload.|Boolean| <code>false</code>|
+
+### Badge
+
+Badges can be used as a notification that contain a number or other characters. They show that there are additional items associated with an element and indicate how many items there are.
+The element disappears if the value is 0 or empty.
+
+| Attribute | Description | Type | Default |
+|-----------|-------------|-------|---------|
+| <b>color</b> |The color to use from color palette.|<code>"primary" \| "secondary" \| "success" \| "warning" \| "danger" \| "light" \| "medium" \| "dark"</code>| <code>"primary"</code>|
+| <b>text</b> |Text to display inside.|String| <code>""</code>|
+
+### Speak
+
+Speak uses the browser's Web Speech API to synthesize text to speech.
+
+| Attribute | Description | Type | Default |
+|-----------|-------------|-------|---------|
+| <b>lang</b> |Language of the utterance.|<code>"en-US" \| "de-DE"</code>| the user-agent default |
+| <b>pitch</b> |Pitch at which the utterance will be spoken at.|Float| <code>0.9</code>|
+| <b>rate</b> |Speed at which the utterance will be spoken at.|Float| <code>1.0</code>|
+| <b>volume</b> |Volume that the utterance will be spoken at.|Float| <code>1.0</code>|
+| <b>text</b> |Text that will be synthesized when the utterance is spoken.|String| <code>""</code>|
+
+  ... to be continued
+
+### Chart
+
+The Chart component uses [Chart.js](https://www.chartjs.org/docs/latest/) to render charts.
+
+| Attribute | Description | Type | Default |
+|-----------|-------------|-------|---------|
+
+
+#### Icon
+
+[List of all icons](https://knowthelist.github.io/ftui/icons/demo.html)
+
+Examples
+------
+
+- [Tab](https://knowthelist.github.io/ftui/examples/tab.html) 
+- [Grid](https://knowthelist.github.io/ftui/examples/grid.html)
+- [Label](https://knowthelist.github.io/ftui/examples/label.html)
+- [Icon](https://knowthelist.github.io/ftui/examples/icon.html)
+- [Button](https://knowthelist.github.io/ftui/examples/button.html)
+- [Knob](https://knowthelist.github.io/ftui/examples/knob.html)
+- [Slider](https://knowthelist.github.io/ftui/examples/slider.html)
+- [Checkbox](https://knowthelist.github.io/ftui/examples/checkbox.html)
+- [Circlemenu](https://knowthelist.github.io/ftui/examples/circlemenu.html)
+- [Dropdown](https://knowthelist.github.io/ftui/examples/dropdown.html)
+- [Colorpicker](https://knowthelist.github.io/ftui/examples/colorpicker.html)
+- [Image](https://knowthelist.github.io/ftui/examples/image.html)
+- [Badge](https://knowthelist.github.io/ftui/examples/badge.html)
+- [Speak](https://knowthelist.github.io/ftui/examples/speak.html)
+- [Chart](https://knowthelist.github.io/ftui/examples/chart.html)
+
 
 Donation
 --------

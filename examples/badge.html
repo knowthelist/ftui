@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!--
+    /* FHEM tablet ui - FTUI */
+    /**
+    * UI builder framework for FHEM
+    *
+    * Version: 3.0.0
+    *
+    * Copyright (c) 2020 Mario Stephan <mstephan@shared-files.de>
+    * Under MIT License (http://www.opensource.org/licenses/mit-license.php)
+    * https://github.com/knowthelist/ftui
+    */
+    -->
+  <base href="../" />
+  <script src="ftui.js"></script>
+  <link href="ftui.css" rel="stylesheet">
+  <link href="themes/ftui-theme.css" rel="stylesheet">
+  <link href="favicon.ico" rel="icon" type="image/x-icon" />
+
+
+  <title>FTUI Example Badge</title>
+</head>
+
+<body>
+
+  <ftui-grid base-width="150" base-height="150">
+
+    <ftui-grid-tile row="1" col="1" height="1" width="1">
+      <header>TEST IT</header>
+      <div class="cell">
+
+        <ftui-button [(value)]="ftuitest" states="0,1,2,10,50,100">Press here</ftui-button>
+
+      </div>
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="1" col="2" height="1" width="1">
+      <header>DEFAULT</header>
+      <div class="cell">
+
+        <ftui-badge></ftui-badge>
+
+      </div>
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="1" col="3" height="1" width="1">
+      <header>COLOR</header>
+      <div class="cell">
+
+        <ftui-badge color="error">42</ftui-badge>
+
+      </div>
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="1" col="4" height="1" width="1">
+      <header>BINDING</header>
+      <div class="cell">
+
+        <ftui-badge [color]="ftuitest | map('0=success,50=warning,70=danger')"
+                    [text]="ftuitest"></ftui-badge>
+
+      </div>
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="1" col="5" height="1" width="1">
+      <header>Icon Badge</header>
+      <div class="cell">
+
+        <ftui-icon name="database"></ftui-icon>
+        <ftui-badge color="danger" [text]="ftuitest"></ftui-badge>
+
+      </div>
+    </ftui-grid-tile>
+
+  </ftui-grid>
+
+</body>
+
+</html>

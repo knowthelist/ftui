@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!--
+    /* FHEM tablet ui - FTUI */
+    /**
+    * UI builder framework for FHEM
+    *
+    * Version: 3.0.0
+    *
+    * Copyright (c) 2020 Mario Stephan <mstephan@shared-files.de>
+    * Under MIT License (http://www.opensource.org/licenses/mit-license.php)
+    * https://github.com/knowthelist/ftui
+    */
+    -->
+  <base href="../" />
+  <script src="ftui.js"></script>
+  <link href="ftui.css" rel="stylesheet">
+  <link href="themes/ftui-theme.css" rel="stylesheet">
+  <link href="favicon.ico" rel="icon" type="image/x-icon" />
+
+
+  <title>FTUI Example Image</title>
+</head>
+
+<body>
+
+  <ftui-grid base-width="150" base-height="150">
+
+    <ftui-grid-tile row="1" col="1" height="1" width="1">
+      <header>DEFAULT</header>
+      <div class="cell">
+
+        <ftui-image></ftui-image>
+      
+      </div>
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="1" col="2" height="1" width="1">
+      <header>FIX SRC</header>
+      <div class="cell">
+      
+        <ftui-image src="https://picsum.photos/seed/huhu/200/200" width="100"></ftui-image>
+      </div>
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="2" col="2" height="1" width="1">
+      <header>REFRESH</header>
+      <div class="cell">
+      
+        <ftui-image src="http://lorempixel.com/400/200/technics" width="100" [refresh]="ftuitest:state:time"></ftui-image>
+      </div>
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="1" col="3" height="2" width="1">
+      <header>SRC BINDING</header>
+      <div class="column">
+
+        <ftui-image [src]="AgroWeather:fc0_weather00Icon"></ftui-image>
+        <ftui-image [src]="AgroWeather:fc1_weather00Icon"></ftui-image>
+        <ftui-image [src]="AgroWeather:fc2_weather00Icon"></ftui-image>
+
+      </div>
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="1" col="4" height="2" width="2">
+      <header>COVER IMAGE</header>
+      <div class="cell">
+
+        <ftui-image [src]="Spotify01:track_album_cover_medium"
+                    width="250"></ftui-image>
+
+      </div>
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="1" col="6" height="2" width="2">
+      <header>REFRESH INTERVAL</header>
+      <div class="cell">
+      
+        <ftui-image src="https://www.dwd.de/DWD/wetter/aktuell/deutschland/bilder/wx_deutschland.jpg" 
+                    interval="300" nocache
+                    width="250" height="200"></ftui-image>
+
+      </div>
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="1" col="8" height="2" width="2">
+      <header>BASE URL</header>
+      <div class="cell">
+      
+        <ftui-image base="http://fhem:8083/fhem/images/" src="fhemSVG/3d_printer.svg" interval="5" width="250" height="200"></ftui-image>
+
+      </div>
+    </ftui-grid-tile>
+
+  </ftui-grid>
+
+</body>
+
+</html>

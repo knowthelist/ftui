@@ -1,0 +1,8 @@
+:host {
+  --color-base: currentColor;
+/*   --color-base: var(--text-color); */
+  color: var(--color-base);
+}
+:host(.is-empty) {
+  display: none;
+}

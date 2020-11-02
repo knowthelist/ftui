@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!--
+    /* FHEM tablet ui - FTUI */
+    /**
+    * UI builder framework for FHEM
+    *
+    * Version: 3.0.0
+    *
+    * Copyright (c) 2020 Mario Stephan <mstephan@shared-files.de>
+    * Under MIT License (http://www.opensource.org/licenses/mit-license.php)
+    * https://github.com/knowthelist/ftui
+    */
+    -->
+  <base href="../" />
+  <script src="ftui.js"></script>
+  <link href="ftui.css" rel="stylesheet">
+  <link href="themes/ftui-theme.css" rel="stylesheet">
+  <link href="favicon.ico" rel="icon" type="image/x-icon" />
+
+
+  <title>FTUI Example Chart</title>
+</head>
+
+<body>
+
+  <ftui-grid responsive>
+
+    <ftui-grid-tile row="1" col="1" height="3" width="3">
+      <header>DEFAULT</header>
+      <div class="cell">
+
+        <ftui-chart title="demo-chart">
+          <ftui-chart-data label="OutTemp" border-color="#dd4499" log="FileLog_AgroWeather" spec="4:AgroWeather.temperature"></ftui-chart-data>
+          <ftui-chart-data label="Heating" fill background-color="rgba(75,192,192,0.2)" border-color="rgba(75,192,192,1)" log="FileLog_Heizung_Vorlauf" spec="4:temperature"></ftui-chart-data>
+        </ftui-chart>
+      
+      </div>
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="1" col="4" height="2" width="2">
+      <header>FIX SIZE</header>
+      <div class="cell">
+
+        <ftui-chart title="humidity" width="300px">
+          <ftui-chart-data fill log="FileLog_THSensorWZ" spec="4:THSensorWZ.humidity" [update]="THSensorWZ:state:time"></ftui-chart-data>
+        </ftui-chart>
+      
+      </div>
+    </ftui-grid-tile>
+
+  </ftui-grid>
+
+</body>
+
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!--
+    /* FHEM tablet ui */
+    /**
+    * UI builder framework for FHEM
+    *
+    * Version: 3.0.0
+    *
+    * Copyright (c) 2015-2019 Mario Stephan <mstephan@shared-files.de>
+    * Under MIT License (http://www.opensource.org/licenses/mit-license.php)
+    * https://github.com/knowthelist/ftui
+    */
+    -->
+  <base href="../" />
+  <script src="ftui.js"></script>
+  <link href="ftui.css" rel="stylesheet">
+  <link href="themes/ftui-theme.css" rel="stylesheet">
+  <link href="favicon.ico" rel="icon" type="image/x-icon" />
+
+  <title>FTUI Example Slider</title>
+</head>
+
+<body>
+  <ftui-grid base-width="70" base-height="150">
+
+
+    <ftui-grid-tile row="1" col="1" height="1" width="3">
+      <header>DEFAULT</header>
+      <div class="cell">
+        <ftui-slider value="20" max="50">
+        </ftui-slider>
+      </div>
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="1" col="4" height="2" width="3">
+      <header>VERTICAL</header>
+      <div class="cell">
+        <ftui-slider [(value)]="dummy3" max="60" is-vertical>
+        </ftui-slider>
+      </div>
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="1" col="7" height="1" width="3">
+      <header>TOOLTIP</header>
+      <div class="cell">
+        <ftui-slider [(value)]="dummy3" max="70" tooltips="always">
+        </ftui-slider>
+      </div>
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="2" col="7" height="1" width="6">
+      <header>TOOLTIP</header>
+      <div class="cell">
+        <ftui-slider [value]="ftuitest" max="70" tooltips="always">
+        </ftui-slider>
+      </div>
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="2" col="7" height="1" width="6">
+      <header>RULER</header>
+      <div class="cell">
+        <ftui-slider [value]="ftuitest" max="70" has-ruler>
+        </ftui-slider>
+      </div>
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="1" col="10" height="1" width="2">
+      <header>VERTICAL RULER</header>
+      <div class="cell">
+        <ftui-slider [(value)]="ftuitest" min="10" max="70" is-vertical has-ruler>
+        </ftui-slider>
+      </div>
+    </ftui-grid-tile>
+
+  </ftui-grid>
+</body>
+
+</html>

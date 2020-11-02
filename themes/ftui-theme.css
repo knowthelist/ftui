@@ -1,0 +1,90 @@
+@import "./color-attributes.css"; 
+
+:root {
+
+  /* primary color */
+
+  --gray: #393939;
+  --gray10: #1a1a1a;
+  --gray15: #272727;
+  --gray20: #333333;
+  --gray25: #3f3f3f;
+  --gray33: #545454;
+  --gray40: #666666;
+  --gray55: #8c8c8c;
+  --gray75: #bfbfbf;
+  --gray-trans: rgba(40, 40, 40, 0.5);
+  --lightgray: #777777;
+  --orange: #aa6900;
+  --red: #ad3333;
+  --lightred: rgb(219, 72, 70);
+  --tomato: rgb(238, 92, 66);
+  --green: #32a054;
+  --seagreen: #365a38;
+  --mint: #5bc995;
+  --blue: #436D8D; 
+  --blue1: #20639b;
+  --blue2: #173f5f;
+  --green1: #3caea3;
+  --yellow1: #f6d55c;
+  --red1: #ed553b;
+  --lightblue: #66aaFF;
+  --royalblue: #394b98;
+  --white: #ffffff;
+  --black: #111111;
+  --fullblack: #000000;
+  --yellow: #ffe066;
+  --transparent: transparent;
+
+  --primary-color: var(--blue1);
+  --secondary-color: var(--blue2);
+
+  --success-color: var(--green1);
+  --info-color: var(--lightblue);
+  --warning-color: var(--yellow1);
+  --danger-color: var(--red1);
+  --light-color: var(--gray75);
+  --medium-color: var(--gray40);
+  --dark-color: var(--gray25);
+
+  --primary-contrast-color: var(--white);
+  --secondary-contrast-color: var(--white);
+
+  --success-contrast-color: var(--white);
+  --info-contrast-color: var(--white);
+  --warning-contrast-color: var(--black);
+  --danger-contrast-color: var(--white);
+  --light-contrast-color: var(--black);
+  --medium-contrast-color: var(--white);
+  --dark-contrast-color: var(--white);
+
+
+  --header-color: var(--gray15);
+  --content-color: var(--gray15);
+  --footer-color: var(--gray15);
+  --text-color: var(--gray75);
+  --inactive-text-color: #A39B9B;
+
+  --page-background-color: var(--fullblack);
+
+  --grid-background-color: var(--gray20);
+  --grid-header-color: var(--gray55);
+  --grid-header-background-color: var(--gray15);
+
+  --tab-color: var(--gray40);
+  --tab-contrast-color: var(--gray20);
+  --tab-active-color: var(--primary-color);
+
+  --chart-text-color: var(--gray55);
+
+  --border-color: var(--gray55);
+
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Ubuntu', 'Helvetica Neue', sans-serif;
+  font-size: small;
+  color: var(--text-color);
+  background: var(--page-background-color);
+  -webkit-font-smoothing: antialiased;
+}

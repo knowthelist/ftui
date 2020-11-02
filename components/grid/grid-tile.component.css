@@ -1,0 +1,40 @@
+:host {
+  --color-base: var(--grid-background-color, #333333);
+  background: var(--color-base);
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+:host([shape="round"]) {
+  border-radius: 1.5em;
+}
+
+:host ::slotted(:not(:only-child)) {
+  margin-bottom: auto;
+}
+
+:host ::slotted(header) {
+  color: var(--grid-header-color);
+  background: var(--grid-header-background-color);
+  font-weight: bold;
+  padding: 0.25em;
+  width: 100%;
+  text-align: center;
+}
+
+:host([shape="round"]) ::slotted(header) {
+  border-top-right-radius: 1em;
+  border-top-left-radius: 1em;
+}
+
+:host([color]) {
+  background: var(--color-base);
+  color: var(--color-contrast);
+}
+
+:host ::slotted(.row) {
+  flex: 1;
+}

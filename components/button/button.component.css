@@ -1,0 +1,113 @@
+:host {
+  display: flex;
+  --border-radius: 10px;
+  --padding-top: 0;
+  --padding-bottom: 0;
+  --padding-start: 1em;
+  --padding-end: 1em;
+  --transition: background-color, opacity 100ms linear;
+  height: 2.5em;
+  font-size: 1.125em;
+/*   margin-left: 0.5em;
+  margin-right: 0.5em;
+  margin-top: 0.25em;
+  margin-bottom: 0.25em; */
+  letter-spacing: -.025em;
+  cursor: pointer;
+  border-color: var(--color-base, #20639b);
+  background: transparent;
+  color: var(--color-base, #20639b);
+}
+
+/* size */
+
+:host([size="small"]) {
+  --border-radius: 6px;
+  --padding-top: 0;
+  --padding-start: 0.9em;
+  --padding-end: 0.9em;
+  --padding-bottom: 0;
+  height: 2em;
+  font-size: 0.9em;
+}
+
+:host([size="large"]) {
+  --border-radius: 12px;
+  --padding-top: 0;
+  --padding-start: 1em;
+  --padding-end: 1em;
+  --padding-bottom: 0;
+  height: 2.8em;
+  font-size: 1.5em;
+}
+
+/* fill */
+
+:host([fill="outline"]) {
+  --border-radius: 10px;
+  --border-width: 2px;
+  --border-style: solid;
+  --border-color: var(--color-base);
+  --background: transparent;
+  --color: var(--color-base);
+  --color-focused: var(--color-base);
+}
+
+/* shape */
+
+:host([shape="round"]) {
+  --border-radius: 3em;
+  --padding-top: 0;
+  --padding-start: 1em;
+  --padding-end: 1em;
+  --padding-bottom: 0;
+}
+
+:host([shape="circle"]) {
+  --border-radius: 3em;
+  --padding-top: 0;
+  --padding-start: 0em;
+  --padding-end: 0em;
+  --padding-bottom: 0;
+  width: 3em;
+  height: 3em;
+}
+
+:host([fill="solid"]) .button-inner {
+  background: var(--color-base);
+  color: var(--color-contrast);
+}
+
+/* direction */
+:host([direction="vertical"]) .button-inner {
+  flex-direction: column;
+}
+
+:host(.activated) .button-inner {
+  --color-base: var(--color-shade);
+}
+
+:host .button-inner {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  border-radius: var(--border-radius);
+  padding-left: unset;
+  padding-right: unset;
+  padding-inline-start: var(--padding-start);
+  padding-inline-end: var(--padding-end);
+  border-width: var(--border-width);
+  border-style: var(--border-style);
+  border-color: var(--border-color);
+}
+
+::slotted(ftui-icon) {
+  font-size: 0.75em;
+}
