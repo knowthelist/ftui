@@ -32,6 +32,7 @@ export class FtuiChart extends FtuiElement {
         responsive: true,
         maintainAspectRatio: false,
         title: {
+          padding: 0,
           display: false,
           text: '',
           font: {
