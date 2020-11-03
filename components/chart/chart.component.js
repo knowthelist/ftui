@@ -133,8 +133,23 @@ export class FtuiChart extends FtuiElement {
     const date = new Date();
 
     switch (this.unit) {
+      case 'hour':
+        date.setMinutes(0, 0, 0);
+        break;
       case 'day':
         date.setHours(0, 0, 0, 0);
+        break;
+      case 'week':
+        date.setHours(0, 0, 0, 0);
+        date.setDate(date.getDate() - (date.getDay()-1));
+        break;
+      case 'month':
+        date.setHours(0, 0, 0, 0);
+        date.setDate(1);
+        break;
+      case 'year':
+        date.setHours(0, 0, 0, 0);
+        date.setMonth(0, 1);
         break;
     }
     return dateFormat(date, 'YYYY-MM-DD_hh:mm:ss');
@@ -144,9 +159,24 @@ export class FtuiChart extends FtuiElement {
     const date = new Date();
 
     switch (this.unit) {
+      case 'hour':
+        date.setHours(date.getHours()+1, 0, 0, 0);
+        break;
       case 'day':
-        date.setDate(date.getDate() + 1);
+        date.setDate(date.getDate()+1);
         date.setHours(0, 0, 0, 0);
+        break;
+      case 'week':
+        date.setHours(0, 0, 0, 0);
+        date.setDate((date.getDate()+7) - (date.getDay()-1));
+        break;
+      case 'month':
+        date.setHours(0, 0, 0, 0);
+        date.setMonth(date.getMonth() + 1, 1);
+        break;
+      case 'year':
+        date.setHours(0, 0, 0, 0);
+        date.setFullYear(date.getFullYear()+1, 0, 1);
         break;
     }
     return dateFormat(date, 'YYYY-MM-DD_hh:mm:ss');
