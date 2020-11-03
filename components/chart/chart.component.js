@@ -10,7 +10,7 @@
 import { FtuiElement } from '../element.component.js';
 import { FtuiChartData } from './chart-data.component.js';
 import { Chart } from '../../modules/chart.js/chart.js';
-import { getStylePropertyValue } from '../../modules/ftui/ftui.helper.js';
+import { dateFormat, getStylePropertyValue } from '../../modules/ftui/ftui.helper.js';
 import '../../modules/chart.js/chartjs-adapter-date-fns.bundle.min.js';
 
 
@@ -102,6 +102,10 @@ export class FtuiChart extends FtuiElement {
     this.chartContainer.style.height = this.height;
   }
 
+  connectedCallback() {
+    this.refresh();
+  }
+
   template() {
     return `
       <style> @import "components/chart/chart.component.css"; </style>
@@ -116,12 +120,36 @@ export class FtuiChart extends FtuiElement {
     return {
       title: '',
       width: '100%',
-      height: 'auto'
+      height: 'auto',
+      unit: 'day',
     };
   }
 
   static get observedAttributes() {
     return [...this.convertToAttributes(FtuiChart.properties), ...super.observedAttributes];
+  }
+
+  get startDate() {
+    const date = new Date();
+
+    switch (this.unit) {
+      case 'day':
+        date.setHours(0, 0, 0, 0);
+        break;
+    }
+    return dateFormat(date, 'YYYY-MM-DD_hh:mm:ss');
+  }
+
+  get endDate() {
+    const date = new Date();
+
+    switch (this.unit) {
+      case 'day':
+        date.setDate(date.getDate() + 1);
+        date.setHours(0, 0, 0, 0);
+        break;
+    }
+    return dateFormat(date, 'YYYY-MM-DD_hh:mm:ss');
   }
 
   onAttributeChanged(name) {
@@ -131,7 +159,17 @@ export class FtuiChart extends FtuiElement {
         this.configuration.options.title.display = (this.title?.length > 0);
         this.chart.update();
         break;
+      case 'unit':
+        this.refresh();
     }
+  }
+
+  refresh() {
+    this.dataElements.forEach(dataElement => {
+      dataElement.startDate = this.startDate;
+      dataElement.endDate = this.endDate;
+      dataElement.fetch();
+    });
   }
 
   updateDatasets() {
@@ -147,7 +185,6 @@ export class FtuiChart extends FtuiElement {
     this.chart.update();
     // disable animation after first update
     this.configuration.options.animation.duration = 0;
-
   }
 
 }

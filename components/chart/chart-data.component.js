@@ -22,8 +22,6 @@ export class FtuiChartData extends FtuiElement {
       this.hasCalculatedBackgroundColor = true;
       this.backgroundColor = Chart.helpers.color(this.borderColor).alpha(0.2).rgbString();
     }
-
-    this.fetch();
   }
 
   static get properties() {
@@ -42,7 +40,8 @@ export class FtuiChartData extends FtuiElement {
       file: '-',
       spec: '4:.*',
       unit: '°C',
-      timeUnit: 'day',
+      startDate: '',
+      endDate: '',
       update: '',
       lineTension: '0.0'
     };
@@ -50,29 +49,6 @@ export class FtuiChartData extends FtuiElement {
 
   static get observedAttributes() {
     return [...this.convertToAttributes(FtuiChartData.properties), ...super.observedAttributes];
-  }
-
-  get startDate() {
-    const date = new Date();
-
-    switch (this.timeUnit) {
-      case 'day':
-        date.setHours(0, 0, 0, 0);
-        break;
-    }
-    return ftuiHelper.dateFormat(date, 'YYYY-MM-DD_hh:mm:ss');
-  }
-
-  get endDate() {
-    const date = new Date();
-
-    switch (this.timeUnit) {
-      case 'day':
-        date.setDate(date.getDate() + 1);
-        date.setHours(0, 0, 0, 0);
-        break;
-    }
-    return ftuiHelper.dateFormat(date, 'YYYY-MM-DD_hh:mm:ss');
   }
 
   fetch() {
