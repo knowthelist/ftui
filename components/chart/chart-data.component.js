@@ -94,7 +94,6 @@ export class FtuiChartData extends FtuiElement {
     if (ftuiHelper.isDefined(this.data)) {
       ftuiHelper.triggerEvent('ftuiDataChanged', this);
     }
-
   }
 
 }

@@ -91,7 +91,7 @@ export class FtuiChart extends FtuiElement {
       }
     };
 
-    this.dataElements.forEach(dataElement => dataElement.addEventListener('ftuiDataChanged', () => this.updateDatasets()));
+    this.dataElements.forEach(dataElement => dataElement.addEventListener('ftuiDataChanged', () => this.onDataChanged()));
 
     Chart.defaults.font.color = getStylePropertyValue('--chart-text-color');
     Chart.defaults.font.family = getStylePropertyValue('--chart-font-family');
@@ -172,7 +172,9 @@ export class FtuiChart extends FtuiElement {
     });
   }
 
-  updateDatasets() {
+  onDataChanged() {
+    this.configuration.options.scales.x.min = this.startDate;
+    this.configuration.options.scales.x.max = this.endDate;
     this.configuration.data.datasets = [];
     this.dataElements.forEach(dataElement => {
       const dataset = {};
