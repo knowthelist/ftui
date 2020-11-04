@@ -93,9 +93,13 @@ export class FtuiChart extends FtuiElement {
 
     this.dataElements.forEach(dataElement => dataElement.addEventListener('ftuiDataChanged', () => this.onDataChanged()));
 
+    if (getStylePropertyValue('--chart-font-family')) {
+      Chart.defaults.font.family = getStylePropertyValue('--chart-font-family')
+    }
+    if (Chart.defaults.font.style = getStylePropertyValue('--chart-font-style')) {
+      Chart.defaults.font.style = getStylePropertyValue('--chart-font-style')
+    }
     Chart.defaults.font.color = getStylePropertyValue('--chart-text-color');
-    Chart.defaults.font.family = getStylePropertyValue('--chart-font-family');
-    Chart.defaults.font.style = getStylePropertyValue('--chart-font-style') || undefined;
     this.chart = new Chart(this.chartElement, this.configuration);
 
     this.chartContainer.style.width = this.width;
