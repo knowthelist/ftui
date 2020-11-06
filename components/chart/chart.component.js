@@ -107,6 +107,15 @@ export class FtuiChart extends FtuiElement {
     this.backwardElement.addEventListener('click', () => this.onButtonClick(this.backwardElement));
     this.forwardElement.addEventListener('click', () => this.onButtonClick(this.forwardElement));
 
+    if (this.units) {
+      let units = String(this.units).split(/[;,:]/).map(item => item.toLowerCase().trim());
+      units.forEach((unit, i) => {
+        let element = this.shadowRoot.querySelector('#' + unit);
+        element.classList.add('enabled');
+        element.addEventListener('click', () => this.unit = unit);
+      });
+    }
+
     this.chartContainer.style.width = this.width;
     this.chartContainer.style.height = this.height;
   }
@@ -128,10 +137,12 @@ export class FtuiChart extends FtuiElement {
           <span id='date'></span>
           <span id='forward'>▶</span>
         </div>
-        <div id="unit">
-          <span>Week</span>
-          <span>|</span>
-          <span class="active">Day</span>
+        <div id="units">
+          <span class="unit" id="year">Year</span>
+          <span class="unit" id="month">Month</span>
+          <span class="unit" id="week">Week</span>
+          <span class="unit" id="day">Day</span>
+          <span class="unit" id="hour">Hour</span>
         </div>
       </div>
       <slot></slot>`;
@@ -143,6 +154,7 @@ export class FtuiChart extends FtuiElement {
       width: '100%',
       height: 'auto',
       unit: 'day',
+      units: '',
       offset: 0
     };
   }
@@ -235,8 +247,14 @@ export class FtuiChart extends FtuiElement {
         this.configuration.options.title.display = (this.title?.length > 0);
         this.chart.update();
         break;
-      case 'unit':
       case 'offset':
+        this.refresh();
+        break;
+      case 'unit':
+        this.shadowRoot.querySelectorAll('.unit').forEach(element => {
+          element.classList.remove('active');
+        });
+        this.shadowRoot.querySelector('#' + this.unit).classList.add('active');
         this.refresh();
         break;
     }
