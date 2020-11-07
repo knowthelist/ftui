@@ -43,7 +43,7 @@ export class FtuiChartData extends FtuiElement {
       startDate: '',
       endDate: '',
       update: '',
-      lineTension: '0.0'
+      tension: '0.0'
     };
   }
 
