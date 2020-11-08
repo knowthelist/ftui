@@ -112,7 +112,7 @@ export class FtuiChart extends FtuiElement {
       units.forEach((unit, i) => {
         let element = this.shadowRoot.querySelector('#' + unit);
         element.classList.add('enabled');
-        element.addEventListener('click', () => this.unit = unit);
+        element.addEventListener('click', () => { this.offset = 0; this.unit = unit; });
       });
     }
 
