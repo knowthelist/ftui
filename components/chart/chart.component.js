@@ -27,7 +27,7 @@ export class FtuiChart extends FtuiElement {
     this.forwardElement = this.shadowRoot.querySelector('#forward');
 
     this.configuration = {
-      type: 'line',
+      type: this.type,
       data: {
         datasets: []
       },
@@ -151,6 +151,7 @@ export class FtuiChart extends FtuiElement {
   static get properties() {
     return {
       title: '',
+      type: 'line',
       width: '100%',
       height: 'auto',
       unit: 'day',
@@ -245,6 +246,10 @@ export class FtuiChart extends FtuiElement {
       case 'title':
         this.configuration.options.title.text = this.title;
         this.configuration.options.title.display = (this.title?.length > 0);
+        this.chart.update();
+        break;
+      case 'type':
+        this.configuration.type = this.type;
         this.chart.update();
         break;
       case 'offset':
