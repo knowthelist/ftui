@@ -42,6 +42,7 @@ export class FtuiChartData extends FtuiElement {
       unit: '°C',
       startDate: '',
       endDate: '',
+      extend: false,
       update: '',
       tension: '0.0',
       stepped: false,
@@ -68,14 +69,23 @@ export class FtuiChartData extends FtuiElement {
 
   parseLogItems(response) {
     const data = [];
+    var date, value;
     const lines = response.split('\n');
 
     lines.forEach(line => {
-      const [date, value] = line.split(' ');
-      if (date && ftuiHelper.isNumeric(value)) {
-        data.push({ 'x': date, 'y': parseFloat(value) });
+      if (line.length > 0 && !line.startsWith('#')) {
+        [date, value] = line.split(' ');
+        if (date && ftuiHelper.isNumeric(value)) {
+          data.push({ 'x': date, 'y': parseFloat(value) });
+        }
       }
     });
+
+    const now = ftuiHelper.dateFormat(new Date(), 'YYYY-MM-DD_hh:mm:ss');
+    if (value && this.extend && this.endDate > now) {
+      console.log('Extend needed')
+      data.push({ 'x': now, 'y': parseFloat(value) });
+    }
 
     return data;
   }
