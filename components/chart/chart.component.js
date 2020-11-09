@@ -76,6 +76,7 @@ export class FtuiChart extends FtuiElement {
             }
           },
           y: {
+            display: !this.noscale,
             scaleLabel: {
               labelString: 'value'
             },
@@ -158,7 +159,8 @@ export class FtuiChart extends FtuiElement {
       units: '',
       offset: 0,
       prefetch: 0,
-      extend: false
+      extend: false,
+      noscale: false
     };
   }
 
