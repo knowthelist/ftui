@@ -42,6 +42,7 @@ export class FtuiChartData extends FtuiElement {
       unit: '°C',
       startDate: '',
       endDate: '',
+      prefetch: 0,
       extend: false,
       update: '',
       tension: '0.0',
@@ -58,7 +59,15 @@ export class FtuiChartData extends FtuiElement {
   }
 
   fetchLogItems(log, file, spec) {
-    const cmd = 'get ' + log + ' ' + file + ' - ' + this.startDate + ' ' + this.endDate + ' ' + spec;
+    var startDate = ftuiHelper.dateFromString(this.startDate);
+    startDate.setSeconds(startDate.getSeconds() - this.prefetch);
+    const startDateFormatted = ftuiHelper.dateFormat(startDate, 'YYYY-MM-DD_hh:mm:ss');
+
+    var endDate = ftuiHelper.dateFromString(this.endDate);
+    endDate.setSeconds(endDate.getSeconds() + this.prefetch);
+    const endDateFormatted = ftuiHelper.dateFormat(endDate, 'YYYY-MM-DD_hh:mm:ss');
+
+    const cmd = 'get ' + log + ' ' + file + ' - ' + startDateFormatted + ' ' + endDateFormatted + ' ' + spec;
     fhemService.sendCommand(cmd)
       .then(response => response.text())
       .then((response) => {
