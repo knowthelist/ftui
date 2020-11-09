@@ -47,6 +47,7 @@ export class FtuiChartData extends FtuiElement {
       update: '',
       tension: '0.0',
       stepped: false,
+      offset: 0
     };
   }
 
@@ -85,7 +86,7 @@ export class FtuiChartData extends FtuiElement {
       if (line.length > 0 && !line.startsWith('#')) {
         [date, value] = line.split(' ');
         if (date && ftuiHelper.isNumeric(value)) {
-          data.push({ 'x': date, 'y': parseFloat(value) });
+          data.push({ 'x': date, 'y': parseFloat(value) + parseFloat(this.offset) });
         }
       }
     });
@@ -93,7 +94,7 @@ export class FtuiChartData extends FtuiElement {
     const now = ftuiHelper.dateFormat(new Date(), 'YYYY-MM-DD_hh:mm:ss');
     if (value && this.extend && this.endDate > now) {
       console.log('Extend needed')
-      data.push({ 'x': now, 'y': parseFloat(value) });
+      data.push({ 'x': now, 'y': parseFloat(value) + parseFloat(this.offset) });
     }
 
     return data;
