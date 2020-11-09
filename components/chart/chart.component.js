@@ -156,7 +156,8 @@ export class FtuiChart extends FtuiElement {
       height: 'auto',
       unit: 'day',
       units: '',
-      offset: 0
+      offset: 0,
+      extend: false
     };
   }
 
@@ -269,6 +270,7 @@ export class FtuiChart extends FtuiElement {
     this.dataElements.forEach(dataElement => {
       dataElement.startDate = this.startDate;
       dataElement.endDate = this.endDate;
+      dataElement.extend = (!dataElement.extend) ? this.extend : dataElement.extend;
       dataElement.fetch();
     });
   }
