@@ -93,7 +93,6 @@ export class FtuiChartData extends FtuiElement {
 
     const now = ftuiHelper.dateFormat(new Date(), 'YYYY-MM-DD_hh:mm:ss');
     if (value && this.extend && this.endDate > now) {
-      console.log('Extend needed')
       data.push({ 'x': now, 'y': parseFloat(value) + parseFloat(this.offset) });
     }
 

@@ -10,9 +10,8 @@
 import { FtuiElement } from '../element.component.js';
 import { FtuiChartData } from './chart-data.component.js';
 import { Chart } from '../../modules/chart.js/chart.js';
-import { dateFormat, dateFromString, getStylePropertyValue } from '../../modules/ftui/ftui.helper.js';
+import { dateFormat, getStylePropertyValue } from '../../modules/ftui/ftui.helper.js';
 import '../../modules/chart.js/chartjs-adapter-date-fns.bundle.min.js';
-
 
 export class FtuiChart extends FtuiElement {
   constructor(properties) {
@@ -20,11 +19,9 @@ export class FtuiChart extends FtuiElement {
     super(Object.assign(FtuiChart.properties, properties));
 
     this.dataElements = this.querySelectorAll('ftui-chart-data');
+    this.controlsElement = this.querySelector('ftui-chart-controls');
     this.chartContainer = this.shadowRoot.querySelector('#container');
     this.chartElement = this.shadowRoot.querySelector('#chart');
-    this.dateElement = this.shadowRoot.querySelector('#date');
-    this.backwardElement = this.shadowRoot.querySelector('#backward');
-    this.forwardElement = this.shadowRoot.querySelector('#forward');
 
     this.configuration = {
       type: this.type,
@@ -98,24 +95,19 @@ export class FtuiChart extends FtuiElement {
     if (getStylePropertyValue('--chart-font-family')) {
       Chart.defaults.font.family = getStylePropertyValue('--chart-font-family')
     }
-    if (Chart.defaults.font.style = getStylePropertyValue('--chart-font-style')) {
+    if (getStylePropertyValue('--chart-font-style')) {
       Chart.defaults.font.style = getStylePropertyValue('--chart-font-style')
     }
     Chart.defaults.font.color = getStylePropertyValue('--chart-text-color');
     this.chart = new Chart(this.chartElement, this.configuration);
 
     this.dataElements.forEach(dataElement => dataElement.addEventListener('ftuiDataChanged', () => this.onDataChanged()));
-    this.backwardElement.addEventListener('click', () => this.onButtonClick(this.backwardElement));
-    this.forwardElement.addEventListener('click', () => this.onButtonClick(this.forwardElement));
-
-    if (this.units) {
-      let units = String(this.units).split(/[;,:]/).map(item => item.toLowerCase().trim());
-      units.forEach((unit, i) => {
-        let element = this.shadowRoot.querySelector('#' + unit);
-        element.classList.add('enabled');
-        element.addEventListener('click', () => { this.offset = 0; this.unit = unit; });
-      });
-    }
+    this.controlsElement?.addEventListener('ftuiForward', () => this.offset +=1);
+    this.controlsElement?.addEventListener('ftuiBackward', () => this.offset -= 1);
+    
+    ['hour', 'day', 'week', 'month', 'year'].forEach(unit => {
+      this.controlsElement?.addEventListener('ftuiUnit' + unit, () => this.unit = unit);
+    });
 
     this.chartContainer.style.width = this.width;
     this.chartContainer.style.height = this.height;
@@ -132,20 +124,6 @@ export class FtuiChart extends FtuiElement {
       <div id="container">
         <canvas id="chart"></canvas>
       </div>
-      <div id="footer">
-        <div id="controls">
-          <span id='backward'>◀</span>
-          <span id='date'></span>
-          <span id='forward'>▶</span>
-        </div>
-        <div id="units">
-          <span class="unit" id="year">Year</span>
-          <span class="unit" id="month">Month</span>
-          <span class="unit" id="week">Week</span>
-          <span class="unit" id="day">Day</span>
-          <span class="unit" id="hour">Hour</span>
-        </div>
-      </div>
       <slot></slot>`;
   }
 
@@ -156,7 +134,6 @@ export class FtuiChart extends FtuiElement {
       width: '100%',
       height: 'auto',
       unit: 'day',
-      units: '',
       offset: 0,
       prefetch: 0,
       extend: false,
@@ -222,29 +199,6 @@ export class FtuiChart extends FtuiElement {
     return dateFormat(date, 'YYYY-MM-DD_hh:mm:ss');
   }
 
-  get dateString() {
-    let dateString;
-
-    switch (this.unit) {
-      case 'hour':
-      case 'day':
-        dateString = dateFormat(dateFromString(this.startDate), 'ee DD.MM');
-        break;
-      case 'week':
-        const endDate = dateFromString(this.endDate);
-        endDate.setDate(endDate.getDate()-1);
-        dateString = dateFormat(dateFromString(this.startDate), 'DD.MM') + ' - ' + dateFormat(endDate, 'DD.MM');
-        break;
-      case 'month':
-        dateString = dateFormat(dateFromString(this.startDate), 'MM.YYYY');
-        break;
-      case 'year':
-        dateString = dateFormat(dateFromString(this.startDate), 'YYYY');
-        break;
-    }
-    return dateString;
-  }
-
   onAttributeChanged(name) {
     switch (name) {
       case 'title':
@@ -256,31 +210,33 @@ export class FtuiChart extends FtuiElement {
         this.configuration.type = this.type;
         this.chart.update();
         break;
-      case 'offset':
-        this.refresh();
-        break;
       case 'unit':
-        this.shadowRoot.querySelectorAll('.unit').forEach(element => {
-          element.classList.remove('active');
-        });
-        this.shadowRoot.querySelector('#' + this.unit).classList.add('active');
+        this.offset = 0;
+        break;
+      case 'offset':
         this.refresh();
         break;
     }
   }
 
   refresh() {
+    if (this.controlsElement) {
+      this.controlsElement.unit = this.unit;
+      this.controlsElement.startDate = this.startDate;
+      this.controlsElement.endDate = this.endDate;
+    }
+
     this.dataElements.forEach(dataElement => {
       dataElement.startDate = this.startDate;
       dataElement.endDate = this.endDate;
       dataElement.prefetch = (!dataElement.prefetch) ? this.prefetch : dataElement.prefetch;
       dataElement.extend = (!dataElement.extend) ? this.extend : dataElement.extend;
+
       dataElement.fetch();
     });
   }
 
   onDataChanged() {
-    this.dateElement.innerHTML = this.dateString;
     this.configuration.options.scales.x.min = this.startDate;
     this.configuration.options.scales.x.max = this.endDate;
     this.configuration.data.datasets = [];
@@ -295,19 +251,6 @@ export class FtuiChart extends FtuiElement {
     this.chart.update();
     // disable animation after first update
     this.configuration.options.animation.duration = 0;
-  }
-
-  onButtonClick(sender) {
-    switch (sender) {
-      case this.backwardElement:
-        this.offset--;
-        this.refresh();
-        break;
-      case this.forwardElement:
-        this.offset++;
-        this.refresh();
-        break;
-    }
   }
 
 }
