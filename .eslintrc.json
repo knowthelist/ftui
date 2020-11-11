@@ -10,10 +10,8 @@
     "sourceType": "module",
     "ecmaVersion": 11
   },
-  "eslintConfig": {
-    "globals": {
-      "ftuiApp": "readable"
-    }
+  "globals": {
+    "ftuiApp": "readable"
   },
   "rules": {
     "indent": [

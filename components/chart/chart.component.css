@@ -3,9 +3,10 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
-  width: 100%;
 }
 
 #container {
   position: relative;
+  width: 100%;
+  height: 100%;
 }

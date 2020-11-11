@@ -22,8 +22,6 @@ export class FtuiChartData extends FtuiElement {
       this.hasCalculatedBackgroundColor = true;
       this.backgroundColor = Chart.helpers.color(this.borderColor).alpha(0.2).rgbString();
     }
-
-    this.fetch();
   }
 
   static get properties() {
@@ -31,6 +29,7 @@ export class FtuiChartData extends FtuiElement {
     return {
       label: '',
       fill: false,
+      hidden: false,
       pointBackgroundColor: primaryColor,
       backgroundColor: '',
       borderColor: primaryColor,
@@ -41,8 +40,14 @@ export class FtuiChartData extends FtuiElement {
       file: '-',
       spec: '4:.*',
       unit: '°C',
-      timeUnit: 'day',
-      update: ''
+      startDate: '',
+      endDate: '',
+      prefetch: 0,
+      extend: false,
+      update: '',
+      tension: '0.0',
+      stepped: false,
+      offset: 0
     };
   }
 
@@ -50,35 +55,20 @@ export class FtuiChartData extends FtuiElement {
     return [...this.convertToAttributes(FtuiChartData.properties), ...super.observedAttributes];
   }
 
-  get startDate() {
-    const date = new Date();
-
-    switch (this.timeUnit) {
-      case 'day':
-        date.setHours(0, 0, 0, 0);
-        break;
-    }
-    return ftuiHelper.dateFormat(date, 'YYYY-MM-DD_hh:mm:ss');
-  }
-
-  get endDate() {
-    const date = new Date();
-
-    switch (this.timeUnit) {
-      case 'day':
-        date.setDate(date.getDate() + 1);
-        date.setHours(0, 0, 0, 0);
-        break;
-    }
-    return ftuiHelper.dateFormat(date, 'YYYY-MM-DD_hh:mm:ss');
-  }
-
   fetch() {
     this.fetchLogItems(this.log, this.file, this.spec);
   }
 
   fetchLogItems(log, file, spec) {
-    const cmd = 'get ' + log + ' ' + file + ' - ' + this.startDate + ' ' + this.endDate + ' ' + spec;
+    const startDate = ftuiHelper.dateFromString(this.startDate);
+    startDate.setSeconds(startDate.getSeconds() - this.prefetch);
+    const startDateFormatted = ftuiHelper.dateFormat(startDate, 'YYYY-MM-DD_hh:mm:ss');
+
+    const endDate = ftuiHelper.dateFromString(this.endDate);
+    endDate.setSeconds(endDate.getSeconds() + this.prefetch);
+    const endDateFormatted = ftuiHelper.dateFormat(endDate, 'YYYY-MM-DD_hh:mm:ss');
+
+    const cmd = 'get ' + log + ' ' + file + ' - ' + startDateFormatted + ' ' + endDateFormatted + ' ' + spec;
     fhemService.sendCommand(cmd)
       .then(response => response.text())
       .then((response) => {
@@ -89,14 +79,22 @@ export class FtuiChartData extends FtuiElement {
 
   parseLogItems(response) {
     const data = [];
+    let date, value;
     const lines = response.split('\n');
 
     lines.forEach(line => {
-      const [date, value] = line.split(' ');
-      if (date && ftuiHelper.isNumeric(value)) {
-        data.push({ 'x': date, 'y': parseFloat(value) });
+      if (line.length > 0 && !line.startsWith('#')) {
+        [date, value] = line.split(' ');
+        if (date && ftuiHelper.isNumeric(value)) {
+          data.push({ 'x': date, 'y': parseFloat(value) + parseFloat(this.offset) });
+        }
       }
     });
+
+    const now = ftuiHelper.dateFormat(new Date(), 'YYYY-MM-DD_hh:mm:ss');
+    if (value && this.extend && this.endDate > now) {
+      data.push({ 'x': now, 'y': parseFloat(value) + parseFloat(this.offset) });
+    }
 
     return data;
   }
@@ -116,7 +114,6 @@ export class FtuiChartData extends FtuiElement {
     if (ftuiHelper.isDefined(this.data)) {
       ftuiHelper.triggerEvent('ftuiDataChanged', this);
     }
-
   }
 
 }

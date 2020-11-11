@@ -44,8 +44,9 @@
       <header>FIX SIZE</header>
       <div class="cell">
 
-        <ftui-chart title="humidity" width="300px">
+        <ftui-chart title="humidity" width="300px" height="80%">
           <ftui-chart-data fill log="FileLog_THSensorWZ" spec="4:THSensorWZ.humidity" [update]="THSensorWZ:state:time"></ftui-chart-data>
+          <ftui-chart-controls units="day, week"></ftui-chart-controls>
         </ftui-chart>
       
       </div>
