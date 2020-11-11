@@ -1,5 +1,7 @@
 
-/* "primary", "secondary", "tertiary", "success", "warning", "danger", "light", "medium", and "dark" */
+/* "primary", "secondary", "success", "warning", "danger", "light", "medium", "dark" */
+/* "primary", "secondary", "ok",                 "error",  "white", "medium", "dark" */
+/*                         "green",   "yellow",  "red",    "light", "medium", "dark" */
 
 [color="primary"] {
   --color-base: var(--primary-color);

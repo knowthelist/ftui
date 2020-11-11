@@ -9,7 +9,7 @@
 
 import { FtuiElement } from '../element.component.js';
 import { FtuiChartData } from './chart-data.component.js';
-import { Chart } from '../../modules/chart.js/chart.js';
+import { Chart } from '../../modules/chart.js/chart.min.js';
 import { dateFormat, getStylePropertyValue } from '../../modules/ftui/ftui.helper.js';
 import '../../modules/chart.js/chartjs-adapter-date-fns.bundle.min.js';
 

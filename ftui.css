@@ -233,7 +233,7 @@ header.fixed#header-nav+main#panel {
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
-  flex: 1;
+  height: 100%;
   width: 100%;
 }
 

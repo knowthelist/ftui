@@ -99,7 +99,7 @@ export class FtuiBinding {
   initInputBinding(attribute) {
     const semicolonNotInQuotes = /;(?=(?:[^']*'[^']*')*[^']*$)/;
 
-    attribute.value.split(semicolonNotInQuotes).forEach((attrValue, idx) => {
+    attribute.value.split(semicolonNotInQuotes).forEach((attrValue) => {
       const { readingID, property, filter } = this.parseInputBinding(attrValue);
 
       if (!this.config.input.readings[readingID]) {
@@ -181,20 +181,20 @@ export class FtuiBinding {
         propertyIndex++;
         switch (propertyIndex) {
           case 1:
-            {
-              device = currentValue.trim();
-              break;
-            }
+          {
+            device = currentValue.trim();
+            break;
+          }
           case 2:
-            {
-              reading = currentValue.trim();
-              break;
-            }
+          {
+            reading = currentValue.trim();
+            break;
+          }
           case 3:
-            {
-              property = currentValue.trim();
-              break;
-            }
+          {
+            property = currentValue.trim();
+            break;
+          }
         }
         currentValue = '';
         continue;
@@ -229,6 +229,7 @@ export class FtuiBinding {
 
   filter(text, filter = '') {
     if (filter !== '') {
+      /* eslint-disable no-unused-vars */
       const part = value => input => ftuiHelper.getPart(input, value);
       const toDate = value => input => ftuiHelper.dateFromString(input, value);
       const toBool = () => input => ftuiHelper.toBool(input);

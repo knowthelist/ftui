@@ -11,7 +11,9 @@ class FhemService {
       debuglevel: 0,
       refreshInterval: 0,
       refresh: {},
-      update: {},
+      update: {
+        filter: ''
+      },
     };
     this.states = {
       lastRefresh: 0,

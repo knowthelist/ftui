@@ -18,7 +18,7 @@ export class FtuiBadge extends FtuiLabel {
   template() {
     return `
       <style> @import "components/badge/badge.component.css"; </style>
-      <slot></slot>
+      <slot></slot><slot name="content"></slot>
       `;
   }
 
