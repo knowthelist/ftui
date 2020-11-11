@@ -6,7 +6,7 @@ with a clear intention: Keep it short and simple!
 
 Version 3 
 
-FTUI >3.0 uses [Web Components technologies](https://developer.mozilla.org/en-US/docs/Web/Web_Components)
+FTUI 3 uses [Web Components technologies](https://developer.mozilla.org/en-US/docs/Web/Web_Components) in pure ES2020 javascript.
 
 Caution! 
  * This version is not compatible with older fhem-tablet-ui versions.
@@ -15,14 +15,15 @@ Caution!
 
 ![](http://knowthelist.github.io/ftui/screenshot.png)
 
-Requires
--------
-* FTUI >3.0 uses pure ES2020 javascript only
-
 Install
 -------
- * copy the whole tree into the corresponding folder of your FHEM server /\<fhem-path\>/www/tablet
- * call http://\<fhem-url\>:8083/fhem/tablet/index.html
+ * create a new folder in the www folder of your FHEM installation 
+ ```bash 
+mkdir /opt/fhem/www/ftui
+ ```
+ * copy all folder and files from here into the new folder
+ * change the example page 'index.html' according your needs
+ * to open your new page call http://\<fhem-url\>:8083/fhem/ftui/index.html
  
 Usage
 ------
@@ -90,6 +91,33 @@ short syntax ("banana in a box")
 ```html
 <ftui-button [(value)]="dummy1"></ftui-button>
 ```
+
+
+Pipes
+------
+
+Binding values can be pushed through piped functions to change the value. Following pipe functions are currently available:
+
+- part(number)
+- toDate(string)
+- toBool(string|number)
+- toInt(number)
+- format(string)
+- round(number)
+- add(number)
+- multiply(number)
+- replace(find, replace)
+- map('in1:out1,in2:out2,...')
+
+Example for input (FHEM reading -> function() -> HTML attribute): 
+```html
+<ftui-label [text]="AgroWeather:state | part(4) | toInt() | multiply(2) | round(1) "></ftui-label>
+```
+
+Example for output (HTML attribute -> function() -> FHEM reading): 
+```html
+ <ftui-colorpicker (hex)="replace('#','') | HUEDevice6:rgb"></ftui-colorpicker>
+ ````
 
 
 Components
