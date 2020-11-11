@@ -79,10 +79,10 @@ export class FtuiChartControls extends FtuiElement {
         dateString = ftuiHelper.dateFormat(ftuiHelper.dateFromString(this.startDate), 'DD.MM') + ' - ' + ftuiHelper.dateFormat(endDate, 'DD.MM');
         break;
       case 'month':
-        dateString = ftuiHelper.dateFormat(dateFromString(this.startDate), 'MM.YYYY');
+        dateString = ftuiHelper.dateFormat(ftuiHelper.dateFromString(this.startDate), 'MM.YYYY');
         break;
       case 'year':
-        dateString = ftuiHelper.dateFormat(dateFromString(this.startDate), 'YYYY');
+        dateString = ftuiHelper.dateFormat(ftuiHelper.dateFromString(this.startDate), 'YYYY');
         break;
     }
     return dateString;
