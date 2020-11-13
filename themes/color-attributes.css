@@ -20,7 +20,8 @@
   --color-contrast: var(--light-contrast-color);
 }
 
-[color="medium"] {
+[color="medium"],
+[color="gray"] {
   --color-base: var(--medium-color);
   --color-contrast: var(--medium-contrast-color);
 }
@@ -57,5 +58,15 @@
 
 [color="blue"] {
   --color-base: var(--lightblue);
+  --color-contrast: var(--dark-color);
+}
+
+[color="brown"] {
+  --color-base: var(--brown);
+  --color-contrast: var(--dark-color);
+}
+
+[color="black"] {
+  --color-base: var(--black);
   --color-contrast: var(--dark-color);
 }

@@ -109,16 +109,12 @@ export class FtuiChart extends FtuiElement {
     ['hour', 'day', 'week', 'month', 'year'].forEach(unit => {
       this.controlsElement?.addEventListener('ftuiUnit' + unit, () => this.unit = unit);
     });
-
-    this.style.height = this.height;
-    this.style.width = this.width;
   }
 
   connectedCallback() {
     window.requestAnimationFrame(() => {
       this.refresh();
     })
-
   }
 
   template() {
@@ -134,8 +130,8 @@ export class FtuiChart extends FtuiElement {
     return {
       title: '',
       type: 'line',
-      width: '90%',
-      height: '90%',
+      width: '',
+      height: '',
       unit: 'day',
       offset: 0,
       prefetch: 0,

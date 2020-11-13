@@ -81,7 +81,7 @@ export class FtuiBinding {
 
       //const attributeValue = this.element[attributeName];
       const filteredValue = this.filter(attributeValue, options.filter);
-      const value = String(options.value).replaceAll('$value', filteredValue);
+      const value = String(options.value).replace(/\$value/g, filteredValue);
       const [parameterId, deviceName, readingName] = ftuiHelper.parseReadingId(readingId);
       const cmdLine = [options.cmd, deviceName, readingName, value].join(' ');
 
@@ -246,7 +246,7 @@ export class FtuiBinding {
       };
       try {
         const pipeNotInQuotes = /\|(?=([^']*'[^']*')*[^']*$)/g;
-        filter = filter.replace(pipeNotInQuotes, ',').replace(/`/g, '"').replace(/´/, '"');
+        filter = filter.replace(pipeNotInQuotes, ',').replace(/`/g, '"').replace(/´/g, '"');
         const fn = eval('pipe(' + filter + ')');
         return fn(text);
       } catch (e) {
