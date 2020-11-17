@@ -28,16 +28,17 @@
 <body>
 
   <ftui-grid base-width="70" base-height="70">
-    <ftui-grid-tile row="1" col="1" height="1" width="3">
+    <ftui-grid-tile row="1" col="1" height="3" width="3">
       <header>TEST IT</header>
-      <div class="row">
+      <div class="column">
 
         <ftui-button [(value)]="dummy1">on,off</ftui-button>
         <ftui-button [(value)]="ftuitest" states="0,1,2,10,50,100">0,1,2,10,50,100</ftui-button>
+        <ftui-button [(value)]="dummy2" states="1,2,3,4">1,2,3,4</ftui-button>
 
       </div>
     </ftui-grid-tile>
-    <ftui-grid-tile row="2" col="1" height="9" width="3">
+    <ftui-grid-tile row="4" col="1" height="8" width="3">
       <header>SINGLE</header>
 
       <div class="cell">
@@ -114,9 +115,9 @@
     <ftui-grid-tile row="1" col="10" height="2" width="4">
       <header>COLOR</header>
       <div class="row">
-        <ftui-icon name="trash" color="brown"></ftui-icon>
-        <ftui-icon name="trash" color="yellow"></ftui-icon>
-        <ftui-icon name="trash" color="blue"></ftui-icon>
+        <ftui-icon name="trash" color="brown" class="spin"></ftui-icon>
+        <ftui-icon name="trash" color="yellow" class="hop"></ftui-icon>
+        <ftui-icon name="trash" color="blue" [class-name]="dummy2 | map('1:hop,2:')"></ftui-icon>
         <ftui-icon name="trash" color="black"></ftui-icon>
         <ftui-icon name="trash" color="gray"></ftui-icon>
       </div>
