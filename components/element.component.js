@@ -29,7 +29,7 @@ export class FtuiElement extends HTMLElement {
     this.initProperties(this.properties);
 
     if (typeof this.template === 'function') {
-      this.createShadowRoot();
+      this.createShadowRoot(this.template());
     }
 
     if (window.ftuiApp) {
@@ -38,9 +38,9 @@ export class FtuiElement extends HTMLElement {
 
   }
 
-  createShadowRoot() {
+  createShadowRoot(content) {
     const elemTemplate = document.createElement('template');
-    elemTemplate.innerHTML = this.template();
+    elemTemplate.innerHTML = content;
     this.attachShadow({ mode: 'open' });
     this.shadowRoot.appendChild(elemTemplate.content.cloneNode(true));
   }
@@ -76,7 +76,6 @@ export class FtuiElement extends HTMLElement {
         break;
     }
   }
-
 
   emitChangeEvent(attribute, value) {
     const event = new CustomEvent(attribute + 'Change', { detail: value });

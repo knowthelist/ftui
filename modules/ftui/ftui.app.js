@@ -63,7 +63,7 @@ class FtuiApp {
 
     // init Page after CSFS Token has been retrieved
     Promise.all([fhemService.fetchCSrf()]).then(() => {
-      this.initPage('html');
+      this.initPage();
     }).catch(error => {
       ftui.error('initDeferreds -' + error, 'error');
     });
@@ -86,17 +86,17 @@ class FtuiApp {
   }
 
 
-  initPage(area = 'html') {
-    window.performance.mark('start initPage-' + area);
+  initPage() {
+    window.performance.mark('start initPage');
 
     this.states.startTime = new Date();
-    ftui.log(2, 'initPage - area=' + area);
+    ftui.log(2, 'initPage');
 
     ftui.log(1, 'init templates - Done');
-    this.initComponents(area).then(() => {
-      window.performance.mark('end initPage-' + area);
-      window.performance.measure('initPage-' + area, 'start initPage-' + area, 'end initPage-' + area);
-      const dur = 'initPage (' + area + '): in ' + (new Date() - this.states.startTime) + 'ms';
+    this.initComponents().then(() => {
+      window.performance.mark('end initPage');
+      window.performance.measure('initPage', 'start initPage', 'end initPage');
+      const dur = 'initPage: in ' + (new Date() - this.states.startTime) + 'ms';
       if (this.config.debuglevel > 1) this.toast(dur);
       ftui.log(1, dur);
     }).catch(error => {

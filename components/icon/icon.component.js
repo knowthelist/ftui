@@ -53,6 +53,8 @@ export class FtuiIcon extends FtuiElement {
     if (name.endsWith('svg')) {
       fetch(name)
         .then(response => {
+          // workaround until this issue has been fixed
+          // https://forum.fhem.de/index.php/topic,115823.0.html
           if (response.headers.get('Content-Type').startsWith('text/html') ) {
             throw new Error(`${this.id} - icon '${name}' not found`);
           }

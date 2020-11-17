@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!--
+    /* FHEM tablet ui - FTUI */
+    /**
+    * UI builder framework for FHEM
+    *
+    * Version: 3.0.0
+    *
+    * Copyright (c) 2020 Mario Stephan <mstephan@shared-files.de>
+    * Under MIT License (http://www.opensource.org/licenses/mit-license.php)
+    * https://github.com/knowthelist/ftui
+    */
+    -->
+  <base href="../" />
+  <script src="ftui.js"></script>
+  <link href="ftui.css" rel="stylesheet">
+  <link href="themes/bright-theme.css" rel="stylesheet">
+  <link href="favicon.ico" rel="icon" type="image/x-icon" />
+
+
+  <title>FTUI Example Template</title>
+</head>
+
+<body>
+
+  <ftui-tab-view id="View1">
+      <ftui-content file="examples/contents/content-view1.html" room="Room1"></ftui-content>
+  </ftui-tab-view>
+
+  <ftui-tab-view id="View2">
+    <ftui-content file="examples/contents/content-view1.html" room="Room2"></ftui-content>
+  </ftui-tab-view>
+
+  <ftui-tab-view id="View3">
+    <ftui-content file="examples/contents/content-view2.html" room="Room3"></ftui-content>
+  </ftui-tab-view>
+
+  <footer class="row fixed border-top">
+    <ftui-tab fill="clear" direction="vertical" view="View1" active>
+      <ftui-icon name="home1"></ftui-icon>
+      <label class="small">Tab1</label>
+    </ftui-tab>
+    <ftui-tab fill="clear" direction="vertical" view="View2">
+      <ftui-icon name="cog"></ftui-icon>
+      <label class="small">Tab2</label>
+    </ftui-tab>
+    <ftui-tab fill="clear" direction="vertical" view="View3">
+      <ftui-icon name="clock-o"></ftui-icon>
+      <label class="small">Tab3</label>
+    </ftui-tab>
+  </footer>
+
+</body>
+
+</html>

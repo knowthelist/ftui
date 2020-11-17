@@ -20,8 +20,10 @@ export class FtuiLabel extends FtuiElement {
   template() {
     return `
       <style> @import "components/label/label.component.css"; </style>
-      <slot></slot><slot name="start"></slot><slot name="content"></slot><slot name="end"></slot>
-    `;
+      <slot name="start"></slot>
+      <slot></slot>
+      <slot name="content"></slot>
+      <slot name="end"></slot>`;
   }
 
   static get properties() {

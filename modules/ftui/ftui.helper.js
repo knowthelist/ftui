@@ -76,8 +76,8 @@ export function appendStyleLink(file) {
   document.head.appendChild(newLink);
 }
 
-export function selectElements(selector, context) {
-  return (document).querySelector(context).querySelectorAll(selector);
+export function selectElements(selector, context = document) {
+  return context.querySelectorAll(selector);
 }
 
 export function selectAll(selector) {

@@ -24,7 +24,7 @@ class FtuiKnob extends FtuiElement {
     this.fill = this.shadowRoot.querySelector('.fill');
     this.scale = this.shadowRoot.querySelector('.scale');
     this.needle = this.shadowRoot.querySelector('.needle');
-    this.handle = this.shadowRoot.querySelector(".handle");
+    this.handle = this.shadowRoot.querySelector('.handle');
 
     this.rangeAngle = Math.abs(parseInt(this.endAngle) - parseInt(this.startAngle));
     this.radian = Math.PI / 180;
@@ -263,8 +263,8 @@ class FtuiKnob extends FtuiElement {
     const hx = this.centerX + (this.radius * 0.9) * Math.cos(angle * this.radian);
     const hy = this.centerY + (this.radius * 0.9) * Math.sin(angle * this.radian);
 
-    this.handle.setAttributeNS(null, "cx", hx);
-    this.handle.setAttributeNS(null, "cy", hy);
+    this.handle.setAttributeNS(null, 'cx', hx);
+    this.handle.setAttributeNS(null, 'cy', hy);
     this.handle.style.display = '';
   }
 

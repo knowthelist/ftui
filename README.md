@@ -193,11 +193,74 @@ Speak uses the browser's Web Speech API to synthesize text to speech.
 
 The Chart component uses [Chart.js](https://www.chartjs.org/docs/latest/) to render charts.
 
+Main component: **ftui-chart**  
+
+
 | Attribute | Description | Type | Default |
 |-----------|-------------|-------|---------|
+| <b>title</b> ||String| <code>""</code>|
+| <b>type</b>||String| <code>"line"</code>|
+| <b>width</b>||String| <code>""</code>|
+| <b>height</b>||String| <code>""</code>|
+| <b>unit</b>||String| <code>"day"</code>|
+| <b>offset</b>||Number| <code>0</code>|
+| <b>prefetch</b>||Number| <code>0</code>|
+| <b>extend</b>||Boolean| <code>false</code>|
+| <b>noscale</b>||Boolean| <code>false</code>|
 
+<br>
+Child component:  <b>ftui-chart-control</b>
+<br>
 
-#### Icon
+| Attribute | Description | Type | Default |
+|-----------|-------------|-------|---------|
+| <b>unit</b> ||String| <code>""</code>|
+| <b>units</b>||Strings| <code>""</code>|
+| <b>startDate</b>||Date| <code>""</code>|
+| <b>endDate</b>||Date| <code>""</code>|
+<br>
+  
+  Child component: **ftui-chart-control**
+<br>
+
+| Attribute | Description | Type | Default |
+|-----------|-------------|-------|---------|
+| <b>label</b> ||String| <code>""</code>|
+| <b>fill</b>||Boolean| <code>false</code>|
+| <b>hidden</b>||Boolean| <code>false</code>|
+| <b>pointBackgroundColor</b>||Color| <code>primaryColor</code>|
+| <b>backgroundColor</b>||Color| <code>""</code>|
+| <b>borderColor</b>||Color| <code>primaryColor</code>|
+| <b>borderWidth</b>||Number| <code>1.2,</code>|
+| <b>pointRadius</b>||Number| <code>2</code>|
+| <b>title</b> ||String| <code>"-"</code>|
+| <b>log</b> ||String| <code>"-"</code>|
+| <b>file</b> ||String| <code>"-"</code>|
+| <b>spec</b> ||String| <code>"4:.*"</code>|
+| <b>unit</b> ||String| <code>"°C"</code>|
+| <b>startDate</b> ||Date| <code>""</code>|
+| <b>endDate</b> ||Date| <code>""</code>|
+| <b>prefetch</b> ||Number| <code>0</code>|
+| <b>extend</b>||Boolean| <code>false</code>|
+| <b>update</b>||String| <code>""</code>|
+| <b>tension</b> ||Number| <code>0.0</code>|
+| <b>stepped</b>||Boolean| <code>false</code>|
+| <b>offset</b> ||Number| <code>0</code>|
+
+Example for DbLog
+
+```html
+<ftui-chart>
+  <ftui-chart-data fill 
+    log="DBLogDEVICE" 
+    file="history" 
+    spec="DEVICE:READING" 
+    [update]="DEVICE:state:time">
+  </ftui-chart-data>
+</ftui-chart>
+```
+
+### Icon
 
 [List of all icons](https://knowthelist.github.io/ftui/icons/demo.html)
 
