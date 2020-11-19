@@ -32,7 +32,7 @@ export class FtuiContent extends FtuiElement {
   async loadFileContent() {
     const result = await fetch(this.file);
     const content = await result.text();
-    const solvedContent = String(content).replace(/\{\{([^}]+)\}\}/g, (variable) => {
+    const solvedContent = String(content).replace(/\{\{([^}]+)\}\}/g, variable => {
       return this.getAttribute(variable.slice(2, -2)) || '';
     });
 

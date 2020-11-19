@@ -55,43 +55,36 @@
 
     <ftui-grid-tile row="1" col="3" height="2" width="1">
       <header>SRC BINDING</header>
-      <div class="column">
+      <ftui-column>
 
         <ftui-image [src]="AgroWeather:fc0_weather00Icon"></ftui-image>
         <ftui-image [src]="AgroWeather:fc1_weather00Icon"></ftui-image>
         <ftui-image [src]="AgroWeather:fc2_weather00Icon"></ftui-image>
 
-      </div>
+      </ftui-column>
     </ftui-grid-tile>
 
     <ftui-grid-tile row="1" col="4" height="2" width="2">
       <header>COVER IMAGE</header>
-      <div class="cell">
 
         <ftui-image [src]="Spotify01:track_album_cover_medium"
                     width="250"></ftui-image>
-
-      </div>
     </ftui-grid-tile>
 
     <ftui-grid-tile row="1" col="6" height="2" width="2">
       <header>REFRESH INTERVAL</header>
-      <div class="cell">
       
         <ftui-image src="https://www.dwd.de/DWD/wetter/aktuell/deutschland/bilder/wx_deutschland.jpg" 
                     interval="300" nocache
                     width="250" height="200"></ftui-image>
 
-      </div>
     </ftui-grid-tile>
 
     <ftui-grid-tile row="1" col="8" height="2" width="2">
       <header>BASE URL</header>
-      <div class="cell">
       
         <ftui-image base="http://fhem:8083/fhem/images/" src="fhemSVG/3d_printer.svg" interval="5" width="250" height="200"></ftui-image>
 
-      </div>
     </ftui-grid-tile>
 
   </ftui-grid>

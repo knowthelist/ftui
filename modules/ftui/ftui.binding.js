@@ -83,6 +83,7 @@ export class FtuiBinding {
       const filteredValue = this.filter(attributeValue, options.filter);
       const value = String(options.value).replace(/\$value/g, filteredValue);
       const [parameterId, deviceName, readingName] = ftuiHelper.parseReadingId(readingId);
+      console.log(options.cmd + '#' + deviceName+ '#' + readingName+ '#' + value)
       const cmdLine = [options.cmd, deviceName, readingName, value].join(' ');
 
       // update storage

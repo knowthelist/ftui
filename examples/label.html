@@ -27,65 +27,71 @@
 
   <ftui-grid base-width="120" base-height="120">
 
-    <ftui-grid-tile row="1" col="1" height="1" width="3">
-      <header>Original</header>
+    <ftui-grid-tile row="1" col="1" height="1" width="1">
+      <header>TEST IT</header>
       <div class="cell">
-        <ftui-label [text]="AgroWeather:state"></ftui-label>
+
+        <ftui-button [(value)]="lamp1" states="on,off">Press here</ftui-button>
+
       </div>
     </ftui-grid-tile>
 
-    <ftui-grid-tile row="1" col="4" height="1" width="2">
+    <ftui-grid-tile row="1" col="3" height="1" width="3">
+      <header>Original</header>
+      <ftui-label [text]="AgroWeather:state"></ftui-label>
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="1" col="6" height="1" width="2">
       <header>Color</header>
-      <div class="cell">
-        <ftui-label [color]="dummy2">COLOR</ftui-label>
-        <ftui-label [color]="dummy1 | map('on: warning, off: success')">ROLOC</ftui-label>
-      </div>
+      <ftui-label [color]="dummy2">COLOR</ftui-label>
+      <ftui-label [color]="dummy1 | map('on: warning, off: success')">ROLOC</ftui-label>
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="1" col="8" height="1" width="2">
+      <header>Align</header>
+      <ftui-row>
+        <ftui-column>Lamp1</ftui-column>
+        <ftui-column [color]="lamp1 | map('on:danger, off:success')">
+          <ftui-label [text]="lamp1"></ftui-label>
+        </ftui-column>
+      </ftui-row>
+      
+
+      
     </ftui-grid-tile>
 
     <ftui-grid-tile row="2" col="2" height="1" width="1">
       <header>text part4</header>
-      <div class="cell">
-        <ftui-label [text]="AgroWeather:state | part(4)"></ftui-label>
-      </div>
+      <ftui-label [text]="AgroWeather:state | part(4)"></ftui-label>
     </ftui-grid-tile>
 
     <ftui-grid-tile row="2" col="3" height="1" width="2">
       <header>time</header>
-      <div class="cell">
-        <ftui-label [text]="AgroWeather:state:time"></ftui-label>
-      </div>
+      <ftui-label [text]="AgroWeather:state:time"></ftui-label>
     </ftui-grid-tile>
 
     <ftui-grid-tile row="2" col="5" height="1" width="2">
       <header>time min:sec</header>
-      <div class="cell">
-        <ftui-label [text]="AgroWeather:state:time | toDate() | format('mm:ss')"></ftui-label>
-      </div>
+      <ftui-label [text]="AgroWeather:state:time | toDate() | format('mm:ss')"></ftui-label>
     </ftui-grid-tile>
 
     <ftui-grid-tile row="3" col="3" height="1" width="1">
       <header>text-filter x2</header>
-      <div class="cell">
-        <ftui-label [text]="AgroWeather:state | part(4) | toInt() | multiply(2) | round(1) "></ftui-label>
-      </div>
+      <ftui-label [text]="AgroWeather:state | part(4) | toInt() | multiply(2) | round(1) "></ftui-label>
     </ftui-grid-tile>
 
     <ftui-grid-tile row="4" col="4" height="1" width="1">
       <header>text-filter regexec</header>
-      <div class="cell">
-        <ftui-label [text]="AgroWeather:state | part('.*T:(.*)H:.*')"></ftui-label>
-      </div>
+      <ftui-label [text]="AgroWeather:state | part('.*T:(.*)H:.*')"></ftui-label>
     </ftui-grid-tile>
 
     <ftui-grid-tile row="2" col="1" height="2" width="1">
       <header>MAP</header>
-      <div class="cell">
-        <ftui-icon [name]="dummy1 | map('on: window-open,off: window-closed')"></ftui-icon>
-        <ftui-label [text]="dummy1 | map('on: offen, off: geschlossen')"></ftui-label>
-        <ftui-icon [name]="dummy1 | map('on: window-open, off: window-closed')"
-          [color]="dummy1 | map('on: danger, off: medium')">
-        </ftui-icon>
-      </div>
+      <ftui-icon [name]="dummy1 | map('on: window-open,off: window-closed')"></ftui-icon>
+      <ftui-label [text]="dummy1 | map('on: offen, off: geschlossen')"></ftui-label>
+      <ftui-icon [name]="dummy1 | map('on: window-open, off: window-closed')"
+                 [color]="dummy1 | map('on: danger, off: medium')">
+      </ftui-icon>
     </ftui-grid-tile>
 
   </ftui-grid>

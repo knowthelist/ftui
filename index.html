@@ -25,41 +25,51 @@
 
 <body>
 
-<!--   <ftui-grid cols="30" rows="20" resize> -->
+  <!--   <ftui-grid cols="30" rows="20" resize> -->
   <ftui-grid base-width="70" base-height="70" margin="5">
 
     <ftui-grid-tile row="1" col="1" height="10" width="1" shape="round">
-      <div class="column">
-        <ftui-tab view="View1" active><ftui-icon name="home1"></ftui-icon></ftui-tab>
-        <ftui-tab view="View2"><ftui-icon name="music"></ftui-icon></ftui-tab>
-        <ftui-tab view="View3"><ftui-icon name="feed"></ftui-icon></ftui-tab>
-        <ftui-tab view="View4"><ftui-icon name="lightbulb"></ftui-icon></ftui-tab>
-        <ftui-tab view="View5"><ftui-icon name="bath"></ftui-icon></ftui-tab>
-        <ftui-tab view="View6"><ftui-icon name="bath"></ftui-icon></ftui-tab>
-      </div>
+      <ftui-column>
+        <ftui-tab view="View1" active>
+          <ftui-icon name="home1"></ftui-icon>
+        </ftui-tab>
+        <ftui-tab view="View2">
+          <ftui-icon name="music"></ftui-icon>
+        </ftui-tab>
+        <ftui-tab view="View3">
+          <ftui-icon name="feed"></ftui-icon>
+        </ftui-tab>
+        <ftui-tab view="View4">
+          <ftui-icon name="lightbulb"></ftui-icon>
+        </ftui-tab>
+        <ftui-tab view="View5">
+          <ftui-icon name="bath"></ftui-icon>
+        </ftui-tab>
+        <ftui-tab view="View6">
+          <ftui-icon name="bath"></ftui-icon>
+        </ftui-tab>
+      </ftui-column>
     </ftui-grid-tile>
 
     <ftui-tab-view id="View1">
 
       <ftui-grid-tile row="1" col="2" height="2" width="2" shape="round" color="primary">
-        <div class="cell">
-          <ftui-clock format="ee" class="bigger"></ftui-clock>
-          <ftui-clock format="DD" class="tall"></ftui-clock>
-        </div>
+        <ftui-clock format="ee" class="bigger"></ftui-clock>
+        <ftui-clock format="DD" class="tall"></ftui-clock>
       </ftui-grid-tile>
 
-      <ftui-grid-tile row="1" col="4" height="2" width="2" shape="round" 
-        [color]="WCLuft | map('0:ok, 1000:warning, 2000:danger')">
-        <div class="cell w-80">
+      <ftui-grid-tile row="1" col="4" height="2" width="2" shape="round"
+                      [color]="WCLuft | map('0:ok, 1000:warning, 2000:danger')">
+        <ftui-column>
           <label class="big align-left">CO²</label>
           <ftui-label class="large" [text]="WCLuft | part(1) | toInt()">
-            <span slot="end" class="mini">ppm</span>
+            <div slot="end" class="mini">ppm</div>
           </ftui-label>
-        </div>
+        </ftui-column>
       </ftui-grid-tile>
 
       <ftui-grid-tile row="3" col="2" height="2" width="2" shape="round">
-        <ftui-knob [value]="THSensorWZ:temperature" width="120" offset-y="10" 
+        <ftui-knob [value]="THSensorWZ:temperature" width="120" offset-y="10"
                    type="handle" min="19" max="25" unit="°C" readonly has-value-text></ftui-knob>
       </ftui-grid-tile>
 
@@ -71,8 +81,9 @@
               <span slot="end" class="mini">%</span>
             </ftui-label>
           </div>
-          <ftui-chart  class="row" width="150px" height="75px">
-            <ftui-chart-data fill log="FileLog_THSensorWZ" spec="4:THSensorWZ.humidity" [update]="THSensorWZ:state:time"></ftui-chart-data>
+          <ftui-chart class="row" width="150px" height="75px">
+            <ftui-chart-data fill log="FileLog_THSensorWZ" spec="4:THSensorWZ.humidity"
+                             [update]="THSensorWZ:state:time"></ftui-chart-data>
           </ftui-chart>
         </div>
       </ftui-grid-tile>
@@ -118,7 +129,8 @@
             <ftui-label [text]="AgroWeather:fc0_weatherDay"></ftui-label>
             <div class="row w-80">
               <ftui-label [text]="AgroWeather:fc0_tempMin"><span slot="end">°C</span></ftui-label>
-              <ftui-label [text]="AgroWeather:fc0_tempMax" class="bigger thin"><span class="mini" slot="end">°C</span></ftui-label>
+              <ftui-label [text]="AgroWeather:fc0_tempMax" class="bigger thin"><span class="mini" slot="end">°C</span>
+              </ftui-label>
             </div>
             <div class="row w-80">
               <ftui-label [text]="AgroWeather:fc0_chOfRainDay" color="blue"><span slot="end">%</span></ftui-label>
@@ -197,29 +209,28 @@
     <ftui-tab-view id="View2">
       <ftui-grid-tile row="1" col="2" height="5" width="19">
         <div class="cell huge">Tab2</div>
-        </ftui-grid-tile>
+      </ftui-grid-tile>
     </ftui-tab-view>
 
     <ftui-tab-view id="View3">
       <ftui-grid-tile row="1" col="2" height="5" width="9">
         <div class="cell huge">Tab3</div>
-        </ftui-grid-tile>
+      </ftui-grid-tile>
     </ftui-tab-view>
 
     <ftui-tab-view id="View4">
       <ftui-grid-tile row="1" col="2" height="5" width="9">
         <div class="cell huge">Tab4</div>
-        </ftui-grid-tile>
+      </ftui-grid-tile>
     </ftui-tab-view>
 
     <ftui-tab-view id="View5">
       <ftui-grid-tile row="1" col="2" height="5" width="9">
         <div class="cell huge">Tab5</div>
-        </ftui-grid-tile>
+      </ftui-grid-tile>
     </ftui-tab-view>
   </ftui-grid>
 
 </body>
 
 </html>
-

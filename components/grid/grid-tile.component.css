@@ -5,15 +5,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
 }
 
 :host([shape="round"]) {
   border-radius: 1.5em;
-}
-
-:host ::slotted(:not(:only-child)) {
-  margin-bottom: auto;
 }
 
 :host ::slotted(header) {

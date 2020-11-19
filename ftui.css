@@ -54,7 +54,7 @@ footer {
   bottom: 0;
   width: 100%;
   padding: 0.5em 0 0.5em 0;
-  background: var(--footer-color);
+  background: var(--view-footer-color);
 }
 
 header.fixed#header-nav+main#panel {
@@ -590,13 +590,6 @@ ul, li {
   animation: blink 1s step-start 0s infinite;
   -webkit-animation: blink 1s step-start 0s infinite;
 }
-
-.fa-blink {
-  animation: blink 1s step-start 0s infinite;
-  -webkit-animation: blink 1s step-start 0s infinite;
-}
-
-
 
 .blurry {
   color: transparent !important;

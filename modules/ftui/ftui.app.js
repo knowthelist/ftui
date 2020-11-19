@@ -9,7 +9,7 @@ class FtuiApp {
     this.config = {
       enableDebug: false,
       fhemDir: '',
-      debuglevel: 0,
+      debugLevel: 0,
       lang: 'de',
       toastPosition: 'bottomLeft',
       styleList: [
@@ -33,14 +33,14 @@ class FtuiApp {
 
   }
 
-  init() {
+  async init() {
     this.config.meta = document.getElementsByTagName('META');
     this.config.refreshFilter = this.getMetaString('refresh_filter');
     this.config.updateFilter = this.getMetaString('update_filter');
 
-    this.config.debuglevel = this.getMetaNumber('debug');
+    this.config.debugLevel = this.getMetaNumber('debug', 0);
     this.config.updateCheckInterval = this.getMetaNumber('update_check_interval', 5);
-    this.config.enableDebug = (this.config.debuglevel > 0);
+    this.config.enableDebug = (this.config.debugLevel > 0);
     this.config.enableToast = this.getMetaNumber('toast', 5); // 1,2,3...= n Toast-Messages, 0: No Toast-Messages
     this.config.toastPosition = this.getMetaString('toast_position', 'bottomLeft');
     this.config.refreshInterval = this.getMetaNumber('refresh_interval', 15 * 60); // 15 minutes
@@ -60,24 +60,9 @@ class FtuiApp {
     this.config.username = this.getMetaString('username');
     this.config.password = this.getMetaString('password');
 
-
     // init Page after CSFS Token has been retrieved
-    Promise.all([fhemService.fetchCSrf()]).then(() => {
-      this.initPage();
-    }).catch(error => {
-      ftui.error('initDeferreds -' + error, 'error');
-    });
-
-    document.addEventListener('initComponentsDone', () => {
-      // restart  connection
-      fhemService.reconnect();
-
-      // start Refresh delayed
-      fhemService.startRefreshInterval(500);
-
-      // trigger refreshes
-      ftui.triggerEvent('changedSelection');
-    });
+    await fhemService.fetchCSrf()
+    this.initPage();
 
     // call health check periodically
     setInterval(() => {
@@ -85,27 +70,39 @@ class FtuiApp {
     }, this.config.updateCheckInterval * 60 * 1000);
   }
 
-
-  initPage() {
+  async initPage() {
     window.performance.mark('start initPage');
 
     this.states.startTime = new Date();
     ftui.log(2, 'initPage');
-
-    ftui.log(1, 'init templates - Done');
-    this.initComponents().then(() => {
-      window.performance.mark('end initPage');
-      window.performance.measure('initPage', 'start initPage', 'end initPage');
-      const dur = 'initPage: in ' + (new Date() - this.states.startTime) + 'ms';
-      if (this.config.debuglevel > 1) this.toast(dur);
-      ftui.log(1, dur);
-    }).catch(error => {
+    await this.initComponents(document).catch(error => {
       ftui.error('Error: initComponents - ' + error);
     });
+    window.performance.mark('end initPage');
+    window.performance.measure('initPage', 'start initPage', 'end initPage');
+    const dur = 'initPage: in ' + (new Date() - this.states.startTime) + 'ms';
+    if (this.config.debugLevel > 1) this.toast(dur);
+    ftui.log(1, dur);
   }
 
-  initComponents(area) {
-    const initDefer = ftui.deferred();
+  async initComponents(area) {
+    ftui.log(2, 'initComponents', area);
+    const newComponents = this.loadUndefinedComponents(area);
+    await ftui.timeoutPromise(newComponents).catch(error => {
+      ftui.error('Error: initComponents - ' + error);
+    });
+    this.startBinding(area);
+  }
+
+  async loadModule(path) {
+    try {
+      await import(path);
+    } catch (error) {
+      ftui.error('Failed to load ' + path + ' ' + error);
+    }
+  }
+
+  loadUndefinedComponents(area) {
     const componentTypes = [];
     const undefinedComponents = ftui.selectElements(':not(:defined)', area);
 
@@ -127,37 +124,34 @@ class FtuiApp {
       return customElements.whenDefined(component.localName);
     });
 
-    // get current values of readings not before all components are loaded
-    Promise.all(promises)
-      .then(() => {
-
-        // init ftui binding of 3rd party components
-        const selectors = ['[ftuiBinding]'];
-        const bindElements = ftui.selectElements(selectors.join(', '), area);
-        bindElements.forEach((element) => {
-          element.binding = new FtuiBinding(element);
-        });
-
-        fhemService.createFilterParameter();
-
-        ftui.log(1, 'initComponents - Done');
-        const event = new CustomEvent('initComponentsDone', { area: area });
-        document.dispatchEvent(event);
-        initDefer.resolve();
-      })
-      .catch(error => {
-        ftui.error('Error: initComponents - ' + error);
-      });
-    return initDefer.promise();
+    return promises;
   }
 
-  async loadModule(path) {
-    try {
-      await import(path);
-    } catch (error) {
-      ftui.error('Failed to load ' + path + ' ' + error);
-    }
+  startBinding(area) {
+    // init ftui binding of 3rd party components
+    const selectors = ['[ftuiBinding]'];
+    const bindElements = ftui.selectElements(selectors.join(', '), area);
+    bindElements.forEach((element) => {
+      element.binding = new FtuiBinding(element);
+    });
 
+    fhemService.createFilterParameter();
+
+    ftui.log(1, 'initComponents - Done');
+    const event = new CustomEvent('initComponentsDone', { area: area });
+    document.dispatchEvent(event);
+
+    console.log('listener initComponentsDone')
+    // restart  connection
+    fhemService.reconnect();
+
+    // start Refresh delayed
+    fhemService.startRefreshInterval(10);
+
+    // trigger refreshes
+    ftui.triggerEvent('changedSelection');
+
+    console.log('end startBinding')
   }
 
   attachBinding(element) {

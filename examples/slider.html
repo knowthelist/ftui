@@ -29,50 +29,45 @@
 
     <ftui-grid-tile row="1" col="1" height="1" width="3">
       <header>DEFAULT</header>
-      <div class="cell">
-        <ftui-slider value="20" max="50">
-        </ftui-slider>
-      </div>
+
+        <ftui-slider value="20" max="50"></ftui-slider>
+
     </ftui-grid-tile>
 
     <ftui-grid-tile row="1" col="4" height="2" width="3">
       <header>VERTICAL</header>
-      <div class="cell">
-        <ftui-slider [(value)]="dummy3" max="60" is-vertical>
-        </ftui-slider>
-      </div>
+
+        <ftui-slider [(value)]="dummy3" max="60" is-vertical></ftui-slider>
+
     </ftui-grid-tile>
 
     <ftui-grid-tile row="1" col="7" height="1" width="3">
       <header>TOOLTIP</header>
-      <div class="cell">
-        <ftui-slider [(value)]="dummy3" max="70" tooltips="always">
-        </ftui-slider>
-      </div>
+
+        <ftui-slider [(value)]="dummy3" max="70" tooltips="always"></ftui-slider>
+
     </ftui-grid-tile>
 
     <ftui-grid-tile row="2" col="7" height="1" width="6">
       <header>TOOLTIP</header>
-      <div class="cell">
-        <ftui-slider [value]="ftuitest" max="70" tooltips="always">
-        </ftui-slider>
-      </div>
+
+        <ftui-slider [value]="ftuitest" max="70" tooltips="always"></ftui-slider>
+
     </ftui-grid-tile>
 
     <ftui-grid-tile row="2" col="7" height="1" width="6">
       <header>RULER</header>
-      <div class="cell">
-        <ftui-slider [value]="ftuitest" max="70" has-ruler>
-        </ftui-slider>
-      </div>
+
+        <ftui-slider [value]="ftuitest" max="70" has-ruler></ftui-slider>
+
     </ftui-grid-tile>
 
     <ftui-grid-tile row="1" col="10" height="1" width="2">
       <header>VERTICAL RULER</header>
-      <div class="cell">
+
         <ftui-slider [(value)]="ftuitest" min="10" max="70" is-vertical has-ruler>
         </ftui-slider>
-      </div>
+
     </ftui-grid-tile>
 
   </ftui-grid>

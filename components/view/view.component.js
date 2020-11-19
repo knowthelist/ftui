@@ -18,8 +18,15 @@ export class FtuiView extends FtuiElement {
   }
 
   template() {
-    return `<style> @import "components/view/view.component.css"; </style>
-    <slot></slot>`;
+    return `
+          <style>
+            :host {
+              display: inline-block;
+              width: 100%;
+              height: 100%;
+            }
+            </style>
+            <slot></slot>`;
   }
 }
 

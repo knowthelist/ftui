@@ -95,7 +95,7 @@ export function getAllTagMatches(regEx) {
 }
 
 export function log(level, ...args) {
-  const debugLevel = window.ftui?.debuglevel || 1;
+  const debugLevel = window.ftuiApp?.config.debugLevel || 0;
   if (debugLevel >= level) {
     // eslint-disable-next-line no-console
     console.log.apply(this, args);
@@ -152,7 +152,7 @@ export function toKebabCase(string) {
     .toLowerCase()
 }
 
-export function capitalize (s) {
+export function capitalize(s) {
   if (typeof s !== 'string') return ''
   return s.charAt(0).toUpperCase() + s.slice(1);
 }
@@ -265,18 +265,23 @@ export function triggerEvent(eventName, source = document) {
   source.dispatchEvent(event);
 }
 
-export function deferred() {
-  const defer = {};
-  const promise = new Promise((resolve, reject) => {
-    defer.resolve = resolve;
-    defer.reject = reject;
-  });
-  defer.promise = () => {
-    return promise;
-  };
-  return defer;
-}
-
 export function getStylePropertyValue(property, element = document.body) {
   return getComputedStyle(element).getPropertyValue(property).trim();
+}
+
+export function timeoutPromise(promises, ms = 5000) {
+
+  // Create a promise that rejects in <ms> milliseconds
+  const timeout = new Promise((resolve, reject) => {
+    const id = setTimeout(() => {
+      clearTimeout(id);
+      reject('Timed out in ' + ms + 'ms.')
+    }, ms)
+  })
+
+  // Returns a race between our timeout and the passed in promise
+  return Promise.race([
+    Promise.all(promises),
+    timeout
+  ])
 }

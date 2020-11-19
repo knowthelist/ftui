@@ -31,7 +31,6 @@
     <ftui-grid-tile row="1" col="1" height="1" width="2">
       <header>DEFAULT</header>
 
-      <div class="cell">
         <ftui-circlemenu>
 
               <ftui-icon name="home1"></ftui-icon>
@@ -45,13 +44,13 @@
               <ftui-button-nice get="ftuitest"></ftui-button-nice>
 
         </ftui-circlemenu>
-      </div>
+
     </ftui-grid-tile>
 
     <ftui-grid-tile row="1" col="3" height="1" width="3">
       <header>BIG</header>
-      <div class="row">
-        <div class="column">
+      <ftui-row>
+        <ftui-column>
           <ftui-circlemenu>
 
                 <ftui-icon name="home1"></ftui-icon>
@@ -65,8 +64,8 @@
                 <ftui-button-nice get="ftuitest"></ftui-button-nice>
 
           </ftui-circlemenu>
-        </div>
-        <div class="column big">
+        </ftui-column>
+        <ftui-column class="big">
           <ftui-circlemenu circleRadius="4">
 
                 <ftui-icon name="home1"></ftui-icon>
@@ -80,14 +79,13 @@
                 <ftui-button-nice get="ftuitest"></ftui-button-nice>
 
           </ftui-circlemenu>
-        </div>
-      </div>
+        </ftui-column>
+      </ftui-row>
     </ftui-grid-tile>
 
     <ftui-grid-tile row="1" col="6" height="1" width="2">
       <header>DIRECTION</header>
 
-      <div class="cell">
         <ftui-circlemenu direction="bottom-half">
 
               <ftui-icon name="home1"></ftui-icon>
@@ -101,13 +99,11 @@
               <ftui-button-nice get="ftuitest"></ftui-button-nice>
 
         </ftui-circlemenu>
-      </div>
     </ftui-grid-tile>
 
     <ftui-grid-tile row="2" col="1" height="1" width="2">
       <header>KEEPOPEN</header>
 
-      <div class="cell">
         <ftui-circlemenu keep-open direction="horizontal-right">
 
               <ftui-icon name="home1"></ftui-icon>
@@ -121,13 +117,12 @@
               <ftui-button-nice get="ftuitest"></ftui-button-nice>
 
         </ftui-circlemenu>
-      </div>
     </ftui-grid-tile>
 
     <ftui-grid-tile row="2" col="3" height="1" width="3">
       <header>LEVEL</header>
-      <div class="row">
-        <div class="column">
+      <ftui-row>
+        <ftui-column>
           <ftui-circlemenu keep-open>
 
                 <ftui-button shape="circle" fill="outline" color="light">
@@ -170,8 +165,8 @@
                 </ftui-button>
 
           </ftui-circlemenu>
-        Dot</div>
-        <div class="column">
+        Dot</ftui-column>
+        <ftui-column>
           <ftui-circlemenu keep-open>
 
                 <ftui-button shape="circle" fill="outline" color="light">
@@ -214,14 +209,13 @@
                 </ftui-button>
 
           </ftui-circlemenu>
-        Band</div>
-      </div>
+        Band</ftui-column>
+      </ftui-row>
     </ftui-grid-tile>
 
     <ftui-grid-tile row="2" col="6" height="1" width="2">
       <header>VERTICAL</header>
 
-      <div class="cell">
         <ftui-circlemenu direction="vertical">
 
               <ftui-icon name="home1"></ftui-icon>
@@ -235,7 +229,7 @@
               <ftui-button-nice get="ftuitest"></ftui-button-nice>
 
         </ftui-circlemenu>
-      </div>
+
     </ftui-grid-tile>
 
   </ftui-grid>

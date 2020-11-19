@@ -3,7 +3,7 @@
 }
 
 :host([is-vertical]) {
-  height: calc(100% - 2em);
+  height: calc(100% - 3.5em);
   width: initial;
   display: flex;
   flex-direction: row-reverse;

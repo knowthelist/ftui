@@ -9,25 +9,25 @@
   justify-content: center;
 }
 
-:host .checkbox {
+.checkbox {
   display: none;
 }
 
-:host .label {
+.label {
   display: block;
   overflow: hidden;
   cursor: pointer;
   border-radius: 2.25em;
 }
 
-:host .inner {
+.inner {
   display: block;
   width: 200%;
   margin-left: -100%;
   transition: margin 0.2s ease-in 0s;
 }
 
-:host .inner:before, :host .inner:after {
+.inner:before, .inner:after {
   display: block;
   float: left;
   width: 50%;
@@ -40,22 +40,22 @@
   box-sizing: border-box;
 }
 
-:host .inner:before {
+.inner:before {
   content: attr(data-text-off);
   padding-left: 0.325em;
   background-color: var(--color-base);
   color: var(--text-color);
 }
 
-:host .inner:after {
+.inner:after {
   content: attr(data-text-on);
   padding-right: 0.325em;
-  background-color: var(--dark-color);
+  background-color: var(--checkbox-off-color, #777);
   color: var(--inactive-text-color);
   text-align: right;
 }
 
-:host .switch {
+.switch {
   display: block;
   width: 2.5em;
   height: 2.5em;
@@ -68,10 +68,10 @@
   transition: all 0.2s ease-in 0s;
 }
 
-:host .checkbox:checked+.label .inner {
+.checkbox:checked+.label .inner {
   margin-left: 0;
 }
 
-:host .checkbox:checked+.label .switch {
+.checkbox:checked+.label .switch {
   right: 0.075em;
 }

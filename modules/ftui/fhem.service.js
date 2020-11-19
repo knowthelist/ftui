@@ -8,6 +8,7 @@ class FhemService {
     this.config = {
       enableDebug: false,
       fhemDir: '',
+      csrf: '',
       debuglevel: 0,
       refreshInterval: 0,
       refresh: {},

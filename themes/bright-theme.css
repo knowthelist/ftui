@@ -80,6 +80,7 @@
 
   --border-color: var(--gray75);
 
+  --checkbox-off-color: var(--gray80);
 }
 
 body {

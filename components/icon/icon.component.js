@@ -49,9 +49,9 @@ export class FtuiIcon extends FtuiElement {
     }
   }
 
-  loadIcon(name) {
-    if (name.endsWith('svg')) {
-      fetch(name)
+  loadIcon(url) {
+    if (url.endsWith('svg')) {
+      fetch(url)
         .then(response => {
           // workaround until this issue has been fixed
           // https://forum.fhem.de/index.php/topic,115823.0.html

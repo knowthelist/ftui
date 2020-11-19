@@ -30,38 +30,30 @@
 
     <ftui-grid-tile row="1" col="1" height="1" width="1">
       <header>DEFAULT</header>
-      <div class="cell">
 
         <ftui-dropdown></ftui-dropdown>
-      
-      </div>
+
     </ftui-grid-tile>
 
     <ftui-grid-tile row="1" col="2" height="1" width="1">
       <header>VALUES</header>
-      <div class="cell">
 
         <ftui-dropdown list=",item1,item2,item3" value="item2"></ftui-dropdown>
       
-      </div>
     </ftui-grid-tile>
 
     <ftui-grid-tile row="1" col="3" height="1" width="1">
       <header>LIST BINDING</header>
-      <div class="cell">
 
         <ftui-dropdown [list]="ftuitest:list" [(value)]="ftuitest" @value-change="console.log($event.detail)"></ftui-dropdown>
 
-      </div>
     </ftui-grid-tile>
 
     <ftui-grid-tile row="1" col="4" height="1" width="1">
       <header>AUDIO</header>
-      <div class="cell">
 
         <ftui-dropdown [list]="AvReceiver:inputList" [(value)]="AvReceiver:input"></ftui-dropdown>
 
-      </div>
     </ftui-grid-tile>
 
   </ftui-grid>

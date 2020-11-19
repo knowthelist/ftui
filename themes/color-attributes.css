@@ -51,11 +51,6 @@
   --color-contrast: var(--danger-contrast-color);
 }
 
-[color="transparent"] {
-  --color-base: var(--grid-background-color);
-  --color-contrast: var(--medium-color);
-}
-
 [color="blue"] {
   --color-base: var(--lightblue);
   --color-contrast: var(--dark-color);
@@ -69,4 +64,13 @@
 [color="black"] {
   --color-base: var(--black);
   --color-contrast: var(--dark-color);
+}
+
+[color="grid"] {
+  --color-base: var(--grid-background-color);
+  --color-contrast: var(--medium-color);
+}
+
+[color="transparent"] {
+  --color-base: transparent;
 }
