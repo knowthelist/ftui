@@ -227,6 +227,61 @@ export function durationFromSeconds(time) {
   return ret;
 }
 
+export function agoTillFormat(ms, format, mode='lower') {
+  var x = ms / 1000;
+
+  var SECONDS = Math.floor(x);
+  var seconds = Math.floor(x % 60);
+  x /= 60;
+  var MINUTES = Math.floor(x);
+  var minutes = Math.floor(x % 60);
+  x /= 60;
+  var HOURS = Math.floor(x);
+  var hours = Math.floor(x % 24);
+  x /= 24;
+  var DAYS = Math.floor(x);
+
+  let ret = format;
+  if (mode == 'lower') {
+    ret = ret.replace(/(^|[^a-z])(ssssssss)([^a-z]|$)/g, "$1%SSSSSSSS$3");
+    ret = ret.replace(/(^|[^a-z])(mmmmmm)([^a-z]|$)/g, "$1%MMMMMM$3");
+    ret = ret.replace(/(^|[^a-z])(hhhh)([^a-z]|$)/g, "$1%HHHH$3");
+    ret = ret.replace(/(^|[^a-z])(dd)([^a-z]|$)/g, "$1%DD$3");
+    ret = ret.replace(/(^|[^a-z])(hh)([^a-z]|$)/g, "$1%HH$3");
+    ret = ret.replace(/(^|[^a-z])(mm)([^a-z]|$)/g, "$1%MM$3");
+    ret = ret.replace(/(^|[^a-z])(ss)([^a-z]|$)/g, "$1%SS$3");
+    ret = ret.replace(/(^|[^a-z])(h)([^a-z]|$)/g, "$1%H$3");
+    ret = ret.replace(/(^|[^a-z])(m)([^a-z]|$)/g, "$1%M$3");
+    ret = ret.replace(/(^|[^a-z])(s)([^a-z]|$)/g, "$1%S$3");
+  }
+  ret = ret.replace(/%SSSSSSSS/g, SECONDS);
+  ret = ret.replace(/%MMMMMM/g, MINUTES);
+  ret = ret.replace(/%HHHH/g, HOURS);
+  ret = ret.replace(/%DD/g, DAYS);
+  ret = ret.replace(/%HH/g, (hours > 9) ? hours : '0' + hours);
+  ret = ret.replace(/%MM/g, (minutes > 9) ? minutes : '0' + minutes);
+  ret = ret.replace(/%SS/g, (seconds > 9) ? seconds : '0' + seconds);
+  ret = ret.replace(/%H/g, hours);
+  ret = ret.replace(/%M/g, minutes);
+  ret = ret.replace(/%S/g, seconds);
+
+  return ret;
+}
+
+export function dateAgo (date) {
+  var now = new Date();
+  var ms = (now - date);
+
+  return ms;
+};
+
+export function dateTill (date) {
+  var now = new Date();
+  var ms = (date - now);
+
+  return ms;
+};
+
 export function round(number, precision) {
   const shift = (number, precision, reverseShift) => {
     if (reverseShift) {

@@ -241,6 +241,10 @@ export class FtuiBinding {
       const multiply = value => input => input * value;
       const replace = (find, replace) => input => String(input).replace(find, replace);
       const map = value => input => ftuiHelper.getMatchingValue(parseHocon(value, true), input);
+      const ago = () => input => ftuiHelper.dateAgo(input);
+      const agoFormat = (format,mode='lower') => input => ftuiHelper.agoTillFormat(input, format, mode);
+      const till = () => input => ftuiHelper.dateTill(input);
+      const tillFormat = (format,mode='lower') => input => ftuiHelper.agoTillFormat(input, format, mode);
 
       const pipe = (f1, ...fns) => (...args) => {
         return fns.reduce((res, fn) => fn(res), f1.apply(null, args));
