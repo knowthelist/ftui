@@ -12,7 +12,11 @@ async function main() {
   window.ftuiApp = ftuiModule.ftuiApp;
 }
 
-window.addEventListener('load', function(){
+document.addEventListener('readystatechange', () => {
+  document.body.classList.add('loading');
+});
+
+window.addEventListener('load', () => {
   main();
 });
 

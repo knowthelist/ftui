@@ -204,6 +204,12 @@ export function dateFormat(date, format, lang = 'de') {
   return ret;
 }
 
+export function scale(value, minIn, maxIn, minOut, maxOut) {
+  const slope = (minOut - maxOut) / (minIn - maxIn);
+  const intercept = slope * -(minIn) + minOut;
+  return value * slope + intercept;
+}
+
 export function diffMinutes(date1, date2) {
   const diff = new Date(date2 - date1);
   return (diff / 1000 / 60).toFixed(0);

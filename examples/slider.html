@@ -34,6 +34,14 @@
 
     </ftui-grid-tile>
 
+    <ftui-grid-tile row="2" col="1" height="1" width="3">
+      <header>INVERT</header>
+
+        <ftui-slider (value)="scale(50,0,0,50) | fhemDev1" max="50"></ftui-slider>
+        <ftui-label [text]="fhemDev1" text="50"></ftui-label>
+
+    </ftui-grid-tile>
+
     <ftui-grid-tile row="1" col="4" height="2" width="3">
       <header>VERTICAL</header>
 

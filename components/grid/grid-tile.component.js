@@ -20,11 +20,17 @@ export class FtuiGridTile extends FtuiElement {
       color: ''
     };
     super(properties);
+
+    const header = this.querySelector('header');
+    header?.setAttribute('slot', 'header');
   }
 
   template() {
     return `<style> @import "components/grid/grid-tile.component.css"; </style>
-    <slot></slot>`;
+    <slot name="header"></slot>
+    <div class="content">
+      <slot></slot>
+    </div>`;
   }
 }
 
