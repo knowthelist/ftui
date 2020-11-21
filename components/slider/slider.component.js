@@ -73,6 +73,7 @@ export class FtuiSlider extends FtuiElement {
       value: -99,
       isVertical: false,
       hasTooltips: true,
+      handle: 'default',
       type: 'single',
       color: 'primary',
     }

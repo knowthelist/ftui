@@ -184,7 +184,7 @@ export function dateFormat(date, format, lang = 'de') {
   const eeee = (lang === 'de') ? weekday_de[d] : weekday[d];
   const eee = eeee.substr(0, 3);
   const ee = eeee.substr(0, 2);
-  let ret = format;
+  let ret = String(format);
   ret = ret.replace('DD', (dd > 9) ? dd : '0' + dd);
   ret = ret.replace('D', dd);
   ret = ret.replace('MM', (MM > 9) ? MM : '0' + MM);
@@ -200,14 +200,28 @@ export function dateFormat(date, format, lang = 'de') {
   ret = ret.replace('eeee', eeee);
   ret = ret.replace('eee', eee);
   ret = ret.replace('ee', ee);
-
   return ret;
 }
 
-export function scale(value, minIn, maxIn, minOut, maxOut) {
-  const slope = (minOut - maxOut) / (minIn - maxIn);
-  const intercept = slope * -(minIn) + minOut;
-  return value * slope + intercept;
+export function ago(date, format) {
+  const ms = new Date() - date;
+  let x = ms / 1000;
+  const seconds = ~~(x % 60);
+  x /= 60;
+  const minutes = ~~(x % 60);
+  x /= 60;
+  const hours = ~~(x % 24);
+  x /= 24;
+  const days = ~~(x);
+  let ret = String(format);
+  ret = ret.replace('dd', days);
+  ret = ret.replace('hh', (hours > 9) ? hours : '0' + hours);
+  ret = ret.replace('mm', (minutes > 9) ? minutes : '0' + minutes);
+  ret = ret.replace('ss', (seconds > 9) ? seconds : '0' + seconds);
+  ret = ret.replace('h', hours);
+  ret = ret.replace('m', minutes);
+  ret = ret.replace('s', seconds);
+  return ret;
 }
 
 export function diffMinutes(date1, date2) {
@@ -221,8 +235,8 @@ export function diffSeconds(date1, date2) {
 }
 
 export function durationFromSeconds(time) {
-  const hrs = Math.floor(time / 3600);
-  const mins = Math.floor((time % 3600) / 60);
+  const hrs = ~~(time / 3600);
+  const mins = ~~((time % 3600) / 60);
   const secs = time % 60;
   let ret = '';
   if (hrs > 0) {
@@ -233,6 +247,8 @@ export function durationFromSeconds(time) {
   return ret;
 }
 
+// Math functions
+
 export function round(number, precision) {
   const shift = (number, precision, reverseShift) => {
     if (reverseShift) {
@@ -242,6 +258,12 @@ export function round(number, precision) {
     return +(numArray[0] + 'e' + (numArray[1] ? (+numArray[1] + precision) : precision));
   };
   return shift(Math.round(shift(number, precision, false)), precision, true);
+}
+
+export function scale(value, minIn, maxIn, minOut, maxOut) {
+  const slope = (minOut - maxOut) / (minIn - maxIn);
+  const intercept = slope * -(minIn) + minOut;
+  return value * slope + intercept;
 }
 
 export function debounce(callback, context = this) {

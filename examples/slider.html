@@ -78,6 +78,30 @@
 
     </ftui-grid-tile>
 
+    <ftui-grid-tile row="3" col="1" height="1" width="3">
+      <header>NO HANDLE</header>
+
+        <ftui-slider [(value)]="ftuitest" min="10" max="70" handle="none">
+        </ftui-slider>
+
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="3" col="4" height="1" width="3">
+      <header>READONLY</header>
+
+        <ftui-slider [(value)]="ftuitest" min="10" max="70" handle="none" readonly>
+        </ftui-slider>
+
+    </ftui-grid-tile>
+    
+    <ftui-grid-tile row="3" col="7" height="1" width="3">
+      <header>DISABLED</header>
+
+        <ftui-slider [(value)]="ftuitest" min="10" max="70" disabled>
+        </ftui-slider>
+
+    </ftui-grid-tile>
+
   </ftui-grid>
 </body>
 

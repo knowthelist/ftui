@@ -92,6 +92,22 @@ short syntax ("banana in a box")
 <ftui-button [(value)]="dummy1"></ftui-button>
 ```
 
+Events
+-------
+
+Some components provide events on attribute change.
+The $event object provides the parameter 'detail' that containing the changed property.
+
+```html
+<ftui-colorpicker @color-change="console.log($event.detail.hexString)"></ftui-colorpicker>
+````
+
+```html
+<ftui-dropdown [list]="ftuitest:list" [(value)]="ftuitest" @value-change="console.log($event.detail)"></ftui-dropdown>
+
+````
+
+This can be used to communicate between components.
 
 Pipes
 ------
@@ -108,6 +124,7 @@ Binding values can be pushed through piped functions to change the value. Follow
 - multiply(number)
 - replace(find, replace)
 - map('in1:out1,in2:out2,...')
+- scale(minIn, maxIn, minOut, maxOut)
 
 Example for input (FHEM reading -> function() -> HTML attribute): 
 ```html
@@ -141,6 +158,14 @@ Components
 - [Chart](#chart)
 
  ... to be continued
+
+All components has following attributes
+
+- hidden
+- disabled
+- readonly
+
+<br><br>
 
 ### Button
 

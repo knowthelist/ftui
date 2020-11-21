@@ -74,6 +74,11 @@
       <header>time min:sec</header>
       <ftui-label [text]="AgroWeather:state:time | toDate() | format('mm:ss')"></ftui-label>
     </ftui-grid-tile>
+    
+    <ftui-grid-tile row="2" col="7" height="1" width="2">
+      <header>ago</header>
+      <ftui-label [text]="AgroWeather:state:time | toDate() | ago('mm:ss')"></ftui-label>
+    </ftui-grid-tile>
 
     <ftui-grid-tile row="3" col="3" height="1" width="1">
       <header>text-filter x2</header>

@@ -48,7 +48,8 @@ export class FtuiElement extends HTMLElement {
   static get properties() {
     return {
       hidden: false,
-      disabled: false
+      disabled: false,
+      readonly: false
     };
   }
 
@@ -71,7 +72,10 @@ export class FtuiElement extends HTMLElement {
         this.style.display = newValue !== null ? 'none' : '';
         break;
       case 'disabled':
-        this.style.filter = newValue !== null ? 'invert(0.5) sepia(1) saturate(0) blur(1px)' : '';
+        this.style.filter = newValue !== null ? 'sepia(1) saturate(0) blur(1px)' : '';
+        this.style.pointerEvents = newValue !== null ? 'none' : '';
+        break;
+      case 'readonly':
         this.style.pointerEvents = newValue !== null ? 'none' : '';
         break;
     }
