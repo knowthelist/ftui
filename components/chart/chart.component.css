@@ -5,6 +5,7 @@
   justify-content: space-evenly;
   width: 90%;
   height: 90%;
+  --color-base: initial;
 }
 
 #container {
