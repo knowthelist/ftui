@@ -83,6 +83,8 @@ class FtuiApp {
     const dur = 'initPage: in ' + (new Date() - this.states.startTime) + 'ms';
     if (this.config.debugLevel > 1) this.toast(dur);
     ftui.log(1, dur);
+
+    document.body.classList.remove('loading');
   }
 
   async initComponents(area) {
@@ -141,7 +143,6 @@ class FtuiApp {
     const event = new CustomEvent('initComponentsDone', { area: area });
     document.dispatchEvent(event);
 
-    console.log('listener initComponentsDone')
     // restart  connection
     fhemService.reconnect();
 
@@ -150,8 +151,6 @@ class FtuiApp {
 
     // trigger refreshes
     ftui.triggerEvent('changedSelection');
-
-    console.log('end startBinding')
   }
 
   attachBinding(element) {

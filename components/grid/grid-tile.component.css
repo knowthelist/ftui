@@ -5,20 +5,29 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: center
 }
 
 :host([shape="round"]) {
   border-radius: 1.5em;
 }
 
-:host ::slotted(header) {
+::slotted(header) {
   color: var(--grid-header-color);
   background: var(--grid-header-background-color);
   font-weight: bold;
   padding: 0.25em;
   width: 100%;
   text-align: center;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+  height: 100%;
 }
 
 :host([shape="round"]) ::slotted(header) {
@@ -29,8 +38,4 @@
 :host([color]) {
   background: var(--color-base);
   color: var(--color-contrast);
-}
-
-:host ::slotted(.row) {
-  flex: 1;
 }

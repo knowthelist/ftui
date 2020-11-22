@@ -20,7 +20,6 @@ export class FtuiChartData extends FtuiElement {
 
     if (this.backgroundColor.length === 0) {
       this.hasCalculatedBackgroundColor = true;
-      this.backgroundColor = Chart.helpers.color(this.borderColor).alpha(0.2).rgbString();
     }
   }
 
@@ -32,7 +31,8 @@ export class FtuiChartData extends FtuiElement {
       hidden: false,
       pointBackgroundColor: primaryColor,
       backgroundColor: '',
-      borderColor: primaryColor,
+      color: primaryColor,
+      borderColor: '',
       borderWidth: 1.2,
       pointRadius: 2,
       title: '-',
@@ -73,6 +73,7 @@ export class FtuiChartData extends FtuiElement {
       .then(response => response.text())
       .then((response) => {
         this.data = this.parseLogItems(response);
+        this.updateColor();
         ftuiHelper.triggerEvent('ftuiDataChanged', this);
       })
   }
@@ -101,11 +102,8 @@ export class FtuiChartData extends FtuiElement {
 
   onAttributeChanged(name) {
     switch (name) {
-      case 'border-color':
-        if (this.hasCalculatedBackgroundColor) {
-          this.backgroundColor = Chart.helpers.color(this.borderColor).alpha(0.2).rgbString();
-        }
-        this.pointBackgroundColor = this.borderColor;
+      case 'color':
+        this.updateColor();
         break;
       case 'update':
         this.fetch();
@@ -114,6 +112,14 @@ export class FtuiChartData extends FtuiElement {
     if (ftuiHelper.isDefined(this.data)) {
       ftuiHelper.triggerEvent('ftuiDataChanged', this);
     }
+  }
+
+  updateColor() {
+    this.borderColor = ftuiHelper.getStylePropertyValue('--color-base', this) || this.color;
+    if (this.hasCalculatedBackgroundColor) {
+      this.backgroundColor = Chart.helpers.color(this.borderColor).alpha(0.2).rgbString();
+    }
+    this.pointBackgroundColor = this.borderColor;
   }
 
 }

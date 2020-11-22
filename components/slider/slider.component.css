@@ -21,6 +21,14 @@
   height: 2em;
 }
 
+.rangeable-progress, .rangeable-track {
+  height: 6px;
+}
+
+.rangeable-container.rangeable-vertical .rangeable-progress {
+  width: 6px;
+}
+
 .rangeable-track {
   background-color: var(--dark-color);
 }
@@ -55,8 +63,12 @@
   width: 0.125em;
 }
 
-:host(:not([isVertical])) .numbers #min {
-  margin-left: -0.5em;
+:host([handle="none"]) .rangeable-handle {
+  display: none;
+}
+
+:host(:not([is-vertical])) .numbers #min {
+  margin-left: -0.25em;
 }
 
 :host(:not([is-vertical])) .numbers #max {
@@ -74,9 +86,14 @@
   height: 100%;
 }
 
+:host([is-vertical]) .numbers #min {
+  margin-bottom: -0.5em;
+  margin-right: 0.25em;
+}
+
 :host([is-vertical]) .numbers #max {
   margin-bottom: -0.5em;
-  margin-right: 0.125em;
+  margin-right: 0.25em;
 }
 
 :host([is-vertical]) .ticks span {
