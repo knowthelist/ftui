@@ -227,7 +227,7 @@ export function durationFromSeconds(time) {
 }
 
 export function timeFormat(ms, format, inputMode='ms', formatMode='lower') {
-  // imode: 'ms' or 's'
+  // inputMode: 'ms' or 's'
   let x = ms
   if (inputMode === 'ms') { x /= 1000; }
 
@@ -242,7 +242,7 @@ export function timeFormat(ms, format, inputMode='ms', formatMode='lower') {
   x /= 24;
   const totalDays = ~~(x);
 
-  // fmode: 'lower' or 'upper'
+  // formatMode: 'lower' or 'upper'
   let ret = String(format);
   if (formatMode === 'lower') {
     ret = ret.replace(/(^|[^a-z])(ssssssss)([^a-z]|$)/g, "$1%SSSSSSSS$3");
