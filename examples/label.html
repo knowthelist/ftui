@@ -20,6 +20,9 @@
   <link href="themes/ftui-theme.css" rel="stylesheet">
   <link href="favicon.ico" rel="icon" type="image/x-icon" />
 
+  <meta name="fhemweb_url" content="http://fhem:8083/fhem/">
+  <meta name="debug" content="2">
+
   <title>FTUI Example Label</title>
 </head>
 
@@ -83,6 +86,11 @@
     <ftui-grid-tile row="3" col="3" height="1" width="1">
       <header>text-filter x2</header>
       <ftui-label [text]="AgroWeather:state | part(4) | toInt() | multiply(2) | round(1) "></ftui-label>
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="3" col="3" height="1" width="1">
+      <header>scale</header>
+      <ftui-label [text]="AgroWeather:state | part(4) | toInt() | scale(0,100,0,100) "></ftui-label>
     </ftui-grid-tile>
 
     <ftui-grid-tile row="4" col="4" height="1" width="1">

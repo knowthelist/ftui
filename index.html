@@ -19,6 +19,14 @@
   <link href="themes/ftui-theme.css" rel="stylesheet">
   <link href="favicon.ico" rel="icon" type="image/x-icon" />
 
+  <!-- avoid 300ms delay on click-->
+  <meta name="viewport" content="width=device-width">
+
+  <!-- when serving the page with other web servers, e.g. lighttpd -->
+  <meta name="fhemweb_url" content="http://fhem.local:8083/fhem/">
+
+  <!-- verbose level 0-4 -->
+  <meta name="debug" content="2">
 
   <title>FTUI Demo</title>
 </head>
@@ -69,7 +77,7 @@
 
       <ftui-grid-tile row="3" col="2" height="2" width="2" shape="round">
         <ftui-knob [value]="THSensorWZ:temperature" width="120" offset-y="10"
-                   type="handle" min="19" max="25" unit="°C" readonly has-value-text></ftui-knob>
+                   type="handle" min="19" max="23" unit="°C" readonly has-value-text></ftui-knob>
       </ftui-grid-tile>
 
       <ftui-grid-tile row="3" col="4" height="2" width="3" shape="round">
