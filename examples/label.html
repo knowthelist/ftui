@@ -84,24 +84,36 @@
       <header>ago ...</header>
       <ftui-label [text]="ftuitest:dateTime4ago"></ftui-label>
       <ftui-label [text]="ftuitest:dateTime4ago | toDate() | ago()"></ftui-label>
-      <ftui-label [text]="ftuitest:dateTime4ago | toDate() | ago() | agoFormat('[ dd.hh:mm:ss ]')"></ftui-label>
-      <ftui-label [text]="ftuitest:dateTime4ago | toDate() | ago() | agoFormat('[ elapsed since dd days + hh:mm:ss ]')"></ftui-label>
-      <ftui-label [text]="ftuitest:dateTime4ago | toDate() | ago() | agoFormat('ssssssss seconds')"></ftui-label>
-      <ftui-label [text]="ftuitest:dateTime4ago | toDate() | ago() | agoFormat('mmmmmm minutes')"></ftui-label>
-      <ftui-label [text]="ftuitest:dateTime4ago | toDate() | ago() | agoFormat('hhhh hours')"></ftui-label>
-      <ftui-label [text]="ftuitest:dateTime4ago | toDate() | ago() | agoFormat('dd days')"></ftui-label>
+      <ftui-label [text]="ftuitest:dateTime4ago | toDate() | ago() | timeFormat('[ dd.hh:mm:ss ]')"></ftui-label>
+      <ftui-label [text]="ftuitest:dateTime4ago | toDate() | ago() | timeFormat('[ elapsed since dd days + hh:mm:ss ]')"></ftui-label>
+      <ftui-label [text]="ftuitest:dateTime4ago | toDate() | ago() | timeFormat('ssssssss seconds')"></ftui-label>
+      <ftui-label [text]="ftuitest:dateTime4ago | toDate() | ago() | timeFormat('mmmmmm minutes')"></ftui-label>
+      <ftui-label [text]="ftuitest:dateTime4ago | toDate() | ago() | timeFormat('hhhh hours')"></ftui-label>
+      <ftui-label [text]="ftuitest:dateTime4ago | toDate() | ago() | timeFormat('dd days')"></ftui-label>
     </ftui-grid-tile>
 
     <ftui-grid-tile row="3" col="7" height="2" width="2" shape="round">
       <header>... till</header>
       <ftui-label [text]="ftuitest:dateTime4till"></ftui-label>
       <ftui-label [text]="ftuitest:dateTime4till | toDate() | till()"></ftui-label>
-      <ftui-label [text]="ftuitest:dateTime4till | toDate() | till() | tillFormat('[ dd.hh:mm:ss ]')"></ftui-label>
-      <ftui-label [text]="ftuitest:dateTime4till | toDate() | till() | tillFormat('[ still dd days + hh:mm:ss ]')"></ftui-label>
-      <ftui-label [text]="ftuitest:dateTime4till | toDate() | till() | tillFormat('%SSSSSSSSs','upper')"></ftui-label>
-      <ftui-label [text]="ftuitest:dateTime4till | toDate() | till() | tillFormat('%MMMMMMm','upper')"></ftui-label>
-      <ftui-label [text]="ftuitest:dateTime4till | toDate() | till() | tillFormat('%HHHHh','upper')"></ftui-label>
-      <ftui-label [text]="ftuitest:dateTime4till | toDate() | till() | tillFormat('%DDd','upper')"></ftui-label>
+      <ftui-label [text]="ftuitest:dateTime4till | toDate() | till() | timeFormat('[ dd.hh:mm:ss ]')"></ftui-label>
+      <ftui-label [text]="ftuitest:dateTime4till | toDate() | till() | timeFormat('[ still dd days + hh:mm:ss ]')"></ftui-label>
+      <ftui-label [text]="ftuitest:dateTime4till | toDate() | till() | timeFormat('%SSSSSSSSs','ms','upper')"></ftui-label>
+      <ftui-label [text]="ftuitest:dateTime4till | toDate() | till() | timeFormat('%MMMMMMm','ms','upper')"></ftui-label>
+      <ftui-label [text]="ftuitest:dateTime4till | toDate() | till() | timeFormat('%HHHHh','ms','upper')"></ftui-label>
+      <ftui-label [text]="ftuitest:dateTime4till | toDate() | till() | timeFormat('%DDd','ms','upper')"></ftui-label>
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="3" col="9" height="2" width="2" shape="round">
+      <header>... till</header>
+      <ftui-label [text]="ftuitest:seconds4timeFormat"></ftui-label>
+      <ftui-label [text]="ftuitest:seconds4timeFormat"></ftui-label>
+      <ftui-label [text]="ftuitest:seconds4timeFormat | timeFormat('[ dd.hh:mm:ss ]','s')"></ftui-label>
+      <ftui-label [text]="ftuitest:seconds4timeFormat | timeFormat('[ dd day(s) + hh:mm:ss ]','s')"></ftui-label>
+      <ftui-label [text]="ftuitest:seconds4timeFormat | timeFormat('%SSSSSSSSs','s','upper')"></ftui-label>
+      <ftui-label [text]="ftuitest:seconds4timeFormat | timeFormat('%MMMMMMm','s','upper')"></ftui-label>
+      <ftui-label [text]="ftuitest:seconds4timeFormat | timeFormat('%HHHHh','s','upper')"></ftui-label>
+      <ftui-label [text]="ftuitest:seconds4timeFormat | timeFormat('%DDd','s','upper')"></ftui-label>
     </ftui-grid-tile>
 
     <ftui-grid-tile row="4" col="4" height="1" width="1">
