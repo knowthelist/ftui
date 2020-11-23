@@ -77,20 +77,46 @@
       <header>time min:sec</header>
       <ftui-label [text]="AgroWeather:state:time | toDate() | format('mm:ss')"></ftui-label>
     </ftui-grid-tile>
-    
-    <ftui-grid-tile row="2" col="7" height="1" width="2">
-      <header>ago</header>
-      <ftui-label [text]="AgroWeather:state:time | toDate() | ago('mm:ss')"></ftui-label>
-    </ftui-grid-tile>
 
     <ftui-grid-tile row="3" col="3" height="1" width="1">
       <header>text-filter x2</header>
       <ftui-label [text]="AgroWeather:state | part(4) | toInt() | multiply(2) | round(1) "></ftui-label>
     </ftui-grid-tile>
 
-    <ftui-grid-tile row="3" col="3" height="1" width="1">
-      <header>scale</header>
-      <ftui-label [text]="AgroWeather:state | part(4) | toInt() | scale(0,100,0,100) "></ftui-label>
+    <ftui-grid-tile row="3" col="5" height="2" width="2" shape="round">
+      <header>ago ...</header>
+      <ftui-label [text]="ftuitest:dateTime4ago"></ftui-label>
+      <ftui-label [text]="ftuitest:dateTime4ago | toDate() | ago()"></ftui-label>
+      <ftui-label [text]="ftuitest:dateTime4ago | toDate() | ago() | timeFormat('[ dd.hh:mm:ss ]')"></ftui-label>
+      <ftui-label [text]="ftuitest:dateTime4ago | toDate() | ago() | timeFormat('[ elapsed since dd days + hh:mm:ss ]')"></ftui-label>
+      <ftui-label [text]="ftuitest:dateTime4ago | toDate() | ago() | timeFormat('ssssssss seconds')"></ftui-label>
+      <ftui-label [text]="ftuitest:dateTime4ago | toDate() | ago() | timeFormat('mmmmmm minutes')"></ftui-label>
+      <ftui-label [text]="ftuitest:dateTime4ago | toDate() | ago() | timeFormat('hhhh hours')"></ftui-label>
+      <ftui-label [text]="ftuitest:dateTime4ago | toDate() | ago() | timeFormat('dd days')"></ftui-label>
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="3" col="7" height="2" width="2" shape="round">
+      <header>... till</header>
+      <ftui-label [text]="ftuitest:dateTime4till"></ftui-label>
+      <ftui-label [text]="ftuitest:dateTime4till | toDate() | till()"></ftui-label>
+      <ftui-label [text]="ftuitest:dateTime4till | toDate() | till() | timeFormat('[ dd.hh:mm:ss ]')"></ftui-label>
+      <ftui-label [text]="ftuitest:dateTime4till | toDate() | till() | timeFormat('[ still dd days + hh:mm:ss ]')"></ftui-label>
+      <ftui-label [text]="ftuitest:dateTime4till | toDate() | till() | timeFormat('%SSSSSSSSs','ms','upper')"></ftui-label>
+      <ftui-label [text]="ftuitest:dateTime4till | toDate() | till() | timeFormat('%MMMMMMm','ms','upper')"></ftui-label>
+      <ftui-label [text]="ftuitest:dateTime4till | toDate() | till() | timeFormat('%HHHHh','ms','upper')"></ftui-label>
+      <ftui-label [text]="ftuitest:dateTime4till | toDate() | till() | timeFormat('%DDd','ms','upper')"></ftui-label>
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="3" col="9" height="2" width="2" shape="round">
+      <header>... till</header>
+      <ftui-label [text]="ftuitest:seconds4timeFormat"></ftui-label>
+      <ftui-label [text]="ftuitest:seconds4timeFormat"></ftui-label>
+      <ftui-label [text]="ftuitest:seconds4timeFormat | timeFormat('[ dd.hh:mm:ss ]','s')"></ftui-label>
+      <ftui-label [text]="ftuitest:seconds4timeFormat | timeFormat('[ dd day(s) + hh:mm:ss ]','s')"></ftui-label>
+      <ftui-label [text]="ftuitest:seconds4timeFormat | timeFormat('%SSSSSSSSs','s','upper')"></ftui-label>
+      <ftui-label [text]="ftuitest:seconds4timeFormat | timeFormat('%MMMMMMm','s','upper')"></ftui-label>
+      <ftui-label [text]="ftuitest:seconds4timeFormat | timeFormat('%HHHHh','s','upper')"></ftui-label>
+      <ftui-label [text]="ftuitest:seconds4timeFormat | timeFormat('%DDd','s','upper')"></ftui-label>
     </ftui-grid-tile>
 
     <ftui-grid-tile row="4" col="4" height="1" width="1">
