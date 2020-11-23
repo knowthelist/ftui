@@ -73,6 +73,7 @@ export class FtuiSlider extends FtuiElement {
       value: -99,
       isVertical: false,
       hasTooltips: true,
+      handle: 'default',
       type: 'single',
       color: 'primary',
     }
@@ -103,7 +104,7 @@ export class FtuiSlider extends FtuiElement {
 
   onSliderChanged(value) {
     if (this.value !== null && this.value !== value) {
-      if (this.isDragging ) {
+      if (this.isDragging) {
         this.value = value;
       }
     }

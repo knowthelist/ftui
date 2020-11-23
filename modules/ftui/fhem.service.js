@@ -146,6 +146,7 @@ class FhemService {
     this.states.refresh.request =
       this.sendCommand('jsonlist2 ' + this.config.refresh.filter)
         .then(res => res.json())
+        .catch(error => this.errorEvents.publish('<u>FHEM Command failed</u><br>' + error))
         .then(fhemJSON => this.parseRefreshResult(fhemJSON)
         );
   }
@@ -349,13 +350,8 @@ class FhemService {
       XHR: '1'
     };
     url.search = new URLSearchParams(params)
-    const dataType = (cmdline.substr(0, 8) === 'jsonlist') ? 'application/json' : 'text/plain"';
     ftui.log(1, 'send to FHEM: ' + cmdline);
     return fetch(url, {
-      method: 'GET',
-      headers: {
-        'Content-Type': dataType
-      },
       username: this.config.username,
       password: this.config.password
     });

@@ -9,6 +9,10 @@ svg {
   fill: currentColor;
 }
 
+svg g[fill] {
+  fill: currentColor;
+}
+
 img {
   width: var(--icon-width, 2.25em);
   height: var(--icon-height, 2.25em);
@@ -37,7 +41,5 @@ svg[viewBox="0 0 448 512"] {
 }
 
 :host([invert][color]) svg {
-
   fill: var(--color-contrast);
-
 }

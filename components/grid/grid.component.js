@@ -42,7 +42,14 @@ export class FtuiGrid extends FtuiElement {
   }
 
   template() {
-    return `<style> @import "components/grid/grid.component.css"; </style>
+    return `<style> 
+      :host {
+        position: relative;
+        display: block;
+        width: 100vw;
+        height: 100vh;
+      } 
+    </style>
     <slot></slot>
     `;
   }

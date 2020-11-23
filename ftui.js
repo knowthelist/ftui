@@ -10,10 +10,13 @@ menu && menu.addEventListener('click', event => {
 async function main() {
   const ftuiModule = await import('./modules/ftui/ftui.app.js');
   window.ftuiApp = ftuiModule.ftuiApp;
+
+  // start FTUI
+  ftuiModule.ftuiApp.init();
 }
 
-window.addEventListener('load', function(){
-  main();
+document.addEventListener('readystatechange', () => {
+  document.body.classList.add('loading');
 });
 
 // initially loading the page

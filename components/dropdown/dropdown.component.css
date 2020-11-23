@@ -5,8 +5,9 @@
 :host:after {
   position: absolute;
   right: 0.5em;
+  top: 0.25em;
   content: "\2304";
-  font-size: 150%;
+  font-size: 1rem;
   pointer-events: none;
 }
 

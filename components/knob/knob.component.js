@@ -26,13 +26,13 @@ class FtuiKnob extends FtuiElement {
     this.needle = this.shadowRoot.querySelector('.needle');
     this.handle = this.shadowRoot.querySelector('.handle');
 
-    this.rangeAngle = Math.abs(parseInt(this.endAngle) - parseInt(this.startAngle));
+    this.rangeAngle = Math.abs(parseFloat(this.endAngle) - parseFloat(this.startAngle));
     this.radian = Math.PI / 180;
 
     this.NS = 'http://www.w3.org/2000/svg';
 
-    this.W = parseInt(window.getComputedStyle(this.svg, null).getPropertyValue('width'));
-    this.H = parseInt(window.getComputedStyle(this.svg, null).getPropertyValue('height'));
+    this.W = parseFloat(window.getComputedStyle(this.svg, null).getPropertyValue('width'));
+    this.H = parseFloat(window.getComputedStyle(this.svg, null).getPropertyValue('height'));
 
     // ~~(..) is a faster Math.floor
     this.centerX = ~~(this.W / 2);
@@ -155,6 +155,7 @@ class FtuiKnob extends FtuiElement {
   onChange(angle) {
     if (!this.readonly && this.draw(angle)) {
       this.value = this.angleToValue(angle);
+      console.log(angle, this.value);
     }
   }
 
@@ -306,15 +307,15 @@ class FtuiKnob extends FtuiElement {
   }
 
   valueToAngle(val) {
-    const min = parseInt(this.min);
-    const max = parseInt(this.max);
-    const newVal = (!isNaN(val) && val >= min && val <= max) ? parseInt(val) : min;
+    const min = parseFloat(this.min);
+    const max = parseFloat(this.max);
+    const newVal = (!isNaN(val) && val >= min && val <= max) ? parseFloat(val) : min;
     return ((newVal - min) * this.rangeAngle / (max - min) - this.rangeAngle) + this.endAngle;
   }
 
   angleToValue(angle) {
-    const min = parseInt(this.min);
-    const max = parseInt(this.max);
+    const min = parseFloat(this.min);
+    const max = parseFloat(this.max);
     let normAngle = (angle - 360 >= this.startAngle) ? angle - 360 : angle;
     normAngle = (normAngle < this.startAngle) ? this.startAngle : (normAngle > this.endAngle) ? this.endAngle : normAngle;
     const value = Math.round((((normAngle - this.startAngle) * (max - min)) / this.rangeAngle) + min);

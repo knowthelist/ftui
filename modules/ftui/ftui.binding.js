@@ -257,7 +257,6 @@ export class FtuiBinding {
         this.element.classList.add('has-error');
         ftuiHelper.error(e.toString());
       }
-
     } else {
       return text;
     }

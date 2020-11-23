@@ -19,6 +19,14 @@
   <link href="themes/ftui-theme.css" rel="stylesheet">
   <link href="favicon.ico" rel="icon" type="image/x-icon" />
 
+  <!-- avoid 300ms delay on click-->
+  <meta name="viewport" content="width=device-width">
+
+  <!-- when serving the page with other web servers, e.g. lighttpd -->
+  <meta name="fhemweb_url" content="http://fhem.local:8083/fhem/">
+
+  <!-- verbose level 0-4 -->
+  <meta name="debug" content="2">
 
   <title>FTUI Demo</title>
 </head>
@@ -54,38 +62,37 @@
     <ftui-tab-view id="View1">
 
       <ftui-grid-tile row="1" col="2" height="2" width="2" shape="round" color="primary">
-        <ftui-clock format="ee" class="bigger"></ftui-clock>
-        <ftui-clock format="DD" class="tall"></ftui-clock>
+        <ftui-clock format="ee" class="size-5"></ftui-clock>
+        <ftui-clock format="DD" class="size-8"></ftui-clock>
       </ftui-grid-tile>
 
       <ftui-grid-tile row="1" col="4" height="2" width="2" shape="round"
                       [color]="WCLuft | map('0:ok, 1000:warning, 2000:danger')">
-        <ftui-column>
-          <label class="big align-left">CO²</label>
-          <ftui-label class="large" [text]="WCLuft | part(1) | toInt()">
-            <div slot="end" class="mini">ppm</div>
-          </ftui-label>
+        <ftui-column width="80%">
+          <ftui-label class="size-5 align-left">CO²</ftui-label>
+          <ftui-label class="size-7 align-left" [text]="WCLuft | part(1) | toInt()"></ftui-label>
+          <ftui-label class="size-0 align-right">ppm</ftui-label>
         </ftui-column>
       </ftui-grid-tile>
 
       <ftui-grid-tile row="3" col="2" height="2" width="2" shape="round">
         <ftui-knob [value]="THSensorWZ:temperature" width="120" offset-y="10"
-                   type="handle" min="19" max="25" unit="°C" readonly has-value-text></ftui-knob>
+                   type="handle" min="19" max="23" unit="°C" readonly has-value-text></ftui-knob>
       </ftui-grid-tile>
 
       <ftui-grid-tile row="3" col="4" height="2" width="3" shape="round">
-        <div class="column">
+        <ftui-column>
           <div class="row h-40">
-            <label>Humidity</label>
-            <ftui-label class="large" [text]="THSensorWZ:humidity">
-              <span slot="end" class="mini">%</span>
+            <ftui-label>Humidity</ftui-label>
+            <ftui-label class="size-7" [text]="THSensorWZ:humidity">
+              <span slot="end" class="size-0">%</span>
             </ftui-label>
           </div>
           <ftui-chart class="row" width="150px" height="75px">
             <ftui-chart-data fill log="FileLog_THSensorWZ" spec="4:THSensorWZ.humidity"
                              [update]="THSensorWZ:state:time"></ftui-chart-data>
           </ftui-chart>
-        </div>
+          </div>
       </ftui-grid-tile>
 
       <ftui-grid-tile row="1" col="6" height="2" width="2" shape="round">
@@ -122,111 +129,152 @@
 
       </ftui-grid-tile>
       <ftui-grid-tile row="5" col="2" height="3" width="10" shape="round">
-        <div class="row">
-          <div class="column">
-            <label>Heute</label>
-            <ftui-weather class="big" [condition]="AgroWeather:fc0_weatherDay"></ftui-weather>
-            <ftui-label [text]="AgroWeather:fc0_weatherDay"></ftui-label>
-            <div class="row w-80">
+        <ftui-row>
+          <ftui-column>
+            <ftui-row>
+              <ftui-label>Heute</ftui-label>
+            </ftui-row>
+            <ftui-row>
+              <ftui-weather class="size-5" [condition]="AgroWeather:fc0_weatherDay"></ftui-weather>
+            </ftui-row>
+            <ftui-row>
+              <ftui-label [text]="AgroWeather:fc0_weatherDay"></ftui-label>
+            </ftui-row>
+            <ftui-row width="80%">
               <ftui-label [text]="AgroWeather:fc0_tempMin"><span slot="end">°C</span></ftui-label>
-              <ftui-label [text]="AgroWeather:fc0_tempMax" class="bigger thin"><span class="mini" slot="end">°C</span>
+              <ftui-label [text]="AgroWeather:fc0_tempMax" class="size-7 thin"><span class="size-0" slot="end">°C</span>
               </ftui-label>
-            </div>
-            <div class="row w-80">
+            </ftui-row>
+            <ftui-row width="80%">
               <ftui-label [text]="AgroWeather:fc0_chOfRainDay" color="blue"><span slot="end">%</span></ftui-label>
               <ftui-label [text]="AgroWeather:fc0_rain" color="blue"><span slot="end">mm</span></ftui-label>
-            </div>
-          </div>
-          <div class="column">
-            <label>Morgen</label>
-            <ftui-weather class="big" [condition]="AgroWeather:fc1_weatherDay"></ftui-weather>
-            <ftui-label [text]="AgroWeather:fc1_weatherDay"></ftui-label>
-            <div class="row w-80">
+            </ftui-row>
+          </ftui-column>
+          <ftui-column>
+            <ftui-row>
+              <ftui-label>Morgen</ftui-label>
+            </ftui-row>
+            <ftui-row>
+              <ftui-weather class="size-5" [condition]="AgroWeather:fc1_weatherDay"></ftui-weather>
+            </ftui-row>
+            <ftui-row>
+              <ftui-label [text]="AgroWeather:fc1_weatherDay"></ftui-label>
+            </ftui-row>
+            <ftui-row width="80%">
               <ftui-label [text]="AgroWeather:fc1_tempMin"><span slot="end">°C</span></ftui-label>
-              <ftui-label [text]="AgroWeather:fc1_tempMax" class="bigger thin"><span slot="end">°C</span></ftui-label>
-            </div>
-            <div class="row w-80">
+              <ftui-label [text]="AgroWeather:fc1_tempMax" class="size-7 thin"><span class="size-1" slot="end">°C</span>
+              </ftui-label>
+            </ftui-row>
+            <ftui-row width="80%">
               <ftui-label [text]="AgroWeather:fc1_chOfRainDay" color="blue"><span slot="end">%</span></ftui-label>
               <ftui-label [text]="AgroWeather:fc1_rain" color="blue"><span slot="end">mm</span></ftui-label>
-            </div>
-          </div>
-          <div class="column">
-            <ftui-label [text]="AgroWeather:fc2_date | toDate() | format('eeee')"></ftui-label>
-            <ftui-weather class="big" [condition]="AgroWeather:fc2_weatherDay"></ftui-weather>
-            <ftui-label [text]="AgroWeather:fc2_weatherDay"></ftui-label>
-            <div class="row w-80">
+            </ftui-row>
+          </ftui-column>
+          <ftui-column>
+            <ftui-row>
+              <ftui-label [text]="AgroWeather:fc2_date | toDate() | format('eeee')"></ftui-label>
+            </ftui-row>
+            <ftui-row>
+              <ftui-weather class="size-5" [condition]="AgroWeather:fc2_weatherDay"></ftui-weather>
+            </ftui-row>
+            <ftui-row>
+              <ftui-label [text]="AgroWeather:fc2_weatherDay"></ftui-label>
+            </ftui-row>
+            <ftui-row width="80%">
               <ftui-label [text]="AgroWeather:fc2_tempMin"><span slot="end">°C</span></ftui-label>
-              <ftui-label [text]="AgroWeather:fc2_tempMax" class="bigger thin"><span slot="end">°C</span></ftui-label>
-            </div>
-            <div class="row w-80">
+              <ftui-label [text]="AgroWeather:fc2_tempMax" class="size-7 thin"><span class="size-1" slot="end">°C</span>
+              </ftui-label>
+            </ftui-row>
+            <ftui-row width="80%">
               <ftui-label [text]="AgroWeather:fc2_chOfRainDay" color="blue"><span slot="end">%</span></ftui-label>
               <ftui-label [text]="AgroWeather:fc2_rain" color="blue"><span slot="end">mm</span></ftui-label>
-            </div>
-          </div>
-          <div class="column">
-            <ftui-label [text]="AgroWeather:fc3_date | toDate() | format('eeee')"></ftui-label>
-            <ftui-weather class="big" [condition]="AgroWeather:fc3_weatherDay"></ftui-weather>
-            <ftui-label [text]="AgroWeather:fc3_weatherDay"></ftui-label>
-            <div class="row w-80">
+            </ftui-row>
+          </ftui-column>
+          <ftui-column>
+            <ftui-row>
+              <ftui-label [text]="AgroWeather:fc3_date | toDate() | format('eeee')"></ftui-label>
+            </ftui-row>
+            <ftui-row>
+              <ftui-weather class="size-5" [condition]="AgroWeather:fc3_weatherDay"></ftui-weather>
+            </ftui-row>
+            <ftui-row>
+              <ftui-label [text]="AgroWeather:fc3_weatherDay"></ftui-label>
+            </ftui-row>
+            <ftui-row width="80%">
               <ftui-label [text]="AgroWeather:fc3_tempMin"><span slot="end">°C</span></ftui-label>
-              <ftui-label [text]="AgroWeather:fc3_tempMax" class="bigger thin"><span slot="end">°C</span></ftui-label>
-            </div>
-            <div class="row w-80">
+              <ftui-label [text]="AgroWeather:fc3_tempMax" class="size-7 thin"><span class="size-1" slot="end">°C</span>
+              </ftui-label>
+            </ftui-row>
+            <ftui-row width="80%">
               <ftui-label [text]="AgroWeather:fc3_chOfRainDay" color="blue"><span slot="end">%</span></ftui-label>
               <ftui-label [text]="AgroWeather:fc3_rain" color="blue"><span slot="end">mm</span></ftui-label>
-            </div>
-          </div>
-          <div class="column">
-            <ftui-label [text]="AgroWeather:fc4_date | toDate() | format('eeee')"></ftui-label>
-            <ftui-weather class="big" [condition]="AgroWeather:fc4_weatherDay"></ftui-weather>
-            <ftui-label [text]="AgroWeather:fc4_weatherDay"></ftui-label>
-            <div class="row w-80">
+            </ftui-row>
+          </ftui-column>
+          <ftui-column>
+            <ftui-row>
+              <ftui-label [text]="AgroWeather:fc4_date | toDate() | format('eeee')"></ftui-label>
+            </ftui-row>
+            <ftui-row>
+              <ftui-weather class="size-5" [condition]="AgroWeather:fc4_weatherDay"></ftui-weather>
+            </ftui-row>
+            <ftui-row>
+              <ftui-label [text]="AgroWeather:fc4_weatherDay"></ftui-label>
+            </ftui-row>
+            <ftui-row width="80%">
               <ftui-label [text]="AgroWeather:fc4_tempMin"><span slot="end">°C</span></ftui-label>
-              <ftui-label [text]="AgroWeather:fc4_tempMax" class="bigger thin"><span slot="end">°C</span></ftui-label>
-            </div>
-            <div class="row w-80">
+              <ftui-label [text]="AgroWeather:fc4_tempMax" class="size-7 thin"><span class="size-1" slot="end">°C</span>
+              </ftui-label>
+            </ftui-row>
+            <ftui-row width="80%">
               <ftui-label [text]="AgroWeather:fc4_chOfRainDay" color="blue"><span slot="end">%</span></ftui-label>
               <ftui-label [text]="AgroWeather:fc4_rain" color="blue"><span slot="end">mm</span></ftui-label>
-            </div>
-          </div>
-          <div class="column">
-            <ftui-label [text]="AgroWeather:fc5_date | toDate() | format('eeee')"></ftui-label>
-            <ftui-weather class="big" [condition]="AgroWeather:fc5_weatherDay"></ftui-weather>
-            <ftui-label [text]="AgroWeather:fc5_weatherDay"></ftui-label>
-            <div class="row w-80">
+            </ftui-row>
+          </ftui-column>
+          <ftui-column>
+            <ftui-row>
+              <ftui-label [text]="AgroWeather:fc5_date | toDate() | format('eeee')"></ftui-label>
+            </ftui-row>
+            <ftui-row>
+              <ftui-weather class="size-5" [condition]="AgroWeather:fc5_weatherDay"></ftui-weather>
+            </ftui-row>
+            <ftui-row>
+              <ftui-label [text]="AgroWeather:fc5_weatherDay"></ftui-label>
+            </ftui-row>
+            <ftui-row width="80%">
               <ftui-label [text]="AgroWeather:fc5_tempMin"><span slot="end">°C</span></ftui-label>
-              <ftui-label [text]="AgroWeather:fc5_tempMax" class="bigger thin"><span slot="end">°C</span></ftui-label>
-            </div>
-            <div class="row w-80">
+              <ftui-label [text]="AgroWeather:fc5_tempMax" class="size-7 thin"><span class="size-1" slot="end">°C</span>
+              </ftui-label>
+            </ftui-row>
+            <ftui-row width="80%">
               <ftui-label [text]="AgroWeather:fc5_chOfRainDay" color="blue"><span slot="end">%</span></ftui-label>
               <ftui-label [text]="AgroWeather:fc5_rain" color="blue"><span slot="end">mm</span></ftui-label>
-            </div>
-          </div>
-        </div>
+            </ftui-row>
+          </ftui-column>
+        </ftui-row>
       </ftui-grid-tile>
     </ftui-tab-view>
 
     <ftui-tab-view id="View2">
       <ftui-grid-tile row="1" col="2" height="5" width="19">
-        <div class="cell huge">Tab2</div>
+        <div class="size-10">Tab2</div>
       </ftui-grid-tile>
     </ftui-tab-view>
 
     <ftui-tab-view id="View3">
       <ftui-grid-tile row="1" col="2" height="5" width="9">
-        <div class="cell huge">Tab3</div>
+        <div class="size-10">Tab3</div>
       </ftui-grid-tile>
     </ftui-tab-view>
 
     <ftui-tab-view id="View4">
       <ftui-grid-tile row="1" col="2" height="5" width="9">
-        <div class="cell huge">Tab4</div>
+        <div class="size-10">Tab4</div>
       </ftui-grid-tile>
     </ftui-tab-view>
 
     <ftui-tab-view id="View5">
       <ftui-grid-tile row="1" col="2" height="5" width="9">
-        <div class="cell huge">Tab5</div>
+        <div class="size-10">Tab5</div>
       </ftui-grid-tile>
     </ftui-tab-view>
   </ftui-grid>

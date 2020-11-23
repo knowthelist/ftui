@@ -14,10 +14,7 @@ import { FtuiElement } from '../element.component.js';
 export class FtuiColumn extends FtuiElement {
 
   constructor() {
-    const properties = {
-      color: 'transparent'
-    };
-    super(properties);
+    super(FtuiColumn.properties);
   }
 
   template() {
@@ -26,7 +23,7 @@ export class FtuiColumn extends FtuiElement {
       :host {
         display: flex;
         flex-direction: column;
-        justify-content: space-evenly;
+        justify-content: space-around;
         align-items: center;
         height: 100%;
         width: 100%;
@@ -35,6 +32,29 @@ export class FtuiColumn extends FtuiElement {
       }
     </style>
     <slot></slot>`;
+  }
+
+  static get properties() {
+    return {
+      height: '',
+      width: '',
+      color: 'transparent',
+    };
+  }
+
+  static get observedAttributes() {
+    return [...this.convertToAttributes(FtuiColumn.properties), ...super.observedAttributes];
+  }
+
+  onAttributeChanged(name, oldValue, newValue) {
+    switch (name) {
+      case 'width':
+        this.style.width = newValue;
+        break;
+      case 'height':
+        this.style.height = newValue;
+        break;
+    }
   }
 
 }

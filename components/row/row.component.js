@@ -14,10 +14,7 @@ import { FtuiElement } from '../element.component.js';
 export class FtuiRow extends FtuiElement {
 
   constructor() {
-    const properties = {
-      color: 'transparent'
-    };
-    super(properties);
+    super(FtuiRow.properties);
   }
 
   template() {
@@ -36,6 +33,31 @@ export class FtuiRow extends FtuiElement {
     </style>
     <slot></slot>`;
   }
+
+
+  static get properties() {
+    return {
+      height: '',
+      width: '',
+      color: 'transparent',
+    };
+  }
+
+  static get observedAttributes() {
+    return [...this.convertToAttributes(FtuiRow.properties), ...super.observedAttributes];
+  }
+
+  onAttributeChanged(name, oldValue, newValue) {
+    switch (name) {
+      case 'width':
+        this.style.width = newValue;
+        break;
+      case 'height':
+        this.style.height = newValue;
+        break;
+    }
+  }
+
 }
 
 window.customElements.define('ftui-row', FtuiRow);
