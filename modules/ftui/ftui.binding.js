@@ -1,4 +1,3 @@
-
 import * as ftuiHelper from './ftui.helper.js';
 import { fhemService } from './fhem.service.js';
 import { parseHocon } from '../hocon/hocon.min.js';
@@ -6,7 +5,6 @@ import { parseHocon } from '../hocon/hocon.min.js';
 /* eslint-disable no-unused-vars */
 const part = value => input => ftuiHelper.getPart(input, value);
 const toDate = value => input => ftuiHelper.dateFromString(input, value);
-const ago = value => input => ftuiHelper.ago(input, value);
 const toBool = () => input => ftuiHelper.toBool(input);
 const toInt = () => input => parseInt(input, 10);
 const format = value => input => ftuiHelper.dateFormat(input, value);
@@ -16,6 +14,9 @@ const multiply = value => input => input * value;
 const replace = (find, replace) => input => String(input).replace(find, replace);
 const map = value => input => ftuiHelper.getMatchingValue(parseHocon(value, true), input);
 const scale = (minIn, maxIn, minOut, maxOut) => input => ftuiHelper.scale(input, minIn, maxIn, minOut, maxOut);
+const ago = () => input => ftuiHelper.dateAgo(input);
+const till = () => input => ftuiHelper.dateTill(input);
+const timeFormat = (format,inputMode='ms',formatMode='lower') => input => ftuiHelper.timeFormat(input, format, inputMode, formatMode);
 
 const pipe = (f1, ...fns) => (...args) => {
   return fns.reduce((res, fn) => fn(res), f1.apply(null, args));
@@ -101,7 +102,6 @@ export class FtuiBinding {
       const filteredValue = this.filter(attributeValue, options.filter);
       const value = String(options.value).replace(/\$value/g, filteredValue);
       const [parameterId, deviceName, readingName] = ftuiHelper.parseReadingId(readingId);
-      console.log(options.cmd + '#' + deviceName + '#' + readingName + '#' + value)
       const cmdLine = [options.cmd, deviceName, readingName, value].join(' ');
 
       // update storage

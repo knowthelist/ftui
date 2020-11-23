@@ -203,27 +203,6 @@ export function dateFormat(date, format, lang = 'de') {
   return ret;
 }
 
-export function ago(date, format) {
-  const ms = new Date() - date;
-  let x = ms / 1000;
-  const seconds = ~~(x % 60);
-  x /= 60;
-  const minutes = ~~(x % 60);
-  x /= 60;
-  const hours = ~~(x % 24);
-  x /= 24;
-  const days = ~~(x);
-  let ret = String(format);
-  ret = ret.replace('dd', days);
-  ret = ret.replace('hh', (hours > 9) ? hours : '0' + hours);
-  ret = ret.replace('mm', (minutes > 9) ? minutes : '0' + minutes);
-  ret = ret.replace('ss', (seconds > 9) ? seconds : '0' + seconds);
-  ret = ret.replace('h', hours);
-  ret = ret.replace('m', minutes);
-  ret = ret.replace('s', seconds);
-  return ret;
-}
-
 export function diffMinutes(date1, date2) {
   const diff = new Date(date2 - date1);
   return (diff / 1000 / 60).toFixed(0);
@@ -246,6 +225,64 @@ export function durationFromSeconds(time) {
   ret += '' + secs;
   return ret;
 }
+
+export function timeFormat(ms, format, inputMode='ms', formatMode='lower') {
+  // inputMode: 'ms' or 's'
+  let x = ms
+  if (inputMode === 'ms') { x /= 1000; }
+
+  const totalSeconds = ~~(x);
+  const seconds = ~~(x % 60);
+  x /= 60;
+  const totalMinutes = ~~(x);
+  const minutes = ~~(x % 60);
+  x /= 60;
+  const totalHours = ~~(x);
+  const hours = ~~(x % 24);
+  x /= 24;
+  const totalDays = ~~(x);
+
+  // formatMode: 'lower' or 'upper'
+  let ret = String(format);
+  if (formatMode === 'lower') {
+    ret = ret.replace(/(^|[^a-z])(ssssssss)([^a-z]|$)/g, "$1%SSSSSSSS$3");
+    ret = ret.replace(/(^|[^a-z])(mmmmmm)([^a-z]|$)/g, "$1%MMMMMM$3");
+    ret = ret.replace(/(^|[^a-z])(hhhh)([^a-z]|$)/g, "$1%HHHH$3");
+    ret = ret.replace(/(^|[^a-z])(dd)([^a-z]|$)/g, "$1%DD$3");
+    ret = ret.replace(/(^|[^a-z])(hh)([^a-z]|$)/g, "$1%HH$3");
+    ret = ret.replace(/(^|[^a-z])(mm)([^a-z]|$)/g, "$1%MM$3");
+    ret = ret.replace(/(^|[^a-z])(ss)([^a-z]|$)/g, "$1%SS$3");
+    ret = ret.replace(/(^|[^a-z])(h)([^a-z]|$)/g, "$1%H$3");
+    ret = ret.replace(/(^|[^a-z])(m)([^a-z]|$)/g, "$1%M$3");
+    ret = ret.replace(/(^|[^a-z])(s)([^a-z]|$)/g, "$1%S$3");
+  }
+  ret = ret.replace(/%SSSSSSSS/g, totalSeconds);
+  ret = ret.replace(/%MMMMMM/g, totalMinutes);
+  ret = ret.replace(/%HHHH/g, totalHours);
+  ret = ret.replace(/%DD/g, totalDays);
+  ret = ret.replace(/%HH/g, (hours > 9) ? hours : '0' + hours);
+  ret = ret.replace(/%MM/g, (minutes > 9) ? minutes : '0' + minutes);
+  ret = ret.replace(/%SS/g, (seconds > 9) ? seconds : '0' + seconds);
+  ret = ret.replace(/%H/g, hours);
+  ret = ret.replace(/%M/g, minutes);
+  ret = ret.replace(/%S/g, seconds);
+
+  return ret;
+}
+
+export function dateAgo (date) {
+  const now = new Date();
+  const ms = (now - date);
+
+  return ms;
+};
+
+export function dateTill (date) {
+  const now = new Date();
+  const ms = (date - now);
+
+  return ms;
+};
 
 // Math functions
 
