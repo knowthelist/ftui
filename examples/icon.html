@@ -65,17 +65,21 @@
                  bind:color="ftuitest | map('0: success, 50: warning, 80: danger')">
       </ftui-icon>
 
+      <ftui-icon name="exclamation-triangle"
+            [hidden]="ftuitest | map('on:false, off:true')">
+      </ftui-icon>
     </ftui-grid-tile>
 
     <ftui-grid-tile row="1" col="7" height="2" width="3">
-      <header>BIG</header>
+      <header>SIZE</header>
 
-      <ftui-column class="big">
+      <ftui-column class="size-3">
         <ftui-icon name="battery-0" color="light"
                    [name]="ftuitest | map('`.*`:battery-0, 25: battery-1, 50:battery-2, 75: battery-3, 100: battery')"
                    [color]="ftuitest | map('0:danger, 50:warning, 75: success')">
         </ftui-icon>
         <ftui-label [text]="ftuitest"></ftui-label>
+
       </ftui-column>
 
     </ftui-grid-tile>
@@ -96,7 +100,7 @@
 
           <ftui-label [text]="dummy1 | map('on: offen, off: geschlossen')"></ftui-label>
 
-          <ftui-icon class="big" [name]="dummy1 | map('on: window-open, off: window-closed')"
+          <ftui-icon class="size-6" [name]="dummy1 | map('on: window-open, off: window-closed')"
                      [color]="dummy1 | map('on: danger, off: medium')">
           </ftui-icon>
 

@@ -104,7 +104,7 @@ export class FtuiSlider extends FtuiElement {
 
   onSliderChanged(value) {
     if (this.value !== null && this.value !== value) {
-      if (this.isDragging ) {
+      if (this.isDragging) {
         this.value = value;
       }
     }
