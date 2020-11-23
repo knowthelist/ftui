@@ -184,7 +184,7 @@ export function dateFormat(date, format, lang = 'de') {
   const eeee = (lang === 'de') ? weekday_de[d] : weekday[d];
   const eee = eeee.substr(0, 3);
   const ee = eeee.substr(0, 2);
-  let ret = format;
+  let ret = String(format);
   ret = ret.replace('DD', (dd > 9) ? dd : '0' + dd);
   ret = ret.replace('D', dd);
   ret = ret.replace('MM', (MM > 9) ? MM : '0' + MM);
@@ -200,7 +200,6 @@ export function dateFormat(date, format, lang = 'de') {
   ret = ret.replace('eeee', eeee);
   ret = ret.replace('eee', eee);
   ret = ret.replace('ee', ee);
-
   return ret;
 }
 
@@ -215,8 +214,8 @@ export function diffSeconds(date1, date2) {
 }
 
 export function durationFromSeconds(time) {
-  const hrs = Math.floor(time / 3600);
-  const mins = Math.floor((time % 3600) / 60);
+  const hrs = ~~(time / 3600);
+  const mins = ~~((time % 3600) / 60);
   const secs = time % 60;
   let ret = '';
   if (hrs > 0) {
@@ -227,22 +226,25 @@ export function durationFromSeconds(time) {
   return ret;
 }
 
-export function agoTillFormat(ms, format, mode='lower') {
-  var x = ms / 1000;
+export function timeFormat(ms, format, imode='ms', fmode='lower') {
+  // imode: 'ms' or 's'
+  let x = ms
+  if (imode == 'ms') { x /= 1000; }
 
-  var SECONDS = Math.floor(x);
-  var seconds = Math.floor(x % 60);
+  const SECONDS = ~~(x);
+  const seconds = ~~(x % 60);
   x /= 60;
-  var MINUTES = Math.floor(x);
-  var minutes = Math.floor(x % 60);
+  const MINUTES = ~~(x);
+  const minutes = ~~(x % 60);
   x /= 60;
-  var HOURS = Math.floor(x);
-  var hours = Math.floor(x % 24);
+  const HOURS = ~~(x);
+  const hours = ~~(x % 24);
   x /= 24;
-  var DAYS = Math.floor(x);
+  const DAYS = ~~(x);
 
-  let ret = format;
-  if (mode == 'lower') {
+  // fmode: 'lower' or 'upper'
+  let ret = String(format);
+  if (fmode == 'lower') {
     ret = ret.replace(/(^|[^a-z])(ssssssss)([^a-z]|$)/g, "$1%SSSSSSSS$3");
     ret = ret.replace(/(^|[^a-z])(mmmmmm)([^a-z]|$)/g, "$1%MMMMMM$3");
     ret = ret.replace(/(^|[^a-z])(hhhh)([^a-z]|$)/g, "$1%HHHH$3");
@@ -269,18 +271,20 @@ export function agoTillFormat(ms, format, mode='lower') {
 }
 
 export function dateAgo (date) {
-  var now = new Date();
-  var ms = (now - date);
+  const now = new Date();
+  const ms = (now - date);
 
   return ms;
 };
 
 export function dateTill (date) {
-  var now = new Date();
-  var ms = (date - now);
+  const now = new Date();
+  const ms = (date - now);
 
   return ms;
 };
+
+// Math functions
 
 export function round(number, precision) {
   const shift = (number, precision, reverseShift) => {
@@ -291,6 +295,12 @@ export function round(number, precision) {
     return +(numArray[0] + 'e' + (numArray[1] ? (+numArray[1] + precision) : precision));
   };
   return shift(Math.round(shift(number, precision, false)), precision, true);
+}
+
+export function scale(value, minIn, maxIn, minOut, maxOut) {
+  const slope = (minOut - maxOut) / (minIn - maxIn);
+  const intercept = slope * -(minIn) + minOut;
+  return value * slope + intercept;
 }
 
 export function debounce(callback, context = this) {
