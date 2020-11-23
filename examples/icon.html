@@ -38,7 +38,7 @@
 
       </ftui-column>
     </ftui-grid-tile>
-    <ftui-grid-tile row="4" col="1" height="8" width="3">
+    <ftui-grid-tile row="4" col="1" height="4" width="3">
       <header>SINGLE</header>
 
       <ftui-column>
@@ -51,7 +51,7 @@
 
     </ftui-grid-tile>
 
-    <ftui-grid-tile row="1" col="4" height="10" width="3">
+    <ftui-grid-tile row="1" col="4" height="6" width="3">
       <header>MULTIPLE</header>
 
       <ftui-label [text]="dummy1"></ftui-label>
@@ -65,22 +65,26 @@
                  bind:color="ftuitest | map('0: success, 50: warning, 80: danger')">
       </ftui-icon>
 
+      <ftui-icon name="exclamation-triangle"
+                 [hidden]="ftuitest | map('on:false, off:true')">
+      </ftui-icon>
     </ftui-grid-tile>
 
     <ftui-grid-tile row="1" col="7" height="2" width="3">
-      <header>BIG</header>
+      <header>SIZE</header>
 
-      <ftui-column class="big">
+      <ftui-column class="size-3">
         <ftui-icon name="battery-0" color="light"
                    [name]="ftuitest | map('`.*`:battery-0, 25: battery-1, 50:battery-2, 75: battery-3, 100: battery')"
                    [color]="ftuitest | map('0:danger, 50:warning, 75: success')">
         </ftui-icon>
         <ftui-label [text]="ftuitest"></ftui-label>
+
       </ftui-column>
 
     </ftui-grid-tile>
 
-    <ftui-grid-tile row="3" col="7" height="8" width="3">
+    <ftui-grid-tile row="3" col="7" height="4" width="3">
       <header>WINDOW</header>
 
       <ftui-row>
@@ -88,7 +92,7 @@
 
           <ftui-label [text]="dummy1"></ftui-label>
 
-          <ftui-icon class="big" [name]="dummy1 | map('on: window-open, off: window-closed')">
+          <ftui-icon class="size-5" [name]="dummy1 | map('on: window-open, off: window-closed')">
           </ftui-icon>
 
         </ftui-column>
@@ -96,7 +100,7 @@
 
           <ftui-label [text]="dummy1 | map('on: offen, off: geschlossen')"></ftui-label>
 
-          <ftui-icon class="big" [name]="dummy1 | map('on: window-open, off: window-closed')"
+          <ftui-icon class="size-5" [name]="dummy1 | map('on: window-open, off: window-closed')"
                      [color]="dummy1 | map('on: danger, off: medium')">
           </ftui-icon>
 
@@ -104,6 +108,13 @@
       </ftui-row>
 
     </ftui-grid-tile>
+
+    <ftui-grid-tile row="3" col="7" height="4" width="3">
+      <header>OA ICONS</header>
+      <ftui-icon class="size-5" path="../images/openautomation" name="audio_audio" color="green"></ftui-icon>
+      <ftui-icon class="size-5" path="../images/openautomation" name="it_wifi" color="red"></ftui-icon>
+    </ftui-grid-tile>
+
 
     <ftui-grid-tile row="1" col="10" height="2" width="4">
       <header>COLOR</header>
