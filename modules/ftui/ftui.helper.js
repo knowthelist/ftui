@@ -226,25 +226,25 @@ export function durationFromSeconds(time) {
   return ret;
 }
 
-export function timeFormat(ms, format, imode='ms', fmode='lower') {
+export function timeFormat(ms, format, inputMode='ms', formatMode='lower') {
   // imode: 'ms' or 's'
   let x = ms
-  if (imode == 'ms') { x /= 1000; }
+  if (inputMode === 'ms') { x /= 1000; }
 
-  const SECONDS = ~~(x);
+  const totalSeconds = ~~(x);
   const seconds = ~~(x % 60);
   x /= 60;
-  const MINUTES = ~~(x);
+  const totalMinutes = ~~(x);
   const minutes = ~~(x % 60);
   x /= 60;
-  const HOURS = ~~(x);
+  const totalHours = ~~(x);
   const hours = ~~(x % 24);
   x /= 24;
-  const DAYS = ~~(x);
+  const totalDays = ~~(x);
 
   // fmode: 'lower' or 'upper'
   let ret = String(format);
-  if (fmode == 'lower') {
+  if (formatMode === 'lower') {
     ret = ret.replace(/(^|[^a-z])(ssssssss)([^a-z]|$)/g, "$1%SSSSSSSS$3");
     ret = ret.replace(/(^|[^a-z])(mmmmmm)([^a-z]|$)/g, "$1%MMMMMM$3");
     ret = ret.replace(/(^|[^a-z])(hhhh)([^a-z]|$)/g, "$1%HHHH$3");
@@ -256,10 +256,10 @@ export function timeFormat(ms, format, imode='ms', fmode='lower') {
     ret = ret.replace(/(^|[^a-z])(m)([^a-z]|$)/g, "$1%M$3");
     ret = ret.replace(/(^|[^a-z])(s)([^a-z]|$)/g, "$1%S$3");
   }
-  ret = ret.replace(/%SSSSSSSS/g, SECONDS);
-  ret = ret.replace(/%MMMMMM/g, MINUTES);
-  ret = ret.replace(/%HHHH/g, HOURS);
-  ret = ret.replace(/%DD/g, DAYS);
+  ret = ret.replace(/%SSSSSSSS/g, totalSeconds);
+  ret = ret.replace(/%MMMMMM/g, totalMinutes);
+  ret = ret.replace(/%HHHH/g, totalHours);
+  ret = ret.replace(/%DD/g, totalDays);
   ret = ret.replace(/%HH/g, (hours > 9) ? hours : '0' + hours);
   ret = ret.replace(/%MM/g, (minutes > 9) ? minutes : '0' + minutes);
   ret = ret.replace(/%SS/g, (seconds > 9) ? seconds : '0' + seconds);
