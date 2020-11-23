@@ -1,7 +1,26 @@
-import { parseHocon } from '../hocon/hocon.min.js';
 import * as ftuiHelper from './ftui.helper.js';
 import { fhemService } from './fhem.service.js';
+import { parseHocon } from '../hocon/hocon.min.js';
 
+/* eslint-disable no-unused-vars */
+const part = value => input => ftuiHelper.getPart(input, value);
+const toDate = value => input => ftuiHelper.dateFromString(input, value);
+const toBool = () => input => ftuiHelper.toBool(input);
+const toInt = () => input => parseInt(input, 10);
+const format = value => input => ftuiHelper.dateFormat(input, value);
+const round = value => input => ftuiHelper.round(input, value);
+const add = value => input => input + value;
+const multiply = value => input => input * value;
+const replace = (find, replace) => input => String(input).replace(find, replace);
+const map = value => input => ftuiHelper.getMatchingValue(parseHocon(value, true), input);
+const scale = (minIn, maxIn, minOut, maxOut) => input => ftuiHelper.scale(input, minIn, maxIn, minOut, maxOut);
+const ago = () => input => ftuiHelper.dateAgo(input);
+const till = () => input => ftuiHelper.dateTill(input);
+const timeFormat = (format,imode='ms',fmode='lower') => input => ftuiHelper.timeFormat(input, format, imode, fmode);
+
+const pipe = (f1, ...fns) => (...args) => {
+  return fns.reduce((res, fn) => fn(res), f1.apply(null, args));
+};
 
 export class FtuiBinding {
 
@@ -230,25 +249,6 @@ export class FtuiBinding {
 
   filter(text, filter = '') {
     if (filter !== '') {
-      /* eslint-disable no-unused-vars */
-      const part = value => input => ftuiHelper.getPart(input, value);
-      const toDate = value => input => ftuiHelper.dateFromString(input, value);
-      const toBool = () => input => ftuiHelper.toBool(input);
-      const toInt = () => input => parseInt(input, 10);
-      const format = value => input => ftuiHelper.dateFormat(input, value);
-      const round = value => input => ftuiHelper.round(input, value);
-      const add = value => input => input + value;
-      const multiply = value => input => input * value;
-      const replace = (find, replace) => input => String(input).replace(find, replace);
-      const map = value => input => ftuiHelper.getMatchingValue(parseHocon(value, true), input);
-      const scale = (minIn, maxIn, minOut, maxOut) => input => ftuiHelper.scale(input, minIn, maxIn, minOut, maxOut);
-      const ago = () => input => ftuiHelper.dateAgo(input);
-      const till = () => input => ftuiHelper.dateTill(input);
-      const timeFormat = (format,imode='ms',fmode='lower') => input => ftuiHelper.timeFormat(input, format, imode, fmode);
-
-      const pipe = (f1, ...fns) => (...args) => {
-        return fns.reduce((res, fn) => fn(res), f1.apply(null, args));
-      };
       try {
         const pipeNotInQuotes = /\|(?=([^']*'[^']*')*[^']*$)/g;
         filter = filter.replace(pipeNotInQuotes, ',').replace(/`/g, '"').replace(/´/g, '"');
