@@ -17,23 +17,23 @@
 }
  
 .outline {
-  stroke: var(--outline-color, var(--dark-color));
+  stroke: var(--knob-outline-color, var(--dark-color));
 }
 
 .fill {
-  stroke: var(--fill-color, var(--color-base));
+  stroke: var(--knob-fill-color, var(--color-base));
 }
  
 .needle {
-  fill: var(--needle-color, var(--color-base));
+  fill: var(--knob-needle-color, var(--color-base));
 }
  
 .handle {
-  fill: var(--handle-color, var(--color-base));
+  fill: var(--knob-handle-color, var(--color-base));
 }
 
 .scale {
-  stroke: var(--text-color);
+  stroke: var(--knob-text-color, var(--text-color));
 }
 
 .value {
