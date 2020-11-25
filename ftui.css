@@ -626,6 +626,8 @@ faded {
 
 .has-error {
   border: dashed 2px red;
+  min-height: 1em;
+  min-width: 1em;
 }
 
 /* aniamtions */
@@ -915,6 +917,7 @@ faded {
 /* components specials */
 
 /* icon badge */
+ftui-circlemenu ~ ftui-badge,
 ftui-icon ~ ftui-badge {
   position: absolute;
   margin: -1.5em -1.5em 1em 1em;
@@ -922,4 +925,5 @@ ftui-icon ~ ftui-badge {
   min-height: 1em;
   --padding-top: 0.15em;
   --padding-bottom: 0.15em;
+  z-index: 1;
 }
