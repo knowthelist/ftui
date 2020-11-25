@@ -38,6 +38,7 @@ export class FtuiColumn extends FtuiElement {
     return {
       height: '',
       width: '',
+      space: 'around',
       color: 'transparent',
     };
   }
@@ -53,6 +54,9 @@ export class FtuiColumn extends FtuiElement {
         break;
       case 'height':
         this.style.height = newValue;
+        break;
+      case 'space':
+        this.style.justifyContent = 'space-' + newValue;
         break;
     }
   }
