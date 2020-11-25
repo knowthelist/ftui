@@ -28,7 +28,8 @@
 }
 
 :host([text^="0"]),
-:host(:empty:not([text]:not([text=""]))) {
+:host(:empty:not([text])),
+:host([text=""]) {
   display: none
 }
 
