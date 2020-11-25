@@ -37,7 +37,7 @@ class FtuiKnob extends FtuiElement {
     // ~~(..) is a faster Math.floor
     this.centerX = ~~(this.W / 2);
     this.centerY = ~~(this.H / 2) + this.offsetY;
-    this.radius = ~~(this.centerX / (this.hasScaleText ? 1.5 : 1.1));
+    this.radius = ~~(this.centerX / (this.hasScaleText ? 1.5 : 1.1)) - this.strokeWidth * 0.45;
 
     this.isDragging = false;
 
