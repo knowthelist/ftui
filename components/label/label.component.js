@@ -23,13 +23,14 @@ export class FtuiLabel extends FtuiElement {
       <slot name="start"></slot>
       <slot></slot>
       <slot name="content"></slot>
-      <slot name="end"></slot>`;
+      <slot name="end">${this.unit}</slot>`;
   }
 
   static get properties() {
     return {
       text: '',
-      color: ''
+      color: '',
+      unit: ''
     };
   }
 
@@ -38,6 +39,7 @@ export class FtuiLabel extends FtuiElement {
   }
 
   onAttributeChanged(name) {
+    console.log(name,this.text )
     switch (name) {
       case 'text':
         this.mainSlotElement.innerText = this.text;
