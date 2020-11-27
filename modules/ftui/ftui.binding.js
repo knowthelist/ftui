@@ -9,6 +9,7 @@ const toBool = () => input => ftuiHelper.toBool(input);
 const toInt = () => input => parseInt(input, 10);
 const format = value => input => ftuiHelper.dateFormat(input, value);
 const round = value => input => ftuiHelper.round(input, value);
+const fix = value => input => Number(input).toFixed(value);
 const add = value => input => input + value;
 const multiply = value => input => input * value;
 const replace = (find, replace) => input => String(input).replace(find, replace);

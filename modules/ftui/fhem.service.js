@@ -349,12 +349,16 @@ class FhemService {
       fwcsrf: this.config.csrf,
       XHR: '1'
     };
-    url.search = new URLSearchParams(params)
-    ftui.log(1, 'send to FHEM: ' + cmdline);
-    return fetch(url, {
+    const options = {
       username: this.config.username,
       password: this.config.password
-    });
+    };
+    if (cmdline.startsWith('jsonlist')) {
+      options['headers'] = { 'Content-Type': 'application/json' };
+    }
+    url.search = new URLSearchParams(params)
+    ftui.log(1, 'send to FHEM: ' + cmdline);
+    return fetch(url, options);
   }
 
   onUpdateDone() {
