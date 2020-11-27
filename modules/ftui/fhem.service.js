@@ -146,7 +146,7 @@ class FhemService {
     this.states.refresh.request =
       this.sendCommand('jsonlist2 ' + this.config.refresh.filter)
         .then(res => res.json())
-        .catch(error => this.errorEvents.publish('<u>FHEM Command failed</u><br>' + error))
+        .catch(error => this.debugEvents.publish('<u>FHEM Command failed</u><br>' + error))
         .then(fhemJSON => this.parseRefreshResult(fhemJSON)
         );
   }
@@ -186,7 +186,7 @@ class FhemService {
       const err = 'request failed: Result is null';
       ftui.log(1, 'refresh: ' + err);
       this.states.refresh.result = err;
-      this.errorEvents.publish('<u>Refresh ' + err + ' </u><br>');
+      this.debugEvents.publish('<u>Refresh ' + err + ' </u><br>');
 
     }
     window.performance.mark('end read jsonlist2');
