@@ -1,6 +1,7 @@
-
 /* "primary", "secondary", "success", "warning", "danger", "light", "medium", "dark" */
+
 /* "primary", "secondary", "ok",                 "error",  "white", "medium", "dark" */
+
 /*                         "green",   "yellow",  "red",    "light", "medium", "dark" */
 
 [color="primary"] {
@@ -14,14 +15,12 @@
   --color-contrast: var(--secondary-contrast-color);
 }
 
-[color="light"],
-[color="white"] {
+[color="light"], [color="white"] {
   --color-base: var(--light-color);
   --color-contrast: var(--light-contrast-color);
 }
 
-[color="medium"],
-[color="gray"] {
+[color="medium"], [color="gray"] {
   --color-base: var(--medium-color);
   --color-contrast: var(--medium-contrast-color);
 }
@@ -31,22 +30,17 @@
   --color-contrast: var(--dark-contrast-color);
 }
 
-[color="ok"],
-[color="success"],
-[color="green"] {
+[color="ok"], [color="success"], [color="green"] {
   --color-base: var(--success-color);
   --color-contrast: var(--success-contrast-color);
 }
 
-[color="warning"],
-[color="yellow"] {
+[color="warning"], [color="yellow"] {
   --color-base: var(--warning-color);
   --color-contrast: var(--warning-contrast-color);
 }
 
-[color="danger"],
-[color="error"],
-[color="red"] {
+[color="danger"], [color="error"], [color="red"] {
   --color-base: var(--danger-color);
   --color-contrast: var(--danger-contrast-color);
 }
@@ -73,4 +67,10 @@
 
 [color="transparent"] {
   --color-base: transparent;
+}
+
+[color="translucent"] {
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+  background-color: rgba(255, 255, 255, 0.2);
 }
