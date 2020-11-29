@@ -43,3 +43,7 @@ svg[viewBox="0 0 448 512"] {
 :host([invert][color]) svg {
   fill: var(--color-contrast);
 }
+
+:host([popup-target]) {
+  cursor: pointer;
+}

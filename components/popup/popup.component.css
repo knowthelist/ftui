@@ -1,0 +1,50 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  display: none;
+  overflow: auto;
+  background-color:var(--popup-overlay-color, rgba(0, 0, 0, 0.5));
+  z-index: 99;
+}
+
+.window {
+  position: relative;
+  background-color: var(--popup-background-color, #777777);
+  color: var(--popup-color, #000000);
+  width: 50%;
+  margin: 10% auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.close {
+  position: absolute;
+  top: -0.25em;
+  right: 0.25em;
+  color: var(--popup-header-color);
+  font-size: 2em;
+}
+
+.close:hover,
+.close:focus {
+  color: #000000;
+  cursor: pointer;
+}
+
+.open {
+  display: block;
+}
+
+::slotted(header) {
+  color: var(--popup-header-color);
+  background: var(--popup-header-background-color);
+  font-weight: bold;
+  padding: 0.25em;
+  width: 100%;
+  text-align: center;
+}

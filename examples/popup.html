@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!--
+    /* FHEM tablet ui - FTUI */
+    /**
+    * UI builder framework for FHEM
+    *
+    * Version: 3.0.0
+    *
+    * Copyright (c) 2020 Mario Stephan <mstephan@shared-files.de>
+    * Under MIT License (http://www.opensource.org/licenses/mit-license.php)
+    * https://github.com/knowthelist/ftui
+    */
+    -->
+  <base href="../" />
+  <script src="ftui.js"></script>
+  <link href="ftui.css" rel="stylesheet">
+  <link href="themes/ftui-theme.css" rel="stylesheet">
+  <link href="favicon.ico" rel="icon" type="image/x-icon" />
+
+  <title>FTUI Example Popup</title>
+</head>
+
+<body>
+
+  <ftui-grid base-width="150" base-height="150">
+
+    <ftui-grid-tile row="1" col="1" height="1" width="1">
+      <header>POPUP1</header>
+
+      <ftui-icon name="sitemap" popup-target="pop1"></ftui-icon>
+
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="1" col="2" height="1" width="1">
+      <header>NONE</header>
+
+      <ftui-button shape="circle">
+        <ftui-icon name="road"></ftui-icon>
+      </ftui-button>
+
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="1" col="3" height="1" width="1">
+      <header>POPUP2</header>
+
+      <ftui-icon name="road" popup-target="pop2"></ftui-icon>
+
+    </ftui-grid-tile>
+
+  </ftui-grid>
+
+  <ftui-popup id="pop1">pop1</ftui-popup>
+
+  <ftui-popup id="pop2">
+    <header>Popup 2</header>
+    <ftui-row>
+      <ftui-column>
+        <ftui-cell>
+          <ftui-icon name="umbrella"></ftui-icon>
+          <ftui-label>Monday</ftui-label>
+        </ftui-cell>
+      </ftui-column>
+      <ftui-column>
+        <ftui-cell>
+          <ftui-icon name="bolt1"></ftui-icon>
+          <ftui-label>Tuesday</ftui-label>
+        </ftui-cell>
+      </ftui-column>
+      <ftui-column>
+        <ftui-cell>
+          <ftui-icon name="moon"></ftui-icon>
+          <ftui-label>Wednesday</ftui-label>
+        </ftui-cell>
+      </ftui-column>            
+    </ftui-row>
+    <ftui-row>
+      <ftui-column>
+        <ftui-cell>
+          <ftui-icon name="snowy"></ftui-icon>
+          <ftui-label>Thursday</ftui-label>
+        </ftui-cell>
+      </ftui-column>
+      <ftui-column>
+        <ftui-cell>
+          <ftui-icon name="cloud11"></ftui-icon>
+          <ftui-label>Friday</ftui-label>
+        </ftui-cell>
+      </ftui-column>
+      <ftui-column>
+        <ftui-cell>
+          <ftui-icon name="sun"></ftui-icon>
+          <ftui-label>Saturday</ftui-label>
+        </ftui-cell>
+      </ftui-column>            
+    </ftui-row>    
+  </ftui-popup>
+
+</body>
+
+</html>

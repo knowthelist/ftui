@@ -9,58 +9,23 @@
 * https://github.com/knowthelist/ftui
 */
 
-import { FtuiElement } from '../element.component.js';
+import { FtuiCell } from '../cell/cell.component.js';
 
-export class FtuiColumn extends FtuiElement {
+export class FtuiColumn extends FtuiCell {
 
   constructor() {
-    super(FtuiColumn.properties);
+    super();
   }
 
   template() {
-    return `
-    <style>
-      :host {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        align-items: center;
-        height: 100%;
-        width: 100%;
-        background: var(--color-base);
-        color: var(--color-contrast);
-      }
-    </style>
-    <slot></slot>`;
+    return super.template() +
+      `<style>
+        :host {
+          height: 100%;
+          width: 100%;
+        }
+      </style>`;
   }
-
-  static get properties() {
-    return {
-      height: '',
-      width: '',
-      space: 'around',
-      color: 'transparent',
-    };
-  }
-
-  static get observedAttributes() {
-    return [...this.convertToAttributes(FtuiColumn.properties), ...super.observedAttributes];
-  }
-
-  onAttributeChanged(name, oldValue, newValue) {
-    switch (name) {
-      case 'width':
-        this.style.width = newValue;
-        break;
-      case 'height':
-        this.style.height = newValue;
-        break;
-      case 'space':
-        this.style.justifyContent = 'space-' + newValue;
-        break;
-    }
-  }
-
 }
 
 window.customElements.define('ftui-column', FtuiColumn);

@@ -13,6 +13,9 @@
   --gray40: #666666;
   --gray55: #8c8c8c;
   --gray75: #bfbfbf;
+  --gray85: #d8d8d8;
+  --gray90: #e5e5e5;
+  --gray95: #f2f2f2;
   --gray-trans: rgba(40, 40, 40, 0.5);
   --lightgray: #777777;
   --orange: #aa6900;
@@ -77,6 +80,12 @@
   --tab-color: var(--gray40);
   --tab-contrast-color: var(--gray20);
   --tab-active-color: var(--primary-color);
+
+  --popup-color: var(--text-color);
+  --popup-background-color: var(--grid-background-color);
+  --popup-overlay-color: rgba(0, 0, 0, 0.5);
+  --popup-header-color: var(--grid-header-color);
+  --popup-header-background-color: var(--grid-header-background-color);
 
   --chart-text-color: var(--gray55);
 
