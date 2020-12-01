@@ -328,7 +328,7 @@ Examples
 - [Badge](https://knowthelist.github.io/ftui/examples/badge.html)
 - [Speak](https://knowthelist.github.io/ftui/examples/speak.html)
 - [Chart](https://knowthelist.github.io/ftui/examples/chart.html)
-
+- [Popup](https://knowthelist.github.io/ftui/examples/popup.html)
 
 Donation
 --------

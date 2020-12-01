@@ -20,6 +20,7 @@
   <link href="themes/ftui-theme.css" rel="stylesheet">
   <link href="favicon.ico" rel="icon" type="image/x-icon" />
 
+<!--   <meta name="debug" content="2"> -->
   <title>FTUI Example Popup</title>
 </head>
 
@@ -35,10 +36,19 @@
     </ftui-grid-tile>
 
     <ftui-grid-tile row="1" col="2" height="1" width="1">
-      <header>NONE</header>
+      <header>OPEN</header>
 
-      <ftui-button shape="circle">
-        <ftui-icon name="road"></ftui-icon>
+      <ftui-button [(value)]="dummy2" shape="circle" states="on,off">
+        <ftui-icon name="camera1"></ftui-icon>
+      </ftui-button>
+
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="2" col="2" height="1" width="1">
+      <header>TRIGGER</header>
+
+      <ftui-button (value)="dummy3" shape="circle" states="update">
+        <ftui-icon name="tint"></ftui-icon>
       </ftui-button>
 
     </ftui-grid-tile>
@@ -52,9 +62,12 @@
 
   </ftui-grid>
 
-  <ftui-popup id="pop1">pop1</ftui-popup>
+  <ftui-popup id="pop1" timeout="0">
+    <header>Popup 2</header>
+    <ftui-button popup-close>close</ftui-button>
+  </ftui-popup>
 
-  <ftui-popup id="pop2">
+  <ftui-popup id="pop2" [trigger]="dummy3:state:time" [open]="dummy2 | map('on: true, off: false')">
     <header>Popup 2</header>
     <ftui-row>
       <ftui-column>
