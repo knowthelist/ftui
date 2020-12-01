@@ -897,6 +897,17 @@ faded {
   }
 }
 
+@keyframes blink {
+  50% {
+    opacity: 0.0;
+  }
+}
+@-webkit-keyframes blink {
+  50% {
+    opacity: 0.0;
+  }
+}
+
 .drop-hover {
   border: 3px dotted #3a7999;
   color: #3a7999;
