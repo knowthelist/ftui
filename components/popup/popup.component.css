@@ -8,12 +8,11 @@
 }
 
 .overlay {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   bottom: 0;
   right: 0;
-  display: none;
   overflow: auto;
   background-color:var(--popup-overlay-color, rgba(0, 0, 0, 0.5));
   z-index: 99;
@@ -45,10 +44,6 @@
 .close:focus {
   color: #000000;
   cursor: pointer;
-}
-
-.open {
-  display: block;
 }
 
 ::slotted(header) {

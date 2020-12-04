@@ -46,6 +46,7 @@ export class FtuiPopup extends FtuiElement {
       open: false,
       trigger: '',
       timeout: 10,
+      hidden: true,
     };
   }
 
@@ -78,7 +79,6 @@ export class FtuiPopup extends FtuiElement {
   }
 
   onAttributeChanged(name, oldValue, newValue) {
-    console.log(name, oldValue, newValue) ;
     switch (name) {
       case 'width':
       case 'height':
@@ -103,11 +103,11 @@ export class FtuiPopup extends FtuiElement {
 
   setState(value) {
     if (value) {
-      this.element.classList.add('open');
+      this.removeAttribute('hidden');
       ftui.triggerEvent('ftuiVisibilityChanged');
       this.startTimeout();
     } else {
-      this.element.classList.remove('open');
+      this.setAttribute('hidden', '');
     }
   }
 
