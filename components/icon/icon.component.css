@@ -10,7 +10,12 @@ svg {
 }
 
 svg g[fill] {
-  fill: currentColor;
+  fill: inherit;
+}
+
+/* pöse, pöse fhemSVG */
+svg path[style] {
+  fill: inherit !important;
 }
 
 img {
