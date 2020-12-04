@@ -17,7 +17,7 @@ export class FtuiImage extends FtuiElement {
 
     this.imageElement = this.shadowRoot.querySelector('img');
     this.updateImage();
-    document.addEventListener('ftuiVisiblityChanged', () => this.updateImage());
+    document.addEventListener('ftuiVisibilityChanged', () => this.updateImage());
   }
 
   template() {

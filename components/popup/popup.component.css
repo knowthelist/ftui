@@ -1,3 +1,12 @@
+:host([shape="round"]) .window {
+  border-radius: 1.5em;
+}
+
+:host([shape="round"]) ::slotted(header) {
+  border-top-right-radius: 1em;
+  border-top-left-radius: 1em;
+}
+
 .overlay {
   position: fixed;
   top: 0;
@@ -15,7 +24,9 @@
   background-color: var(--popup-background-color, #777777);
   color: var(--popup-color, #000000);
   width: 50%;
-  margin: 10% auto;
+  margin: auto;
+  top: 50%;
+  transform: translate(0, -50%);
   display: flex;
   justify-content: center;
   align-items: center;

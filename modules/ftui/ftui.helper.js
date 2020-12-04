@@ -245,16 +245,16 @@ export function timeFormat(ms, format, inputMode='ms', formatMode='lower') {
   // formatMode: 'lower' or 'upper'
   let ret = String(format);
   if (formatMode === 'lower') {
-    ret = ret.replace(/(^|[^a-z])(ssssssss)([^a-z]|$)/g, "$1%SSSSSSSS$3");
-    ret = ret.replace(/(^|[^a-z])(mmmmmm)([^a-z]|$)/g, "$1%MMMMMM$3");
-    ret = ret.replace(/(^|[^a-z])(hhhh)([^a-z]|$)/g, "$1%HHHH$3");
-    ret = ret.replace(/(^|[^a-z])(dd)([^a-z]|$)/g, "$1%DD$3");
-    ret = ret.replace(/(^|[^a-z])(hh)([^a-z]|$)/g, "$1%HH$3");
-    ret = ret.replace(/(^|[^a-z])(mm)([^a-z]|$)/g, "$1%MM$3");
-    ret = ret.replace(/(^|[^a-z])(ss)([^a-z]|$)/g, "$1%SS$3");
-    ret = ret.replace(/(^|[^a-z])(h)([^a-z]|$)/g, "$1%H$3");
-    ret = ret.replace(/(^|[^a-z])(m)([^a-z]|$)/g, "$1%M$3");
-    ret = ret.replace(/(^|[^a-z])(s)([^a-z]|$)/g, "$1%S$3");
+    ret = ret.replace(/(^|[^a-z])(ssssssss)([^a-z]|$)/g, '$1%SSSSSSSS$3');
+    ret = ret.replace(/(^|[^a-z])(mmmmmm)([^a-z]|$)/g, '$1%MMMMMM$3');
+    ret = ret.replace(/(^|[^a-z])(hhhh)([^a-z]|$)/g, '$1%HHHH$3');
+    ret = ret.replace(/(^|[^a-z])(dd)([^a-z]|$)/g, '$1%DD$3');
+    ret = ret.replace(/(^|[^a-z])(hh)([^a-z]|$)/g, '$1%HH$3');
+    ret = ret.replace(/(^|[^a-z])(mm)([^a-z]|$)/g, '$1%MM$3');
+    ret = ret.replace(/(^|[^a-z])(ss)([^a-z]|$)/g, '$1%SS$3');
+    ret = ret.replace(/(^|[^a-z])(h)([^a-z]|$)/g, '$1%H$3');
+    ret = ret.replace(/(^|[^a-z])(m)([^a-z]|$)/g, '$1%M$3');
+    ret = ret.replace(/(^|[^a-z])(s)([^a-z]|$)/g, '$1%S$3');
   }
   ret = ret.replace(/%SSSSSSSS/g, totalSeconds);
   ret = ret.replace(/%MMMMMM/g, totalMinutes);
@@ -275,14 +275,14 @@ export function dateAgo (date) {
   const ms = (now - date);
 
   return ms;
-};
+}
 
 export function dateTill (date) {
   const now = new Date();
   const ms = (date - now);
 
   return ms;
-};
+}
 
 // Math functions
 

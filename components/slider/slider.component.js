@@ -37,7 +37,7 @@ export class FtuiSlider extends FtuiElement {
 
 
     // force re-render if visible
-    document.addEventListener('ftuiVisiblityChanged', () => {
+    document.addEventListener('ftuiVisibilityChanged', () => {
       if (ftui.isVisible(this)) {
         this.rangeable.update();
       }

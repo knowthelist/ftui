@@ -23,7 +23,7 @@ export default {
       'Gewitter': './icons/weather/kleinklima/thunderstorm.svg',
       'Schneeschauer': './icons/weather/kleinklima/chance_of_snow.svg',
       'Schneefall': './icons/weather/kleinklima/heavysnow.svg',
-      'Schneeregen': './icons/weather/rainsnow.svg/',
+      'Schneeregen': './icons/weather/kleinklima/rainsnow.svg',
       'Nebel': './icons/weather/kleinklima/haze.svg',
       'Sprühregen': './icons/weather/kleinklima/mist.svg',
       'unterschiedlich bewölkt, vereinzelt Schauer und Gewitter': './icons/weather/kleinklima/scatteredthunderstorms.svg',

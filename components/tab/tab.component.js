@@ -70,7 +70,7 @@ class FtuiTab extends FtuiButton {
     this.active = true;
 
     // emit event
-    ftui.triggerEvent('ftuiVisiblityChanged');
+    ftui.triggerEvent('ftuiVisibilityChanged');
   }
 
   onAttributeChanged(name, oldValue, newValue) {

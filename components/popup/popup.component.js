@@ -8,6 +8,7 @@
 */
 
 import { FtuiElement } from '../element.component.js';
+import * as ftui from '../../modules/ftui/ftui.helper.js';
 
 export class FtuiPopup extends FtuiElement {
 
@@ -103,6 +104,7 @@ export class FtuiPopup extends FtuiElement {
   setState(value) {
     if (value) {
       this.element.classList.add('open');
+      ftui.triggerEvent('ftuiVisibilityChanged');
       this.startTimeout();
     } else {
       this.element.classList.remove('open');
