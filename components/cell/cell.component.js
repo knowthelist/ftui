@@ -10,7 +10,7 @@
 */
 
 import { FtuiElement } from '../element.component.js';
-import { isNumeric } from '../../modules/ftui/ftui.helper.js';
+import { isNumeric, capitalize } from '../../modules/ftui/ftui.helper.js';
 
 export class FtuiCell extends FtuiElement {
 
@@ -37,7 +37,7 @@ export class FtuiCell extends FtuiElement {
     return {
       height: '',
       width: '',
-      position: 'center',
+      alignItems: 'center',
       space: 'evenly',
       color: 'transparent',
       margin: '0',
@@ -60,18 +60,15 @@ export class FtuiCell extends FtuiElement {
         this.style.justifyContent = ('space-' + value);
         break;
       case 'margin': {
-        switch (this.position) {
-          case 'left':
-            this.style.marginLeft = isNumeric(value) ? value + 'em' : value;
-            break;
-          case 'right':
-            this.style.marginRight = isNumeric(value) ? value + 'em' : value;
-            break;
-        }
+        this.style[`margin${capitalize(this.alignItems)}`] = isNumeric(value) ? value + 'em' : value;
       }
         break;
-      case 'position': {
-        const alignValue = (value === 'left') ? 'flex-start' : (value === 'right') ? 'flex-end' : value;
+      case 'align-items': {
+        const alignValue =
+          (value === 'left' || value === 'top')
+            ? 'flex-start'
+            : (value === 'right' || value === 'bottom')
+              ? 'flex-end' : value;
         this.style.alignItems = alignValue;
       }
     }
