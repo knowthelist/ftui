@@ -31,13 +31,13 @@ class FtuiWeather extends FtuiIcon {
     return [...this.convertToAttributes(FtuiWeather.properties), ...super.observedAttributes];
   }
 
-  onAttributeChanged(name, oldValue, newValue) {
+  onAttributeChanged(name, newValue) {
     switch (name) {
       case 'condition':
         this.loadIcon(map[this.provider]?.[this.iconSet]?.[newValue] || 'icons/none.svg');
         break;
       default:
-        super.onAttributeChanged(name, oldValue, newValue);
+        super.onAttributeChanged(name, newValue);
         break;
     }
   }

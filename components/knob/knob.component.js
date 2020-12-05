@@ -96,7 +96,7 @@ class FtuiKnob extends FtuiElement {
     return [...this.convertToAttributes(FtuiKnob.properties), ...super.observedAttributes];
   }
 
-  onAttributeChanged(name, oldValue, newValue) {
+  onAttributeChanged(name, newValue, oldValue) {
     if (oldValue !== newValue) {
       if (!this.isDragging) {
         if (name === 'type') {

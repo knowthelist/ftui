@@ -38,7 +38,7 @@ export class FtuiIcon extends FtuiElement {
     return [...this.convertToAttributes(FtuiIcon.properties), ...super.observedAttributes];
   }
 
-  onAttributeChanged(name, oldValue, newValue) {
+  onAttributeChanged(name, newValue) {
     switch (name) {
       case 'name':
         this.loadIcon(`${this.path}/${newValue}.${this.type}`);

@@ -78,7 +78,7 @@ export class FtuiPopup extends FtuiElement {
     this.startTimeout();
   }
 
-  onAttributeChanged(name, oldValue, newValue) {
+  onAttributeChanged(name, newValue) {
     switch (name) {
       case 'width':
       case 'height':

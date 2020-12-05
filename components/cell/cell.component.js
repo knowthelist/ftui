@@ -10,6 +10,7 @@
 */
 
 import { FtuiElement } from '../element.component.js';
+import { isNumeric } from '../../modules/ftui/ftui.helper.js';
 
 export class FtuiCell extends FtuiElement {
 
@@ -36,8 +37,10 @@ export class FtuiCell extends FtuiElement {
     return {
       height: '',
       width: '',
+      position: 'center',
       space: 'evenly',
       color: 'transparent',
+      margin: '0',
     };
   }
 
@@ -45,17 +48,32 @@ export class FtuiCell extends FtuiElement {
     return [...this.convertToAttributes(FtuiCell.properties), ...super.observedAttributes];
   }
 
-  onAttributeChanged(name, oldValue, newValue) {
+  onAttributeChanged(name, value) {
     switch (name) {
       case 'width':
-        this.style.width = newValue;
+        this.style.width = value;
         break;
       case 'height':
-        this.style.height = newValue;
+        this.style.height = value;
         break;
       case 'space':
-        this.style.justifyContent = 'space-' + newValue;
+        this.style.justifyContent = ('space-' + value);
         break;
+      case 'margin': {
+        switch (this.position) {
+          case 'left':
+            this.style.marginLeft = isNumeric(value) ? value + 'em' : value;
+            break;
+          case 'right':
+            this.style.marginRight = isNumeric(value) ? value + 'em' : value;
+            break;
+        }
+      }
+        break;
+      case 'position': {
+        const alignValue = (value === 'left') ? 'flex-start' : (value === 'right') ? 'flex-end' : value;
+        this.style.alignItems = alignValue;
+      }
     }
   }
 

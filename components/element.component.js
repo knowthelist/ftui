@@ -65,7 +65,7 @@ export class FtuiElement extends HTMLElement {
     ftuiHelper.log(3, `${this.id} -  attributeChangedCallback name=${name}, oldValue=${oldValue}, newValue=${newValue}`)
     if (typeof this.onAttributeChanged === 'function') {
       // call the hook function of the instance
-      this.onAttributeChanged(name, oldValue, newValue);
+      this.onAttributeChanged(name, newValue, oldValue);
     }
     switch (name) {
       case 'hidden':
