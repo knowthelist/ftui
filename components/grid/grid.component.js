@@ -42,6 +42,7 @@ export class FtuiGrid extends FtuiElement {
       });
     }
     document.addEventListener('ftuiVisibilityChanged', () => this.configureGrid());
+    document.addEventListener('ftuiComponentsAdded', () => this.configureGrid());
   }
 
   template() {

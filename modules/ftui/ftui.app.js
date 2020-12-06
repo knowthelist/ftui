@@ -139,7 +139,7 @@ class FtuiApp {
     fhemService.createFilterParameter();
 
     ftui.log(1, 'initComponents - Done');
-    const event = new CustomEvent('initComponentsDone', { area: area });
+    const event = new CustomEvent('ftuiComponentsAdded', { detail: area });
     document.dispatchEvent(event);
 
     // restart  connection
