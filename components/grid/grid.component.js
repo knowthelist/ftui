@@ -8,6 +8,7 @@
 */
 
 import { FtuiElement } from '../element.component.js';
+import { debounce } from '../../modules/ftui/ftui.helper.js';
 // eslint-disable-next-line no-unused-vars
 import { FtuiGridTile } from './grid-tile.component.js';
 
@@ -26,6 +27,8 @@ export class FtuiGrid extends FtuiElement {
     };
     super(properties);
 
+    this.debouncedResize = debounce(this.configureGrid, this);
+
     this.windowWidth = 0;
     this.tiles = this.querySelectorAll('ftui-grid-tile');
     this.configureGrid();
@@ -33,12 +36,12 @@ export class FtuiGrid extends FtuiElement {
     if (this.resize) {
       window.addEventListener('resize', () => {
         if (this.windowWidth !== window.innerWidth) {
-          clearTimeout(this.resizeTimerHandle);
-          this.resizeTimerHandle = setTimeout(() => this.configureGrid(), 500);
+          this.debouncedResize(500);
           this.windowWidth = window.innerWidth;
         }
       });
     }
+    document.addEventListener('ftuiVisibilityChanged', () => this.configureGrid());
   }
 
   template() {

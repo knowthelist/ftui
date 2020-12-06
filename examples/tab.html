@@ -28,45 +28,53 @@
   <ftui-grid>
 
     <ftui-grid-tile row="1" col="1" height="5" width="1">
-        <ftui-column>
-          <ftui-tab view="View1" active><ftui-icon name="home1"></ftui-icon></ftui-tab>
-          <ftui-tab view="View2"><ftui-icon name="music"></ftui-icon></ftui-tab>
-          <ftui-tab view="View3" class="large">Tab3</ftui-tab>
-          <ftui-tab view="View4" fill="solid">Tab4</ftui-tab>
-          <ftui-tab view="View5" fill="solid">Tab5</ftui-tab>
-          <ftui-tab view="View6" fill="solid" shape="circle"><ftui-icon name="road"></ftui-icon></ftui-tab>
-          <ftui-tab view="View7" fill="solid" shape="circle"><ftui-icon name="camera1"></ftui-icon></ftui-tab>
-        </ftui-column>
+      <ftui-column>
+        <ftui-tab view="View1" active>
+          <ftui-icon name="home1"></ftui-icon>
+        </ftui-tab>
+        <ftui-tab view="View2">
+          <ftui-icon name="music"></ftui-icon>
+        </ftui-tab>
+        <ftui-tab view="View3" class="large">Tab3</ftui-tab>
+        <ftui-tab view="View4" fill="solid">Tab4</ftui-tab>
+        <ftui-tab view="View5" fill="solid">Tab5</ftui-tab>
+        <ftui-tab view="View6" fill="solid" shape="circle">
+          <ftui-icon name="road"></ftui-icon>
+        </ftui-tab>
+        <ftui-tab view="View7" fill="solid" shape="circle">
+          <ftui-icon name="camera1"></ftui-icon>
+        </ftui-tab>
+      </ftui-column>
     </ftui-grid-tile>
 
     <ftui-tab-view id="View1">
       <ftui-grid-tile row="1" col="2" height="5" width="9">
-      <div class="size-10">Tab1</div>
+        <div class="size-10">Tab1</div>
       </ftui-grid-tile>
     </ftui-tab-view>
 
     <ftui-tab-view id="View2">
       <ftui-grid-tile row="1" col="2" height="5" width="9">
         <div class="size-10">Tab2</div>
-        </ftui-grid-tile>
+      </ftui-grid-tile>
     </ftui-tab-view>
 
     <ftui-tab-view id="View3">
-      <ftui-grid-tile row="1" col="2" height="5" width="9">
-        <div class="size-10">Tab3</div>
-        </ftui-grid-tile>
+      <ftui-grid-tile row="1" col="2" height="5" width="9" color="green">
+        <ftui-content file="examples/contents/content-grid.html" placeholder="huhu"></ftui-content>
+      </ftui-grid-tile>
     </ftui-tab-view>
 
     <ftui-tab-view id="View4">
       <ftui-grid-tile row="1" col="2" height="5" width="9">
         <div class="size-10">Tab4</div>
-        </ftui-grid-tile>
+      </ftui-grid-tile>
     </ftui-tab-view>
 
     <ftui-tab-view id="View5">
       <ftui-grid-tile row="1" col="2" height="5" width="9">
         <div class="size-10">Tab5</div>
-        </ftui-grid-tile>
+      </ftui-grid-tile>
     </ftui-tab-view>
   </ftui-grid>
 
