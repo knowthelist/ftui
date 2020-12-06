@@ -60,6 +60,13 @@
 
     </ftui-grid-tile>
 
+    <ftui-grid-tile row="1" col="4" height="1" width="1">
+      <header>CUSTOM-CLOSE</header>
+
+      <ftui-icon name="pencil" popup-target="pop-custom-close"></ftui-icon>
+
+    </ftui-grid-tile>
+
   </ftui-grid>
 
   <ftui-popup id="pop1" timeout="0">
@@ -67,7 +74,7 @@
     <ftui-button popup-close>close</ftui-button>
   </ftui-popup>
   
-  <ftui-popup id="pop2" [open]="dummy2 | map('on: true, off: false')">
+  <ftui-popup id="pop2" [open]="dummy2 | map('on: true, off: false')" timeout="0">
     <header>Popup 2</header>
     <ftui-row>
       <ftui-column>
@@ -114,6 +121,11 @@
   <ftui-popup shape="round" [trigger]="dummy3:state:time" timeout="0" position="top">
     <header>Popup 3</header>
     <ftui-image [src]="ftuitest:thumbnail"></ftui-image>
+  </ftui-popup>
+
+  <ftui-popup id="pop-custom-close" timeout="0">
+    <header>Custom Close</header>
+    <ftui-label color="danger" slot="close" popup-close>Close</ftui-label>
   </ftui-popup>
 
 </body>

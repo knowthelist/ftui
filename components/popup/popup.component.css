@@ -32,18 +32,23 @@
   flex-direction: column;
 }
 
-.close {
+.box-close {
   position: absolute;
-  top: -0.25em;
-  right: 0.25em;
+  top: 0.25em;
+  right: 0.5em;
   color: var(--popup-header-color);
+  cursor: pointer;
+}
+
+.close {
   font-size: 2em;
+  line-height: 0.5em;
 }
 
 .close:hover,
 .close:focus {
-  color: #000000;
-  cursor: pointer;
+  opacity: 0.5;
+  
 }
 
 ::slotted(header) {

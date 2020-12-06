@@ -31,7 +31,11 @@ export class FtuiPopup extends FtuiElement {
       <div class="overlay">
         <div class="window">
           <slot name="header"></slot>
-          <span class="close">&times;</span>
+          <span class="box-close">
+            <slot name="close">
+              <span class="close" popup-close>&times;</span>
+            </slot>
+          </span>
           <div class="content">
             <slot></slot>
           </div>
@@ -67,10 +71,10 @@ export class FtuiPopup extends FtuiElement {
 
   onClickInside(event) {
     const target = event.target;
-    // Close window with 'close' or when the backdrop is clicked
+    console.log(target)
+    // Close window when the backdrop is clicked
     // or an element with popup-close attribute
-    if (target.classList.contains('close')
-      || target.classList.contains('overlay')
+    if (target.classList.contains('overlay')
       || target.hasAttribute('popup-close')) {
       this.setState(false);
       event.preventDefault();
