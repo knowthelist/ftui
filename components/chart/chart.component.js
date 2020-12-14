@@ -103,12 +103,14 @@ export class FtuiChart extends FtuiElement {
 
     this.dataElements = this.querySelectorAll('ftui-chart-data');
     this.dataElements.forEach(dataElement => dataElement.addEventListener('ftuiDataChanged', () => this.onDataChanged()));
-    this.controlsElement?.addEventListener('ftuiForward', () => this.offset += 1);
-    this.controlsElement?.addEventListener('ftuiBackward', () => this.offset -= 1);
+    if (this.controlsElement) {
+      this.controlsElement.addEventListener('ftuiForward', () => this.offset += 1);
+      this.controlsElement.addEventListener('ftuiBackward', () => this.offset -= 1);
+      ['hour', 'day', 'week', 'month', 'year'].forEach(unit => {
+        this.controlsElement.addEventListener('ftuiUnit' + unit, () => this.unit = unit);
+      });
+    }
 
-    ['hour', 'day', 'week', 'month', 'year'].forEach(unit => {
-      this.controlsElement?.addEventListener('ftuiUnit' + unit, () => this.unit = unit);
-    });
   }
 
   connectedCallback() {
@@ -203,7 +205,7 @@ export class FtuiChart extends FtuiElement {
     switch (name) {
       case 'title':
         this.configuration.options.title.text = this.title;
-        this.configuration.options.title.display = (this.title?.length > 0);
+        this.configuration.options.title.display = (this.title && this.title.length > 0);
         this.chart.update();
         break;
       case 'type':

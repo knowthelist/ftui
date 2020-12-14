@@ -96,7 +96,8 @@ export class FtuiBinding {
  * and sends it to FHEM
  */
   handleAttributeChanged(attributeName, attributeValue) {
-    const targetReadings = this.config?.output?.attributes[attributeName]?.readings || [];
+    const attrMap = this.config.output.attributes[attributeName];
+    const targetReadings = attrMap && attrMap.readings || [];
     Object.entries(targetReadings).forEach(([readingId, options]) => {
 
       //const attributeValue = this.element[attributeName];

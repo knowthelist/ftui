@@ -22,7 +22,7 @@ export class FtuiGridTile extends FtuiElement {
     super(properties);
 
     const header = this.querySelector('header');
-    header?.setAttribute('slot', 'header');
+    header && header.setAttribute('slot', 'header');
   }
 
   template() {

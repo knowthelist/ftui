@@ -10,7 +10,11 @@ export default {
       'sonnig': './icons/sun.svg',
       'Sprühregen': './icons/rainy.svg',
       'Schneeregen': './icons/weather3.svg',
-      'unterschiedlich bewölkt, vereinzelt Schauer und Gewitter': './icons/sunny-sleet-storm.svg'
+      'unterschiedlich bewölkt, vereinzelt Schauer und Gewitter': './icons/sunny-sleet-storm.svg',
+      'Schneefall': './icons/snowy2.svg',
+      'Schneeschauer': './icons/snowy,svg',
+      'Gewitter': './icons/lightning1.svg',
+      'Nebel': './icons/lines,svg',
     },
     kleinklima: {
       'sonnig': './icons/weather/kleinklima/sunny.svg',

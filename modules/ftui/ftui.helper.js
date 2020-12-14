@@ -95,7 +95,7 @@ export function getAllTagMatches(regEx) {
 }
 
 export function log(level, ...args) {
-  const debugLevel = window.ftuiApp?.config.debugLevel || 0;
+  const debugLevel = window.ftuiApp ? window.ftuiApp.config.debugLevel : 0;
   if (debugLevel >= level) {
     // eslint-disable-next-line no-console
     console.log.apply(this, args);

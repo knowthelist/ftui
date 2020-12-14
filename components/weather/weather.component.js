@@ -8,7 +8,7 @@
 */
 
 import { FtuiIcon } from '../icon/icon.component.js';
-import map from './weather.map.js';
+import providerSets from './weather.map.js';
 
 class FtuiWeather extends FtuiIcon {
 
@@ -33,9 +33,12 @@ class FtuiWeather extends FtuiIcon {
 
   onAttributeChanged(name, newValue) {
     switch (name) {
-      case 'condition':
-        this.loadIcon(map[this.provider]?.[this.iconSet]?.[newValue] || 'icons/none.svg');
+      case 'condition': {
+        const iconSets = providerSets[this.provider] || {};
+        const icons = iconSets[this.iconSet] || {};
+        this.loadIcon(icons[newValue] || 'icons/none.svg');
         break;
+      }
       default:
         super.onAttributeChanged(name, newValue);
         break;

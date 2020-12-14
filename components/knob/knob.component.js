@@ -86,9 +86,10 @@ class FtuiKnob extends FtuiElement {
       hasArc: false,
       hasHandle: false,
       hasNeedle: false,
-      readonly: false,
       type: 'default',
       color: 'primary',
+      valueSize: '2.5em',
+      unitSize: '1em',
     };
   }
 
@@ -155,7 +156,6 @@ class FtuiKnob extends FtuiElement {
   onChange(angle) {
     if (!this.readonly && this.draw(angle)) {
       this.value = this.angleToValue(angle);
-      console.log(angle, this.value);
     }
   }
 
@@ -279,6 +279,7 @@ class FtuiKnob extends FtuiElement {
     };
     this.setSVGAttributes(scaleText, scaleTextObj);
     scaleText.textContent = this.value;
+    scaleText.style.fontSize = this.valueSize;
     this.scale.appendChild(scaleText);
   }
 
@@ -292,6 +293,7 @@ class FtuiKnob extends FtuiElement {
     };
     this.setSVGAttributes(scaleText, scaleTextObj);
     scaleText.textContent = this.unit;
+    scaleText.style.fontSize = this.unitSize;
     this.scale.appendChild(scaleText);
   }
 

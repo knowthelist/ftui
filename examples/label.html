@@ -58,9 +58,9 @@
           <ftui-label [text]="lamp1"></ftui-label>
         </ftui-column>
       </ftui-row>
-      
 
-      
+
+
     </ftui-grid-tile>
 
     <ftui-grid-tile row="2" col="2" height="1" width="1">
@@ -88,7 +88,9 @@
       <ftui-label [text]="ftuitest:dateTime4ago"></ftui-label>
       <ftui-label [text]="ftuitest:dateTime4ago | toDate() | ago()"></ftui-label>
       <ftui-label [text]="ftuitest:dateTime4ago | toDate() | ago() | timeFormat('[ dd.hh:mm:ss ]')"></ftui-label>
-      <ftui-label [text]="ftuitest:dateTime4ago | toDate() | ago() | timeFormat('[ elapsed since dd days + hh:mm:ss ]')"></ftui-label>
+      <ftui-label
+                  [text]="ftuitest:dateTime4ago | toDate() | ago() | timeFormat('[ elapsed since dd days + hh:mm:ss ]')">
+      </ftui-label>
       <ftui-label [text]="ftuitest:dateTime4ago | toDate() | ago() | timeFormat('ssssssss seconds')"></ftui-label>
       <ftui-label [text]="ftuitest:dateTime4ago | toDate() | ago() | timeFormat('mmmmmm minutes')"></ftui-label>
       <ftui-label [text]="ftuitest:dateTime4ago | toDate() | ago() | timeFormat('hhhh hours')"></ftui-label>
@@ -100,9 +102,12 @@
       <ftui-label [text]="ftuitest:dateTime4till"></ftui-label>
       <ftui-label [text]="ftuitest:dateTime4till | toDate() | till()"></ftui-label>
       <ftui-label [text]="ftuitest:dateTime4till | toDate() | till() | timeFormat('[ dd.hh:mm:ss ]')"></ftui-label>
-      <ftui-label [text]="ftuitest:dateTime4till | toDate() | till() | timeFormat('[ still dd days + hh:mm:ss ]')"></ftui-label>
-      <ftui-label [text]="ftuitest:dateTime4till | toDate() | till() | timeFormat('%SSSSSSSSs','ms','upper')"></ftui-label>
-      <ftui-label [text]="ftuitest:dateTime4till | toDate() | till() | timeFormat('%MMMMMMm','ms','upper')"></ftui-label>
+      <ftui-label [text]="ftuitest:dateTime4till | toDate() | till() | timeFormat('[ still dd days + hh:mm:ss ]')">
+      </ftui-label>
+      <ftui-label [text]="ftuitest:dateTime4till | toDate() | till() | timeFormat('%SSSSSSSSs','ms','upper')">
+      </ftui-label>
+      <ftui-label [text]="ftuitest:dateTime4till | toDate() | till() | timeFormat('%MMMMMMm','ms','upper')">
+      </ftui-label>
       <ftui-label [text]="ftuitest:dateTime4till | toDate() | till() | timeFormat('%HHHHh','ms','upper')"></ftui-label>
       <ftui-label [text]="ftuitest:dateTime4till | toDate() | till() | timeFormat('%DDd','ms','upper')"></ftui-label>
     </ftui-grid-tile>
@@ -134,8 +139,15 @@
     </ftui-grid-tile>
 
     <ftui-grid-tile row="3" col="2" height="1" width="1">
+      <header>FIX</header>
       <ftui-label [text]="AgroWeather:wind | fix(2)" unit="°C"></ftui-label>
     </ftui-grid-tile>
+
+    <ftui-grid-tile row="3" col="2" height="1" width="1">
+      <header>REPLACE</header>
+      <ftui-label [text]="AgroWeather:fc0_date | replace(/\./g, '/')"></ftui-label>
+    </ftui-grid-tile>
+
   </ftui-grid>
 </body>
 

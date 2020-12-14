@@ -52,17 +52,8 @@ export class FtuiIcon extends FtuiElement {
   loadIcon(url) {
     if (url.endsWith('svg')) {
       fetch(url)
-        .then(response => {
-          // workaround until this issue has been fixed
-          // https://forum.fhem.de/index.php/topic,115823.0.html
-          if (response.headers.get('Content-Type')?.startsWith('text/html') ) {
-            throw new Error(`${this.id} - icon '${name}' not found`);
-          }
-          return response.text()
-        })
-        .then(svg => {
-          this.elementIcon.innerHTML = svg;
-        })
+        .then(response => response.text())
+        .then(svg => this.elementIcon.innerHTML = svg)
         .catch(error => console.error(error));
     } else {
       this.elementIcon.innerHTML = `<img src="${name}"></img>`;

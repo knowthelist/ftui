@@ -39,7 +39,6 @@ export class FtuiLabel extends FtuiElement {
   }
 
   onAttributeChanged(name) {
-    console.log(name,this.text )
     switch (name) {
       case 'text':
         this.mainSlotElement.innerText = this.text;

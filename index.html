@@ -15,6 +15,7 @@
     */
     -->
   <script src="ftui.js"></script>
+
   <link href="ftui.css" rel="stylesheet">
   <link href="themes/ftui-theme.css" rel="stylesheet">
   <link href="favicon.ico" rel="icon" type="image/x-icon" />
@@ -23,7 +24,7 @@
   <meta name="viewport" content="width=device-width">
 
   <!-- when serving the page with other web servers, e.g. lighttpd -->
-  <meta name="fhemweb_url" content="http://fhem.local:8083/fhem/">
+  <!-- <meta name="fhemweb_url" content="http://fhem.local:8083/fhem/"> -->
 
   <!-- verbose level 0-4 -->
   <meta name="debug" content="2">
@@ -38,11 +39,13 @@
 
     <ftui-grid-tile row="1" col="1" height="10" width="1" shape="round">
       <ftui-column>
-        <ftui-tab view="View1" active>
+        <ftui-tab view="View1" direction="vertical" active>
           <ftui-icon name="home1"></ftui-icon>
+          <ftui-label>Home</ftui-label>
         </ftui-tab>
-        <ftui-tab view="View2">
+        <ftui-tab view="View2" direction="vertical">
           <ftui-icon name="music"></ftui-icon>
+          <ftui-label>Music</ftui-label>
         </ftui-tab>
         <ftui-tab view="View3">
           <ftui-icon name="feed"></ftui-icon>
@@ -60,7 +63,6 @@
     </ftui-grid-tile>
 
     <ftui-tab-view id="View1">
-
       <ftui-grid-tile row="1" col="2" height="2" width="2" shape="round" color="primary">
         <ftui-clock format="ee" class="size-5"></ftui-clock>
         <ftui-clock format="DD" class="size-8"></ftui-clock>
@@ -96,19 +98,24 @@
       </ftui-grid-tile>
 
       <ftui-grid-tile row="1" col="6" height="2" width="2" shape="round">
-        <ftui-circlemenu direction="vertical">
+        <ftui-circlemenu direction="vertical" keep-open>
 
-          <ftui-icon name="home1"></ftui-icon>
+          <ftui-icon [name]="ftuitest | part(1) | map('0: window-shutter-open, 35: window-shutter-alert, 80: window-shutter')"
+                     [color]="ftuitest | part(1) | map('5: primary')"
+                     class="size-4"></ftui-icon>
 
-          <ftui-button [(value)]="dummy.P1" fill="outline" shape="circle">
-            <ftui-icon [name]="dummy1 | map('on:lightbulb-on, off:lightbulb-off, `.*`:none')"></ftui-icon>
-          </ftui-button>
+                     <ftui-button shape="circle" fill="outline" (value)="ftuitest" states='0'
+                     [color]="ftuitest | map('0: primary, .*: light')">
+                     <ftui-icon name="window-shutter-open"
+                     [color]="ftuitest | part(1) | map('5: primary')"
+                     class="size-4"></ftui-icon>
+                   </ftui-button>
 
-          <ftui-button-nice get="dummy2"></ftui-button-nice>
+          <ftui-button-nice get="ftuitest" get-on="0" icon="window-shutter-open"></ftui-button-nice>
 
-          <ftui-button-nice get="dummy3"></ftui-button-nice>
+          <ftui-button-nice get="ftuitest" get-on="35" icon="window-shutter-alert"></ftui-button-nice>
 
-          <ftui-button-nice get="ftuitest"></ftui-button-nice>
+          <ftui-button-nice get="ftuitest" get-on="80" icon="window-shutter"></ftui-button-nice>
 
         </ftui-circlemenu>
       </ftui-grid-tile>
@@ -129,128 +136,7 @@
 
       </ftui-grid-tile>
       <ftui-grid-tile row="5" col="2" height="3" width="10" shape="round">
-        <ftui-row>
-          <ftui-column>
-            <ftui-row>
-              <ftui-label>Heute</ftui-label>
-            </ftui-row>
-            <ftui-row>
-              <ftui-weather class="size-5" [condition]="AgroWeather:fc0_weatherDay"></ftui-weather>
-            </ftui-row>
-            <ftui-row>
-              <ftui-label [text]="AgroWeather:fc0_weatherDay"></ftui-label>
-            </ftui-row>
-            <ftui-row width="80%">
-              <ftui-label [text]="AgroWeather:fc0_tempMin"><span slot="end">°C</span></ftui-label>
-              <ftui-label [text]="AgroWeather:fc0_tempMax" class="size-7 thin"><span class="size-0" slot="end">°C</span>
-              </ftui-label>
-            </ftui-row>
-            <ftui-row width="80%">
-              <ftui-label [text]="AgroWeather:fc0_chOfRainDay" color="blue"><span slot="end">%</span></ftui-label>
-              <ftui-label [text]="AgroWeather:fc0_rain" color="blue"><span slot="end">mm</span></ftui-label>
-            </ftui-row>
-          </ftui-column>
-          <ftui-column>
-            <ftui-row>
-              <ftui-label>Morgen</ftui-label>
-            </ftui-row>
-            <ftui-row>
-              <ftui-weather class="size-5" [condition]="AgroWeather:fc1_weatherDay"></ftui-weather>
-            </ftui-row>
-            <ftui-row>
-              <ftui-label [text]="AgroWeather:fc1_weatherDay"></ftui-label>
-            </ftui-row>
-            <ftui-row width="80%">
-              <ftui-label [text]="AgroWeather:fc1_tempMin"><span slot="end">°C</span></ftui-label>
-              <ftui-label [text]="AgroWeather:fc1_tempMax" class="size-7 thin"><span class="size-1" slot="end">°C</span>
-              </ftui-label>
-            </ftui-row>
-            <ftui-row width="80%">
-              <ftui-label [text]="AgroWeather:fc1_chOfRainDay" color="blue"><span slot="end">%</span></ftui-label>
-              <ftui-label [text]="AgroWeather:fc1_rain" color="blue"><span slot="end">mm</span></ftui-label>
-            </ftui-row>
-          </ftui-column>
-          <ftui-column>
-            <ftui-row>
-              <ftui-label [text]="AgroWeather:fc2_date | toDate() | format('eeee')"></ftui-label>
-            </ftui-row>
-            <ftui-row>
-              <ftui-weather class="size-5" [condition]="AgroWeather:fc2_weatherDay"></ftui-weather>
-            </ftui-row>
-            <ftui-row>
-              <ftui-label [text]="AgroWeather:fc2_weatherDay"></ftui-label>
-            </ftui-row>
-            <ftui-row width="80%">
-              <ftui-label [text]="AgroWeather:fc2_tempMin"><span slot="end">°C</span></ftui-label>
-              <ftui-label [text]="AgroWeather:fc2_tempMax" class="size-7 thin"><span class="size-1" slot="end">°C</span>
-              </ftui-label>
-            </ftui-row>
-            <ftui-row width="80%">
-              <ftui-label [text]="AgroWeather:fc2_chOfRainDay" color="blue"><span slot="end">%</span></ftui-label>
-              <ftui-label [text]="AgroWeather:fc2_rain" color="blue"><span slot="end">mm</span></ftui-label>
-            </ftui-row>
-          </ftui-column>
-          <ftui-column>
-            <ftui-row>
-              <ftui-label [text]="AgroWeather:fc3_date | toDate() | format('eeee')"></ftui-label>
-            </ftui-row>
-            <ftui-row>
-              <ftui-weather class="size-5" [condition]="AgroWeather:fc3_weatherDay"></ftui-weather>
-            </ftui-row>
-            <ftui-row>
-              <ftui-label [text]="AgroWeather:fc3_weatherDay"></ftui-label>
-            </ftui-row>
-            <ftui-row width="80%">
-              <ftui-label [text]="AgroWeather:fc3_tempMin"><span slot="end">°C</span></ftui-label>
-              <ftui-label [text]="AgroWeather:fc3_tempMax" class="size-7 thin"><span class="size-1" slot="end">°C</span>
-              </ftui-label>
-            </ftui-row>
-            <ftui-row width="80%">
-              <ftui-label [text]="AgroWeather:fc3_chOfRainDay" color="blue"><span slot="end">%</span></ftui-label>
-              <ftui-label [text]="AgroWeather:fc3_rain" color="blue"><span slot="end">mm</span></ftui-label>
-            </ftui-row>
-          </ftui-column>
-          <ftui-column>
-            <ftui-row>
-              <ftui-label [text]="AgroWeather:fc4_date | toDate() | format('eeee')"></ftui-label>
-            </ftui-row>
-            <ftui-row>
-              <ftui-weather class="size-5" [condition]="AgroWeather:fc4_weatherDay"></ftui-weather>
-            </ftui-row>
-            <ftui-row>
-              <ftui-label [text]="AgroWeather:fc4_weatherDay"></ftui-label>
-            </ftui-row>
-            <ftui-row width="80%">
-              <ftui-label [text]="AgroWeather:fc4_tempMin"><span slot="end">°C</span></ftui-label>
-              <ftui-label [text]="AgroWeather:fc4_tempMax" class="size-7 thin"><span class="size-1" slot="end">°C</span>
-              </ftui-label>
-            </ftui-row>
-            <ftui-row width="80%">
-              <ftui-label [text]="AgroWeather:fc4_chOfRainDay" color="blue"><span slot="end">%</span></ftui-label>
-              <ftui-label [text]="AgroWeather:fc4_rain" color="blue"><span slot="end">mm</span></ftui-label>
-            </ftui-row>
-          </ftui-column>
-          <ftui-column>
-            <ftui-row>
-              <ftui-label [text]="AgroWeather:fc5_date | toDate() | format('eeee')"></ftui-label>
-            </ftui-row>
-            <ftui-row>
-              <ftui-weather class="size-5" [condition]="AgroWeather:fc5_weatherDay"></ftui-weather>
-            </ftui-row>
-            <ftui-row>
-              <ftui-label [text]="AgroWeather:fc5_weatherDay"></ftui-label>
-            </ftui-row>
-            <ftui-row width="80%">
-              <ftui-label [text]="AgroWeather:fc5_tempMin"><span slot="end">°C</span></ftui-label>
-              <ftui-label [text]="AgroWeather:fc5_tempMax" class="size-7 thin"><span class="size-1" slot="end">°C</span>
-              </ftui-label>
-            </ftui-row>
-            <ftui-row width="80%">
-              <ftui-label [text]="AgroWeather:fc5_chOfRainDay" color="blue"><span slot="end">%</span></ftui-label>
-              <ftui-label [text]="AgroWeather:fc5_rain" color="blue"><span slot="end">mm</span></ftui-label>
-            </ftui-row>
-          </ftui-column>
-        </ftui-row>
+        <ftui-content file="examples/contents/content-weather.html"></ftui-content>
       </ftui-grid-tile>
     </ftui-tab-view>
 

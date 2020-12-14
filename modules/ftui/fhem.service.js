@@ -71,9 +71,9 @@ class FhemService {
   }
 
   updateReadingValue(readingID, value) {
-    const read = this.readings.get(readingID);
+    const read = this.readings.get(readingID) || {};
 
-    if (read?.data) {
+    if (read.data) {
       const now = ftui.dateFormat(new Date(), 'YYYY-MM-DD hh:mm:ss');
       read.data.id = readingID;
       read.data.invalid = false;
@@ -151,13 +151,13 @@ class FhemService {
         );
   }
 
-  parseRefreshResult(fhemJSON) {
+  parseRefreshResult(fhemJSON = {}) {
     window.performance.mark('end get jsonlist2');
     window.performance.measure('get jsonlist2', 'start get jsonlist2', 'end get jsonlist2');
     window.performance.mark('start read jsonlist2');
 
     // import the whole fhemJSON
-    if (fhemJSON?.Results) {
+    if (fhemJSON.Results) {
       fhemJSON.Results.forEach(device => {
         if (!this.isFhemWebInternal(device.Name)) {
           this.parseRefreshResultSection(device.Name, device.Internals);
