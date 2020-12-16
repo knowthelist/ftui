@@ -12,9 +12,9 @@ export default {
       'Schneeregen': './icons/weather3.svg',
       'unterschiedlich bewölkt, vereinzelt Schauer und Gewitter': './icons/sunny-sleet-storm.svg',
       'Schneefall': './icons/snowy2.svg',
-      'Schneeschauer': './icons/snowy,svg',
+      'Schneeschauer': './icons/snowy.svg',
       'Gewitter': './icons/lightning1.svg',
-      'Nebel': './icons/lines,svg',
+      'Nebel': './icons/lines.svg',
     },
     kleinklima: {
       'sonnig': './icons/weather/kleinklima/sunny.svg',
