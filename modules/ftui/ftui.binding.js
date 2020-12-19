@@ -10,8 +10,8 @@ const toInt = () => input => parseInt(input, 10);
 const format = value => input => ftuiHelper.dateFormat(input, value);
 const round = value => input => ftuiHelper.round(input, value);
 const fix = value => input => Number(input).toFixed(value);
-const add = value => input => input + value;
-const multiply = value => input => input * value;
+const add = value => input => Number(input) + value;
+const multiply = value => input => Number(input) * value;
 const replace = (find, replace) => input => String(input).replace(find, replace);
 const map = value => input => ftuiHelper.getMatchingValue(parseHocon(value, true), input);
 const scale = (minIn, maxIn, minOut, maxOut) => input => ftuiHelper.scale(input, minIn, maxIn, minOut, maxOut);
@@ -31,7 +31,8 @@ export class FtuiBinding {
       config: '',
       outputAttributes: new Set(),
       observer: null,
-      isChanging: {}
+      isChanging: {},
+      sentValue: {}
     }
 
     this.element = element;
@@ -43,7 +44,7 @@ export class FtuiBinding {
 
     // subscribe input events (from FHEM reading to component)
     Object.keys(this.config.input.readings).forEach((reading) => {
-      fhemService.getReadingEvents(reading).subscribe((param) => this.onReadingEvent(param));
+      fhemService.getReadingEvents(reading).subscribe(param => this.onReadingEvent(param));
     });
 
     // subscribe output events (from component to FHEM reading)
@@ -79,7 +80,8 @@ export class FtuiBinding {
         if (ftuiHelper.isDefined(value)) {
           const filteredValue = this.filter(value, options.filter);
           if (ftuiHelper.isDefined(filteredValue)) {
-            if (String(this.element[attribute]) !== String(filteredValue)) {
+            if (String(this.element[attribute]) !== String(filteredValue)
+            && this.private.sentValue[attribute] !== String(filteredValue) ) {
               ftuiHelper.log(1, `${this.element.id}  -  onReadingEvent: set this.${attribute}=${filteredValue}`);
               // avoid endless loops
               this.private.isChanging[attribute] = true;
@@ -106,6 +108,8 @@ export class FtuiBinding {
       const [parameterId, deviceName, readingName] = ftuiHelper.parseReadingId(readingId);
       const cmdLine = [options.cmd, deviceName, readingName, value].join(' ');
 
+      // update marker to avoid infinity loops
+      this.private.sentValue[attributeName] = value;
       // update storage
       fhemService.updateReadingValue(parameterId, value);
       // notify FHEM

@@ -4,12 +4,20 @@ export class Subject {
     this.observers = [];
   }
 
-  subscribe(observer, context) {
-    if (void 0 === context) { context = observer; }
+  isSubscribed(observer) {
+    return this.observers.filter(subscriber => subscriber === observer).length;
+  }
+
+  subscribe(observer) {
+    if (this.isSubscribed(observer)) return;
     this.observers.push({ observer: observer });
   }
 
+  unsubscribe(observer) {
+    this.observers = this.observers.filter(subscriber => subscriber !== observer);
+  }
+
   publish(args) {
-    this.observers.forEach(topic => topic.observer(args));
+    this.observers.forEach(subscriber => subscriber.observer(args));
   }
 }

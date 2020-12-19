@@ -55,7 +55,8 @@ export class FtuiIcon extends FtuiElement {
         .then(response => {
           // workaround until this issue has been fixed
           // https://forum.fhem.de/index.php/topic,115823.0.html
-          if (response.headers.get('Content-Type').startsWith('text/html') ) {
+          const contentType = response.headers.get('Content-Type');
+          if (contentType &&  contentType.startsWith('text/html') ) {
             throw new Error(`${this.id} - icon '${name}' not found`);
           }
           return response.text()
