@@ -67,7 +67,7 @@
 
 [color="transparent"] {
   --color-base: transparent;
-}
+} 
 
 [color="translucent"] {
   -webkit-backdrop-filter: blur(5px);

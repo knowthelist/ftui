@@ -57,7 +57,10 @@ export class FtuiBinding {
             if (!this.private.isChanging[attributeName]) {
               this.handleAttributeChanged(attributeName, attributeValue);
             }
-            this.private.isChanging[attributeName] = false;
+            if (this.private.sentValue[attributeName] === attributeValue
+              || ftuiHelper.isUndefined(this.private.sentValue[attributeName])) {
+              this.private.isChanging[attributeName] = false;
+            }
           }
         });
       });
@@ -80,8 +83,7 @@ export class FtuiBinding {
         if (ftuiHelper.isDefined(value)) {
           const filteredValue = this.filter(value, options.filter);
           if (ftuiHelper.isDefined(filteredValue)) {
-            if (String(this.element[attribute]) !== String(filteredValue)
-            && this.private.sentValue[attribute] !== String(filteredValue) ) {
+            if (String(this.element[attribute]) !== String(filteredValue)) {
               ftuiHelper.log(1, `${this.element.id}  -  onReadingEvent: set this.${attribute}=${filteredValue}`);
               // avoid endless loops
               this.private.isChanging[attribute] = true;

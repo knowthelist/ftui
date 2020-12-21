@@ -68,7 +68,7 @@ export class FtuiButton extends FtuiElement {
     let currentIndex = states.findIndex((pattern) => ftui.isEqual(pattern, this.value));
     // increase the index to the next value in the array of possible values
     currentIndex = ++currentIndex % states.length;
-    return states[currentIndex];
+    return states[currentIndex].replace('$value', this.value );
   }
 
   playEffect() {
