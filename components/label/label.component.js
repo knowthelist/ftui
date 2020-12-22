@@ -19,7 +19,15 @@ export class FtuiLabel extends FtuiElement {
 
   template() {
     return `
-      <style> @import "components/label/label.component.css"; </style>
+      <style>
+        :host {
+          --color-base: currentColor;
+          color: var(--color-base);
+        }
+        :host(.is-empty) {
+          display: none;
+        }
+      </style>
       <slot name="start"></slot><slot></slot><slot name="content"></slot><slot name="end">${this.unit}</slot>`;
   }
 

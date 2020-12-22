@@ -7,11 +7,6 @@
   --padding-end: 1em;
   --transition: background-color, opacity 100ms linear;
   height: 2.5em;
-  font-size: 1.125em;
-/*   margin-left: 0.5em;
-  margin-right: 0.5em;
-  margin-top: 0.25em;
-  margin-bottom: 0.25em; */
   letter-spacing: -.025em;
   cursor: pointer;
   border-color: var(--color-base, #20639b);

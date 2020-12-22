@@ -20,7 +20,14 @@ export class FtuiMenuButton extends FtuiElement {
   }
 
   template() {
-    return `<span style="font-size:30px;cursor:pointer">&#9776; open</span>`;
+    return `
+      <style>
+        :host {
+          font-size:2em;
+          cursor:pointer;
+        }
+      </style>
+      <slot>&#9776;</slot>`;
   }
 
   static get properties() {
@@ -31,11 +38,12 @@ export class FtuiMenuButton extends FtuiElement {
 
   onClicked() {
     const elementMenu = document.getElementById(this.menu);
-    if (elementMenu.hasAttribute('open')) {
-      elementMenu.removeAttribute('open');
-
-    } else {
-      elementMenu.setAttribute('open', '');
+    if (elementMenu) {
+      if (elementMenu.hasAttribute('open')) {
+        elementMenu.removeAttribute('open');
+      } else {
+        elementMenu.setAttribute('open', '');
+      }
     }
   }
 }

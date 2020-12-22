@@ -69,7 +69,9 @@ export class FtuiCell extends FtuiElement {
             ? 'flex-start'
             : (value === 'right' || value === 'bottom')
               ? 'flex-end' : value;
-        this.style.alignItems = alignValue;
+        const property = this.tagName === 'FTUI-COLUMN' ? 'justifyContent' : 'alignItems';
+        this.style[property] = alignValue;
+
       }
     }
   }

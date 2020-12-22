@@ -16,12 +16,12 @@ export class FtuiMenu extends FtuiElement {
   constructor() {
     super(FtuiMenu.properties);
 
-    this.element = this.shadowRoot.querySelector('.sidenav');
+    this.element = this.shadowRoot.querySelector('.box-menu');
   }
 
   template() {
     return `<style> @import "components/menu/menu.component.css"; </style>
-    <div class="sidenav"><slot></slot></div>`;
+    <div class="box-menu"><slot></slot></div>`;
   }
 
   static get properties() {
@@ -29,7 +29,7 @@ export class FtuiMenu extends FtuiElement {
       height: '33%',
       width: '50%',
       open: false,
-      trigger: '',
+      autoHide: true,
       timeout: 10,
     };
   }
@@ -39,7 +39,6 @@ export class FtuiMenu extends FtuiElement {
   }
 
   onAttributeChanged(name, newValue) {
-    console.log(name, newValue)
     switch (name) {
       case 'open':
         this.setState(newValue !== null);
