@@ -121,10 +121,10 @@ export function isVisible(element) {
 }
 
 export function isDefined(value) {
-  return (typeof value !== 'undefined');
+  return !isUndefined(value);
 }
 export function isUndefined(value) {
-  return !isDefined(value);
+  return typeof value === 'undefined' || value === null;
 }
 
 export function isString(value) {

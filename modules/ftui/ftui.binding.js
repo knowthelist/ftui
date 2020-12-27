@@ -60,6 +60,7 @@ export class FtuiBinding {
             if (this.private.sentValue[attributeName] === attributeValue
               || ftuiHelper.isUndefined(this.private.sentValue[attributeName])) {
               this.private.isChanging[attributeName] = false;
+              this.private.sentValue[attributeName] = null;
             }
           }
         });
