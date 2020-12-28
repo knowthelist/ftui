@@ -64,14 +64,26 @@ export class FtuiCell extends FtuiElement {
       }
         break;
       case 'align-items': {
-        const alignValue =
-          (value === 'left' || value === 'top')
-            ? 'flex-start'
-            : (value === 'right' || value === 'bottom')
-              ? 'flex-end' : value;
-        const property = this.tagName === 'FTUI-COLUMN' ? 'justifyContent' : 'alignItems';
-        this.style[property] = alignValue;
+        const direction = this.tagName === 'FTUI-COLUMN' ? 'col' : 'row';
 
+        switch (`${direction}-${value}`) {
+          case 'row-left':
+          case 'col-top':
+            this.style.justifyContent = 'flex-start';
+            break;
+          case 'row-right':
+          case 'col-bottom':
+            this.style.justifyContent = 'flex-end';
+            break;
+          case 'row-top':
+          case 'col-left':
+            this.style.alignItems = 'flex-start';
+            break;
+          case 'row-bottom':
+          case 'col-right':
+            this.style.alignItems = 'flex-end';
+            break;
+        }
       }
     }
   }

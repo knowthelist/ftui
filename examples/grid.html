@@ -26,12 +26,12 @@
 <body>
   <ftui-grid base-width="150" base-height="120" margin="1">
 
-    <ftui-grid-tile row="1" col="1" height="1" width="1" color="success" class="round">
+    <ftui-grid-tile row="1" col="1" height="1" width="1" color="success" shape="round">
       <header>TILE1</header>
 
     </ftui-grid-tile>
 
-    <ftui-grid-tile row="2" col="1" height="1" width="1" class="round">
+    <ftui-grid-tile row="2" col="1" height="1" width="1" shape="round">
       <header>TILE2</header>
       <ftui-row align-items="top" margin="1">
         <div>1</div>
@@ -40,10 +40,49 @@
       </ftui-row>
     </ftui-grid-tile>
 
-    <ftui-grid-tile row="3" col="1" height="1" width="1"
+    <ftui-grid-tile row="3" col="1" height="1" width="1" shape="round"
                     [color]="ftuitest | map('0=dark,70=medium,100=light')">
       <header>TILE3</header>
 
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="2" col="3" height="2" width="2" shape="round">
+      <ftui-row>
+        <ftui-column align-items="left" margin="1">
+          <ftui-label text="Thermostat"></ftui-label>
+          <ftui-label text="Radiator"></ftui-label>
+          <ftui-label text="Heizkörper"></ftui-label>
+        </ftui-column>
+
+        <ftui-column align-items="left" margin="1" shape="round">
+          <ftui-label [text]="ftuitest:temperature1" unit="°C"></ftui-label>
+          <ftui-label [text]="ftuitest:temperature2" unit="°C"></ftui-label>
+          <ftui-label [text]="ftuitest:temperature3" unit="°C"></ftui-label>
+        </ftui-column>
+
+        <ftui-column align-items="left" margin="1" shape="round">
+
+          <ftui-icon [name]="ftuitest:battery1 | map('low:battery-1,ok:battery')"
+                     [color]="ftuitest:battery1 | map('low:danger,ok:green')"></ftui-icon>
+
+          <ftui-icon [name]="ftuitest:battery2  | map('low:battery-1,ok:battery')"
+                     [color]="ftuitest:battery2 | map('low:danger,ok:green')"></ftui-icon>
+
+          <ftui-icon [name]="ftuitest:batteryLevel | map('1.8:battery-0, 2.0:battery-1, 2.3:battery-2, 2.5:battery-3, 2.8:battery')"
+                     [color]="ftuitest:batteryLevel | map('1.8:danger, 2.0:warning, 2.3:success, 2.5:secondary, 2.8:green')">
+          </ftui-icon>
+        </ftui-column>
+      </ftui-row>
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="4" col="3" height="2" width="2" shape="round">
+      <ftui-column>
+        <ftui-row align-items="top" margin="1">
+          <ftui-label [text]="ftuitest:temperature1" unit="°C"></ftui-label>
+          <ftui-label [text]="ftuitest:temperature2" unit="°C"></ftui-label>
+          <ftui-label [text]="ftuitest:temperature3" unit="°C"></ftui-label>
+        </ftui-row>
+      </ftui-column>
     </ftui-grid-tile>
 
   </ftui-grid>
