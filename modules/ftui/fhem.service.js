@@ -56,7 +56,7 @@ class FhemService {
       return this.readings.get(readingId).events;
     } else {
       // empty dummy object
-      return { subscribe: () => { } }
+      return { subscribe: () => { }, unsubscribe: () => { } }
     }
   }
 
@@ -95,7 +95,7 @@ class FhemService {
   // end ToDo
 
   createFilterParameter() {
-    const readingsArray = Array.from(this.readings.values());
+    const readingsArray = Array.from(this.readings.values()).filter(value => value.events.observers.length);
     const devs = [... new Set(readingsArray.map(value => value.device))];
     const reads = [... new Set(readingsArray.map(value => value.reading || 'STATE'))];
     const devicelist = devs.length ? devs.join() : '';
@@ -278,7 +278,6 @@ class FhemService {
   disconnect() {
     ftui.log(2, 'stopFhemConnection');
     clearInterval(this.states.connection.timer);
-    clearInterval(this.states.refresh.timer);
 
     if (this.states.connection.websocket) {
       if (this.states.connection.websocket.readyState === WebSocket.OPEN) {

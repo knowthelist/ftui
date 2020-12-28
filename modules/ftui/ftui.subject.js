@@ -5,7 +5,7 @@ export class Subject {
   }
 
   isSubscribed(observer) {
-    return this.observers.filter(subscriber => subscriber === observer).length;
+    return this.observers.filter(subscriber => subscriber.observer === observer).length;
   }
 
   subscribe(observer) {
@@ -14,7 +14,7 @@ export class Subject {
   }
 
   unsubscribe(observer) {
-    this.observers = this.observers.filter(subscriber => subscriber !== observer);
+    this.observers = this.observers.filter(subscriber => subscriber.observer !== observer);
   }
 
   publish(args) {
