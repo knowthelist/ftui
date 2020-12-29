@@ -43,11 +43,11 @@ export class FtuiChartControls extends FtuiElement {
           <span id="forward">▶</span>
         </div>
         <div id="units">
-          <span class="unit" id="year">Year</span>
-          <span class="unit" id="month">Month</span>
-          <span class="unit" id="week">Week</span>
-          <span class="unit" id="day">Day</span>
-          <span class="unit" id="hour">Hour</span>
+          <span class="unit" id="year">Jahr</span>
+          <span class="unit" id="month">Monat</span>
+          <span class="unit" id="week">Woche</span>
+          <span class="unit" id="day">Tag</span>
+          <span class="unit" id="hour">Stunde</span>
         </div>
       </div>`;
   }
