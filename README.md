@@ -24,7 +24,9 @@ mkdir /opt/fhem/www/ftui
  * copy all folder and files from here into the new folder
  * change the example page 'index.html' according your needs
  * to open your new page call http://\<fhem-url\>:8083/fhem/ftui/index.html
- 
+
+A Docker image is also available at: https://hub.docker.com/repository/docker/knowthelist/ftui
+
 Usage
 ------
 * Just add some of the FTUI web components to your HTML code

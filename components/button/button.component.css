@@ -86,7 +86,7 @@
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
   width: 100%;
   -moz-user-select: none;
   -ms-user-select: none;

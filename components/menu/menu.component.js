@@ -17,6 +17,7 @@ export class FtuiMenu extends FtuiElement {
     super(FtuiMenu.properties);
 
     this.element = this.shadowRoot.querySelector('.box-menu');
+    this.addEventListener('click', () => { this.open = false; });
   }
 
   template() {
@@ -53,7 +54,7 @@ export class FtuiMenu extends FtuiElement {
     } else {
       this.element.style.width = '0';
     }
-    this.emitChangeEvent('open', this.open );
+    this.emitChangeEvent('open', this.open);
   }
 
   startTimeout() {

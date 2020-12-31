@@ -30,18 +30,34 @@
 
 <body>
 
-  <ftui-menu timeout="3">
-    <a href="#">Main</a>
-    <a href="#">Sounds</a>
-    <a href="#">Lights</a>
-    <a href="#">Outdoor</a>
+  <ftui-menu timeout="0">
+    <ftui-tab view="View1" active>
+      <ftui-icon name="home1"></ftui-icon>
+      Home
+    </ftui-tab>
+    <ftui-tab fill="clear" direction="vertical" view="View2" active>Sounds</ftui-tab>
+    <ftui-tab fill="clear" direction="vertical" view="View1" active>Lights</ftui-tab>
+    <ftui-tab fill="clear" direction="vertical" view="View2" active>Outdoor</ftui-tab>
+
   </ftui-menu>
 
   <ftui-main>
     <ftui-view-toolbar>
       <ftui-menu-button slot="start"></ftui-menu-button>
-      hustHust
+      Header
     </ftui-view-toolbar>
+
+    <ftui-tab-view id="View1">
+      <ftui-content file="examples/contents/content-view1.html" room="Room1"></ftui-content>
+    </ftui-tab-view>
+
+    <ftui-tab-view id="View2">
+      <ftui-content file="examples/contents/content-view1.html" room="Room2"></ftui-content>
+    </ftui-tab-view>
+
+    <ftui-tab-view id="View3">
+      <ftui-content file="examples/contents/content-view2.html" room="Room3"></ftui-content>
+    </ftui-tab-view>
 
   </ftui-main>
 
