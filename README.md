@@ -18,11 +18,13 @@ Caution!
 Install
 -------
  * copy the folder www/ftui to your FHEM www (e.g.: /opt/fhem/www/ftui)
- * or just call 'update all https://raw.githubusercontent.com/knowthelist/ftui/master/update_ftui.txt' on the FHEM command field of FHEMWEB
+ * or just call 
+ ````
+update all https://raw.githubusercontent.com/knowthelist/ftui/master/update_ftui.txt
+````
+ on the FHEM command field of FHEMWEB
  * change the example page 'index.html' according your needs
  * to open your new page call http://\<fhem-url\>:8083/fhem/ftui/index.html
-
-A Docker image is also available at: https://hub.docker.com/repository/docker/knowthelist/ftui
 
 Development
 ------
@@ -55,7 +57,6 @@ docker run -d -p 8080:80 -v <path>/index.html:/usr/share/nginx/html/index.html -
 - <b>Open</b> your FHEM Tablet-UI on any browser in your network: 
 ```
 <docker_host>:8080
-
 ```
 
 Usage
