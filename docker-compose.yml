@@ -1,0 +1,9 @@
+version: '2'
+services:
+  fhem-tablet-ui:
+    container_name: ftui
+    image: knowthelist/ftui:latest
+    volumes:
+      - ./ftui/index.html:/usr/share/nginx/html/ftui/index.html
+    ports:
+      - "8080:80"
