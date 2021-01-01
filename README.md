@@ -17,19 +17,50 @@ Caution!
 
 Install
 -------
- * create a new folder in the www folder of your FHEM installation 
- ```bash 
-mkdir /opt/fhem/www/ftui
- ```
- * copy all folder and files from here into the new folder
+ * copy the folder www/ftui to your FHEM www (e.g.: /opt/fhem/www/ftui)
+ * or just call 'update all https://raw.githubusercontent.com/knowthelist/ftui/master/update_ftui.txt' on the FHEM command field of FHEMWEB
  * change the example page 'index.html' according your needs
  * to open your new page call http://\<fhem-url\>:8083/fhem/ftui/index.html
 
 A Docker image is also available at: https://hub.docker.com/repository/docker/knowthelist/ftui
 
+Development
+------
+Clone the git project in your home directory and link the www/ftui folder into FHEM's www
+```
+cd
+git clone https://github.com/knowthelist/ftui.git
+ln -s $HOME/ftui/www/ftui /opt/fhem/www/ftui_dev
+````
+Docker
+-------
+
+You can also host FTUI on your own web server running in a docker container instead of via FHEMWEB.
+
+
+- <b>Pull</b> the docker image: 
+```
+docker pull knowthelist/ftui
+```
+- Place your <b>index.html</b> somewhere where you can use it as a volume for docker.
+- Put the <b>fhemweb_url</b> into the head of the index.html: 
+````
+<meta name="fhemweb_url" content="http://<your_fhem_url>:8083/fhem/">
+````
+
+- <b>Run</b> the container: 
+```
+docker run -d -p 8080:80 -v <path>/index.html:/usr/share/nginx/html/index.html --name ftui3 knowthelist/ftui
+````
+- <b>Open</b> your FHEM Tablet-UI on any browser in your network: 
+```
+<docker_host>:8080
+
+```
+
 Usage
 ------
-* Just add some of the FTUI web components to your HTML code
+Just add some of the FTUI web components to your HTML code
 
 ```html
 <ftui-button (value)="dummy1">on/off</ftui-button>
