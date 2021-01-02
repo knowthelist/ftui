@@ -340,7 +340,7 @@ Example for DbLog
 
 ### Icon
 
-[List of all icons](https://knowthelist.github.io/ftui/icons/demo.html)
+[List of all icons](https://knowthelist.github.io/ftui/www/ftui/icons/demo.html)
 
 ### Layout
 
@@ -357,22 +357,22 @@ Example for DbLog
 Examples
 ------
 
-- [Tab](https://knowthelist.github.io/ftui/examples/tab.html) 
-- [Grid](https://knowthelist.github.io/ftui/examples/grid.html)
-- [Label](https://knowthelist.github.io/ftui/examples/label.html)
-- [Icon](https://knowthelist.github.io/ftui/examples/icon.html)
-- [Button](https://knowthelist.github.io/ftui/examples/button.html)
-- [Knob](https://knowthelist.github.io/ftui/examples/knob.html)
-- [Slider](https://knowthelist.github.io/ftui/examples/slider.html)
-- [Checkbox](https://knowthelist.github.io/ftui/examples/checkbox.html)
-- [Circlemenu](https://knowthelist.github.io/ftui/examples/circlemenu.html)
-- [Dropdown](https://knowthelist.github.io/ftui/examples/dropdown.html)
-- [Colorpicker](https://knowthelist.github.io/ftui/examples/colorpicker.html)
-- [Image](https://knowthelist.github.io/ftui/examples/image.html)
-- [Badge](https://knowthelist.github.io/ftui/examples/badge.html)
-- [Speak](https://knowthelist.github.io/ftui/examples/speak.html)
-- [Chart](https://knowthelist.github.io/ftui/examples/chart.html)
-- [Popup](https://knowthelist.github.io/ftui/examples/popup.html)
+- [Tab](https://knowthelist.github.io/ftui/www/ftui/examples/tab.html) 
+- [Grid](https://knowthelist.github.io/ftui/www/ftui/examples/grid.html)
+- [Label](https://knowthelist.github.io/ftui/www/ftui/examples/label.html)
+- [Icon](https://knowthelist.github.io/ftui/www/ftui/examples/icon.html)
+- [Button](https://knowthelist.github.io/ftui/www/ftui/examples/button.html)
+- [Knob](https://knowthelist.github.io/ftui/www/ftui/examples/knob.html)
+- [Slider](https://knowthelist.github.io/ftui/www/ftui/examples/slider.html)
+- [Checkbox](https://knowthelist.github.io/ftui/www/ftui/examples/checkbox.html)
+- [Circlemenu](https://knowthelist.github.io/ftui/www/ftui/examples/circlemenu.html)
+- [Dropdown](https://knowthelist.github.io/ftui/www/ftui/examples/dropdown.html)
+- [Colorpicker](https://knowthelist.github.io/ftui/www/ftui/examples/colorpicker.html)
+- [Image](https://knowthelist.github.io/ftui/www/ftui/examples/image.html)
+- [Badge](https://knowthelist.github.io/ftui/www/ftui/examples/badge.html)
+- [Speak](https://knowthelist.github.io/ftui/www/ftui/examples/speak.html)
+- [Chart](https://knowthelist.github.io/ftui/www/ftui/examples/chart.html)
+- [Popup](https://knowthelist.github.io/ftui/www/ftui/examples/popup.html)
 
 Donation
 --------
