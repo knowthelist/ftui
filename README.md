@@ -18,13 +18,23 @@ Caution!
 Install
 -------
  * copy the folder www/ftui to your FHEM www (e.g.: /opt/fhem/www/ftui)
- * or just call 
+ ````
+wget https://github.com/knowthelist/ftui/tarball/master -O /tmp/ftui.tar
+cd /tmp && tar xvzf /tmp/ftui.tar
+mv /tmp/knowthelist-ftui-*/www/ftui /opt/fhem/www
+````
+
+
+ * change the example page 'index.html' according your needs
+ * to open your new page call http://\<fhem-url\>:8083/fhem/ftui/index.html
+
+Update
+------
+call 
  ````
 update all https://raw.githubusercontent.com/knowthelist/ftui/master/update_ftui.txt
 ````
- on the FHEM command field of FHEMWEB
- * change the example page 'index.html' according your needs
- * to open your new page call http://\<fhem-url\>:8083/fhem/ftui/index.html
+on the FHEM command field of FHEMWEB
 
 Development
 ------
