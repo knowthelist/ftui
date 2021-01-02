@@ -26,7 +26,7 @@ UPD 2020-12-31_16:39:02 847 www/ftui/components/grid/grid-tile.component.js
 UPD 2020-12-31_16:39:02 3010 www/ftui/components/grid/grid.component.js
 UPD 2020-12-31_16:39:02 845 www/ftui/components/icon/icon.component.css
 UPD 2020-12-31_16:39:02 1919 www/ftui/components/icon/icon.component.js
-UPD 2020-12-31_16:39:02 1960 www/ftui/components/image/image.component.js
+UPD 2021-01-02_22:44:50 2135 www/ftui/components/image/image.component.js
 UPD 2020-12-31_16:39:02 880 www/ftui/components/knob/knob.component.css
 UPD 2020-12-31_16:39:02 12043 www/ftui/components/knob/knob.component.js
 UPD 2020-12-31_16:39:02 1278 www/ftui/components/label/label.component.js
@@ -68,7 +68,7 @@ UPD 2020-12-31_16:39:02 5293 www/ftui/examples/contents/content-weather.html
 UPD 2020-12-31_16:39:02 1512 www/ftui/examples/dropdown.html
 UPD 2020-12-31_16:39:02 3146 www/ftui/examples/grid.html
 UPD 2020-12-31_16:39:02 4417 www/ftui/examples/icon.html
-UPD 2020-12-31_16:39:02 2614 www/ftui/examples/image.html
+UPD 2021-01-02_22:43:52 3109 www/ftui/examples/image.html
 UPD 2020-12-31_16:39:02 4544 www/ftui/examples/knob.html
 UPD 2020-12-31_16:39:02 6525 www/ftui/examples/label.html
 UPD 2020-12-31_16:39:02 1860 www/ftui/examples/menu.html

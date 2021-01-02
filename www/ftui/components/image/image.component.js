@@ -21,7 +21,16 @@ export class FtuiImage extends FtuiElement {
   }
 
   template() {
-    return `<img></img>`;
+    return `
+    <style>
+      :host([shape="round"]) img {
+        border-radius: 1.5em;
+      }
+      :host([shape="circle"]) img {
+        border-radius: 50%;
+      }
+    </style>
+    <img></img>`;
   }
 
   static get properties() {
