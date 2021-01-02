@@ -1,6 +1,6 @@
 UPD 2020-12-31_16:39:02 857 www/ftui/components/badge/badge.component.css
 UPD 2020-12-31_16:39:02 578 www/ftui/components/badge/badge.component.js
-UPD 2020-12-31_16:39:02 1193 www/ftui/components/button/button-nice.component.js
+UPD 2021-01-02_23:47:00 1186 www/ftui/components/button/button-nice.component.js
 UPD 2020-12-31_16:39:02 2189 www/ftui/components/button/button.component.css
 UPD 2020-12-31_16:39:02 2142 www/ftui/components/button/button.component.js
 UPD 2020-12-31_16:39:02 2276 www/ftui/components/cell/cell.component.js
@@ -57,7 +57,7 @@ UPD 2020-12-31_16:39:02 913 www/ftui/examples/button-nice.html
 UPD 2020-12-31_16:39:02 7416 www/ftui/examples/button.html
 UPD 2020-12-31_16:39:02 1913 www/ftui/examples/chart.html
 UPD 2020-12-31_16:39:02 1374 www/ftui/examples/checkbox.html
-UPD 2020-12-31_16:39:02 8765 www/ftui/examples/circlemenu.html
+UPD 2021-01-02_23:20:17 8776 www/ftui/examples/circlemenu.html
 UPD 2020-12-31_16:39:02 1265 www/ftui/examples/clock.html
 UPD 2020-12-31_16:39:02 2219 www/ftui/examples/colorpicker.html
 UPD 2020-12-31_16:39:02 1657 www/ftui/examples/content.html

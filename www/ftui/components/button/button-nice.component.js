@@ -25,7 +25,7 @@ export class FtuiButtonNice extends FtuiElement {
           (value)="${this.set || this.get}" 
           [color]="${this.get} | map('${this.getOn || 'on'}:primary, ${this.getOff || 'off'}:medium')"
           states="${this.states || 'on,off'}">
-        <ftui-icon name="${this.icon}" color="transparent"></ftui-icon>
+        <ftui-icon name="${this.icon}" color="grid"></ftui-icon>
       </ftui-button>
       `;
   }
