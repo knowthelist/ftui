@@ -40,15 +40,15 @@
   </ftui-tab-view>
 
   <footer class="row fixed border-top">
-    <ftui-tab fill="clear" direction="vertical" view="View1" active>
+    <ftui-tab fill="clear" direction="vertical" view="View1" [value]="dummy1 | map('Wert1:on, .*:off')" active>
       <ftui-icon name="home1"></ftui-icon>
       <label class="small">Tab1</label>
     </ftui-tab>
-    <ftui-tab fill="clear" direction="vertical" view="View2">
+    <ftui-tab fill="clear" direction="vertical" view="View2" [value]="dummy1 | map('Wert2:on, .*:off')">
       <ftui-icon name="cog"></ftui-icon>
       <label class="small">Tab2</label>
     </ftui-tab>
-    <ftui-tab fill="clear" direction="vertical" view="View3">
+    <ftui-tab fill="clear" direction="vertical" view="View3" [value]="dummy1 | map('Wert3:on, .*:off')">
       <ftui-icon name="clock-o"></ftui-icon>
       <label class="small">Tab3</label>
     </ftui-tab>

@@ -41,7 +41,7 @@
         <ftui-tab view="View6" fill="solid" shape="circle">
           <ftui-icon name="road"></ftui-icon>
         </ftui-tab>
-        <ftui-tab view="View7" fill="solid" shape="circle">
+        <ftui-tab view="View7" fill="solid" shape="circle" [value]="CameraDoor | map('Alert:on, .*:off')">
           <ftui-icon name="camera1"></ftui-icon>
         </ftui-tab>
       </ftui-column>
