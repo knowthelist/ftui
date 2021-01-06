@@ -32,7 +32,7 @@ Update
 ------
 call 
  ````
-update all https://raw.githubusercontent.com/knowthelist/ftui/master/update_ftui.txt
+update all https://raw.githubusercontent.com/knowthelist/ftui/master/controls_ftui.txt
 ````
 on the FHEM command field of FHEMWEB
 

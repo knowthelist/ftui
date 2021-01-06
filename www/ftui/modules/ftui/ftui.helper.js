@@ -173,9 +173,12 @@ export function dateFromString(str) {
 export function dateFormat(date, format, lang = 'de') {
   const weekday_de = ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'];
   const weekday = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  const month_de = ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'];
+  const month = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   const YYYY = date.getFullYear().toString();
   const YY = date.getYear().toString();
   const MM = (date.getMonth() + 1).toString(); // getMonth() is zero-based
+  const MMMM = (lang === 'de') ? month_de[MM] : month[MM];
   const dd = date.getDate().toString();
   const hh = date.getHours().toString();
   const mm = date.getMinutes().toString();
@@ -187,6 +190,7 @@ export function dateFormat(date, format, lang = 'de') {
   let ret = String(format);
   ret = ret.replace('DD', (dd > 9) ? dd : '0' + dd);
   ret = ret.replace('D', dd);
+  ret = ret.replace('MMMM', MMMM);
   ret = ret.replace('MM', (MM > 9) ? MM : '0' + MM);
   ret = ret.replace('M', MM);
   ret = ret.replace('YYYY', YYYY);

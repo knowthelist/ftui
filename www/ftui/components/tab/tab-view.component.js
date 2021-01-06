@@ -9,7 +9,7 @@
 
 import { FtuiElement } from '../element.component.js';
 
-class FtuiTabView extends FtuiElement {
+export class FtuiTabView extends FtuiElement {
 
   constructor() {
     super(FtuiTabView.properties);

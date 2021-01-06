@@ -9,6 +9,10 @@
 
 import { FtuiButton } from '../button/button.component.js';
 import * as ftui from '../../modules/ftui/ftui.helper.js';
+// eslint-disable-next-line no-unused-vars
+import { FtuiTitle } from '../title/title.component.js';
+// eslint-disable-next-line no-unused-vars
+import { FtuiTabView } from './tab-view.component.js';
 
 
 class FtuiTab extends FtuiButton {
@@ -28,7 +32,7 @@ class FtuiTab extends FtuiButton {
 
   template() {
     return `<style> @import "components/tab/tab.component.css"; </style>`
-    + super.template();
+      + super.template();
   }
 
   static get properties() {
@@ -64,6 +68,12 @@ class FtuiTab extends FtuiButton {
         elem.active = false;
       }
     });
+
+    // change tab title
+    ftui.selectAll(`ftui-title[group="${this.group}"]`)
+      .forEach(elem => {
+        elem.setAttribute('text', this.title || this.view);
+      });
 
     // activate clicked tab
     this.value = 'on'

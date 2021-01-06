@@ -31,32 +31,41 @@
 <body>
 
   <ftui-menu timeout="0">
-    <ftui-tab view="View1" active>
+    <ftui-tab view="View1" title="Home" active>
       <ftui-icon name="home1"></ftui-icon>
       Home
     </ftui-tab>
-    <ftui-tab fill="clear" direction="vertical" view="View2" >Sounds</ftui-tab>
-    <ftui-tab fill="clear" direction="vertical" view="View1" >Lights</ftui-tab>
-    <ftui-tab fill="clear" direction="vertical" view="View2" >Outdoor</ftui-tab>
+    <ftui-tab view="View2" title="Sounds">
+      <ftui-icon name="volume-up"></ftui-icon>
+      Sounds
+    </ftui-tab>
+    <ftui-tab view="View1" title="Lights">
+      <ftui-icon name="lightbulb-on"></ftui-icon>
+      Lights
+    </ftui-tab>
+    <ftui-tab view="View2" title="Outdoor">
+      <ftui-icon name="pagelines"></ftui-icon>
+      Outdoor
+    </ftui-tab>
 
   </ftui-menu>
 
   <ftui-main>
     <ftui-view-toolbar>
       <ftui-menu-button slot="start"></ftui-menu-button>
-      Header
+      <ftui-title group="default"></ftui-title>
     </ftui-view-toolbar>
 
     <ftui-tab-view id="View1">
-      <ftui-content file="examples/contents/content-view1.html" room="Room1"></ftui-content>
+      <ftui-content file="examples/contents/mobile-view1.html"></ftui-content>
     </ftui-tab-view>
 
     <ftui-tab-view id="View2">
-      <ftui-content file="examples/contents/content-view1.html" room="Room2"></ftui-content>
+      <ftui-content file="examples/contents/content-view1.html"></ftui-content>
     </ftui-tab-view>
 
     <ftui-tab-view id="View3">
-      <ftui-content file="examples/contents/content-view2.html" room="Room3"></ftui-content>
+      <ftui-content file="examples/contents/content-view2.html"></ftui-content>
     </ftui-tab-view>
 
   </ftui-main>
