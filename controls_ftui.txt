@@ -379,8 +379,8 @@ UPD 2021-01-07_17:45:12 575 www/ftui/icons/level-down.svg
 UPD 2021-01-07_17:45:12 583 www/ftui/icons/level-up.svg
 UPD 2021-01-07_17:45:12 1026 www/ftui/icons/life-bouy.svg
 UPD 2021-01-07_17:45:12 1281 www/ftui/icons/lightbulb-o.svg
-UPD www/ftui/icons/lightbulb-on-outline.svg
-UPD www/ftui/icons/lightbulb-outline.svg
+UPD 2021-01-07_17:45:12 841 www/ftui/icons/lightbulb-on.svg
+UPD 2021-01-07_17:45:12 649 www/ftui/icons/lightbulb.svg
 UPD 2021-01-07_17:45:12 908 www/ftui/icons/lightning.svg
 UPD 2021-01-07_17:45:12 906 www/ftui/icons/lightning1.svg
 UPD 2021-01-07_17:45:12 1698 www/ftui/icons/lightning2.svg
