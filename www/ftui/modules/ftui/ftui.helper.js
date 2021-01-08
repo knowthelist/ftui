@@ -173,12 +173,13 @@ export function dateFromString(str) {
 export function dateFormat(date, format, lang = 'de') {
   const weekday_de = ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'];
   const weekday = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-  const month_de = ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'];
-  const month = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  const months_de = ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'];
+  const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   const YYYY = date.getFullYear().toString();
   const YY = date.getYear().toString();
-  const MM = (date.getMonth() + 1).toString(); // getMonth() is zero-based
-  const MMMM = (lang === 'de') ? month_de[MM] : month[MM];
+  const month = date.getMonth();
+  const MM = (month + 1).toString(); // getMonth() is zero-based
+  const MMMM = (lang === 'de') ? months_de[month] : months[month];
   const dd = date.getDate().toString();
   const hh = date.getHours().toString();
   const mm = date.getMinutes().toString();
