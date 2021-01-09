@@ -7,24 +7,15 @@
 * https://github.com/knowthelist/ftui
 */
 
-import { FtuiElement } from '../element.component.js';
+import { FtuiLabel } from '../label/label.component.js';
 import { fhemService } from '../../modules/ftui/fhem.service.js';
 import { dateFormat } from '../../modules/ftui/ftui.helper.js';
 
-export class FtuiClock extends FtuiElement {
+export class FtuiClock extends FtuiLabel {
 
-  constructor(properties) {
+  constructor() {
 
-    super(Object.assign(FtuiClock.properties, properties));
-
-    this.outlet = this.shadowRoot.querySelector('#outlet');
-    this.update();
-    this.startInterval();
-    this.getFhemTime();
-  }
-
-  template() {
-    return `<div id="outlet"></div>`;
+    super(FtuiClock.properties);
   }
 
   static get properties() {
@@ -34,6 +25,16 @@ export class FtuiClock extends FtuiElement {
       offset: 0,
       isFhemTime: false
     }
+  }
+
+  static get observedAttributes() {
+    return [...this.convertToAttributes(FtuiClock.properties), ...super.observedAttributes];
+  }
+
+  connectedCallback() {
+    this.update();
+    this.startInterval();
+    this.getFhemTime();
   }
 
   getFhemTime() {
@@ -48,7 +49,7 @@ export class FtuiClock extends FtuiElement {
   }
 
   update() {
-    this.outlet.innerHTML = dateFormat(this.getDateTime(), this.format);
+    this.text = dateFormat(this.getDateTime(), this.format);
   }
 
   getDateTime() {

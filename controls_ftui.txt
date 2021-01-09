@@ -13,7 +13,7 @@ UPD 2020-12-31_16:39:02 1338 www/ftui/components/checkbox/checkbox.component.css
 UPD 2020-12-31_16:39:02 2090 www/ftui/components/checkbox/checkbox.component.js
 UPD 2020-12-31_16:39:02 317 www/ftui/components/circlemenu/circlemenu.component.css
 UPD 2021-01-04_14:39:35 1185 www/ftui/components/circlemenu/circlemenu.component.js
-UPD 2020-12-31_16:39:02 1732 www/ftui/components/clock/clock.component.js
+UPD 2021-01-09_13:54:26 1727 www/ftui/components/clock/clock.component.js
 UPD 2020-12-31_16:39:02 2955 www/ftui/components/colorpicker/colorpicker.component.js
 UPD 2020-12-31_16:39:02 574 www/ftui/components/column/column.component.js
 UPD 2020-12-31_16:39:02 64 www/ftui/components/content/content.component.css
@@ -58,9 +58,9 @@ UPD 2020-12-31_16:39:02 7416 www/ftui/examples/button.html
 UPD 2020-12-31_16:39:02 1913 www/ftui/examples/chart.html
 UPD 2020-12-31_16:39:02 1374 www/ftui/examples/checkbox.html
 UPD 2021-01-03_23:49:55 8795 www/ftui/examples/circlemenu.html
-UPD 2021-01-06_16:51:07 1455 www/ftui/examples/clock.html
+UPD 2021-01-09_13:46:39 1471 www/ftui/examples/clock.html
 UPD 2020-12-31_16:39:02 2219 www/ftui/examples/colorpicker.html
-UPD 2021-01-04_14:40:54 1786 www/ftui/examples/content.html
+UPD 2021-01-09_13:55:25 1786 www/ftui/examples/content.html
 UPD 2020-12-31_16:39:02 763 www/ftui/examples/contents/content-grid.html
 UPD 2020-12-31_16:39:02 281 www/ftui/examples/contents/content-view1.html
 UPD 2020-12-31_16:39:02 167 www/ftui/examples/contents/content-view2.html
