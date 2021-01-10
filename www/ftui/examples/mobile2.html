@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!--
+    /* FHEM tablet ui - FTUI */
+    /**
+    * UI builder framework for FHEM
+    *
+    * Version: 3.0.0
+    *
+    * Copyright (c) 
+    2020 Mario Stephan <mstephan@shared-files.de>
+    * Under MIT License (http://www.opensource.org/licenses/mit-license.php)
+    * https://github.com/knowthelist/ftui
+    */
+    -->
+  <base href="../" />
+  <script src="ftui.js"></script>
+  <link href="ftui.css" rel="stylesheet">
+  <link href="themes/bright-theme.css" rel="stylesheet">
+  <link href="favicon.ico" rel="icon" type="image/x-icon" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+
+  <title>FTUI Mobile Example</title>
+
+  <style>
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      font-family: 'Helvetica', 'Arial', sans-serif;
+    }
+     
+/*     .container {
+      width: 100%;
+      height: 100%;
+      max-width: 400px;
+      max-height: 600px;
+      overflow: hidden;
+      position: relative;
+    }  */
+
+    .view {
+      will-change: transform;
+      width: 100%;
+      position: absolute;
+      left: 0;
+      top: 0;
+      transition: -webkit-transform 0.3s cubic-bezier(0.465, 0.183, 0.153, 0.946);
+      transition: transform 0.3s cubic-bezier(0.465, 0.183, 0.153, 0.946);
+    }
+
+    .list-view {
+      height: 100%;
+      width: 100%;
+      position: relative;
+      overflow: scroll;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .details-view {
+      -webkit-transform: translateX(100%);
+      transform: translateX(100%);
+
+      box-sizing: border-box;
+      padding: 30px;
+    }
+
+    .view-change .list-view {
+      -webkit-transform: translateX(-100%);
+      transform: translateX(-100%);
+    }
+
+    .view-change .details-view {
+      -webkit-transform: translateX(0);
+      transform: translateX(0);
+    }
+
+    .list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .list li {
+      box-sizing: border-box;
+      line-height: 50px;
+      padding: 0 30px;
+      border-bottom: 1px solid #CCC;
+      background: linear-gradient(to bottom, #FFF, #FAFAFA);
+    }
+
+  </style>
+</head>
+
+<body>
+  <ftui-view-container>
+    <ftui-view class="list-view">
+      <ul class="list">
+        <li class="list-item">Item 1</li>
+        <li class="list-item">Item 2</li>
+        <li class="list-item">Item 3</li>
+        <li class="list-item">Item 4</li>
+        <li class="list-item">Item 5</li>
+        <li class="list-item">Item 6</li>
+        <li class="list-item">Item 7</li>
+        <li class="list-item">Item 8</li>
+        <li class="list-item">Item 9</li>
+        <li class="list-item">Item 10</li>
+      </ul>
+    </ftui-view>
+    <ftui-view class="details-view">
+      <h1>Details view for <span class="item-name"></span></h1>
+      <button class="back-button">Back</button>
+    </ftui-view>
+  </ftui-main>
+
+  <script>
+    function onViewChange(evt) {
+      container.classList.toggle('view-change');
+
+      if (evt.currentTarget.classList.contains('list-item'))
+        itemName.textContent = evt.currentTarget.textContent;
+    }
+
+    var container = document.querySelector('ftui-view-container');
+    var itemName = document.querySelector('.item-name');
+    var backButton = document.querySelector('.back-button');
+    var listItems = document.querySelectorAll('.list li');
+    for (var i = 0; i < listItems.length; i++) {
+      listItems[i].addEventListener('click', onViewChange, false);
+    }
+
+    backButton.addEventListener('click', onViewChange);
+  </script>
+
+</html>

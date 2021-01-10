@@ -1,3 +1,4 @@
+
 /*
 * View component
 
@@ -11,7 +12,7 @@
 
 import { FtuiElement } from '../element.component.js';
 
-export class FtuiView extends FtuiElement {
+export class FtuiViewContainer extends FtuiElement {
 
   constructor(properties) {
     super(properties);
@@ -21,16 +22,12 @@ export class FtuiView extends FtuiElement {
     return `
           <style>
             :host {
-/*               display: inline-block;
               width: 100%;
-              height: 100%; */
-              will-change: transform;
-              width: 100%;
-              position: absolute;
-              left: 0;
-              top: 0;
-              transition: -webkit-transform 0.3s cubic-bezier(0.465, 0.183, 0.153, 0.946);
-              transition: transform 0.3s cubic-bezier(0.465, 0.183, 0.153, 0.946);
+              height: 100%;
+              max-width: 400px;
+              max-height: 600px;
+              overflow: hidden;
+              position: relative;
               display: inline-block;
             }
             </style>
@@ -38,4 +35,4 @@ export class FtuiView extends FtuiElement {
   }
 }
 
-window.customElements.define('ftui-view', FtuiView);
+window.customElements.define('ftui-view-container', FtuiViewContainer);
