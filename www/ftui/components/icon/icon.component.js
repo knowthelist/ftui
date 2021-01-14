@@ -64,7 +64,7 @@ export class FtuiIcon extends FtuiElement {
         .then(svg => this.elementIcon.innerHTML = svg)
         .catch(error => console.error(error));
     } else {
-      this.elementIcon.innerHTML = `<img src="${name}"></img>`;
+      this.elementIcon.innerHTML = `<img src="${url}"></img>`;
     }
   }
 }
