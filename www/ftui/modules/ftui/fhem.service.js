@@ -1,6 +1,9 @@
 
-import * as ftui from './ftui.helper.js';
-import { Subject } from './ftui.subject.js';
+import {
+  Subject, debounce, parseReadingId, isDefined, log, dateFormat,
+  getReadingID,
+  triggerEvent
+} from './ftui.helper.js';
 
 class FhemService {
   constructor() {
@@ -35,7 +38,7 @@ class FhemService {
 
 
     // define debounced function
-    this.debouncedUpdateFhem = ftui.debounce(this.updateFhem, this);
+    this.debouncedUpdateFhem = debounce(this.updateFhem, this);
 
     this.debugEvents = new Subject();
     this.errorEvents = new Subject();
@@ -48,8 +51,8 @@ class FhemService {
   }
 
   getReadingEvents(readingName) {
-    if (ftui.isDefined(readingName)) {
-      const [readingId, device, reading] = ftui.parseReadingId(readingName);
+    if (isDefined(readingName)) {
+      const [readingId, device, reading] = parseReadingId(readingName);
       if (!this.readings.has(readingId)) {
         this.readings.set(readingId, { data: { id: readingId }, events: new Subject(), device: device, reading: reading });
       }
@@ -74,7 +77,7 @@ class FhemService {
     const read = this.readings.get(readingID) || {};
 
     if (read.data) {
-      const now = ftui.dateFormat(new Date(), 'YYYY-MM-DD hh:mm:ss');
+      const now = dateFormat(new Date(), 'YYYY-MM-DD hh:mm:ss');
       read.data.id = readingID;
       read.data.invalid = false;
       read.data.value = value;
@@ -85,7 +88,7 @@ class FhemService {
   }
 
   updateReadingData(readingID, readingData, doPublish) {
-    ftui.log(3, 'updateReadingData - update for ', readingID, 'readingData=', readingData, 'doPublish=', doPublish);
+    log(3, 'updateReadingData - update for ', readingID, 'readingData=', readingData, 'doPublish=', doPublish);
     const reading = this.readings.get(readingID);
     reading.data = readingData;
     if (doPublish) {
@@ -119,7 +122,7 @@ class FhemService {
   }
 
   startRefreshInterval(delay) {
-    ftui.log(1, 'refresh: start in (ms):' + (delay || this.config.refreshInterval * 1000));
+    log(1, 'refresh: start in (ms):' + (delay || this.config.refreshInterval * 1000));
     clearInterval(this.states.refresh.timer);
     this.states.refresh.timer = setTimeout(() => {
       // get current values of readings every x seconds
@@ -135,7 +138,7 @@ class FhemService {
       && this.config.refresh.filter.length < 2
       || (now - this.states.lastRefresh) < this.config.refreshInterval
     ) { return; }
-    ftui.log(1, 'start refresh');
+    log(1, 'start refresh');
     window.performance.mark('start refresh');
     this.states.lastRefresh = now;
 
@@ -176,7 +179,7 @@ class FhemService {
           duration.toFixed(0) + 'ms for ' +
           paramCount + ' parameter(s)');
       }
-      ftui.log(1, 'refresh: Done');
+      log(1, 'refresh: Done');
       this.states.refresh.duration = duration * 1000;
       this.states.refresh.lastTimestamp = new Date();
       this.states.refresh.result = 'ok';
@@ -184,7 +187,7 @@ class FhemService {
       this.onUpdateDone();
     } else {
       const err = 'request failed: Result is null';
-      ftui.log(1, 'refresh: ' + err);
+      log(1, 'refresh: ' + err);
       this.states.refresh.result = err;
       this.debugEvents.publish('<u>Refresh ' + err + ' </u><br>');
 
@@ -204,7 +207,7 @@ class FhemService {
 
   parseRefreshResultSection(device, section) {
     for (const reading in section) {
-      const parameterId = ftui.getReadingID(device, reading);
+      const parameterId = getReadingID(device, reading);
       let parameter = section[reading];
       if (typeof parameter !== 'object') {
         parameter = {
@@ -217,9 +220,9 @@ class FhemService {
       if (this.readings.has(parameterId)) {
         const parameterData = this.getReadingData(parameterId);
         const doPublish = (parameterData.value !== parameter.Value || parameterData.time !== parameter.Time);
-        const now = ftui.dateFormat(new Date(), 'YYYY-MM-DD hh:mm:ss');
+        const now = dateFormat(new Date(), 'YYYY-MM-DD hh:mm:ss');
 
-        ftui.log(5, ['handleUpdate()', ' paramerId=', parameterId, ' value=', parameter.Value,
+        log(5, ['handleUpdate()', ' paramerId=', parameterId, ' value=', parameter.Value,
           ' time=', parameter.Time, ' isUpdate=', doPublish].join(''));
 
         // write into internal cache object
@@ -237,7 +240,7 @@ class FhemService {
 
   connect() {
     if (this.states.connection.websocket) {
-      ftui.log(3, 'A valid instance of websocket has been found');
+      log(3, 'A valid instance of websocket has been found');
       return;
     }
     if (this.config.debuglevel > 1) {
@@ -247,7 +250,7 @@ class FhemService {
       this.config.update.filter + ';since=' + this.states.connection.lastEventTimestamp.getTime() + ';fmt=JSON' +
       '&timestamp=' + Date.now();
 
-    ftui.log(1, 'websockets URL=' + this.states.connection.URL);
+    log(1, 'websockets URL=' + this.states.connection.URL);
     this.states.connection.lastEventTimestamp = new Date();
 
     this.states.connection.websocket = new WebSocket(this.states.connection.URL);
@@ -256,7 +259,7 @@ class FhemService {
       if (event.code == 1006) {
         reason = 'The connection was closed abnormally, e.g., without sending or receiving a Close control frame';
       } else { reason = 'Unknown reason'; }
-      ftui.log(1, 'websocket (url=' + event.target.url + ') closed!  reason=' + reason);
+      log(1, 'websocket (url=' + event.target.url + ') closed!  reason=' + reason);
       // if current socket closes then restart websocket
       if (event.target.url === this.states.connection.URL) {
         this.debugEvents.publish('Disconnected from FHEM<br>' + reason + '<br>Retry in 5s');
@@ -264,7 +267,7 @@ class FhemService {
       }
     };
     this.states.connection.websocket.onerror = (event) => {
-      ftui.log(1, 'Error with fhem connection');
+      log(1, 'Error with fhem connection');
       if (this.config.debuglevel > 1 && event.target.url === this.states.connection.URL) {
         this.errorEvents.publish('Error with fhem connection');
       }
@@ -276,7 +279,7 @@ class FhemService {
   }
 
   disconnect() {
-    ftui.log(2, 'stopFhemConnection');
+    log(2, 'stopFhemConnection');
     clearInterval(this.states.connection.timer);
 
     if (this.states.connection.websocket) {
@@ -284,12 +287,12 @@ class FhemService {
         this.states.connection.websocket.close();
       }
       this.states.connection.websocket = null;
-      ftui.log(2, 'stopped websocket');
+      log(2, 'stopped websocket');
     }
   }
 
   reconnect(delay = 0) {
-    ftui.log(2, 'restart FHEM connection');
+    log(2, 'restart FHEM connection');
     clearTimeout(this.states.connection.timer);
 
     this.disconnect();
@@ -301,7 +304,7 @@ class FhemService {
 
   handleFhemEvent(data) {
     data.split(/\n/).forEach(line => {
-      if (ftui.isDefined(line) && line !== '' && line.endsWith(']') && !this.isFhemWebInternal(line)) {
+      if (isDefined(line) && line !== '' && line.endsWith(']') && !this.isFhemWebInternal(line)) {
         const [id, value, html] = JSON.parse(line);
         const isTimestamp = id.match(/-ts$/);
         const parameterId = isTimestamp ? id.replace(/-ts$/, '') : id;
@@ -311,7 +314,7 @@ class FhemService {
           const isTrigger = (value === '' && html === '');
           const doPublish = (isTimestamp || isSTATE || isTrigger);
 
-          parameterData.update = ftui.dateFormat(new Date(), 'YYYY-MM-DD hh:mm:ss');
+          parameterData.update = dateFormat(new Date(), 'YYYY-MM-DD hh:mm:ss');
           parameterData.id = parameterId;
           parameterData.invalid = false;
           if (isTimestamp) {
@@ -332,7 +335,7 @@ class FhemService {
   updateFhem(cmdLine) {
     if (!this.states.isOffline) {
       this.sendCommand(cmdLine)
-        .then(response => ftui.log(3, response))
+        .then(response => log(3, response))
         .catch(error => this.errorEvents.publish('<u>FHEM Command failed</u><br>' + error + '<br>cmd=' + cmdLine));
       this.debugEvents.publish(cmdLine);
     } else {
@@ -353,19 +356,19 @@ class FhemService {
       password: this.config.password
     };
     url.search = new URLSearchParams(params)
-    ftui.log(1, 'send to FHEM: ' + cmdline);
+    log(1, 'send to FHEM: ' + cmdline);
     return fetch(url, options);
   }
 
   onUpdateDone() {
-    ftui.triggerEvent('updateDone');
+    triggerEvent('updateDone');
     this.publishInvalidReadings();
   }
 
   publishInvalidReadings() {
     this.readings.forEach(reading => {
       if (reading.data.invalid) {
-        reading.data.update = ftui.dateFormat(new Date(), 'YYYY-MM-DD hh:mm:ss');
+        reading.data.update = dateFormat(new Date(), 'YYYY-MM-DD hh:mm:ss');
         reading.events.publish(reading.data);
       }
     })
@@ -377,7 +380,7 @@ class FhemService {
     })
       .then(response => {
         this.config.csrf = response.headers.get('X-FHEM-csrfToken');
-        ftui.log(1, 'Got csrf from FHEM:' + this.config.csrf);
+        log(1, 'Got csrf from FHEM:' + this.config.csrf);
       });
   }
 
@@ -396,7 +399,7 @@ class FhemService {
   healthCheck() {
     const timeDiff = new Date() - this.states.connection.lastEventTimestamp;
     if (timeDiff / 1000 > 60) {
-      ftui.log(1, 'No update event since ' + timeDiff / 1000 + 'secondes -> restart connection');
+      log(1, 'No update event since ' + timeDiff / 1000 + 'secondes -> restart connection');
       this.reconnect();
     }
   }

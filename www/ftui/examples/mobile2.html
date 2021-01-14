@@ -26,118 +26,60 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
 
   <title>FTUI Mobile Example</title>
-
   <style>
-    html,
-    body {
-      width: 100%;
-      height: 100%;
-      margin: 0;
-      padding: 0;
-      font-family: 'Helvetica', 'Arial', sans-serif;
-    }
-     
-/*     .container {
-      width: 100%;
-      height: 100%;
-      max-width: 400px;
-      max-height: 600px;
-      overflow: hidden;
-      position: relative;
-    }  */
-
-    .view {
-      will-change: transform;
-      width: 100%;
-      position: absolute;
-      left: 0;
-      top: 0;
-      transition: -webkit-transform 0.3s cubic-bezier(0.465, 0.183, 0.153, 0.946);
-      transition: transform 0.3s cubic-bezier(0.465, 0.183, 0.153, 0.946);
-    }
-
-    .list-view {
-      height: 100%;
-      width: 100%;
-      position: relative;
-      overflow: scroll;
-      -webkit-overflow-scrolling: touch;
-    }
-
-    .details-view {
-      -webkit-transform: translateX(100%);
-      transform: translateX(100%);
-
-      box-sizing: border-box;
-      padding: 30px;
-    }
-
-    .view-change .list-view {
-      -webkit-transform: translateX(-100%);
-      transform: translateX(-100%);
-    }
-
-    .view-change .details-view {
-      -webkit-transform: translateX(0);
-      transform: translateX(0);
-    }
-
-    .list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-
-    .list li {
-      box-sizing: border-box;
-      line-height: 50px;
-      padding: 0 30px;
-      border-bottom: 1px solid #CCC;
-      background: linear-gradient(to bottom, #FFF, #FAFAFA);
-    }
-
+    body,html {
+    width: 100%;
+  }
   </style>
 </head>
 
+<!--  ToDo:
+  - allow multiple content at the same level
+  - usage of id as target, generate level number automatically
+-->
 <body>
-  <ftui-view-container>
-    <ftui-view class="list-view">
-      <ul class="list">
-        <li class="list-item">Item 1</li>
-        <li class="list-item">Item 2</li>
-        <li class="list-item">Item 3</li>
-        <li class="list-item">Item 4</li>
-        <li class="list-item">Item 5</li>
-        <li class="list-item">Item 6</li>
-        <li class="list-item">Item 7</li>
-        <li class="list-item">Item 8</li>
-        <li class="list-item">Item 9</li>
-        <li class="list-item">Item 10</li>
-      </ul>
+  <ftui-view-stage level="0">
+    
+    <ftui-view level="0">
+      <ftui-view-item target="1">Item 1
+        <ftui-icon name="chevron-right" slot="end" target="1" color="light"></ftui-icon>
+      </ftui-view-item>
+      <ftui-view-item target="1">Item 2
+        <ftui-icon name="chevron-right" slot="end" target="1" color="light"></ftui-icon>
+      </ftui-view-item>
+      <ftui-view-item target="1" >Item 3
+        <ftui-icon name="chevron-right" slot="end" color="light"></ftui-icon>
+      </ftui-view-item>
+      <ftui-view-item>Item 4</ftui-view-item>
+      <ftui-view-item>Item 5</ftui-view-item>
+      <ftui-view-item>Item 6</ftui-view-item>
+      <ftui-view-item>Item 7</ftui-view-item>
     </ftui-view>
-    <ftui-view class="details-view">
+
+    <ftui-view level="1">
+      <ftui-icon name="chevron-left" target="0" color="light"></ftui-icon>
+      <ftui-label target="0">Back</ftui-label>
+      <ftui-view-item target="2">Item 11
+        <ftui-icon name="chevron-right" slot="end" target="2" color="light"></ftui-icon>
+      </ftui-view-item>
+      <ftui-view-item target="2">Item 12
+        <ftui-icon name="chevron-right" slot="end" target="2" color="light"></ftui-icon>
+      </ftui-view-item>
+      <ftui-view-item target="2">Item 13
+        <ftui-icon name="chevron-right" slot="end" target="2" color="light"></ftui-icon>
+      </ftui-view-item>
+      <ftui-view-item>Item 4</ftui-view-item>
+      <ftui-view-item>Item 5</ftui-view-item>
+      <ftui-view-item>Item 6</ftui-view-item>
+      <ftui-view-item>Item 7</ftui-view-item>
+    </ftui-view>
+
+    <ftui-view level="2">
       <h1>Details view for <span class="item-name"></span></h1>
-      <button class="back-button">Back</button>
+      <ftui-icon name="chevron-left" target="1" color="light"></ftui-icon>
+      <ftui-label target="1">Back</ftui-label>
     </ftui-view>
-  </ftui-main>
 
-  <script>
-    function onViewChange(evt) {
-      container.classList.toggle('view-change');
-
-      if (evt.currentTarget.classList.contains('list-item'))
-        itemName.textContent = evt.currentTarget.textContent;
-    }
-
-    var container = document.querySelector('ftui-view-container');
-    var itemName = document.querySelector('.item-name');
-    var backButton = document.querySelector('.back-button');
-    var listItems = document.querySelectorAll('.list li');
-    for (var i = 0; i < listItems.length; i++) {
-      listItems[i].addEventListener('click', onViewChange, false);
-    }
-
-    backButton.addEventListener('click', onViewChange);
-  </script>
+  </ftui-view-stage>
 
 </html>
