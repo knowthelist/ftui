@@ -1,0 +1,38 @@
+:host {
+  width: 100%;
+  background-color: var(--view-item-background-color);
+  display: flex;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  padding-inline-start: var(--padding-start, 20px);
+  align-items: center;
+  min-height: 4em;
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  border-width: var(--section-border-width, 0 0 1px 0);
+  border-style: var(--section-border-style, solid);
+  border-color: var(--section-border-color, #c8c7cc);
+  padding-inline-end: var(--padding-end, 10px);
+  min-height: inherit;
+}
+
+.inner {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+slot[name="end"] {
+  font-size: 0.5em;
+  display: flex;
+  justify-items: center;
+  align-items: center;
+}

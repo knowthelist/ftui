@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!--
+    /* FHEM tablet ui - FTUI */
+    /**
+    * UI builder framework for FHEM
+    *
+    * Version: 3.0.0
+    *
+    * Copyright (c) 
+    2020 Mario Stephan <mstephan@shared-files.de>
+    * Under MIT License (http://www.opensource.org/licenses/mit-license.php)
+    * https://github.com/knowthelist/ftui
+    */
+    -->
+  <base href="../" />
+  <script src="ftui.js"></script>
+  <link href="ftui.css" rel="stylesheet">
+  <link href="themes/bright-theme.css" rel="stylesheet">
+  <link href="favicon.ico" rel="icon" type="image/x-icon" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+
+  <title>FTUI Mobile Example</title>
+</head>
+
+<!--  ToDo:
+  - lazy loading 
+-->
+<body>
+  <ftui-view-stage>
+    
+    <ftui-view id="main-view">
+      <ftui-view-toolbar>
+        Selector
+      </ftui-view-toolbar>
+      <ftui-view-item nav-target="select-view">Item 1
+        <ftui-icon name="chevron-right" slot="end" color="light"></ftui-icon>
+      </ftui-view-item>
+      <ftui-view-item nav-target="detail-view2">Item 2
+        <ftui-icon name="chevron-right" slot="end" color="light"></ftui-icon>
+      </ftui-view-item>
+      <ftui-view-item nav-target="select-view">Item 3
+        <ftui-icon name="chevron-right" slot="end" color="light"></ftui-icon>
+      </ftui-view-item>
+      <ftui-view-item>Item 4</ftui-view-item>
+      <ftui-view-item>Item 5</ftui-view-item>
+      <ftui-view-item>Item 6</ftui-view-item>
+      <ftui-view-item>Item 7</ftui-view-item>
+    </ftui-view>
+
+    <ftui-view id="select-view">
+      <ftui-view-toolbar>
+        <ftui-nav-link slot="start"></ftui-nav-link>
+        Select
+      </ftui-view-toolbar>
+      <ftui-view-item nav-target="detail-view">Item 11
+        <ftui-icon name="chevron-right" slot="end" color="light"></ftui-icon>
+      </ftui-view-item>
+      <ftui-view-item nav-target="detail-view3">Item 12
+        <ftui-icon name="chevron-right" slot="end" color="light"></ftui-icon>
+      </ftui-view-item>
+      <ftui-view-item nav-target="detail-view">Item 13
+        <ftui-icon name="chevron-right" slot="end" color="light"></ftui-icon>
+      </ftui-view-item>
+      <ftui-view-item>Item 4</ftui-view-item>
+      <ftui-view-item>Item 5</ftui-view-item>
+      <ftui-view-item>Item 6</ftui-view-item>
+      <ftui-view-item>Item 7</ftui-view-item>
+    </ftui-view>
+
+    <ftui-view id="detail-view">
+      <ftui-view-toolbar>
+        <ftui-nav-link slot="start"></ftui-nav-link>
+        Details Main
+      </ftui-view-toolbar>
+      
+    </ftui-view>
+
+    <ftui-view id="detail-view2">
+      <ftui-view-toolbar>
+        <ftui-nav-link slot="start"></ftui-nav-link>
+        Details 2
+      </ftui-view-toolbar>
+    </ftui-view>
+
+    <ftui-view id="detail-view3">
+      <ftui-view-toolbar>
+        <ftui-nav-link slot="start"></ftui-nav-link>
+        Details 3
+      </ftui-view-toolbar>
+    </ftui-view>
+
+  </ftui-view-stage>
+
+</html>

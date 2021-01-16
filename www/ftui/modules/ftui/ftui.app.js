@@ -114,6 +114,16 @@ class FtuiApp {
       }
     });
 
+    if (componentTypes.length === 0) {
+      // no ftui-* elements found, return self resolving Promise array
+      return [new Promise((resolve) => {
+        const id = setTimeout(() => {
+          clearTimeout(id);
+          resolve('nothing to do')
+        }, 10)
+      })];
+    }
+
     componentTypes.forEach(type => {
       const nameParts = type.split('-');
       const group = nameParts[1];

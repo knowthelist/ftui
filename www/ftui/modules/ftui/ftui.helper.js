@@ -231,7 +231,7 @@ export function durationFromSeconds(time) {
   return ret;
 }
 
-export function timeFormat(ms, format, inputMode='ms', formatMode='lower') {
+export function timeFormat(ms, format, inputMode = 'ms', formatMode = 'lower') {
   // inputMode: 'ms' or 's'
   let x = ms
   if (inputMode === 'ms') { x /= 1000; }
@@ -275,14 +275,14 @@ export function timeFormat(ms, format, inputMode='ms', formatMode='lower') {
   return ret;
 }
 
-export function dateAgo (date) {
+export function dateAgo(date) {
   const now = new Date();
   const ms = (now - date);
 
   return ms;
 }
 
-export function dateTill (date) {
+export function dateTill(date) {
   const now = new Date();
   const ms = (date - now);
 
@@ -354,4 +354,51 @@ export function timeoutPromise(promises, ms = 5000) {
     Promise.all(promises),
     timeout
   ])
+}
+
+export class Stack {
+  constructor() {
+    this.items = [];
+  }
+  push(element) {
+    this.items.push(element);
+  }
+  pop() {
+    return this.items.pop();
+  }
+  peek() {
+    return this.items[this.items.length - 1];
+  }
+  isEmpty() {
+    return this.items.length === 0;
+  }
+  clear() {
+    this.items.length = 0;
+  }
+  size() {
+    return this.items.length;
+  }
+}
+
+export class Subject {
+  constructor() {
+    this.observers = [];
+  }
+
+  isSubscribed(observer) {
+    return this.observers.filter(subscriber => subscriber.observer === observer).length;
+  }
+
+  subscribe(observer) {
+    if (this.isSubscribed(observer)) return;
+    this.observers.push({ observer: observer });
+  }
+
+  unsubscribe(observer) {
+    this.observers = this.observers.filter(subscriber => subscriber.observer !== observer);
+  }
+
+  publish(args) {
+    this.observers.forEach(subscriber => subscriber.observer(args));
+  }
 }
