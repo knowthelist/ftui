@@ -16,7 +16,7 @@ export class FtuiViewItem extends FtuiElement {
   constructor() {
     super(FtuiViewItem.properties);
 
-    //this.addEventListener('click', this.onClicked);
+    this.addEventListener('click', this.onClicked);
   }
 
   template() {
@@ -34,11 +34,21 @@ export class FtuiViewItem extends FtuiElement {
 
   static get properties() {
     return {
+      navTarget: '',
     };
   }
 
   static get observedAttributes() {
     return [...this.convertToAttributes(FtuiViewItem.properties), ...super.observedAttributes];
+  }
+
+  onClicked() {
+    if (this.navTarget) {
+      const stage = this.closest('ftui-view-stage');
+      if (stage) {
+        stage.goForward(this.navTarget);
+      }
+    }
   }
 
 }

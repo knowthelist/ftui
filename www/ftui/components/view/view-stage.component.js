@@ -10,22 +10,34 @@
 * https://github.com/knowthelist/ftui
 */
 
+import { Stack } from '../../modules/ftui/ftui.helper.js';
 import { FtuiElement } from '../element.component.js';
-// eslint-disable-next-line no-unused-vars
-import { FtuiView } from '../view/view.component.js';
 
 export class FtuiViewStage extends FtuiElement {
 
   constructor() {
     super(FtuiViewStage.properties);
 
+    this.stack = new Stack();
     this.initialX = null;
     this.initialY = null;
 
-    this.addEventListener('click', this.onClicked);
+    this.startElement = this.start
+      ? document.querySelector(`#${this.start}`)
+      : this.querySelector('ftui-view:first-of-type');
+
     this.addEventListener('touchstart', this.startTouch, false);
     this.addEventListener('touchmove', this.moveTouch, false);
 
+    // move all views right
+    const allViews = this.querySelectorAll('ftui-view');
+    allViews.forEach((view) => {
+      view.style.zIndex = 0;
+      view.style.transform = 'translateX(100%)';
+    });
+
+    // start view
+    this.showStartView();
   }
 
   template() {
@@ -34,14 +46,9 @@ export class FtuiViewStage extends FtuiElement {
             :host {
               width: 100%;
               height: 100%;
-           /*    max-width: 400px;
-              max-height: 600px; */
               overflow: hidden;
               display: block;
               position: relative;
-            }
-            :host ::slotted(ftui-view) {
-              transform: translateX(calc((var(--view-stage-level) - var(--view-level)) * -100%));
             }
             </style>
             <slot></slot>`;
@@ -49,30 +56,42 @@ export class FtuiViewStage extends FtuiElement {
 
   static get properties() {
     return {
-      level: 0,
+      start: '',
     };
   }
 
-  static get observedAttributes() {
-    return [...this.convertToAttributes(FtuiViewStage.properties), ...super.observedAttributes];
-  }
+  // Stack operations
 
-  onAttributeChanged(name, newValue) {
-    switch (name) {
-      case 'level':
-        this.style.setProperty('--view-stage-level', newValue);
-        break;
+  goForward(viewId) {
+    const view = document.querySelector(`#${viewId}`);
+    if (view) {
+      this.stack.push(view);
+      view.style.zIndex = this.stack.size();
+      view.style.transform = 'translateX(0)';
     }
   }
 
-  onClicked(event) {
-    const target = event.target.getAttribute('target');
-    console.dir(event.target)
-    console.log(target)
-    if (target) {
-      this.level = target;
+  goBack() {
+    const view = this.stack.pop();
+    if (view) {
+      view.style.zIndex = this.stack.size();
+      view.style.transform = 'translateX(100%)';
     }
   }
+
+  showStartView() {
+    if (this.startElement) {
+      while (!this.stack.isEmpty()) {
+        const view = this.stack.pop()
+        view.style.zIndex = this.stack.size();
+        view.style.transform = 'translateX(100%)';
+      }
+      this.startElement.style.zIndex = 0;
+      this.startElement.style.transform = 'translateX(0)';
+    }
+  }
+
+  // slide back gesture
 
   startTouch(e) {
     this.initialX = e.touches[0].clientX;
@@ -96,33 +115,16 @@ export class FtuiViewStage extends FtuiElement {
 
     if (Math.abs(diffX) > Math.abs(diffY)) {
       // sliding horizontally
-      if (diffX > 0) {
-        // swiped left
-        console.log('swiped left');
-
-        if (this.level < 1) {
-          this.level = this.level + 1
-        }
-      } else {
+      if (diffX < -50) {
         // swiped right
-        console.log('swiped right');
-        if (this.level > 0) {
-          this.level = this.level - 1
-        }
+        this.goBack();
+        this.initialX = null;
+        this.initialY = null;
       }
     } else {
-      // sliding vertically
-      if (diffY > 0) {
-        // swiped up
-        console.log('swiped up');
-      } else {
-        // swiped down
-        console.log('swiped down');
-      }
+      this.initialX = null;
+      this.initialY = null;
     }
-
-    this.initialX = null;
-    this.initialY = null;
 
     e.preventDefault();
   }

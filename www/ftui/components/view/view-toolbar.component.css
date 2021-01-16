@@ -1,31 +1,59 @@
-:host {
-  width: 100%;
-  display: flex;
-  color: var(--view-header-color);
-  background: var(--view-header-background-color);
-}
-
 .container {
-  display: flex;
-  flex-direction: row;
+  height: 44px;
+  line-height: 44px;
   width: 100%;
-  padding-inline-start: var(--padding-start, 0);
-  padding-inline-end: var(--padding-end, 0);
-  border-width: var(--section-border-width, 0 0 1px 0);
-  border-style: var(--section-border-style, solid);
-  border-color: var(--section-border-color, #777);
-  align-items: center;
-  justify-content: space-around;
-  min-height: 4em;
+  padding-top: 0;
+  background-color: var(--view-toolbar-background-color);
+  background-image: linear-gradient(0deg, rgb(200, 199, 204), rgb(200, 199, 204) 50%, transparent 50%);
+  background-size: 100% 1px;
+  background-repeat: no-repeat;
+  background-position: bottom;
+  z-index: 10;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
 }
 
-.content {
-  display: flex;
-  flex: 1;
-  justify-content: center;
-  min-width: 0;
+.container .link {
+  position: absolute;
+  top: 0;
+  display: inline-block;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  font-size: 17px;
+  color: rgb(21, 125, 251);
+  padding: 0 5px 0 5px;
+  font-weight: 300;
+  height: 44px;
+  line-height: 44px;
+  text-overflow: ellipsis !important;
+  /* why so !important ? */
+  max-width: 140px;
 }
 
-:host ::slotted(*) {
-margin: 0 1em;
+.container .link.left {
+  left: 0;
+  padding-left: 9px;
+}
+
+.container .link.right {
+  right: 0;
+  text-align: right;
+  padding-right: 9px;
+}
+
+.title {
+  display: block;
+  padding: 0;
+  font-size: 17px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  text-align: center;
+  overflow: hidden;
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  box-flex: 1;
+  margin: 0 65px;
+  font-weight: 500;
+  -webkit-tap-highlight-color: transparent;
 }

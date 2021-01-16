@@ -65,8 +65,8 @@
   --text-color: var(--gray75);
   --inactive-text-color: #A39B9B;
 
-  --view-header-color: var(--gray15);
-  --view-header-background-color: var(--white);
+  --view-toolbar-color: var(--gray15);
+  --view-toolbar-background-color: var(--white);
   --view-content-color: var(--white);
   --view-background-color: var(--white);
   --view-footer-color: var(--white);

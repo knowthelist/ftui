@@ -13,20 +13,24 @@ import { FtuiElement } from '../element.component.js';
 
 export class FtuiViewToolbar extends FtuiElement {
 
-  constructor(properties) {
-    super(properties);
+  constructor() {
+    super();
   }
 
   template() {
     return `<style> @import "components/view/view-toolbar.component.css"; </style>
             <div class="container">
-              <slot name="start"></slot>
-              <slot name="secondary"></slot>
-              <div class="content">
+              <div class="link left">
+                <slot name="start"></slot>
+              </div>
+
+              <div class="title">
                 <slot></slot>
               </div>
-              <slot name="primary"></slot>
-              <slot name="end"></slot>
+
+              <div class="link right">
+                <slot name="end"></slot>
+              </div>
             </div>`;
   }
 }

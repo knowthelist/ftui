@@ -26,28 +26,25 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
 
   <title>FTUI Mobile Example</title>
-  <style>
-    body,html {
-    width: 100%;
-  }
-  </style>
 </head>
 
 <!--  ToDo:
-  - allow multiple content at the same level
-  - usage of id as target, generate level number automatically
+  - lazy loading 
 -->
 <body>
-  <ftui-view-stage level="0">
+  <ftui-view-stage>
     
-    <ftui-view level="0">
-      <ftui-view-item target="1">Item 1
-        <ftui-icon name="chevron-right" slot="end" target="1" color="light"></ftui-icon>
+    <ftui-view id="main-view">
+      <ftui-view-toolbar>
+        Selector
+      </ftui-view-toolbar>
+      <ftui-view-item nav-target="select-view">Item 1
+        <ftui-icon name="chevron-right" slot="end" color="light"></ftui-icon>
       </ftui-view-item>
-      <ftui-view-item target="1">Item 2
-        <ftui-icon name="chevron-right" slot="end" target="1" color="light"></ftui-icon>
+      <ftui-view-item nav-target="detail-view2">Item 2
+        <ftui-icon name="chevron-right" slot="end" color="light"></ftui-icon>
       </ftui-view-item>
-      <ftui-view-item target="1" >Item 3
+      <ftui-view-item nav-target="select-view">Item 3
         <ftui-icon name="chevron-right" slot="end" color="light"></ftui-icon>
       </ftui-view-item>
       <ftui-view-item>Item 4</ftui-view-item>
@@ -56,17 +53,19 @@
       <ftui-view-item>Item 7</ftui-view-item>
     </ftui-view>
 
-    <ftui-view level="1">
-      <ftui-icon name="chevron-left" target="0" color="light"></ftui-icon>
-      <ftui-label target="0">Back</ftui-label>
-      <ftui-view-item target="2">Item 11
-        <ftui-icon name="chevron-right" slot="end" target="2" color="light"></ftui-icon>
+    <ftui-view id="select-view">
+      <ftui-view-toolbar>
+        <ftui-nav-link slot="start"></ftui-nav-link>
+        Select
+      </ftui-view-toolbar>
+      <ftui-view-item nav-target="detail-view">Item 11
+        <ftui-icon name="chevron-right" slot="end" color="light"></ftui-icon>
       </ftui-view-item>
-      <ftui-view-item target="2">Item 12
-        <ftui-icon name="chevron-right" slot="end" target="2" color="light"></ftui-icon>
+      <ftui-view-item nav-target="detail-view3">Item 12
+        <ftui-icon name="chevron-right" slot="end" color="light"></ftui-icon>
       </ftui-view-item>
-      <ftui-view-item target="2">Item 13
-        <ftui-icon name="chevron-right" slot="end" target="2" color="light"></ftui-icon>
+      <ftui-view-item nav-target="detail-view">Item 13
+        <ftui-icon name="chevron-right" slot="end" color="light"></ftui-icon>
       </ftui-view-item>
       <ftui-view-item>Item 4</ftui-view-item>
       <ftui-view-item>Item 5</ftui-view-item>
@@ -74,10 +73,26 @@
       <ftui-view-item>Item 7</ftui-view-item>
     </ftui-view>
 
-    <ftui-view level="2">
-      <h1>Details view for <span class="item-name"></span></h1>
-      <ftui-icon name="chevron-left" target="1" color="light"></ftui-icon>
-      <ftui-label target="1">Back</ftui-label>
+    <ftui-view id="detail-view">
+      <ftui-view-toolbar>
+        <ftui-nav-link slot="start"></ftui-nav-link>
+        Details Main
+      </ftui-view-toolbar>
+      
+    </ftui-view>
+
+    <ftui-view id="detail-view2">
+      <ftui-view-toolbar>
+        <ftui-nav-link slot="start"></ftui-nav-link>
+        Details 2
+      </ftui-view-toolbar>
+    </ftui-view>
+
+    <ftui-view id="detail-view3">
+      <ftui-view-toolbar>
+        <ftui-nav-link slot="start"></ftui-nav-link>
+        Details 3
+      </ftui-view-toolbar>
     </ftui-view>
 
   </ftui-view-stage>
