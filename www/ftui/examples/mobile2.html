@@ -18,7 +18,7 @@
   <base href="../" />
   <script src="ftui.js"></script>
   <link href="ftui.css" rel="stylesheet">
-  <link href="themes/bright-theme.css" rel="stylesheet">
+  <link href="themes/mobile-theme.css" rel="stylesheet">
   <link href="favicon.ico" rel="icon" type="image/x-icon" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -33,68 +33,82 @@
 -->
 <body>
   <ftui-view-stage>
-    
-    <ftui-view id="main-view">
+    <ftui-view id="view-1">
       <ftui-view-toolbar>
-        Selector
+        Level 1
       </ftui-view-toolbar>
-      <ftui-view-item nav-target="select-view">Item 1
-        <ftui-icon name="chevron-right" slot="end" color="light"></ftui-icon>
-      </ftui-view-item>
-      <ftui-view-item nav-target="detail-view2">Item 2
-        <ftui-icon name="chevron-right" slot="end" color="light"></ftui-icon>
-      </ftui-view-item>
-      <ftui-view-item nav-target="select-view">Item 3
-        <ftui-icon name="chevron-right" slot="end" color="light"></ftui-icon>
-      </ftui-view-item>
+      <ftui-view-item nav-target="view-2">Item 1</ftui-view-item>
+      <ftui-view-item nav-target="details-2">Item 2</ftui-view-item>
+      <ftui-view-item nav-target="view-2">Item 3</ftui-view-item>
       <ftui-view-item>Item 4</ftui-view-item>
       <ftui-view-item>Item 5</ftui-view-item>
       <ftui-view-item>Item 6</ftui-view-item>
       <ftui-view-item>Item 7</ftui-view-item>
-    </ftui-view>
+      <ftui-view-item>Item 8</ftui-view-item>
+      <ftui-view-item>Item 9</ftui-view-item>
+      <ftui-view-item>Item 10</ftui-view-item>
+      <ftui-view-item>Item 11</ftui-view-item>
+      <ftui-view-item>Item 12</ftui-view-item>
+      <ftui-view-item>Item 13</ftui-view-item>
+      <ftui-view-item>Item 14</ftui-view-item>
+      <ftui-view-item>Item 15</ftui-view-item>
+      <ftui-view-item>Item 16</ftui-view-item>
+      <ftui-view-item>Item 17</ftui-view-item>
+      <ftui-view-item>Item 18</ftui-view-item>
 
-    <ftui-view id="select-view">
+    </ftui-view> 
+
+    <ftui-view id="view-2">
       <ftui-view-toolbar>
         <ftui-nav-link slot="start"></ftui-nav-link>
-        Select
+        Level 2
       </ftui-view-toolbar>
-      <ftui-view-item nav-target="detail-view">Item 11
-        <ftui-icon name="chevron-right" slot="end" color="light"></ftui-icon>
-      </ftui-view-item>
-      <ftui-view-item nav-target="detail-view3">Item 12
-        <ftui-icon name="chevron-right" slot="end" color="light"></ftui-icon>
-      </ftui-view-item>
-      <ftui-view-item nav-target="detail-view">Item 13
-        <ftui-icon name="chevron-right" slot="end" color="light"></ftui-icon>
-      </ftui-view-item>
+      <ftui-view-item nav-target="details-1">Item 11</ftui-view-item>
+      <ftui-view-item nav-target="details-2">Item 12</ftui-view-item>
+      <ftui-view-item nav-target="details-3">Item 13</ftui-view-item>
       <ftui-view-item>Item 4</ftui-view-item>
       <ftui-view-item>Item 5</ftui-view-item>
       <ftui-view-item>Item 6</ftui-view-item>
       <ftui-view-item>Item 7</ftui-view-item>
+      <ftui-view-item>Item 4</ftui-view-item>
+      <ftui-view-item>Item 5</ftui-view-item>
+      <ftui-view-item>Item 6</ftui-view-item>
+      <ftui-view-item>Item 7</ftui-view-item>
+      <ftui-view-item>Item 8</ftui-view-item>
+      <ftui-view-item>Item 9</ftui-view-item>
+      <ftui-view-item>Item 10</ftui-view-item>
+      <ftui-view-item>Item 11</ftui-view-item>
+      <ftui-view-item>Item 12</ftui-view-item>
+      <ftui-view-item>Item 13</ftui-view-item>
+      <ftui-view-item>Item 14</ftui-view-item>
+      <ftui-view-item>Item 15</ftui-view-item>
+      <ftui-view-item>Item 16</ftui-view-item>
+      <ftui-view-item>Item 17</ftui-view-item>
+      <ftui-view-item>Item 18</ftui-view-item>
     </ftui-view>
 
-    <ftui-view id="detail-view">
+    <ftui-view id="details-1">
       <ftui-view-toolbar>
         <ftui-nav-link slot="start"></ftui-nav-link>
-        Details Main
+        Details 1
       </ftui-view-toolbar>
       
     </ftui-view>
 
-    <ftui-view id="detail-view2">
+    <ftui-view id="details-2">
       <ftui-view-toolbar>
         <ftui-nav-link slot="start"></ftui-nav-link>
         Details 2
       </ftui-view-toolbar>
     </ftui-view>
 
-    <ftui-view id="detail-view3">
+    <ftui-view id="details-3">
       <ftui-view-toolbar>
         <ftui-nav-link slot="start"></ftui-nav-link>
         Details 3
       </ftui-view-toolbar>
     </ftui-view>
 
-  </ftui-view-stage>
+  </ftui-view-stage> 
 
 </html>

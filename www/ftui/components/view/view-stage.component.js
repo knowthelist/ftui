@@ -29,11 +29,10 @@ export class FtuiViewStage extends FtuiElement {
     this.addEventListener('touchstart', this.startTouch, false);
     this.addEventListener('touchmove', this.moveTouch, false);
 
-    // move all views right
+    // move all views out
     const allViews = this.querySelectorAll('ftui-view');
     allViews.forEach((view) => {
-      view.style.zIndex = 0;
-      view.style.transform = 'translateX(100%)';
+      view.setAttribute('outside', '');
     });
 
     // start view
@@ -47,8 +46,8 @@ export class FtuiViewStage extends FtuiElement {
               width: 100%;
               height: 100%;
               overflow: hidden;
-              display: block;
-              position: relative;
+               display: block;
+              position: relative; 
             }
             </style>
             <slot></slot>`;
@@ -66,16 +65,14 @@ export class FtuiViewStage extends FtuiElement {
     const view = document.querySelector(`#${viewId}`);
     if (view) {
       this.stack.push(view);
-      view.style.zIndex = this.stack.size();
-      view.style.transform = 'translateX(0)';
+      view.removeAttribute('outside');
     }
   }
 
   goBack() {
     const view = this.stack.pop();
     if (view) {
-      view.style.zIndex = this.stack.size();
-      view.style.transform = 'translateX(100%)';
+      view.setAttribute('outside', '');
     }
   }
 
@@ -83,11 +80,9 @@ export class FtuiViewStage extends FtuiElement {
     if (this.startElement) {
       while (!this.stack.isEmpty()) {
         const view = this.stack.pop()
-        view.style.zIndex = this.stack.size();
-        view.style.transform = 'translateX(100%)';
+        view.setAttribute('outside', '');
       }
-      this.startElement.style.zIndex = 0;
-      this.startElement.style.transform = 'translateX(0)';
+      this.startElement.removeAttribute('outside');
     }
   }
 
@@ -115,7 +110,7 @@ export class FtuiViewStage extends FtuiElement {
 
     if (Math.abs(diffX) > Math.abs(diffY)) {
       // sliding horizontally
-      if (diffX < -50) {
+      if (this.initialX < 10 && diffX < -100) {
         // swiped right
         this.goBack();
         this.initialX = null;
@@ -125,8 +120,6 @@ export class FtuiViewStage extends FtuiElement {
       this.initialX = null;
       this.initialY = null;
     }
-
-    e.preventDefault();
   }
 }
 

@@ -28,12 +28,22 @@ export class FtuiView extends FtuiElement {
               will-change: transform;
               width: 100%;
               height: 100%;
-              position: absolute;
+              position: fixed;
               left: 0;
               top: 0;
+              transform: translateX(0);
               transition: transform 0.3s cubic-bezier(0.465, 0.183, 0.153, 0.946);
               display: flex;
               flex-direction: column;
+              overflow: hidden;
+            }
+            :host([outside]) {
+              transform: translateX(100%);
+            }
+            .content {
+              padding-top: 44px;
+              height: 100vh;
+              overflow: scroll;
             }
             </style>
             <slot name="header"></slot>
