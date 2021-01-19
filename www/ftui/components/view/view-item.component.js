@@ -24,7 +24,9 @@ export class FtuiViewItem extends FtuiElement {
             <div class="content">
               <slot name="start"></slot>
               <div class="inner">
-                <slot></slot>
+                <div class="inner-wrapper">
+                  <slot></slot>
+                </div>
                 <slot name="end"></slot>
               </div>
             </div>`;

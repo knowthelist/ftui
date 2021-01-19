@@ -9,7 +9,7 @@ UPD 2020-12-31_16:39:02 3467 www/ftui/components/chart/chart-controls.component.
 UPD 2020-12-31_16:39:02 3652 www/ftui/components/chart/chart-data.component.js
 UPD 2020-12-31_16:39:02 231 www/ftui/components/chart/chart.component.css
 UPD 2020-12-31_16:39:02 8087 www/ftui/components/chart/chart.component.js
-UPD 2020-12-31_16:39:02 1338 www/ftui/components/checkbox/checkbox.component.css
+UPD 2021-01-19_09:46:47 1315 www/ftui/components/checkbox/checkbox.component.css
 UPD 2020-12-31_16:39:02 2090 www/ftui/components/checkbox/checkbox.component.js
 UPD 2020-12-31_16:39:02 317 www/ftui/components/circlemenu/circlemenu.component.css
 UPD 2021-01-04_14:39:35 1185 www/ftui/components/circlemenu/circlemenu.component.js
@@ -46,8 +46,8 @@ UPD 2021-01-05_19:05:30 680 www/ftui/components/tab/tab-view.component.js
 UPD 2020-12-31_16:39:02 498 www/ftui/components/tab/tab.component.css
 UPD 2021-01-16_01:52:42 2284 www/ftui/components/tab/tab.component.js
 UPD 2020-12-31_16:39:02 524 www/ftui/components/title/title.component.js
-UPD 2021-01-19_00:39:07 1317 www/ftui/components/view/view-item.component.css
-UPD 2021-01-19_01:04:16 1208 www/ftui/components/view/view-item.component.js
+UPD 2021-01-19_09:50:37 1312 www/ftui/components/view/view-item.component.css
+UPD 2021-01-19_09:31:23 1277 www/ftui/components/view/view-item.component.js
 UPD 2021-01-19_00:59:42 931 www/ftui/components/view/view-section.component.css
 UPD 2021-01-19_01:04:24 846 www/ftui/components/view/view-section.component.js
 UPD 2021-01-19_01:05:10 2742 www/ftui/components/view/view-stage.component.js
@@ -78,7 +78,7 @@ UPD 2020-12-31_16:39:02 4544 www/ftui/examples/knob.html
 UPD 2020-12-31_16:39:02 6525 www/ftui/examples/label.html
 UPD 2021-01-16_01:52:44 1975 www/ftui/examples/menu.html
 UPD 2020-12-31_16:39:02 1698 www/ftui/examples/mobile.html
-UPD 2021-01-19_01:02:46 3672 www/ftui/examples/mobile2.html
+UPD 2021-01-19_09:56:23 3936 www/ftui/examples/mobile2.html
 UPD 2021-01-16_01:52:44 3622 www/ftui/examples/popup.html
 UPD 2020-12-31_16:39:02 2868 www/ftui/examples/slider.html
 UPD 2020-12-31_16:39:02 1224 www/ftui/examples/speak.html

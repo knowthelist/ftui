@@ -36,7 +36,12 @@
   padding-inline-end: var(--padding-end, 10px);
   min-height: inherit;
   position: relative;
-  font-size: 1.25em;
+}
+
+.inner-wrapper {
+  display: flex;
+  flex: 1;
+  font-size: initial;
 }
 
 :host(:not([target=''])) .inner:after {
@@ -52,9 +57,6 @@
   margin-inline-end: 20px;
 }
 
-slot[name="end"] {
-  font-size: 0.5em;
-  display: flex;
-  justify-items: center;
-  align-items: center;
+::slotted([slot=end]) {
+  margin-inline-end: 5px;
 }
