@@ -40,15 +40,14 @@ export class FtuiViewStage extends FtuiElement {
   }
 
   template() {
-    return `
-          <style>
-            :host {
-              width: 100%;
-              height: 100%;
-              overflow: hidden;
-               display: block;
-              position: relative; 
-            }
+    return `<style>
+              :host {
+                width: 100%;
+                height: 100%;
+                overflow: hidden;
+                display: block;
+                position: relative; 
+              }
             </style>
             <slot></slot>`;
   }

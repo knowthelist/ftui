@@ -21,12 +21,10 @@ export class FtuiViewItem extends FtuiElement {
 
   template() {
     return `<style> @import "components/view/view-item.component.css"; </style>
-            <div class="container">
-              <div class="content">
-                <div class="inner">
-                  <slot name="start"></slot>
-                  <slot></slot>
-                </div>
+            <div class="content">
+              <slot name="start"></slot>
+              <div class="inner">
+                <slot></slot>
                 <slot name="end"></slot>
               </div>
             </div>`;
@@ -34,7 +32,7 @@ export class FtuiViewItem extends FtuiElement {
 
   static get properties() {
     return {
-      navTarget: '',
+      target: '',
     };
   }
 
@@ -43,10 +41,10 @@ export class FtuiViewItem extends FtuiElement {
   }
 
   onClicked() {
-    if (this.navTarget) {
+    if (this.target) {
       const stage = this.closest('ftui-view-stage');
       if (stage) {
-        stage.goForward(this.navTarget);
+        stage.goForward(this.target);
       }
     }
   }

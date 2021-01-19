@@ -9,8 +9,7 @@
     *
     * Version: 3.0.0
     *
-    * Copyright (c) 
-    2020 Mario Stephan <mstephan@shared-files.de>
+    * Copyright (c) 2020-2021 Mario Stephan <mstephan@shared-files.de>
     * Under MIT License (http://www.opensource.org/licenses/mit-license.php)
     * https://github.com/knowthelist/ftui
     */
@@ -34,27 +33,35 @@
 <body>
   <ftui-view-stage>
     <ftui-view id="view-1">
-      <ftui-view-toolbar>
-        Level 1
-      </ftui-view-toolbar>
-      <ftui-view-item nav-target="view-2">Item 1</ftui-view-item>
-      <ftui-view-item nav-target="details-2">Item 2</ftui-view-item>
-      <ftui-view-item nav-target="view-2">Item 3</ftui-view-item>
-      <ftui-view-item>Item 4</ftui-view-item>
-      <ftui-view-item>Item 5</ftui-view-item>
-      <ftui-view-item>Item 6</ftui-view-item>
-      <ftui-view-item>Item 7</ftui-view-item>
-      <ftui-view-item>Item 8</ftui-view-item>
-      <ftui-view-item>Item 9</ftui-view-item>
-      <ftui-view-item>Item 10</ftui-view-item>
-      <ftui-view-item>Item 11</ftui-view-item>
-      <ftui-view-item>Item 12</ftui-view-item>
-      <ftui-view-item>Item 13</ftui-view-item>
-      <ftui-view-item>Item 14</ftui-view-item>
-      <ftui-view-item>Item 15</ftui-view-item>
-      <ftui-view-item>Item 16</ftui-view-item>
-      <ftui-view-item>Item 17</ftui-view-item>
-      <ftui-view-item>Item 18</ftui-view-item>
+
+      <ftui-view-toolbar>Level 1</ftui-view-toolbar>
+
+      <ftui-view-section>
+        <ftui-label slot="header">header</ftui-label>
+
+        <ftui-view-item target="view-2">
+          <ftui-icon name="plane" color="green" slot="start"></ftui-icon>
+          Item 1
+        </ftui-view-item>
+
+        <ftui-view-item target="details-2">
+          <ftui-icon name="shopping-cart" color="yellow" slot="start"></ftui-icon>
+          Item 2
+        </ftui-view-item>
+
+        <ftui-view-item target="view-2">
+          <ftui-icon name="wrench" color="red" slot="start"></ftui-icon>
+          Item 3
+        </ftui-view-item>
+
+        <ftui-view-item target="view-3">
+          <ftui-icon name="phone" color="blue" slot="start"></ftui-icon>
+          Item 4
+        </ftui-view-item>
+
+        <ftui-label slot="footer">This footer explains the meaning of the section to the user</ftui-label>
+
+      </ftui-view-section>
 
     </ftui-view> 
 
@@ -63,9 +70,9 @@
         <ftui-nav-link slot="start"></ftui-nav-link>
         Level 2
       </ftui-view-toolbar>
-      <ftui-view-item nav-target="details-1">Item 11</ftui-view-item>
-      <ftui-view-item nav-target="details-2">Item 12</ftui-view-item>
-      <ftui-view-item nav-target="details-3">Item 13</ftui-view-item>
+      <ftui-view-item target="details-1">Item 11</ftui-view-item>
+      <ftui-view-item target="details-2">Item 12</ftui-view-item>
+      <ftui-view-item target="details-3">Item 13</ftui-view-item>
       <ftui-view-item>Item 4</ftui-view-item>
       <ftui-view-item>Item 5</ftui-view-item>
       <ftui-view-item>Item 6</ftui-view-item>

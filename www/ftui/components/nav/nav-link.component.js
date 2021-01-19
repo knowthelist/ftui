@@ -46,7 +46,7 @@ export class FtuiNavLink extends FtuiElement {
           stage.goBack();
           break;
         default:
-          stage.goForward(this.navTarget);
+          stage.goForward(this.target);
           break;
       }
     }

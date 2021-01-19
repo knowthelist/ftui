@@ -3,7 +3,7 @@
 *
 * for FTUI version 3
 *
-* Copyright (c) 2020 Mario Stephan <mstephan@shared-files.de>
+* Copyright (c) 2021 Mario Stephan <mstephan@shared-files.de>
 * Under MIT License (http://www.opensource.org/licenses/mit-license.php)
 *
 * https://github.com/knowthelist/ftui
@@ -23,11 +23,9 @@ export class FtuiViewToolbar extends FtuiElement {
               <div class="link left">
                 <slot name="start"></slot>
               </div>
-
               <div class="title">
                 <slot></slot>
               </div>
-
               <div class="link right">
                 <slot name="end"></slot>
               </div>
