@@ -45,7 +45,7 @@
 
       <ftui-column>
         <!-- binding short-->
-        <ftui-icon [name]="dummy1 | map('on:lightbulb-on-outline, off:lightbulb-outline')" [rgb]="HUEDevice6:rgb">
+        <ftui-icon [name]="dummy1 | map('on:lightbulb-on, off:lightbulb')" [rgb]="HUEDevice6:rgb">
         </ftui-icon>
 
         <ftui-label [text]="dummy1"></ftui-label>
@@ -58,12 +58,12 @@
 
       <ftui-label [text]="dummy1"></ftui-label>
       <!-- binding short-->
-      <ftui-icon [name]="dummy1 | map('on: lightbulb-on-outline, off: lightbulb-outline')"
+      <ftui-icon [name]="dummy1 | map('on: lightbulb-on, off: lightbulb')"
                  [color]="ftuitest | map('0: success, 50: warning, 80: danger')">
       </ftui-icon>
 
       <!-- binding long-->
-      <ftui-icon bind-name="dummy1 | map('on: lightbulb-on-outline, off: lightbulb-outline')"
+      <ftui-icon bind-name="dummy1 | map('on: lightbulb-on, off: lightbulb')"
                  bind:color="ftuitest | map('0: success, 50: warning, 80: danger')">
       </ftui-icon>
 

@@ -57,6 +57,15 @@
   margin-inline-end: 20px;
 }
 
+::slotted(ftui-icon[slot=start]) {
+  font-size: 0.9em;
+}
+
+::slotted(ftui-icon[slot=start]) {
+  margin-inline-end: 10px;
+  margin-inline-start: -10px;
+}
+
 ::slotted([slot=end]) {
   margin-inline-end: 5px;
 }

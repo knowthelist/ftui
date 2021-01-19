@@ -8,7 +8,7 @@
 .header {
   display: flex;
   align-items: flex-end;
-  min-height: 2em;
+  min-height: 1em;
   padding: 1em 0 0.5em 1.5em;
   text-transform: uppercase;
   font-size: 95%;
@@ -39,7 +39,6 @@
 }
 
 .footer {
-  min-height: 2em;
   font-size: 90%;
   padding: 0.5em 1.5em;
 }

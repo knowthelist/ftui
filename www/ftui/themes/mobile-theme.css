@@ -91,6 +91,10 @@
   --checkbox-off-color: var(--gray80);
 }
 
+[invert][color] {
+  --color-contrast: var(--white);
+}
+
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Ubuntu', 'Helvetica Neue', sans-serif;
   font-size: small;
