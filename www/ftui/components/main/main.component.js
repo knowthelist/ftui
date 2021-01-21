@@ -18,6 +18,9 @@ export class FtuiMain extends FtuiElement {
   constructor() {
     super(FtuiMain.properties);
 
+    const header = this.querySelector('ftui-view-toolbar');
+    header && header.setAttribute('slot', 'header');
+
     this.elementMenu = document.getElementById(this.menu);
     if (this.elementMenu) {
       this.elementMenu.addEventListener('openChange', event => this.setState(event.detail));
@@ -26,8 +29,31 @@ export class FtuiMain extends FtuiElement {
   }
 
   template() {
-    return `<style> @import "components/main/main.component.css"; </style>
-    <slot></slot>`;
+    return `
+          <style>
+            :host {
+              width: 100%;
+              height: 100%;
+              overflow: hidden;
+              display: block;
+              position: relative; 
+              will-change: transform;
+              transition: margin-left .5s cubic-bezier(0.465, 0.183, 0.153, 0.946);
+            }
+            :host([outside]) {
+              transform: translateX(100%);
+            }
+            .content {
+              padding-top: 44px;
+              height: 100vh;
+              overflow: scroll;
+            }
+            </style>
+            <slot name="header"></slot>
+            <div class="content">
+              <slot></slot>
+            </div>`;
+
   }
 
   static get properties() {
@@ -40,7 +66,7 @@ export class FtuiMain extends FtuiElement {
 
   setState(value) {
     if (value) {
-      this.style.marginLeft ='250px';
+      this.style.marginLeft = '250px';
     } else {
       this.style.marginLeft = '0';
     }
