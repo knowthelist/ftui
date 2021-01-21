@@ -39,7 +39,7 @@ UPD 2021-01-18_21:08:46 1083 www/ftui/components/nav/nav-link.component.js
 UPD 2020-12-31_16:39:02 1207 www/ftui/components/popup/popup.component.css
 UPD 2020-12-31_16:39:02 3188 www/ftui/components/popup/popup.component.js
 UPD 2020-12-31_16:39:02 593 www/ftui/components/row/row.component.js
-UPD 2021-01-21_01:26:24 3303 www/ftui/components/slider/slider.component.css
+UPD 2021-01-21_02:51:09 3379 www/ftui/components/slider/slider.component.css
 UPD 2021-01-20_18:52:36 3343 www/ftui/components/slider/slider.component.js
 UPD 2020-12-31_16:39:02 1590 www/ftui/components/speak/speak.component.js
 UPD 2021-01-05_19:05:30 680 www/ftui/components/tab/tab-view.component.js
