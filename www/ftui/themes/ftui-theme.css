@@ -13,6 +13,7 @@
   --gray40: #666666;
   --gray55: #8c8c8c;
   --gray75: #bfbfbf;
+  --gray80: #cccccc;
   --gray85: #d8d8d8;
   --gray90: #e5e5e5;
   --gray95: #f2f2f2;
@@ -92,6 +93,10 @@
   --border-color: var(--gray55);
 
   --checkbox-off-color: var(--gray80);
+
+  --slider-track-color: var(--dark-color);
+  --slider-handle-shadow: none;
+  --slider-handle-border: none;
 
 }
 

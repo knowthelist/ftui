@@ -34,18 +34,18 @@
   <ftui-view-stage>
     <ftui-view id="view-1">
 
-      <ftui-view-toolbar>Level 1</ftui-view-toolbar>
+      <ftui-view-toolbar>My House</ftui-view-toolbar>
 
       <ftui-view-section>
-        <ftui-label slot="header">header</ftui-label>
+         <ftui-label slot="header">Status</ftui-label>
  
-         <ftui-view-item target="view-2">
+         <ftui-view-item target="viewWindos">
            <ftui-icon name="plane" color="green" slot="start" invert></ftui-icon>
            Item 1
          </ftui-view-item>
  
          <ftui-view-item target="details-2">
-           <ftui-icon name="shopping-cart" color="yellow" slot="start" invert></ftui-icon>
+           <ftui-icon name="volume-off" color="yellow" slot="start" invert></ftui-icon>
            Item 2
          </ftui-view-item>
  
@@ -64,10 +64,11 @@
        </ftui-view-section>
 
       <ftui-view-section>
+        <ftui-label slot="header">Audio</ftui-label>
 
-        <ftui-view-item target="view-2">
-          <ftui-icon name="plane" color="green" slot="start"></ftui-icon>
-          Item 1
+        <ftui-view-item target="viewSonos">
+          <ftui-icon name="volume-off" color="green" slot="start"></ftui-icon>
+          Sonos
         </ftui-view-item>
 
         <ftui-view-item target="details-2">
@@ -113,27 +114,23 @@
 
     </ftui-view> 
 
-    <ftui-view id="view-2">
+    <ftui-view id="viewSonos">
       
       <ftui-view-toolbar>
         <ftui-nav-link slot="start"></ftui-nav-link>
-        Level 2
+        Sonos
       </ftui-view-toolbar>
 
-      <ftui-view-item target="details-1">Item 2-1</ftui-view-item>
-      <ftui-view-item target="details-2">Item 2-2</ftui-view-item>
-      <ftui-view-item target="details-3">Item 2-3</ftui-view-item>
       <ftui-view-item>
-        Property 1
-        <ftui-checkbox slot="end" value="on"></ftui-checkbox>
+        Bad
+        <ftui-slider [(value)]="Sonos_Bad:Volume" max="60" slot="end"></ftui-slider>
       </ftui-view-item>
       <ftui-view-item>
-        Property 2
-        <ftui-checkbox slot="end" color="success" value="on"></ftui-checkbox>
+        Küche
+        <ftui-slider [(value)]="Sonos_Kueche:Volume" max="60" slot="end"></ftui-slider>
       </ftui-view-item>
       <ftui-view-item>
         Property 3
-        <ftui-checkbox slot="end" color="danger" value="on"></ftui-checkbox>
       </ftui-view-item>
       <ftui-view-item>Item 2-4</ftui-view-item>
       <ftui-view-item>Item 2-5</ftui-view-item>

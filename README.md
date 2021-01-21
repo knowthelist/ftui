@@ -227,7 +227,7 @@ A user interface for mobile phones can be implemented with ftui-view.
 
 ![](http://knowthelist.github.io/ftui/screenshot-mobile.png)
 
-[Demo](https://knowthelist.github.io/ftui/www/ftui/examples/mobile2.html)
+[Demo](https://knowthelist.github.io/ftui/www/ftui/examples/mobile_plain.html)
 
 <br><br>
 
@@ -384,7 +384,7 @@ Examples
 - [Speak](https://knowthelist.github.io/ftui/www/ftui/examples/speak.html)
 - [Chart](https://knowthelist.github.io/ftui/www/ftui/examples/chart.html)
 - [Popup](https://knowthelist.github.io/ftui/www/ftui/examples/popup.html)
-- [View](https://knowthelist.github.io/ftui/www/ftui/examples/mobile2.html)
+- [View](https://knowthelist.github.io/ftui/www/ftui/examples/mobile_plain.html)
 
 Donation
 --------

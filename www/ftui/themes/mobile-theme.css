@@ -44,7 +44,7 @@
   --info-color: var(--ligthblue);
   --warning-color: var(--yellow1);
   --danger-color: var(--red1);
-  --light-color: var(--gray75);
+  --light-color: var(--gray90);
   --medium-color: var(--gray50);
   --dark-color: var(--gray25);
 
@@ -86,9 +86,13 @@
   --popup-header-color: var(--grid-header-color);
   --popup-header-background-color: var(--grid-header-background-color);
   
-  --border-color: var(--gray75);
+  --border-color: var(--light-color);
 
-  --checkbox-off-color: var(--gray80);
+  --checkbox-off-color: var(--light-color);
+
+  --slider-track-color: var(--light-color);
+  --slider-handle-shadow: 1px 1px 4px #ddd;
+  --slider-handle-border: 1px solid #f2f2f2;
 }
 
 [invert][color] {

@@ -68,4 +68,5 @@
 
 ::slotted([slot=end]) {
   margin-inline-end: 5px;
+  max-width: 60%;
 }

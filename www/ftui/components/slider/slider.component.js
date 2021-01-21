@@ -19,8 +19,10 @@ export class FtuiSlider extends FtuiElement {
     super(Object.assign(FtuiSlider.properties, properties));
 
     this.input = this.shadowRoot.querySelector('input');
+    this.ticksElement = this.shadowRoot.querySelector('.ticks');
     this.minElement = this.shadowRoot.querySelector('.numbers #min');
     this.maxElement = this.shadowRoot.querySelector('.numbers #max');
+    this.tickCount = Math.ceil(Math.abs(this.max - this.min) / this.tick) + 1;
 
     this.rangeable = new Rangeable(this.input, {
       vertical: this.isVertical,
@@ -34,6 +36,7 @@ export class FtuiSlider extends FtuiElement {
     });
 
     this.updateRangable();
+    this.drawTicks();
 
 
     // force re-render if visible
@@ -49,12 +52,10 @@ export class FtuiSlider extends FtuiElement {
     <style> @import "modules/rangeable/rangeable.min.css"; </style>
     <style> @import "components/slider/slider.component.css"; </style>
 
-    <div class="mapper">
+    <div class="wrapper">
       <input type="range" orient="vertical">
       <div class="ruler">
         <div class="ticks">
-          <span id="min"></span>
-          <span id="max"></span>
         </div>
         <div class="numbers">
           <span id="min"></span>
@@ -68,6 +69,8 @@ export class FtuiSlider extends FtuiElement {
     return {
       debounce: 200,
       step: 1,
+      tick: 100,
+      wideTick: 100,
       min: 0,
       max: 100,
       value: -99,
@@ -89,15 +92,6 @@ export class FtuiSlider extends FtuiElement {
     }
   }
 
-  updateRangable() {
-    this.minElement.innerHTML = this.min;
-    this.input.min = this.min;
-    this.maxElement.innerHTML = this.max;
-    this.input.max = this.max;
-    this.rangeable.setValue(Number(this.value));
-    this.rangeable.update();
-  }
-
   onSliderStart() {
     this.isDragging = true;
   }
@@ -113,6 +107,27 @@ export class FtuiSlider extends FtuiElement {
   onSliderEnd() {
     this.isDragging = false;
   }
+
+  updateRangable() {
+    this.minElement.innerHTML = this.min;
+    this.input.min = this.min;
+    this.maxElement.innerHTML = this.max;
+    this.input.max = this.max;
+    this.rangeable.setValue(Number(this.value));
+    this.rangeable.update();
+  }
+
+  drawTicks() {
+    this.ticksElement.innerHTML = '';
+    for (let i = 0; i < this.tickCount; i++) {
+      const elem = document.createElement('span');
+      if ((i * this.tick) % this.wideTick !== 0) {
+        elem.classList.add('small');
+      }
+      this.ticksElement.appendChild(elem);
+    }
+  }
+
 }
 
 window.customElements.define('ftui-slider', FtuiSlider);

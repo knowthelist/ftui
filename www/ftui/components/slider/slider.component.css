@@ -1,17 +1,25 @@
 :host {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
   width: calc(100% - 3.5em);
 }
 
 :host([is-vertical]) {
   height: calc(100% - 3.5em);
   width: initial;
-  display: flex;
-  flex-direction: row-reverse;
-  justify-content: center;
+
 }
 
-:host([is-vertical]) .mapper {
+.wrapper {
   display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+:host([is-vertical]) .wrapper {
   flex-direction: row-reverse;
 }
 
@@ -19,6 +27,18 @@
   border: none;
   width: 2em;
   height: 2em;
+  box-shadow: var(--slider-handle-shadow);
+  border: var(--slider-handle-border);
+}
+
+
+:host(:not([is-vertical])) .rangeable-container {
+  margin-top: -0.25em;
+}
+
+.rangeable-container {
+  position: absolute;
+  z-index: 1;
 }
 
 .rangeable-progress, .rangeable-track {
@@ -30,7 +50,7 @@
 }
 
 .rangeable-track {
-  background-color: var(--dark-color);
+  background-color: var(--slider-track-color);
 }
 
 .rangeable-tooltip::before {
@@ -60,11 +80,38 @@
   margin-top: 0.5em;
   background-color: var(--text-color);
   height: 0.5em;
-  width: 0.125em;
+  width: 1px;
+}
+
+:host([has-wide-ticks]) .ticks span {
+  height: 2em;
+}
+
+:host([has-wide-ticks]) .ticks span {
+  height: 2em;
+}
+
+:host([has-wide-ticks]) .ticks span.small {
+  margin-top: 0.75em;
+  height: 1.5em;
 }
 
 :host([handle="none"]) .rangeable-handle {
   display: none;
+}
+
+:host([handle="retro"]) .rangeable-handle {
+  width: 35px;
+  height: 15px;
+  border-radius: 3px;
+  background-color: black;
+  background-image: linear-gradient(180deg, white, black);
+  background-size: 2px 2px;
+}
+
+:host(:not([is-vertical])[handle="retro"]) .rangeable-handle {
+  width: 15px;
+  height: 35px;
 }
 
 :host(:not([is-vertical])) .numbers #min {
@@ -75,29 +122,59 @@
   margin-right: -0.5em;
 }
 
-:host([is-vertical]) .ruler {
-  display: flex;
-  flex-direction: row-reverse;
+:host([is-vertical][has-ruler]) .rangeable-container.rangeable-vertical {
+  margin-right: -1.5em;
 }
 
-:host([is-vertical]) .ticks,
-:host([is-vertical]) .numbers {
+:host([is-vertical][has-ruler][has-wide-ticks]) .rangeable-container.rangeable-vertical {
+  margin-right: -0.75em;
+}
+
+:host([has-ruler]) .ruler {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+}
+
+:host([is-vertical][has-ruler]) .ruler {
+  flex-direction: row-reverse;
+  margin-right: 0.5em;
+}
+
+:host(:not([is-vertical])[has-ruler]:not([has-wide-ticks])) .ruler {
+  margin-top: 0.75em;
+}
+
+
+:host([is-vertical][has-ruler]) .ticks,
+:host([is-vertical][has-ruler]) .numbers {
   flex-direction: column-reverse;
   height: 100%;
 }
 
-:host([is-vertical]) .numbers #min {
+:host([is-vertical][has-ruler]) .numbers #min {
   margin-bottom: -0.5em;
   margin-right: 0.25em;
 }
 
-:host([is-vertical]) .numbers #max {
+:host([is-vertical][has-ruler]) .numbers #max {
   margin-bottom: -0.5em;
   margin-right: 0.25em;
 }
 
-:host([is-vertical]) .ticks span {
-  margin-right: 0.5em;
-  height: 0.125em;
+:host([is-vertical][has-ruler]) .ticks span {
+  height: 1px;
   width: 0.5em;
+}
+
+:host([is-vertical][has-wide-ticks]) .ticks span {
+  width: 3.5em;
+}
+
+:host([is-vertical][has-wide-ticks]) .ticks span.small {
+  margin-left: 0.5em;
+  width: 2.5em;
 }

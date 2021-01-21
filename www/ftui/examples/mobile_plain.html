@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!--
+    /* FHEM tablet ui - FTUI */
+    /**
+    * UI builder framework for FHEM
+    *
+    * Version: 3.0.0
+    *
+    * Copyright (c) 2020-2021 Mario Stephan <mstephan@shared-files.de>
+    * Under MIT License (http://www.opensource.org/licenses/mit-license.php)
+    * https://github.com/knowthelist/ftui
+    */
+    -->
+  <base href="../" />
+  <script src="ftui.js"></script>
+  <link href="ftui.css" rel="stylesheet">
+  <link href="themes/mobile-theme.css" rel="stylesheet">
+  <link href="favicon.ico" rel="icon" type="image/x-icon" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+
+  <title>FTUI Mobile Example</title>
+</head>
+
+<!--  ToDo:
+  - lazy loading 
+-->
+<body>
+  <ftui-view-stage>
+    <ftui-view id="view-1">
+
+      <ftui-view-toolbar>Level 1</ftui-view-toolbar>
+
+      <ftui-view-section>
+        <ftui-label slot="header">header</ftui-label>
+ 
+         <ftui-view-item target="view-2">
+           <ftui-icon name="volume-off" color="green" slot="start" invert></ftui-icon>
+           Item 1
+         </ftui-view-item>
+ 
+         <ftui-view-item target="details-2">
+           <ftui-icon name="plane" color="yellow" slot="start" invert></ftui-icon>
+           Item 2
+         </ftui-view-item>
+ 
+         <ftui-view-item target="view-2">
+           <ftui-icon name="wrench" color="red" slot="start" invert></ftui-icon>
+           Item 3
+         </ftui-view-item>
+ 
+         <ftui-view-item target="view-3">
+           <ftui-icon name="phone" color="blue" slot="start" invert></ftui-icon>
+           Item 4
+         </ftui-view-item>
+ 
+         <ftui-label slot="footer">This footer explains the meaning of the section to the user</ftui-label>
+         
+       </ftui-view-section>
+
+      <ftui-view-section>
+
+        <ftui-view-item target="view-2">
+          <ftui-icon name="plane" color="green" slot="start"></ftui-icon>
+          Item 1
+        </ftui-view-item>
+
+        <ftui-view-item target="details-2">
+          <ftui-icon name="shopping-cart" color="yellow" slot="start"></ftui-icon>
+          Item 2
+        </ftui-view-item>
+
+        <ftui-view-item target="view-2">
+          <ftui-icon name="wrench" color="red" slot="start"></ftui-icon>
+          Item 3
+        </ftui-view-item>
+
+        <ftui-view-item target="view-3">
+          <ftui-icon name="phone" color="blue" slot="start"></ftui-icon>
+          Item 4
+        </ftui-view-item>
+
+      </ftui-view-section>
+
+      <ftui-view-section>
+
+        <ftui-view-item target="view-2">
+          <ftui-icon name="plane" color="green" slot="start"></ftui-icon>
+          Item 1
+        </ftui-view-item>
+
+        <ftui-view-item target="details-2">
+          <ftui-icon name="shopping-cart" color="yellow" slot="start"></ftui-icon>
+          Item 2
+        </ftui-view-item>
+
+        <ftui-view-item target="view-2">
+          <ftui-icon name="wrench" color="red" slot="start"></ftui-icon>
+          Item 3
+        </ftui-view-item>
+
+        <ftui-view-item target="view-3">
+          <ftui-icon name="phone" color="blue" slot="start"></ftui-icon>
+          Item 4
+        </ftui-view-item>
+
+      </ftui-view-section>
+
+    </ftui-view> 
+
+    <ftui-view id="view-2">
+      
+      <ftui-view-toolbar>
+        <ftui-nav-link slot="start"></ftui-nav-link>
+        Level 2
+      </ftui-view-toolbar>
+
+      <ftui-view-item target="details-1">Item 2-1</ftui-view-item>
+      <ftui-view-item target="details-2">Item 2-2</ftui-view-item>
+      <ftui-view-item target="details-3">Item 2-3</ftui-view-item>
+      <ftui-view-item>
+        Property 1
+        <ftui-checkbox slot="end" value="on"></ftui-checkbox>
+      </ftui-view-item>
+      <ftui-view-item>
+        Property 2
+        <ftui-checkbox slot="end" color="success" value="on"></ftui-checkbox>
+      </ftui-view-item>
+      <ftui-view-item>
+        Property 3
+        <ftui-checkbox slot="end" color="danger" value="on"></ftui-checkbox>
+      </ftui-view-item>
+      <ftui-view-item>Item 2-4</ftui-view-item>
+      <ftui-view-item>Item 2-5</ftui-view-item>
+      <ftui-view-item>Item 2-6</ftui-view-item>
+      <ftui-view-item>Item 2-7</ftui-view-item>
+      <ftui-view-item>Item 2-8</ftui-view-item>
+      <ftui-view-item>Item 2-9</ftui-view-item>
+      <div hidden>
+        <ftui-view-item>Item 2-104444</ftui-view-item>
+        <ftui-view-item>Item 2-11</ftui-view-item>
+        <ftui-view-item>Item 2-12</ftui-view-item>
+        <ftui-view-item>Item 2-13</ftui-view-item>
+        <ftui-view-item>Item 2-14</ftui-view-item>
+        <ftui-view-item>Item 2-15</ftui-view-item>
+        <ftui-view-item>Item 2-16</ftui-view-item>
+        <ftui-view-item>Item 2-17</ftui-view-item>
+        <ftui-view-item>Item 2-18</ftui-view-item>
+      </div>
+    </ftui-view>
+
+    <ftui-view id="details-1">
+      <ftui-view-toolbar>
+        <ftui-nav-link slot="start"></ftui-nav-link>
+        Details 1
+      </ftui-view-toolbar>
+      
+    </ftui-view>
+
+    <ftui-view id="details-2">
+      <ftui-view-toolbar>
+        <ftui-nav-link slot="start"></ftui-nav-link>
+        Details 2
+      </ftui-view-toolbar>
+    </ftui-view>
+
+    <ftui-view id="details-3">
+      <ftui-view-toolbar>
+        <ftui-nav-link slot="start"></ftui-nav-link>
+        Details 3
+      </ftui-view-toolbar>
+    </ftui-view>
+
+  </ftui-view-stage> 
+
+</html>
