@@ -71,7 +71,6 @@ export class FtuiPopup extends FtuiElement {
 
   onClickInside(event) {
     const target = event.target;
-    console.log(target)
     // Close window when the backdrop is clicked
     // or an element with popup-close attribute
     if (target.classList.contains('overlay')

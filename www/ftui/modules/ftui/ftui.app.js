@@ -140,10 +140,11 @@ class FtuiApp {
 
   startBinding(area) {
     // init ftui binding of 3rd party components
-    const selectors = ['[ftuiBinding]'];
+    const selectors = ['[ftui-binding]'];
     const bindElements = ftui.selectElements(selectors.join(', '), area);
     bindElements.forEach((element) => {
       element.binding = new FtuiBinding(element);
+      element.binding.isThirdPartyElement = true;
     });
 
     fhemService.createFilterParameter();

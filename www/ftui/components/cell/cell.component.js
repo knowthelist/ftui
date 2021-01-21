@@ -51,7 +51,11 @@ export class FtuiCell extends FtuiElement {
   onAttributeChanged(name, value) {
     switch (name) {
       case 'width':
-        this.style.width = value;
+        if (this.tagName === 'FTUI-COLUMN') {
+          this.style.flex = `0 0 ${value}`;
+        } else {
+          this.style.width = value;
+        }
         break;
       case 'height':
         this.style.height = value;

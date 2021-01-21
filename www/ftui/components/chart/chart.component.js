@@ -228,7 +228,6 @@ export class FtuiChart extends FtuiElement {
   }
 
   refresh() {
-    console.log('refresh', this.id)
     if (this.controlsElement) {
       this.controlsElement.unit = this.unit;
       this.controlsElement.startDate = this.startDate;

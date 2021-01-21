@@ -17,7 +17,7 @@ const map = value => input => ftuiHelper.getMatchingValue(parseHocon(value, true
 const scale = (minIn, maxIn, minOut, maxOut) => input => ftuiHelper.scale(input, minIn, maxIn, minOut, maxOut);
 const ago = () => input => ftuiHelper.dateAgo(input);
 const till = () => input => ftuiHelper.dateTill(input);
-const timeFormat = (format,inputMode='ms',formatMode='lower') => input => ftuiHelper.timeFormat(input, format, inputMode, formatMode);
+const timeFormat = (format, inputMode = 'ms', formatMode = 'lower') => input => ftuiHelper.timeFormat(input, format, inputMode, formatMode);
 
 const pipe = (f1, ...fns) => (...args) => {
   return fns.reduce((res, fn) => fn(res), f1.apply(null, args));
@@ -36,6 +36,7 @@ export class FtuiBinding {
     }
 
     this.element = element;
+    this.isThirdPartyElement = false;
     this.config = {
       input: { readings: {} },
       output: { attributes: {} }
@@ -89,7 +90,11 @@ export class FtuiBinding {
               // avoid endless loops
               this.private.isChanging[attribute] = true;
               // change element's property
-              this.element[attribute] = filteredValue;
+              if (this.isThirdPartyElement) {
+                this.element.setAttribute(ftuiHelper.toKebabCase(attribute), filteredValue);
+              } else {
+                this.element[attribute] = filteredValue;
+              }
             }
           }
         }
@@ -129,7 +134,6 @@ export class FtuiBinding {
 
     attribute.value.split(semicolonNotInQuotes).forEach((attrValue) => {
       const { readingID, property, filter } = this.parseInputBinding(attrValue);
-
       if (!this.config.input.readings[readingID]) {
         this.config.input.readings[readingID] = { attributes: {} };
       }
