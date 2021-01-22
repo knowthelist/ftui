@@ -74,7 +74,7 @@ UPD 2020-12-31_16:39:02 3146 www/ftui/examples/grid.html
 UPD 2021-01-19_15:17:07 4416 www/ftui/examples/icon.html
 UPD 2021-01-21_12:09:35 3109 www/ftui/examples/image.html
 UPD 2021-01-21_17:14:13 4544 www/ftui/examples/knob.html
-UPD 2020-12-31_16:39:02 6525 www/ftui/examples/label.html
+UPD 2021-01-22_12:02:16 7062 www/ftui/examples/label.html
 UPD 2021-01-21_08:11:38 2014 www/ftui/examples/menu.html
 UPD 2020-12-31_16:39:02 1698 www/ftui/examples/mobile.html
 UPD 2021-01-22_11:47:40 5339 www/ftui/examples/mobile_full.html
