@@ -118,8 +118,18 @@ export class FtuiBinding {
 
       // update marker to avoid infinity loops
       this.private.sentValue[attributeName] = value;
+
       // update storage
-      fhemService.updateReadingValue(parameterId, value);
+      const now = ftuiHelper.dateFormat(new Date(), 'YYYY-MM-DD hh:mm:ss');
+
+      this.updateReadingItem(parameterId, {
+        id: parameterId,
+        invalid: false,
+        value,
+        time: now,
+        update: now
+      });
+
       // notify FHEM
       if (this.element.debounce) {
         fhemService.debouncedUpdateFhem(this.element.debounce, cmdLine);
@@ -278,4 +288,25 @@ export class FtuiBinding {
   evalInContext(command, $event) {
     eval(command);
   }
+
+  /* re-publish the current reading data for the specified attribute */
+  forceUpdate(attribute) {
+    this.getReadingsOfAttribute(attribute).forEach(readingId => this.updateReadingItem(readingId));
+  }
+
+  /* gets a list of all bound readingIds for the specified attribute */
+  getReadingsOfAttribute(attribute) {
+    return Object.entries(this.config.input.readings)
+      .reduce((accumulation, [key, value]) => {
+        if (Object.keys(value.attributes).includes(attribute)) {
+          accumulation.push(key);
+        }
+        return accumulation;
+      }, []);
+  }
+
+  updateReadingItem(parameterId, newData) {
+    fhemService.updateReadingItem(parameterId, newData);
+  }
+
 }

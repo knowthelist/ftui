@@ -194,7 +194,7 @@ Layout
 - View, ViewStage, ViewSection, ViewItem
 
 Elements
-- Label
+- [Label](#label)
 - Icon
 - [Button](#button)
 - Knob
@@ -219,9 +219,9 @@ All components has following attributes
 - disabled
 - readonly
 
-<br><br>
+<br></br>
 
-### Mobile UI
+## Mobile UI
 
 A user interface for mobile phones can be implemented with ftui-view.
 
@@ -229,9 +229,9 @@ A user interface for mobile phones can be implemented with ftui-view.
 
 [Demo](https://knowthelist.github.io/ftui/www/ftui/examples/mobile_plain.html)
 
-<br><br>
+<br></br>
 
-### Button
+## Button
 
 | Attribute | Description | Type | Default |
 |-----------|-------------|-------|---------|
@@ -242,7 +242,18 @@ A user interface for mobile phones can be implemented with ftui-view.
 | <b>value</b> |.|String| <code>"off"</code> |
 | <b>states</b> |.|String list comma separated| <code>"on,off"</code>|
 
-### Image
+<br></br>
+## Label
+
+| Attribute | Description | Type | Default |
+|-----------|-------------|-------|---------|
+| <b>text</b> |The text to show.|String| <code>""</code>|
+| <b>color</b> |The color to use from color palette.|<code>"primary" \| "secondary" \| "success" \| "warning" \| "danger" \| "light" \| "medium" \| "dark"</code>| <code>""</code>|
+| <b>unit</b> |The unit which should be displayed after the value.|String| <code>""</code>|
+| <b>interval</b> |Reloading every x secondes.|Number| <code>0</code> |
+
+<br></br>
+## Image
 
 | Attribute | Description | Type | Default |
 |-----------|-------------|-------|---------|
@@ -254,7 +265,8 @@ A user interface for mobile phones can be implemented with ftui-view.
 | <b>refresh</b> |Changes of this attribute triggers a reload.|String list comma separated| <code>""</code>|
 | <b>nocache</b> |Bypass cache on next reload.|Boolean| <code>false</code>|
 
-### Badge
+<br></br>
+## Badge
 
 Badges can be used as a notification that contain a number or other characters. They show that there are additional items associated with an element and indicate how many items there are.
 The element disappears if the value is 0 or empty.
@@ -264,7 +276,8 @@ The element disappears if the value is 0 or empty.
 | <b>color</b> |The color to use from color palette.|<code>"primary" \| "secondary" \| "success" \| "warning" \| "danger" \| "light" \| "medium" \| "dark"</code>| <code>"primary"</code>|
 | <b>text</b> |Text to display inside.|String| <code>""</code>|
 
-### Speak
+<br></br>
+## Speak
 
 Speak uses the browser's Web Speech API to synthesize text to speech.
 
@@ -278,7 +291,8 @@ Speak uses the browser's Web Speech API to synthesize text to speech.
 
   ... to be continued
 
-### Chart
+<br></br>
+## Chart
 
 The Chart component uses [Chart.js](https://www.chartjs.org/docs/latest/) to render charts.
 
@@ -336,6 +350,7 @@ Child component:  <b>ftui-chart-control</b>
 | <b>stepped</b>||Boolean| <code>false</code>|
 | <b>offset</b> ||Number| <code>0</code>|
 
+<br></br>
 Example for DbLog
 
 ```html
@@ -349,10 +364,12 @@ Example for DbLog
 </ftui-chart>
 ```
 
+<br></br>
 ### Icon
 
 [List of all icons](https://knowthelist.github.io/ftui/www/ftui/icons/demo.html)
 
+<br></br>
 ### Layout
 
 ```html
@@ -365,6 +382,7 @@ Example for DbLog
     </ftui-column>
 </ftui-row>
 ```
+<br></br>
 Examples
 ------
 

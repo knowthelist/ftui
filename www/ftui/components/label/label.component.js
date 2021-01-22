@@ -35,7 +35,8 @@ export class FtuiLabel extends FtuiElement {
     return {
       text: '',
       color: '',
-      unit: ''
+      unit: '',
+      interval: 0,
     };
   }
 
@@ -48,6 +49,16 @@ export class FtuiLabel extends FtuiElement {
       case 'text':
         this.mainSlotElement.innerHTML = this.text;
         break;
+      case 'interval':
+        this.checkInterval();
+        break;
+    }
+  }
+
+  checkInterval() {
+    clearInterval(this.intervalTimer);
+    if (this.interval) {
+      this.intervalTimer = setInterval(() => this.binding.forceUpdate('text'), this.interval * 1000);
     }
   }
 }

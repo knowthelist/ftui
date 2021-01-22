@@ -87,6 +87,9 @@ export class FtuiCell extends FtuiElement {
           case 'col-right':
             this.style.alignItems = 'flex-end';
             break;
+          case 'col-center':
+            this.style.justifyContent = 'center';
+            break;
         }
       }
     }

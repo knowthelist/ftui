@@ -44,7 +44,7 @@
   font-size: initial;
 }
 
-:host(:not([target=''])) .inner:after {
+:host(:not([target='']):not([plain])) .inner:after {
   content: "\276F";
   position: absolute;
   top: 15px;

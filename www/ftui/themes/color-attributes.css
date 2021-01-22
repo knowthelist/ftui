@@ -40,7 +40,7 @@
   --color-contrast: var(--warning-contrast-color);
 }
 
-[color="danger"], [color="error"], [color="red"] {
+[color="danger"], [color="error"], [color="alert"], [color="red"] {
   --color-base: var(--danger-color);
   --color-contrast: var(--danger-contrast-color);
 }

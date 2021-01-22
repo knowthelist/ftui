@@ -43,7 +43,7 @@ class FhemService {
     this.debugEvents = new Subject();
     this.errorEvents = new Subject();
 
-    this.readings = new Map();
+    this.readingsMap = new Map();
   }
 
   setConfig(config) {
@@ -53,52 +53,39 @@ class FhemService {
   getReadingEvents(readingName) {
     if (isDefined(readingName)) {
       const [readingId, device, reading] = parseReadingId(readingName);
-      if (!this.readings.has(readingId)) {
-        this.readings.set(readingId, { data: { id: readingId }, events: new Subject(), device: device, reading: reading });
+      if (!this.readingsMap.has(readingId)) {
+        this.readingsMap.set(readingId, { data: { id: readingId }, events: new Subject(), device: device, reading: reading });
       }
-      return this.readings.get(readingId).events;
+      return this.readingsMap.get(readingId).events;
     } else {
       // empty dummy object
       return { subscribe: () => { }, unsubscribe: () => { } }
     }
   }
 
-  // ToDo: Do not repeat yourself
-  getReadingData(readingID) {
+  getReadingItem(readingID) {
     const id = readingID.replace(':', '-');
-    if (this.readings.has(id)) {
-      return this.readings.get(id).data;
+    if (this.readingsMap.has(id)) {
+      return this.readingsMap.get(id);
     } else {
       return {};
     }
   }
 
-  updateReadingValue(readingID, value) {
-    const read = this.readings.get(readingID) || {};
+  updateReadingItem(readingID, newData, doPublish = true) {
+    log(3, 'FhemService.updateReadingItem - update for ', readingID, 'newData=', newData, 'doPublish=', doPublish);
+    const readingItem = this.getReadingItem(readingID);
 
-    if (read.data) {
-      const now = dateFormat(new Date(), 'YYYY-MM-DD hh:mm:ss');
-      read.data.id = readingID;
-      read.data.invalid = false;
-      read.data.value = value;
-      read.data.time = now;
-      read.data.update = now
-      read.events.publish(read.data);
+    if (readingItem.data) {
+      readingItem.data = Object.assign(readingItem.data, newData);
+      if (doPublish) {
+        readingItem.events.publish(readingItem.data);
+      }
     }
   }
-
-  updateReadingData(readingID, readingData, doPublish) {
-    log(3, 'updateReadingData - update for ', readingID, 'readingData=', readingData, 'doPublish=', doPublish);
-    const reading = this.readings.get(readingID);
-    reading.data = readingData;
-    if (doPublish) {
-      reading.events.publish(readingData);
-    }
-  }
-  // end ToDo
 
   createFilterParameter() {
-    const readingsArray = Array.from(this.readings.values()).filter(value => value.events.observers.length);
+    const readingsArray = Array.from(this.readingsMap.values()).filter(value => value.events.observers.length);
     const devs = [... new Set(readingsArray.map(value => value.device))];
     const reads = [... new Set(readingsArray.map(value => value.reading || 'STATE'))];
     const devicelist = devs.length ? devs.join() : '';
@@ -143,7 +130,7 @@ class FhemService {
     this.states.lastRefresh = now;
 
     // invalidate all readings for detection of outdated ones
-    this.readings.forEach(reading => reading.data.invalid = true);
+    this.readingsMap.forEach(reading => reading.data.invalid = true);
 
     window.performance.mark('start get jsonlist2');
     this.states.refresh.request =
@@ -217,8 +204,8 @@ class FhemService {
       }
 
       // is there a subscription, then check and update components
-      if (this.readings.has(parameterId)) {
-        const parameterData = this.getReadingData(parameterId);
+      if (this.readingsMap.has(parameterId)) {
+        const parameterData = this.getReadingItem(parameterId).data;
         const doPublish = (parameterData.value !== parameter.Value || parameterData.time !== parameter.Time);
         const now = dateFormat(new Date(), 'YYYY-MM-DD hh:mm:ss');
 
@@ -233,7 +220,7 @@ class FhemService {
         parameterData.update = now
 
         // update components only if necessary
-        this.updateReadingData(parameterId, parameterData, doPublish);
+        this.updateReadingItem(parameterId, parameterData, doPublish);
       }
     }
   }
@@ -308,8 +295,8 @@ class FhemService {
         const [id, value, html] = JSON.parse(line);
         const isTimestamp = id.match(/-ts$/);
         const parameterId = isTimestamp ? id.replace(/-ts$/, '') : id;
-        if (this.readings.has(parameterId)) {
-          const parameterData = this.readings.get(parameterId).data;
+        if (this.readingsMap.has(parameterId)) {
+          const parameterData = this.readingsMap.get(parameterId).data;
           const isSTATE = (value !== html);
           const isTrigger = (value === '' && html === '');
           const doPublish = (isTimestamp || isSTATE || isTrigger);
@@ -325,7 +312,7 @@ class FhemService {
           } else if (!isTimestamp) {
             parameterData.value = value;
           }
-          this.updateReadingData(parameterId, parameterData, doPublish);
+          this.updateReadingItem(parameterId, parameterData, doPublish);
         }
       }
     });
@@ -366,7 +353,7 @@ class FhemService {
   }
 
   publishInvalidReadings() {
-    this.readings.forEach(reading => {
+    this.readingsMap.forEach(reading => {
       if (reading.data.invalid) {
         reading.data.update = dateFormat(new Date(), 'YYYY-MM-DD hh:mm:ss');
         reading.events.publish(reading.data);
