@@ -76,9 +76,27 @@
       <ftui-label [text]="AgroWeather:state:time | toDate() | format('mm:ss')"></ftui-label>
     </ftui-grid-tile>
 
-    <ftui-grid-tile row="3" col="3" height="1" width="1">
+    <ftui-grid-tile row="2" col="7" height="1" width="2" shape="round">
+      <header>COLORS</header>
+      <ftui-row>
+        <ftui-column shape="round" color="light">light</ftui-column>
+        <ftui-column shape="round" color="medium">medium</ftui-column>
+        <ftui-column shape="round" color="dark">dark</ftui-column>
+      </ftui-row>
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="4" col="2" height="1" width="1">
       <header>text-filter x2</header>
       <ftui-label [text]="AgroWeather:state | part(4) | toInt() | multiply(2) | round(1) "></ftui-label>
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="3" col="3" height="2" width="2" shape="round" color="green">
+      <ftui-label size="0">size=0</ftui-label>
+      <ftui-label size="1">size=1</ftui-label>
+      <ftui-label size="2">size=2</ftui-label>
+      <ftui-label size="3">size=3</ftui-label>
+      <ftui-label size="4">size=4</ftui-label>
+      <ftui-label size="5">size=5</ftui-label>
     </ftui-grid-tile>
 
     <ftui-grid-tile row="3" col="5" height="2" width="2" shape="round">
@@ -122,7 +140,7 @@
       <ftui-label [text]="ftuitest:seconds4timeFormat | timeFormat('%DDd','s','upper')"></ftui-label>
     </ftui-grid-tile>
 
-    <ftui-grid-tile row="4" col="4" height="1" width="1">
+    <ftui-grid-tile row="1" col="2" height="1" width="1">
       <header>text-filter regexec</header>
       <ftui-label [text]="AgroWeather:state | part('.*T:(.*)H:.*')"></ftui-label>
     </ftui-grid-tile>
@@ -149,14 +167,14 @@
     <ftui-grid-tile row="4" col="1" height="1" width="1">
       <header>AUTO REFRESH</header>
       <ftui-label
-          [text]="AussenTemp:temperature | toInt()"
-          unit="°C">
+                  [text]="AussenTemp:temperature | toInt()"
+                  unit="°C">
       </ftui-label>
       <ftui-label
-          [text]="AussenTemp:temperature:time | toDate() | ago() | timeFormat('mm:ss')"
-          [color]="AussenTemp:temperature:time | toDate() | ago() | timeFormat('%MMMMMM') | map('0: blue, 4: warning, 5: alert')"
-          unit="&hairsp;min"
-          interval="10">
+                  [text]="AussenTemp:temperature:time | toDate() | ago() | timeFormat('mm:ss')"
+                  [color]="AussenTemp:temperature:time | toDate() | ago() | timeFormat('%MMMMMM') | map('0: blue, 4: warning, 5: alert')"
+                  unit="&hairsp;min"
+                  interval="10">
       </ftui-label>
     </ftui-grid-tile>
 

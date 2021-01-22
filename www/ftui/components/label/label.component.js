@@ -9,6 +9,7 @@
 
 import { FtuiElement } from '../element.component.js';
 
+const sizes = [0.75, 0.875, 1, 1.25, 1.5, 1.75, 2, 2.5, 3, 3.5, 4, 6, 8];
 export class FtuiLabel extends FtuiElement {
 
   constructor(properties) {
@@ -27,6 +28,9 @@ export class FtuiLabel extends FtuiElement {
         :host(.is-empty) {
           display: none;
         }
+        :host([size="10"]),:host([size="11"]),:host([size="12"]) {
+          font-family: "HelveticaNeue-UltraLight", "Segoe UI", "Roboto Light", sans-serif;
+        }
       </style>
       <slot name="start"></slot><slot></slot><slot name="content"></slot><slot name="end">${this.unit}</slot>`;
   }
@@ -36,6 +40,7 @@ export class FtuiLabel extends FtuiElement {
       text: '',
       color: '',
       unit: '',
+      size: -1,
       interval: 0,
     };
   }
@@ -51,6 +56,11 @@ export class FtuiLabel extends FtuiElement {
         break;
       case 'interval':
         this.checkInterval();
+        break;
+      case 'size':
+        if (this.size > -1) {
+          this.style.fontSize = sizes[this.size] + 'rem';
+        }
         break;
     }
   }
