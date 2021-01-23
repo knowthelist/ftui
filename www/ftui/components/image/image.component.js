@@ -23,6 +23,9 @@ export class FtuiImage extends FtuiElement {
   template() {
     return `
     <style>
+      :host {
+        display: contents;
+      }
       :host([shape="round"]) img {
         border-radius: 1.5em;
       }
@@ -37,7 +40,7 @@ export class FtuiImage extends FtuiElement {
     return {
       base: '',
       src: '',
-      width: 'auto',
+      width: '100%',
       height: 'auto',
       interval: 0,
       refresh: ''
@@ -48,6 +51,11 @@ export class FtuiImage extends FtuiElement {
     return [...this.convertToAttributes(FtuiImage.properties), ...super.observedAttributes];
   }
 
+  connectedCallback() {
+    this.imageElement.style.width = this.width;
+    this.imageElement.style.height = this.height;
+  }
+
   onAttributeChanged(name) {
     switch (name) {
       case 'src':
@@ -55,10 +63,10 @@ export class FtuiImage extends FtuiElement {
         this.updateImage();
         break;
       case 'width':
-        this.imageElement.width = this.width;
+        this.imageElement.style.width = this.width;
         break;
       case 'height':
-        this.imageElement.height = this.height;
+        this.imageElement.style.height = this.height;
         break;
       case 'interval':
         this.checkInterval();
