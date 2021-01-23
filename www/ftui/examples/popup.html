@@ -31,7 +31,7 @@
 
 <body>
 
-  <ftui-grid base-width="150" base-height="150">
+  <ftui-grid base-width="150" base-height="150" shape="round" margin="5">
 
     <ftui-grid-tile row="1" col="1" height="1" width="1">
       <header>POPUP1</header>
@@ -40,11 +40,25 @@
 
     </ftui-grid-tile>
 
+    <ftui-grid-tile row="1" col="1" height="1" width="1">
+      <header>POPUP1</header>
+
+      <ftui-icon name="sitemap" popup-target="pop1"></ftui-icon>
+
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="2" col="1" height="1" width="1">
+      <header>POPUP5</header>
+
+      <ftui-icon name="magic" popup-target="pop5"></ftui-icon>
+
+    </ftui-grid-tile>
+
     <ftui-grid-tile row="1" col="2" height="1" width="1">
       <header>OPEN</header>
 
       <ftui-button [(value)]="dummy2" shape="circle" states="on,off">
-        <ftui-icon name="camera1"></ftui-icon>
+        <ftui-icon name="camera"></ftui-icon>
       </ftui-button>
 
     </ftui-grid-tile>
@@ -90,7 +104,7 @@
       </ftui-column>
       <ftui-column>
         <ftui-cell>
-          <ftui-icon name="bolt1"></ftui-icon>
+          <ftui-icon name="bolt"></ftui-icon>
           <ftui-label>Tuesday</ftui-label>
         </ftui-cell>
       </ftui-column>
@@ -110,7 +124,7 @@
       </ftui-column>
       <ftui-column>
         <ftui-cell>
-          <ftui-icon name="cloud11"></ftui-icon>
+          <ftui-icon name="cloud1"></ftui-icon>
           <ftui-label>Friday</ftui-label>
         </ftui-cell>
       </ftui-column>
@@ -133,6 +147,14 @@
     <ftui-label color="danger" slot="close" popup-close>Close</ftui-label>
   </ftui-popup>
 
+  <ftui-popup id="pop5" timeout="0" shape="round">
+    <header>Popup 5</header>
+    <ftui-row>
+      <ftui-column shape="round" color="light">light</ftui-column>
+      <ftui-column shape="round" color="medium">medium</ftui-column>
+      <ftui-column shape="round" color="dark">dark</ftui-column>
+    </ftui-row>
+  </ftui-popup>
 </body>
 
 </html>

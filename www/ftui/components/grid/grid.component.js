@@ -52,7 +52,10 @@ export class FtuiGrid extends FtuiElement {
         display: block;
         width: 100vw;
         height: 100vh;
-      } 
+      }
+      :host([shape="round"]) {
+        --grid-tile-border-radius: 1.5em;
+      }
     </style>
     <slot></slot>
     `;
