@@ -285,7 +285,8 @@ export class FtuiBinding {
     }
   }
 
-  evalInContext(command, $event) {
+  evalInContext(command = '', $event) {
+    command = command.replace('sendFhem','this.binding.sendFhem');
     eval(command);
   }
 
@@ -309,4 +310,7 @@ export class FtuiBinding {
     fhemService.updateReadingItem(parameterId, newData);
   }
 
+  sendFhem(command) {
+    fhemService.updateFhem(command);
+  }
 }

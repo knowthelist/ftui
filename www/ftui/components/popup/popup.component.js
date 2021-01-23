@@ -111,6 +111,7 @@ export class FtuiPopup extends FtuiElement {
       this.startTimeout();
     } else {
       this.setAttribute('hidden', '');
+      this.emitEvent('close');
     }
   }
 

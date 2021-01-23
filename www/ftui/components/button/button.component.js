@@ -27,7 +27,6 @@ export class FtuiButton extends FtuiElement {
   template() {
     return `
       <style> @import "components/button/button.component.css"; </style>
-
       <span class="button-inner">
         <slot></slot>
       </span>

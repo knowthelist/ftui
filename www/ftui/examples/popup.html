@@ -147,7 +147,7 @@
     <ftui-label color="danger" slot="close" popup-close>Close</ftui-label>
   </ftui-popup>
 
-  <ftui-popup id="pop5" timeout="0" shape="round">
+  <ftui-popup id="pop5" shape="round" @close="sendFhem('set dummy1 on')">
     <header>Popup 5</header>
     <ftui-row>
       <ftui-column shape="round" color="light">light</ftui-column>

@@ -82,7 +82,11 @@ export class FtuiElement extends HTMLElement {
   }
 
   emitChangeEvent(attribute, value) {
-    const event = new CustomEvent(attribute + 'Change', { detail: value });
+    this.emitEvent(attribute + 'Change', value);
+  }
+
+  emitEvent(name, value) {
+    const event = new CustomEvent(name, { detail: value });
     this.dispatchEvent(event);
   }
 
