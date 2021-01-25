@@ -61,6 +61,13 @@ export class FtuiElement extends HTMLElement {
     return Object.keys(properties).map(property => ftuiHelper.toKebabCase(property));
   }
 
+  connectedCallback() {
+    if (typeof this.onConnected === 'function') {
+      // call the hook function of the instance
+      this.onConnected();
+    }
+  }
+
   attributeChangedCallback(name, oldValue, newValue) {
     ftuiHelper.log(3, `${this.id} -  attributeChangedCallback name=${name}, oldValue=${oldValue}, newValue=${newValue}`)
     if (typeof this.onAttributeChanged === 'function') {

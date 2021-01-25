@@ -53,6 +53,7 @@ export class FtuiLabel extends FtuiElement {
     switch (name) {
       case 'text':
         this.mainSlotElement.innerHTML = this.text;
+        this.checkInterval();
         break;
       case 'interval':
         this.checkInterval();

@@ -22,15 +22,21 @@
   position: relative;
   background-color: var(--popup-background-color, #777777);
   color: var(--popup-color, #000000);
-  width: 50%;
-  margin: auto;
-  top: 50%;
-  transform: translate(0, -50%);
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   overflow: hidden;
+}
+
+:host([left='']) .window {
+  width: 50%;
+  margin: auto;
+}
+
+:host([top='']) .window {
+  top: 50%;
+  transform: translate(0, -50%);
 }
 
 .box-close {

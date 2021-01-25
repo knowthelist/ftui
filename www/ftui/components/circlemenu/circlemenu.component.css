@@ -3,8 +3,8 @@
   justify-content: center;
   align-items: center;
   position: relative;
-  min-width: 1px;
-  min-height: 1px;
+  min-width: 3em;
+  min-height: 3em;
 }
 
 :host ::slotted(*:first-child) {
@@ -17,4 +17,19 @@
   position: absolute;
   z-index: 1;
   opacity: 1;
+}
+
+:host(.open) ::slotted(*) {
+  z-index: 2;
+}
+
+.fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #000;
+  opacity: 0.75;
+  z-index: 2;
 }

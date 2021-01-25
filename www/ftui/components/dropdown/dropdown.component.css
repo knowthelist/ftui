@@ -1,13 +1,14 @@
 :host  {
   position: relative;
+  padding: 0 1em;
 }
 
 :host:after {
   position: absolute;
-  right: 0.5em;
-  top: 0.25em;
+  right: 1em;
+  top: -0.05em;
   content: "\2304";
-  font-size: 1rem;
+  font-size: 1.2rem;
   pointer-events: none;
 }
 

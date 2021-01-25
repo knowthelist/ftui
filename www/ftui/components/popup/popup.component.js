@@ -22,7 +22,7 @@ export class FtuiPopup extends FtuiElement {
     document.addEventListener('click', event => this.onClickOutside(event));
     this.element.addEventListener('click', event => this.onClickInside(event));
 
-    this.resize();
+    this.arrangeWindow();
   }
 
   template() {
@@ -47,6 +47,8 @@ export class FtuiPopup extends FtuiElement {
     return {
       height: '33%',
       width: '50%',
+      left: '',
+      top: '',
       open: false,
       trigger: '',
       timeout: 10,
@@ -85,7 +87,9 @@ export class FtuiPopup extends FtuiElement {
     switch (name) {
       case 'width':
       case 'height':
-        this.resize();
+      case 'left':
+      case 'top':
+        this.arrangeWindow();
         break;
       case 'open':
         this.setState(newValue !== null);
@@ -99,9 +103,11 @@ export class FtuiPopup extends FtuiElement {
     }
   }
 
-  resize() {
+  arrangeWindow() {
     this.window.style.width = this.width;
     this.window.style.height = this.height;
+    this.window.style.left = this.left;
+    this.window.style.top = this.top;
   }
 
   setState(value) {

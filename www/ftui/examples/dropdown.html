@@ -56,6 +56,28 @@
 
     </ftui-grid-tile>
 
+    <ftui-grid-tile row="1" col="5" height="1" width="1">
+      <header>LONG</header>
+
+        <ftui-dropdown 
+          list=",Long_Long_Value_10000,Long_Long_Value_20000,Long_Long_Value_30000,Long_Long_Value_40000" 
+          value="item2">
+        </ftui-dropdown>
+      
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="2" col="3" height="1" width="2">
+      <header>LIST BINDING</header>
+
+      <ftui-dropdown 
+        width="80%"
+        [list]="ftuitest:list" 
+        [(value)]="ftuitest" 
+        @value-change="console.log($event.detail)">
+      </ftui-dropdown>
+
+    </ftui-grid-tile>
+
   </ftui-grid>
 
 </body>

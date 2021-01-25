@@ -23,7 +23,6 @@ export class FtuiDropdown extends FtuiElement {
   template() {
     return `
       <style> @import "components/dropdown/dropdown.component.css"; </style>
-
       <select></select>
       `;
   }
@@ -31,12 +30,19 @@ export class FtuiDropdown extends FtuiElement {
   static get properties() {
     return {
       list: '',
-      value: ''
+      value: '',
+      width: '',
+      height: ''
     };
   }
 
   static get observedAttributes() {
     return [...this.convertToAttributes(FtuiDropdown.properties), ...super.observedAttributes];
+  }
+
+  onConnected() {
+    this.style.width = this.width;
+    this.style.height = this.height;
   }
 
   onAttributeChanged(name) {
@@ -61,6 +67,7 @@ export class FtuiDropdown extends FtuiElement {
     list.forEach((item) => {
       const opt = document.createElement('option');
       opt.value = item;
+      //opt.style.width = '200px';
       opt.innerHTML = item;
       this.selectElement.appendChild(opt);
     });

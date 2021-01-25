@@ -23,9 +23,6 @@ export class FtuiImage extends FtuiElement {
   template() {
     return `
     <style>
-      :host {
-        display: contents;
-      }
       :host([shape="round"]) img {
         border-radius: 1.5em;
       }

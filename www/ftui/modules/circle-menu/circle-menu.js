@@ -95,8 +95,8 @@ export class CircleMenu {
       // horizontal-left
       if (this.options.angle.start > 790) { x = -(index * linearRadius + linearRadius); y = 0; }
 
-      item.posX = x - 1.5;
-      item.posY = y - 1.5;
+      item.posX = x;
+      item.posY = y;
 
       item.addEventListener(this.options.close_event, () => {
         this.select(index + 2);
