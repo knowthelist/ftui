@@ -30,6 +30,7 @@ export class FtuiLabel extends FtuiElement {
         }
         :host([size="10"]),:host([size="11"]),:host([size="12"]) {
           font-family: "HelveticaNeue-UltraLight", "Segoe UI", "Roboto Light", sans-serif;
+          line-height: 0.8em;
         }
       </style>
       <slot name="start"></slot><slot></slot><slot name="content"></slot><slot name="end">${this.unit}</slot>`;
@@ -42,6 +43,8 @@ export class FtuiLabel extends FtuiElement {
       unit: '',
       size: -1,
       interval: 0,
+      width: '',
+      height: '',
     };
   }
 
@@ -49,7 +52,7 @@ export class FtuiLabel extends FtuiElement {
     return [...this.convertToAttributes(FtuiLabel.properties), ...super.observedAttributes];
   }
 
-  onAttributeChanged(name) {
+  onAttributeChanged(name, value) {
     switch (name) {
       case 'text':
         this.mainSlotElement.innerHTML = this.text;
@@ -62,6 +65,12 @@ export class FtuiLabel extends FtuiElement {
         if (this.size > -1) {
           this.style.fontSize = sizes[this.size] + 'rem';
         }
+        break;
+      case 'width':
+        this.style.width = value;
+        break;
+      case 'height':
+        this.style.height = value;
         break;
     }
   }

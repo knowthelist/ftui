@@ -18,6 +18,7 @@ const scale = (minIn, maxIn, minOut, maxOut) => input => ftuiHelper.scale(input,
 const ago = () => input => ftuiHelper.dateAgo(input);
 const till = () => input => ftuiHelper.dateTill(input);
 const timeFormat = (format, inputMode = 'ms', formatMode = 'lower') => input => ftuiHelper.timeFormat(input, format, inputMode, formatMode);
+const minusBlue = () => input => Number(input) < 0 ? 'blue' : null;
 
 const pipe = (f1, ...fns) => (...args) => {
   return fns.reduce((res, fn) => fn(res), f1.apply(null, args));

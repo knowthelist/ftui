@@ -1,0 +1,25 @@
+<ftui-column color="green">
+  <ftui-row>
+    <ftui-column height="70%">
+
+      <ftui-row align-items="bottom">
+        <ftui-label [text]="AgroWeather:{{day}}_tempMin" size="5" unit="°C" class="thin"></ftui-label>
+        <ftui-label [text]="AgroWeather:{{day}}_tempMax" size="10"><sup slot="end" class="size-4">°C</sup></ftui-label>
+      </ftui-row>
+      <ftui-row>
+        <ftui-icon name="umbrella" size="1"></ftui-icon>
+        <ftui-label [text]="AgroWeather:{{day}}_rain" size="2" unit="mm"></ftui-label>
+        <ftui-label [text]="AgroWeather:{{day}}_chOfRainDay" size="2" unit="%"></ftui-label>
+      </ftui-row>
+      
+    </ftui-column>
+
+    <ftui-column>
+      <ftui-weather [condition]="AgroWeather:{{day}}_weatherDay" class="size-6"></ftui-weather>
+      <ftui-label [text]="AgroWeather:{{day}}_weatherDay"></ftui-label>
+    </ftui-column>
+  </ftui-row>
+
+  <ftui-label [text]="AgroWeather:{{day}}_date | toDate() | format('ee')" size="6" height="30%"></ftui-label>
+
+</ftui-column>

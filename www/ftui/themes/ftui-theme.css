@@ -98,6 +98,8 @@
   --slider-handle-shadow: none;
   --slider-handle-border: none;
 
+  --slider-scrollbar-thumb: rgba(0, 0, 0, 0.5);
+  --slider-scrollbar-track: var(--gray20);
 }
 
 body {

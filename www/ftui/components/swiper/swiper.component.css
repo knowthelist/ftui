@@ -1,0 +1,40 @@
+:host {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  overflow: hidden;
+}
+
+.slides {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  height: 100%;
+}
+.slides::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+.slides::-webkit-scrollbar-thumb {
+  background: var(--slider-scrollbar-track);
+  border-radius: 10px;
+}
+.slides::-webkit-scrollbar-track {
+  background: var(--slider-scrollbar-thumb);
+}
+
+::slotted(*) {
+  scroll-snap-align: start;
+  flex-shrink: 0;
+  width: 100%;
+  height: 100%;
+  margin-right: 50px;
+  border-radius: 10px;
+  transform-origin: center center;
+  transition: transform 0.5s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
