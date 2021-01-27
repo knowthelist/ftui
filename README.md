@@ -192,6 +192,7 @@ Layout
 - Column
 - Cell
 - View, ViewStage, ViewSection, ViewItem
+- Swiper
 
 Elements
 - [Label](#label)
@@ -403,6 +404,7 @@ Examples
 - [Chart](https://knowthelist.github.io/ftui/www/ftui/examples/chart.html)
 - [Popup](https://knowthelist.github.io/ftui/www/ftui/examples/popup.html)
 - [View](https://knowthelist.github.io/ftui/www/ftui/examples/mobile_plain.html)
+- [Swiper](https://knowthelist.github.io/ftui/www/ftui/examples/swiper.html)
 
 Donation
 --------

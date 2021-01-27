@@ -58,6 +58,7 @@ class FtuiApp {
     fhemService.setConfig(this.config);
     fhemService.debugEvents.subscribe(text => this.toast(text));
     fhemService.errorEvents.subscribe(text => this.toast(text, 'error'));
+    this.fhemService = fhemService;
 
     // init Page after CSFS Token has been retrieved
     await fhemService.fetchCSrf()

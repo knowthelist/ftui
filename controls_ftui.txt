@@ -85,7 +85,7 @@ UPD 2021-01-20_07:58:17 5457 www/ftui/examples/mobile_plain.html
 UPD 2021-01-25_07:43:30 4355 www/ftui/examples/popup.html
 UPD 2021-01-21_00:10:14 3982 www/ftui/examples/slider.html
 UPD 2020-12-31_16:39:02 1224 www/ftui/examples/speak.html
-UPD 2021-01-26_23:13:51 1552 www/ftui/examples/swiper.html
+UPD 2021-01-27_11:57:38 13081 www/ftui/examples/swiper.html
 UPD 2020-12-31_16:39:02 2777 www/ftui/examples/tab-trans.html
 UPD 2021-01-04_14:38:51 2434 www/ftui/examples/tab.html
 UPD 2021-01-16_01:52:44 3005 www/ftui/examples/view.html
@@ -668,8 +668,8 @@ UPD 2020-12-31_16:39:06 192031 www/ftui/modules/chart.js/chart.min.js
 UPD 2020-12-31_16:39:06 49580 www/ftui/modules/chart.js/chartjs-adapter-date-fns.bundle.min.js
 UPD 2021-01-24_23:06:41 8388 www/ftui/modules/circle-menu/circle-menu.js
 UPD 2021-01-24_22:36:48 5063 www/ftui/modules/circle-menu/circle-menu.min.js
-UPD 2021-01-24_16:56:10 13232 www/ftui/modules/ftui/fhem.service.js
-UPD 2021-01-24_23:05:59 7445 www/ftui/modules/ftui/ftui.app.js
+UPD 2021-01-27_11:57:58 13232 www/ftui/modules/ftui/fhem.service.js
+UPD 2021-01-27_07:24:54 7481 www/ftui/modules/ftui/ftui.app.js
 UPD 2021-01-26_23:15:07 10958 www/ftui/modules/ftui/ftui.binding.js
 UPD 2021-01-16_01:52:45 11609 www/ftui/modules/ftui/ftui.helper.js
 UPD 2020-12-31_16:39:06 9247 www/ftui/modules/hocon/hocon.js
