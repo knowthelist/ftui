@@ -9,6 +9,8 @@
 
 import { FtuiElement } from '../element.component.js';
 
+const sizes = [0.75, 0.875, 1, 1.25, 1.5, 1.75, 2, 2.5, 3, 3.5, 4, 6, 8];
+
 export class FtuiIcon extends FtuiElement {
 
   constructor(properties) {
@@ -28,6 +30,7 @@ export class FtuiIcon extends FtuiElement {
     return {
       type: 'svg',
       path: 'icons',
+      size: -1,
       name: '',
       color: '',
       rgb: '',
@@ -46,6 +49,11 @@ export class FtuiIcon extends FtuiElement {
       case 'rgb':
         this.elementIcon.style.color = `#${newValue.replace('#', '')}`;
         break;
+      case 'size':
+        if (this.size > -1) {
+          this.style.fontSize = sizes[this.size] + 'rem';
+        }
+        break;
     }
   }
 
@@ -56,7 +64,7 @@ export class FtuiIcon extends FtuiElement {
           // workaround until this issue has been fixed
           // https://forum.fhem.de/index.php/topic,115823.0.html
           const contentType = response.headers.get('Content-Type');
-          if (contentType &&  contentType.startsWith('text/html') ) {
+          if (contentType && contentType.startsWith('text/html')) {
             throw new Error(`${this.id} - icon '${name}' not found`);
           }
           return response.text()
