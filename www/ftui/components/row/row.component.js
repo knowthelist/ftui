@@ -25,6 +25,18 @@ export class FtuiRow extends FtuiCell {
           height: 100%;
           width: 100%;
         }
+        :host([align-items~=top]) {
+          align-items: flex-start;
+        }
+        :host([align-items~=bottom]) {
+          align-items: flex-end;
+        }
+        :host([align-items~=left]) {
+          justify-content: flex-start;
+        }
+        :host([align-items~=right]) {
+          justify-content: flex-end;
+        }
       </style>`;
   }
 }

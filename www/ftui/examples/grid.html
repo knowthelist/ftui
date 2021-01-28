@@ -33,7 +33,7 @@
 
     <ftui-grid-tile row="2" col="1" height="1" width="1" shape="round">
       <header>TILE2</header>
-      <ftui-row align-items="top" margin="1">
+      <ftui-row align-items="top" margin="1" >
         <div>1</div>
         <div>2</div>
         <div>3</div>
@@ -43,7 +43,11 @@
     <ftui-grid-tile row="3" col="1" height="1" width="1" shape="round"
                     [color]="ftuitest | map('0=dark,70=medium,100=light')">
       <header>TILE3</header>
-
+      <ftui-row align-items="bottom around" margin="1" >
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+      </ftui-row>
     </ftui-grid-tile>
 
     <ftui-grid-tile row="2" col="3" height="2" width="2" shape="round">

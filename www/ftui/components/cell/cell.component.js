@@ -29,6 +29,13 @@ export class FtuiCell extends FtuiElement {
         background: var(--color-base);
         color: var(--color-contrast);
       }
+      :host(:not(ftui-row)[align-items~=top])    { justify-content: flex-start; }
+      :host(:not(ftui-row)[align-items~=bottom]) { justify-content: flex-end; }
+      :host(:not(ftui-row)[align-items~=left])   { align-items: flex-start; }
+      :host(:not(ftui-row)[align-items~=right])  { align-items: flex-end; }
+      :host([align-items~=center]) { justify-content: center; }
+      :host([align-items~=stretch]) { justify-content: space-between; }
+      :host([align-items~=around]) { justify-content: space-around; }
     </style>
     <slot></slot>`;
   }
@@ -37,8 +44,6 @@ export class FtuiCell extends FtuiElement {
     return {
       height: '',
       width: '',
-      alignItems: 'center',
-      space: 'evenly',
       color: 'transparent',
       margin: '0',
     };
@@ -60,37 +65,9 @@ export class FtuiCell extends FtuiElement {
       case 'height':
         this.style.height = value;
         break;
-      case 'space':
-        this.style.justifyContent = ('space-' + value);
-        break;
       case 'margin': {
         this.style[`margin${capitalize(this.alignItems)}`] = isNumeric(value) ? value + 'em' : value;
-      }
         break;
-      case 'align-items': {
-        const direction = this.tagName === 'FTUI-COLUMN' ? 'col' : 'row';
-
-        switch (`${direction}-${value}`) {
-          case 'row-left':
-          case 'col-top':
-            this.style.justifyContent = 'flex-start';
-            break;
-          case 'row-right':
-          case 'col-bottom':
-            this.style.justifyContent = 'flex-end';
-            break;
-          case 'row-top':
-          case 'col-left':
-            this.style.alignItems = 'flex-start';
-            break;
-          case 'row-bottom':
-          case 'col-right':
-            this.style.alignItems = 'flex-end';
-            break;
-          case 'col-center':
-            this.style.justifyContent = 'center';
-            break;
-        }
       }
     }
   }

@@ -33,6 +33,22 @@
   height: 100%;
 }
 
+:host([align-items=top]) .content {
+  justify-content: flex-start;
+}
+
+:host([align-items=bottom]) .content {
+  justify-content: flex-end;
+}
+
+:host([align-items~=top]) .content     { justify-content: flex-start; }
+:host([align-items~=bottom]) .content  { justify-content: flex-end; }
+:host([align-items~=left]) .content    { align-items: flex-start; }
+:host([align-items~=right]) .content   { align-items: flex-end; }
+:host([align-items~=center]) .content  { justify-content: center; }
+:host([align-items~=stretch]) .content { justify-content: space-between; }
+:host([align-items~=around]) .content  { justify-content: space-around; }
+
 :host([shape="round"]) ::slotted(header) {
   border-top-right-radius: 1em;
   border-top-left-radius: 1em;
