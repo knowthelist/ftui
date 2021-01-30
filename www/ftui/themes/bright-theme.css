@@ -90,8 +90,8 @@
 
   --checkbox-off-color: var(--gray80);
 
-  --slider-scrollbar-thumb: rgba(0, 0, 0, 0.5);
-  --slider-scrollbar-track: var(--white);
+  --swiper-scrollbar-thumb: rgba(0, 0, 0, 0.5);
+  --swiper-scrollbar-track: var(--white);
 }
 
 body {

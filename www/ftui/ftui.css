@@ -58,70 +58,6 @@ footer {
   box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12), 0px 3px 1px -2px rgba(0, 0, 0, 0.2);
 }
 
-/* row column cell */
-
-.row {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-  width: 100%;
-}
-
-.column {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  height: 100%;
-  width: 100%;
-}
-
-.cell {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-evenly;
-  height: 100%;
-  width: 100%;
-}
-
-.align-right {
-  align-self: flex-end;
-}
-
-.align-left {
-  align-self: flex-start;
-}
-
-.cell > .align-left {
-  align-self: end;
-}
-
-.cell > .align-right {
-  align-self: start;
-}
-
-.cell.align-bottom {
-  justify-content: end;
-}
-
-.cell.align-top {
-  justify-content: start;
-}
-
-.cell.align-center {
-  justify-content: center;
-}
-
-.cell.align-space-between {
-  justify-content: space-between;
-}
-
-.cell.align-space-around {
-  justify-content: space-around;
-}
-
 .h-5 {
   height: 5%;
 }
@@ -258,9 +194,6 @@ footer {
 .bottom-align {
   vertical-align: bottom;
 }
-
-/* end Rom column cell */
-
 
 .truncate, .nowrap {
   white-space: nowrap;

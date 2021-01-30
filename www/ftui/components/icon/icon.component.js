@@ -65,7 +65,7 @@ export class FtuiIcon extends FtuiElement {
           // https://forum.fhem.de/index.php/topic,115823.0.html
           const contentType = response.headers.get('Content-Type');
           if (contentType && contentType.startsWith('text/html')) {
-            throw new Error(`${this.id} - icon '${name}' not found`);
+            throw new Error(`${this.id} - icon '${this.name}' not found`);
           }
           return response.text()
         })

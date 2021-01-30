@@ -1,12 +1,4 @@
 
-
-
-// TODO: needs to be refactored
-/* const menu = document.querySelector('#menu');
-menu && menu.addEventListener('click', event => {
-  event.target.classList.toggle('show');
-}); */
-
 async function main() {
   const ftuiModule = await import('./modules/ftui/ftui.app.js');
   window.ftuiApp = ftuiModule.ftuiApp;

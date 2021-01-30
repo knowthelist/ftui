@@ -17,12 +17,16 @@
   width: 10px;
   height: 10px;
 }
+:host(:not([scrollbar])) .slides::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
 .slides::-webkit-scrollbar-thumb {
-  background: var(--slider-scrollbar-track);
+  background: var(--swiper-scrollbar-thumb);
   border-radius: 10px;
 }
 .slides::-webkit-scrollbar-track {
-  background: var(--slider-scrollbar-thumb);
+  background: var(--swiper-scrollbar-track);
 }
 
 ::slotted(*) {
