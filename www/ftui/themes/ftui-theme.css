@@ -100,7 +100,7 @@
 
   --swiper-scrollbar-thumb: rgba(0, 0, 0, 0.5);
   --swiper-scrollbar-track: var(--transparent);
-  --swiper-dot: var(--light-color);
+  --swiper-dot: var(--medium-color);
   --swiper-dot-active: var(--info-color);
 }
 

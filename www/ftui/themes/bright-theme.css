@@ -92,7 +92,7 @@
 
   --swiper-scrollbar-thumb: rgba(0, 0, 0, 0.5);
   --swiper-scrollbar-track: var(--white);
-  --swiper-dot: var(--light-color);
+  --swiper-dot: var(--dark-color);
   --swiper-dot-active: var(--info-color);
 }
 

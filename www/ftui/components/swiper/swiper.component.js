@@ -23,11 +23,11 @@ class FtuiSwiper extends FtuiElement {
 
   template() {
     return `
-    <style> @import "components/swiper/swiper.component.css"; </style>
-    <div class="slides">
-      <slot></slot>
-    </div>
-    <slot name="dots"></slot>
+      <style> @import "components/swiper/swiper.component.css"; </style>
+      <div class="slides">
+        <slot></slot>
+      </div>
+      <slot name="dots"></slot>
       `;
   }
 
@@ -57,7 +57,7 @@ class FtuiSwiper extends FtuiElement {
       this.onIntersectionChange.bind(this),
       {
         root: this.container,
-        delay: 100,
+        delay: 500,
         trackVisibility: true,
       });
     observer.observe(elem);
@@ -77,6 +77,7 @@ class FtuiSwiper extends FtuiElement {
       case 'value': {
         if (newValue !== oldValue) {
           const target = this.slotMain.assignedElements().find(item => item.id === newValue);
+          this.updateDots();
           if (target && !target.isVisible) {
             target.scrollIntoView();
           }
@@ -86,17 +87,35 @@ class FtuiSwiper extends FtuiElement {
     }
   }
 
+  onDotClicked(event) {
+    this.value = event.target.id.replace('dot-', '');
+  }
+
   createDots() {
     if (this.slotDots.assignedElements().length > 0 || !this.dots) {
       return;
     }
-    console.log('createDots')
     this.slotMain.assignedElements().forEach(item => {
-      console.dir(item)
       const elem = createElement('div', 'dot');
-      elem.id = item.id;
+      elem.addEventListener('click', this.onDotClicked.bind(this));
+      if (item.id === this.value) {
+        elem.classList.add('active');
+      }
+      elem.id = `dot-${item.id}`;
       this.slotDots.appendChild(elem);
     })
+  }
+
+  updateDots() {
+    const dots = this.slotDots.assignedElements().length
+      ? this.slotDots.assignedElements() : this.slotDots.childNodes;
+    dots.forEach(item => {
+      if (item.id === `dot-${this.value}`) {
+        item.classList.add('active');
+      } else {
+        item.classList.remove('active');
+      }
+    });
   }
 
 }

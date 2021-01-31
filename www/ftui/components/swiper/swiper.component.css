@@ -43,6 +43,7 @@ slot[name=dots] {
   margin-left: 0.5em;
   border-radius: 1em;
   background-color: var(--swiper-dot);
+  cursor: pointer;
 }
 .dot.active {
   background-color: var(--swiper-dot-active);
