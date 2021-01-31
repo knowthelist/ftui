@@ -8,6 +8,7 @@
 */
 
 import { FtuiElement } from '../element.component.js';
+import { createElement } from '../../modules/ftui/ftui.helper.js';
 
 class FtuiSwiper extends FtuiElement {
 
@@ -15,7 +16,8 @@ class FtuiSwiper extends FtuiElement {
 
     super(Object.assign(FtuiSwiper.properties, properties));
     this.container = this.shadowRoot.querySelector('.slides');
-    this.slots = this.shadowRoot.querySelector('slot');
+    this.slotMain = this.shadowRoot.querySelector('slot');
+    this.slotDots = this.shadowRoot.querySelector('slot[name=dots]');
   }
 
 
@@ -25,6 +27,7 @@ class FtuiSwiper extends FtuiElement {
     <div class="slides">
       <slot></slot>
     </div>
+    <slot name="dots"></slot>
       `;
   }
 
@@ -32,6 +35,7 @@ class FtuiSwiper extends FtuiElement {
     return {
       value: '',
       debounce: 200,
+      dots: false
     };
   }
 
@@ -41,10 +45,11 @@ class FtuiSwiper extends FtuiElement {
 
   onConnected() {
     this.initObservers();
+    this.createDots();
   }
 
   initObservers() {
-    this.slots.assignedElements().forEach(item => this.initInViewportObserver(item));
+    this.slotMain.assignedElements().forEach(item => this.initInViewportObserver(item));
   }
 
   initInViewportObserver(elem) {
@@ -71,7 +76,7 @@ class FtuiSwiper extends FtuiElement {
     switch (name) {
       case 'value': {
         if (newValue !== oldValue) {
-          const target = this.slots.assignedElements().find(item => item.id === newValue);
+          const target = this.slotMain.assignedElements().find(item => item.id === newValue);
           if (target && !target.isVisible) {
             target.scrollIntoView();
           }
@@ -79,6 +84,19 @@ class FtuiSwiper extends FtuiElement {
       }
         break;
     }
+  }
+
+  createDots() {
+    if (this.slotDots.assignedElements().length > 0 || !this.dots) {
+      return;
+    }
+    console.log('createDots')
+    this.slotMain.assignedElements().forEach(item => {
+      console.dir(item)
+      const elem = createElement('div', 'dot');
+      elem.id = item.id;
+      this.slotDots.appendChild(elem);
+    })
   }
 
 }

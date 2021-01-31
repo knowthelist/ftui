@@ -94,6 +94,14 @@ export function getAllTagMatches(regEx) {
   });
 }
 
+export function createElement(type, classes) {
+  const el = document.createElement(type);
+  if (classes) {
+    el.classList.add(classes);
+  }
+  return el;
+}
+
 export function log(level, ...args) {
   const debugLevel = window.ftuiApp ? window.ftuiApp.config.debugLevel : 0;
   if (debugLevel >= level) {

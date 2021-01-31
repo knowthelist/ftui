@@ -13,6 +13,9 @@
   -webkit-overflow-scrolling: touch;
   height: 100%;
 }
+:host([dots]) .slides {
+  height: calc(100% - 1em);
+}
 .slides::-webkit-scrollbar {
   width: 10px;
   height: 10px;
@@ -29,6 +32,21 @@
   background: var(--swiper-scrollbar-track);
 }
 
+slot[name=dots] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.dot {
+  height: 0.5em;
+  width: 0.5em;
+  margin-left: 0.5em;
+  border-radius: 1em;
+  background-color: var(--swiper-dot);
+}
+.dot.active {
+  background-color: var(--swiper-dot-active);
+}
 ::slotted(*) {
   scroll-snap-align: start;
   flex-shrink: 0;

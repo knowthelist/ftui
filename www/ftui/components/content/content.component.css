@@ -1,5 +1,6 @@
 ftui-content {
-  display: flex;
   height: 100%;
   width: 100%;
+  align-items: initial;
+  justify-content: initial;
 }

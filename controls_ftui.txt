@@ -16,8 +16,8 @@ UPD 2021-01-24_22:50:34 1891 www/ftui/components/circlemenu/circlemenu.component
 UPD 2021-01-09_15:08:25 1727 www/ftui/components/clock/clock.component.js
 UPD 2020-12-31_16:39:02 2955 www/ftui/components/colorpicker/colorpicker.component.js
 UPD 2021-01-28_21:05:34 574 www/ftui/components/column/column.component.js
-UPD 2020-12-31_16:39:02 64 www/ftui/components/content/content.component.css
-UPD 2021-01-28_20:06:03 1260 www/ftui/components/content/content.component.js
+UPD 2021-01-30_21:23:16 99 www/ftui/components/content/content.component.css
+UPD 2021-01-30_21:10:20 1260 www/ftui/components/content/content.component.js
 UPD 2021-01-24_23:00:39 496 www/ftui/components/dropdown/dropdown.component.css
 UPD 2021-01-24_22:58:35 1827 www/ftui/components/dropdown/dropdown.component.js
 UPD 2021-01-30_13:01:40 4169 www/ftui/components/element.component.js
@@ -41,8 +41,8 @@ UPD 2021-01-28_23:04:16 927 www/ftui/components/row/row.component.js
 UPD 2021-01-21_02:51:09 3379 www/ftui/components/slider/slider.component.css
 UPD 2021-01-20_18:52:36 3343 www/ftui/components/slider/slider.component.js
 UPD 2020-12-31_16:39:02 1590 www/ftui/components/speak/speak.component.js
-UPD 2021-01-30_08:22:07 848 www/ftui/components/swiper/swiper.component.css
-UPD 2021-01-30_16:04:47 2020 www/ftui/components/swiper/swiper.component.js
+UPD 2021-01-31_10:48:11 1176 www/ftui/components/swiper/swiper.component.css
+UPD 2021-01-30_22:29:47 2576 www/ftui/components/swiper/swiper.component.js
 UPD 2021-01-05_19:05:30 680 www/ftui/components/tab/tab-view.component.js
 UPD 2020-12-31_16:39:02 498 www/ftui/components/tab/tab.component.css
 UPD 2021-01-16_01:52:42 2284 www/ftui/components/tab/tab.component.js
@@ -66,7 +66,7 @@ UPD 2021-01-24_21:06:23 8867 www/ftui/examples/circlemenu.html
 UPD 2021-01-09_15:08:25 1471 www/ftui/examples/clock.html
 UPD 2020-12-31_16:39:02 2219 www/ftui/examples/colorpicker.html
 UPD 2021-01-09_13:55:25 1786 www/ftui/examples/content.html
-UPD 2020-12-31_16:39:02 763 www/ftui/examples/contents/content-grid.html
+UPD 2021-01-30_20:58:46 763 www/ftui/examples/contents/content-grid.html
 UPD 2021-01-21_08:09:17 275 www/ftui/examples/contents/content-view1.html
 UPD 2020-12-31_16:39:02 167 www/ftui/examples/contents/content-view2.html
 UPD 2021-01-27_18:07:20 998 www/ftui/examples/contents/content-weather-day.html
@@ -85,9 +85,9 @@ UPD 2021-01-20_07:58:17 5457 www/ftui/examples/mobile_plain.html
 UPD 2021-01-25_07:43:30 4355 www/ftui/examples/popup.html
 UPD 2021-01-21_00:10:14 3982 www/ftui/examples/slider.html
 UPD 2020-12-31_16:39:02 1224 www/ftui/examples/speak.html
-UPD 2021-01-30_08:33:56 13586 www/ftui/examples/swiper.html
+UPD 2021-01-30_21:50:02 13591 www/ftui/examples/swiper.html
 UPD 2020-12-31_16:39:02 2777 www/ftui/examples/tab-trans.html
-UPD 2021-01-04_14:38:51 2434 www/ftui/examples/tab.html
+UPD 2021-01-30_20:57:57 2434 www/ftui/examples/tab.html
 UPD 2021-01-16_01:52:44 3005 www/ftui/examples/view.html
 UPD 2021-01-28_23:45:37 3105 www/ftui/examples/weather.html
 UPD 2021-01-29_22:58:01 9802 www/ftui/ftui.css
@@ -671,7 +671,7 @@ UPD 2021-01-24_22:36:48 5063 www/ftui/modules/circle-menu/circle-menu.min.js
 UPD 2021-01-27_11:57:58 13232 www/ftui/modules/ftui/fhem.service.js
 UPD 2021-01-27_07:24:54 7481 www/ftui/modules/ftui/ftui.app.js
 UPD 2021-01-30_12:55:11 10958 www/ftui/modules/ftui/ftui.binding.js
-UPD 2021-01-16_01:52:45 11609 www/ftui/modules/ftui/ftui.helper.js
+UPD 2021-01-30_19:42:30 11767 www/ftui/modules/ftui/ftui.helper.js
 UPD 2020-12-31_16:39:06 9247 www/ftui/modules/hocon/hocon.js
 UPD 2020-12-31_16:39:06 3192 www/ftui/modules/hocon/hocon.min.js
 UPD 2020-12-31_16:39:06 65427 www/ftui/modules/iro.js/iro.js
@@ -682,7 +682,7 @@ UPD 2020-12-31_16:39:06 11972 www/ftui/modules/rangeable/rangeable.min.js
 UPD 2020-12-31_16:39:06 1922 www/ftui/modules/vanilla-notify/vanilla-notify.css
 UPD 2020-12-31_16:39:06 6339 www/ftui/modules/vanilla-notify/vanilla-notify.js
 UPD 2020-12-31_16:39:06 3390 www/ftui/modules/vanilla-notify/vanilla-notify.min.js
-UPD 2021-01-30_16:07:44 2829 www/ftui/themes/bright-theme.css
+UPD 2021-01-30_22:18:10 2908 www/ftui/themes/bright-theme.css
 UPD 2021-01-22_11:35:44 1889 www/ftui/themes/color-attributes.css
-UPD 2021-01-30_08:09:43 2927 www/ftui/themes/ftui-theme.css
-UPD 2021-01-30_16:07:41 3098 www/ftui/themes/mobile-theme.css
+UPD 2021-01-30_22:17:54 3006 www/ftui/themes/ftui-theme.css
+UPD 2021-01-30_22:18:04 3177 www/ftui/themes/mobile-theme.css
