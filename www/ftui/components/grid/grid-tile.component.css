@@ -33,6 +33,10 @@
   height: 100%;
 }
 
+:host([is-row]) .content {
+  flex-direction: row;
+}
+
 :host([align-items=top]) .content {
   justify-content: flex-start;
 }
