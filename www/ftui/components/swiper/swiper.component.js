@@ -93,6 +93,7 @@ class FtuiSwiper extends FtuiElement {
       }
         break;
       case 'interval':
+      case 'auto-play':
         this.checkInterval();
         break;
     }

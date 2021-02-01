@@ -15,8 +15,6 @@ class FtuiCheckbox extends FtuiElement {
 
     super(Object.assign(FtuiCheckbox.properties, properties));
 
-    this.parentElement.addEventListener('click', () => this.onClicked());
-
     this.elementInput = this.shadowRoot.querySelector('input');
     this.elementInput.addEventListener('click', () => this.onClicked());
 
@@ -64,6 +62,7 @@ class FtuiCheckbox extends FtuiElement {
     const index = this.getStates().indexOf(this.value);
     if (index > -1) {
       this.elementInput.checked = index === 1 ? true : false;
+      this.emitChangeEvent('value', this.value );
     }
   }
 

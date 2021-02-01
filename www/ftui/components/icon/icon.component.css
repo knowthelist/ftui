@@ -1,5 +1,6 @@
 :host {
   --color-base: currentColor;
+  position: relative;
 }
 
 svg {
@@ -49,4 +50,10 @@ svg[viewBox="0 0 448 512"] {
 
 :host([popup-target]) {
   cursor: pointer;
+}
+
+::slotted(ftui-badge) {
+  top: -0.75em;
+  position: absolute;
+  right: -0.75em;
 }

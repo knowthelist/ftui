@@ -48,6 +48,8 @@ footer {
   width: 100%;
   padding: 0.5em 0 0.5em 0;
   background: var(--view-footer-color);
+  display: flex;
+  justify-content: space-evenly;
 }
 
 .bold {
