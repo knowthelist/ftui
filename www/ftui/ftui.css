@@ -674,6 +674,7 @@ ftui-icon ~ ftui-badge {
   z-index: 1;
 }
 
-[popup-target] {
+[popup-target], 
+[onclick] {
   cursor: pointer;
 }

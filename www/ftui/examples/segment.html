@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <base href="../" />
+  <script src="ftui.js"></script>
+  <link href="ftui.css" rel="stylesheet">
+  <link href="themes/ftui-theme.css" rel="stylesheet">
+  <link href="favicon.ico" rel="icon" type="image/x-icon" />
+
+  <!--   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes"> -->
+
+  <title>FTUI Segment Example</title>
+</head>
+
+<body>
+
+  <ftui-grid base-width="150" base-height="150" shape="round" margin="5">
+
+    <ftui-grid-tile row="1" col="1" height="1" width="3">
+      <ftui-segment id="segment1">
+        <ftui-segment-button value="bus">
+          <ftui-label>Bus</ftui-label>
+        </ftui-segment-button>
+        <ftui-segment-button value="train">
+          <ftui-label>Train</ftui-label>
+        </ftui-segment-button>
+        <ftui-segment-button value="car">
+          <ftui-label>Car</ftui-label>
+        </ftui-segment-button>
+      </ftui-segment>
+
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="3" col="1" height="1" width="3">
+      <ftui-segment id="segment2">
+        <ftui-segment-button value="home">
+          <ftui-label>Home</ftui-label>
+        </ftui-segment-button>
+        <ftui-segment-button value="sleep">
+          <ftui-label>Sleep</ftui-label>
+        </ftui-segment-button>
+        <ftui-segment-button value="absent">
+          <ftui-label>Absent</ftui-label>
+        </ftui-segment-button>
+        <ftui-segment-button value="holiday">
+          <ftui-label>Holiday</ftui-label>
+        </ftui-segment-button>
+      </ftui-segment>
+
+    </ftui-grid-tile>
+</body>
+
+</html>

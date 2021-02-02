@@ -92,7 +92,7 @@
 
   --border-color: var(--gray55);
 
-  --checkbox-off-color: var(--gray80);
+  --checkbox-off-color: var(--medium-color);
 
   --slider-track-color: var(--dark-color);
   --slider-handle-shadow: none;
@@ -102,6 +102,12 @@
   --swiper-scrollbar-track: var(--transparent);
   --swiper-dot: var(--medium-color);
   --swiper-dot-active: var(--info-color);
+
+  --segments-background-color: var(--medium-color);
+  --segments-separator-color: var(--dark-color);
+  --segments-selection-color: var(--primary-color);
+  --segments-selection-contrast-color: var(--primary-contrast-color);
+  --segments-hover-color: var(--light-color);
 }
 
 body {

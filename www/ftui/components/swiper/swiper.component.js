@@ -108,7 +108,7 @@ class FtuiSwiper extends FtuiElement {
     if (this.currentIndex < 0) {
       this.currentIndex = this.slides.length - 1;
     }
-    this.value = this.slides[this.currentIndex].id;
+    this.setValueByIndex(this.currentIndex);
   }
 
   next() {
@@ -116,7 +116,7 @@ class FtuiSwiper extends FtuiElement {
     if (this.currentIndex >= this.slides.length) {
       this.currentIndex = 0;
     }
-    this.value = this.slides[this.currentIndex].id;
+    this.setValueByIndex(this.currentIndex);
   }
 
   setValueByIndex(index) {

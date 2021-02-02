@@ -1,0 +1,48 @@
+:host {
+  width: 100%;
+  padding: 2em;
+}
+
+.segments {
+  background: var(--segments-background-color);
+  border-radius: 9px;
+  margin: 0;
+  padding: 2px;
+  border: none;
+  outline: none;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+::slotted(*:first-of-type) {
+  grid-column: 1;
+  grid-row: 1;
+  box-shadow: none;
+}
+
+::slotted(*:not(:first-of-type)) {
+  background-image: linear-gradient(to bottom, transparent 0%, var(--segments-separator-color, #000) 20%, transparent 51%);
+  background-size: 1px 200%;
+  background-repeat: no-repeat;
+}
+
+.selection {
+  background: var(--segments-selection-color, var(--primary-color));
+  border: .5px solid rgba(0,0,0,0.04);
+  box-shadow: 0 3px 8px 0 rgba(0,0,0,0.12), 0 3px 1px 0 rgba(0,0,0,0.04);
+  border-radius: 7px;
+  grid-column: 1;
+  grid-row: 1;
+  z-index: 2;
+  will-change: transform;
+  -webkit-transition: transform .2s ease;
+  transition: transform .2s ease;
+  margin: 0 -1px 0 -1px;
+}
+
+

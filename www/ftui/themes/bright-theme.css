@@ -94,6 +94,12 @@
   --swiper-scrollbar-track: var(--white);
   --swiper-dot: var(--dark-color);
   --swiper-dot-active: var(--info-color);
+
+  --segments-background-color: var(--medium-color);
+  --segments-separator-color: rgb(200, 199, 204);
+  --segments-selection-color: var(--primary-color);
+  --segments-selection-contrast-color: var(--primary-contrast-color);
+  --segments-hover-color: var(--light-color);
 }
 
 body {
