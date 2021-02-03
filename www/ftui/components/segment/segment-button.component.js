@@ -20,13 +20,10 @@ export class FtuiSegmentButton extends FtuiElement {
   template() {
     return `
     <style> 
-      :host(.active) {
-        --color-base: var(--segments-selection-contrast-color);
-      }
       :host {
           display: flex;
           justify-content: center;
-          height: 1.6em;
+          min-height: 1.75em;
           align-items: center;
           -webkit-transition: all .2s ease;
           transition: all .2s ease;
@@ -34,6 +31,9 @@ export class FtuiSegmentButton extends FtuiElement {
           background: transparent;
           color: var(--color-base, #20639b);
           cursor: pointer;
+        }
+        :host(.active) {
+          --color-base: var(--segments-selection-contrast-color);
         }
         :host(:not(.active):hover) {
           --color-base: var(--segments-hover-color);

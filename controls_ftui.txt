@@ -10,7 +10,7 @@ UPD 2020-12-31_16:39:02 3652 www/ftui/components/chart/chart-data.component.js
 UPD 2020-12-31_16:39:02 231 www/ftui/components/chart/chart.component.css
 UPD 2021-02-01_19:44:32 8051 www/ftui/components/chart/chart.component.js
 UPD 2021-02-01_19:44:32 1315 www/ftui/components/checkbox/checkbox.component.css
-UPD 2021-02-01_19:44:33 2065 www/ftui/components/checkbox/checkbox.component.js
+UPD 2021-02-03_01:18:29 2072 www/ftui/components/checkbox/checkbox.component.js
 UPD 2021-02-01_19:44:33 496 www/ftui/components/circlemenu/circlemenu.component.css
 UPD 2021-02-01_19:44:33 1891 www/ftui/components/circlemenu/circlemenu.component.js
 UPD 2021-01-09_15:08:25 1727 www/ftui/components/clock/clock.component.js
@@ -28,7 +28,7 @@ UPD 2021-02-01_19:44:35 893 www/ftui/components/icon/icon.component.css
 UPD 2021-02-01_19:44:35 2144 www/ftui/components/icon/icon.component.js
 UPD 2021-02-01_19:44:36 2274 www/ftui/components/image/image.component.js
 UPD 2020-12-31_16:39:02 880 www/ftui/components/knob/knob.component.css
-UPD 2021-01-21_17:14:08 12043 www/ftui/components/knob/knob.component.js
+UPD 2021-02-03_01:18:09 12050 www/ftui/components/knob/knob.component.js
 UPD 2021-02-01_19:44:36 2195 www/ftui/components/label/label.component.js
 UPD 2021-02-01_19:44:36 1816 www/ftui/components/main/main.component.js
 UPD 2020-12-31_16:39:02 1042 www/ftui/components/menu/menu-button.component.js
@@ -38,9 +38,9 @@ UPD 2021-02-01_19:44:36 1083 www/ftui/components/nav/nav-link.component.js
 UPD 2021-02-01_19:44:37 1286 www/ftui/components/popup/popup.component.css
 UPD 2021-02-01_19:44:37 3362 www/ftui/components/popup/popup.component.js
 UPD 2021-02-01_19:44:37 927 www/ftui/components/row/row.component.js
-UPD 2021-02-03_00:18:36 1416 www/ftui/components/segment/segment-button.component.js
+UPD 2021-02-03_01:12:09 1427 www/ftui/components/segment/segment-button.component.js
 UPD 2021-02-03_00:44:27 1062 www/ftui/components/segment/segment.component.css
-UPD 2021-02-03_00:50:23 2690 www/ftui/components/segment/segment.component.js
+UPD 2021-02-03_01:02:31 2689 www/ftui/components/segment/segment.component.js
 UPD 2021-02-01_19:44:37 3379 www/ftui/components/slider/slider.component.css
 UPD 2021-02-01_19:44:38 3343 www/ftui/components/slider/slider.component.js
 UPD 2020-12-31_16:39:02 1590 www/ftui/components/speak/speak.component.js
@@ -86,7 +86,7 @@ UPD 2020-12-31_16:39:02 1698 www/ftui/examples/mobile.html
 UPD 2021-02-01_19:44:48 5339 www/ftui/examples/mobile_full.html
 UPD 2021-02-01_19:44:48 5457 www/ftui/examples/mobile_plain.html
 UPD 2021-02-01_19:44:48 4355 www/ftui/examples/popup.html
-UPD 2021-02-03_00:11:42 1714 www/ftui/examples/segment.html
+UPD 2021-02-03_01:02:28 2338 www/ftui/examples/segment.html
 UPD 2021-02-01_19:44:49 3982 www/ftui/examples/slider.html
 UPD 2020-12-31_16:39:02 1224 www/ftui/examples/speak.html
 UPD 2021-02-01_21:58:17 14856 www/ftui/examples/swiper.html

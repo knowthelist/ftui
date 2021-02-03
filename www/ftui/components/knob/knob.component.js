@@ -9,7 +9,7 @@
 
 import { FtuiElement } from '../element.component.js';
 
-class FtuiKnob extends FtuiElement {
+export class FtuiKnob extends FtuiElement {
 
   constructor(properties) {
 

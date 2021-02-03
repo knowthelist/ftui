@@ -198,6 +198,7 @@ Elements
 - [Label](#label)
 - Icon
 - [Button](#button)
+- SegmentedButton
 - Knob
 - Slider
 - Checkbox
@@ -405,6 +406,7 @@ Examples
 - [Popup](https://knowthelist.github.io/ftui/www/ftui/examples/popup.html)
 - [View](https://knowthelist.github.io/ftui/www/ftui/examples/mobile_plain.html)
 - [Swiper](https://knowthelist.github.io/ftui/www/ftui/examples/swiper.html)
+- [SegmentedButton](https://knowthelist.github.io/ftui/www/ftui/examples/segment.html)
 
 Donation
 --------

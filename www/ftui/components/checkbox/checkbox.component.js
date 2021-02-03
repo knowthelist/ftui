@@ -9,7 +9,7 @@
 
 import { FtuiElement } from '../element.component.js';
 
-class FtuiCheckbox extends FtuiElement {
+export class FtuiCheckbox extends FtuiElement {
 
   constructor(properties) {
 

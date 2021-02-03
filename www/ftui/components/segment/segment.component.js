@@ -46,7 +46,6 @@ class FtuiSegment extends FtuiElement {
     if (this.segments.length > 0) {
       this.value = this.segments[0].value;
     }
-
   }
 
   onAttributeChanged(name, newValue, oldValue) {
