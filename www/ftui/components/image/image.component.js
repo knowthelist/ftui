@@ -8,6 +8,7 @@
 */
 
 import { FtuiElement } from '../element.component.js';
+import { notAvailable } from './image_not_available.js';
 import * as ftui from '../../modules/ftui/ftui.helper.js';
 
 export class FtuiImage extends FtuiElement {
@@ -71,8 +72,14 @@ export class FtuiImage extends FtuiElement {
     }
   }
 
+  onError() {
+    this.imageElement.src = notAvailable;
+    this.imageElement.onerror = null;
+  }
+
   updateImage() {
     if (ftui.isVisible(this.imageElement)) {
+      this.imageElement.onerror = this.onError.bind(this);
       this.imageElement.src = this.getUrl();
     }
   }

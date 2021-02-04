@@ -26,7 +26,8 @@ UPD 2020-12-31_16:39:02 847 www/ftui/components/grid/grid-tile.component.js
 UPD 2021-02-01_19:44:35 3090 www/ftui/components/grid/grid.component.js
 UPD 2021-02-01_19:44:35 893 www/ftui/components/icon/icon.component.css
 UPD 2021-02-01_19:44:35 2144 www/ftui/components/icon/icon.component.js
-UPD 2021-02-01_19:44:36 2274 www/ftui/components/image/image.component.js
+UPD 2021-02-03_14:43:36 2489 www/ftui/components/image/image.component.js
+UPD 2021-02-03_14:48:37 8329 www/ftui/components/image/image_not_available.js
 UPD 2020-12-31_16:39:02 880 www/ftui/components/knob/knob.component.css
 UPD 2021-02-03_01:18:09 12050 www/ftui/components/knob/knob.component.js
 UPD 2021-02-01_19:44:36 2195 www/ftui/components/label/label.component.js
@@ -40,12 +41,12 @@ UPD 2021-02-01_19:44:37 3362 www/ftui/components/popup/popup.component.js
 UPD 2021-02-01_19:44:37 927 www/ftui/components/row/row.component.js
 UPD 2021-02-03_01:12:09 1427 www/ftui/components/segment/segment-button.component.js
 UPD 2021-02-03_00:44:27 1062 www/ftui/components/segment/segment.component.css
-UPD 2021-02-03_01:02:31 2689 www/ftui/components/segment/segment.component.js
+UPD 2021-02-03_09:19:10 2656 www/ftui/components/segment/segment.component.js
 UPD 2021-02-01_19:44:37 3379 www/ftui/components/slider/slider.component.css
 UPD 2021-02-01_19:44:38 3343 www/ftui/components/slider/slider.component.js
 UPD 2020-12-31_16:39:02 1590 www/ftui/components/speak/speak.component.js
 UPD 2021-02-01_19:44:38 1195 www/ftui/components/swiper/swiper.component.css
-UPD 2021-02-02_22:11:21 4075 www/ftui/components/swiper/swiper.component.js
+UPD 2021-02-04_21:27:19 4444 www/ftui/components/swiper/swiper.component.js
 UPD 2021-01-05_19:05:30 680 www/ftui/components/tab/tab-view.component.js
 UPD 2020-12-31_16:39:02 498 www/ftui/components/tab/tab.component.css
 UPD 2021-02-01_19:44:39 2284 www/ftui/components/tab/tab.component.js
@@ -86,7 +87,7 @@ UPD 2020-12-31_16:39:02 1698 www/ftui/examples/mobile.html
 UPD 2021-02-01_19:44:48 5339 www/ftui/examples/mobile_full.html
 UPD 2021-02-01_19:44:48 5457 www/ftui/examples/mobile_plain.html
 UPD 2021-02-01_19:44:48 4355 www/ftui/examples/popup.html
-UPD 2021-02-03_01:02:28 2338 www/ftui/examples/segment.html
+UPD 2021-02-03_01:25:13 2338 www/ftui/examples/segment.html
 UPD 2021-02-01_19:44:49 3982 www/ftui/examples/slider.html
 UPD 2020-12-31_16:39:02 1224 www/ftui/examples/speak.html
 UPD 2021-02-01_21:58:17 14856 www/ftui/examples/swiper.html
@@ -94,7 +95,7 @@ UPD 2020-12-31_16:39:02 2777 www/ftui/examples/tab-trans.html
 UPD 2021-01-30_20:57:57 2434 www/ftui/examples/tab.html
 UPD 2021-02-01_19:44:49 3005 www/ftui/examples/view.html
 UPD 2021-02-01_19:44:49 3105 www/ftui/examples/weather.html
-UPD 2021-02-01_19:53:57 9864 www/ftui/ftui.css
+UPD 2021-02-03_09:24:35 9894 www/ftui/ftui.css
 UPD 2021-02-01_19:44:50 1323 www/ftui/ftui.js
 UPD 2021-01-07_17:45:12 1881 www/ftui/icons/Celsius.svg
 UPD 2021-01-07_17:45:12 1097 www/ftui/icons/Fahrenheit.svg

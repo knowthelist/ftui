@@ -20,7 +20,7 @@ class FtuiSegment extends FtuiElement {
     this.selector = this.shadowRoot.querySelector('.selection');
     this.slotMain = this.shadowRoot.querySelector('slot');
 
-    this.shadowRoot.addEventListener('click', this.onClick.bind(this));
+    this.slotMain.addEventListener('click', this.onClick.bind(this));
   }
 
   template() {
@@ -91,7 +91,6 @@ class FtuiSegment extends FtuiElement {
   }
 
   update() {
-    console.dir(this.selector)
     // index
     const target = this.segments.find(item => item.value === this.value);
     this.currentIndex = this.segments.indexOf(target);

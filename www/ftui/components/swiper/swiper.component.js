@@ -15,6 +15,7 @@ class FtuiSwiper extends FtuiElement {
   constructor(properties) {
 
     super(Object.assign(FtuiSwiper.properties, properties));
+    this.currentIndex = 0;
     this.container = this.shadowRoot.querySelector('.slides');
     this.slotMain = this.shadowRoot.querySelector('slot');
     this.slotDots = this.shadowRoot.querySelector('slot[name=dots]');
@@ -103,24 +104,35 @@ class FtuiSwiper extends FtuiElement {
     this.setValueByIndex(event.target.id.replace(`${this.id}-dot-`, ''));
   }
 
-  back() {
+  back(iteration=1) {
     this.currentIndex--;
     if (this.currentIndex < 0) {
       this.currentIndex = this.slides.length - 1;
     }
-    this.setValueByIndex(this.currentIndex);
+    if (this.slides[this.currentIndex].hidden && iteration < this.slides.length) {
+      this.back(iteration++);
+    } else {
+      this.setValueByIndex(this.currentIndex);
+    }
   }
 
-  next() {
+  next(iteration = 0) {
     this.currentIndex++;
     if (this.currentIndex >= this.slides.length) {
       this.currentIndex = 0;
     }
-    this.setValueByIndex(this.currentIndex);
+    if (this.slides[this.currentIndex].hidden && iteration < this.slides.length) {
+      this.next(iteration++);
+    } else {
+      this.setValueByIndex(this.currentIndex);
+    }
   }
 
   setValueByIndex(index) {
-    this.value = this.slides[index].id;
+    const slide = this.slides[index];
+    if (slide) {
+      this.value = slide.id;
+    }
   }
 
   createDots() {
