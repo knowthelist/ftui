@@ -12,7 +12,7 @@ UPD 2021-02-01_19:44:32 8051 www/ftui/components/chart/chart.component.js
 UPD 2021-02-01_19:44:32 1315 www/ftui/components/checkbox/checkbox.component.css
 UPD 2021-02-03_01:18:29 2072 www/ftui/components/checkbox/checkbox.component.js
 UPD 2021-02-01_19:44:33 496 www/ftui/components/circlemenu/circlemenu.component.css
-UPD 2021-02-01_19:44:33 1891 www/ftui/components/circlemenu/circlemenu.component.js
+UPD 2021-02-04_22:45:27 1946 www/ftui/components/circlemenu/circlemenu.component.js
 UPD 2021-01-09_15:08:25 1727 www/ftui/components/clock/clock.component.js
 UPD 2020-12-31_16:39:02 2955 www/ftui/components/colorpicker/colorpicker.component.js
 UPD 2021-01-28_21:05:34 574 www/ftui/components/column/column.component.js
@@ -671,7 +671,7 @@ CRE 2020-12-31_18:04:16 6074 www/ftui/index.html
 UPD 2020-12-31_16:39:06 445455 www/ftui/modules/chart.js/chart.js
 UPD 2020-12-31_16:39:06 192031 www/ftui/modules/chart.js/chart.min.js
 UPD 2020-12-31_16:39:06 49580 www/ftui/modules/chart.js/chartjs-adapter-date-fns.bundle.min.js
-UPD 2021-02-01_19:44:50 8388 www/ftui/modules/circle-menu/circle-menu.js
+UPD 2021-02-04_22:43:17 8388 www/ftui/modules/circle-menu/circle-menu.js
 UPD 2021-02-01_19:44:50 5063 www/ftui/modules/circle-menu/circle-menu.min.js
 UPD 2021-02-01_19:44:50 13232 www/ftui/modules/ftui/fhem.service.js
 UPD 2021-02-01_19:44:50 7481 www/ftui/modules/ftui/ftui.app.js

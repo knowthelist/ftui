@@ -28,6 +28,9 @@ export class FtuiCircleMenu extends FtuiElement {
       },
       close: () => {
         this.onClose();
+      },
+      select: () => {
+        this.onClose();
       }
     });
   }
