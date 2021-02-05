@@ -55,18 +55,19 @@
     </ftui-grid-tile>
 
     <ftui-grid-tile row="7" col="1" height="2" width="6">
-      
-      <ftui-segment id="segment3">
-        <ftui-segment-button value="home">
+      <header>BINDING</header>
+
+      <ftui-segment [(value)]="ftuitest">
+        <ftui-segment-button value="1">
           <ftui-icon name="home1"></ftui-icon>
         </ftui-segment-button>
-        <ftui-segment-button value="sleep">
+        <ftui-segment-button value="2">
           <ftui-icon name="bed"></ftui-icon>
         </ftui-segment-button>
-        <ftui-segment-button value="absent">
+        <ftui-segment-button value="3">
           <ftui-icon name="road"></ftui-icon>
         </ftui-segment-button>
-        <ftui-segment-button value="holiday">
+        <ftui-segment-button value="4">
           <ftui-icon name="plane"></ftui-icon>
         </ftui-segment-button>
       </ftui-segment>

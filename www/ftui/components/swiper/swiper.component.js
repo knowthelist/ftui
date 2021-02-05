@@ -109,6 +109,7 @@ class FtuiSwiper extends FtuiElement {
     if (this.currentIndex < 0) {
       this.currentIndex = this.slides.length - 1;
     }
+    // if previous slide is hidden, get the next one
     if (this.slides[this.currentIndex].hidden && iteration < this.slides.length) {
       this.back(iteration++);
     } else {
@@ -121,6 +122,7 @@ class FtuiSwiper extends FtuiElement {
     if (this.currentIndex >= this.slides.length) {
       this.currentIndex = 0;
     }
+    // if next slide is hidden, get the next one
     if (this.slides[this.currentIndex].hidden && iteration < this.slides.length) {
       this.next(iteration++);
     } else {

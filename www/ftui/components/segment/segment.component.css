@@ -40,7 +40,7 @@
   grid-column: 1;
   grid-row: 1;
   z-index: 2;
-  will-change: transform;
+  will-change: auto;
   -webkit-transition: transform .2s ease;
   transition: transform .2s ease;
   margin: -1px;
