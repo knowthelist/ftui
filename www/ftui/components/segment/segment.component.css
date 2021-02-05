@@ -1,6 +1,7 @@
 :host {
+  display: block;
   width: 100%;
-  padding: 2em;
+  padding: 1em;
 }
 
 .segments {
@@ -42,7 +43,7 @@
   will-change: transform;
   -webkit-transition: transform .2s ease;
   transition: transform .2s ease;
-  margin: 0 -1px 0 -1px;
+  margin: -1px;
 }
 
 

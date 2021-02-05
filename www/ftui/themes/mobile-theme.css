@@ -99,11 +99,12 @@
   --swiper-dot: var(--light-color);
   --swiper-dot-active: var(--info-color);
 
-  --segments-background-color: var(--medium-color);
+  --segments-background-color: var(--light-color);
   --segments-separator-color: rgb(200, 199, 204);
   --segments-selection-color: var(--primary-color);
   --segments-selection-contrast-color: var(--primary-contrast-color);
-  --segments-hover-color: var(--light-color);
+  --segments-hover-color: var(--medium-color);
+  --segments-text-color: var(--text-color);
 }
 
 [invert][color] {

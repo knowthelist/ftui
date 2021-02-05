@@ -6,7 +6,6 @@
 svg {
   width: var(--icon-width, 2.25em);
   height: var(--icon-height, 2.25em);
-  margin-top: 0.175em;
   fill: currentColor;
 }
 
@@ -14,7 +13,6 @@ svg g[fill] {
   fill: inherit;
 }
 
-/* pöse, pöse fhemSVG */
 svg path[style] {
   fill: inherit !important;
 }
