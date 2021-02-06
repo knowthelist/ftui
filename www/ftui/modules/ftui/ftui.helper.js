@@ -184,7 +184,7 @@ export function dateFormat(date, format, lang = 'de') {
   const months_de = ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'];
   const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   const YYYY = date.getFullYear().toString();
-  const YY = date.getYear().toString();
+  const YY = date.getFullYear().toString().substr(-2);
   const month = date.getMonth();
   const MM = (month + 1).toString(); // getMonth() is zero-based
   const MMMM = (lang === 'de') ? months_de[month] : months[month];
