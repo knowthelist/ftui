@@ -107,6 +107,11 @@
       <ftui-knob [(value)]="dummy1" type="scale" unit="°C" has-value-text></ftui-knob>
     </ftui-grid-tile>
 
+    <ftui-grid-tile row="3" col="5" height="1" width="1">
+      <header>STEPS</header>
+      <ftui-knob value="1.2" max="2.0" min="1.0" ticks="6" type="scale" has-value-text has-scale-text></ftui-knob>
+      </ftui-grid-tile>
+
     <ftui-grid-tile row="4" col="1" height="1" width="1">
       <header>360° start right</header>
       <ftui-knob [(value)]="dummy1" start-angle="0" end-angle="359" offset-y="0"></ftui-knob>
@@ -126,8 +131,9 @@
       <header>Value-Size</header>
       <ftui-knob [(value)]="dummy1" value-size="20px" type="arc" has-value-text></ftui-knob>
     </ftui-grid-tile>
-
+  
   </ftui-grid>
+
 </body>
 
 </html>

@@ -1,13 +1,15 @@
 /*
 * Knob component for FTUI version 3
 *
-* Copyright (c) 2019-2020 Mario Stephan <mstephan@shared-files.de>
+* Copyright (c) 2019-2021 Mario Stephan <mstephan@shared-files.de>
 * Under MIT License (http://www.opensource.org/licenses/mit-license.php)
 *
 * https://github.com/knowthelist/ftui
 */
 
 import { FtuiElement } from '../element.component.js';
+import {countDecimals, round} from '../../modules/ftui/ftui.helper.js';
+
 
 export class FtuiKnob extends FtuiElement {
 
@@ -49,6 +51,10 @@ export class FtuiKnob extends FtuiElement {
     this.svg.addEventListener('touchmove', (evt) => this.onMoveEvent(evt), false);
     this.svg.addEventListener('mousemove', (evt) => this.onMoveEvent(evt), false);
 
+    if (this.decimals < 0 ) {
+      this.decimals = countDecimals(this.getAttribute('max'));
+    }
+    console.log(this.max,this.decimals, countDecimals(this.max))
     this.draw(this.valueToAngle(this.value));
   }
 
@@ -76,6 +82,8 @@ export class FtuiKnob extends FtuiElement {
       min: 0,
       max: 100,
       offsetY: 20,
+      ticks: 10,
+      decimals: -1,
       height: '150',
       width: '150',
       strokeWidth: 15,
@@ -197,7 +205,7 @@ export class FtuiKnob extends FtuiElement {
 
     this.clearRect(this.scale);
     if (this.hasScale) {
-      for (let a = this.startAngle; a <= this.endAngle; a += this.rangeAngle / 10) {
+      for (let a = this.startAngle; a <= this.endAngle; a += this.rangeAngle / this.ticks) {
         // ticks
         const angleInRadians = a * this.radian;
         const scaleLine = document.createElementNS(this.NS, 'line');
@@ -220,7 +228,7 @@ export class FtuiKnob extends FtuiElement {
             y: this.centerY + textRadius * Math.sin(a * this.radian)
           };
           this.setSVGAttributes(scaleText, scaleTextObj);
-          scaleText.textContent = this.angleToValue(a);
+          scaleText.textContent = this.angleToValue(a).toFixed(this.decimals);
           this.scale.appendChild(scaleText);
         }
       }
@@ -278,7 +286,7 @@ export class FtuiKnob extends FtuiElement {
       'alignment-baseline': 'middle'
     };
     this.setSVGAttributes(scaleText, scaleTextObj);
-    scaleText.textContent = this.value;
+    scaleText.textContent = this.value.toFixed(this.decimals);
     scaleText.style.fontSize = this.valueSize;
     this.scale.appendChild(scaleText);
   }
@@ -320,7 +328,7 @@ export class FtuiKnob extends FtuiElement {
     const max = parseFloat(this.max);
     let normAngle = (angle - 360 >= this.startAngle) ? angle - 360 : angle;
     normAngle = (normAngle < this.startAngle) ? this.startAngle : (normAngle > this.endAngle) ? this.endAngle : normAngle;
-    const value = Math.round((((normAngle - this.startAngle) * (max - min)) / this.rangeAngle) + min);
+    const value = round((((normAngle - this.startAngle) * (max - min)) / this.rangeAngle) + min, this.decimals);
 
     return value
   }

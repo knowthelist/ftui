@@ -316,6 +316,11 @@ export function scale(value, minIn, maxIn, minOut, maxOut) {
   return value * slope + intercept;
 }
 
+export function countDecimals(value) {
+  const val = value.toString().split('.')[1] || '';
+  return val.length || 0;
+}
+
 export function debounce(callback, context = this) {
   let handle;
   return (delay, ...args) => {
