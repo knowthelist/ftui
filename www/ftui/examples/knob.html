@@ -25,7 +25,6 @@
     #myKnob1 {
       --knob-needle-color: #da3745;
     }
-
   </style>
   <title>FTUI Expamle Knob</title>
 </head>
@@ -107,6 +106,11 @@
       <ftui-knob [(value)]="dummy1" type="scale" unit="°C" has-value-text></ftui-knob>
     </ftui-grid-tile>
 
+    <ftui-grid-tile row="3" col="5" height="1" width="1">
+      <header>unit-size</header>
+      <ftui-knob [(value)]="dummy1" type="scale" unit="°C" unit-size="1.5em" has-value-text></ftui-knob>
+    </ftui-grid-tile>
+
     <ftui-grid-tile row="4" col="1" height="1" width="1">
       <header>360° start right</header>
       <ftui-knob [(value)]="dummy1" start-angle="0" end-angle="359" offset-y="0"></ftui-knob>
@@ -125,6 +129,11 @@
     <ftui-grid-tile row="4" col="4" height="1" width="1">
       <header>Value-Size</header>
       <ftui-knob [(value)]="dummy1" value-size="20px" type="arc" has-value-text></ftui-knob>
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="4" col="5" height="1" width="1">
+      <header>desired-value</header>
+      <ftui-knob value="33" desired-value="20" type="handle" has-desired has-value-text></ftui-knob>
     </ftui-grid-tile>
 
   </ftui-grid>
