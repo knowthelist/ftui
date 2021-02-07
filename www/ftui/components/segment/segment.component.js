@@ -21,6 +21,7 @@ class FtuiSegment extends FtuiElement {
     this.slotMain = this.shadowRoot.querySelector('slot');
 
     this.slotMain.addEventListener('click', this.onClick.bind(this));
+    document.addEventListener('ftuiVisibilityChanged', () => this.update());
   }
 
   template() {

@@ -41,8 +41,8 @@
         <ftui-tab view="View6" fill="solid" shape="circle">
           <ftui-icon name="road"></ftui-icon>
         </ftui-tab>
-        <ftui-tab view="View7" fill="solid" shape="circle" [value]="CameraDoor | map('Alert:on, .*:off')">
-          <ftui-icon name="camera1"></ftui-icon>
+        <ftui-tab view="View7" fill="solid" shape="circle" [value]="ftuitest | map('1:on, .*:off')">
+          <ftui-icon name="camera"></ftui-icon>
         </ftui-tab>
       </ftui-column>
     </ftui-grid-tile>
@@ -76,6 +76,13 @@
         <div class="size-10">Tab5</div>
       </ftui-grid-tile>
     </ftui-tab-view>
+
+    <ftui-tab-view id="View6">
+      <ftui-grid-tile row="1" col="2" height="5" width="9">
+        <ftui-content file="examples/contents/content-components.html"></ftui-content>
+      </ftui-grid-tile>
+    </ftui-tab-view>
+
   </ftui-grid>
 
 </body>
