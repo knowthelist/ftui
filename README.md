@@ -17,17 +17,61 @@ Caution!
 
 Install
 -------
- * create a new folder in the www folder of your FHEM installation 
- ```bash 
-mkdir /opt/fhem/www/ftui
- ```
- * copy all folder and files from here into the new folder
+ * copy the folder www/ftui to your FHEM www (e.g.: /opt/fhem/www/ftui)
+ ````
+wget https://github.com/knowthelist/ftui/tarball/master -O /tmp/ftui.tar
+cd /tmp && tar xvzf /tmp/ftui.tar
+mv /tmp/knowthelist-ftui-*/www/ftui /opt/fhem/www
+````
+
+
  * change the example page 'index.html' according your needs
  * to open your new page call http://\<fhem-url\>:8083/fhem/ftui/index.html
- 
+
+Update
+------
+call 
+ ````
+update all https://raw.githubusercontent.com/knowthelist/ftui/master/controls_ftui.txt
+````
+on the FHEM command field of FHEMWEB
+
+Development
+------
+Clone the git project in your home directory and link the www/ftui folder into FHEM's www
+```
+cd
+git clone https://github.com/knowthelist/ftui.git
+ln -s $HOME/ftui/www/ftui /opt/fhem/www/ftui_dev
+````
+Docker
+-------
+
+You can also host FTUI on your own web server running in a docker container instead of via FHEMWEB.
+
+
+- <b>Pull</b> the docker image: 
+```
+docker pull knowthelist/ftui
+```
+- Place your <b>index.html</b> somewhere where you can use it as a volume for docker.
+- Put the <b>fhemweb_url</b> into the head of the index.html: 
+````
+<meta name="fhemweb_url" content="http://<your_fhem_url>:8083/fhem/">
+````
+
+- <b>Run</b> the container: 
+```
+docker run -d -p 8080:80 -v <path>/index.html:/usr/share/nginx/html/index.html --name ftui3 knowthelist/ftui
+````
+- <b>Open</b> your FHEM Tablet-UI on any browser in your network: 
+```
+<docker_host>:8080
+```
+
 Usage
 ------
-* Just add some of the FTUI web components to your HTML code
+Just add some of the FTUI web components to your HTML code
 
 ```html
 <ftui-button (value)="dummy1">on/off</ftui-button>
@@ -140,22 +184,34 @@ Example for output (HTML attribute -> function() -> FHEM reading):
 Components
 ------
 
+Layout
 - Tab
 - Grid
-- Label
+- Circlemenu
+- Row
+- Column
+- Cell
+- View, ViewStage, ViewSection, ViewItem
+- Swiper
+
+Elements
+- [Label](#label)
 - Icon
 - [Button](#button)
+- SegmentedButton
 - Knob
 - Slider
 - Checkbox
-- Circlemenu
 - Weather
 - Dropdown
 - Colorpicker
 - [Image](#image)
 - [Badge](#badge)
-- [Speak](#speak)
+- Clock
 - [Chart](#chart)
+
+Miscellaneous
+- [Speak](#speak)
 
  ... to be continued
 
@@ -165,9 +221,19 @@ All components has following attributes
 - disabled
 - readonly
 
-<br><br>
+<br></br>
 
-### Button
+## Mobile UI
+
+A user interface for mobile phones can be implemented with ftui-view.
+
+![](http://knowthelist.github.io/ftui/screenshot-mobile.png)
+
+[Demo](https://knowthelist.github.io/ftui/www/ftui/examples/mobile_plain.html)
+
+<br></br>
+
+## Button
 
 | Attribute | Description | Type | Default |
 |-----------|-------------|-------|---------|
@@ -178,7 +244,18 @@ All components has following attributes
 | <b>value</b> |.|String| <code>"off"</code> |
 | <b>states</b> |.|String list comma separated| <code>"on,off"</code>|
 
-### Image
+<br></br>
+## Label
+
+| Attribute | Description | Type | Default |
+|-----------|-------------|-------|---------|
+| <b>text</b> |The text to show.|String| <code>""</code>|
+| <b>color</b> |The color to use from color palette.|<code>"primary" \| "secondary" \| "success" \| "warning" \| "danger" \| "light" \| "medium" \| "dark"</code>| <code>""</code>|
+| <b>unit</b> |The unit which should be displayed after the value.|String| <code>""</code>|
+| <b>interval</b> |Reloading every x secondes.|Number| <code>0</code> |
+
+<br></br>
+## Image
 
 | Attribute | Description | Type | Default |
 |-----------|-------------|-------|---------|
@@ -190,7 +267,8 @@ All components has following attributes
 | <b>refresh</b> |Changes of this attribute triggers a reload.|String list comma separated| <code>""</code>|
 | <b>nocache</b> |Bypass cache on next reload.|Boolean| <code>false</code>|
 
-### Badge
+<br></br>
+## Badge
 
 Badges can be used as a notification that contain a number or other characters. They show that there are additional items associated with an element and indicate how many items there are.
 The element disappears if the value is 0 or empty.
@@ -200,7 +278,8 @@ The element disappears if the value is 0 or empty.
 | <b>color</b> |The color to use from color palette.|<code>"primary" \| "secondary" \| "success" \| "warning" \| "danger" \| "light" \| "medium" \| "dark"</code>| <code>"primary"</code>|
 | <b>text</b> |Text to display inside.|String| <code>""</code>|
 
-### Speak
+<br></br>
+## Speak
 
 Speak uses the browser's Web Speech API to synthesize text to speech.
 
@@ -214,7 +293,8 @@ Speak uses the browser's Web Speech API to synthesize text to speech.
 
   ... to be continued
 
-### Chart
+<br></br>
+## Chart
 
 The Chart component uses [Chart.js](https://www.chartjs.org/docs/latest/) to render charts.
 
@@ -272,6 +352,7 @@ Child component:  <b>ftui-chart-control</b>
 | <b>stepped</b>||Boolean| <code>false</code>|
 | <b>offset</b> ||Number| <code>0</code>|
 
+<br></br>
 Example for DbLog
 
 ```html
@@ -285,29 +366,47 @@ Example for DbLog
 </ftui-chart>
 ```
 
+<br></br>
 ### Icon
 
-[List of all icons](https://knowthelist.github.io/ftui/icons/demo.html)
+[List of all icons](https://knowthelist.github.io/ftui/www/ftui/icons/demo.html)
 
+<br></br>
+### Layout
+
+```html
+<ftui-row>
+    <ftui-column>
+      <ftui-cell>
+        <ftui-icon name="umbrella"></ftui-icon>
+        <ftui-label>Monday</ftui-label>
+      </ftui-cell>
+    </ftui-column>
+</ftui-row>
+```
+<br></br>
 Examples
 ------
 
-- [Tab](https://knowthelist.github.io/ftui/examples/tab.html) 
-- [Grid](https://knowthelist.github.io/ftui/examples/grid.html)
-- [Label](https://knowthelist.github.io/ftui/examples/label.html)
-- [Icon](https://knowthelist.github.io/ftui/examples/icon.html)
-- [Button](https://knowthelist.github.io/ftui/examples/button.html)
-- [Knob](https://knowthelist.github.io/ftui/examples/knob.html)
-- [Slider](https://knowthelist.github.io/ftui/examples/slider.html)
-- [Checkbox](https://knowthelist.github.io/ftui/examples/checkbox.html)
-- [Circlemenu](https://knowthelist.github.io/ftui/examples/circlemenu.html)
-- [Dropdown](https://knowthelist.github.io/ftui/examples/dropdown.html)
-- [Colorpicker](https://knowthelist.github.io/ftui/examples/colorpicker.html)
-- [Image](https://knowthelist.github.io/ftui/examples/image.html)
-- [Badge](https://knowthelist.github.io/ftui/examples/badge.html)
-- [Speak](https://knowthelist.github.io/ftui/examples/speak.html)
-- [Chart](https://knowthelist.github.io/ftui/examples/chart.html)
-
+- [Tab](https://knowthelist.github.io/ftui/www/ftui/examples/tab.html) 
+- [Grid](https://knowthelist.github.io/ftui/www/ftui/examples/grid.html)
+- [Label](https://knowthelist.github.io/ftui/www/ftui/examples/label.html)
+- [Icon](https://knowthelist.github.io/ftui/www/ftui/examples/icon.html)
+- [Button](https://knowthelist.github.io/ftui/www/ftui/examples/button.html)
+- [Knob](https://knowthelist.github.io/ftui/www/ftui/examples/knob.html)
+- [Slider](https://knowthelist.github.io/ftui/www/ftui/examples/slider.html)
+- [Checkbox](https://knowthelist.github.io/ftui/www/ftui/examples/checkbox.html)
+- [Circlemenu](https://knowthelist.github.io/ftui/www/ftui/examples/circlemenu.html)
+- [Dropdown](https://knowthelist.github.io/ftui/www/ftui/examples/dropdown.html)
+- [Colorpicker](https://knowthelist.github.io/ftui/www/ftui/examples/colorpicker.html)
+- [Image](https://knowthelist.github.io/ftui/www/ftui/examples/image.html)
+- [Badge](https://knowthelist.github.io/ftui/www/ftui/examples/badge.html)
+- [Speak](https://knowthelist.github.io/ftui/www/ftui/examples/speak.html)
+- [Chart](https://knowthelist.github.io/ftui/www/ftui/examples/chart.html)
+- [Popup](https://knowthelist.github.io/ftui/www/ftui/examples/popup.html)
+- [View](https://knowthelist.github.io/ftui/www/ftui/examples/mobile_plain.html)
+- [Swiper](https://knowthelist.github.io/ftui/www/ftui/examples/swiper.html)
+- [SegmentedButton](https://knowthelist.github.io/ftui/www/ftui/examples/segment.html)
 
 Donation
 --------

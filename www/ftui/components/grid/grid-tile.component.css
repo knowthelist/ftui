@@ -1,0 +1,64 @@
+:host([shape="round"]) {
+  --grid-tile-border-radius: 1.5em;
+}
+
+:host {
+  --color-base: var(--grid-background-color, #333333);
+  background: var(--color-base);
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: var(--grid-tile-border-radius);
+}
+
+
+::slotted(header) {
+  color: var(--grid-header-color);
+  background: var(--grid-header-background-color);
+  font-weight: bold;
+  padding: 0.25em;
+  width: 100%;
+  text-align: center;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+  height: 100%;
+}
+
+:host([is-row]) .content {
+  flex-direction: row;
+}
+
+:host([align-items=top]) .content {
+  justify-content: flex-start;
+}
+
+:host([align-items=bottom]) .content {
+  justify-content: flex-end;
+}
+
+:host([align-items~=top]) .content     { justify-content: flex-start; }
+:host([align-items~=bottom]) .content  { justify-content: flex-end; }
+:host([align-items~=left]) .content    { align-items: flex-start; }
+:host([align-items~=right]) .content   { align-items: flex-end; }
+:host([align-items~=center]) .content  { justify-content: center; }
+:host([align-items~=stretch]) .content { justify-content: space-between; }
+:host([align-items~=around]) .content  { justify-content: space-around; }
+
+:host([shape="round"]) ::slotted(header) {
+  border-top-right-radius: 1em;
+  border-top-left-radius: 1em;
+}
+
+:host([color]) {
+  background: var(--color-base);
+  color: var(--color-contrast);
+}

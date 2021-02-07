@@ -1,0 +1,72 @@
+:host {
+  width: 100%;
+  background-color: var(--view-item-background-color);
+  display: flex;
+}
+
+:host(:hover:not([target=''])) {
+  cursor: pointer;
+  background-color: var(--view-toolbar-background-color);
+}
+
+:host(:last-child) .content {
+  background-image: linear-gradient(to bottom,var(--view-border-color), var(--view-border-color) 50%, transparent 50%);
+  background-size: 100% 1px;
+  background-repeat: no-repeat;
+  background-position: bottom;
+}
+
+.content {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  padding-inline-start: var(--padding-start, 20px);
+  align-items: center;
+  min-height: 4em;
+}
+
+.inner {
+  flex: 1;
+  display: flex;
+  align-items: inherit;
+  background-image: linear-gradient(to bottom,var(--view-border-color), var(--view-border-color) 50%, transparent 50%);
+  background-size: 100% 1px;
+  background-repeat: no-repeat;
+  background-position: bottom;
+  padding-inline-end: var(--padding-end, 10px);
+  min-height: inherit;
+  position: relative;
+}
+
+.inner-wrapper {
+  display: flex;
+  flex: 1;
+  font-size: initial;
+}
+
+:host(:not([target='']):not([plain])) .inner:after {
+  content: "\276F";
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  color: #aaa;
+  font-size: 19px;
+}
+
+::slotted([slot=start]) {
+  margin-inline-end: 20px;
+}
+
+::slotted(ftui-icon[slot=start]) {
+  font-size: 0.9em;
+}
+
+::slotted(ftui-icon[slot=start]) {
+  margin-inline-end: 10px;
+  margin-inline-start: -10px;
+}
+
+::slotted([slot=end]) {
+  margin-inline-end: 5px;
+  max-width: 60%;
+}

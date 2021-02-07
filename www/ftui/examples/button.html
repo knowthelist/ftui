@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!--
+    /* FHEM tablet ui */
+    /**
+    * UI builder framework for FHEM
+    *
+    * Version: 3.0.0
+    *
+    * Copyright (c) 2015-2020 Mario Stephan <mstephan@shared-files.de>
+    * Under MIT License (http://www.opensource.org/licenses/mit-license.php)
+    * https://github.com/knowthelist/ftui
+    */
+    -->
+  <base href="../" />
+  <script src="ftui.js"></script>
+  <link href="ftui.css" rel="stylesheet">
+  <link href="themes/ftui-theme.css" rel="stylesheet">
+  <link href="favicon.ico" rel="icon" type="image/x-icon" />
+
+  <meta name='debug' content='2'>
+  <meta name='viewport' content='width=device-width'>
+  
+  <title>FTUI Example Button</title>
+</head>
+
+<body>
+  <ftui-grid base-width="150" base-height="120">
+
+    <ftui-grid-tile row="1" col="1" height="1" width="1">
+      <header>Default</header>
+      <div class="cell">
+
+        <ftui-button>FTUI</ftui-button>
+
+      </div>
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="2" col="1" height="1" width="1">
+      <header>Icon & Text</header>
+      <div class="cell">
+
+        <ftui-button>
+          <ftui-icon name="lightbulb"></ftui-icon>
+          MyLamp
+        </ftui-button>
+
+      </div>
+    </ftui-grid-tile>
+
+
+    <ftui-grid-tile row="3" col="1" height="1" width="1">
+      <header>Text & Icon</header>
+      <div class="cell">
+
+        <ftui-button>
+          MyLamp
+          <ftui-icon name="lightbulb"></ftui-icon>
+        </ftui-button>
+
+      </div>
+    </ftui-grid-tile>
+
+
+    <ftui-grid-tile row="1" col="2" height="3" width="1">
+      <header>Size</header>
+
+      <div class="cell">
+        <ftui-button size="small">small</ftui-button>
+      </div>
+
+      <div class="cell">
+        <ftui-button>default</ftui-button>
+      </div>
+
+      <div class="cell">
+        <ftui-button size="large">large</ftui-button>
+      </div>
+
+    </ftui-grid-tile>
+
+
+    <ftui-grid-tile row="1" col="3" height="3" width="1">
+      <header>Shape</header>
+
+      <div class="cell">
+        <ftui-button>default</ftui-button>
+      </div>
+
+      <div class="cell">
+        <ftui-button shape="circle">circle</ftui-button>
+      </div>
+
+      <div class="cell">
+        <ftui-button shape="round">round</ftui-button>
+      </div>
+
+    </ftui-grid-tile>
+
+
+
+    <ftui-grid-tile row="1" col="4" height="3" width="1">
+      <header>Fill</header>
+
+      <div class="cell">
+        <ftui-button>default</ftui-button>
+      </div>
+
+      <div class="cell">
+        <ftui-button fill="solid">solid</ftui-button>
+      </div>
+
+      <div class="cell">
+        <ftui-button fill="outline">outline</ftui-button>
+      </div>
+
+    </ftui-grid-tile>
+
+
+    <ftui-grid-tile row="1" col="5" height="3" width="1">
+      <header>Color</header>
+
+      <div class="cell">
+        <ftui-button>primary</ftui-button>
+      </div>
+
+      <div class="cell">
+        <ftui-button color="secondary">secondary</ftui-button>
+      </div>
+
+      <div class="cell">
+        <ftui-button color="success">success</ftui-button>
+      </div>
+
+      <div class="cell">
+        <ftui-button color="warning">warning</ftui-button>
+      </div>
+
+      <div class="cell">
+        <ftui-button color="danger">danger</ftui-button>
+      </div>
+
+      <div class="cell">
+        <ftui-button color="light">light</ftui-button>
+      </div>
+
+      <div class="cell">
+        <ftui-button color="medium">medium</ftui-button>
+      </div>
+
+      <div class="cell">
+        <ftui-button color="dark">dark</ftui-button>
+      </div>
+    </ftui-grid-tile>
+
+
+    <ftui-grid-tile row="1" col="6" height="3" width="1">
+      <header>States</header>
+
+      <div class="cell">
+        <ftui-button [(value)]="Stehlampe">on,off</ftui-button>
+      </div>
+
+      <div class="cell">
+        <ftui-button [(value)]="Stehlampe:pct" states="0,25,50,100">0,25,50,100</ftui-button>
+      </div>
+
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="1" col="7" height="3" width="1">
+      <header>PUSH</header>
+
+      <div class="cell">
+        <ftui-button (value)="dummy2" states="up">
+          UP
+        </ftui-button>
+
+        <ftui-button (value)="dummy2" states="down">
+          DOWN
+        </ftui-button>
+      </div>
+
+      <div class="cell align-center">
+        <ftui-button (value)="dummy2" states="up">
+          <ftui-icon name="caret-up" color="dark"></ftui-icon>
+        </ftui-button>
+
+        <ftui-button (value)="dummy2" states="down">
+          <ftui-icon name="caret-down" color="dark"></ftui-icon>
+        </ftui-button>
+      </div>
+
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="1" col="8" height="2" width="1">
+      <header>State Mapping</header>
+
+      <div class="cell">
+        <ftui-button [value]="Stehlampe | map('on|dim.*: on, off|0: off')" (value)="set dummy1 $value; set Stehlampe $value">
+          on,off
+        </ftui-button>
+      </div>
+
+      <div class="cell">
+        <ftui-button fill="outline" shape="circle"
+          [value]="Sonos_Kueche:transportState | map('PLAYING: play, PAUSED_PLAYBACK|STOPPED: pause')"
+          (value)="Sonos_Kueche" states="play, pause">
+          <ftui-icon [name]="Sonos_Kueche:transportState  | map('PLAYING: stop, PAUSED_PLAYBACK|STOPPED: play');
+              Sonos_Kueche:state | map('play: stop, pause: play')">
+          </ftui-icon>
+        </ftui-button>
+      </div>
+
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="3" col="8" height="2" width="1">
+      <header>Icon Mapping</header>
+
+      <div class="cell">
+        <ftui-button [(value)]="ftuitest">
+          <ftui-icon [name]="ftuitest | map('on:lightbulb-on, off:lightbulb-off')"></ftui-icon>
+        </ftui-button>
+      </div>
+
+      <div class="cell">
+        <ftui-button [(value)]="ftuitest" fill="outline">
+          <ftui-icon [name]="ftuitest | map('on:lightbulb-on, off:lightbulb-off')"></ftui-icon>
+        </ftui-button>
+      </div>
+
+      <div class="cell">
+        <ftui-button [(value)]="ftuitest" fill="outline" shape="circle">
+          <ftui-icon [name]="ftuitest | map('on:lightbulb-on, off:lightbulb-off')"></ftui-icon>
+        </ftui-button>
+      </div>
+
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="1" col="9" height="3" width="1">
+      <header>Color Mapping</header>
+
+      <div class="cell">
+        <ftui-button 
+            [(value)]="ftuitest" 
+            [color]="ftuitest | map('on:primary, off:dark')">
+          <ftui-icon name="lightbulb" color="grid"></ftui-icon>
+        </ftui-button>
+      </div>
+
+      <div class="cell">
+        <ftui-button shape="circle"
+            [(value)]="ftuitest" 
+            [color]="ftuitest | map('on:primary, off:dark')">
+          <ftui-icon name="lightbulb" color="grid"></ftui-icon>
+        </ftui-button>
+      </div>
+
+      <div class="cell">
+        <ftui-button fill="outline"
+            [(value)]="ftuitest" 
+            [color]="ftuitest | map('on:primary, off:dark')">
+          <ftui-icon name="lightbulb"></ftui-icon>
+        </ftui-button>
+      </div>
+
+      <div class="cell">
+        <ftui-button 
+          [(value)]="ftuitest" 
+          [color]="ftuitest | map('Wert.*: danger, on: success, off: medium')">ftuitest</ftui-button>
+      </div>
+
+      <div class="cell">
+        <ftui-button shape="circle" 
+            [(value)]="ftuitest" 
+            [fill]="ftuitest | map('off: outline, on: solid')">
+          <ftui-icon name="lightbulb"></ftui-icon>
+        </ftui-button> 
+      </div>
+
+    </ftui-grid-tile>
+
+  </ftui-grid>
+</body>
+
+</html>

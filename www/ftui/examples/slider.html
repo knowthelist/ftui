@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!--
+    /* FHEM tablet ui */
+    /**
+    * UI builder framework for FHEM
+    *
+    * Version: 3.0.0
+    *
+    * Copyright (c) 2015-2019 Mario Stephan <mstephan@shared-files.de>
+    * Under MIT License (http://www.opensource.org/licenses/mit-license.php)
+    * https://github.com/knowthelist/ftui
+    */
+    -->
+  <base href="../" />
+  <script src="ftui.js"></script>
+  <link href="ftui.css" rel="stylesheet">
+  <link href="themes/ftui-theme.css" rel="stylesheet">
+  <link href="favicon.ico" rel="icon" type="image/x-icon" />
+
+  <meta name="debug" content="2">
+
+  <title>FTUI Example Slider</title>
+</head>
+
+<body>
+  <ftui-grid base-width="70" base-height="150">
+
+
+    <ftui-grid-tile row="1" col="1" height="1" width="3">
+      <header>DEFAULT</header>
+
+      <ftui-slider value="20" max="50"></ftui-slider>
+
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="2" col="1" height="1" width="3">
+      <header>INVERT</header>
+
+      <ftui-slider (value)="scale(50,0,0,50) | fhemDev1" max="50"></ftui-slider>
+      <ftui-label [text]="fhemDev1" text="50"></ftui-label>
+
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="2" col="7" height="1" width="6">
+      <header>RULER</header>
+
+      <ftui-slider [value]="ftuitest" max="70" has-ruler></ftui-slider>
+
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="1" col="4" height="2" width="3">
+      <header>VERTICAL</header>
+
+      <ftui-slider [(value)]="dummy3" max="60" is-vertical></ftui-slider>
+
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="1" col="7" height="1" width="3">
+      <header>WIDE TICKS</header>
+
+      <ftui-slider [(value)]="ftuitest" min="0" max="100"
+                   tick="25"
+                   wide-tick="50"
+                   has-ruler
+                   has-wide-ticks>
+      </ftui-slider>
+    </ftui-grid-tile>
+
+
+    <ftui-grid-tile row="1" col="10" height="1" width="2">
+      <header>VERTICAL RULER</header>
+
+      <ftui-slider [(value)]="ftuitest" min="10" max="70" is-vertical has-ruler>
+      </ftui-slider>
+
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="1" col="12" height="1" width="2">
+      <header>WIDE TICKS</header>
+
+      <ftui-slider [(value)]="ftuitest" min="0" max="100"
+                   tick="25"
+                   wide-tick="50"
+                   is-vertical
+                   has-ruler
+                   has-wide-ticks>
+      </ftui-slider>
+
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="3" col="1" height="1" width="3">
+      <header>NO HANDLE</header>
+
+      <ftui-slider [(value)]="ftuitest" min="10" max="70" handle="none">
+      </ftui-slider>
+
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="3" col="4" height="1" width="3">
+      <header>READONLY</header>
+
+      <ftui-slider [(value)]="ftuitest" min="10" max="70" handle="none" readonly>
+      </ftui-slider>
+
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="3" col="7" height="1" width="3">
+      <header>DISABLED</header>
+
+      <ftui-slider [(value)]="ftuitest" min="10" max="70" disabled>
+      </ftui-slider>
+
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="3" col="10" height="1" width="3">
+      <header>TOOLTIP</header>
+
+      <ftui-slider [(value)]="dummy3" max="70" tooltips="always"></ftui-slider>
+
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="4" col="1" height="1" width="3">
+      <header>RETRO</header>
+
+      <ftui-slider [(value)]="dummy3" max="80"
+                   tick="10"
+                   wide-tick="40"
+                   handle="retro"
+                   has-ruler
+                   has-wide-ticks></ftui-slider>
+
+    </ftui-grid-tile>
+
+
+    <ftui-grid-tile row="4" col="4" height="1" width="3">
+      <header>RETRO</header>
+
+        <ftui-slider [(value)]="ftuitest" min="0" max="100"
+                    tick="25"
+                    wide-tick="50"
+                    handle="retro"
+                    is-vertical
+                    has-ruler
+                    has-wide-ticks>
+        </ftui-slider>
+
+    </ftui-grid-tile>
+
+  </ftui-grid>
+</body>
+
+</html>

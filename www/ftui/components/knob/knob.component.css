@@ -1,0 +1,60 @@
+:host svg {
+  margin: 0px;
+  padding: 0;
+  cursor: pointer;
+}
+
+:host([readonly]) svg {
+  cursor: default;
+}
+ 
+.outline,
+.fill,
+.center,
+.needle,
+.scale {
+  pointer-events: none;
+}
+ 
+.outline {
+  stroke: var(--knob-outline-color, var(--dark-color));
+}
+
+.fill {
+  stroke: var(--knob-fill-color, var(--color-base));
+}
+ 
+.needle {
+  fill: var(--knob-needle-color, var(--color-base));
+}
+ 
+.handle {
+  fill: var(--knob-handle-color, var(--color-base));
+}
+
+.scale {
+  stroke: var(--knob-text-color, var(--text-color));
+}
+
+.value {
+  font-size: 2.5em;
+  fill: var(--text-color);
+  font-weight: lighter;
+}
+ 
+.unit {
+  font-size: 1em;
+  fill: var(--text-color);
+  font-weight: lighter;
+}
+
+text {
+  text-anchor: middle;
+  font-size: 0.8em;
+  font-weight: lighter;
+  pointer-events: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}

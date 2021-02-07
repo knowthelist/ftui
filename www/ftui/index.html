@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!--
+    /* FHEM tablet ui - FTUI */
+    /**
+    * UI builder framework for FHEM
+    *
+    * Version: 3.0.0
+    *
+    * Copyright (c) 2015-2020 Mario Stephan <mstephan@shared-files.de>
+    * Under MIT License (http://www.opensource.org/licenses/mit-license.php)
+    * https://github.com/knowthelist/ftui
+    */
+    -->
+  <script src="ftui.js"></script>
+
+  <link href="ftui.css" rel="stylesheet">
+  <link href="themes/ftui-theme.css" rel="stylesheet">
+  <link href="favicon.ico" rel="icon" type="image/x-icon" />
+
+  <!-- avoid 300ms delay on click-->
+  <meta name="viewport" content="width=device-width">
+
+  <!-- when serving the page with other web servers, e.g. lighttpd -->
+  <!-- <meta name="fhemweb_url" content="http://fhem.local:8083/fhem/"> -->
+
+  <!-- verbose level 0-4 -->
+  <meta name="debug" content="2">
+
+  <title>FTUI Demo</title>
+</head>
+
+<body>
+
+  <!--   <ftui-grid cols="30" rows="20" resize> -->
+  <ftui-grid base-width="70" base-height="70" margin="5">
+
+    <ftui-grid-tile row="1" col="1" height="10" width="1" shape="round">
+      <ftui-column>
+        <ftui-tab view="View1" direction="vertical" active>
+          <ftui-icon name="home1"></ftui-icon>
+          <ftui-label>Home</ftui-label>
+        </ftui-tab>
+        <ftui-tab view="View2" direction="vertical">
+          <ftui-icon name="music"></ftui-icon>
+          <ftui-label>Music</ftui-label>
+        </ftui-tab>
+        <ftui-tab view="View3">
+          <ftui-icon name="feed"></ftui-icon>
+        </ftui-tab>
+        <ftui-tab view="View4">
+          <ftui-icon name="lightbulb"></ftui-icon>
+        </ftui-tab>
+        <ftui-tab view="View5">
+          <ftui-icon name="bath"></ftui-icon>
+        </ftui-tab>
+        <ftui-tab view="View6">
+          <ftui-icon name="bath"></ftui-icon>
+        </ftui-tab>
+      </ftui-column>
+    </ftui-grid-tile>
+
+    <ftui-tab-view id="View1">
+      <ftui-grid-tile row="1" col="2" height="2" width="2" shape="round" color="primary">
+        <ftui-clock format="ee" class="size-5"></ftui-clock>
+        <ftui-clock format="DD" class="size-8"></ftui-clock>
+      </ftui-grid-tile>
+
+      <ftui-grid-tile row="1" col="4" height="2" width="2" shape="round"
+                      [color]="WCLuft | map('0:ok, 1000:warning, 2000:danger')">
+        <ftui-column width="80%">
+          <ftui-label class="size-5 align-left">CO²</ftui-label>
+          <ftui-label class="size-7 align-left" [text]="WCLuft | part(1) | toInt()"></ftui-label>
+          <ftui-label class="size-0 align-right">ppm</ftui-label>
+        </ftui-column>
+      </ftui-grid-tile>
+
+      <ftui-grid-tile row="3" col="2" height="2" width="2" shape="round">
+        <ftui-knob [value]="THSensorWZ:temperature" width="130" offset-y="10"
+                   type="handle" min="19" max="23" unit="°C" readonly has-value-text></ftui-knob>
+      </ftui-grid-tile>
+
+      <ftui-grid-tile row="3" col="4" height="2" width="3" shape="round">
+        <ftui-column>
+          <div class="row h-40">
+            <ftui-label>Humidity</ftui-label>
+            <ftui-label class="size-7" [text]="THSensorWZ:humidity">
+              <span slot="end" class="size-0">%</span>
+            </ftui-label>
+          </div>
+          <ftui-chart class="row" width="150px" height="75px">
+            <ftui-chart-data fill log="FileLog_THSensorWZ" spec="4:THSensorWZ.humidity"
+                             [update]="THSensorWZ:state:time"></ftui-chart-data>
+          </ftui-chart>
+          </div>
+      </ftui-grid-tile>
+
+      <ftui-grid-tile row="1" col="6" height="2" width="2" shape="round">
+        <ftui-circlemenu direction="vertical" keep-open>
+
+          <ftui-icon [name]="ftuitest | part(1) | map('0: window-shutter-open, 35: window-shutter-alert, 80: window-shutter')"
+                     [color]="ftuitest | part(1) | map('5: primary')"
+                     class="size-4"></ftui-icon>
+
+                     <ftui-button shape="circle" fill="outline" (value)="ftuitest" states='0'
+                     [color]="ftuitest | map('0: primary, .*: light')">
+                     <ftui-icon name="window-shutter-open"
+                     [color]="ftuitest | part(1) | map('5: primary')"
+                     class="size-4"></ftui-icon>
+                   </ftui-button>
+
+          <ftui-button-nice get="ftuitest" get-on="0" icon="window-shutter-open"></ftui-button-nice>
+
+          <ftui-button-nice get="ftuitest" get-on="35" icon="window-shutter-alert"></ftui-button-nice>
+
+          <ftui-button-nice get="ftuitest" get-on="80" icon="window-shutter"></ftui-button-nice>
+
+        </ftui-circlemenu>
+      </ftui-grid-tile>
+
+      <ftui-grid-tile row="1" col="8" height="2" width="2" shape="round">
+
+      </ftui-grid-tile>
+      <ftui-grid-tile row="1" col="10" height="2" width="2" shape="round">
+
+      </ftui-grid-tile>
+      <ftui-grid-tile row="3" col="7" height="2" width="1" shape="round">
+
+      </ftui-grid-tile>
+      <ftui-grid-tile row="3" col="8" height="2" width="2" shape="round">
+
+      </ftui-grid-tile>
+      <ftui-grid-tile row="3" col="10" height="2" width="2" shape="round">
+
+      </ftui-grid-tile>
+      <ftui-grid-tile row="5" col="2" height="3" width="10" shape="round">
+        <ftui-content file="examples/contents/content-weather.html"></ftui-content>
+      </ftui-grid-tile>
+    </ftui-tab-view>
+
+    <ftui-tab-view id="View2">
+      <ftui-grid-tile row="1" col="2" height="5" width="19">
+        <div class="size-10">Tab2</div>
+      </ftui-grid-tile>
+    </ftui-tab-view>
+
+    <ftui-tab-view id="View3">
+      <ftui-grid-tile row="1" col="2" height="5" width="9">
+        <div class="size-10">Tab3</div>
+      </ftui-grid-tile>
+    </ftui-tab-view>
+
+    <ftui-tab-view id="View4">
+      <ftui-grid-tile row="1" col="2" height="5" width="9">
+        <div class="size-10">Tab4</div>
+      </ftui-grid-tile>
+    </ftui-tab-view>
+
+    <ftui-tab-view id="View5">
+      <ftui-grid-tile row="1" col="2" height="5" width="9">
+        <div class="size-10">Tab5</div>
+      </ftui-grid-tile>
+    </ftui-tab-view>
+  </ftui-grid>
+
+</body>
+
+</html>

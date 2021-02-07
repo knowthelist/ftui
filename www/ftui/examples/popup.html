@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!--
+    /* FHEM tablet ui - FTUI */
+    /**
+    * UI builder framework for FHEM
+    *
+    * Version: 3.0.0
+    *
+    * Copyright (c) 2020 Mario Stephan <mstephan@shared-files.de>
+    * Under MIT License (http://www.opensource.org/licenses/mit-license.php)
+    * https://github.com/knowthelist/ftui
+    */
+    -->
+  <base href="../" />
+  <script src="ftui.js"></script>
+  <link href="ftui.css" rel="stylesheet">
+  <link href="themes/ftui-theme.css" rel="stylesheet">
+  <link href="favicon.ico" rel="icon" type="image/x-icon" />
+
+  <style>
+    #pop2 {
+      --popup-background-color: translucent;
+    }
+  </style>
+<!--   <meta name="debug" content="2"> -->
+  <title>FTUI Example Popup</title>
+</head>
+
+<body>
+
+  <ftui-grid base-width="150" base-height="150" shape="round" margin="5">
+
+    <ftui-grid-tile row="1" col="1" height="1" width="1">
+      <header>POPUP1</header>
+
+      <ftui-icon name="sitemap" popup-target="pop1"></ftui-icon>
+
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="1" col="1" height="1" width="1">
+      <header>POPUP1</header>
+
+      <ftui-icon name="sitemap" popup-target="pop1"></ftui-icon>
+
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="2" col="1" height="1" width="1">
+      <header>POPUP5</header>
+
+      <ftui-icon name="magic" popup-target="pop5"></ftui-icon>
+
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="1" col="2" height="1" width="1">
+      <header>OPEN</header>
+
+      <ftui-button [(value)]="dummy2" shape="circle" states="on,off">
+        <ftui-icon name="camera"></ftui-icon>
+      </ftui-button>
+
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="2" col="2" height="1" width="1">
+      <header>TRIGGER</header>
+
+      <ftui-button (value)="dummy3" shape="circle" states="update">
+        <ftui-icon name="tint"></ftui-icon>
+      </ftui-button>
+
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="1" col="3" height="1" width="1">
+      <header>POPUP2</header>
+
+      <ftui-icon name="road" popup-target="pop2"></ftui-icon>
+
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="1" col="4" height="1" width="1">
+      <header>CUSTOM-CLOSE</header>
+
+      <ftui-icon name="pencil" popup-target="pop-custom-close"></ftui-icon>
+
+    </ftui-grid-tile>
+
+  </ftui-grid>
+
+  <ftui-popup id="pop1" timeout="0">
+    <header>Popup 1</header>
+    <ftui-button popup-close>close</ftui-button>
+  </ftui-popup>
+  
+  <ftui-popup id="pop2" [open]="dummy2 | map('on: true, off: false')" timeout="0">
+    <header>Popup 2</header>
+    <ftui-row>
+      <ftui-column>
+        <ftui-cell>
+          <ftui-icon name="umbrella"></ftui-icon>
+          <ftui-label>Monday</ftui-label>
+        </ftui-cell>
+      </ftui-column>
+      <ftui-column>
+        <ftui-cell>
+          <ftui-icon name="bolt"></ftui-icon>
+          <ftui-label>Tuesday</ftui-label>
+        </ftui-cell>
+      </ftui-column>
+      <ftui-column>
+        <ftui-cell>
+          <ftui-icon name="moon"></ftui-icon>
+          <ftui-label>Wednesday</ftui-label>
+        </ftui-cell>
+      </ftui-column>            
+    </ftui-row>
+    <ftui-row>
+      <ftui-column>
+        <ftui-cell>
+          <ftui-icon name="snowy"></ftui-icon>
+          <ftui-label>Thursday</ftui-label>
+        </ftui-cell>
+      </ftui-column>
+      <ftui-column>
+        <ftui-cell>
+          <ftui-icon name="cloud1"></ftui-icon>
+          <ftui-label>Friday</ftui-label>
+        </ftui-cell>
+      </ftui-column>
+      <ftui-column>
+        <ftui-cell>
+          <ftui-icon name="sun"></ftui-icon>
+          <ftui-label>Saturday</ftui-label>
+        </ftui-cell>
+      </ftui-column>            
+    </ftui-row>    
+  </ftui-popup>
+
+  <ftui-popup shape="round" [trigger]="dummy3:state:time" timeout="0" left="10%" top="50%">
+    <header>Popup 3</header>
+    <ftui-image [src]="ftuitest:thumbnail"></ftui-image>
+  </ftui-popup>
+
+  <ftui-popup id="pop-custom-close" timeout="0">
+    <header>Custom Close</header>
+    <ftui-label color="danger" slot="close" popup-close>Close</ftui-label>
+  </ftui-popup>
+
+  <ftui-popup id="pop5" shape="round" @close="sendFhem('set dummy1 on')">
+    <header>Popup 5</header>
+    <ftui-row>
+      <ftui-column shape="round" color="light">light</ftui-column>
+      <ftui-column shape="round" color="medium">medium</ftui-column>
+      <ftui-column shape="round" color="dark">dark</ftui-column>
+    </ftui-row>
+  </ftui-popup>
+</body>
+
+</html>

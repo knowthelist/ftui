@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!--
+    /* FHEM tablet ui - FTUI */
+    /**
+    * UI builder framework for FHEM
+    *
+    * Version: 3.0.0
+    *
+    * Copyright (c) 2020 Mario Stephan <mstephan@shared-files.de>
+    * Under MIT License (http://www.opensource.org/licenses/mit-license.php)
+    * https://github.com/knowthelist/ftui
+    */
+    -->
+  <base href="../" />
+  <script src="ftui.js"></script>
+  <link href="ftui.css" rel="stylesheet">
+  <link href="themes/ftui-theme.css" rel="stylesheet">
+  <link href="favicon.ico" rel="icon" type="image/x-icon" />
+
+
+  <title>FTUI Example Dropdown</title>
+</head>
+
+<body>
+
+  <ftui-grid base-width="150" base-height="150">
+
+    <ftui-grid-tile row="1" col="1" height="1" width="1">
+      <header>DEFAULT</header>
+
+        <ftui-dropdown></ftui-dropdown>
+
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="1" col="2" height="1" width="1">
+      <header>VALUES</header>
+
+        <ftui-dropdown list=",item1,item2,item3" value="item2"></ftui-dropdown>
+      
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="1" col="3" height="1" width="1">
+      <header>LIST BINDING</header>
+
+        <ftui-dropdown [list]="ftuitest:list" [(value)]="ftuitest" @value-change="console.log($event.detail)"></ftui-dropdown>
+
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="1" col="4" height="1" width="1">
+      <header>AUDIO</header>
+
+        <ftui-dropdown [list]="AvReceiver:inputList" [(value)]="AvReceiver:input"></ftui-dropdown>
+
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="1" col="5" height="1" width="1">
+      <header>LONG</header>
+
+        <ftui-dropdown 
+          list=",Long_Long_Value_10000,Long_Long_Value_20000,Long_Long_Value_30000,Long_Long_Value_40000" 
+          value="item2">
+        </ftui-dropdown>
+      
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="2" col="3" height="1" width="2">
+      <header>LIST BINDING</header>
+
+      <ftui-dropdown 
+        width="80%"
+        [list]="ftuitest:list" 
+        [(value)]="ftuitest" 
+        @value-change="console.log($event.detail)">
+      </ftui-dropdown>
+
+    </ftui-grid-tile>
+
+  </ftui-grid>
+
+</body>
+
+</html>

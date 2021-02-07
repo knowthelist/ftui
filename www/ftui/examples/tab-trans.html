@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!--
+    /* FHEM tablet ui - FTUI */
+    /**
+    * UI builder framework for FHEM
+    *
+    * Version: 3.0.0
+    *
+    * Copyright (c) 2015-2020 Mario Stephan <mstephan@shared-files.de>
+    * Under MIT License (http://www.opensource.org/licenses/mit-license.php)
+    * https://github.com/knowthelist/ftui
+    */
+    -->
+  <base href="../" />
+  <script src="ftui.js"></script>
+  <link href="ftui.css" rel="stylesheet">
+  <link href="themes/ftui-theme.css" rel="stylesheet">
+  <link href="favicon.ico" rel="icon" type="image/x-icon" />
+
+  <title>FTUI Example Tab</title>
+
+  <style>
+    body {
+      background-image: url("https://hdhintergrundbilder.net/image/natur/1151/gebirge-nachthimmel-sterne-milchstrase.jpg");
+      --tab-color: var(--dark-color);
+      --tab-active-color: var(--medium-color);
+      --tab-contrast-color: var(--light-color);
+    }
+  </style>
+</head>
+
+<body>
+
+  <ftui-grid>
+
+    <ftui-grid-tile row="1" col="1" height="5" width="1" color="translucent">
+        <ftui-column>
+          <ftui-tab view="View1" fill="solid" shape="circle" active><ftui-icon name="home1"></ftui-icon></ftui-tab>
+          <ftui-tab view="View2" fill="solid" shape="circle"><ftui-icon name="music"></ftui-icon></ftui-tab>
+          <ftui-tab view="View3" fill="solid" shape="circle">Tab3</ftui-tab>
+          <ftui-tab view="View4" fill="solid" shape="circle">Tab4</ftui-tab>
+          <ftui-tab view="View5" fill="solid" shape="circle">Tab5</ftui-tab>
+          <ftui-tab view="View6" fill="solid" shape="circle"><ftui-icon name="road"></ftui-icon></ftui-tab>
+          <ftui-tab view="View7" ><ftui-icon name="camera1"></ftui-icon></ftui-tab>
+        </ftui-column>
+    </ftui-grid-tile>
+
+    <ftui-tab-view id="View1">
+      <ftui-grid-tile row="1" col="2" height="5" width="9" color="translucent">
+      <div class="size-10">Tab1</div>
+      </ftui-grid-tile>
+    </ftui-tab-view>
+
+    <ftui-tab-view id="View2">
+      <ftui-grid-tile row="1" col="2" height="5" width="9" color="translucent">
+        <div class="size-10">Tab2</div>
+        </ftui-grid-tile>
+    </ftui-tab-view>
+
+    <ftui-tab-view id="View3">
+      <ftui-grid-tile row="1" col="2" height="5" width="9" color="translucent">
+        <div class="size-10"><ftui-icon name="road"></ftui-icon></div>
+        </ftui-grid-tile>
+    </ftui-tab-view>
+
+    <ftui-tab-view id="View4">
+      <ftui-grid-tile row="1" col="2" height="5" width="9" color="translucent">
+        <div class="size-10">Tab4</div>
+        </ftui-grid-tile>
+    </ftui-tab-view>
+
+    <ftui-tab-view id="View5">
+      <ftui-grid-tile row="1" col="2" height="5" width="9" color="translucent">
+        <div class="size-10">Tab5</div>
+        </ftui-grid-tile>
+    </ftui-tab-view>
+  </ftui-grid>
+
+</body>
+
+</html>

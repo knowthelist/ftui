@@ -1,0 +1,63 @@
+:host {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  overflow: hidden;
+}
+
+.slides {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  height: 100%;
+}
+:host([dots]) .slides {
+  height: calc(100% - 1em);
+}
+.slides::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+:host(:not([scrollbar])) .slides::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+.slides::-webkit-scrollbar-thumb {
+  background: var(--swiper-scrollbar-thumb);
+  border-radius: 10px;
+}
+.slides::-webkit-scrollbar-track {
+  background: var(--swiper-scrollbar-track);
+}
+
+slot[name=dots] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.dot {
+  height: 0.5em;
+  width: 0.5em;
+  margin-left: 0.5em;
+  border-radius: 1em;
+  background-color: var(--swiper-dot);
+  cursor: pointer;
+}
+.dot.active {
+  background-color: var(--swiper-dot-active);
+}
+::slotted(*) {
+  scroll-snap-align: start;
+  flex-shrink: 0;
+  width: 100%;
+  height: 100%;
+  margin-right: 50px;
+  border-radius: 10px;
+  transform-origin: center center;
+  transition: transform 0.5s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

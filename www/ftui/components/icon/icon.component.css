@@ -1,0 +1,57 @@
+:host {
+  --color-base: currentColor;
+  position: relative;
+}
+
+svg {
+  width: var(--icon-width, 2.25em);
+  height: var(--icon-height, 2.25em);
+  fill: currentColor;
+}
+
+svg g[fill] {
+  fill: inherit;
+}
+
+svg path[style] {
+  fill: inherit !important;
+}
+
+img {
+  width: var(--icon-width, 2.25em);
+  height: var(--icon-height, 2.25em);
+}
+
+svg[viewBox="0 0 448 512"] {
+  width: 1.5em;
+  height: 1.5em;
+}
+
+:host([color]) svg {
+  fill: var(--color-base);
+  color: var(--color-base);
+}
+
+:host([invert]) {
+  background: var(--color-base);
+  border-radius: 0.75em;
+  width: 3em;
+  height: 3em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+:host([invert][color]) svg {
+  fill: var(--color-contrast);
+}
+
+:host([popup-target]) {
+  cursor: pointer;
+}
+
+::slotted(ftui-badge) {
+  top: -0.75em;
+  position: absolute;
+  right: -0.75em;
+}
