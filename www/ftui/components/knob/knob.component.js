@@ -25,6 +25,7 @@ export class FtuiKnob extends FtuiElement {
     this.scale = this.shadowRoot.querySelector('.scale');
     this.needle = this.shadowRoot.querySelector('.needle');
     this.handle = this.shadowRoot.querySelector('.handle');
+    this.desired = this.shadowRoot.querySelector('.desired');
 
     this.rangeAngle = Math.abs(parseFloat(this.endAngle) - parseFloat(this.startAngle));
     this.radian = Math.PI / 180;
@@ -63,6 +64,7 @@ export class FtuiKnob extends FtuiElement {
       <path class="fill" d="" fill="none" stroke-width="${this.strokeWidth}" />
       <polygon class="needle" />
       <circle class="handle" r="9" fill="none" />
+      <circle class="desired" r="5" fill="none" />
    
     </svg>`;
   }
@@ -72,6 +74,7 @@ export class FtuiKnob extends FtuiElement {
       startAngle: -210,
       endAngle: 30,
       value: -1,
+      desiredValue: -1,
       unit: '',
       min: 0,
       max: 100,
@@ -85,6 +88,7 @@ export class FtuiKnob extends FtuiElement {
       hasValueText: false,
       hasArc: false,
       hasHandle: false,
+      hasDesired: false,
       hasNeedle: false,
       type: 'default',
       color: 'primary',
@@ -183,6 +187,11 @@ export class FtuiKnob extends FtuiElement {
       } else {
         this.hideElement(this.handle);
       }
+      if (this.hasDesired) {
+        this.drawDesired();
+      } else {
+        this.hideElement(this.desired);
+      }
       return true;
     }
     return false;
@@ -267,6 +276,17 @@ export class FtuiKnob extends FtuiElement {
     this.handle.setAttributeNS(null, 'cx', hx);
     this.handle.setAttributeNS(null, 'cy', hy);
     this.handle.style.display = '';
+  }
+
+  drawDesired() {
+    const angle = this.valueToAngle(this.desiredValue);
+
+    const hx = this.centerX + (this.radius * 0.9) * Math.cos(angle * this.radian);
+    const hy = this.centerY + (this.radius * 0.9) * Math.sin(angle * this.radian);
+
+    this.desired.setAttributeNS(null, 'cx', hx);
+    this.desired.setAttributeNS(null, 'cy', hy);
+    this.desired.style.display = '';
   }
 
   drawValue() {
