@@ -1,33 +1,8 @@
-<ftui-grid base-width="90" base-height="90" color="green">
 
-  <ftui-grid-tile row="1" col="1" height="1" width="4" >
+    <ftui-label [text]="dummy1"></ftui-label>
+    <ftui-icon [name]="dummy1 | map('on: lightbulb-on, off: lightbulb')"
+               [color]="ftuitest | map('0: success, 50: warning, 80: danger')">
 
-    <ftui-segment [(value)]="ftuitest">
-      <ftui-segment-button value="1">
-        <ftui-icon name="home1"></ftui-icon>
-      </ftui-segment-button>
-      <ftui-segment-button value="2">
-        <ftui-icon name="bed"></ftui-icon>
-      </ftui-segment-button>
-      <ftui-segment-button value="3">
-        <ftui-icon name="road"></ftui-icon>
-      </ftui-segment-button>
-      <ftui-segment-button value="4">
-        <ftui-icon name="plane"></ftui-icon>
-      </ftui-segment-button>
-    </ftui-segment>
-
-  </ftui-grid-tile>
-
-  <ftui-grid-tile row="2" col="1" height="2" width="2">
 
     <ftui-icon name="pencil" popup-target="pop1"></ftui-icon>
 
-  </ftui-grid-tile>
-
-</ftui-grid>
-
-<ftui-popup id="pop1" timeout="0">
-  <header>Popup 1</header>
-  <ftui-button popup-close>close</ftui-button>
-</ftui-popup>

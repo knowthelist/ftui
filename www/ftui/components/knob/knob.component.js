@@ -54,7 +54,6 @@ export class FtuiKnob extends FtuiElement {
     if (this.decimals < 0 ) {
       this.decimals = countDecimals(this.getAttribute('max'));
     }
-    console.log(this.max,this.decimals, countDecimals(this.max))
     this.draw(this.valueToAngle(this.value));
   }
 

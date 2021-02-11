@@ -1,7 +1,25 @@
-<div class="row">
-  <div class="column">
+<ftui-view>
 
-    <div class="huge">{{room}}</div>
-    <ftui-label class="large" [text]="THSensorWZ:humidity"></ftui-label>
-  </div>
-</div>
+  <ftui-view-toolbar>
+    <ftui-title>{{room}}</ftui-title>
+  </ftui-view-toolbar>
+  
+  <ftui-view-item>
+    <ftui-label slot="start">Lamp</ftui-label>
+    <ftui-cell slot="end" width="70px">
+          <ftui-button-nice get="{{room}}:lamp" 
+    set="setreading {{room}}:lamp"
+    ></ftui-button-nice>
+    </ftui-cell>
+
+  </ftui-view-item>
+
+  <ftui-view-item>
+    <ftui-label slot="start">Temperature</ftui-label>
+    <ftui-knob slot="end" [value]="{{room}}:temp" height="50" width="70" 
+    start-angle="-180" end-angle="0" offset-y="10" value-size="1.2em"
+    min="15" max="25" decimals="1"
+    type="handle" has-value-text></ftui-knob>
+  </ftui-view-item>
+
+</ftui-view>

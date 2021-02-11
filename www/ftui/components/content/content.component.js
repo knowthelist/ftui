@@ -9,9 +9,9 @@
 
 import { ftuiApp } from '../../modules/ftui/ftui.app.js';
 import * as ftui from '../../modules/ftui/ftui.helper.js';
-import { FtuiCell } from '../cell/cell.component.js';
+import { FtuiElement } from '../element.component.js';
 
-export class FtuiContent extends FtuiCell {
+export class FtuiContent extends FtuiElement {
 
   constructor(properties) {
     super(Object.assign(FtuiContent.properties, properties));

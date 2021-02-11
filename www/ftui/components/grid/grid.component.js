@@ -50,8 +50,8 @@ export class FtuiGrid extends FtuiElement {
       :host {
         position: relative;
         display: block;
-        width: 100vw;
-        height: 100vh;
+        width: 100%;
+        height: 100%;
       }
       :host([shape="round"]) {
         --grid-tile-border-radius: 1.5em;

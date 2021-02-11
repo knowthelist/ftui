@@ -24,14 +24,14 @@
 </head>
 
 <body>
-  <ftui-grid base-width="150" base-height="120" margin="1">
+  <ftui-grid base-width="150" base-height="120" margin="1" shape="round">
 
-    <ftui-grid-tile row="1" col="1" height="1" width="1" color="success" shape="round">
+    <ftui-grid-tile row="1" col="1" height="1" width="1" color="success">
       <header>TILE1</header>
 
     </ftui-grid-tile>
 
-    <ftui-grid-tile row="2" col="1" height="1" width="1" shape="round">
+    <ftui-grid-tile row="2" col="1" height="1" width="1">
       <header>TILE2</header>
       <ftui-row align-items="top" margin="1" >
         <div>1</div>
@@ -40,7 +40,7 @@
       </ftui-row>
     </ftui-grid-tile>
 
-    <ftui-grid-tile row="3" col="1" height="1" width="1" shape="round"
+    <ftui-grid-tile row="3" col="1" height="1" width="1"
                     [color]="ftuitest | map('0=dark,70=medium,100=light')">
       <header>TILE3</header>
       <ftui-row align-items="bottom around" margin="1" >
@@ -50,7 +50,7 @@
       </ftui-row>
     </ftui-grid-tile>
 
-    <ftui-grid-tile row="2" col="3" height="2" width="2" shape="round">
+    <ftui-grid-tile row="2" col="3" height="2" width="2">
       <ftui-row>
         <ftui-column align-items="left" margin="1">
           <ftui-label text="Thermostat"></ftui-label>
@@ -58,13 +58,13 @@
           <ftui-label text="Heizkörper"></ftui-label>
         </ftui-column>
 
-        <ftui-column align-items="left" margin="1" shape="round">
+        <ftui-column align-items="left" margin="1">
           <ftui-label [text]="ftuitest:temperature1" unit="°C"></ftui-label>
           <ftui-label [text]="ftuitest:temperature2" unit="°C"></ftui-label>
           <ftui-label [text]="ftuitest:temperature3" unit="°C"></ftui-label>
         </ftui-column>
 
-        <ftui-column align-items="left" margin="1" shape="round">
+        <ftui-column align-items="left" margin="1">
 
           <ftui-icon [name]="ftuitest:battery1 | map('low:battery-1,ok:battery')"
                      [color]="ftuitest:battery1 | map('low:danger,ok:green')"></ftui-icon>
@@ -79,7 +79,7 @@
       </ftui-row>
     </ftui-grid-tile>
 
-    <ftui-grid-tile row="4" col="3" height="2" width="2" shape="round">
+    <ftui-grid-tile row="4" col="3" height="2" width="2">
       <ftui-column>
         <ftui-row align-items="top" margin="1">
           <ftui-label [text]="ftuitest:temperature1" unit="°C"></ftui-label>
@@ -89,6 +89,15 @@
       </ftui-column>
     </ftui-grid-tile>
 
+    <ftui-grid-tile row="1" col="2" height="1" width="2">
+      <header class="size-4 thin"><ftui-label color="green">CUSTOM-HEADER</ftui-label></header>
+      <ftui-row>
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+      </ftui-row>
+    </ftui-grid-tile>
+    
   </ftui-grid>
 </body>
 

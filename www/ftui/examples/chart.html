@@ -30,7 +30,6 @@
 
     <ftui-grid-tile row="1" col="1" height="3" width="3">
       <header>DEFAULT</header>
-      <div class="cell">
 
         <ftui-chart title="demo-chart">
           <ftui-chart-data label="Außen" color="warning" log="FileLog_AgroWeather" spec="4:AgroWeather.temperature"></ftui-chart-data>
@@ -39,19 +38,16 @@
           <ftui-chart-controls units="day, week"></ftui-chart-controls>
         </ftui-chart>
       
-      </div>
     </ftui-grid-tile>
 
     <ftui-grid-tile row="1" col="4" height="2" width="2">
       <header>FIX SIZE</header>
-      <div class="cell">
 
         <ftui-chart title="humidity" width="300px" height="200px">
           <ftui-chart-data fill log="FileLog_THSensorWZ" spec="4:THSensorWZ.humidity" [update]="THSensorWZ:state:time"></ftui-chart-data>
           <ftui-chart-controls units="day, week"></ftui-chart-controls>
         </ftui-chart>
       
-      </div>
     </ftui-grid-tile>
 
   </ftui-grid>

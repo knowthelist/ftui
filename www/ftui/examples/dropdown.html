@@ -36,7 +36,7 @@
     </ftui-grid-tile>
 
     <ftui-grid-tile row="1" col="2" height="1" width="1">
-      <header>VALUES</header>
+      <header>VALUE-LIST</header>
 
         <ftui-dropdown list=",item1,item2,item3" value="item2"></ftui-dropdown>
       
@@ -75,6 +75,20 @@
         [(value)]="ftuitest" 
         @value-change="console.log($event.detail)">
       </ftui-dropdown>
+
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="2" col="1" height="1" width="1">
+      <header>OPTION</header>
+
+        <ftui-dropdown id="opt1" 
+          [value]="ftuitest:whiteValue"
+          (value)="setreading ftuitest:whiteValue">
+          <option value="white0">White 0%</option>
+          <option value="white25">Weiß 25%</option>
+          <option value="white50">Weiß 50%</option>
+          <option value="white100">Weiß 100%</option>
+        </ftui-dropdown>
 
     </ftui-grid-tile>
 

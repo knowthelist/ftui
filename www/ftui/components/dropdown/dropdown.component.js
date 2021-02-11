@@ -16,7 +16,13 @@ export class FtuiDropdown extends FtuiElement {
     super(Object.assign(FtuiDropdown.properties, properties));
 
     this.selectElement = this.shadowRoot.querySelector('select');
-    this.fillList();
+    if (this.list.length > 0 ){
+      this.fillList();
+    }
+    this.shadowRoot.addEventListener( 'slotchange', () => {
+      const node = this.querySelector( 'option' )
+      node && this.selectElement .append( node )
+    } )
     this.selectElement.addEventListener('change', () => this.onChange());
   }
 
@@ -24,6 +30,7 @@ export class FtuiDropdown extends FtuiElement {
     return `
       <style> @import "components/dropdown/dropdown.component.css"; </style>
       <select></select>
+      <slot></slot>
       `;
   }
 
