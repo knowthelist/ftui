@@ -45,8 +45,8 @@ UPD 2021-02-07_15:08:50 2735 www/ftui/components/segment/segment.component.js
 UPD 2021-02-01_19:44:37 3379 www/ftui/components/slider/slider.component.css
 UPD 2021-02-01_19:44:38 3343 www/ftui/components/slider/slider.component.js
 UPD 2020-12-31_16:39:02 1590 www/ftui/components/speak/speak.component.js
-UPD 2021-02-11_15:03:29 1292 www/ftui/components/swiper/swiper.component.css
-UPD 2021-02-05_17:44:53 4546 www/ftui/components/swiper/swiper.component.js
+UPD 2021-02-12_17:41:16 1292 www/ftui/components/swiper/swiper.component.css
+UPD 2021-02-12_17:46:43 4548 www/ftui/components/swiper/swiper.component.js
 UPD 2021-01-05_19:05:30 680 www/ftui/components/tab/tab-view.component.js
 UPD 2020-12-31_16:39:02 498 www/ftui/components/tab/tab.component.css
 UPD 2021-02-01_19:44:39 2284 www/ftui/components/tab/tab.component.js
@@ -60,7 +60,7 @@ UPD 2021-02-01_19:44:44 1257 www/ftui/components/view/view-toolbar.component.css
 UPD 2021-02-01_19:44:45 893 www/ftui/components/view/view-toolbar.component.js
 UPD 2021-02-01_19:44:45 1429 www/ftui/components/view/view.component.js
 UPD 2021-01-07_01:57:40 1223 www/ftui/components/weather/weather.component.js
-UPD 2021-02-01_19:44:45 2637 www/ftui/components/weather/weather.map.js
+UPD 2021-02-12_17:57:36 2746 www/ftui/components/weather/weather.map.js
 UPD 2021-02-01_19:44:45 1909 www/ftui/examples/badge.html
 UPD 2020-12-31_16:39:02 913 www/ftui/examples/button-nice.html
 UPD 2020-12-31_16:39:02 7416 www/ftui/examples/button.html
@@ -678,7 +678,7 @@ UPD 2021-02-01_19:44:50 5063 www/ftui/modules/circle-menu/circle-menu.min.js
 UPD 2021-02-01_19:44:50 13232 www/ftui/modules/ftui/fhem.service.js
 UPD 2021-02-01_19:44:50 7481 www/ftui/modules/ftui/ftui.app.js
 UPD 2021-02-12_15:21:36 10963 www/ftui/modules/ftui/ftui.binding.js
-UPD 2021-02-07_14:19:03 11902 www/ftui/modules/ftui/ftui.helper.js
+UPD 2021-02-12_16:41:15 11902 www/ftui/modules/ftui/ftui.helper.js
 UPD 2020-12-31_16:39:06 9247 www/ftui/modules/hocon/hocon.js
 UPD 2020-12-31_16:39:06 3192 www/ftui/modules/hocon/hocon.min.js
 UPD 2020-12-31_16:39:06 65427 www/ftui/modules/iro.js/iro.js

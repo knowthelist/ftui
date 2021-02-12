@@ -1,8 +1,8 @@
 /*
-  18 intermediates:
+  19 intermediates:
   CLOUDLESS, SUNNY, FAIR, PARTLY_CLOUDY, MOSTLY_CLOUDY, CLOUDY, VERY_CLOUDY, OVERCAST,
   FOGGY, DRIZZLE, LIGHT_SHOWERS, SHOWERS, RAIN_SNOW, SNOW_SHOWER, THUNDERSTORM, SNOW,
-  SCATTERED_THUNDERSTORM, NA
+  SCATTERED_THUNDERSTORM, NA, CLEAR
 */
 
 export const providerSet = {
@@ -24,7 +24,8 @@ export const providerSet = {
     Gewitter: 'THUNDERSTORM',
     Schneefall: 'SNOW',
     'unterschiedlich bewölkt, vereinzelt Schauer und Gewitter': 'SCATTERED_THUNDERSTORM',
-    nb: 'NA'
+    nb: 'NA',
+    klar: 'CLEAR',
   }
 }
 
@@ -48,6 +49,7 @@ export const iconSet = {
     SNOW: './icons/weather/kleinklima/heavysnow.svg',
     SCATTERED_THUNDERSTORM: './icons/weather/kleinklima/scatteredthunderstorms.svg',
     NA: './icons/weather/kleinklima/na.svg',
+    CLEAR: './icons/weather/kleinklima/clear.png',
   },
   meteocons: {
     CLOUDLESS: './icons/sun.svg',
@@ -68,5 +70,6 @@ export const iconSet = {
     SNOW: './icons/snowy2.svg',
     SCATTERED_THUNDERSTORM: './icons/sunny-sleet-storm.svg',
     NA: './icons/none.svg',
+    CLEAR: './icons/moon.svg',
   }
 }

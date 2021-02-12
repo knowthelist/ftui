@@ -104,7 +104,7 @@ class FtuiSwiper extends FtuiElement {
     this.setValueByIndex(event.target.id.replace(`${this.id}-dot-`, ''));
   }
 
-  back(iteration=1) {
+  back(iteration = 1) {
     this.currentIndex--;
     if (this.currentIndex < 0) {
       this.currentIndex = this.slides.length - 1;
