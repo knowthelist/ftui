@@ -156,6 +156,7 @@ class FtuiSwiper extends FtuiElement {
     const dotElements = this.slotDots.assignedElements().length
       ? this.slotDots.assignedElements() : this.slotDots.childNodes;
     dotElements.forEach((dotElement, index) => {
+      dotElement.classList.toggle('hidden', this.slides[index].hidden);
       if (this.currentIndex === index) {
         dotElement.classList.add('active');
       } else {

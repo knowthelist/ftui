@@ -45,8 +45,8 @@ UPD 2021-02-07_15:08:50 2735 www/ftui/components/segment/segment.component.js
 UPD 2021-02-01_19:44:37 3379 www/ftui/components/slider/slider.component.css
 UPD 2021-02-01_19:44:38 3343 www/ftui/components/slider/slider.component.js
 UPD 2020-12-31_16:39:02 1590 www/ftui/components/speak/speak.component.js
-UPD 2021-02-12_20:09:59 1292 www/ftui/components/swiper/swiper.component.css
-UPD 2021-02-12_17:46:43 4548 www/ftui/components/swiper/swiper.component.js
+UPD 2021-02-15_22:41:38 1326 www/ftui/components/swiper/swiper.component.css
+UPD 2021-02-15_22:41:39 4620 www/ftui/components/swiper/swiper.component.js
 UPD 2021-01-05_19:05:30 680 www/ftui/components/tab/tab-view.component.js
 UPD 2020-12-31_16:39:02 498 www/ftui/components/tab/tab.component.css
 UPD 2021-02-01_19:44:39 2284 www/ftui/components/tab/tab.component.js

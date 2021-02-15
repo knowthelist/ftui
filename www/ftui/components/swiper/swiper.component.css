@@ -56,6 +56,10 @@ slot[name=dots] {
   background-color: var(--swiper-dot-active);
 }
 
+.dot.hidden {
+  display: none;
+}
+
 ::slotted(*) {
   scroll-snap-align: start;
   flex-shrink: 0;
