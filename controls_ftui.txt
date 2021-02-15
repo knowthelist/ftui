@@ -19,7 +19,7 @@ UPD 2021-01-28_21:05:34 574 www/ftui/components/column/column.component.js
 UPD 2021-02-11_15:04:25 39 www/ftui/components/content/content.component.css
 UPD 2021-02-09_23:04:42 1264 www/ftui/components/content/content.component.js
 UPD 2021-02-01_19:44:34 496 www/ftui/components/dropdown/dropdown.component.css
-UPD 2021-02-15_20:56:16 2185 www/ftui/components/dropdown/dropdown.component.js
+UPD 2021-02-15_21:45:18 2168 www/ftui/components/dropdown/dropdown.component.js
 UPD 2021-02-01_19:44:34 4169 www/ftui/components/element.component.js
 UPD 2021-02-01_19:44:35 1559 www/ftui/components/grid/grid-tile.component.css
 UPD 2021-02-09_23:03:56 847 www/ftui/components/grid/grid-tile.component.js
@@ -79,7 +79,7 @@ UPD 2021-02-11_14:57:43 684 www/ftui/examples/contents/content-view2.html
 UPD 2021-02-09_23:33:23 998 www/ftui/examples/contents/content-weather-day.html
 UPD 2020-12-31_16:39:02 5293 www/ftui/examples/contents/content-weather.html
 UPD 2021-02-01_19:44:46 189 www/ftui/examples/contents/mobile-view1.html
-UPD 2021-02-15_20:53:24 3459 www/ftui/examples/dropdown.html
+UPD 2021-02-15_21:49:38 3847 www/ftui/examples/dropdown.html
 UPD 2021-02-07_16:15:57 3479 www/ftui/examples/grid.html
 UPD 2021-02-01_19:44:47 4416 www/ftui/examples/icon.html
 UPD 2021-02-01_19:44:47 2885 www/ftui/examples/image.html

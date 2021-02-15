@@ -38,8 +38,7 @@ export class FtuiDropdown extends FtuiElement {
     return {
       list: '',
       value: '',
-      delimiter: '[;,:]',
-      parser: 'split',
+      delimiter: '[;,:|]',
       width: '',
       height: ''
     };
@@ -71,9 +70,8 @@ export class FtuiDropdown extends FtuiElement {
   }
 
   fillList() {
-    const list = this.parser === 'split'
-      ? String(this.list).split(new RegExp(this.delimiter))
-      : (0, eval)('(' + this.list + ')');
+    const splitter = this.delimiter.length === 1 ? this.delimiter : new RegExp(this.delimiter);
+    const list = String(this.list).split(splitter);
     console.log(list, this.list)
     this.selectElement.length = 0;
     list.forEach((item) => {

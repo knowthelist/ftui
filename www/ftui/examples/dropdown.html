@@ -105,7 +105,7 @@
     </ftui-grid-tile>
     
     <ftui-grid-tile row="2" col="5" height="1" width="1">
-      <header>DELIMITER</header>
+      <header>DELIMITER ;</header>
 
       <ftui-dropdown 
         width="80%"
@@ -122,11 +122,23 @@
       <ftui-dropdown 
         width="80%"
         list=",Fav 1,Fav 2,Fav 3,Fav 4,radioeins vom rbb"
-        (value)="encode() | Sonos_Kueche StartRadio $value">
+        (value)="encode() | Sonos_Play5 StartRadio $value">
       </ftui-dropdown>
 
     </ftui-grid-tile>
 
+    <ftui-grid-tile row="3" col="2" height="1" width="2">
+      <header>FAVORITES</header>
+
+      <ftui-dropdown 
+        width="80%"
+        [list]="Sonos_Play5:FavouritesListAlias"
+        [value]="Sonos_Play5:currentFavouriteName"
+        delimiter="|"
+        (value)="encode() | Sonos_Play5 LoadFavourite $value; set Sonos_Play5 Play">
+      </ftui-dropdown>
+
+    </ftui-grid-tile>
   </ftui-grid>
 
 </body>
