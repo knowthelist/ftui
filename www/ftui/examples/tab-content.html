@@ -20,7 +20,7 @@
   <link href="themes/ftui-theme.css" rel="stylesheet">
   <link href="favicon.ico" rel="icon" type="image/x-icon" />
 
-  <title>FTUI Example Tab</title>
+  <title>FTUI Example Tab View with Content</title>
 </head>
 
 <body>
@@ -48,38 +48,40 @@
     </ftui-grid-tile>
 
     <ftui-tab-view id="View1">
-      <ftui-grid-tile row="1" col="2" height="5" width="9">
-        <div class="size-10">Tab-View1</div>
+      <ftui-grid-tile row="1" col="2" height="5" width="9" align-items="top">
+          <ftui-content file="examples/contents/content-rows.html" header="VARIANT1"></ftui-content>
       </ftui-grid-tile>
     </ftui-tab-view>
 
     <ftui-tab-view id="View2">
       <ftui-grid-tile row="1" col="2" height="5" width="9">
-        <div class="size-10">Tab-View2</div>
+        <ftui-column align-items="top">
+          <ftui-content file="examples/contents/content-rows.html" header="VARIANT2"></ftui-content>
+        </ftui-column>
       </ftui-grid-tile>
     </ftui-tab-view>
 
     <ftui-tab-view id="View3">
       <ftui-grid-tile row="1" col="2" height="5" width="8" color="green">
-        <div class="size-10">Tab-View3</div>
+
       </ftui-grid-tile>
     </ftui-tab-view>
 
     <ftui-tab-view id="View4">
       <ftui-grid-tile row="1" col="2" height="5" width="9">
-        <div class="size-10">Tab-View4</div>
+        <div class="size-10">Tab4</div>
       </ftui-grid-tile>
     </ftui-tab-view>
 
     <ftui-tab-view id="View5">
       <ftui-grid-tile row="1" col="2" height="5" width="9">
-        <div class="size-10">Tab-View5</div>
+        <div class="size-10">Tab5</div>
       </ftui-grid-tile>
     </ftui-tab-view>
 
     <ftui-tab-view id="View6">
       <ftui-grid-tile row="1" col="2" height="5" width="9">
-        <div class="size-10">Tab-View6</div>
+        <ftui-content file="examples/contents/content-components.html"></ftui-content>
       </ftui-grid-tile>
     </ftui-tab-view>
 

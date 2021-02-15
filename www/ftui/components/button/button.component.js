@@ -60,6 +60,7 @@ export class FtuiButton extends FtuiElement {
   onClickEvent() {
     this.playEffect();
     this.value = this.getNextValue();
+    this.emitChangeEvent('value', this.value );
   }
 
   getNextValue() {

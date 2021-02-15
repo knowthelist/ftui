@@ -16,13 +16,13 @@ export class FtuiDropdown extends FtuiElement {
     super(Object.assign(FtuiDropdown.properties, properties));
 
     this.selectElement = this.shadowRoot.querySelector('select');
-    if (this.list.length > 0 ){
+    if (this.list.length > 0) {
       this.fillList();
     }
-    this.shadowRoot.addEventListener( 'slotchange', () => {
-      const node = this.querySelector( 'option' )
-      node && this.selectElement .append( node )
-    } )
+    this.shadowRoot.addEventListener('slotchange', () => {
+      const node = this.querySelector('option')
+      node && this.selectElement.append(node)
+    })
     this.selectElement.addEventListener('change', () => this.onChange());
   }
 
@@ -38,6 +38,8 @@ export class FtuiDropdown extends FtuiElement {
     return {
       list: '',
       value: '',
+      delimiter: '[;,:]',
+      parser: 'split',
       width: '',
       height: ''
     };
@@ -65,16 +67,18 @@ export class FtuiDropdown extends FtuiElement {
 
   onChange() {
     this.value = this.selectElement.value;
-    this.emitChangeEvent('value', this.value );
+    this.emitChangeEvent('value', this.value);
   }
 
   fillList() {
-    const list = String(this.list).split(/[;,:]/);
+    const list = this.parser === 'split'
+      ? String(this.list).split(new RegExp(this.delimiter))
+      : (0, eval)('(' + this.list + ')');
+    console.log(list, this.list)
     this.selectElement.length = 0;
     list.forEach((item) => {
       const opt = document.createElement('option');
       opt.value = item;
-      //opt.style.width = '200px';
       opt.innerHTML = item;
       this.selectElement.appendChild(opt);
     });

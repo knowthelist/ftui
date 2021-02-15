@@ -66,18 +66,6 @@
       
     </ftui-grid-tile>
 
-    <ftui-grid-tile row="2" col="3" height="1" width="2">
-      <header>LIST BINDING</header>
-
-      <ftui-dropdown 
-        width="80%"
-        [list]="ftuitest:list" 
-        [(value)]="ftuitest" 
-        @value-change="console.log($event.detail)">
-      </ftui-dropdown>
-
-    </ftui-grid-tile>
-
     <ftui-grid-tile row="2" col="1" height="1" width="1">
       <header>OPTION</header>
 
@@ -89,6 +77,53 @@
           <option value="white50">Weiß 50%</option>
           <option value="white100">Weiß 100%</option>
         </ftui-dropdown>
+
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="2" col="2" height="1" width="2">
+      <header>LIST BINDING</header>
+
+      <ftui-dropdown 
+        width="80%"
+        [list]="ftuitest:list" 
+        [(value)]="ftuitest" 
+        @value-change="console.log($event.detail)">
+      </ftui-dropdown>
+
+    </ftui-grid-tile>
+    
+    <ftui-grid-tile row="2" col="4" height="1" width="1">
+      <header>PARSER</header>
+
+      <ftui-dropdown 
+        width="80%"
+        [list]="Sonos:AllPlayer" 
+        parser="eval"
+        @value-change="alert($event.detail)">
+      </ftui-dropdown>
+
+    </ftui-grid-tile>
+    
+    <ftui-grid-tile row="2" col="5" height="1" width="1">
+      <header>DELIMITER</header>
+
+      <ftui-dropdown 
+        width="80%"
+        [list]="Spotify:playlists" 
+        delimiter=";"
+        @value-change="alert($event.detail)">
+      </ftui-dropdown>
+
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="3" col="1" height="1" width="1">
+      <header>ENCRYPT</header>
+
+      <ftui-dropdown 
+        width="80%"
+        list=",Fav 1,Fav 2,Fav 3,Fav 4,radioeins vom rbb"
+        (value)="encode() | Sonos_Kueche StartRadio $value">
+      </ftui-dropdown>
 
     </ftui-grid-tile>
 
