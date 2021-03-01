@@ -20,7 +20,7 @@
   <link href="themes/ftui-theme.css" rel="stylesheet">
   <link href="favicon.ico" rel="icon" type="image/x-icon" />
 
-  <title>FTUI Example Checkbox</title>
+  <title>FTUI Example Switch</title>
 </head>
 
 <body>
@@ -30,23 +30,23 @@
     <ftui-grid-tile row="1" col="1" height="1" width="2">
       <header>DEFAULT</header>
 
-        <ftui-checkbox value="on"></ftui-checkbox>
+        <ftui-switch [value]="dummy1"></ftui-switch>
     
       </ftui-grid-tile>
 
     <ftui-grid-tile row="1" col="3" height="1" width="2">
       <header>TEXTES</header>
 
-        <ftui-checkbox [(value)]="dummy1" value="on"></ftui-checkbox>
-        <ftui-checkbox [value]="dummy1" value="on"></ftui-checkbox>
+        <ftui-switch [(value)]="dummy1" texts='on,off'></ftui-switch>
+        <ftui-switch [value]="dummy1" texts='1,0'></ftui-switch>
 
     </ftui-grid-tile>
 
     <ftui-grid-tile row="1" col="5" height="1" width="2">
       <header>COLORS</header>
 
-        <ftui-checkbox [(value)]="dummy1" value="on" color="warning"></ftui-checkbox>
-        <ftui-checkbox [color]="dummy2" value="on"></ftui-checkbox>
+        <ftui-switch [(value)]="dummy1" color="warning"></ftui-switch>
+        <ftui-switch [color]="dummy2"></ftui-switch>
 
     </ftui-grid-tile>
   </ftui-grid>

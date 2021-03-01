@@ -30,6 +30,7 @@
 <!--  ToDo:
   - lazy loading 
 -->
+
 <body>
   <ftui-view-stage>
     <ftui-view id="view-1">
@@ -37,38 +38,38 @@
       <ftui-view-toolbar>My House</ftui-view-toolbar>
 
       <ftui-view-section>
-         <ftui-label slot="header">Status</ftui-label>
- 
-         <ftui-view-item target="viewWindos">
-           <ftui-icon name="plane" color="green" slot="start" invert></ftui-icon>
-           Item 1
-         </ftui-view-item>
- 
-         <ftui-view-item target="details-2">
-           <ftui-icon name="volume-off" color="yellow" slot="start" invert></ftui-icon>
-           Item 2
-         </ftui-view-item>
- 
-         <ftui-view-item target="view-2">
-           <ftui-icon name="wrench" color="red" slot="start" invert></ftui-icon>
-           Item 3
-         </ftui-view-item>
- 
-         <ftui-view-item target="view-3">
-           <ftui-icon name="phone" color="blue" slot="start" invert></ftui-icon>
-           Item 4
-         </ftui-view-item>
- 
-         <ftui-label slot="footer">This footer explains the meaning of the section to the user</ftui-label>
-         
-       </ftui-view-section>
+        <ftui-label slot="header">Status</ftui-label>
+
+        <ftui-view-item target="viewWindos">
+          <ftui-icon name="plane" color="green" slot="start" invert></ftui-icon>
+          Item 1
+        </ftui-view-item>
+
+        <ftui-view-item target="details-2">
+          <ftui-icon name="volume-off" color="yellow" slot="start" invert></ftui-icon>
+          Item 2
+        </ftui-view-item>
+
+        <ftui-view-item target="view-2">
+          <ftui-icon name="wrench" color="red" slot="start" invert></ftui-icon>
+          Item 3
+        </ftui-view-item>
+
+        <ftui-view-item target="view-3">
+          <ftui-icon name="phone" color="blue" slot="start" invert></ftui-icon>
+          Item 4
+        </ftui-view-item>
+
+        <ftui-label slot="footer">This footer explains the meaning of the section to the user</ftui-label>
+
+      </ftui-view-section>
 
       <ftui-view-section>
-        <ftui-label slot="header">Audio</ftui-label>
+        <ftui-label slot="header">Sonos</ftui-label>
 
         <ftui-view-item target="viewSonos">
           <ftui-icon name="volume-off" color="green" slot="start"></ftui-icon>
-          Sonos
+          Wohnzimmer
         </ftui-view-item>
 
         <ftui-view-item target="details-2">
@@ -113,43 +114,68 @@
 
       </ftui-view-section>
 
-    </ftui-view> 
+    </ftui-view>
 
     <ftui-view id="viewSonos">
-      
+
       <ftui-view-toolbar>
         <ftui-nav-link slot="start"></ftui-nav-link>
-        Sonos
+        Sonos Wohnzimmer
       </ftui-view-toolbar>
 
       <ftui-view-item>
-        Bad
-        <ftui-slider [(value)]="Sonos_Bad:Volume" max="60" slot="end"></ftui-slider>
+        Volume
+        <ftui-slider [(value)]="Sonos_Play5:Volume" max="60" slot="end"></ftui-slider>
       </ftui-view-item>
-      <ftui-view-item>
-        Küche
-        <ftui-slider [(value)]="Sonos_Kueche:Volume" max="60" slot="end"></ftui-slider>
+
+      <ftui-view-item>Crossfade
+        <ftui-switch states="0,1"
+                     [(value)]="Sonos_Kueche:CrossfadeMode"
+                     slot="end"></ftui-switch>
       </ftui-view-item>
-      <ftui-view-item>
-        Property 3
-      </ftui-view-item>
-      <ftui-view-item>Item 2-4</ftui-view-item>
-      <ftui-view-item>Item 2-5</ftui-view-item>
-      <ftui-view-item>Item 2-6</ftui-view-item>
-      <ftui-view-item>Item 2-7</ftui-view-item>
-      <ftui-view-item>Item 2-8</ftui-view-item>
-      <ftui-view-item>Item 2-9</ftui-view-item>
-      <div hidden>
-        <ftui-view-item>Item 2-104444</ftui-view-item>
-        <ftui-view-item>Item 2-11</ftui-view-item>
-        <ftui-view-item>Item 2-12</ftui-view-item>
-        <ftui-view-item>Item 2-13</ftui-view-item>
-        <ftui-view-item>Item 2-14</ftui-view-item>
-        <ftui-view-item>Item 2-15</ftui-view-item>
-        <ftui-view-item>Item 2-16</ftui-view-item>
-        <ftui-view-item>Item 2-17</ftui-view-item>
-        <ftui-view-item>Item 2-18</ftui-view-item>
-      </div>
+
+
+      <ftui-view-sheet shape="round" >
+
+        <ftui-image [src]="Sonos_Play5:currentAlbumArtURL" width="8em"></ftui-image>
+
+        <ftui-column width="60%">
+          <ftui-button fill="outline" shape="circle"
+                       [value]="Sonos_Play5:transportState | map('PLAYING: play, PAUSED_PLAYBACK|STOPPED: pause')"
+                       (value)="Sonos_Play5" states="play, pause">
+            <ftui-icon [name]="Sonos_Play5:transportState  | map('PLAYING: stop, PAUSED_PLAYBACK|STOPPED: play')">
+            </ftui-icon>
+          </ftui-button>
+
+          <ftui-row height="40%">
+            <ftui-label [text]="Sonos_Play5:infoSummarize1"></ftui-label>
+          </ftui-row>
+
+        </ftui-column>
+      </ftui-view-sheet>
+
+      <ftui-view-section>
+        <ftui-label slot="header">Groups</ftui-label>
+        <ftui-view-item>Bad
+          <ftui-checkbox states="false, true"
+                         (value)="map('false:RemoveMember, true:AddMember') | Sonos_Play5 $value Sonos_Bad"
+                         [value]="Sonos_Play5:AvailablePlayer | contains('Sonos_Bad')"
+                         slot="end"></ftui-checkbox>
+        </ftui-view-item>
+        <ftui-view-item>Kinderzimmer
+          <ftui-checkbox states="false, true"
+                         (value)="map('false:RemoveMember, true:AddMember') | Sonos_Play5 $value Sonos_Kinderzimmer"
+                         [value]="Sonos_Play5:AvailablePlayer | contains('Sonos_Kinderzimmer')"
+                         slot="end"></ftui-checkbox>
+        </ftui-view-item>
+        <ftui-view-item>Terasse
+          <ftui-checkbox states="false, true"
+                         (value)="map('false:RemoveMember, true:AddMember') | Sonos_Play5 $value Sonos_Terasse"
+                         [value]="Sonos_Play5:AvailablePlayer | contains('Sonos_Terasse')"
+                         slot="end"></ftui-checkbox>
+        </ftui-view-item>
+      </ftui-view-section>
+
     </ftui-view>
 
     <ftui-view id="details-1">
@@ -157,7 +183,7 @@
         <ftui-nav-link slot="start"></ftui-nav-link>
         Details 1
       </ftui-view-toolbar>
-      
+
     </ftui-view>
 
     <ftui-view id="details-2">
@@ -206,6 +232,6 @@
       </ftui-view-toolbar>
     </ftui-view>
 
-  </ftui-view-stage> 
+  </ftui-view-stage>
 
 </html>

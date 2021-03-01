@@ -4,7 +4,8 @@
   display: flex;
 }
 
-:host(:hover:not([target=''])) {
+:host(:hover:not([target=''])),
+:host(.clickable:hover) {
   cursor: pointer;
   background-color: var(--view-toolbar-background-color);
 }
@@ -20,7 +21,7 @@
   display: flex;
   flex-direction: row;
   width: 100%;
-  padding-inline-start: var(--padding-start, 20px);
+  padding-inline-start: var(--view-item-padding-start, 20px);
   align-items: center;
   min-height: 4em;
 }
@@ -33,7 +34,7 @@
   background-size: 100% 1px;
   background-repeat: no-repeat;
   background-position: bottom;
-  padding-inline-end: var(--padding-end, 10px);
+  padding-inline-end: var(--view-item-padding-end, 20px);
   min-height: inherit;
   position: relative;
 }

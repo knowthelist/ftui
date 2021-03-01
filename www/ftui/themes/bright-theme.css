@@ -88,6 +88,7 @@
   
   --border-color: var(--gray75);
 
+  --switch-off-color: var(--gray80);
   --checkbox-off-color: var(--gray80);
 
   --swiper-scrollbar-thumb: rgba(0, 0, 0, 0.5);

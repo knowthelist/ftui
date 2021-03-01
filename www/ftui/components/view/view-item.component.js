@@ -16,6 +16,12 @@ export class FtuiViewItem extends FtuiElement {
   constructor() {
     super(FtuiViewItem.properties);
 
+    this.shadowRoot.addEventListener('slotchange', () => {
+      const node = this.querySelector('ftui-checkbox');
+      if (node) {
+        this.classList.add('clickable')
+      }
+    })
     this.addEventListener('click', this.onClicked);
   }
 
@@ -48,6 +54,11 @@ export class FtuiViewItem extends FtuiElement {
       if (stage) {
         stage.goForward(this.target);
       }
+    }
+    // ToDo: make this more generic
+    if(this.classList.contains('clickable')){
+      const checkbox = this.querySelector('ftui-checkbox');
+      checkbox.toggle();
     }
   }
 

@@ -3,9 +3,13 @@
   position: relative;
 }
 
+.icon {
+  display: flex;
+}
+
 svg {
-  width: var(--icon-width, 2.25em);
-  height: var(--icon-height, 2.25em);
+  width: var(--icon-width, 2.5em);
+  height: var(--icon-height, 2.5em);
   fill: currentColor;
 }
 
@@ -18,8 +22,8 @@ svg path[style] {
 }
 
 img {
-  width: var(--icon-width, 2.25em);
-  height: var(--icon-height, 2.25em);
+  width: var(--icon-width, 2.5em);
+  height: var(--icon-height, 2.5em);
 }
 
 svg[viewBox="0 0 448 512"] {

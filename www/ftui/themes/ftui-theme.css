@@ -92,7 +92,8 @@
 
   --border-color: var(--gray55);
 
-  --checkbox-off-color: var(--medium-color);
+  --switch-off-color: var(--medium-color);
+  --checkbox-off-color: var(--dark-color);
 
   --slider-track-color: var(--dark-color);
   --slider-handle-shadow: none;

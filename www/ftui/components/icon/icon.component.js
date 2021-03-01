@@ -15,13 +15,13 @@ export class FtuiIcon extends FtuiElement {
 
   constructor(properties) {
     super(Object.assign(FtuiIcon.properties, properties));
-    this.elementIcon = this.shadowRoot.querySelector('#icon');
+    this.elementIcon = this.shadowRoot.querySelector('.icon');
   }
 
   template() {
     return `
         <style> @import "components/icon/icon.component.css"; </style>
-        <span id="icon"></span>
+        <span class="icon"></span>
         <slot></slot>
       `;
   }

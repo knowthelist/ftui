@@ -181,8 +181,8 @@ export function dateFromString(str) {
 export function dateFormat(date, format, lang = 'de') {
   const weekday_de = ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'];
   const weekday = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-  const months_de = ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'];
-  const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  const months_de = ['Januar', 'Februar', '&#077;ärz', 'April', '&#077;ai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'];
+  const months = ['January', 'February', '&#077;arch', 'April', '&#077;ay', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   const YYYY = date.getFullYear().toString();
   const YY = date.getFullYear().toString().substr(-2);
   const month = date.getMonth();

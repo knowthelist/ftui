@@ -88,6 +88,7 @@
   
   --border-color: var(--light-color);
 
+  --switch-off-color: var(--light-color);
   --checkbox-off-color: var(--light-color);
 
   --slider-track-color: var(--light-color);

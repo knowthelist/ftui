@@ -72,7 +72,6 @@ export class FtuiDropdown extends FtuiElement {
   fillList() {
     const splitter = this.delimiter.length === 1 ? this.delimiter : new RegExp(this.delimiter);
     const list = String(this.list).split(splitter);
-    console.log(list, this.list)
     this.selectElement.length = 0;
     list.forEach((item) => {
       const opt = document.createElement('option');

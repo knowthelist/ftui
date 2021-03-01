@@ -15,26 +15,21 @@ export class FtuiCheckbox extends FtuiElement {
 
     super(Object.assign(FtuiCheckbox.properties, properties));
 
-    this.elementInput = this.shadowRoot.querySelector('input');
-    this.elementInput.addEventListener('click', () => this.onClicked());
-
-    const texts = this.texts.split(/[;,:]/).map(item => item.trim());
-    const inner = this.shadowRoot.querySelector('.inner');
-    inner.setAttribute('data-text-off', texts[0]);
-    inner.setAttribute('data-text-on', texts[1]);
+    this.elementCheckbox = this.shadowRoot.querySelector('.checkbox');
+    this.elementCheckbox.addEventListener('click', this.onClicked.bind(this));
   }
-
 
   template() {
     return `
     <style> @import "components/checkbox/checkbox.component.css"; </style>
-    
-      <input type="checkbox" class="checkbox" id="${this.id}">
-      <label class="label" for="${this.id}">
-          <span class="inner"></span>
-          <span class="switch"></span>
-      </label>
-    `;
+
+    <span class="checkbox">
+      <svg viewBox="0 0 512 512">
+      <path d="M362.6 192.9L345 174.8c-.7-.8-1.8-1.2-2.8-1.2-1.1 0-2.1.4-2.8 1.2l-122 
+      122.9-44.4-44.4c-.8-.8-1.8-1.2-2.8-1.2-1 0-2 .4-2.8 1.2l-17.8 17.8c-1.6 1.6-1.6 
+      4.1 0 5.7l56 56c3.6 3.6 8 5.7 11.7 5.7 5.3 0 9.9-3.9 11.6-5.5h.1l133.7-134.4c1.4-1.7 
+      1.4-4.2-.1-5.7z"/></svg>
+    </span>`;
   }
 
   static get properties() {
@@ -58,20 +53,31 @@ export class FtuiCheckbox extends FtuiElement {
     }
   }
 
-  changeState() {
-    const index = this.getStates().indexOf(this.value);
-    if (index > -1) {
-      this.elementInput.checked = index === 1 ? true : false;
-      this.emitChangeEvent('value', this.value );
-    }
-  }
-
-  onClicked() {
-    const stateIndex = this.elementInput.checked ? 1 : 0;
+  toggle() {
+    this.elementCheckbox.classList.toggle('checked');
+    const stateIndex = this.elementCheckbox.classList.contains('checked') ? 1 : 0;
     const value = this.getStates()[stateIndex];
     if (this.value !== value) {
       this.value = value;
     }
+  }
+
+  changeState() {
+    const index = this.getStates().indexOf(this.value);
+    if (index > -1) {
+      if (index === 1) {
+        this.elementCheckbox.classList.add('checked');
+      } else {
+        this.elementCheckbox.classList.remove('checked');
+      }
+      this.emitChangeEvent('value', this.value );
+    }
+  }
+
+  onClicked(event) {
+    event.preventDefault();
+    this.toggle();
+    event.stopPropagation();
   }
 
   getStates() {
