@@ -12,6 +12,7 @@ class FtuiApp {
       fhemDir: '',
       debugLevel: 0,
       lang: 'de',
+      refreshDelay: 0,
       toastPosition: 'bottomLeft',
       styleList: [
         'modules/vanilla-notify/vanilla-notify.css'
@@ -74,26 +75,27 @@ class FtuiApp {
     window.performance.mark('start initPage');
 
     this.states.startTime = new Date();
-    ftui.log(2, 'initPage');
+    ftui.log(2, '[ftuiApp] initPage');
     await this.initComponents(document).catch(error => {
-      ftui.error('Error: initComponents - ' + error);
+      ftui.error('[ftuiApp] error: initComponents - ' + error);
     });
     window.performance.mark('end initPage');
     window.performance.measure('initPage', 'start initPage', 'end initPage');
-    const dur = 'initPage: in ' + (new Date() - this.states.startTime) + 'ms';
+    const dur = 'initPage done after ' + (new Date() - this.states.startTime) + 'ms';
     if (this.config.debugLevel > 1) this.toast(dur);
-    ftui.log(1, dur);
+    ftui.log(1, '[ftuiApp] ' + dur);
 
     document.body.classList.remove('loading');
   }
 
   async initComponents(area) {
-    ftui.log(2, 'initComponents', area);
+    ftui.log(2, '[ftuiApp] initComponents for area: ', area);
     const newComponents = this.loadUndefinedComponents(area);
     await ftui.timeoutPromise(newComponents).catch(error => {
-      ftui.error('Error: initComponents - ' + error);
+      ftui.error('[ftuiApp] error: initComponents - ' + error);
     });
     this.startBinding(area);
+    ftui.log(1, '[ftuiApp] initComponents - Done');
   }
 
   async loadModule(path) {
@@ -150,15 +152,14 @@ class FtuiApp {
 
     fhemService.createFilterParameter();
 
-    ftui.log(1, 'initComponents - Done');
     const event = new CustomEvent('ftuiComponentsAdded', { detail: area });
     document.dispatchEvent(event);
 
     // restart  connection
-    fhemService.reconnect();
+    fhemService.reconnect(this.config.refreshDelay);
 
     // start Refresh delayed
-    fhemService.startRefreshInterval(10);
+    fhemService.startRefreshInterval(this.config.refreshDelay + 200);
 
     // trigger refreshes
     ftui.triggerEvent('changedSelection');

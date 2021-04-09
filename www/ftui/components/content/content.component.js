@@ -16,6 +16,8 @@ export class FtuiContent extends FtuiElement {
   constructor(properties) {
     super(Object.assign(FtuiContent.properties, properties));
 
+    ftui.log(2, '[FtuiContent] constructor  file = ', this.file);
+    ftuiApp.config.refreshDelay = 500;
     this.loadFileContent();
   }
 
@@ -37,6 +39,7 @@ export class FtuiContent extends FtuiElement {
     });
 
     this.insertAdjacentHTML('beforeend', solvedContent);
+    ftui.log(2, '[FtuiContent] file loaded and content inserted');
     ftuiApp.initComponents(this);
   }
 

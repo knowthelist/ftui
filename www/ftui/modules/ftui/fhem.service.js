@@ -1,6 +1,8 @@
 
 import {
-  Subject, debounce, parseReadingId, isDefined, log, dateFormat,
+  Subject, debounce, parseReadingId, isDefined,
+  log, error,
+  dateFormat,
   getReadingID,
   triggerEvent
 } from './ftui.helper.js';
@@ -96,6 +98,7 @@ class FhemService {
 
     // force Refresh
     this.states.lastRefresh = 0;
+    log(2, '[fhemService] - created filter with ' + devs.length + ' devices')
   }
 
   isFhemWebInternal(deviceName) {
@@ -109,7 +112,7 @@ class FhemService {
   }
 
   startRefreshInterval(delay) {
-    log(1, 'refresh: start in (ms):' + (delay || this.config.refreshInterval * 1000));
+    log(1, '[refresh] next start in (ms):' + (delay || this.config.refreshInterval * 1000));
     clearInterval(this.states.refresh.timer);
     this.states.refresh.timer = setTimeout(() => {
       // get current values of readings every x seconds
@@ -125,7 +128,7 @@ class FhemService {
       && this.config.refresh.filter.length < 2
       || (now - this.states.lastRefresh) < this.config.refreshInterval
     ) { return; }
-    log(1, 'start refresh');
+    log(1, '[refresh] start now');
     window.performance.mark('start refresh');
     this.states.lastRefresh = now;
 
@@ -166,7 +169,7 @@ class FhemService {
           duration.toFixed(0) + 'ms for ' +
           paramCount + ' parameter(s)');
       }
-      log(1, 'refresh: Done');
+      log(1, '[refresh] done');
       this.states.refresh.duration = duration * 1000;
       this.states.refresh.lastTimestamp = new Date();
       this.states.refresh.result = 'ok';
@@ -174,7 +177,7 @@ class FhemService {
       this.onUpdateDone();
     } else {
       const err = 'request failed: Result is null';
-      log(1, 'refresh: ' + err);
+      error(1, '[refresh] error ' + err);
       this.states.refresh.result = err;
       this.debugEvents.publish('<u>Refresh ' + err + ' </u><br>');
 
@@ -227,7 +230,7 @@ class FhemService {
 
   connect() {
     if (this.states.connection.websocket) {
-      log(3, 'A valid instance of websocket has been found');
+      log(3, '[websocket] a valid instance has been found - do not newly connect');
       return;
     }
     if (this.config.debuglevel > 1) {
@@ -237,7 +240,7 @@ class FhemService {
       this.config.update.filter + ';since=' + this.states.connection.lastEventTimestamp.getTime() + ';fmt=JSON' +
       '&timestamp=' + Date.now();
 
-    log(1, 'websockets URL=' + this.states.connection.URL);
+    log(1, '[websocket] create new connection - URL = ' + this.states.connection.URL);
     this.states.connection.lastEventTimestamp = new Date();
 
     this.states.connection.websocket = new WebSocket(this.states.connection.URL);
@@ -246,15 +249,16 @@ class FhemService {
       if (event.code == 1006) {
         reason = 'The connection was closed abnormally, e.g., without sending or receiving a Close control frame';
       } else { reason = 'Unknown reason'; }
-      log(1, 'websocket (url=' + event.target.url + ') closed!  reason=' + reason);
+      log(1, '[websocket] closed! reason=' + reason + ' - URL = ' + event.target.url );
       // if current socket closes then restart websocket
       if (event.target.url === this.states.connection.URL) {
         this.debugEvents.publish('Disconnected from FHEM<br>' + reason + '<br>Retry in 5s');
+        log(2, '[websocket] disconnected - retry to connect');
         this.reconnect(5);
       }
     };
     this.states.connection.websocket.onerror = (event) => {
-      log(1, 'Error with fhem connection');
+      error(1, '[websocket] error event', event);
       if (this.config.debuglevel > 1 && event.target.url === this.states.connection.URL) {
         this.errorEvents.publish('Error with fhem connection');
       }
@@ -263,23 +267,25 @@ class FhemService {
     this.states.connection.websocket.onmessage = (msg) => {
       this.handleFhemEvent(msg.data);
     };
+    log(2, '[websocket] created');
   }
 
   disconnect() {
-    log(2, 'stopFhemConnection');
+    log(2, '[websocket] try to stop connection');
     clearInterval(this.states.connection.timer);
-
     if (this.states.connection.websocket) {
       if (this.states.connection.websocket.readyState === WebSocket.OPEN) {
         this.states.connection.websocket.close();
       }
       this.states.connection.websocket = null;
-      log(2, 'stopped websocket');
+      log(2, '[websocket] stopped');
+    } else {
+      log(2, '[websocket] no connection found');
     }
   }
 
   reconnect(delay = 0) {
-    log(2, 'restart FHEM connection');
+    log(2, '[websocket] restart connection');
     clearTimeout(this.states.connection.timer);
 
     this.disconnect();
@@ -343,7 +349,7 @@ class FhemService {
       password: this.config.password
     };
     url.search = new URLSearchParams(params)
-    log(1, 'send to FHEM: ' + cmdline);
+    log(1, '[fhemService] send to FHEM: ' + cmdline);
     return fetch(url, options);
   }
 
