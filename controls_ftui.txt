@@ -18,6 +18,8 @@ UPD 2020-12-31_16:39:02 2955 www/ftui/components/colorpicker/colorpicker.compone
 UPD 2021-01-28_21:05:34 574 www/ftui/components/column/column.component.js
 UPD 2021-02-11_15:04:25 39 www/ftui/components/content/content.component.css
 UPD 2021-04-09_17:39:16 1436 www/ftui/components/content/content.component.js
+UPD 2021-04-09_21:23:18 3587 www/ftui/components/departure/departure.component.css
+UPD 2021-04-09_20:49:29 6537 www/ftui/components/departure/departure.component.js
 UPD 2021-02-01_19:44:34 496 www/ftui/components/dropdown/dropdown.component.css
 UPD 2021-02-15_23:02:20 2135 www/ftui/components/dropdown/dropdown.component.js
 UPD 2021-02-18_21:23:04 4186 www/ftui/components/element.component.js
@@ -39,7 +41,7 @@ UPD 2021-02-01_19:44:36 1083 www/ftui/components/nav/nav-link.component.js
 UPD 2021-02-01_19:44:37 1286 www/ftui/components/popup/popup.component.css
 UPD 2021-02-01_19:44:37 3362 www/ftui/components/popup/popup.component.js
 UPD 2021-02-01_19:44:37 927 www/ftui/components/row/row.component.js
-UPD 2021-02-05_18:21:35 1479 www/ftui/components/segment/segment-button.component.js
+UPD 2021-04-10_12:07:56 1479 www/ftui/components/segment/segment-button.component.js
 UPD 2021-02-05_18:44:32 1066 www/ftui/components/segment/segment.component.css
 UPD 2021-02-07_15:08:50 2735 www/ftui/components/segment/segment.component.js
 UPD 2021-02-01_19:44:37 3379 www/ftui/components/slider/slider.component.css
@@ -83,6 +85,7 @@ UPD 2021-02-11_14:57:43 684 www/ftui/examples/contents/content-view2.html
 UPD 2021-02-09_23:33:23 998 www/ftui/examples/contents/content-weather-day.html
 UPD 2020-12-31_16:39:02 5293 www/ftui/examples/contents/content-weather.html
 UPD 2021-02-01_19:44:46 189 www/ftui/examples/contents/mobile-view1.html
+UPD 2021-04-09_21:19:21 2698 www/ftui/examples/departure.html
 UPD 2021-02-15_21:49:38 3847 www/ftui/examples/dropdown.html
 UPD 2021-02-07_16:15:57 3479 www/ftui/examples/grid.html
 UPD 2021-02-01_19:44:47 4416 www/ftui/examples/icon.html
@@ -371,6 +374,7 @@ UPD 2021-01-07_17:45:12 1735 www/ftui/icons/hand-scissors-o.svg
 UPD 2021-01-07_17:45:12 1570 www/ftui/icons/hand-spock-o.svg
 UPD 2021-01-07_17:45:12 1638 www/ftui/icons/handshake-o.svg
 UPD 2021-01-07_17:45:12 1285 www/ftui/icons/hashtag.svg
+UPD 2021-04-06_08:00:08 345 www/ftui/icons/hbus.svg
 UPD 2021-01-07_17:45:12 965 www/ftui/icons/hdd-o.svg
 UPD 2021-01-07_17:45:12 988 www/ftui/icons/headphones.svg
 UPD 2021-01-07_17:45:12 743 www/ftui/icons/heart-o.svg
@@ -696,7 +700,7 @@ UPD 2020-12-31_16:39:06 11972 www/ftui/modules/rangeable/rangeable.min.js
 UPD 2020-12-31_16:39:06 1922 www/ftui/modules/vanilla-notify/vanilla-notify.css
 UPD 2020-12-31_16:39:06 6339 www/ftui/modules/vanilla-notify/vanilla-notify.js
 UPD 2020-12-31_16:39:06 3390 www/ftui/modules/vanilla-notify/vanilla-notify.min.js
-UPD 2021-02-18_21:33:27 3215 www/ftui/themes/bright-theme.css
+UPD 2021-04-10_12:07:04 3259 www/ftui/themes/bright-theme.css
 UPD 2021-02-01_19:44:51 1889 www/ftui/themes/color-attributes.css
-UPD 2021-02-18_22:19:38 3324 www/ftui/themes/ftui-theme.css
+UPD 2021-04-10_12:08:22 3368 www/ftui/themes/ftui-theme.css
 UPD 2021-02-18_21:33:27 3534 www/ftui/themes/mobile-theme.css

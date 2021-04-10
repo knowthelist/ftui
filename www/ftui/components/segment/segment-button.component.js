@@ -29,8 +29,8 @@ export class FtuiSegmentButton extends FtuiElement {
           transition: all .2s ease;
           will-change: color;
           background: transparent;
-          --color-base: var(--segments-text-color);
-          color: var(--color-base, #20639b);
+          --color-base: var(--segments-text-color, #20639b);
+          color: var(--color-base);
           cursor: pointer;
         }
         :host(.active) {

@@ -109,6 +109,7 @@
   --segments-selection-color: var(--primary-color);
   --segments-selection-contrast-color: var(--primary-contrast-color);
   --segments-hover-color: var(--light-color);
+  --segments-text-color: var(--text-color);
 }
 
 body {
