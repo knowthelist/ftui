@@ -8,6 +8,7 @@
 */
 
 import { FtuiElement } from '../element.component.js';
+import { isNumeric }  from '../../modules/ftui/ftui.helper.js';
 
 const sizes = [0.75, 0.875, 1, 1.25, 1.5, 1.75, 2, 2.5, 3, 3.5, 4, 6, 8];
 export class FtuiLabel extends FtuiElement {
@@ -25,9 +26,8 @@ export class FtuiLabel extends FtuiElement {
           --color-base: currentColor;
           color: var(--color-base);
         }
-        :host(.is-empty) {
-          display: none;
-        }
+        :host(.is-empty) { display: none; }
+        :host([scroll]) { overflow: auto; }
         :host([size="10"]),:host([size="11"]),:host([size="12"]) {
           font-family: "HelveticaNeue-UltraLight", "Segoe UI", "Roboto Light", sans-serif;
           line-height: 0.8em;
@@ -45,6 +45,7 @@ export class FtuiLabel extends FtuiElement {
       interval: 0,
       width: '',
       height: '',
+      margin: '0',
     };
   }
 
@@ -72,6 +73,11 @@ export class FtuiLabel extends FtuiElement {
       case 'height':
         this.style.height = value;
         break;
+      case 'margin': {
+        console.log('margin=', value)
+        this.style.margin = isNumeric(value) ? value + 'em' : value;
+        break;
+      }
     }
   }
 

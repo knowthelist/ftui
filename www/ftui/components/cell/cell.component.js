@@ -10,7 +10,7 @@
 */
 
 import { FtuiElement } from '../element.component.js';
-import { isNumeric, capitalize } from '../../modules/ftui/ftui.helper.js';
+import { isNumeric } from '../../modules/ftui/ftui.helper.js';
 
 export class FtuiCell extends FtuiElement {
 
@@ -70,7 +70,7 @@ export class FtuiCell extends FtuiElement {
         this.style.height = value;
         break;
       case 'margin': {
-        this.style[`margin${capitalize(this.alignItems)}`] = isNumeric(value) ? value + 'em' : value;
+        this.style.margin = isNumeric(value) ? value + 'em' : value;
         break;
       }
     }

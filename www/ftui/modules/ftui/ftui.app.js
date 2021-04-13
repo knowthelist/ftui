@@ -159,7 +159,7 @@ class FtuiApp {
     fhemService.reconnect(this.config.refreshDelay);
 
     // start Refresh delayed
-    fhemService.startRefreshInterval(this.config.refreshDelay + 200);
+    fhemService.startRefreshInterval(this.config.refreshDelay + 20);
 
     // trigger refreshes
     ftui.triggerEvent('changedSelection');

@@ -9,7 +9,6 @@
 
 import { FtuiElement } from '../element.component.js';
 
-
 export class FtuiDropdown extends FtuiElement {
   constructor(properties) {
 

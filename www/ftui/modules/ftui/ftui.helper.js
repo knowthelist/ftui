@@ -131,6 +131,7 @@ export function isVisible(element) {
 export function isDefined(value) {
   return !isUndefined(value);
 }
+
 export function isUndefined(value) {
   return typeof value === 'undefined' || value === null;
 }
