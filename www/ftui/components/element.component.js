@@ -21,7 +21,7 @@ export class FtuiElement extends HTMLElement {
       if (!uids[this.localName]) {
         uids[this.localName] = 1;
       }
-      this.id = `${this.localName.replace('-','_')}_${uids[this.localName]++}`;
+      this.id = `${this.localName.replace('-', '_')}_${uids[this.localName]++}`;
     }
 
     this.properties = Object.assign(FtuiElement.properties, properties);
@@ -49,7 +49,8 @@ export class FtuiElement extends HTMLElement {
     return {
       hidden: false,
       disabled: false,
-      readonly: false
+      readonly: false,
+      margin: '0',
     };
   }
 
@@ -85,6 +86,10 @@ export class FtuiElement extends HTMLElement {
       case 'readonly':
         this.style.pointerEvents = newValue !== null ? 'none' : '';
         break;
+      case 'margin': {
+        this.style.margin = ftuiHelper.isNumeric(newValue) ? newValue + 'em' : newValue;
+        break;
+      }
     }
   }
 

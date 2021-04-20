@@ -1,9 +1,6 @@
 @import "./color-attributes.css"; 
 
 :root {
-
-  /* primary color */
-
   --gray: #393939;
   --gray10: #1a1a1a;
   --gray15: #272727;

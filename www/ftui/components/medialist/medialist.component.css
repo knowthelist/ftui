@@ -1,0 +1,57 @@
+:host  {
+  width: 100%;
+  height: 100%;
+}
+.media-list{
+  overflow: auto;
+  height: 100%;
+}
+.media-list .media{
+  position: relative;
+  display: block;
+  border-bottom: 1px solid var(--dark-color);
+  margin: 0 1em;
+  padding: 0.5em 0 0.25em;
+  cursor: pointer;
+}
+.media-list .media:hover{
+  background-color: var(--medium-color);
+}
+.media-list .media-image{
+  width: calc(15% - 1em);
+  display: inline-block;
+  padding-left: 0.5em;
+}
+.media-list .media-text{
+  width: calc(85% - 1em);
+  display: inline-block;
+  padding-left: 1em;
+}
+.media-list .cover {
+  width: 3.5em;
+  height: 3.5em;
+}
+.media-list .title {
+  font-weight: bold;
+  font-size: larger;
+  position: relative;
+  left: 0;
+  top: 0.5em;
+  text-align: left;
+}
+.media-list .artist {
+  font-weight: normal;
+  position: relative;
+  left: 0;
+  top: 0.75em;
+  text-align: left;
+}
+.media-list .duration {
+  position: relative;
+  right: 1em;
+  top: -1em;
+  text-align: right;
+}
+.media.current {
+  background: var(--dark-color);
+}
