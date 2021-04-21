@@ -16,7 +16,7 @@
   --gray95: #f2f2f2;
   --gray-trans: rgba(40, 40, 40, 0.5);
   --lightgray: #777777;
-  --orange: #aa6900;
+  --orange: #f8b13e;
   --red: #ad3333;
   --lightered: rgb(219, 72, 70);
   --tomato: rgb(238, 92, 66);
@@ -36,6 +36,7 @@
   --black: #111111;
   --fullblack: #000000;
   --yellow: #ffe066;
+  --violet: #9400d3;
   --transparent: transparent;
 
   --primary-color: var(--blue1);
@@ -61,7 +62,7 @@
   --dark-contrast-color: var(--white);
 
   --text-color: var(--gray75);
-  --inactive-text-color: #A39B9B;
+  --inactive-text-color: #1e1bcc;
 
   --view-toolbar-color: var(--gray15);
   --view-toolbar-background-color: var(--white);

@@ -180,6 +180,45 @@ Example for output (HTML attribute -> function() -> FHEM reading):
  <ftui-colorpicker (hex)="replace('#','') | HUEDevice6:rgb"></ftui-colorpicker>
  ````
 
+Colors
+------
+
+There are fixed theme colors that are defined as color names.
+
+Main colors:
+- primary
+- secondary
+- light
+- medium
+- dark
+
+Result colors:
+- success
+- warning
+- danger
+
+Spectrum colors:
+- red
+- orange
+- yellow
+- green
+- blue
+- violet
+
+State colors:
+- ok
+- warning
+- error
+
+Others colors:
+- white
+- black
+- gray
+- brown
+- grid
+- translucent
+
+[Example](https://knowthelist.github.io/ftui/www/ftui/examples/colors.html)
 
 Components
 ------
@@ -209,6 +248,7 @@ Elements
 - [Badge](#badge)
 - Clock
 - [Chart](#chart)
+- Medialist
 
 Miscellaneous
 - [Speak](#speak)
@@ -220,6 +260,7 @@ All components has following attributes
 - hidden
 - disabled
 - readonly
+- margin
 
 <br></br>
 
@@ -407,6 +448,7 @@ Examples
 - [View](https://knowthelist.github.io/ftui/www/ftui/examples/mobile_plain.html)
 - [Swiper](https://knowthelist.github.io/ftui/www/ftui/examples/swiper.html)
 - [SegmentedButton](https://knowthelist.github.io/ftui/www/ftui/examples/segment.html)
+- [Medialist](https://knowthelist.github.io/ftui/www/ftui/examples/medialist.html)
 
 Donation
 --------

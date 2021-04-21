@@ -47,22 +47,32 @@
 
 [color="blue"] {
   --color-base: var(--lightblue);
-  --color-contrast: var(--dark-color);
+  --color-contrast: var(--success-contrast-color);
+}
+
+[color="orange"] {
+  --color-base: var(--orange);
+  --color-contrast: var(--success-contrast-color);
+}
+
+[color="violet"] {
+  --color-base: var(--violet);
+  --color-contrast: var(--success-contrast-color);
 }
 
 [color="brown"] {
   --color-base: var(--brown);
-  --color-contrast: var(--dark-color);
+  --color-contrast: var(--dark-contrast-color);
 }
 
 [color="black"] {
   --color-base: var(--black);
-  --color-contrast: var(--dark-color);
+  --color-contrast: var(--dark-contrast-color);
 }
 
 [color="grid"] {
   --color-base: var(--grid-background-color);
-  --color-contrast: var(--medium-color);
+  --color-contrast: var(--dark-contrast-color);
 }
 
 [color="transparent"] {

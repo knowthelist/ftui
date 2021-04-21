@@ -21,7 +21,7 @@ export class FtuiCell extends FtuiElement {
     return `
     <style>
       :host([shape="round"]) {
-        --grid-tile-border-radius: 1.5em;
+        border-radius: 1.5em;
       }
       :host {
         display: flex;
@@ -30,7 +30,7 @@ export class FtuiCell extends FtuiElement {
         align-items: center;
         background: var(--color-base);
         color: var(--color-contrast);
-        border-radius: var(--grid-tile-border-radius);
+        
       }
       :host(:not(ftui-row)[align-items~=top])    { justify-content: flex-start; }
       :host(:not(ftui-row)[align-items~=bottom]) { justify-content: flex-end; }
