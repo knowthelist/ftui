@@ -705,6 +705,6 @@ UPD 2020-12-31_16:39:06 1922 www/ftui/modules/vanilla-notify/vanilla-notify.css
 UPD 2020-12-31_16:39:06 6339 www/ftui/modules/vanilla-notify/vanilla-notify.js
 UPD 2020-12-31_16:39:06 3390 www/ftui/modules/vanilla-notify/vanilla-notify.min.js
 UPD 2021-04-21_23:06:12 3280 www/ftui/themes/bright-theme.css
-UPD 2021-04-21_22:54:35 2134 www/ftui/themes/color-attributes.css
+UPD 2021-04-22_00:31:44 2234 www/ftui/themes/color-attributes.css
 UPD 2021-04-21_22:55:33 3365 www/ftui/themes/ftui-theme.css
 UPD 2021-04-21_23:06:13 3555 www/ftui/themes/mobile-theme.css

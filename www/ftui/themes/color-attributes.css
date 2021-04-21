@@ -70,6 +70,11 @@
   --color-contrast: var(--dark-contrast-color);
 }
 
+[color="white"] {
+  --color-base: var(--white);
+  --color-contrast: var(--light-contrast-color);
+}
+
 [color="grid"] {
   --color-base: var(--grid-background-color);
   --color-contrast: var(--dark-contrast-color);
