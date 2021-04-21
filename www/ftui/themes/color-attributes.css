@@ -15,7 +15,7 @@
   --color-contrast: var(--secondary-contrast-color);
 }
 
-[color="light"], [color="white"] {
+[color="light"] {
   --color-base: var(--light-color);
   --color-contrast: var(--light-contrast-color);
 }
