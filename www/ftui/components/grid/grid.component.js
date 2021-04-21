@@ -22,7 +22,7 @@ export class FtuiGrid extends FtuiElement {
       baseHeight: 0,
       cols: 0,
       rows: 0,
-      margins: 8,
+      margin: 8,
       resize: false
     };
     super(properties);
@@ -30,7 +30,6 @@ export class FtuiGrid extends FtuiElement {
     this.debouncedResize = debounce(this.configureGrid, this);
 
     this.windowWidth = 0;
-    this.margins = this.margin;
     this.tiles = this.querySelectorAll('ftui-grid-tile');
     this.configureGrid();
 
@@ -83,8 +82,8 @@ export class FtuiGrid extends FtuiElement {
 
     cols = (this.cols > 0) ? this.cols : highestCol;
     rows = (this.rows > 0) ? this.rows : highestRow;
-    baseWidth = (this.baseWidth > 0) ? this.baseWidth : (window.innerWidth - this.margins) / cols;
-    baseHeight = (this.baseHeight > 0) ? this.baseHeight : (window.innerHeight - this.margins) / rows;
+    baseWidth = (this.baseWidth > 0) ? this.baseWidth : (window.innerWidth - this.margin) / cols;
+    baseHeight = (this.baseHeight > 0) ? this.baseHeight : (window.innerHeight - this.margin) / rows;
 
     if (baseWidth < this.minX) {
       baseWidth = this.minX;
@@ -95,15 +94,15 @@ export class FtuiGrid extends FtuiElement {
 
     this.tiles.forEach(item => {
       const style = item.style;
-      style.width = (item.width * baseWidth - this.margins) + 'px';
-      style.height = (item.height * baseHeight - this.margins) + 'px';
+      style.width = (item.width * baseWidth - this.margin) + 'px';
+      style.height = (item.height * baseHeight - this.margin) + 'px';
       if (item.querySelector('ftui-grid')) {
         style.backgroundColor = 'transparent';
         style.left = ((item.col - 1) * baseWidth) + 'px';
         style.top = ((item.row - 1) * baseHeight) + 'px';
       } else {
-        style.left = ((item.col - 1) * baseWidth + this.margins) + 'px';
-        style.top = ((item.row - 1) * baseHeight + this.margins) + 'px';
+        style.left = ((item.col - 1) * baseWidth + this.margin) + 'px';
+        style.top = ((item.row - 1) * baseHeight + this.margin) + 'px';
       }
     });
   }

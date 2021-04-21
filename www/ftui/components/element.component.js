@@ -87,7 +87,9 @@ export class FtuiElement extends HTMLElement {
         this.style.pointerEvents = newValue !== null ? 'none' : '';
         break;
       case 'margin': {
-        this.style.margin = ftuiHelper.isNumeric(newValue) ? newValue + 'em' : newValue;
+        if (this.tagName !== 'FTUI-GRID') {
+          this.style.margin = ftuiHelper.isNumeric(newValue) ? newValue + 'em' : newValue;
+        }
         break;
       }
     }
