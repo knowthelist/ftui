@@ -21,8 +21,8 @@ export class FtuiDeparture extends FtuiElement {
 
     this.timerClock = null;
     this.timerUpdate = null;
-	this.depMode = null;
-	this.timeNow = new Date();
+    this.depMode = null;
+    this.timeNow = new Date();
     this.size = this.shadowRoot.querySelector('.size');
     this.bg = this.shadowRoot.querySelector('table');
     this.dep = this.shadowRoot.querySelector('tbody');
@@ -31,7 +31,7 @@ export class FtuiDeparture extends FtuiElement {
     this.elementTime = this.shadowRoot.querySelector('td[name="time"]');
     this.elementClock = this.shadowRoot.querySelector('th[name="clock"]');  
     this.elementMinutes = this.shadowRoot.querySelector('th[name="min"]');
-	this.elementRefresh = this.shadowRoot.querySelector('.refresh');
+    this.elementRefresh = this.shadowRoot.querySelector('.refresh');
     this.elementRefresh.addEventListener('click', event => this.manGetRefresh(event));
     this.elementSwitch = this.shadowRoot.querySelector('.switch');
     this.elementSwitch.addEventListener('click', event => this.switchDepMode(event));
@@ -88,21 +88,21 @@ export class FtuiDeparture extends FtuiElement {
     return {
       list: '',
       icon: 'bus',
-	  station: 'Haltestelle',
+      station: 'Haltestelle',
       refbutton: 'refresh1',
       color: 'Default',
       bgcolor: '',
       depcolor: '',
       txtcolor: '',
-	  txtsize: '',
+      txtsize: '',
       deptxtcolor: '',
-	  deptxtlength: 27,
-	  depminsize: 60,
+      deptxtlength: 27,
+      depminsize: 60,
       width: '98%',
       height: '85%',
       top: '40px',
       getinterval: 60,
-	  refreshlist: 0,
+      refreshlist: 0,
       get: '',
     };
   }
@@ -121,18 +121,18 @@ export class FtuiDeparture extends FtuiElement {
       case 'depcolor':
       case 'txtcolor':
       case 'deptxtcolor':
-	  case 'deptxtlength':
-	  case 'depminsize':
-	  case 'txtsize':
+      case 'deptxtlength':
+      case 'depminsize':
+      case 'txtsize':
       case 'width':
       case 'height':
       case 'top':
         this.arrangeWindow();
         break;
       case 'getinterval':
-	  case 'refreshlist':
+      case 'refreshlist':
         this.startTimerUpdate();
-		this.startTimerRefreshList();
+ 	this.startTimerRefreshList();
         this.updateClock();
         break;
     }
@@ -146,9 +146,9 @@ export class FtuiDeparture extends FtuiElement {
     this.size.style.top = this.top;
     this.bg.style.color = this.txtcolor;
     this.dep.style.color = this.deptxtcolor;
-	this.elementId.style.color = this.txtsize;
-	this.elementDest.style.color = this.txtsize;
-	this.elementTime.style.color = this.txtsize;
+    this.elementId.style.color = this.txtsize;
+    this.elementDest.style.color = this.txtsize;
+    this.elementTime.style.color = this.txtsize;
     if (this.hasAttribute('manuell')) {
       this.elementRefresh.innerHTML = '<ftui-icon name="' + this.refbutton + '"></ftui-icon>';
 	}
@@ -175,8 +175,8 @@ export class FtuiDeparture extends FtuiElement {
     }
 	if (this.txtsize) {
       this.elementId.style.fontSize = this.txtsize;
-	  this.elementDest.style.fontSize = this.txtsize;
-	  this.elementTime.style.fontSize = this.txtsize;
+      this.elementDest.style.fontSize = this.txtsize;
+      this.elementTime.style.fontSize = this.txtsize;
     }
   }
 
@@ -192,7 +192,7 @@ export class FtuiDeparture extends FtuiElement {
 
   startTimerUpdate() {
     clearInterval(this.timerUpdate);
-	clearTimeout(this.timerUpdate);
+    clearTimeout(this.timerUpdate);
     if (this.getinterval) {
 	  ((dateFormat(new Date(), 'ss')==='00') ? this.timerUpdate = setTimeout(() => this.startTimerUpdate(), this.getinterval * 1000) ? this.requestUpdate() : clearTimeout(this.timerUpdate) : this.timerUpdate = setInterval(() => this.startTimerUpdate(), 1000));
     }
@@ -200,7 +200,7 @@ export class FtuiDeparture extends FtuiElement {
 
   startTimerRefreshList() {
     clearInterval(this.timerRefreshList);
-	clearTimeout(this.timerRefreshList);
+    clearTimeout(this.timerRefreshList);
     if (this.refreshlist) {
       ((dateFormat(new Date(), 'ss')==='00') ? this.timerRefreshList = setTimeout(() => this.startTimerRefreshList(), this.refreshlist * 1000) ? this.fillList() : clearTimeout(this.timerRefreshList) : this.timerRefreshList = setInterval(() => this.startTimerRefreshList(), 1000));
     }
@@ -213,8 +213,8 @@ export class FtuiDeparture extends FtuiElement {
   manGetRefresh(event) {
 	event.stopPropagation();
     this.requestUpdate();
-	this.elementRefresh.innerHTML = '<ftui-icon class="fade" name="' + this.refbutton + '"></ftui-icon>';
-	this.timeNow = new Date();
+    this.elementRefresh.innerHTML = '<ftui-icon class="fade" name="' + this.refbutton + '"></ftui-icon>';
+    this.timeNow = new Date();
   }
 
   switchDepMode(event) {
@@ -227,10 +227,10 @@ export class FtuiDeparture extends FtuiElement {
 	const listAttr = this.attributes["[list]"];
     let refDate = ((listAttr) ? dateFromString(fhemService.getReadingItem(getReadingID(listAttr.value.split(":")[0],listAttr.value.split(":")[1])).data.time) : new Date(this.timeNow));
     refDate.setSeconds(59);
-	const currentTime = new Date();
-	const nextDay = dateFormat(new Date(currentTime.setDate(currentTime.getDate()+1)),'ee');
-	const isTimeMin = currentTime.getHours()*60+currentTime.getMinutes();
-	const tsMin = refDate.getHours()*60+refDate.getMinutes();
+    const currentTime = new Date();
+    const nextDay = dateFormat(new Date(currentTime.setDate(currentTime.getDate()+1)),'ee');
+    const isTimeMin = currentTime.getHours()*60+currentTime.getMinutes();
+    const tsMin = refDate.getHours()*60+refDate.getMinutes();
     let n = '';
     let text0 = '';
     let text1 = '';
@@ -259,9 +259,9 @@ export class FtuiDeparture extends FtuiElement {
       n++;
       let line = json[idx];
       let when = parseInt(line[2]);
-	  const depTime = dateFormat(new Date(currentTime.getTime()+when*60*1000),'hh:mm');
-	  const depMinTime = dateFormat(new Date(refDate.getTime()+when*60*1000),'hh:mm');
-	  const tsDep = when+tsMin-isTimeMin;
+      const depTime = dateFormat(new Date(currentTime.getTime()+when*60*1000),'hh:mm');
+      const depMinTime = dateFormat(new Date(refDate.getTime()+when*60*1000),'hh:mm');
+      const tsDep = when+tsMin-isTimeMin;
       if (!this.depMode) {
 			this.depMode = (this.list.match(/:/g) ? 'deptime' : 'depmin');
 			}
@@ -317,10 +317,10 @@ export class FtuiDeparture extends FtuiElement {
 				}
 			}
 		}
-	this.elementTime.innerHTML = text2;
+    this.elementTime.innerHTML = text2;
     this.elementSwitch.innerHTML = '<ftui-icon name="' + ((this.depMode === 'deptime') ? 'sort-numeric-asc' : 'clock-o' ) + '"></ftui-icon>';
     this.elementMinutes.innerHTML = ((this.depMode === 'deptime') ? 'Zeit' : 'in Min' );
-	(this.shadowRoot.querySelector('.top') === null) ? '' : this.shadowRoot.querySelector('.top').scrollIntoView({block: "start", behavior: "smooth"});
+    (this.shadowRoot.querySelector('.top') === null) ? '' : this.shadowRoot.querySelector('.top').scrollIntoView({block: "start", behavior: "smooth"});
   }
 }
 
