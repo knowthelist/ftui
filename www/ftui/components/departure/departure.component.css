@@ -1,200 +1,200 @@
 .header{
-    color: var(--departure-txtcolor);
-	left: 5px;
-    margin-top: 31px;
-	position: absolute;
-	width: 94%;
-	font-size: 12px;
+  color: var(--departure-txtcolor);
+  left: 5px;
+  margin-top: 31px;
+  position: absolute;
+  width: 94%;
+  font-size: 12px;
 }
 
 .id{
-	width: 10%;
-	text-align: end;
-	white-space: nowrap;
-	font-size: var(--departure-txtsize);
+  width: 10%;
+  text-align: end;
+  white-space: nowrap;
+  font-size: var(--departure-txtsize);
 }
 
 .dest{
-	width: 100%;
-	max-width: 0px;
-	font-size: var(--departure-txtsize);
-	white-space: nowrap;
-	overflow: hidden;
+  width: 100%;
+  max-width: 0px;
+  font-size: var(--departure-txtsize);
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .time{
-	width: 100%;
-	text-align: end;
-	font-size: var(--departure-txtsize);
-	white-space: nowrap;
+  width: 100%;
+  text-align: end;
+  font-size: var(--departure-txtsize);
+  white-space: nowrap;
 }
 
 .id0{
-	display: inline-block;
-	padding-left: 10px;
+  display: inline-block;
+  padding-left: 10px;
 }
 
 .dest0{
-	display: inline-block;
-	padding-left: 10px;
+  display: inline-block;
+  padding-left: 10px;
 }
 
 .time0{
-	display: inline-block;
-	padding-left: 5px;
-	padding-right: 5px;	
+  display: inline-block;
+  padding-left: 5px;
+  padding-right: 5px;	
 }
 
 .line{
-	width: 10%;
-	text-align: end;
-	padding-left: 5%;
+  width: 10%;
+  text-align: end;
+  padding-left: 5%;
 }
 
 .destination{
-	width: 100%;
-	text-align: start;
-	padding-left: 15%;
+  width: 100%;
+  text-align: start;
+  padding-left: 15%;
 }
 
 .minutes{
-	width: 100%;
-	text-align: end;
-	padding-right: 5px;
-	white-space: nowrap;
+  width: 100%;
+  text-align: end;
+  padding-right: 5px;
+  white-space: nowrap;
 }
 
 .station{
-    color: var(--departure-txtcolor);
-    position: absolute;
-	width: 70%;
-    left: 25%;
-    top: -27px;
-	text-align: left;
-	overflow: hidden;
-    font-size: 20px;
-    font-weight: bold;
-	white-space: nowrap;
+  color: var(--departure-txtcolor);
+  position: absolute;
+  width: 70%;
+  left: 25%;
+  top: -27px;
+  text-align: left;
+  overflow: hidden;
+  font-size: 20px;
+  font-weight: bold;
+  white-space: nowrap;
 }
 
 .icon{
-    color: var(--departure-txtcolor);
-    position: absolute;
-	overflow: hidden;
-	width: 20%;
-	text-align: left;
-    left: 5%;
-    top: -27px;
-	background-color: 'transparent';
+  color: var(--departure-txtcolor);
+  position: absolute;
+  overflow: hidden;
+  width: 20%;
+  text-align: left;
+  left: 5%;
+  top: -27px;
+  background-color: 'transparent';
 }
 
 .istime{
-	color: var(--departure-txtcolor);
-    position: absolute;
-    right: 5%;
-	bottom: 5px;
-    font-size: 11px;
+  color: var(--departure-txtcolor);
+  position: absolute;
+  right: 5%;
+  bottom: 5px;
+  font-size: 11px;
 }
 
 .refresh{
-	position: absolute;
-	color: var(--departure-txtcolor);
-	left: 10px;
-	font-size: 8px;
-	bottom: 0px;
-	cursor: pointer;
+  position: absolute;
+  color: var(--departure-txtcolor);
+  left: 10px;
+  font-size: 8px;
+  bottom: 0px;
+  cursor: pointer;
 }
 
 .switch{
-	position: absolute;
-	color: var(--departure-txtcolor);
-	left: 50%;
-	font-size: 8px;
-	bottom: 0px;
-	cursor: pointer;
+  position: absolute;
+  color: var(--departure-txtcolor);
+  left: 50%;
+  font-size: 8px;
+  bottom: 0px;
+  cursor: pointer;
 }
 
 .pos{
-	display: flex;
-	align-items: center;
-	justify-content: center;	
+  display: flex;
+  align-items: center;
+  justify-content: center;	
 }
 
 .size{
-	position: absolute;
-	display: flex;
-	justify-content: center;
-	top: var(--departure-top);
-	width: var(--departure-width);
-    height: var(--departure-height);
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  top: var(--departure-top);
+  width: var(--departure-width);
+  height: var(--departure-height);
 }
 
 .Default {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    padding-bottom: 3px;
-    padding-top: 3px;
-    overflow: hidden;
-	background: var(--departure-bgcolor);
-	border-radius: 0.5em;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  padding-bottom: 3px;
+  padding-top: 3px;
+  overflow: hidden;
+  background: var(--departure-bgcolor);
+  border-radius: 0.5em;
 }
 
 .listDefault {
-	padding-top:2px;
-    position: absolute;
-    top: 54px;
-    left: 7px;
-    width: calc(100% - 14px);
-    height: calc(100% - 79px);
-    overflow-y: auto;
-	overflow-x: hidden;
-	scrollbar-width: none;
-	color: var(--departure-deptxtcolor);
-	background: var(--departure-depcolor);
-	border-radius: 0.5em;
-	line-height: 1.5;
-	-ms-overflow-style: none;
+  padding-top:2px;
+  position: absolute;
+  top: 54px;
+  left: 7px;
+  width: calc(100% - 14px);
+  height: calc(100% - 79px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: none;
+  color: var(--departure-deptxtcolor);
+  background: var(--departure-depcolor);
+  border-radius: 0.5em;
+  line-height: 1.5;
+  -ms-overflow-style: none;
 }
 
 .listDefault::-webkit-scrollbar {
-	display: none;
+  display: none;
 }
 
 .alt{
-    background: rgba(0, 0, 0, 0.3);
+  background: rgba(0, 0, 0, 0.3);
 }
 
 table td, th{
-    padding: 0px;
-    margin: 0px;
+  padding: 0px;
+  margin: 0px;
 }
 
 .fade {
-    animation: fadein 1s;
-    -moz-animation: fadein 1s;
-    -webkit-animation: fadein 1s;
-    -o-animation: fadein 1s;
+  animation: fadein 1s;
+  -moz-animation: fadein 1s;
+  -webkit-animation: fadein 1s;
+  -o-animation: fadein 1s;
 }
 
 @keyframes fadein {
-    from { opacity:0.5; }
-    to { opacity:1; }
+  from { opacity:0.5; }
+  to { opacity:1; }
 }
 
 @-moz-keyframes fadein {
-    from { opacity:0.5; }
-    to { opacity:1; }
+  from { opacity:0.5; }
+  to { opacity:1; }
 }
 
 @-webkit-keyframes fadein {
-    from { opacity:0.5; }
-    to { opacity:1; }
+  from { opacity:0.5; }
+  to { opacity:1; }
 }
 
 @-o-keyframes fadein {
-    from { opacity:0.5; }
-    to { opacity: 1; }
+  from { opacity:0.5; }
+  to { opacity: 1; }
 }
 
 .table {
