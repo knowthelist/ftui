@@ -1,214 +1,200 @@
-.header {
-  color: var(--departure-txtcolor);
-  left: 7px;
-  margin-top: 30px;
-  position: absolute;
-  width: 94%;
-  font-size: 12px;
+.header{
+    color: var(--departure-txtcolor);
+	left: 5px;
+    margin-top: 31px;
+	position: absolute;
+	width: 94%;
+	font-size: 12px;
 }
 
-.id {
-  position: absolute;
-  width: 15%;
-  text-align: end;
-  white-space: nowrap;
-  overflow: hidden;
-  font-size: 13px;
+.id{
+	width: 10%;
+	text-align: end;
+	white-space: nowrap;
+	font-size: var(--departure-txtsize);
 }
 
-.dest {
-  position: absolute;
-  left: 15%;
-  width: 67%;
-  font-size: 13px;
-  white-space: nowrap;
-  overflow: hidden;
+.dest{
+	width: 100%;
+	max-width: 0px;
+	font-size: var(--departure-txtsize);
+	white-space: nowrap;
+	overflow: hidden;
 }
 
-.refresh {
-  position: absolute;
-  color: var(--departure-txtcolor);
-  left: 10px;
-  width: 1.5em;
-  font-size: 8px;
-  bottom: 1px;
-  cursor: pointer;
+.time{
+	width: 100%;
+	text-align: end;
+	font-size: var(--departure-txtsize);
+	white-space: nowrap;
 }
 
-.time {
-  position: absolute;
-  left: 80%;
-  width: 18%;
-  text-align: end;
-  font-size: 13px;
+.id0{
+	display: inline-block;
+	padding-left: 10px;
 }
 
-.id0 {
-  display: inline-block;
-  padding-left: 3%;
+.dest0{
+	display: inline-block;
+	padding-left: 10px;
 }
 
-.dest0 {
-  display: inline-block;
-  padding-left: 5%;
+.time0{
+	display: inline-block;
+	padding-left: 5px;
+	padding-right: 5px;	
 }
 
-.time0 {
-  display: inline-block;
-  padding-right: 5%;
+.line{
+	width: 10%;
+	text-align: end;
+	padding-left: 5%;
 }
 
-.minutes {
-  position: absolute;
-  right: 3%;
+.destination{
+	width: 100%;
+	text-align: start;
+	padding-left: 15%;
 }
 
-.line {
-  position: absolute;
-  left: 3%;
+.minutes{
+	width: 100%;
+	text-align: end;
+	padding-right: 5px;
+	white-space: nowrap;
 }
 
-.destination {
-  position: absolute;
-  left: 25%;
+.station{
+    color: var(--departure-txtcolor);
+    position: absolute;
+	width: 70%;
+    left: 25%;
+    top: -27px;
+	text-align: left;
+	overflow: hidden;
+    font-size: 20px;
+    font-weight: bold;
+	white-space: nowrap;
 }
 
-.station {
-  color: var(--departure-txtcolor);
-  position: absolute;
-  width: 70%;
-  left: 25%;
-  top: -27px;
-  text-align: left;
-  overflow: hidden;
-  font-size: 20px;
-  font-weight: bold;
-  white-space: nowrap;
+.icon{
+    color: var(--departure-txtcolor);
+    position: absolute;
+	overflow: hidden;
+	width: 20%;
+	text-align: left;
+    left: 5%;
+    top: -27px;
+	background-color: 'transparent';
 }
 
-.icon {
-  color: var(--departure-txtcolor);
-  position: absolute;
-  overflow: hidden;
-  width: 20%;
-  text-align: left;
-  left: 3%;
-  top: -27px;
-  background-color: 'transparent;
+.istime{
+	color: var(--departure-txtcolor);
+    position: absolute;
+    right: 5%;
+	bottom: 5px;
+    font-size: 11px;
 }
 
-.istime {
-  color: var(--departure-txtcolor);
-  position: absolute;
-  right: 5%;
-  bottom: 5px;
-  font-size: 11px;
+.refresh{
+	position: absolute;
+	color: var(--departure-txtcolor);
+	left: 10px;
+	font-size: 8px;
+	bottom: 0px;
+	cursor: pointer;
 }
 
-.pos {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.switch{
+	position: absolute;
+	color: var(--departure-txtcolor);
+	left: 50%;
+	font-size: 8px;
+	bottom: 0px;
+	cursor: pointer;
 }
 
-.size {
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  top: var(--departure-top);
-  width: var(--departure-width);
-  height: var(--departure-height);
+.pos{
+	display: flex;
+	align-items: center;
+	justify-content: center;	
+}
+
+.size{
+	position: absolute;
+	display: flex;
+	justify-content: center;
+	top: var(--departure-top);
+	width: var(--departure-width);
+    height: var(--departure-height);
 }
 
 .Default {
-  position: absolute;
-  width: 92%;
-  height: calc(100% - 58px);
-  padding-bottom: 3px;
-  padding-top: 3px;
-  overflow: hidden;
-  background: var(--departure-bgcolor);
-  border-radius: 0.5em;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    padding-bottom: 3px;
+    padding-top: 3px;
+    overflow: hidden;
+	background: var(--departure-bgcolor);
+	border-radius: 0.5em;
 }
 
 .listDefault {
-  padding-top: 2px;
-  position: absolute;
-  top: 54px;
-  left: 7px;
-  width: 94%;
-  height: calc(100% - 79px);
-  overflow-y: auto;
-  overflow-x: hidden;
-  scrollbar-width: none;
-  color: var(--departure-deptxtcolor);
-  background: var(--departure-depcolor);
-  border-radius: 0.5em;
-  font-size: 12px;
-  line-height: 1.5;
-  -ms-overflow-style: none;
+	padding-top:2px;
+    position: absolute;
+    top: 54px;
+    left: 7px;
+    width: calc(100% - 14px);
+    height: calc(100% - 79px);
+    overflow-y: auto;
+	overflow-x: hidden;
+	scrollbar-width: none;
+	color: var(--departure-deptxtcolor);
+	background: var(--departure-depcolor);
+	border-radius: 0.5em;
+	line-height: 1.5;
+	-ms-overflow-style: none;
 }
 
 .listDefault::-webkit-scrollbar {
-  display: none;
+	display: none;
 }
 
-.alt {
-  background: rgba(0, 0, 0, 0.3);
+.alt{
+    background: rgba(0, 0, 0, 0.3);
 }
 
-table td, th {
-  padding: 0px;
-  margin: 0px;
+table td, th{
+    padding: 0px;
+    margin: 0px;
 }
 
 .fade {
-  animation: fadein 1s;
-  -moz-animation: fadein 1s;
-  /* Firefox */
-  -webkit-animation: fadein 1s;
-  /* Safari and Chrome */
-  -o-animation: fadein 1s;
-  /* Opera */
+    animation: fadein 1s;
+    -moz-animation: fadein 1s;
+    -webkit-animation: fadein 1s;
+    -o-animation: fadein 1s;
 }
 
 @keyframes fadein {
-  from {
-    opacity: 0.5;
-  }
-  to {
-    opacity: 1;
-  }
+    from { opacity:0.5; }
+    to { opacity:1; }
 }
 
 @-moz-keyframes fadein {
-  /* Firefox */
-  from {
-    opacity: 0.5;
-  }
-  to {
-    opacity: 1;
-  }
+    from { opacity:0.5; }
+    to { opacity:1; }
 }
 
 @-webkit-keyframes fadein {
-  /* Safari and Chrome */
-  from {
-    opacity: 0.5;
-  }
-  to {
-    opacity: 1;
-  }
+    from { opacity:0.5; }
+    to { opacity:1; }
 }
 
 @-o-keyframes fadein {
-  /* Opera */
-  from {
-    opacity: 0.5;
-  }
-  to {
-    opacity: 1;
-  }
+    from { opacity:0.5; }
+    to { opacity: 1; }
 }
 
 .table {
@@ -219,6 +205,7 @@ table td, th {
 .table-body {
   color: #CCC;
   background: #484848;
+  font-size: 13px;
 }
 
 :host([RVSOE]) .table {
@@ -255,4 +242,31 @@ table td, th {
 :host([VVO]) .table-body {
   color: #fff;
   background: #2A2A5C;
+}
+
+.depscroll {
+  position: relative;
+  animation: left-one 10s linear 1;
+  -moz-animation: left-one 10s linear 1;
+  -webkit-animation: left-one 10s linear 1;
+}
+
+@keyframes left-one {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+
+@-moz-keyframes left-one {
+   0% { -moz-transform: translateX(0); }
+  100% { -moz-transform: translateX(-100%); }
+}
+
+@-webkit-keyframes left-one {
+  0% { -webkit-transform: translateX(0); }
+  100% { -webkit-transform: translateX(-100%); }
+}
+
+@-o-keyframes left-one {
+  0% { -o-transform: translateX(0); }
+  100% { -o-transform: translateX(-100%); }
 }
