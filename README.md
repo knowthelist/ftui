@@ -438,6 +438,7 @@ Examples
 - [Slider](https://knowthelist.github.io/ftui/www/ftui/examples/slider.html)
 - [Checkbox](https://knowthelist.github.io/ftui/www/ftui/examples/checkbox.html)
 - [Circlemenu](https://knowthelist.github.io/ftui/www/ftui/examples/circlemenu.html)
+- [Departure](https://knowthelist.github.io/ftui/www/ftui/examples/departure.html)
 - [Dropdown](https://knowthelist.github.io/ftui/www/ftui/examples/dropdown.html)
 - [Colorpicker](https://knowthelist.github.io/ftui/www/ftui/examples/colorpicker.html)
 - [Image](https://knowthelist.github.io/ftui/www/ftui/examples/image.html)
