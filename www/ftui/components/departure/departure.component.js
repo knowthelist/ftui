@@ -309,8 +309,6 @@ export class FtuiDeparture extends FtuiElement {
 	((!text1) ? this.dep.innerHTML = '<div style="text-align:center">' + 'keine Abfahrten vorhanden...' + '</div>' : this.elementDest.innerHTML = text1);
     	if(this.hasAttribute('depscroll')){
 			if(this.shadowRoot.querySelector('.scrolltxt') === null){
-			'';
-			}else{
 				let scroll = this.shadowRoot.querySelectorAll('.scrolltxt');
 				for (let i=0; i<scroll.length; i++) {
 				scroll[i].addEventListener('click', function(event) {scroll[i].innerHTML='<div class="depscroll">' + scroll[i].textContent/*firstChild.nodeValue*/ + '</div>';event.stopPropagation();});
