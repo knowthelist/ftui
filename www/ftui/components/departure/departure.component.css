@@ -141,7 +141,7 @@
 }
 
 .listDefault {
-  padding-top:2px;
+  padding-top: 2px;
   position: absolute;
   top: 54px;
   left: 7px;
@@ -246,27 +246,27 @@ table td, th {
 
 .depscroll {
   position: relative;
-  animation: left-one 10s linear 1;
-  -moz-animation: left-one 10s linear 1;
-  -webkit-animation: left-one 10s linear 1;
+  animation: left-one 8s linear 1;
+  -moz-animation: left-one 8s linear 1;
+  -webkit-animation: left-one 8s linear 1;
 }
 
 @keyframes left-one {
   0% { transform: translateX(0); }
-  100% { transform: translateX(-100%); }
+  100% { transform: translateX(-105%); }
 }
 
 @-moz-keyframes left-one {
    0% { -moz-transform: translateX(0); }
-  100% { -moz-transform: translateX(-100%); }
+  100% { -moz-transform: translateX(-105%); }
 }
 
 @-webkit-keyframes left-one {
   0% { -webkit-transform: translateX(0); }
-  100% { -webkit-transform: translateX(-100%); }
+  100% { -webkit-transform: translateX(-105%); }
 }
 
 @-o-keyframes left-one {
   0% { -o-transform: translateX(0); }
-  100% { -o-transform: translateX(-100%); }
+  100% { -o-transform: translateX(-105%); }
 }
