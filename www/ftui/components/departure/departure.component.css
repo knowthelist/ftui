@@ -101,7 +101,7 @@
   color: var(--departure-txtcolor);
   left: 10px;
   font-size: 8px;
-  bottom: 0px;
+  bottom: 1px;
   cursor: pointer;
 }
 
@@ -110,7 +110,7 @@
   color: var(--departure-txtcolor);
   left: 50%;
   font-size: 8px;
-  bottom: 0px;
+  bottom: 1px;
   cursor: pointer;
 }
 
