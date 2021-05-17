@@ -124,9 +124,6 @@
   position: absolute;
   display: flex;
   justify-content: center;
-  top: var(--departure-top);
-  width: var(--departure-width);
-  height: var(--departure-height);
 }
 
 .Default {
