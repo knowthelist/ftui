@@ -39,12 +39,11 @@ export class FtuiDeparture extends FtuiElement {
     if (!(this.hasAttribute('switch'))) { this.elementSwitch.style.display = 'none'; }
 
     if (this.hasAttribute('depmin')) { 
-		this.depMode = 'depmin';
-		}
+      this.depMode = 'depmin';
+    }
     if (this.hasAttribute('deptime')) { 
-		this.depMode = 'deptime';
-		}
-
+      this.depMode = 'deptime';
+    }
     this.arrangeWindow();
     this.startTimerClock();
   }
@@ -81,7 +80,7 @@ export class FtuiDeparture extends FtuiElement {
           </div>
         </div>
       </main>
-	  `;
+    `;
   }
 
   static get properties() {
