@@ -73,6 +73,14 @@
 
     </ftui-grid-tile>
 
+    <ftui-grid-tile row="5" col="1" height="4" width="3">
+      <header>FHEM-LIST</header>
+
+      <ftui-medialist [list]="ftuitest:medialist2" [file]="dummy1:currentFile"
+                      (file)="setreading dummy1:currentFile"></ftui-medialist>
+
+    </ftui-grid-tile>
+
   </ftui-grid>
 
 </body>

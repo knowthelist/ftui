@@ -35,7 +35,6 @@ export class FtuiElement extends HTMLElement {
     if (window.ftuiApp) {
       ftuiApp.attachBinding(this);
     }
-
   }
 
   createShadowRoot(content) {
@@ -51,6 +50,7 @@ export class FtuiElement extends HTMLElement {
       disabled: false,
       readonly: false,
       margin: '0',
+      padding: '0',
     };
   }
 
@@ -90,6 +90,10 @@ export class FtuiElement extends HTMLElement {
         if (this.tagName !== 'FTUI-GRID') {
           this.style.margin = ftuiHelper.isNumeric(newValue) ? newValue + 'em' : newValue;
         }
+        break;
+      }
+      case 'padding': {
+        this.style.padding = ftuiHelper.isNumeric(newValue) ? newValue + 'em' : newValue;
         break;
       }
     }

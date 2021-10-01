@@ -53,6 +53,10 @@ footer {
   justify-content: space-evenly;
 }
 
+.narrow {
+  letter-spacing: -0.05em;
+}
+
 .bold {
   font-weight: bold;
 }
@@ -206,15 +210,6 @@ footer {
 
 .wordwrap {
   white-space: pre-wrap;
-  /* CSS3 */
-  white-space: -moz-pre-wrap;
-  /* Firefox */
-  white-space: -pre-wrap;
-  /* Opera <7 */
-  white-space: -o-pre-wrap;
-  /* Opera 7 */
-  word-wrap: break-word;
-  /* IE */
 }
 
 .darker {

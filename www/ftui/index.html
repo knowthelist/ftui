@@ -84,17 +84,19 @@
 
       <ftui-grid-tile row="3" col="4" height="2" width="3" shape="round">
         <ftui-column>
-          <div class="row h-40">
+          <ftui-row>
             <ftui-label>Humidity</ftui-label>
             <ftui-label class="size-7" [text]="THSensorWZ:humidity">
               <span slot="end" class="size-0">%</span>
             </ftui-label>
-          </div>
-          <ftui-chart class="row" width="150px" height="75px">
-            <ftui-chart-data fill log="FileLog_THSensorWZ" spec="4:THSensorWZ.humidity"
-                             [update]="THSensorWZ:state:time"></ftui-chart-data>
-          </ftui-chart>
-          </div>
+          </ftui-row>
+          <ftui-row>
+            <ftui-chart class="row" width="150px" height="75px">
+              <ftui-chart-data fill log="FileLog_THSensorWZ" spec="4:THSensorWZ.humidity"
+                              [update]="THSensorWZ:state:time"></ftui-chart-data>
+            </ftui-chart>
+          </ftui-row>
+        </ftui-column>  
       </ftui-grid-tile>
 
       <ftui-grid-tile row="1" col="6" height="2" width="2" shape="round">

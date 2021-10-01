@@ -43,13 +43,13 @@ export class FtuiKnob extends FtuiElement {
 
     this.isDragging = false;
 
-    this.svg.addEventListener('touchstart', (evt) => this.onDownEvent(evt), false);
-    this.svg.addEventListener('mousedown', (evt) => this.onDownEvent(evt), false);
-    this.svg.addEventListener('touchend', (evt) => this.onOutEvent(evt), false);
-    this.svg.addEventListener('mouseup', (evt) => this.onOutEvent(evt), false);
-    this.svg.addEventListener('mouseout', (evt) => this.onOutEvent(evt), false);
-    this.svg.addEventListener('touchmove', (evt) => this.onMoveEvent(evt), false);
-    this.svg.addEventListener('mousemove', (evt) => this.onMoveEvent(evt), false);
+    this.svg.addEventListener('touchstart', (evt) => this.onPointerDownEvent(evt), false);
+    this.svg.addEventListener('mousedown', (evt) => this.onPointerDownEvent(evt), false);
+    this.svg.addEventListener('touchend', (evt) => this.onPointerOutEvent(evt), false);
+    this.svg.addEventListener('mouseup', (evt) => this.onPointerOutEvent(evt), false);
+    this.svg.addEventListener('mouseout', (evt) => this.onPointerOutEvent(evt), false);
+    this.svg.addEventListener('touchmove', (evt) => this.onPointerMoveEvent(evt), false);
+    this.svg.addEventListener('mousemove', (evt) => this.onPointerMoveEvent(evt), false);
 
     if (this.decimals < 0 ) {
       this.decimals = countDecimals(this.getAttribute('max'));
@@ -140,19 +140,20 @@ export class FtuiKnob extends FtuiElement {
   }
 
   // DOM event handler
-  onOutEvent(evt) {
+  onPointerOutEvent(evt) {
     evt.preventDefault();
     this.isDragging = false;
   }
 
-  onDownEvent(evt) {
+  onPointerDownEvent(evt) {
     evt.preventDefault();
     this.isDragging = true;
+
     const mouseAngle = this.getMouseAngle(this.svg, evt);
     this.onChange(mouseAngle);
   }
 
-  onMoveEvent(evt) {
+  onPointerMoveEvent(evt) {
     evt.preventDefault();
     if (this.isDragging) {
       const mouseAngle = this.getMouseAngle(this.svg, evt);
@@ -177,7 +178,7 @@ export class FtuiKnob extends FtuiElement {
         this.hideElement(this.outline);
       }
       if (this.hasValueText) {
-        this.drawValue();
+        this.drawValue(angle);
       }
       if (this.unit) {
         this.drawUnit();
@@ -276,7 +277,7 @@ export class FtuiKnob extends FtuiElement {
     this.handle.style.display = '';
   }
 
-  drawValue() {
+  drawValue(angle) {
     const scaleText = document.createElementNS(this.NS, 'text');
     const scaleTextObj = {
       class: 'value',
@@ -285,7 +286,7 @@ export class FtuiKnob extends FtuiElement {
       'alignment-baseline': 'middle'
     };
     this.setSVGAttributes(scaleText, scaleTextObj);
-    scaleText.textContent = this.value.toFixed(this.decimals);
+    scaleText.textContent = this.angleToValue(angle).toFixed(this.decimals);
     scaleText.style.fontSize = this.valueSize;
     this.scale.appendChild(scaleText);
   }

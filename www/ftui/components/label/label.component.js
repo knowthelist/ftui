@@ -64,6 +64,12 @@ export class FtuiLabel extends FtuiElement {
         if (this.size > -1) {
           this.style.fontSize = sizes[this.size] + 'rem';
         }
+        if (this.size >= 6) {
+          this.style.letterSpacing = '-0.05em';
+        }
+        if (this.size >= 10) {
+          this.style.fontFamily = '"HelveticaNeue-UltraLight", "Segoe UI", "Roboto Light", sans-serif';
+        }
         break;
       case 'width':
         this.style.width = value;

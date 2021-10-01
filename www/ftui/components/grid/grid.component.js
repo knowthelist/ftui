@@ -73,10 +73,11 @@ export class FtuiGrid extends FtuiElement {
     let cols = 0;
     let rows = 0;
 
-    this.tiles.forEach(item => {
-      const colVal = Number(item.col) + Number(item.width) - 1;
+    // find highest
+    this.tiles.forEach(tile => {
+      const colVal = Number(tile.col) + Number(tile.width) - 1;
       if (colVal > highestCol) { highestCol = colVal; }
-      const rowVal = Number(item.row) + Number(item.height) - 1;
+      const rowVal = Number(tile.row) + Number(tile.height) - 1;
       if (rowVal > highestRow) { highestRow = rowVal; }
     });
 
@@ -92,17 +93,18 @@ export class FtuiGrid extends FtuiElement {
       baseHeight = this.minY;
     }
 
-    this.tiles.forEach(item => {
-      const style = item.style;
-      style.width = (item.width * baseWidth - this.margin) + 'px';
-      style.height = (item.height * baseHeight - this.margin) + 'px';
-      if (item.querySelector('ftui-grid')) {
+    this.tiles.forEach(tile => {
+      const style = tile.style;
+      style.width = (tile.width * baseWidth - this.margin) + 'px';
+      style.height = (tile.height * baseHeight - this.margin) + 'px';
+      tile.setAttribute('title', `row: ${tile.row} | col: ${tile.col}`);
+      if (tile.querySelector('ftui-grid')) {
         style.backgroundColor = 'transparent';
-        style.left = ((item.col - 1) * baseWidth) + 'px';
-        style.top = ((item.row - 1) * baseHeight) + 'px';
+        style.left = ((tile.col - 1) * baseWidth) + 'px';
+        style.top = ((tile.row - 1) * baseHeight) + 'px';
       } else {
-        style.left = ((item.col - 1) * baseWidth + this.margin) + 'px';
-        style.top = ((item.row - 1) * baseHeight + this.margin) + 'px';
+        style.left = ((tile.col - 1) * baseWidth + this.margin) + 'px';
+        style.top = ((tile.row - 1) * baseHeight + this.margin) + 'px';
       }
     });
   }

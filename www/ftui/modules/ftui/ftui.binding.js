@@ -19,7 +19,7 @@ const scale = (minIn, maxIn, minOut, maxOut) => input => ftuiHelper.scale(input,
 const ago = () => input => ftuiHelper.dateAgo(input);
 const till = () => input => ftuiHelper.dateTill(input);
 const timeFormat = (format, inputMode = 'ms', formatMode = 'lower') => input => ftuiHelper.timeFormat(input, format, inputMode, formatMode);
-const minusBlue = () => input => Number(input) < 0 ? 'blue' : null;
+const minusBlue = (value = 0) => input => Number(input) < value ? 'blue' : null;
 const contains = value => input => String(input).indexOf(value) < 0 ? true : false;
 
 const pipe = (f1, ...fns) => (...args) => {
@@ -35,7 +35,8 @@ export class FtuiBinding {
       outputAttributes: new Set(),
       observer: null,
       isChanging: {},
-      sentValue: {}
+      sentValue: {},
+      sentDate: {}
     }
 
     this.element = element;
@@ -58,11 +59,14 @@ export class FtuiBinding {
           if (mutation.type == 'attributes') {
             const attributeName = mutation.attributeName;
             const attributeValue = mutation.target[attributeName] || mutation.target.getAttribute(attributeName);
-            if (!this.private.isChanging[attributeName]) {
+            const isTooOld = this.private.sentDate[attributeName] < Date.now() - 1000;
+            if (!this.private.isChanging[attributeName] || isTooOld) {
+              // send to FHEM when targets are defined
               this.handleAttributeChanged(attributeName, attributeValue);
             }
             if (this.private.sentValue[attributeName] === attributeValue
-              || ftuiHelper.isUndefined(this.private.sentValue[attributeName])) {
+              || ftuiHelper.isUndefined(this.private.sentValue[attributeName])
+              || isTooOld) {
               this.private.isChanging[attributeName] = false;
               this.private.sentValue[attributeName] = null;
             }
@@ -109,6 +113,7 @@ export class FtuiBinding {
  * and sends it to FHEM
  */
   handleAttributeChanged(attributeName, attributeValue) {
+
     const attrMap = this.config.output.attributes[attributeName];
     const targetReadings = attrMap && attrMap.readings || [];
     Object.entries(targetReadings).forEach(([readingId, options]) => {
@@ -121,6 +126,7 @@ export class FtuiBinding {
 
       // update marker to avoid infinity loops
       this.private.sentValue[attributeName] = value;
+      this.private.sentDate[attributeName] = Date.now();
 
       // update storage
       const now = ftuiHelper.dateFormat(new Date(), 'YYYY-MM-DD hh:mm:ss');
@@ -289,7 +295,7 @@ export class FtuiBinding {
   }
 
   evalInContext(command = '', $event) {
-    command = command.replace('sendFhem','this.binding.sendFhem');
+    command = command.replace('sendFhem', 'this.binding.sendFhem');
     eval(command);
   }
 
