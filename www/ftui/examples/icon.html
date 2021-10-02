@@ -22,8 +22,8 @@
 
   <meta name='viewport' content='width=device-width'>
 
-    <!-- when serving the page with other web servers, e.g. lighttpd -->
-<!--     <meta name="fhemweb_url" content="http://fhem.local:8083/fhem/"> -->
+  <!-- when serving the page with other web servers, e.g. lighttpd -->
+  <!--     <meta name="fhemweb_url" content="http://fhem.local:8083/fhem/"> -->
   <title>FTUI Example Icon</title>
 </head>
 
@@ -53,7 +53,7 @@
 
     </ftui-grid-tile>
 
-    <ftui-grid-tile row="1" col="4" height="6" width="3">
+    <ftui-grid-tile row="1" col="4" height="3" width="3">
       <header>MULTIPLE</header>
 
       <ftui-label [text]="dummy1"></ftui-label>
@@ -68,7 +68,7 @@
       </ftui-icon>
 
       <ftui-icon name="exclamation-triangle"
-            [hidden]="ftuitest | map('on:false, off:true')">
+                 [hidden]="ftuitest | map('on:false, off:true')">
       </ftui-icon>
     </ftui-grid-tile>
 
@@ -126,6 +126,22 @@
         <ftui-icon name="trash" color="blue" [class-name]="dummy2 | map('1:hop,2:')"></ftui-icon>
         <ftui-icon name="trash" color="black" [class-list]="dummy2 | map('1:hop size-6,2:')"></ftui-icon>
         <ftui-icon name="trash" color="gray"></ftui-icon>
+      </ftui-row>
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="4" col="4" height="4" width="3">
+      <header>TABLE</header>
+      <ftui-row>
+        <ftui-column width="40%">
+          <ftui-icon name="smile-o" color="green" size="-3"></ftui-icon>
+          <ftui-icon name="meh-o" color="yellow" size="-3"></ftui-icon>
+          <ftui-icon name="frown-o" color="red" size="-3"></ftui-icon>
+        </ftui-column>
+        <ftui-column>
+          <ftui-label> name="smile-o" size="-3"</ftui-label>
+          <ftui-label> name="meh-o" size="-3"</ftui-label>
+          <ftui-label> name="frown-o" size="-3"</ftui-label>
+        </ftui-column>
       </ftui-row>
     </ftui-grid-tile>
 

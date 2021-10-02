@@ -1,7 +1,7 @@
 /*
 * Icon component for FTUI version 3
 *
-* Copyright (c) 2019-2020 Mario Stephan <mstephan@shared-files.de>
+* Copyright (c) 2019-2021 Mario Stephan <mstephan@shared-files.de>
 * Under MIT License (http://www.opensource.org/licenses/mit-license.php)
 *
 * https://github.com/knowthelist/ftui
@@ -9,7 +9,7 @@
 
 import { FtuiElement } from '../element.component.js';
 
-const sizes = [0.75, 0.875, 1, 1.25, 1.5, 1.75, 2, 2.5, 3, 3.5, 4, 6, 8];
+const sizes = [0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1, 1.25, 1.5, 1.75, 2, 2.5, 3, 3.5, 4, 6, 8];
 
 export class FtuiIcon extends FtuiElement {
 
@@ -30,7 +30,7 @@ export class FtuiIcon extends FtuiElement {
     return {
       type: 'svg',
       path: 'icons',
-      size: -1,
+      size: -99,
       name: '',
       color: '',
       rgb: '',
@@ -50,8 +50,8 @@ export class FtuiIcon extends FtuiElement {
         this.elementIcon.style.color = `#${newValue.replace('#', '')}`;
         break;
       case 'size':
-        if (this.size > -1) {
-          this.style.fontSize = sizes[this.size] + 'rem';
+        if (this.size > -7 && this.size < 13) {
+          this.style.fontSize = sizes[this.size + 4] + 'rem';
         }
         break;
     }

@@ -282,11 +282,16 @@ export class FtuiBinding {
     if (filter !== '') {
       try {
         const pipeNotInQuotes = /\|(?=([^']*'[^']*')*[^']*$)/g;
-        filter = filter.replace(pipeNotInQuotes, ',').replace(/`/g, '"').replace(/´/g, '"');
+        filter = filter
+          .replace(pipeNotInQuotes, ',')
+          .replace(/`/g, '"')
+          .replace(/´/g, '"')
+          .replace(/\n/g, '');
         const fn = eval('pipe(' + filter + ')');
         return fn(text);
       } catch (e) {
         this.element.classList.add('has-error');
+        this.element.setAttribute('title', e.toString());
         ftuiHelper.error(e.toString());
       }
     } else {
