@@ -10,7 +10,6 @@
 */
 
 import { FtuiElement } from '../element.component.js';
-import { isNumeric, capitalize } from '../../modules/ftui/ftui.helper.js';
 
 export class FtuiViewSheet extends FtuiElement {
 
@@ -35,7 +34,6 @@ export class FtuiViewSheet extends FtuiElement {
       height: '10em',
       width: '100%',
       color: 'transparent',
-      margin: '2em',
       shape: 'round',
     };
   }
@@ -45,7 +43,6 @@ export class FtuiViewSheet extends FtuiElement {
   }
 
   onAttributeChanged(name, value) {
-    console.log(this.element, name , value)
     switch (name) {
       case 'width':
         this.element.style.width = value;
@@ -53,10 +50,6 @@ export class FtuiViewSheet extends FtuiElement {
       case 'height':
         this.element.style.height = value;
         break;
-      case 'margin': {
-        this.element.style[`margin${capitalize(this.alignItems)}`] = isNumeric(value) ? value + 'em' : value;
-        break;
-      }
     }
   }
 

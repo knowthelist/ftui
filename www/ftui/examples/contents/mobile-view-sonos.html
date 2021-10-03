@@ -1,0 +1,63 @@
+<ftui-view-toolbar>
+  <ftui-nav-link slot="start"></ftui-nav-link>
+  Sonos {{Name}}
+</ftui-view-toolbar>
+
+<ftui-view-item>
+  Volume
+  <ftui-slider [(value)]="Sonos_{{Name}}:Volume" max="60" slot="end"></ftui-slider>
+</ftui-view-item>
+
+<ftui-view-item>Crossfade
+  <ftui-switch states="0,1"
+               [(value)]="Sonos_{{Name}}:CrossfadeMode"
+               slot="end"></ftui-switch>
+</ftui-view-item>
+
+
+<ftui-view-sheet shape="round" >
+
+  <ftui-image [src]="Sonos_{{Name}}:currentAlbumArtURL" width="8em"></ftui-image>
+
+  <ftui-column width="60%">
+    <ftui-button fill="outline" shape="circle"
+                 [value]="Sonos_{{Name}}:transportState | map('PLAYING: play, PAUSED_PLAYBACK|STOPPED: pause')"
+                 (value)="Sonos_{{Name}}" states="play, pause">
+      <ftui-icon [name]="Sonos_{{Name}}:transportState  | map('PLAYING: stop, PAUSED_PLAYBACK|STOPPED: play')">
+      </ftui-icon>
+    </ftui-button>
+
+    <ftui-row height="40%">
+      <ftui-label [text]="Sonos_{{Name}}:infoSummarize1"></ftui-label>
+    </ftui-row>
+
+  </ftui-column>
+</ftui-view-sheet>
+
+<ftui-view-section>
+  <ftui-label slot="header">Groups</ftui-label>
+  <ftui-view-item>Bad
+    <ftui-checkbox states="false, true"
+                   (value)="map('false:RemoveMember, true:AddMember') | Sonos_{{Name}} $value Sonos_Bad"
+                   [value]="Sonos_{{Name}}:AvailablePlayer | contains('Sonos_Bad')"
+                   slot="end"></ftui-checkbox>
+  </ftui-view-item>
+  <ftui-view-item>Kinderzimmer
+    <ftui-checkbox states="false, true"
+                   (value)="map('false:RemoveMember, true:AddMember') | Sonos_{{Name}} $value {{Name}}"
+                   [value]="Sonos_{{Name}}:AvailablePlayer | contains('Sonos_{{Name}}')"
+                   slot="end"></ftui-checkbox>
+  </ftui-view-item>
+  <ftui-view-item>Terasse
+    <ftui-checkbox states="false, true"
+                   (value)="map('false:RemoveMember, true:AddMember') | Sonos_{{Name}} $value Sonos_Terasse"
+                   [value]="Sonos_{{Name}}:AvailablePlayer | contains('Sonos_Terasse')"
+                   slot="end"></ftui-checkbox>
+  </ftui-view-item>
+  <ftui-view-item>Wohnzimmer
+    <ftui-checkbox states="false, true"
+                   (value)="map('false:RemoveMember, true:AddMember') | Sonos_{{Name}} $value Sonos_Wohnzimmer"
+                   [value]="Sonos_{{Name}}:AvailablePlayer | contains('Sonos_Wohnzimmer')"
+                   slot="end"></ftui-checkbox>
+  </ftui-view-item>
+</ftui-view-section>

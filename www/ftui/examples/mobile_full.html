@@ -40,7 +40,7 @@
       <ftui-view-section>
         <ftui-label slot="header">Status</ftui-label>
 
-        <ftui-view-item target="viewWindos">
+        <ftui-view-item target="viewWindows">
           <ftui-icon name="plane" color="green" slot="start" invert></ftui-icon>
           Item 1
         </ftui-view-item>
@@ -67,24 +67,24 @@
       <ftui-view-section>
         <ftui-label slot="header">Sonos</ftui-label>
 
-        <ftui-view-item target="viewSonos">
+        <ftui-view-item target="viewSonosWZ">
           <ftui-icon name="volume-off" color="green" slot="start"></ftui-icon>
           Wohnzimmer
         </ftui-view-item>
 
-        <ftui-view-item target="details-2">
-          <ftui-icon name="shopping-cart" color="yellow" slot="start"></ftui-icon>
-          Item 2
+        <ftui-view-item target="viewSonosKind">
+          <ftui-icon name="volume-off" color="green" slot="start"></ftui-icon>
+          Kinderzimmer
         </ftui-view-item>
 
-        <ftui-view-item target="view-2">
-          <ftui-icon name="wrench" color="red" slot="start"></ftui-icon>
-          Item 3
+        <ftui-view-item target="viewSonosBad">
+          <ftui-icon name="volume-off" color="green" slot="start"></ftui-icon>
+          Bad
         </ftui-view-item>
 
-        <ftui-view-item target="view-3">
-          <ftui-icon name="phone" color="blue" slot="start"></ftui-icon>
-          Item 4
+        <ftui-view-item target="viewSonosTerasse">
+          <ftui-icon name="volume-off" color="green" slot="start"></ftui-icon>
+          Terasse
         </ftui-view-item>
 
       </ftui-view-section>
@@ -116,7 +116,7 @@
 
     </ftui-view>
 
-    <ftui-view id="viewSonos">
+    <ftui-view id="viewSonosWZ">
 
       <ftui-view-toolbar>
         <ftui-nav-link slot="start"></ftui-nav-link>
@@ -176,6 +176,18 @@
         </ftui-view-item>
       </ftui-view-section>
 
+    </ftui-view>
+
+    <ftui-view id="viewSonosKind">
+      <ftui-content file="examples/contents/mobile-view-sonos.html" name="Kinderzimmer"></ftui-content>
+    </ftui-view>
+
+    <ftui-view id="viewSonosTerasse">
+      <ftui-content file="examples/contents/mobile-view-sonos.html" name="Terasse"></ftui-content>
+    </ftui-view>
+
+    <ftui-view id="viewSonosBad">
+      <ftui-content file="examples/contents/mobile-view-sonos.html" name="Bad"></ftui-content>
     </ftui-view>
 
     <ftui-view id="details-1">

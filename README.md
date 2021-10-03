@@ -261,6 +261,7 @@ All components has following attributes
 - disabled
 - readonly
 - margin
+- padding
 
 <br></br>
 
@@ -425,6 +426,13 @@ Example for DbLog
     </ftui-column>
 </ftui-row>
 ```
+
+Alignment and margins can be changed by the attributes
+
+- <b>align-item</b> (top, bottom, left, right, center, around, stretch)
+- <b>margin</b>
+- <b>padding</b>
+
 <br></br>
 Examples
 ------

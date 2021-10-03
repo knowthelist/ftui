@@ -109,7 +109,7 @@ export class FtuiViewStage extends FtuiElement {
 
     if (Math.abs(diffX) > Math.abs(diffY)) {
       // sliding horizontally
-      if (this.initialX < 10 && diffX < -100) {
+      if (this.initialX < 20 && diffX < -100) {
         // swiped right
         this.goBack();
         this.initialX = null;
