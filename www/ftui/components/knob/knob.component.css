@@ -32,19 +32,23 @@
   fill: var(--knob-handle-color, var(--color-base));
 }
 
+.desired {
+  fill: var(--knob-desired-color, var(--light-color));
+}
+
 .scale {
   stroke: var(--knob-text-color, var(--text-color));
 }
 
 .value {
   font-size: 2.5em;
-  fill: var(--text-color);
+  fill: var(--knob-text-color, var(--text-color));
   font-weight: lighter;
 }
  
 .unit {
   font-size: 1em;
-  fill: var(--text-color);
+  fill: var(--knob-text-color, var(--text-color));
   font-weight: lighter;
 }
 
