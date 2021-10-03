@@ -35,8 +35,7 @@ export class FtuiBinding {
       outputAttributes: new Set(),
       observer: null,
       isChanging: {},
-      sentValue: {},
-      sentDate: {}
+      changingDate: {}
     }
 
     this.element = element;
@@ -59,16 +58,11 @@ export class FtuiBinding {
           if (mutation.type == 'attributes') {
             const attributeName = mutation.attributeName;
             const attributeValue = mutation.target[attributeName] || mutation.target.getAttribute(attributeName);
-            const isTooOld = this.private.sentDate[attributeName] < Date.now() - 1000;
+            const isTooOld = this.private.changingDate[attributeName] < Date.now() - 1000;
             if (!this.private.isChanging[attributeName] || isTooOld) {
               // send to FHEM when targets are defined
               this.handleAttributeChanged(attributeName, attributeValue);
-            }
-            if (this.private.sentValue[attributeName] === attributeValue
-              || ftuiHelper.isUndefined(this.private.sentValue[attributeName])
-              || isTooOld) {
               this.private.isChanging[attributeName] = false;
-              this.private.sentValue[attributeName] = null;
             }
           }
         });
@@ -94,8 +88,10 @@ export class FtuiBinding {
           if (ftuiHelper.isDefined(filteredValue)) {
             if (String(this.element[attribute]) !== String(filteredValue)) {
               ftuiHelper.log(1, `${this.element.id}  -  onReadingEvent: set this.${attribute}=${filteredValue}`);
-              // avoid endless loops
+              // update marker to avoid infinity loops
               this.private.isChanging[attribute] = true;
+              this.private.changingDate[attribute] = Date.now();
+
               // change element's property
               if (this.isThirdPartyElement) {
                 this.element.setAttribute(ftuiHelper.toKebabCase(attribute), filteredValue);
@@ -124,9 +120,7 @@ export class FtuiBinding {
       const [parameterId, deviceName, readingName] = ftuiHelper.parseReadingId(readingId);
       const cmdLine = [options.cmd, deviceName, readingName, value].join(' ');
 
-      // update marker to avoid infinity loops
-      this.private.sentValue[attributeName] = value;
-      this.private.sentDate[attributeName] = Date.now();
+
 
       // update storage
       const now = ftuiHelper.dateFormat(new Date(), 'YYYY-MM-DD hh:mm:ss');

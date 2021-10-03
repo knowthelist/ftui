@@ -1,16 +1,16 @@
-/* 
+/*
 * Slider lib module for FTUI version 3
 *
 * Copyright (c) 2020 Mario Stephan <mstephan@shared-files.de>
 * Under MIT License (http://www.opensource.org/licenses/mit-license.php)
-* 
+*
 * https://github.com/knowthelist/ftui
-* 
+*
 * adapted from https://github.com/Mobius1/Rangeable
 * Copyright (c) 2018 Karl Saunders (mobius1(at)gmx(dot)com)
 * Dual licensed under the MIT (http://www.opensource.org/licenses/mit-license.php)
 * and GPL (http://www.opensource.org/licenses/gpl-license.php) licenses.
-* 
+*
 * Version: 0.1.6
 *
 */
@@ -361,6 +361,7 @@ export class Rangeable {
    * @param {Object} e
    */
   setValueFromPosition(e) {
+
     const limits = this.getLimits();
     const step = parseFloat(this.input.step);
     const rect = this.rects;
@@ -445,6 +446,7 @@ export class Rangeable {
     } else {
       on(document, 'mousemove', this.events.move);
       on(document, 'mouseup', this.events.stop);
+      on(document, 'mouseout', this.events.stop);
     }
   }
 
@@ -482,6 +484,7 @@ export class Rangeable {
     } else {
       off(document, 'mousemove', this.events.move);
       off(document, 'mouseup', this.events.stop);
+      off(document, 'mouseout', this.events.stop);
     }
 
     if (this.startValue !== this.stopValue) {

@@ -17,7 +17,6 @@ export class FtuiViewSheet extends FtuiElement {
     super(FtuiViewSheet.properties);
 
     this.element = this.shadowRoot.querySelector('.content');
-    console.log(this.element)
   }
 
   template() {

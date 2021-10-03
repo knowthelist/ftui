@@ -38,7 +38,6 @@ export function getMatchingValue(map, searchKey) {
 
 export function getMatchingKey(map, searchKey) {
   if (this.isDefined(map)) {
-    //console.log(map,searchKey)
     const filteredKeys =
       this.getMatchingKeys(map, searchKey)
         .sort((a, b) => {
