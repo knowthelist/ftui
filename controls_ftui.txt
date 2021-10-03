@@ -18,8 +18,8 @@ UPD 2020-12-31_16:39:02 2955 www/ftui/components/colorpicker/colorpicker.compone
 UPD 2021-01-28_21:05:34 574 www/ftui/components/column/column.component.js
 UPD 2021-02-11_15:04:25 39 www/ftui/components/content/content.component.css
 UPD 2021-04-09_17:39:16 1436 www/ftui/components/content/content.component.js
-UPD 2021-04-09_21:23:18 3587 www/ftui/components/departure/departure.component.css
-UPD 2021-04-09_20:49:29 6537 www/ftui/components/departure/departure.component.js
+UPD 2021-10-03_12:43:52 4159 www/ftui/components/departure/departure.component.css
+UPD 2021-10-03_12:43:52 12377 www/ftui/components/departure/departure.component.js
 UPD 2021-02-01_19:44:34 496 www/ftui/components/dropdown/dropdown.component.css
 UPD 2021-04-13_20:30:58 2134 www/ftui/components/dropdown/dropdown.component.js
 UPD 2021-05-26_22:37:25 4554 www/ftui/components/element.component.js
@@ -30,8 +30,8 @@ UPD 2021-03-01_20:54:10 867 www/ftui/components/icon/icon.component.css
 UPD 2021-10-02_11:29:44 2195 www/ftui/components/icon/icon.component.js
 UPD 2021-02-03_14:43:36 2489 www/ftui/components/image/image.component.js
 UPD 2021-02-03_14:48:37 8329 www/ftui/components/image/image_not_available.js
-UPD 2021-02-08_22:03:32 880 www/ftui/components/knob/knob.component.css
-UPD 2021-10-01_13:06:30 12418 www/ftui/components/knob/knob.component.js
+UPD 2021-10-03_12:50:26 997 www/ftui/components/knob/knob.component.css
+UPD 2021-10-03_12:52:11 13082 www/ftui/components/knob/knob.component.js
 UPD 2021-05-05_00:26:47 2454 www/ftui/components/label/label.component.js
 UPD 2021-02-01_19:44:36 1816 www/ftui/components/main/main.component.js
 UPD 2021-04-21_00:05:17 983 www/ftui/components/medialist/medialist.component.css
@@ -68,7 +68,7 @@ UPD 2021-02-01_19:44:44 1257 www/ftui/components/view/view-toolbar.component.css
 UPD 2021-02-01_19:44:45 893 www/ftui/components/view/view-toolbar.component.js
 UPD 2021-02-01_19:44:45 1429 www/ftui/components/view/view.component.js
 UPD 2021-01-07_01:57:40 1223 www/ftui/components/weather/weather.component.js
-UPD 2021-02-12_17:57:36 2746 www/ftui/components/weather/weather.map.js
+UPD 2021-10-03_13:05:55 8032 www/ftui/components/weather/weather.map.js
 UPD 2021-02-01_19:44:45 1909 www/ftui/examples/badge.html
 UPD 2020-12-31_16:39:02 913 www/ftui/examples/button-nice.html
 UPD 2021-04-08_19:54:30 7404 www/ftui/examples/button.html
@@ -89,12 +89,12 @@ UPD 2021-02-09_23:33:23 998 www/ftui/examples/contents/content-weather-day.html
 UPD 2020-12-31_16:39:02 5293 www/ftui/examples/contents/content-weather.html
 UPD 2021-10-02_19:10:30 2485 www/ftui/examples/contents/mobile-view-sonos.html
 UPD 2021-02-01_19:44:46 189 www/ftui/examples/contents/mobile-view1.html
-UPD 2021-04-09_21:19:21 2698 www/ftui/examples/departure.html
+UPD 2021-10-03_12:43:52 2749 www/ftui/examples/departure.html
 UPD 2021-02-15_21:49:38 3847 www/ftui/examples/dropdown.html
 UPD 2021-02-07_16:15:57 3479 www/ftui/examples/grid.html
 UPD 2021-10-03_08:58:12 5146 www/ftui/examples/icon.html
 UPD 2021-02-01_19:44:47 2885 www/ftui/examples/image.html
-UPD 2021-09-27_22:17:42 5224 www/ftui/examples/knob.html
+UPD 2021-10-03_12:54:33 5039 www/ftui/examples/knob.html
 UPD 2021-04-13_22:33:51 8601 www/ftui/examples/label.html
 UPD 2021-04-22_21:06:10 2349 www/ftui/examples/medialist.html
 UPD 2021-02-01_19:44:48 2014 www/ftui/examples/menu.html
@@ -694,7 +694,7 @@ UPD 2021-02-01_19:44:50 5063 www/ftui/modules/circle-menu/circle-menu.min.js
 UPD 2021-09-30_01:04:15 13600 www/ftui/modules/ftui/fhem.service.js
 UPD 2021-04-10_12:20:27 7638 www/ftui/modules/ftui/ftui.app.js
 UPD 2021-10-03_12:25:46 11148 www/ftui/modules/ftui/ftui.binding.js
-UPD 2021-10-03_11:02:55 11890 www/ftui/modules/ftui/ftui.helper.js
+UPD 2021-10-03_12:33:00 11949 www/ftui/modules/ftui/ftui.helper.js
 UPD 2020-12-31_16:39:06 9247 www/ftui/modules/hocon/hocon.js
 UPD 2020-12-31_16:39:06 3192 www/ftui/modules/hocon/hocon.min.js
 UPD 2020-12-31_16:39:06 65427 www/ftui/modules/iro.js/iro.js
