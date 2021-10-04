@@ -21,6 +21,8 @@ const till = () => input => ftuiHelper.dateTill(input);
 const timeFormat = (format, inputMode = 'ms', formatMode = 'lower') => input => ftuiHelper.timeFormat(input, format, inputMode, formatMode);
 const minusBlue = (value = 0) => input => Number(input) < value ? 'blue' : null;
 const contains = value => input => String(input).indexOf(value) < 0 ? true : false;
+const is = value => input => String(input) === value ? true : false;
+const isNot = value => input => String(input) !== value ? true : false;
 
 const pipe = (f1, ...fns) => (...args) => {
   return fns.reduce((res, fn) => fn(res), f1.apply(null, args));
@@ -119,8 +121,6 @@ export class FtuiBinding {
       const value = String(options.value).replace(/\$value/g, filteredValue);
       const [parameterId, deviceName, readingName] = ftuiHelper.parseReadingId(readingId);
       const cmdLine = [options.cmd, deviceName, readingName, value].join(' ');
-
-
 
       // update storage
       const now = ftuiHelper.dateFormat(new Date(), 'YYYY-MM-DD hh:mm:ss');

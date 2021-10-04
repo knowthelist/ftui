@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!--
+    /* FHEM tablet ui - FTUI */
+    /**
+    * UI builder framework for FHEM
+    *
+    * Version: 3.0.0
+    *
+    * Copyright (c) 2015-2021 Mario Stephan <mstephan@shared-files.de>
+    * Under MIT License (http://www.opensource.org/licenses/mit-license.php)
+    * https://github.com/knowthelist/ftui
+    */
+    -->
+  <base href="../" />
+  <script src="ftui.js"></script>
+  <link href="ftui.css" rel="stylesheet">
+  <link href="themes/ftui-theme.css" rel="stylesheet">
+  <link href="favicon.ico" rel="icon" type="image/x-icon" />
+
+  <title>FTUI Example Tab</title>
+
+  <style>
+    body {
+      background-image: url("https://hdhintergrundbilder.net/image/natur/1151/gebirge-nachthimmel-sterne-milchstrase.jpg");
+      --tab-color: var(--dark-color);
+      --tab-active-color: var(--medium-color);
+      --tab-contrast-color: var(--light-color);
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <ftui-grid>
+
+    <ftui-grid-tile row="1" col="1" height="1" width="4" color="translucent">
+      <ftui-segment [(value)]="ftuitest">
+        <ftui-segment-button value="1">
+          <ftui-icon name="home1"></ftui-icon>
+        </ftui-segment-button>
+        <ftui-segment-button value="2">
+          <ftui-icon name="bed"></ftui-icon>
+        </ftui-segment-button>
+        <ftui-segment-button value="3">
+          <ftui-icon name="road"></ftui-icon>
+        </ftui-segment-button>
+        <ftui-segment-button value="4">
+          <ftui-icon name="plane"></ftui-icon>
+        </ftui-segment-button>
+      </ftui-segment>
+    </ftui-grid-tile>
+
+    <ftui-tab-view id="View1" [hidden]="ftuitest | isNot('1')">
+      <ftui-grid-tile row="2" col="1" height="5" width="10" color="translucent">
+        <ftui-icon name="home1" size="10"></ftui-icon>
+      </ftui-grid-tile>
+    </ftui-tab-view>
+
+    <ftui-tab-view id="View2" [hidden]="ftuitest | isNot('2')">
+      <ftui-grid-tile row="2" col="1" height="5" width="10" color="translucent">
+        <ftui-icon name="bed" size="10"></ftui-icon>
+      </ftui-grid-tile>
+    </ftui-tab-view>
+
+    <ftui-tab-view id="View3" [hidden]="ftuitest | isNot('3')">
+      <ftui-grid-tile row="2" col="1" height="5" width="10" color="translucent">
+        <ftui-icon name="road" size="10"></ftui-icon>
+      </ftui-grid-tile>
+    </ftui-tab-view>
+
+    <ftui-tab-view id="View4" [hidden]="ftuitest | isNot('4')">
+      <ftui-grid-tile row="2" col="1" height="5" width="10" color="translucent">
+        <ftui-icon name="plane" size="10"></ftui-icon>
+      </ftui-grid-tile>
+    </ftui-tab-view>
+  </ftui-grid>
+
+</body>
+
+</html>

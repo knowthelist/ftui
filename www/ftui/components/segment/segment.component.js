@@ -66,6 +66,7 @@ class FtuiSegment extends FtuiElement {
     const target = event.target.closest('ftui-segment-button');
     if (target) {
       this.value = target.value;
+      this.emitChangeEvent('value', this.value );
     }
   }
 

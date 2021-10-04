@@ -79,6 +79,8 @@ class FtuiApp {
     await this.initComponents(document).catch(error => {
       ftui.error('[ftuiApp] error: initComponents - ' + error);
     });
+    const event = new CustomEvent('ftuiPageinitialized');
+    document.dispatchEvent(event);
     window.performance.mark('end initPage');
     window.performance.measure('initPage', 'start initPage', 'end initPage');
     const dur = 'initPage done after ' + (new Date() - this.states.startTime) + 'ms';

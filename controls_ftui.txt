@@ -22,7 +22,7 @@ UPD 2021-10-03_12:43:52 4159 www/ftui/components/departure/departure.component.c
 UPD 2021-10-03_12:43:52 12377 www/ftui/components/departure/departure.component.js
 UPD 2021-02-01_19:44:34 496 www/ftui/components/dropdown/dropdown.component.css
 UPD 2021-04-13_20:30:58 2134 www/ftui/components/dropdown/dropdown.component.js
-UPD 2021-05-26_22:37:25 4554 www/ftui/components/element.component.js
+UPD 2021-10-04_19:21:17 4554 www/ftui/components/element.component.js
 UPD 2021-04-13_21:43:34 1576 www/ftui/components/grid/grid-tile.component.css
 UPD 2021-02-09_23:03:56 847 www/ftui/components/grid/grid-tile.component.js
 UPD 2021-05-26_22:39:03 3230 www/ftui/components/grid/grid.component.js
@@ -45,7 +45,7 @@ UPD 2021-02-01_19:44:37 3362 www/ftui/components/popup/popup.component.js
 UPD 2021-02-01_19:44:37 927 www/ftui/components/row/row.component.js
 UPD 2021-04-10_12:07:56 1479 www/ftui/components/segment/segment-button.component.js
 UPD 2021-02-05_18:44:32 1066 www/ftui/components/segment/segment.component.css
-UPD 2021-02-07_15:08:50 2735 www/ftui/components/segment/segment.component.js
+UPD 2021-10-04_19:36:40 2785 www/ftui/components/segment/segment.component.js
 UPD 2021-02-01_19:44:37 3379 www/ftui/components/slider/slider.component.css
 UPD 2021-10-03_11:02:55 3343 www/ftui/components/slider/slider.component.js
 UPD 2020-12-31_16:39:02 1590 www/ftui/components/speak/speak.component.js
@@ -692,8 +692,8 @@ UPD 2020-12-31_16:39:06 49580 www/ftui/modules/chart.js/chartjs-adapter-date-fns
 UPD 2021-02-04_22:43:17 8388 www/ftui/modules/circle-menu/circle-menu.js
 UPD 2021-02-01_19:44:50 5063 www/ftui/modules/circle-menu/circle-menu.min.js
 UPD 2021-10-03_20:09:09 13600 www/ftui/modules/ftui/fhem.service.js
-UPD 2021-04-10_12:20:27 7638 www/ftui/modules/ftui/ftui.app.js
-UPD 2021-10-04_18:31:21 11149 www/ftui/modules/ftui/ftui.binding.js
+UPD 2021-10-04_19:52:18 7731 www/ftui/modules/ftui/ftui.app.js
+UPD 2021-10-04_19:03:22 11288 www/ftui/modules/ftui/ftui.binding.js
 UPD 2021-10-03_12:33:00 11949 www/ftui/modules/ftui/ftui.helper.js
 UPD 2020-12-31_16:39:06 9247 www/ftui/modules/hocon/hocon.js
 UPD 2020-12-31_16:39:06 3192 www/ftui/modules/hocon/hocon.min.js
