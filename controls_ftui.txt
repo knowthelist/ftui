@@ -2,7 +2,7 @@ UPD 2020-12-31_16:39:02 857 www/ftui/components/badge/badge.component.css
 UPD 2020-12-31_16:39:02 578 www/ftui/components/badge/badge.component.js
 UPD 2021-01-02_23:47:00 1186 www/ftui/components/button/button-nice.component.js
 UPD 2021-04-29_00:13:11 2189 www/ftui/components/button/button.component.css
-UPD 2021-02-12_18:24:07 2189 www/ftui/components/button/button.component.js
+UPD 2021-10-03_22:12:12 2189 www/ftui/components/button/button.component.js
 UPD 2021-04-21_22:06:20 1947 www/ftui/components/cell/cell.component.js
 UPD 2020-12-31_16:39:02 722 www/ftui/components/chart/chart-controls.component.css
 UPD 2020-12-31_16:39:02 3467 www/ftui/components/chart/chart-controls.component.js
@@ -691,9 +691,9 @@ UPD 2020-12-31_16:39:06 192031 www/ftui/modules/chart.js/chart.min.js
 UPD 2020-12-31_16:39:06 49580 www/ftui/modules/chart.js/chartjs-adapter-date-fns.bundle.min.js
 UPD 2021-02-04_22:43:17 8388 www/ftui/modules/circle-menu/circle-menu.js
 UPD 2021-02-01_19:44:50 5063 www/ftui/modules/circle-menu/circle-menu.min.js
-UPD 2021-09-30_01:04:15 13600 www/ftui/modules/ftui/fhem.service.js
+UPD 2021-10-03_20:09:09 13600 www/ftui/modules/ftui/fhem.service.js
 UPD 2021-04-10_12:20:27 7638 www/ftui/modules/ftui/ftui.app.js
-UPD 2021-10-03_12:25:46 11148 www/ftui/modules/ftui/ftui.binding.js
+UPD 2021-10-04_18:31:21 11149 www/ftui/modules/ftui/ftui.binding.js
 UPD 2021-10-03_12:33:00 11949 www/ftui/modules/ftui/ftui.helper.js
 UPD 2020-12-31_16:39:06 9247 www/ftui/modules/hocon/hocon.js
 UPD 2020-12-31_16:39:06 3192 www/ftui/modules/hocon/hocon.min.js

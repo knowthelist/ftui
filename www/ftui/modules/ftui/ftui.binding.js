@@ -35,7 +35,8 @@ export class FtuiBinding {
       outputAttributes: new Set(),
       observer: null,
       isChanging: {},
-      changingDate: {}
+      changingDate: {},
+      sentValue: {}
     }
 
     this.element = element;
@@ -58,11 +59,11 @@ export class FtuiBinding {
           if (mutation.type == 'attributes') {
             const attributeName = mutation.attributeName;
             const attributeValue = mutation.target[attributeName] || mutation.target.getAttribute(attributeName);
-            const isTooOld = this.private.changingDate[attributeName] < Date.now() - 1000;
+            const isTooOld = this.private.changingDate[attributeName] < Date.now() - 200;
             if (!this.private.isChanging[attributeName] || isTooOld) {
               // send to FHEM when targets are defined
-              this.handleAttributeChanged(attributeName, attributeValue);
               this.private.isChanging[attributeName] = false;
+              this.handleAttributeChanged(attributeName, attributeValue);
             }
           }
         });
@@ -82,16 +83,15 @@ export class FtuiBinding {
     const readingAttributeMap = this.config.input.readings[readingData.id].attributes;
     Object.entries(readingAttributeMap)
       .forEach(([attribute, options]) => {
+        // update marker to avoid infinity loops
+        this.private.isChanging[attribute] = true;
+        this.private.changingDate[attribute] = Date.now();
         const value = readingData[options.property];
         if (ftuiHelper.isDefined(value)) {
           const filteredValue = this.filter(value, options.filter);
           if (ftuiHelper.isDefined(filteredValue)) {
             if (String(this.element[attribute]) !== String(filteredValue)) {
               ftuiHelper.log(1, `${this.element.id}  -  onReadingEvent: set this.${attribute}=${filteredValue}`);
-              // update marker to avoid infinity loops
-              this.private.isChanging[attribute] = true;
-              this.private.changingDate[attribute] = Date.now();
-
               // change element's property
               if (this.isThirdPartyElement) {
                 this.element.setAttribute(ftuiHelper.toKebabCase(attribute), filteredValue);
