@@ -49,7 +49,7 @@
       <header>ALL</header>
       <ftui-knob has-scale has-arc has-scale-text has-value-text has-needle
                  [(value)]="AvReceiver-volume" max="50"
-                 [color]="AvReceiver-volume | map('0: success, 10: warning, 30: danger')">
+                 [color]="AvReceiver-volume | step('0: success, 10: warning, 30: danger')">
       </ftui-knob>
     </ftui-grid-tile>
 

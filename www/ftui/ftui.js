@@ -14,21 +14,21 @@ document.addEventListener('readystatechange', () => {
 // initially loading the page
 // or navigating to the page from another page in the same window or tab
 window.addEventListener('pageshow', () => {
-  if (typeof ftuiApp === 'undefined') {
+  if (typeof window.ftuiApp === 'undefined') {
     // load FTUI
     main();
   } else {
-    ftuiApp.setOnline();
+    window.ftuiApp.setOnline();
   }
 });
 
 window.addEventListener('beforeunload', () => {
-  ftuiApp.log(5, 'beforeunload');
-  ftuiApp.setOffline();
+  window.ftuiApp.log(5, 'beforeunload');
+  window.ftuiApp.setOffline();
 });
 
-window.addEventListener('online', () => ftuiApp.checkOnlineStatus());
-window.addEventListener('offline', () => ftuiApp.checkOnlineStatus());
+window.addEventListener('online', () => window.ftuiApp.checkOnlineStatus());
+window.addEventListener('offline', () => window.ftuiApp.checkOnlineStatus());
 
 // after the page became visible, check server connection
 document.addEventListener('visibilitychange', () => {
@@ -36,13 +36,13 @@ document.addEventListener('visibilitychange', () => {
     // page is hidden
   } else {
     // page is visible
-    ftuiApp.log(1, 'Page became visible again -> start healthCheck in 3 secondes ');
-    ftuiApp.checkConnection();
+    window.ftuiApp.log(1, 'Page became visible again -> start healthCheck in 3 secondes ');
+    window.ftuiApp.checkConnection();
   }
 });
 
 window.onerror = function (msg, url, lineNo, columnNo, error) {
   const file = url.split('/').pop();
-  ftuiApp.toast([file + ':' + lineNo, error].join('<br/>'), 'error');
+  window.ftuiApp.toast([file + ':' + lineNo, error].join('<br/>'), 'error');
   return false;
 };

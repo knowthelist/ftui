@@ -1,13 +1,14 @@
 /*
 * Speak component for FTUI version 3
 *
-* Copyright (c) 2020 Mario Stephan <mstephan@shared-files.de>
+* Copyright (c) 2020-2021 Mario Stephan <mstephan@shared-files.de>
 * Under MIT License (http://www.opensource.org/licenses/mit-license.php)
 *
 * https://github.com/knowthelist/ftui
 */
 
 import { FtuiElement } from '../element.component.js';
+import { fhemService } from '../../modules/ftui/fhem.service.js';
 import * as ftuiHelper from '../../modules/ftui/ftui.helper.js';
 
 
@@ -16,6 +17,7 @@ export class FtuiSpeak extends FtuiElement {
     super(Object.assign(FtuiSpeak.properties, properties));
 
     this.findVoice();
+    this.readingName = this.binding.getReadingsOfAttribute('text')[0];
   }
 
   static get properties() {
@@ -37,12 +39,21 @@ export class FtuiSpeak extends FtuiElement {
       case 'lang':
         this.findVoice();
         break;
-      case 'text':
-        if (this.isInitialized && !this.disabled) {
+      case 'text': {
+        const readingData = fhemService.getReadingItem(this.readingName).data;
+        const isNewDate = readingData.time !== this.lastTextDate;
+        if (this.isInitialized && !this.disabled && this.text !== '' && isNewDate) {
+          this.lastTextDate = readingData.time;
           this.speakText(this.text);
         }
-        this.isInitialized = true;
+        if (!this.isInitialized) {
+          this.isInitialized = true;
+          // reset attribute to allow speak the same text again
+          this.text = '';
+        }
         break;
+      }
+
     }
   }
 
@@ -55,6 +66,8 @@ export class FtuiSpeak extends FtuiElement {
       utter.voice = this.synthVoice;
     }
     window.speechSynthesis.speak(utter);
+    // reset attribute to allow speak the same text again
+    this.text = '';
   }
 
   findVoice() {

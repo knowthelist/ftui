@@ -84,7 +84,7 @@ Just add some of the FTUI web components to your HTML code
 ```html
 <ftui-icon 
     [name]="dummy1 | map('on: lightbulb-on-outline, off: lightbulb-outline')"
-    [color]="ftuitest | map('0: success, 50: warning, 80: danger')">
+    [color]="ftuitest | step('0: success, 50: warning, 80: danger')">
 </ftui-icon>
 ```
 
@@ -168,6 +168,7 @@ Binding values can be pushed through piped functions to change the value. Follow
 - multiply(number)
 - replace(find, replace)
 - map('in1:out1,in2:out2,...')
+- step('1:ok,6:warning,10:alert')
 - scale(minIn, maxIn, minOut, maxOut)
 
 Example for input (FHEM reading -> function() -> HTML attribute): 

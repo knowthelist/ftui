@@ -185,7 +185,7 @@
       </ftui-label>
       <ftui-label
                   [text]="AussenTemp:temperature:time | toDate() | ago() | timeFormat('mm:ss')"
-                  [color]="AussenTemp:temperature:time | toDate() | ago() | timeFormat('%MMMMMM') | map('0: blue, 4: warning, 5: alert')"
+                  [color]="AussenTemp:temperature:time | toDate() | ago() | timeFormat('%MMMMMM') | step('0: blue, 4: warning, 5: alert')"
                   unit="&hairsp;min"
                   interval="10">
       </ftui-label>

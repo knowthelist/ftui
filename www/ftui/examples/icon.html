@@ -59,12 +59,12 @@
       <ftui-label [text]="dummy1"></ftui-label>
       <!-- binding short-->
       <ftui-icon [name]="dummy1 | map('on: lightbulb-on, off: lightbulb')"
-                 [color]="ftuitest | map('0: success, 50: warning, 80: danger')">
+                 [color]="ftuitest | step('0: success, 50: warning, 80: danger')">
       </ftui-icon>
 
       <!-- binding long-->
       <ftui-icon bind-name="dummy1 | map('on: lightbulb-on, off: lightbulb')"
-                 bind:color="ftuitest | map('0: success, 50: warning, 80: danger')">
+                 bind:color="ftuitest | step('0: success, 50: warning, 80: danger')">
       </ftui-icon>
 
       <ftui-icon name="exclamation-triangle"
@@ -78,7 +78,7 @@
       <ftui-column class="size-3">
         <ftui-icon name="battery-0" color="light"
                    [name]="ftuitest | map('`.*`:battery-0, 25: battery-1, 50:battery-2, 75: battery-3, 100: battery')"
-                   [color]="ftuitest | map('0:danger, 50:warning, 75: success')">
+                   [color]="ftuitest | step('0:danger, 50:warning, 75: success')">
         </ftui-icon>
         <ftui-label [text]="ftuitest"></ftui-label>
 

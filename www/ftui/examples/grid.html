@@ -41,7 +41,7 @@
     </ftui-grid-tile>
 
     <ftui-grid-tile row="3" col="1" height="1" width="1"
-                    [color]="ftuitest | map('0=dark,70=medium,100=light')">
+                    [color]="ftuitest | step('0=dark,70=medium,100=light')">
       <header>TILE3</header>
       <ftui-row align-items="bottom around" margin="1" >
         <div>1</div>
@@ -72,8 +72,8 @@
           <ftui-icon [name]="ftuitest:battery2  | map('low:battery-1,ok:battery')"
                      [color]="ftuitest:battery2 | map('low:danger,ok:green')"></ftui-icon>
 
-          <ftui-icon [name]="ftuitest:batteryLevel | map('1.8:battery-0, 2.0:battery-1, 2.3:battery-2, 2.5:battery-3, 2.8:battery')"
-                     [color]="ftuitest:batteryLevel | map('1.8:danger, 2.0:warning, 2.3:success, 2.5:secondary, 2.8:green')">
+          <ftui-icon [name]="ftuitest:batteryLevel | step('1.8:battery-0, 2.0:battery-1, 2.3:battery-2, 2.5:battery-3, 2.8:battery')"
+                     [color]="ftuitest:batteryLevel | step('1.8:danger, 2.0:warning, 2.3:success, 2.5:secondary, 2.8:green')">
           </ftui-icon>
         </ftui-column>
       </ftui-row>

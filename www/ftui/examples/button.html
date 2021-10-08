@@ -281,6 +281,17 @@
 
     </ftui-grid-tile>
 
+    <ftui-grid-tile row="4" col="1" height="1" width="1">
+      <header>Temp-Stepper</header>
+      <ftui-button [value]="dummyThermo" (value)="add(0.5) | dummyThermo" states="$value" debounce="400" fill="">
+        <ftui-icon size="-2" name="plus"></ftui-icon>
+      </ftui-button>
+      <ftui-label [text]="dummyThermo | fix(1)" unit=" °C"></ftui-label>
+      <ftui-button [value]="dummyThermo" (value)="add(-0.5) | dummyThermo" states="$value" debounce="400" fill="">
+        <ftui-icon size="-2" name="minus"></ftui-icon>
+      </ftui-button>
+    </ftui-grid-tile>
+
   </ftui-grid>
 </body>
 

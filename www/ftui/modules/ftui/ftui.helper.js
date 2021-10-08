@@ -26,8 +26,11 @@ export function isEqual(pattern, value) {
 }
 
 export function isEqualOrGreater(pattern, value) {
+  return parseFloat(value) >= parseFloat(pattern);
+}
+
+export function isMatching(pattern, value) {
   return value === pattern ||
-    parseFloat(value) >= parseFloat(pattern) ||
     String(value).match('^' + pattern + '$');
 }
 
@@ -58,12 +61,43 @@ export function getMatchingKey(map, searchKey) {
 export function getMatchingKeys(map, searchKey) {
   if (this.isDefined(map)) {
     return Object.keys(map)
+      .filter(key => this.isMatching(key, searchKey))
+      .map(key => key);
+  } else {
+    return null;
+  }
+}
+
+export function getStepValue(steps, input) {
+  const key = this.getStepKey(steps, input);
+  return this.isDefined(steps[key]) ? steps[key] : input;
+}
+
+export function getStepKey(map, searchKey) {
+  if (this.isDefined(map)) {
+    const filteredKeys =
+      this.getFilteredStepKeys(map, searchKey)
+        .sort((a, b) => {
+          return a - b;
+        });
+    // take last item of matching keys
+    return filteredKeys.slice(-1)[0];
+  } else {
+    return null;
+  }
+}
+
+
+export function getFilteredStepKeys(map, searchKey) {
+  if (this.isDefined(map)) {
+    return Object.keys(map)
       .filter(key => this.isEqualOrGreater(key, searchKey))
       .map(key => key);
   } else {
     return null;
   }
 }
+
 
 // DOM functions
 
@@ -179,6 +213,8 @@ export function dateFromString(str) {
 }
 
 export function dateFormat(date, format, lang = 'de') {
+  let ret = String(format);
+  if (!date) {return ret;}
   const weekday_de = ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'];
   const weekday = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
   const months_de = ['Januar', 'Februar', '&#077;&auml;rz', 'April', '&#077;ai', 'Juni', 'Juli', 'Augu&#115;t', 'Septe&#109;ber', 'Oktober', 'Nove&#109;ber', '&#068;eze&#109;ber'];
@@ -192,11 +228,13 @@ export function dateFormat(date, format, lang = 'de') {
   const hh = date.getHours().toString();
   const mm = date.getMinutes().toString();
   const ss = date.getSeconds().toString();
+  const zzz = date.getMilliseconds().toString();
+  const zz = zzz.substr(0, 2);
+  const z = zzz.substr(0, 1);
   const d = date.getDay();
   const eeee = (lang === 'de') ? weekday_de[d] : weekday[d];
   const eee = eeee.substr(0, 3);
   const ee = eeee.substr(0, 2);
-  let ret = String(format);
   ret = ret.replace('DD', (dd > 9) ? dd : '0' + dd);
   ret = ret.replace('D', dd);
   ret = ret.replace('MMMM', MMMM);
@@ -210,6 +248,9 @@ export function dateFormat(date, format, lang = 'de') {
   ret = ret.replace('h', hh);
   ret = ret.replace('m', mm);
   ret = ret.replace('s', ss);
+  ret = ret.replace('zzz', zzz);
+  ret = ret.replace('zz', zz);
+  ret = ret.replace('z', z);
   ret = ret.replace('eeee', eeee);
   ret = ret.replace('eee', eee);
   ret = ret.replace('ee', ee);

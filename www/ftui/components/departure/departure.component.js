@@ -1,5 +1,5 @@
 /*
-* Departure component for FTUI version 3 
+* Departure component for FTUI version 3
 *
 * Developed and Designed by mr_petz & OdfFhem
 *
@@ -12,7 +12,7 @@ import { FtuiElement } from '../element.component.js';
 // eslint-disable-next-line no-unused-vars
 import { FtuiIcon } from '../icon/icon.component.js';
 import { fhemService } from '../../modules/ftui/fhem.service.js';
-import { dateFormat,dateFromString,getReadingID } from '../../modules/ftui/ftui.helper.js';
+import { dateFormat, dateFromString, getReadingID } from '../../modules/ftui/ftui.helper.js';
 
 export class FtuiDeparture extends FtuiElement {
 
@@ -29,7 +29,7 @@ export class FtuiDeparture extends FtuiElement {
     this.elementId = this.shadowRoot.querySelector('td[name="id"]');
     this.elementDest = this.shadowRoot.querySelector('td[name="dest"]');
     this.elementTime = this.shadowRoot.querySelector('td[name="time"]');
-    this.elementClock = this.shadowRoot.querySelector('th[name="clock"]');  
+    this.elementClock = this.shadowRoot.querySelector('th[name="clock"]');
     this.elementMinutes = this.shadowRoot.querySelector('th[name="min"]');
     this.elementRefresh = this.shadowRoot.querySelector('.refresh');
     this.elementRefresh.addEventListener('click', event => this.manGetRefresh(event));
@@ -38,10 +38,10 @@ export class FtuiDeparture extends FtuiElement {
 
     if (!(this.hasAttribute('switch'))) { this.elementSwitch.style.display = 'none'; }
 
-    if (this.hasAttribute('depmin')) { 
+    if (this.hasAttribute('depmin')) {
       this.depMode = 'depmin';
     }
-    if (this.hasAttribute('deptime')) { 
+    if (this.hasAttribute('deptime')) {
       this.depMode = 'deptime';
     }
     this.arrangeWindow();
@@ -115,7 +115,7 @@ export class FtuiDeparture extends FtuiElement {
       case 'list':
         this.fillList();
         this.updateClock();
-      break;
+        break;
       case 'bgcolor':
       case 'depcolor':
       case 'txtcolor':
@@ -127,13 +127,13 @@ export class FtuiDeparture extends FtuiElement {
       case 'height':
       case 'top':
         this.arrangeWindow();
-      break;
+        break;
       case 'getinterval':
       case 'refreshlist':
         this.startTimerUpdate();
         this.startTimerRefreshList();
         this.updateClock();
-      break;
+        break;
     }
   }
 
@@ -186,14 +186,14 @@ export class FtuiDeparture extends FtuiElement {
   startTimerClock() {
     clearInterval(this.timerClock);
     clearTimeout(this.timerClock);
-    ((dateFormat(new Date(), 'ss')==='00') ? this.timerClock = setTimeout(() => this.updateClock()&this.startTimerClock(), 60000) : this.timerClock = setInterval(() => this.updateClock()&this.startTimerClock(), 1000));
-    }
+    ((dateFormat(new Date(), 'ss') === '00') ? this.timerClock = setTimeout(() => this.updateClock() & this.startTimerClock(), 60000) : this.timerClock = setInterval(() => this.updateClock() & this.startTimerClock(), 1000));
+  }
 
   startTimerUpdate() {
     clearInterval(this.timerUpdate);
     clearTimeout(this.timerUpdate);
     if (this.getinterval) {
-      ((dateFormat(new Date(), 'ss')==='00') ? this.timerUpdate = setTimeout(() => this.startTimerUpdate(), this.getinterval * 1000) ? this.requestUpdate() : clearTimeout(this.timerUpdate) : this.timerUpdate = setInterval(() => this.startTimerUpdate(), 1000));
+      ((dateFormat(new Date(), 'ss') === '00') ? this.timerUpdate = setTimeout(() => this.startTimerUpdate(), this.getinterval * 1000) ? this.requestUpdate() : clearTimeout(this.timerUpdate) : this.timerUpdate = setInterval(() => this.startTimerUpdate(), 1000));
     }
   }
 
@@ -201,14 +201,14 @@ export class FtuiDeparture extends FtuiElement {
     clearInterval(this.timerRefreshList);
     clearTimeout(this.timerRefreshList);
     if (this.refreshlist) {
-      ((dateFormat(new Date(), 'ss')==='00') ? this.timerRefreshList = setTimeout(() => this.startTimerRefreshList(), this.refreshlist * 1000) ? this.fillList() : clearTimeout(this.timerRefreshList) : this.timerRefreshList = setInterval(() => this.startTimerRefreshList(), 1000));
+      ((dateFormat(new Date(), 'ss') === '00') ? this.timerRefreshList = setTimeout(() => this.startTimerRefreshList(), this.refreshlist * 1000) ? this.fillList() : clearTimeout(this.timerRefreshList) : this.timerRefreshList = setInterval(() => this.startTimerRefreshList(), 1000));
     }
   }
- 
+
   requestUpdate() {
     fhemService.sendCommand('get ' + this.get);
   }
-  
+
   manGetRefresh(event) {
     event.stopPropagation();
     this.requestUpdate();
@@ -218,110 +218,110 @@ export class FtuiDeparture extends FtuiElement {
 
   switchDepMode(event) {
     event.stopPropagation();
-    this.depMode = ((this.depMode==='depmin') ? 'deptime' : 'depmin');
+    this.depMode = ((this.depMode === 'depmin') ? 'deptime' : 'depmin');
     this.fillList();
   }
 
   fillList() {
-    if(this.list){
-      const listAttr = this.attributes["[list]"];
-      let refDate = ((listAttr) ? dateFromString(fhemService.getReadingItem(getReadingID(listAttr.value.split(":")[0],listAttr.value.split(":")[1])).data.time) : new Date(this.timeNow));
+    if (this.list) {
+      const listAttr = this.attributes['[list]'];
+      const refDate = ((listAttr) ? dateFromString(fhemService.getReadingItem(getReadingID(listAttr.value.split(':')[0], listAttr.value.split(':')[1])).data.time) : new Date(this.timeNow));
       refDate.setSeconds(59);
       const currentTime = new Date();
-      const nextDay = dateFormat(new Date(currentTime.setDate(currentTime.getDate()+1)),'ee');
-      const isTimeMin = currentTime.getHours()*60+currentTime.getMinutes();
-      const tsMin = refDate.getHours()*60+refDate.getMinutes();
+      const nextDay = dateFormat(new Date(currentTime.setDate(currentTime.getDate() + 1)), 'ee');
+      const isTimeMin = currentTime.getHours() * 60 + currentTime.getMinutes();
+      const tsMin = refDate.getHours() * 60 + refDate.getMinutes();
       let n = '';
       let text0 = '';
       let text1 = '';
       let text2 = '';
       const json = JSON.parse(this.list);
-        //times from this.list in min and min<=0 add 1440 for next Day from this.list end
-        if (this.list.match(/:/g)){
-          for (let i=0, l=json.length ; i<l; i++) {
-            let times = json[i];
-            let [deph, depm] = times[2].split(':');
-            const isDepMins = deph*60+parseInt(depm)-isTimeMin;
-            times.splice(2,1,isDepMins);
-          }
-          for (let i=json.length-1; i>=0; i--) {
-            let mins = json[i];
-              if (mins[2]<=0) {
-                const isDepMins = mins[2]+parseInt(1440);
-                mins.splice(2,1,isDepMins);
-              }else{
-                break;
-              }
+      //times from this.list in min and min<=0 add 1440 for next Day from this.list end
+      if (this.list.match(/:/g)) {
+        for (let i = 0, l = json.length; i < l; i++) {
+          const times = json[i];
+          const [deph, depm] = times[2].split(':');
+          const isDepMins = deph * 60 + parseInt(depm) - isTimeMin;
+          times.splice(2, 1, isDepMins);
+        }
+        for (let i = json.length - 1; i >= 0; i--) {
+          const mins = json[i];
+          if (mins[2] <= 0) {
+            const isDepMins = mins[2] + parseInt(1440);
+            mins.splice(2, 1, isDepMins);
+          } else {
+            break;
           }
         }
+      }
 
       for (let idx = 0, len = json.length; idx < len; idx++) {
         n++;
-        let line = json[idx];
+        const line = json[idx];
         let when = parseInt(line[2]);
-        const depTime = dateFormat(new Date(currentTime.getTime()+when*60*1000),'hh:mm');
-        const depMinTime = dateFormat(new Date(refDate.getTime()+when*60*1000),'hh:mm');
-        const tsDep = when+tsMin-isTimeMin;
-          if (!this.depMode) {
-            this.depMode = (this.list.match(/:/g) ? 'deptime' : 'depmin');
-          }
-          if (this.depMode==='deptime') {
-              if(this.list.match(/:/g)){
-                when = (when>=0 ? depTime : '--:--');
-              if(line[2]>(1439-isTimeMin)&&this.hasAttribute('nextday')){
-                when = nextDay;//+', '+depTime;
-              }
-            }else{
-              when = (tsDep>=0 ? depMinTime : '--:--');
-                if(tsDep>(1439-isTimeMin)&&this.hasAttribute('nextday')){
-                  when = nextDay;//+', '+depMinTime;
-                }
+        const depTime = dateFormat(new Date(currentTime.getTime() + when * 60 * 1000), 'hh:mm');
+        const depMinTime = dateFormat(new Date(refDate.getTime() + when * 60 * 1000), 'hh:mm');
+        const tsDep = when + tsMin - isTimeMin;
+        if (!this.depMode) {
+          this.depMode = (this.list.match(/:/g) ? 'deptime' : 'depmin');
+        }
+        if (this.depMode === 'deptime') {
+          if (this.list.match(/:/g)) {
+            when = (when >= 0 ? depTime : '--:--');
+            if (line[2] > (1439 - isTimeMin) && this.hasAttribute('nextday')) {
+              when = nextDay;//+', '+depTime;
             }
-          }else{
-            if(this.list.match(/:/g)){
-              when = (when>=0 ? when : '-');
-                if(when>this.depminsize&&!this.hasAttribute('deptime')&&!this.hasAttribute('depmin')){
-                  when = depTime;
-                }
-                if(line[2]>(1439-isTimeMin)&&this.hasAttribute('nextday')){
-                  when = nextDay;//+', '+depTime;
-                }
-             }else{
-                when = (tsDep>=0 ? tsDep : '-');
-                  if(tsDep>this.depminsize&&!this.hasAttribute('deptime')&&!this.hasAttribute('depmin')){
-                    when = depMinTime;
-                  }
-                  if(tsDep>(1439-isTimeMin)&&this.hasAttribute('nextday')){
-                    when = nextDay;//+', '+depMinTime;
-                  }
-             }
+          } else {
+            when = (tsDep >= 0 ? depMinTime : '--:--');
+            if (tsDep > (1439 - isTimeMin) && this.hasAttribute('nextday')) {
+              when = nextDay;//+', '+depMinTime;
+            }
           }
+        } else {
+          if (this.list.match(/:/g)) {
+            when = (when >= 0 ? when : '-');
+            if (when > this.depminsize && !this.hasAttribute('deptime') && !this.hasAttribute('depmin')) {
+              when = depTime;
+            }
+            if (line[2] > (1439 - isTimeMin) && this.hasAttribute('nextday')) {
+              when = nextDay;//+', '+depTime;
+            }
+          } else {
+            when = (tsDep >= 0 ? tsDep : '-');
+            if (tsDep > this.depminsize && !this.hasAttribute('deptime') && !this.hasAttribute('depmin')) {
+              when = depMinTime;
+            }
+            if (tsDep > (1439 - isTimeMin) && this.hasAttribute('nextday')) {
+              when = nextDay;//+', '+depMinTime;
+            }
+          }
+        }
 
-      if ( when!=='--:--' && when!=='-') {
-          const text = (n%2 === 0 && (this.hasAttribute('alternate')) ? '<div class="alt fade">' : '<div class="fade">');
-            text0 += text + '<div class="id0">' + line[0] + '</div></div>';
-            text1 += text + ((line[1].length>this.deptxtlength) ? '<div class="scrolltxt dest0">' : '<div class="dest0">') + line[1] + '</div></div>';
-            text2 += text + ((when==='--:--'||when==='-') ? '<div class="time0">' : '<div class="top time0">') + when + '</div></div>';
+        if (when !== '--:--' && when !== '-') {
+          const text = (n % 2 === 0 && (this.hasAttribute('alternate')) ? '<div class="alt fade">' : '<div class="fade">');
+          text0 += text + '<div class="id0">' + line[0] + '</div></div>';
+          text1 += text + ((line[1].length > this.deptxtlength) ? '<div class="scrolltxt dest0">' : '<div class="dest0">') + line[1] + '</div></div>';
+          text2 += text + ((when === '--:--' || when === '-') ? '<div class="time0">' : '<div class="top time0">') + when + '</div></div>';
         }
       }
 
       this.elementId.innerHTML = text0;
       ((!text1) ? this.dep.innerHTML = '<div style="text-align:center">' + 'keine Abfahrten vorhanden...' + '</div>' : this.elementDest.innerHTML = text1);
-        if(this.hasAttribute('depscroll')&&this.shadowRoot.querySelector('.scrolltxt') !== null){
-          let scroll = this.shadowRoot.querySelectorAll('.scrolltxt');
-            for (let i=0; i<scroll.length; i++) {
-              scroll[i].addEventListener('click', function(event) {scroll[i].innerHTML='<div class="depscroll">' + scroll[i].textContent/*firstChild.nodeValue*/ + '</div>';event.stopPropagation();});
-            }
+      if (this.hasAttribute('depscroll') && this.shadowRoot.querySelector('.scrolltxt') !== null) {
+        const scroll = this.shadowRoot.querySelectorAll('.scrolltxt');
+        for (let i = 0; i < scroll.length; i++) {
+          scroll[i].addEventListener('click', function (event) { scroll[i].innerHTML = '<div class="depscroll">' + scroll[i].textContent/*firstChild.nodeValue*/ + '</div>'; event.stopPropagation(); });
         }
-      this.elementTime.innerHTML = text2;
-      this.elementSwitch.innerHTML = '<ftui-icon name="' + ((this.depMode === 'deptime') ? 'sort-numeric-asc' : 'clock-o' ) + '"></ftui-icon>';
-      this.elementMinutes.innerHTML = ((this.depMode === 'deptime') ? 'Zeit' : 'in Min' );
-        if(this.shadowRoot.querySelector('.top') !== null){
-          this.shadowRoot.querySelector('.top').scrollIntoView({block: "start", behavior: "smooth"})
-        }	
-      }else{
-        this.dep.innerHTML = '<div style="text-align:center">' + 'keine Abfahrten vorhanden...' + '</div>';
       }
+      this.elementTime.innerHTML = text2;
+      this.elementSwitch.innerHTML = '<ftui-icon name="' + ((this.depMode === 'deptime') ? 'sort-numeric-asc' : 'clock-o') + '"></ftui-icon>';
+      this.elementMinutes.innerHTML = ((this.depMode === 'deptime') ? 'Zeit' : 'in Min');
+      if (this.shadowRoot.querySelector('.top') !== null) {
+        this.shadowRoot.querySelector('.top').scrollIntoView({ block: 'start', behavior: 'smooth' })
+      }
+    } else {
+      this.dep.innerHTML = '<div style="text-align:center">' + 'keine Abfahrten vorhanden...' + '</div>';
+    }
   }
 }
 

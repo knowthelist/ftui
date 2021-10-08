@@ -15,6 +15,7 @@ const add = value => input => Number(input) + value;
 const multiply = value => input => Number(input) * value;
 const replace = (find, replace) => input => String(input).replace(find, replace);
 const map = value => input => ftuiHelper.getMatchingValue(parseHocon(value, true), input);
+const step = value => input => ftuiHelper.getStepValue(parseHocon(value, true), input);
 const scale = (minIn, maxIn, minOut, maxOut) => input => ftuiHelper.scale(input, minIn, maxIn, minOut, maxOut);
 const ago = () => input => ftuiHelper.dateAgo(input);
 const till = () => input => ftuiHelper.dateTill(input);
@@ -61,7 +62,7 @@ export class FtuiBinding {
           if (mutation.type == 'attributes') {
             const attributeName = mutation.attributeName;
             const attributeValue = mutation.target[attributeName] || mutation.target.getAttribute(attributeName);
-            const isTooOld = this.private.changingDate[attributeName] < Date.now() - 200;
+            const isTooOld = this.private.changingDate[attributeName] < Date.now() - 300;
             if (!this.private.isChanging[attributeName] || isTooOld) {
               // send to FHEM when targets are defined
               this.private.isChanging[attributeName] = false;

@@ -26,16 +26,16 @@ export class FtuiRow extends FtuiCell {
           width: 100%;
         }
         :host([align-items~=top]) {
-          align-items: flex-start;
+          align-items: start;
         }
         :host([align-items~=bottom]) {
-          align-items: flex-end;
+          align-items: end;
         }
         :host([align-items~=left]) {
-          justify-content: flex-start;
+          justify-content: start;
         }
         :host([align-items~=right]) {
-          justify-content: flex-end;
+          justify-content: end;
         }
       </style>`;
   }
