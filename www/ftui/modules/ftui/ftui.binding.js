@@ -15,7 +15,7 @@ const add = value => input => Number(input) + value;
 const multiply = value => input => Number(input) * value;
 const replace = (find, replace) => input => String(input).replace(find, replace);
 const map = value => input => ftuiHelper.getMatchingValue(parseHocon(value, true), input);
-const filter = value => input => ftuiHelper.filter(Array('['+(value)+']'), input);
+const filter = value => input => ftuiHelper.filter((value).split(','), input);
 const step = value => input => ftuiHelper.getStepValue(parseHocon(value, true), input);
 const scale = (minIn, maxIn, minOut, maxOut) => input => ftuiHelper.scale(input, minIn, maxIn, minOut, maxOut);
 const ago = () => input => ftuiHelper.dateAgo(input);

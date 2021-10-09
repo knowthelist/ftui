@@ -20,7 +20,7 @@ export function getPart(value, part) {
 }
 
 export function filter(list, value) {
-  return list.filter(item => isMatching(item, value)).length
+  return list.filter(item => isMatching(item, value)).length > 0
     ? value : null;
 }
 
