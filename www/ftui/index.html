@@ -28,11 +28,12 @@
   <!-- verbose level 0-4 -->
   <meta name="debug" content="0">
 
+
   <title>FTUI Flur</title>
 </head>
 
 <body>
-  <ftui-speak [text]="speakFlur"></ftui-speak>
+  <ftui-speak [text]="speakFlur:state"></ftui-speak>
   <ftui-grid base-width="78" base-height="70" margin="5" shape="round">
 
     <ftui-grid-tile row="1" col="1" height="10" width="1">
@@ -65,11 +66,12 @@
         <ftui-clock format="hh:mm" size="9"></ftui-clock>
       </ftui-grid-tile>
 
+      <!-- CO² -->
       <ftui-grid-tile row="1" col="4" height="2" width="2" shape="round"
                       [color]="WCLuft | step('0:ok, 1000:warning, 2000:danger')"
-                      [title]="WCLuft:STATE:time">
+                      [title]="WCLuft:state:time">
         <ftui-column width="80%" padding="0 1em" align-items="left">
-          <ftui-label size="5">CO²</ftui-label>
+          <ftui-label id="co2" size="5">CO²</ftui-label>
           <ftui-label size="7" [text]="WCLuft | part(1) | toInt()">
             <span slot="end" class="size-2">ppm</span>
           </ftui-label>
@@ -83,11 +85,11 @@
                    type="handle" min="16" max="25" decimals="1" unit="°C" readonly has-value-text></ftui-knob>
       </ftui-grid-tile>
 
-
+      <!-- AussenTemp-->
       <ftui-grid-tile row="5" col="2" height="3" width="2" shape="round">
         <ftui-label size="2">Außen</ftui-label>
         <ftui-knob [value]="AussenTemp:temperature"
-                   [color]="THSensorWZ:temperature | step('-99: blue, 10: ok, 25: warning, 30: danger')"
+                   [color]="AussenTemp:temperature | step('-99: blue, 10: ok, 25: warning, 30: danger')"
                    width="130" offset-y="10"
                    type="handle" min="-10" max="30" decimals="1" unit="°C" readonly has-value-text></ftui-knob>
       </ftui-grid-tile>
@@ -107,6 +109,7 @@
         </ftui-column>
       </ftui-grid-tile>
 
+      <!-- Jalousie -->
       <ftui-grid-tile row="1" col="6" height="2" width="2" shape="round">
         <ftui-column align-items="bottom" height="75%">
           <ftui-row>
@@ -128,7 +131,7 @@
 
       <!-- FENSTER -->
       <ftui-grid-tile row="1" col="8" height="2" width="2"
-                      [color]="AlleFenster:STATE | map('closed:ok, `.*`:danger')">
+                      [color]="AlleFenster | map('closed:ok, `.*`:danger')">
         <ftui-label size="3">Fenster</ftui-label>
         <ftui-icon name="classic-window" size="3"></ftui-icon>
         <ftui-label [text]="AllWindows:text 
@@ -140,23 +143,25 @@
           | replace('noch offen','')" width="80%"></ftui-label>
       </ftui-grid-tile>
 
+      <!-- Eingangstuer -->
       <ftui-grid-tile row="1" col="10" height="2" width="2" shape="round"
-                      [color]="EingangstuerRiegel:state | map('closed:ok, `.*`:yellow');
-                      Eingangstuer:state | map('closed:yellow, `.*`:danger')">
+                      [color]="EingangstuerRiegel | filter('closed') | map('closed:ok');
+                      Eingangstuer | filter('open') | map('open:danger')"
+                      color="yellow">
         <ftui-label size="3">Tür</ftui-label>
         <ftui-icon name="front-door" size="3">
-          <ftui-icon name="lock" size="2" top="1" right="3" [hidden]="EingangstuerRiegel:state | map('open:true, `.*`:false')"></ftui-icon>
+          <ftui-icon name="lock" size="2" top="1" right="3" [hidden]="EingangstuerRiegel | map('open:true, `.*`:false')"></ftui-icon>
         </ftui-icon>
-        <ftui-label [text]="EingangstuerRiegel:state | map('closed:abgeschlossen, `.*`:nicht abgeschlossen');
-        Eingangstuer:state | map('closed:``, `.*`:offen')"></ftui-label>
+        <ftui-label [text]="EingangstuerRiegel | map('closed:abgeschlossen, `.*`:nicht abgeschlossen');
+        Eingangstuer | map('closed:``, `.*`:offen')"></ftui-label>
       </ftui-grid-tile>
 
       <!-- HERD -->
       <ftui-grid-tile row="1" col="12" height="2" width="2"
-                      [color]="HerdSummeStromwert:STATE  | step('0:ok, 700:alert')">
+                      [color]="HerdSummeStromwert  | step('0:ok, 700:alert')">
         <ftui-label size="3">Herd</ftui-label>
         <ftui-icon name="cutlery" size="3"></ftui-icon>
-        <ftui-label [text]="HerdSummeStromwert:STATE"></ftui-label>
+        <ftui-label [text]="HerdSummeStromwert"></ftui-label>
       </ftui-grid-tile>
 
       <ftui-grid-tile row="3" col="8" height="2" width="2" shape="round">
@@ -169,6 +174,7 @@
         <ftui-content file="_content-weather-2-day.html"></ftui-content>
       </ftui-grid-tile>
 
+      <!-- HomeStatus -->
       <ftui-grid-tile row="10" col="2" height="1" width="6">
         <ftui-segment [(value)]="HomeStatus">
           <ftui-segment-button value="1">

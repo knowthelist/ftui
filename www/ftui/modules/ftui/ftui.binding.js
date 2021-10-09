@@ -15,6 +15,7 @@ const add = value => input => Number(input) + value;
 const multiply = value => input => Number(input) * value;
 const replace = (find, replace) => input => String(input).replace(find, replace);
 const map = value => input => ftuiHelper.getMatchingValue(parseHocon(value, true), input);
+const filter = value => input => ftuiHelper.filter(Array('['+(value)+']'), input);
 const step = value => input => ftuiHelper.getStepValue(parseHocon(value, true), input);
 const scale = (minIn, maxIn, minOut, maxOut) => input => ftuiHelper.scale(input, minIn, maxIn, minOut, maxOut);
 const ago = () => input => ftuiHelper.dateAgo(input);
@@ -91,7 +92,7 @@ export class FtuiBinding {
         this.private.changingDate[attribute] = Date.now();
         const value = readingData[options.property];
         if (ftuiHelper.isDefined(value)) {
-          const filteredValue = this.filter(value, options.filter);
+          const filteredValue = this.filterValue(value, options.filter);
           if (ftuiHelper.isDefined(filteredValue)) {
             if (String(this.element[attribute]) !== String(filteredValue)) {
               ftuiHelper.log(1, `${this.element.id}  -  onReadingEvent: set this.${attribute}=${filteredValue}`);
@@ -118,7 +119,7 @@ export class FtuiBinding {
     Object.entries(targetReadings).forEach(([readingId, options]) => {
 
       //const attributeValue = this.element[attributeName];
-      const filteredValue = this.filter(attributeValue, options.filter);
+      const filteredValue = this.filterValue(attributeValue, options.filter);
       const value = String(options.value).replace(/\$value/g, filteredValue);
       const [parameterId, deviceName, readingName] = ftuiHelper.parseReadingId(readingId);
       const cmdLine = [options.cmd, deviceName, readingName, value].join(' ');
@@ -273,16 +274,16 @@ export class FtuiBinding {
     }
   }
 
-  filter(text, filter = '') {
-    if (filter !== '') {
+  filterValue(text, filterSet = '') {
+    if (filterSet !== '') {
       try {
         const pipeNotInQuotes = /\|(?=([^']*'[^']*')*[^']*$)/g;
-        filter = filter
+        filterSet = filterSet
           .replace(pipeNotInQuotes, ',')
           .replace(/`/g, '"')
           .replace(/´/g, '"')
           .replace(/\n/g, '');
-        const fn = eval('pipe(' + filter + ')');
+        const fn = eval('pipe(' + filterSet + ')');
         return fn(text);
       } catch (e) {
         this.element.classList.add('has-error');

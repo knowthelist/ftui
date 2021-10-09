@@ -19,6 +19,11 @@ export function getPart(value, part) {
   return value;
 }
 
+export function filter(list, value) {
+  return list.filter(item => isMatching(item, value)).length
+    ? value : null;
+}
+
 export function isEqual(pattern, value) {
   return value === pattern ||
     parseFloat(value) === parseFloat(pattern) ||
@@ -166,7 +171,8 @@ export function isDefined(value) {
 }
 
 export function isUndefined(value) {
-  return typeof value === 'undefined' || value === null;
+  return typeof value === 'undefined'
+  || value === null;
 }
 
 export function isString(value) {
