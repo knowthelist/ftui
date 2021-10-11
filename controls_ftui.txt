@@ -47,7 +47,7 @@ UPD 2021-04-10_12:07:56 1479 www/ftui/components/segment/segment-button.componen
 UPD 2021-02-05_18:44:32 1066 www/ftui/components/segment/segment.component.css
 UPD 2021-10-11_22:43:44 2765 www/ftui/components/segment/segment.component.js
 UPD 2021-02-01_19:44:37 3379 www/ftui/components/slider/slider.component.css
-UPD 2021-10-11_20:00:39 3926 www/ftui/components/slider/slider.component.js
+UPD 2021-10-11_23:00:30 3765 www/ftui/components/slider/slider.component.js
 UPD 2021-10-08_12:44:54 2184 www/ftui/components/speak/speak.component.js
 UPD 2021-02-15_22:41:38 1326 www/ftui/components/swiper/swiper.component.css
 UPD 2021-10-11_22:43:44 4894 www/ftui/components/swiper/swiper.component.js

@@ -88,7 +88,6 @@ export class FtuiSlider extends FtuiElement {
 
   onAttributeChanged(name, newValue, oldValue) {
     if (oldValue !== newValue && !this.isDragging) {
-      console.log('AttributeChanged',this.value, newValue)
       this.updateRangable();
     }
   }
@@ -100,8 +99,7 @@ export class FtuiSlider extends FtuiElement {
   onSliderChanged(value) {
     if (this.value !== null && this.value !== value) {
       if (this.isDragging) {
-        console.log('SliderChanged',this.value, value)
-        this.updateProperty('value', value);
+        this.submitChange('value', value);
       }
     }
   }
@@ -109,8 +107,7 @@ export class FtuiSlider extends FtuiElement {
   onSliderEnd(value) {
     this.isDragging = false;
     if (this.value !== null && this.value !== value) {
-      console.log('end',this.value, value)
-      this.updateProperty('value', value);
+      this.submitChange('value', value);
     }
   }
 
