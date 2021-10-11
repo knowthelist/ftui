@@ -167,7 +167,7 @@ export class FtuiKnob extends FtuiElement {
 
   onChange(angle) {
     if (!this.readonly && this.draw(angle)) {
-      this.value = this.angleToValue(angle);
+      this.submitChange('value', this.angleToValue(angle));
     }
   }
 

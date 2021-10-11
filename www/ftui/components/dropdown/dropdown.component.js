@@ -64,8 +64,7 @@ export class FtuiDropdown extends FtuiElement {
   }
 
   onChange() {
-    this.value = this.selectElement.value;
-    this.emitChangeEvent('value', this.value);
+    this.submitChange('value', this.selectElement.value);
   }
 
   fillList() {

@@ -38,12 +38,10 @@ export class FtuiBinding {
       config: '',
       outputAttributes: new Set(),
       observer: null,
-      isChanging: {},
-      changingDate: {},
-      sentValue: {}
     }
 
     this.element = element;
+    this.element.isActiveChange = {};
     this.isThirdPartyElement = false;
     this.config = {
       input: { readings: {} },
@@ -63,10 +61,9 @@ export class FtuiBinding {
           if (mutation.type == 'attributes') {
             const attributeName = mutation.attributeName;
             const attributeValue = mutation.target[attributeName] || mutation.target.getAttribute(attributeName);
-            const isTooOld = this.private.changingDate[attributeName] < Date.now() - 300;
-            if (!this.private.isChanging[attributeName] || isTooOld) {
-              // send to FHEM when targets are defined
-              this.private.isChanging[attributeName] = false;
+            if (this.element.isActiveChange[attributeName]) {
+              // send to FHEM when it is an active change by a user
+              this.element.isActiveChange[attributeName] = false;
               this.handleAttributeChanged(attributeName, attributeValue);
             }
           }
@@ -88,8 +85,7 @@ export class FtuiBinding {
     Object.entries(readingAttributeMap)
       .forEach(([attribute, options]) => {
         // update marker to avoid infinity loops
-        this.private.isChanging[attribute] = true;
-        this.private.changingDate[attribute] = Date.now();
+        this.element.isActiveChange[attribute] = false;
         const value = readingData[options.property];
         if (ftuiHelper.isDefined(value)) {
           const filteredValue = this.filterValue(value, options.filter);

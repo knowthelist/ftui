@@ -89,8 +89,8 @@ export class FtuiColorpicker extends FtuiElement {
   }
 
   onColorChange(color) {
-    this.hex = color.hexString;
-    this.emitChangeEvent('color', color);
+    this.submitChange('hex',color.hexString);
+    this.submitChange('color',color);
   }
 
   updateOptions() {

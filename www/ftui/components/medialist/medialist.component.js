@@ -64,10 +64,8 @@ export class FtuiMedialist extends FtuiElement {
   }
 
   onClicked(media) {
-    this.file = media.file
-    this.track = media.track
-    this.emitChangeEvent('file', this.file);
-    this.emitChangeEvent('track', this.track);
+    this.submitChange('file',media.file);
+    this.submitChange('track',media.track);
   }
 
   clearCurrent() {

@@ -74,7 +74,7 @@ class FtuiTab extends FtuiButton {
       });
 
     // activate clicked tab
-    this.value = 'on'
+    this.submitChange('value', 'on');
     this.active = true;
 
     // emit event

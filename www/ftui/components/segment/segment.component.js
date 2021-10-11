@@ -65,8 +65,7 @@ class FtuiSegment extends FtuiElement {
   onClick(event) {
     const target = event.target.closest('ftui-segment-button');
     if (target) {
-      this.value = target.value;
-      this.emitChangeEvent('value', this.value );
+      this.submitChange('value', target.value);
     }
   }
 
@@ -87,7 +86,7 @@ class FtuiSegment extends FtuiElement {
   }
 
   setValueByIndex(index) {
-    this.value = this.segments[index].value;
+    this.submitChange('value', this.segments[index].value);
   }
 
   update() {

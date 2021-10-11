@@ -75,7 +75,7 @@ class FtuiSwiper extends FtuiElement {
     entries.forEach(entry => {
       entry.target.isVisible = ('isVisible' in entry) ? entry.isVisible : entry.isIntersecting;
       if (entry.target.isVisible && this.value !== entry.target.id) {
-        this.value = entry.target.id;
+        this.submitChange('value', entry.target.id);
       }
     });
   }
@@ -143,7 +143,7 @@ class FtuiSwiper extends FtuiElement {
   setValueByIndex(index) {
     const slide = this.slides[index];
     if (slide) {
-      this.value = slide.id;
+      this.submitChange('value', slide.id);
     }
   }
 

@@ -58,7 +58,7 @@ export class FtuiCheckbox extends FtuiElement {
     const stateIndex = this.elementCheckbox.classList.contains('checked') ? 1 : 0;
     const value = this.getStates()[stateIndex];
     if (this.value !== value) {
-      this.value = value;
+      this.submitChange('value', value);
     }
   }
 
@@ -70,7 +70,6 @@ export class FtuiCheckbox extends FtuiElement {
       } else {
         this.elementCheckbox.classList.remove('checked');
       }
-      this.emitChangeEvent('value', this.value );
     }
   }
 

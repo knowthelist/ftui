@@ -99,6 +99,12 @@ export class FtuiElement extends HTMLElement {
     }
   }
 
+  submitChange(property, value) {
+    this.isActiveChange[property] = true;
+    this[property] = value;
+    this.emitChangeEvent(property, value );
+  }
+
   emitChangeEvent(attribute, value) {
     this.emitEvent(attribute + 'Change', value);
   }

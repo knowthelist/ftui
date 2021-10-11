@@ -32,7 +32,7 @@ export class FtuiSlider extends FtuiElement {
       step: this.step,
       onStart: () => this.onSliderStart(),
       onChange: (value) => this.onSliderChanged(Number(value)),
-      onEnd: () => this.onSliderEnd()
+      onEnd: (value) => this.onSliderEnd(Number(value))
     });
 
     this.updateRangable();
@@ -67,7 +67,7 @@ export class FtuiSlider extends FtuiElement {
 
   static get properties() {
     return {
-      debounce: 200,
+      debounce: 300,
       step: 1,
       tick: 100,
       wideTick: 100,
@@ -87,7 +87,8 @@ export class FtuiSlider extends FtuiElement {
   }
 
   onAttributeChanged(name, newValue, oldValue) {
-    if (oldValue !== newValue) {
+    if (oldValue !== newValue && !this.isDragging) {
+      console.log('AttributeChanged',this.value, newValue)
       this.updateRangable();
     }
   }
@@ -99,13 +100,28 @@ export class FtuiSlider extends FtuiElement {
   onSliderChanged(value) {
     if (this.value !== null && this.value !== value) {
       if (this.isDragging) {
-        this.value = value;
+        console.log('SliderChanged',this.value, value)
+        this.updateProperty('value', value);
       }
     }
   }
 
-  onSliderEnd() {
+  onSliderEnd(value) {
     this.isDragging = false;
+    if (this.value !== null && this.value !== value) {
+      console.log('end',this.value, value)
+      this.updateProperty('value', value);
+    }
+  }
+
+  captureTime(target, name, descriptor) {
+    const original = descriptor.value;
+    descriptor.value = function (...args) {
+      console.time(name);
+      const result = original.apply(this, args);
+      console.timeEnd(name);
+      return result;
+    };
   }
 
   updateRangable() {
