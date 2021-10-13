@@ -13,6 +13,7 @@ const fix = value => input => Number(input).toFixed(value);
 const encode = () => input => encodeURI(input);
 const add = value => input => Number(input) + value;
 const multiply = value => input => Number(input) * value;
+const divide = value => input => Number(input) / value;
 const replace = (find, replace) => input => String(input).replace(find, replace);
 const map = value => input => ftuiHelper.getMatchingValue(parseHocon(value, true), input);
 const filter = value => input => ftuiHelper.filter((value).split(','), input);
@@ -140,7 +141,7 @@ export class FtuiBinding {
     });
   }
 
-  initInputBinding(attribute) {
+  initInputBinding(name, attribute) {
     const semicolonNotInQuotes = /;(?=(?:[^']*'[^']*')*[^']*$)/;
 
     attribute.value.split(semicolonNotInQuotes).forEach((attrValue) => {
@@ -151,10 +152,12 @@ export class FtuiBinding {
       const readingConfig = this.config.input.readings[readingID];
       readingConfig.attributes[attribute.name] = { property, filter };
     });
+    // remove binding attr from DOM
+    this.element.removeAttribute(name);
   }
 
 
-  initOutputBinding(attribute) {
+  initOutputBinding(name, attribute) {
     const { cmd, readingID, value, filter } = this.parseOutputBinding(attribute.value);
 
     if (!this.config.output.attributes[attribute.name]) {
@@ -164,6 +167,8 @@ export class FtuiBinding {
     attributeConfig.readings[readingID] = { cmd, value, filter }
 
     this.private.outputAttributes.add(attribute.name);
+    // remove binding attr from DOM
+    this.element.removeAttribute(name);
   }
 
   initEventListener(attribute) {
@@ -177,21 +182,21 @@ export class FtuiBinding {
     [...attributes].forEach(attr => {
       const name = ftuiHelper.toCamelCase(attr.name);
       if (name.startsWith('[(') && name.endsWith(')]')) {
-        this.initInputBinding({ name: name.slice(2, -2), value: attr.value });
-        this.initOutputBinding({ name: name.slice(2, -2), value: attr.value });
+        this.initInputBinding(attr, { name: name.slice(2, -2), value: attr.value });
+        this.initOutputBinding(name,{ name: name.slice(2, -2), value: attr.value });
       } else if (name.startsWith('@')) {
-        this.initEventListener({ name: name.slice(1), value: attr.value });
+        this.initEventListener(name,{ name: name.slice(1), value: attr.value });
       } else if (name.startsWith('[') && name.endsWith(']')) {
-        this.initInputBinding({ name: name.slice(1, -1), value: attr.value });
+        this.initInputBinding(name,{ name: name.slice(1, -1), value: attr.value });
       } else if (name.startsWith('(') && name.endsWith(')')) {
-        this.initOutputBinding({ name: name.slice(1, -1), value: attr.value });
+        this.initOutputBinding(name, { name: name.slice(1, -1), value: attr.value });
       } else if (name.startsWith('bind:')) {
-        this.initInputBinding({ name: name.slice(5), value: attr.value });
+        this.initInputBinding(name,{ name: name.slice(5), value: attr.value });
       } else if (name.startsWith('on:')) {
-        this.initOutputBinding({ name: name.slice(3), value: attr.value });
+        this.initOutputBinding(name,{ name: name.slice(3), value: attr.value });
       } else if (name.startsWith('bindon:')) {
-        this.initInputBinding({ name: name.slice(7), value: attr.value });
-        this.initOutputBinding({ name: name.slice(7), value: attr.value });
+        this.initInputBinding(name,{ name: name.slice(7), value: attr.value });
+        this.initOutputBinding(name,{ name: name.slice(7), value: attr.value });
       }
     });
   }

@@ -14,7 +14,7 @@ UPD 2021-10-11_22:43:44 2257 www/ftui/components/checkbox/checkbox.component.js
 UPD 2021-02-01_19:44:33 496 www/ftui/components/circlemenu/circlemenu.component.css
 UPD 2021-02-04_22:45:27 1946 www/ftui/components/circlemenu/circlemenu.component.js
 UPD 2021-02-06_14:53:43 1727 www/ftui/components/clock/clock.component.js
-UPD 2021-10-11_22:55:43 2965 www/ftui/components/colorpicker/colorpicker.component.js
+UPD 2021-10-13_08:34:58 3793 www/ftui/components/colorpicker/colorpicker.component.js
 UPD 2021-01-28_21:05:34 574 www/ftui/components/column/column.component.js
 UPD 2021-02-11_15:04:25 39 www/ftui/components/content/content.component.css
 UPD 2021-04-09_17:39:16 1436 www/ftui/components/content/content.component.js
@@ -22,7 +22,7 @@ UPD 2021-10-03_12:43:52 4159 www/ftui/components/departure/departure.component.c
 UPD 2021-10-08_11:29:53 12357 www/ftui/components/departure/departure.component.js
 UPD 2021-02-01_19:44:34 496 www/ftui/components/dropdown/dropdown.component.css
 UPD 2021-10-11_22:55:43 2102 www/ftui/components/dropdown/dropdown.component.js
-UPD 2021-10-11_22:43:44 4707 www/ftui/components/element.component.js
+UPD 2021-10-12_22:19:54 4707 www/ftui/components/element.component.js
 UPD 2021-04-13_21:43:34 1576 www/ftui/components/grid/grid-tile.component.css
 UPD 2021-02-09_23:03:56 847 www/ftui/components/grid/grid-tile.component.js
 UPD 2021-05-26_22:39:03 3230 www/ftui/components/grid/grid.component.js
@@ -47,7 +47,7 @@ UPD 2021-04-10_12:07:56 1479 www/ftui/components/segment/segment-button.componen
 UPD 2021-02-05_18:44:32 1066 www/ftui/components/segment/segment.component.css
 UPD 2021-10-11_22:43:44 2765 www/ftui/components/segment/segment.component.js
 UPD 2021-02-01_19:44:37 3379 www/ftui/components/slider/slider.component.css
-UPD 2021-10-11_23:00:30 3765 www/ftui/components/slider/slider.component.js
+UPD 2021-10-12_17:54:44 3503 www/ftui/components/slider/slider.component.js
 UPD 2021-10-08_12:44:54 2184 www/ftui/components/speak/speak.component.js
 UPD 2021-02-15_22:41:38 1326 www/ftui/components/swiper/swiper.component.css
 UPD 2021-10-11_22:43:44 4894 www/ftui/components/swiper/swiper.component.js
@@ -76,7 +76,7 @@ UPD 2021-02-07_16:33:18 1837 www/ftui/examples/chart.html
 UPD 2021-02-23_20:21:29 1385 www/ftui/examples/checkbox.html
 UPD 2021-02-01_19:44:46 8867 www/ftui/examples/circlemenu.html
 UPD 2021-02-06_14:42:41 1655 www/ftui/examples/clock.html
-UPD 2020-12-31_16:39:02 2219 www/ftui/examples/colorpicker.html
+UPD 2021-10-13_09:22:18 2911 www/ftui/examples/colorpicker.html
 UPD 2021-04-22_01:08:07 2796 www/ftui/examples/colors.html
 UPD 2021-02-11_14:59:09 1786 www/ftui/examples/content.html
 UPD 2021-04-27_20:19:53 277 www/ftui/examples/contents/content-components.html
@@ -687,7 +687,7 @@ UPD 2021-01-07_17:45:12 1284 www/ftui/icons/windy2.svg
 UPD 2021-01-07_17:45:12 822 www/ftui/icons/wpforms.svg
 UPD 2021-01-07_17:45:12 798 www/ftui/icons/wrench.svg
 UPD 2021-01-07_17:45:12 777 www/ftui/icons/youtube-play.svg
-CRE 2021-10-09_13:18:24 8571 www/ftui/index.html
+CRE 2021-10-13_09:33:53 8505 www/ftui/index.html
 UPD 2020-12-31_16:39:06 445455 www/ftui/modules/chart.js/chart.js
 UPD 2020-12-31_16:39:06 192031 www/ftui/modules/chart.js/chart.min.js
 UPD 2020-12-31_16:39:06 49580 www/ftui/modules/chart.js/chartjs-adapter-date-fns.bundle.min.js
@@ -695,12 +695,12 @@ UPD 2021-02-04_22:43:17 8388 www/ftui/modules/circle-menu/circle-menu.js
 UPD 2021-02-01_19:44:50 5063 www/ftui/modules/circle-menu/circle-menu.min.js
 UPD 2021-10-03_20:09:09 13600 www/ftui/modules/ftui/fhem.service.js
 UPD 2021-10-04_19:52:18 7731 www/ftui/modules/ftui/ftui.app.js
-UPD 2021-10-11_22:45:36 11321 www/ftui/modules/ftui/ftui.binding.js
+UPD 2021-10-13_09:27:23 11588 www/ftui/modules/ftui/ftui.binding.js
 UPD 2021-10-11_19:04:38 13055 www/ftui/modules/ftui/ftui.helper.js
 UPD 2020-12-31_16:39:06 9247 www/ftui/modules/hocon/hocon.js
 UPD 2020-12-31_16:39:06 3192 www/ftui/modules/hocon/hocon.min.js
-UPD 2020-12-31_16:39:06 65427 www/ftui/modules/iro.js/iro.js
-UPD 2020-12-31_16:39:06 32619 www/ftui/modules/iro.js/iro.min.js
+UPD 2021-10-13_09:24:35 65090 www/ftui/modules/iro.js/iro.js
+UPD 2021-10-13_09:27:11 31699 www/ftui/modules/iro.js/iro.min.js
 UPD 2021-10-11_18:36:02 24669 www/ftui/modules/rangeable/rangeable.js
 UPD 2020-12-31_16:39:06 4564 www/ftui/modules/rangeable/rangeable.min.css
 UPD 2021-10-03_11:02:26 12055 www/ftui/modules/rangeable/rangeable.min.js

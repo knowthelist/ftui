@@ -111,16 +111,6 @@ export class FtuiSlider extends FtuiElement {
     }
   }
 
-  captureTime(target, name, descriptor) {
-    const original = descriptor.value;
-    descriptor.value = function (...args) {
-      console.time(name);
-      const result = original.apply(this, args);
-      console.timeEnd(name);
-      return result;
-    };
-  }
-
   updateRangable() {
     this.minElement.innerHTML = this.min;
     this.input.min = this.min;

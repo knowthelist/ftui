@@ -69,8 +69,22 @@
     <ftui-grid-tile row="2" col="2" height="1" width="1">
       <header>HORIZONTAL</header>
       
-        <ftui-colorpicker [hex]="HUEDevice6:rgb" (hex)="replace('#','') | HUEDevice6:rgb" direction="horizontal" has-hue-slider has-value-slider></ftui-colorpicker>
+        <ftui-colorpicker direction="horizontal" has-hue-slider has-value-slider
+        [hex]="HUEDevice6:rgb" (hex)="replace('#','') | HUEDevice6:rgb"></ftui-colorpicker>
+    </ftui-grid-tile>
 
+
+    <ftui-grid-tile row="2" col="3" height="1" width="1">
+      <header>SAT/BRI/HUE</header>
+      
+        <ftui-colorpicker direction="horizontal" has-hue-slider has-saturation-slider has-value-slider
+                [hue]="HUEDevice6:hue | divide(182.0425) | toInt() | "
+                [saturation]="HUEDevice6:sat | divide(2.55) | toInt()"
+                [brightness]="HUEDevice6:bri | divide(2.55) | toInt()"
+                (hue)="multiply(182.0425) | toInt() | HUEDevice6:hue"
+                (saturation)="multiply(2.55) | toInt() | HUEDevice6:sat"
+                (brightness)="multiply(2.55) | toInt() | HUEDevice6:bri">
+        </ftui-colorpicker>
     </ftui-grid-tile>
   </ftui-grid>
 

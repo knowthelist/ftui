@@ -166,6 +166,7 @@ Binding values can be pushed through piped functions to change the value. Follow
 - round(number)
 - add(number)
 - multiply(number)
+- divide(number)
 - replace(find, replace)
 - map('in1:out1,in2:out2,...')
 - step('1:ok,6:warning,10:alert')
@@ -333,6 +334,21 @@ Speak uses the browser's Web Speech API to synthesize text to speech.
 | <b>rate</b> |Speed at which the utterance will be spoken at.|Float| <code>1.0</code>|
 | <b>volume</b> |Volume that the utterance will be spoken at.|Float| <code>1.0</code>|
 | <b>text</b> |Text that will be synthesized when the utterance is spoken.|String| <code>""</code>|
+
+  ... to be continued
+
+<br></br>
+## Colorpicker
+
+Colorpicker allows to change a color value in many different ways. Work with colors in hex and HSL
+
+
+| Attribute | Description | Type | Default |
+|-----------|-------------|-------|---------|
+| <b>hex</b> |The color value in RBG hex in this format: #ffffff |String| <code>""</code> |
+| <b>hue</b> |The hue value of the color form 0 to 360.|Number| <code>""</code> |
+| <b>saturation</b> |The saturation value of the color form 0 to 100.|Number| <code>""</code> |
+| <b>brightness</b> |The brightness value of the color form 0 to 100.|Number| <code>""</code> |
 
   ... to be continued
 

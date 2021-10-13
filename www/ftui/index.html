@@ -24,6 +24,8 @@
   <meta name="viewport" content="width=device-width">
 
   <meta name="mobile-web-app-capable" content="yes">
+  <meta name="toast_position" content="topLeft">
+  
 
   <!-- verbose level 0-4 -->
   <meta name="debug" content="0">
@@ -121,7 +123,7 @@
               <ftui-icon name="angle-up" class="size-1" height="90%"></ftui-icon>
               <ftui-label>Tag</ftui-label>
             </ftui-button>
-            <ftui-button [(value)]="ftuitest" direction="vertical" color="light" fill="none">
+            <ftui-button @click="sendFhem('{setJalousieNight()}')" direction="vertical" color="light" fill="none">
               <ftui-icon name="angle-down" class="size-1" height="90%"></ftui-icon>
               <ftui-label>Nacht</ftui-label>
             </ftui-button>
@@ -145,15 +147,12 @@
 
       <!-- Eingangstuer -->
       <ftui-grid-tile row="1" col="10" height="2" width="2" shape="round"
-                      [color]="EingangstuerRiegel | filter('closed') | map('closed:ok');
-                      Eingangstuer | filter('open') | map('open:danger')"
-                      color="yellow">
+                      [color]="Eingangstuer:secure | map('locked: ok, closed:yellow, open:alert')">
         <ftui-label size="3">Tür</ftui-label>
         <ftui-icon name="front-door" size="3">
           <ftui-icon name="lock" size="2" top="1" right="3" [hidden]="EingangstuerRiegel | map('open:true, `.*`:false')"></ftui-icon>
         </ftui-icon>
-        <ftui-label [text]="EingangstuerRiegel | map('closed:abgeschlossen, `.*`:nicht abgeschlossen');
-        Eingangstuer | map('closed:``, `.*`:offen')"></ftui-label>
+        <ftui-label [text]="Eingangstuer:secure | map('locked:abgeschlossen, closed:nicht abgeschlossen, open:offen')"></ftui-label>
       </ftui-grid-tile>
 
       <!-- HERD -->

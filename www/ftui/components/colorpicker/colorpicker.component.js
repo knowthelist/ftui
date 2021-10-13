@@ -4,6 +4,8 @@
 * Copyright (c) 2020 Mario Stephan <mstephan@shared-files.de>
 * Under MIT License (http://www.opensource.org/licenses/mit-license.php)
 *
+* uses github.com/jaames/iro.js
+*
 * https://github.com/knowthelist/ftui
 */
 
@@ -22,13 +24,15 @@ export class FtuiColorpicker extends FtuiElement {
     this.updateOptions();
 
     this.colorPicker.on('input:change', (color) => this.onColorChange(color));
-
   }
 
   static get properties() {
     return {
       width: 150,
       hex: '',
+      hue: '',
+      saturation: '',
+      brightness: '',
       direction: 'vertical',
       hasWheel: false,
       hasHueSlider: false,
@@ -39,7 +43,7 @@ export class FtuiColorpicker extends FtuiElement {
       hasBlueSlider: false,
       hasAlphaSlider: false,
       hasKelvinSlider: false,
-      debounce: 200
+      debounce: 300
     };
   }
 
@@ -66,31 +70,53 @@ export class FtuiColorpicker extends FtuiElement {
     }
   }
 
-  onAttributeChanged(name) {
-    switch (name) {
-      case 'has-wheel':
-      case 'has-hue-slider':
-      case 'has-value-slider':
-      case 'has-saturation-slider':
-      case 'has-red-slider':
-      case 'has-green-slider':
-      case 'has-blue-slider':
-      case 'has-alpha-slider':
-      case 'has-kelvin-slider':
-        this.updateOptions();
-        break;
-      case 'hex':
-        this.colorPicker.color.hexString = `#${this.hex.replace('#', '')}`;
-        break;
-      case 'direction':
-        this.colorPicker.setOptions(this.options);
-        break;
+  onAttributeChanged(name, newValue, oldValue) {
+    if (oldValue !== newValue) {
+      switch (name) {
+        case 'has-wheel':
+        case 'has-hue-slider':
+        case 'has-value-slider':
+        case 'has-saturation-slider':
+        case 'has-red-slider':
+        case 'has-green-slider':
+        case 'has-blue-slider':
+        case 'has-alpha-slider':
+        case 'has-kelvin-slider':
+          this.updateOptions();
+          break;
+        case 'hex':
+          this.colorPicker.color.hexString = `#${this.hex.replace('#', '')}`;
+          break;
+        case 'hue':
+          this.colorPicker.color.hue = this.hue;
+          break;
+        case 'saturation':
+          this.colorPicker.color.saturation = this.saturation;
+          break;
+        case 'brightness':
+          this.colorPicker.color.value = this.brightness;
+          break;
+        case 'direction':
+          this.colorPicker.setOptions(this.options);
+          break;
+      }
     }
   }
 
   onColorChange(color) {
-    this.submitChange('hex',color.hexString);
-    this.submitChange('color',color);
+    if (this.hex != color.hexString) {
+      this.submitChange('hex', color.hexString);
+    }
+    if (this.hue != color.hue) {
+      this.submitChange('hue', color.hue);
+    }
+    if (this.saturation != color.saturation) {
+      this.submitChange('saturation', color.saturation);
+    }
+    if (this.brightness != color.value) {
+      this.submitChange('brightness', color.value);
+    }
+    this.emitChangeEvent('color', color);
   }
 
   updateOptions() {
