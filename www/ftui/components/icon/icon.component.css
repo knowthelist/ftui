@@ -55,7 +55,8 @@ svg[viewBox="0 0 448 512"] {
 }
 
 ::slotted(ftui-badge),
-::slotted(ftui-icon) {
+::slotted(ftui-icon),
+::slotted(ftui-label)  {
   top: -0.75em;
   position: absolute;
   right: -0.75em;

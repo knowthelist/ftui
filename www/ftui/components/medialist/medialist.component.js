@@ -34,7 +34,7 @@ export class FtuiMedialist extends FtuiElement {
       track: '',
       width: '',
       height: '',
-      margin: '1',
+      padding: '1',
     };
   }
 
@@ -43,7 +43,7 @@ export class FtuiMedialist extends FtuiElement {
   }
 
   onConnected() {
-    this.style.margin = isNumeric(this.margin) ? this.margin + 'em' : this.margin;
+    this.style.padding = isNumeric(this.padding) ? this.padding + 'em' : this.padding;
     if (this.list.length > 0) {
       this.fillList();
     }
@@ -64,8 +64,8 @@ export class FtuiMedialist extends FtuiElement {
   }
 
   onClicked(media) {
-    this.submitChange('file',media.file);
-    this.submitChange('track',media.track);
+    this.submitChange('file', media.file);
+    this.submitChange('track', media.track);
   }
 
   clearCurrent() {
@@ -91,7 +91,7 @@ export class FtuiMedialist extends FtuiElement {
   setCurrent(selector) {
     this.elemList.querySelectorAll(selector).forEach(elem => {
       elem.classList.add('current');
-      elem.scrollIntoView();
+      elem.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
     });
   }
 

@@ -21,7 +21,7 @@ export class FtuiElement extends HTMLElement {
       if (!uids[this.localName]) {
         uids[this.localName] = 1;
       }
-      this.id = `${this.localName.replace('-', '_')}_${uids[this.localName]++}`;
+      this.id = `${this.localName.replace(/-/g, '_')}_${uids[this.localName]++}`;
     }
 
     this.properties = Object.assign(FtuiElement.properties, properties);

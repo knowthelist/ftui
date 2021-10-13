@@ -21,9 +21,9 @@ class FtuiWeather extends FtuiIcon {
     return {
       provider: 'proplanta',
       iconSet: 'meteocons',
-      name: 'cloud11',
-      rgb: '',
-      condition: ''
+      condition: '',
+      name: '', // base class property (icon)
+      rgb: '', // base class property (icon)
     };
   }
 

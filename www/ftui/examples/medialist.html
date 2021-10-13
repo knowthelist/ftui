@@ -65,7 +65,7 @@
 
     </ftui-grid-tile>
 
-    <ftui-grid-tile row="1" col="5" height="4" width="3">
+    <ftui-grid-tile row="1" col="5" height="3" width="3">
       <header>FHEM-LIST</header>
 
       <ftui-medialist [list]="ftuitest:medialist" [track]="ftuitest:currentTrack"
@@ -73,11 +73,12 @@
 
     </ftui-grid-tile>
 
-    <ftui-grid-tile row="5" col="1" height="4" width="3">
+    <ftui-grid-tile row="5" col="1" height="3" width="3">
       <header>FHEM-LIST</header>
 
       <ftui-medialist [list]="ftuitest:medialist2" [file]="dummy1:currentFile"
-                      (file)="setreading dummy1:currentFile"></ftui-medialist>
+                      (file)="setreading dummy1:currentFile"
+                      padding="3em"></ftui-medialist>
 
     </ftui-grid-tile>
 
