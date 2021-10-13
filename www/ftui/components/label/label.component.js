@@ -8,6 +8,7 @@
 */
 
 import { FtuiElement } from '../element.component.js';
+import { isNumeric } from '../../modules/ftui/ftui.helper.js';
 
 const sizes = [0.75, 0.875, 1, 1.25, 1.5, 1.75, 2, 2.5, 3, 3.5, 4, 6, 8];
 export class FtuiLabel extends FtuiElement {
@@ -44,6 +45,8 @@ export class FtuiLabel extends FtuiElement {
       interval: 0,
       width: '',
       height: '',
+      top: '',
+      right: '',
     };
   }
 
@@ -70,6 +73,12 @@ export class FtuiLabel extends FtuiElement {
         if (this.size >= 10) {
           this.style.fontFamily = '"HelveticaNeue-UltraLight", "Segoe UI", "Roboto Light", sans-serif';
         }
+        break;
+      case 'top':
+        this.style.top = isNumeric(value) ? value + 'em' : value;
+        break;
+      case 'right':
+        this.style.right = isNumeric(value) ? value + 'em' : value;
         break;
       case 'width':
         this.style.width = value;

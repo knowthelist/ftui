@@ -171,7 +171,7 @@ export class FtuiBinding {
     this.element.removeAttribute(name);
   }
 
-  initEventListener(attribute) {
+  initEventListener(name, attribute) {
     this.element.addEventListener(attribute.name,
       this.evalInContext.bind(this.element, attribute.value)
     );
