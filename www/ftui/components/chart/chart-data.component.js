@@ -47,7 +47,8 @@ export class FtuiChartData extends FtuiElement {
       update: '',
       tension: '0.0',
       stepped: false,
-      offset: 0
+      offset: 0,
+      yAxisID: 'y'
     };
   }
 

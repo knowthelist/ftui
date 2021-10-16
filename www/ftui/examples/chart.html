@@ -31,10 +31,11 @@
     <ftui-grid-tile row="1" col="1" height="3" width="3">
       <header>DEFAULT</header>
 
-        <ftui-chart title="demo-chart">
-          <ftui-chart-data label="Außen" color="warning" log="FileLog_AgroWeather" spec="4:AgroWeather.temperature"></ftui-chart-data>
+        <ftui-chart title="demo-chart" y-label="Heizung" y1-label="Außen">
+          <ftui-chart-data label="Außen" color="warning" log="FileLog_AgroWeather" spec="4:AgroWeather.temperature" y-axis-id="y1"></ftui-chart-data>
           <ftui-chart-data label="Vorlauf" fill background-color="rgba(75,192,192,0.2)" color="rgba(75,192,192,1)" log="FileLog_Heizung_Vorlauf" spec="4:temperature"></ftui-chart-data>
           <ftui-chart-data label="Rücklauf" fill background-color="#d6305650" color="#d63056" log="FileLog_Heizung_Ruecklauf" spec="4:temperature"></ftui-chart-data>
+          
           <ftui-chart-controls units="day, week"></ftui-chart-controls>
         </ftui-chart>
       

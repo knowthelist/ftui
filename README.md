@@ -83,7 +83,7 @@ Just add some of the FTUI web components to your HTML code
 
 ```html
 <ftui-icon 
-    [name]="dummy1 | map('on: lightbulb-on-outline, off: lightbulb-outline')"
+    [name]="dummy1 | map('on: lightbulb-on, off: lightbulb')"
     [color]="ftuitest | step('0: success, 50: warning, 80: danger')">
 </ftui-icon>
 ```
@@ -371,6 +371,16 @@ Main component: **ftui-chart**
 | <b>prefetch</b>||Number| <code>0</code>|
 | <b>extend</b>||Boolean| <code>false</code>|
 | <b>noscale</b>||Boolean| <code>false</code>|
+| <b>no-y</b>||Boolean| <code>false</code>|
+| <b>no-y1</b>||Boolean| <code>false</code>|
+| <b>no-x</b>||Boolean| <code>false</code>|
+| <b>y-min</b>||Number| <code>0</code>|
+| <b>y1-min</b>||Number| <code>0</code>|
+| <b>y-max</b>||Number| <code>0</code>|
+| <b>y1-max</b>||Number| <code>0</code>|
+| <b>y-label</b>||String| <code>""</code>|
+| <b>y1-label</b>||String| <code>""</code>|
+
 
 <br>
 Child component:  <b>ftui-chart-control</b>
@@ -380,11 +390,11 @@ Child component:  <b>ftui-chart-control</b>
 |-----------|-------------|-------|---------|
 | <b>unit</b> ||String| <code>""</code>|
 | <b>units</b>||Strings| <code>""</code>|
-| <b>startDate</b>||Date| <code>""</code>|
-| <b>endDate</b>||Date| <code>""</code>|
+| <b>start-date</b>||Date| <code>""</code>|
+| <b>end-date</b>||Date| <code>""</code>|
 <br>
   
-  Child component: **ftui-chart-control**
+  Child component: **ftui-chart-data**
 <br>
 
 | Attribute | Description | Type | Default |
@@ -392,24 +402,25 @@ Child component:  <b>ftui-chart-control</b>
 | <b>label</b> ||String| <code>""</code>|
 | <b>fill</b>||Boolean| <code>false</code>|
 | <b>hidden</b>||Boolean| <code>false</code>|
-| <b>pointBackgroundColor</b>||Color| <code>primaryColor</code>|
-| <b>backgroundColor</b>||Color| <code>""</code>|
-| <b>borderColor</b>||Color| <code>primaryColor</code>|
-| <b>borderWidth</b>||Number| <code>1.2,</code>|
-| <b>pointRadius</b>||Number| <code>2</code>|
+| <b>point-background-color</b>||Color| <code>primaryColor</code>|
+| <b>background-color</b>||Color| <code>""</code>|
+| <b>border-color</b>||Color| <code>primaryColor</code>|
+| <b>border-width</b>||Number| <code>1.2,</code>|
+| <b>point-radius</b>||Number| <code>2</code>|
 | <b>title</b> ||String| <code>"-"</code>|
 | <b>log</b> ||String| <code>"-"</code>|
 | <b>file</b> ||String| <code>"-"</code>|
 | <b>spec</b> ||String| <code>"4:.*"</code>|
 | <b>unit</b> ||String| <code>"°C"</code>|
-| <b>startDate</b> ||Date| <code>""</code>|
-| <b>endDate</b> ||Date| <code>""</code>|
+| <b>start-date</b> ||Date| <code>""</code>|
+| <b>end-date</b> ||Date| <code>""</code>|
 | <b>prefetch</b> ||Number| <code>0</code>|
 | <b>extend</b>||Boolean| <code>false</code>|
 | <b>update</b>||String| <code>""</code>|
 | <b>tension</b> ||Number| <code>0.0</code>|
 | <b>stepped</b>||Boolean| <code>false</code>|
 | <b>offset</b> ||Number| <code>0</code>|
+| <b>y-axis-id</b> ||Number| <code>0</code>|
 
 <br></br>
 Example for DbLog

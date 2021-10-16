@@ -75,6 +75,10 @@
   --color-contrast: var(--light-contrast-color);
 }
 
+[color="current"] {
+  --color-base: currentColor;
+}
+
 [color="grid"] {
   --color-base: var(--grid-background-color);
   --color-contrast: var(--dark-contrast-color);
