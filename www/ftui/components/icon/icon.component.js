@@ -31,7 +31,7 @@ export class FtuiIcon extends FtuiElement {
     return {
       type: 'svg',
       path: 'icons',
-      size: -99,
+      size: 0,
       name: '',
       color: '',
       rgb: '',

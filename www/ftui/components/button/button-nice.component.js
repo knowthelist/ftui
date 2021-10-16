@@ -1,5 +1,6 @@
 /*
 * Button widget for FTUI version 3
+* This button simulates the look & feel from a FTUI2 Button
 *
 * Copyright (c) 2019-2020 Mario Stephan <mstephan@shared-files.de>
 * Under MIT License (http://www.opensource.org/licenses/mit-license.php)

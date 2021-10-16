@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!--FTUI3 starting base -->
+  <base href="../" />
+  <script src="ftui.js"></script>
+  <link href="ftui.css" rel="stylesheet">
+  <link href="themes/ftui-theme.css" rel="stylesheet">
+  <link href="themes/bright-theme.css" rel="stylesheet"
+        id="lightCSS" ftui-binding [disabled]="dummy11 | map('dark:true, light:false') | toBool()">
+  <link href="favicon.ico" rel="icon" type="image/x-icon" />
+
+  <title>FTUI Day Night</title>
+</head>
+
+<body>
+
+  <ftui-grid base-width="80" base-height="75" shape="round">
+
+    <ftui-grid-tile row="1" col="1" height="1" width="2">
+      <!-- Change color theme via FHEM reading-->
+      <ftui-button [(value)]="dummy11" states="dark,light">Dark,Light</ftui-button>
+    </ftui-grid-tile>
+
+    <!-- BLINDS -->
+    <ftui-grid-tile row="3" col="2" height="2" width="2">
+      <ftui-label size="3">Blinds</ftui-label>
+      <ftui-row height="33%">
+        <ftui-button direction="vertical" color="current" fill="none" margin="-1em">
+          <ftui-icon name="angle-up" class="size-1" height="90%"></ftui-icon>
+          <ftui-label>Day</ftui-label>
+        </ftui-button>
+        <ftui-icon name="window-shutter" class="size-4"></ftui-icon>
+        <ftui-button direction="vertical" color="current" fill="none" margin="-1em">
+          <ftui-icon name="angle-down" class="size-1" height="90%"></ftui-icon>
+          <ftui-label>Night</ftui-label>
+        </ftui-button>
+      </ftui-row>
+      <ftui-label unit="%" size="1">0</ftui-label>
+    </ftui-grid-tile>
+
+    <!-- WINDOWS -->
+    <ftui-grid-tile row="3" col="4" height="2" width="2">
+      <ftui-label size="3">Windows</ftui-label>
+      <ftui-icon name="classic-window" size="3"></ftui-icon>
+      <ftui-label>All closed</ftui-label>
+    </ftui-grid-tile>
+
+    <!-- DOOR -->
+    <ftui-grid-tile row="3" col="6" height="2" width="2">
+      <ftui-label size="3">Door</ftui-label>
+      <ftui-icon name="front-door" size="3">
+        <ftui-icon name="lock" size="0" top="3" right="4">
+        </ftui-icon>
+      </ftui-icon>
+      <ftui-label>secure</ftui-label>
+    </ftui-grid-tile>
+
+  </ftui-grid>
+
+</body>
+
+<script>
+  // automatic change of color theme
+  if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    lightCSS.setAttribute('disabled', ''); // light
+  } else {
+    lightCSS.removeAttribute('disabled'); // dark
+  }
+
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+    if (e.matches) {
+      lightCSS.setAttribute('disabled', ''); // light
+    } else {
+      lightCSS.removeAttribute('disabled'); // dark
+    }
+  });
+</script>
+
+</html>

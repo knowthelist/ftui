@@ -108,7 +108,6 @@ export class FtuiChart extends FtuiElement {
       }
     };
 
-    console.log('this.y1Label',this.y1Label,'this.yLabel',this.yLabel)
     if (getStylePropertyValue('--chart-font-family')) {
       Chart.defaults.font.family = getStylePropertyValue('--chart-font-family')
     }

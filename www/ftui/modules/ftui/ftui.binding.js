@@ -95,7 +95,11 @@ export class FtuiBinding {
               ftuiHelper.log(1, `${this.element.id}  -  onReadingEvent: set this.${attribute}=${filteredValue}`);
               // change element's property
               if (this.isThirdPartyElement) {
-                this.element.setAttribute(ftuiHelper.toKebabCase(attribute), filteredValue);
+                if (typeof filteredValue === 'boolean' && filteredValue === false) {
+                  this.element.removeAttribute(attribute);
+                } else {
+                  this.element.setAttribute(ftuiHelper.toKebabCase(attribute), filteredValue);
+                }
               } else {
                 this.element[attribute] = filteredValue;
               }

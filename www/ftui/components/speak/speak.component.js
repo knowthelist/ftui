@@ -42,18 +42,12 @@ export class FtuiSpeak extends FtuiElement {
       case 'text': {
         const readingData = fhemService.getReadingItem(this.readingName).data;
         const isNewDate = readingData.time !== this.lastTextDate;
-        if (this.isInitialized && !this.disabled && this.text !== '' && isNewDate) {
+        if (!this.disabled && this.text !== '' && isNewDate) {
           this.lastTextDate = readingData.time;
           this.speakText(this.text);
         }
-        if (!this.isInitialized) {
-          this.isInitialized = true;
-          // reset attribute to allow speak the same text again
-          this.text = '';
-        }
         break;
       }
-
     }
   }
 
