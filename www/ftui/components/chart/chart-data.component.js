@@ -27,6 +27,7 @@ export class FtuiChartData extends FtuiElement {
     const primaryColor = ftuiHelper.getStylePropertyValue('--primary-color');
     return {
       label: '',
+      type: 'line',
       fill: false,
       hidden: false,
       pointBackgroundColor: primaryColor,

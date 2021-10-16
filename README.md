@@ -383,23 +383,13 @@ Main component: **ftui-chart**
 
 
 <br>
-Child component:  <b>ftui-chart-control</b>
-<br>
-
-| Attribute | Description | Type | Default |
-|-----------|-------------|-------|---------|
-| <b>unit</b> ||String| <code>""</code>|
-| <b>units</b>||Strings| <code>""</code>|
-| <b>start-date</b>||Date| <code>""</code>|
-| <b>end-date</b>||Date| <code>""</code>|
-<br>
-  
   Child component: **ftui-chart-data**
 <br>
 
 | Attribute | Description | Type | Default |
 |-----------|-------------|-------|---------|
 | <b>label</b> ||String| <code>""</code>|
+| <b>type</b>||String| <code>"line"</code>|
 | <b>fill</b>||Boolean| <code>false</code>|
 | <b>hidden</b>||Boolean| <code>false</code>|
 | <b>point-background-color</b>||Color| <code>primaryColor</code>|
@@ -422,7 +412,19 @@ Child component:  <b>ftui-chart-control</b>
 | <b>offset</b> ||Number| <code>0</code>|
 | <b>y-axis-id</b> ||Number| <code>0</code>|
 
-<br></br>
+<br>
+Child component:  <b>ftui-chart-control</b>
+<br>
+
+| Attribute | Description | Type | Default |
+|-----------|-------------|-------|---------|
+| <b>unit</b> ||String| <code>""</code>|
+| <b>units</b>||Strings| <code>""</code>|
+| <b>start-date</b>||Date| <code>""</code>|
+| <b>end-date</b>||Date| <code>""</code>|
+<br>
+<br>
+
 Example for DbLog
 
 ```html
