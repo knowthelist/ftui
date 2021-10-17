@@ -34,7 +34,7 @@ export class FtuiLabel extends FtuiElement {
           line-height: 0.8em;
         }
       </style>
-      <slot name="start"></slot><slot></slot><slot name="content"></slot><slot name="unit"></slot>`;
+      <slot name="pre"></slot><slot></slot><slot name="content"></slot><slot name="unit"></slot>`;
   }
 
   static get properties() {
@@ -59,13 +59,15 @@ export class FtuiLabel extends FtuiElement {
     switch (name) {
       case 'text':
         this.mainSlotElement.innerHTML = this.text;
-        if (this.unitSlotElement) {        
-          this.unitSlotElement.innerHTML = this.unit;
-          if (this.text.length==0) {
-            this.unitSlotElement.innerHTML = '';
-          }
+        if (this.text.length === 0) {
+          this.unitSlotElement.innerHTML = '';
         }
         this.checkInterval();
+        break;
+      case 'unit':
+        if (this.text.length > 0) {
+          this.unitSlotElement.innerHTML = this.unit;
+        }
         break;
       case 'interval':
         this.checkInterval();

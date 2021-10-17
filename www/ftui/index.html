@@ -25,7 +25,7 @@
 
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="toast_position" content="topLeft">
-  
+
 
   <!-- verbose level 0-4 -->
   <meta name="debug" content="0">
@@ -68,67 +68,37 @@
         <ftui-clock format="hh:mm" size="9"></ftui-clock>
       </ftui-grid-tile>
 
-      <!-- CO² -->
-      <ftui-grid-tile row="1" col="4" height="2" width="2" shape="round"
-                      [color]="WCLuft | step('0:ok, 1000:warning, 2000:danger')"
-                      [title]="WCLuft:state:time">
-        <ftui-column width="80%" padding="0 1em" align-items="left">
-          <ftui-label id="co2" size="5">CO²</ftui-label>
-          <ftui-label size="7" [text]="WCLuft | part(1) | toInt()">
-            <span slot="end" class="size-2">ppm</span>
-          </ftui-label>
-        </ftui-column>
-      </ftui-grid-tile>
 
-      <ftui-grid-tile row="3" col="2" height="2" width="2" shape="round">
-        <ftui-knob [value]="THSensorWZ:temperature"
-                   [color]="THSensorWZ:temperature | step('0: blue, 18: ok, 20: yellow, 22: orange, 30: danger')"
-                   width="130" offset-y="10"
-                   type="handle" min="16" max="25" decimals="1" unit="°C" readonly has-value-text></ftui-knob>
-      </ftui-grid-tile>
 
-      <!-- AussenTemp-->
-      <ftui-grid-tile row="5" col="2" height="3" width="2" shape="round">
-        <ftui-label size="2">Außen</ftui-label>
-        <ftui-knob [value]="AussenTemp:temperature"
-                   [color]="AussenTemp:temperature | step('-99: blue, 10: ok, 25: warning, 30: danger')"
-                   width="130" offset-y="10"
-                   type="handle" min="-10" max="30" decimals="1" unit="°C" readonly has-value-text></ftui-knob>
-      </ftui-grid-tile>
-
-      <ftui-grid-tile row="3" col="4" height="2" width="3" shape="round">
-        <ftui-column>
-          <ftui-row>
-            <ftui-label>Humidity</ftui-label>
-            <ftui-label class="size-7" [text]="THSensorWZ:humidity">
-              <span slot="end" class="size-0">%</span>
-            </ftui-label>
-          </ftui-row>
-          <ftui-chart class="row" width="150px" height="75px">
-            <ftui-chart-data fill log="FileLog_THSensorWZ" spec="4:THSensorWZ.humidity"
-                             [update]="THSensorWZ:state:time"></ftui-chart-data>
-          </ftui-chart>
-        </ftui-column>
+      <!-- Tonnen -->
+      <ftui-grid-tile row="1" col="4" height="2" width="2"
+                      [color]="AbfallView:t_001_daysleft  | step('0:alert, 1:warning, 2:ok')">
+        <ftui-label size="3">Tonnen</ftui-label>
+        <ftui-icon name="trash-o" size="3"></ftui-icon>
+        <ftui-row width="80%" height="10%">
+          <ftui-label [text]="AbfallView:t_001_summary | part(1)"></ftui-label>
+          <ftui-label [text]="AbfallView:t_001_daysleftLong"></ftui-label>
+        </ftui-row>
       </ftui-grid-tile>
 
       <!-- Jalousie -->
-      <ftui-grid-tile row="1" col="6" height="2" width="2" shape="round">
-        <ftui-column align-items="bottom" height="75%">
-          <ftui-row>
-            <ftui-icon name="window-shutter" [color]="ftuitest | part(1) | step('5: primary')" class="size-4">
-            </ftui-icon>
-          </ftui-row>
-          <ftui-row>
-            <ftui-button (value)="set AllJalousie fahren up" direction="vertical" color="light" fill="none">
-              <ftui-icon name="angle-up" class="size-1" height="90%"></ftui-icon>
-              <ftui-label>Tag</ftui-label>
-            </ftui-button>
-            <ftui-button @click="sendFhem('{setJalousieNight()}')" direction="vertical" color="light" fill="none">
-              <ftui-icon name="angle-down" class="size-1" height="90%"></ftui-icon>
-              <ftui-label>Nacht</ftui-label>
-            </ftui-button>
-          </ftui-row>
-        </ftui-column>
+      <ftui-grid-tile row="1" col="6" height="2" width="2" shape="round"
+                      [color]="AllJalousie:position | step('5:warning, 35:ok')">
+        <ftui-label size="3">Jalousien</ftui-label>
+        <ftui-row height="45%">
+          <ftui-button (value)="set AllJalousie fahren up" direction="vertical" color="current" fill="none"
+                       margin="-1em">
+            <ftui-icon name="angle-up" class="size-1" height="90%"></ftui-icon>
+            <ftui-label>Tag</ftui-label>
+          </ftui-button>
+          <ftui-icon name="window-shutter" class="size-4"></ftui-icon>
+          <ftui-button @click="sendFhem('{setJalousieNight()}')" direction="vertical" color="current" fill="none"
+                       margin="-1em">
+            <ftui-icon name="angle-down" class="size-1" height="90%"></ftui-icon>
+            <ftui-label>Nacht</ftui-label>
+          </ftui-button>
+        </ftui-row>
+        <ftui-label [text]="AllJalousie:position | toInt()" unit="%" size="1"></ftui-label>
       </ftui-grid-tile>
 
       <!-- FENSTER -->
@@ -150,9 +120,11 @@
                       [color]="Eingangstuer:secure | map('locked: ok, closed:yellow, open:alert')">
         <ftui-label size="3">Tür</ftui-label>
         <ftui-icon name="front-door" size="3">
-          <ftui-icon name="lock" size="2" top="1" right="3" [hidden]="EingangstuerRiegel | map('open:true, `.*`:false')"></ftui-icon>
+          <ftui-icon name="lock" size="2" top="1" right="3"
+                     [hidden]="EingangstuerRiegel | map('open:true, `.*`:false')"></ftui-icon>
         </ftui-icon>
-        <ftui-label [text]="Eingangstuer:secure | map('locked:abgeschlossen, closed:nicht abgeschlossen, open:offen')"></ftui-label>
+        <ftui-label [text]="Eingangstuer:secure | map('locked:abgeschlossen, closed:nicht abgeschlossen, open:offen')">
+        </ftui-label>
       </ftui-grid-tile>
 
       <!-- HERD -->
@@ -163,12 +135,60 @@
         <ftui-label [text]="HerdSummeStromwert"></ftui-label>
       </ftui-grid-tile>
 
-      <ftui-grid-tile row="3" col="8" height="2" width="2" shape="round">
-
+      <!-- Temp -->
+      <ftui-grid-tile row="3" col="2" height="2" width="2" shape="round">
+        <ftui-knob [value]="THSensorWZ:temperature"
+                   [color]="THSensorWZ:temperature | step('0: blue, 18: ok, 20: yellow, 22: orange, 30: danger')"
+                   width="130" offset-y="10"
+                   type="handle" min="16" max="25" decimals="1" unit="°C" readonly has-value-text></ftui-knob>
       </ftui-grid-tile>
-      <ftui-grid-tile row="3" col="10" height="2" width="2" shape="round">
 
+      <!-- AussenTemp-->
+      <ftui-grid-tile row="5" col="2" height="3" width="2" shape="round">
+        <ftui-label size="2">Außen</ftui-label>
+        <ftui-knob [value]="AussenTemp:temperature"
+                   [color]="AussenTemp:temperature | step('-99: blue, 10: ok, 25: warning, 30: danger')"
+                   width="130" offset-y="10"
+                   type="handle" min="-10" max="30" decimals="1" unit="°C" readonly has-value-text></ftui-knob>
       </ftui-grid-tile>
+
+      <ftui-grid-tile row="3" col="4" height="2" width="3" shape="round">
+        <ftui-column>
+          <ftui-row>
+            <ftui-label [text]="THSensorWZ:state:time">Humidity</ftui-label>
+            <ftui-label class="size-7" [text]="THSensorWZ:humidity">
+              <span slot="unit" class="size-0">%</span>
+            </ftui-label>
+          </ftui-row>
+          <ftui-chart class="row" width="150px" height="75px">
+            <ftui-chart-data fill log="FileLog_THSensorWZ" spec="4:THSensorWZ.humidity"
+                             [update]="THSensorWZ:state:time"></ftui-chart-data>
+          </ftui-chart>
+        </ftui-column>
+      </ftui-grid-tile>
+
+      <!-- CO² -->
+      <ftui-grid-tile row="3" col="8" height="2" width="2" shape="round"
+                      [color]="WCLuft | step('0:ok, 1000:warning, 2000:danger')"
+                      [title]="WCLuft:state:time">
+        <ftui-column width="80%" padding="0 1em" align-items="left">
+          <ftui-label id="co2" size="5">CO²</ftui-label>
+          <ftui-label size="7" [text]="WCLuft | part(1) | toInt()">
+            <span slot="unit" class="size-2">ppm</span>
+          </ftui-label>
+        </ftui-column>
+      </ftui-grid-tile>
+
+      <!-- Licht -->
+      <ftui-grid-tile row="3" col="10" height="2" width="2" shape="round"
+                      [color]="AllLights:count | step('0: ok, 3:yellow, 8:alert')">
+        <ftui-label size="3">Licht</ftui-label>
+        <ftui-icon size="3"
+                   [name]="AllLights:count | step('0: lightbulb, 1: lightbulb-on')">
+        </ftui-icon>
+        <ftui-label [text]="AllLights:count"></ftui-label>
+      </ftui-grid-tile>
+
       <ftui-grid-tile row="5" col="4" height="3" width="4">
         <ftui-content file="_content-weather-2-day.html"></ftui-content>
       </ftui-grid-tile>
