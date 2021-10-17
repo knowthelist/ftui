@@ -74,10 +74,11 @@
 
 <script>
   // automatic change of color theme
-  const isDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const darkSchema = '(prefers-color-scheme: dark)';
+  const isDark = window.matchMedia && window.matchMedia(darkSchema).matches;
   setTheme(isDark);
 
-  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+  window.matchMedia(darkSchema).addEventListener('change', e => {
     const isDark = e.matches;
     setTheme(isDark);
   });

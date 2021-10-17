@@ -32,7 +32,7 @@ export class FtuiMenuButton extends FtuiElement {
 
   static get properties() {
     return {
-      menu: 'ftui-menu-1',
+      menu: 'ftui_menu_1',
     };
   }
 

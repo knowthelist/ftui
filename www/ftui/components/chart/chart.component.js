@@ -304,6 +304,8 @@ export class FtuiChart extends FtuiElement {
       });
       dataset.data = dataElement.data;
       this.configuration.data.datasets.push(dataset);
+      dataElement.startDate = this.startDate;
+      dataElement.endDate = this.endDate;
     });
     this.chart.update();
     // disable animation after first update

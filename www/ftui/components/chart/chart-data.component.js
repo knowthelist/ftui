@@ -111,9 +111,6 @@ export class FtuiChartData extends FtuiElement {
         this.fetch();
         break;
     }
-    if (ftuiHelper.isDefined(this.data)) {
-      ftuiHelper.triggerEvent('ftuiDataChanged', this);
-    }
   }
 
   updateColor() {

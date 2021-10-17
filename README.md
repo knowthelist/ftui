@@ -357,6 +357,17 @@ Colorpicker allows to change a color value in many different ways. Work with col
 
 The Chart component uses [Chart.js](https://www.chartjs.org/docs/latest/) to render charts.
 
+
+Chart Types are:
+- Line chart
+- Bar chart
+- Radar chart
+- Doughnut and Pie chart
+- Polar chart
+- Bubble chart
+- Area chart
+or mixed types
+
 Main component: **ftui-chart**  
 
 
