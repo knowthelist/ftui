@@ -129,7 +129,7 @@ export const iconSet = {
     VERY_CLOUDY:'./icons/weather/bas/bas_cloudy.svg',
     OVERCAST:'./icons/weather/bas/bas_overcast-day.svg',
     LIGHT_SHOWERS:'./icons/weather/bas/bas_partly-cloudy-day-rain.svg',
-    SHOWERS:'./icons/weather/bas/bas_partly-cloudy-day-rain.svg',
+    SHOWERS:'./icons/weather/bas/bas_rain.svg',
     THUNDERSTORM:'./icons/weather/bas/bas_thunderstorms-day.svg',
     SCATTERED_THUNDERSTORM:'./icons/weather/bas/bas_thunderstorms-day-rain.svg',
     SNOW_SHOWER:'./icons/weather/bas/bas_partly-cloudy-day-snow.svg',
