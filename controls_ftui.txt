@@ -90,7 +90,6 @@ UPD 2021-02-09_23:33:23 998 www/ftui/examples/contents/content-weather-day.html
 UPD 2020-12-31_16:39:02 5293 www/ftui/examples/contents/content-weather.html
 UPD 2021-10-02_19:10:30 2485 www/ftui/examples/contents/mobile-view-sonos.html
 UPD 2021-02-01_19:44:46 189 www/ftui/examples/contents/mobile-view1.html
-UPD www/ftui/examples/dark-light-modes.html
 UPD 2021-10-03_12:43:52 2749 www/ftui/examples/departure.html
 UPD 2021-02-15_21:49:38 3847 www/ftui/examples/dropdown.html
 UPD 2021-10-05_20:08:00 3482 www/ftui/examples/grid.html
@@ -114,6 +113,7 @@ UPD 2021-10-04_19:52:50 2927 www/ftui/examples/tab-segment-local.html
 UPD 2021-10-04_19:06:09 2577 www/ftui/examples/tab-segment.html
 UPD 2020-12-31_16:39:02 2777 www/ftui/examples/tab-trans.html
 UPD 2021-04-29_00:00:53 2616 www/ftui/examples/tab.html
+UPD 2021-10-17_11:10:52 2927 www/ftui/examples/themes.html
 UPD 2021-02-01_19:44:49 3005 www/ftui/examples/view.html
 UPD 2021-10-13_11:05:41 3841 www/ftui/examples/weather.html
 UPD 2021-10-02_11:43:22 9896 www/ftui/ftui.css

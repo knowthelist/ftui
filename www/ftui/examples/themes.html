@@ -74,19 +74,21 @@
 
 <script>
   // automatic change of color theme
-  if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-    lightCSS.setAttribute('disabled', ''); // light
-  } else {
-    lightCSS.removeAttribute('disabled'); // dark
-  }
+  const isDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  setTheme(isDark);
 
   window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-    if (e.matches) {
-      lightCSS.setAttribute('disabled', ''); // light
-    } else {
-      lightCSS.removeAttribute('disabled'); // dark
-    }
+    const isDark = e.matches;
+    setTheme(isDark);
   });
+
+  function setTheme(isDark) {
+    if (isDark) {
+      lightCSS.setAttribute('disabled', '');
+    } else {
+      lightCSS.removeAttribute('disabled');
+    }
+  }
 </script>
 
 </html>
