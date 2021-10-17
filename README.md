@@ -489,6 +489,9 @@ Examples
 - [SegmentedButton](https://knowthelist.github.io/ftui/www/ftui/examples/segment.html)
 - [Medialist](https://knowthelist.github.io/ftui/www/ftui/examples/medialist.html)
 
+- [Colors](https://knowthelist.github.io/ftui/www/ftui/examples/colors.html)
+- [Themes](https://knowthelist.github.io/ftui/www/ftui/examples/themes.html)
+
 Donation
 --------
 You can thank the creator of this versatile UI:
