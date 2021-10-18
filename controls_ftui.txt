@@ -11,7 +11,7 @@ UPD 2020-12-31_16:39:02 231 www/ftui/components/chart/chart.component.css
 UPD 2021-10-17_15:27:33 9497 www/ftui/components/chart/chart.component.js
 UPD 2021-03-01_21:00:54 358 www/ftui/components/checkbox/checkbox.component.css
 UPD 2021-10-11_22:43:44 2257 www/ftui/components/checkbox/checkbox.component.js
-UPD www/ftui/components/circlemenu/circlemenu.component.css
+MOV www/ftui/components/circlemenu/circlemenu.component.css unused
 UPD 2021-10-18_08:47:23 2554 www/ftui/components/circlemenu/circlemenu.component.js
 UPD 2021-02-06_14:53:43 1727 www/ftui/components/clock/clock.component.js
 UPD 2021-10-13_08:34:58 3793 www/ftui/components/colorpicker/colorpicker.component.js
