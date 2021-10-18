@@ -36,7 +36,36 @@ export class FtuiCircleMenu extends FtuiElement {
   }
 
   template() {
-    return `<style> @import "components/circlemenu/circlemenu.component.css"; </style>
+    return `<style>
+    :host {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      min-width: 3em;
+      min-height: 3em;
+    }
+    :host ::slotted(*:first-child) {
+      cursor: pointer; 
+      transform: translateZ(0); 
+      position: absolute;
+    }
+    :host ::slotted(*) {
+      position: absolute;
+      z-index: 1;
+      opacity: 1;
+    }
+    :host(.open) ::slotted(*) {
+      z-index: 2;
+    }
+    .fixed {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-color: #000;
+      opacity: ${this.opacity};
+      z-index: 2;
+    }    
+    </style>
       <div class="overlay"></div>
       <slot></slot>`;
   }
@@ -46,6 +75,7 @@ export class FtuiCircleMenu extends FtuiElement {
       circleRadius: 6,
       keepOpen: false,
       direction: 'full',
+      opacity: 0.75,
       timeout: 4
     }
   }

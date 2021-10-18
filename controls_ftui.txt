@@ -12,7 +12,7 @@ UPD 2021-10-17_15:27:33 9497 www/ftui/components/chart/chart.component.js
 UPD 2021-03-01_21:00:54 358 www/ftui/components/checkbox/checkbox.component.css
 UPD 2021-10-11_22:43:44 2257 www/ftui/components/checkbox/checkbox.component.js
 UPD 2021-02-01_19:44:33 496 www/ftui/components/circlemenu/circlemenu.component.css
-UPD 2021-02-04_22:45:27 1946 www/ftui/components/circlemenu/circlemenu.component.js
+UPD 2021-10-18_07:23:05 2526 www/ftui/components/circlemenu/circlemenu.component.js
 UPD 2021-02-06_14:53:43 1727 www/ftui/components/clock/clock.component.js
 UPD 2021-10-13_08:34:58 3793 www/ftui/components/colorpicker/colorpicker.component.js
 UPD 2021-01-28_21:05:34 574 www/ftui/components/column/column.component.js
@@ -76,7 +76,7 @@ UPD 2020-12-31_16:39:02 913 www/ftui/examples/button-nice.html
 UPD 2021-10-04_21:06:00 7975 www/ftui/examples/button.html
 UPD 2021-10-16_15:43:50 1899 www/ftui/examples/chart.html
 UPD 2021-02-23_20:21:29 1385 www/ftui/examples/checkbox.html
-UPD 2021-10-16_20:52:24 8881 www/ftui/examples/circlemenu.html
+UPD 2021-10-18_07:35:34 9431 www/ftui/examples/circlemenu.html
 UPD 2021-02-06_14:42:41 1655 www/ftui/examples/clock.html
 UPD 2021-10-13_09:22:18 2911 www/ftui/examples/colorpicker.html
 UPD 2021-10-17_20:42:28 2798 www/ftui/examples/colors.html

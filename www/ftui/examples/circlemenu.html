@@ -28,7 +28,7 @@
 <body>
   <ftui-grid base-width="70" base-height="150">
 
-    <ftui-grid-tile row="1" col="1" height="1" width="2">
+     <ftui-grid-tile row="1" col="1" height="1" width="2">
       <header>DEFAULT</header>
 
         <ftui-circlemenu>
@@ -104,7 +104,7 @@
     <ftui-grid-tile row="2" col="1" height="1" width="2">
       <header>KEEPOPEN</header>
 
-        <ftui-circlemenu keep-open direction="horizontal-right">
+        <ftui-circlemenu keep-open direction="horizontal-right" opacity="0.2">
 
               <ftui-icon name="home1"></ftui-icon>
 
@@ -234,6 +234,23 @@
 
     </ftui-grid-tile>
 
+    <ftui-grid-tile row="3" col="1" height="1" width="2">
+      <header>OPACITY</header>
+
+        <ftui-circlemenu keep-open direction="horizontal-right" opacity="0.3">
+
+              <ftui-icon name="home1"></ftui-icon>
+
+              <ftui-button-nice get="dummy1"></ftui-button-nice>
+
+              <ftui-button-nice get="dummy2"></ftui-button-nice>
+
+              <ftui-button-nice get="dummy3"></ftui-button-nice>
+
+              <ftui-button-nice get="dummy4"></ftui-button-nice>
+
+        </ftui-circlemenu>
+    </ftui-grid-tile>
   </ftui-grid>
 </body>
 
