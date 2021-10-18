@@ -20,7 +20,8 @@
   <link href="themes/ftui-theme.css" rel="stylesheet">
   <link href="favicon.ico" rel="icon" type="image/x-icon" />
 
-  <meta name="debug" content="2">
+  <meta name="debug" content="0">
+  <meta name="toast_position" content="top">
 
   <title>FTUI Example Label</title>
 </head>
@@ -191,11 +192,20 @@
       </ftui-label>
     </ftui-grid-tile>
 
-    <ftui-grid-tile row="5" col="1" height="1" width="1">
+    <ftui-grid-tile row="5" col="1" height="2" width="1">
       <header>UNIT</header>
       <ftui-label text="42" unit="s"></ftui-label>
       <ftui-label text="" unit="ms"></ftui-label>
+      <ftui-label [text]="ftuitest:watt" unit="W" class="size-0" id="labelUnit"></ftui-label>
     </ftui-grid-tile>
+
+    <ftui-grid-tile row="5" col="2" height="2" width="1">
+      <header>TEST IT</header>
+      <ftui-button @click="sendFhem(`{CommandSetReading(undef,'ftuitest watt ')}`)">null</ftui-button>
+      <ftui-button (value)="setreading ftuitest:watt" states="9,10,12.45">Values</ftui-button>
+      <ftui-button @click="labelUnit.unit=event.target.value" value="V" states="W,V,A,WA">Units</ftui-button>
+    </ftui-grid-tile>
+    
 
   </ftui-grid>
 </body>

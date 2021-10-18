@@ -87,6 +87,10 @@
   --popup-header-color: var(--grid-header-color);
   --popup-header-background-color: var(--grid-header-background-color);
   
+  --circlemenu-overlay-color: var(--fullblack);
+
+  --chart-text-color: var(--gray55);
+
   --border-color: var(--gray75);
 
   --switch-off-color: var(--gray80);

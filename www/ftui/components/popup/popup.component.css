@@ -7,19 +7,8 @@
   border-top-left-radius: 1em;
 }
 
-.overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  overflow: auto;
-  background-color:var(--popup-overlay-color, rgba(0, 0, 0, 0.5));
-  z-index: 99;
-}
-
 .window {
-  position: relative;
+  position: absolute;
   background-color: var(--popup-background-color, #777777);
   color: var(--popup-color, #000000);
   display: flex;
@@ -27,11 +16,12 @@
   align-items: center;
   flex-direction: column;
   overflow: hidden;
+  opacity: 1;
+  z-index: 100;
 }
 
 :host([left='']) .window {
-  width: 50%;
-  margin: auto;
+  left: 25%;
 }
 
 :host([top='']) .window {

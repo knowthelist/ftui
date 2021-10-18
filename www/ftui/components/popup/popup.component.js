@@ -15,12 +15,13 @@ export class FtuiPopup extends FtuiElement {
   constructor() {
     super(FtuiPopup.properties);
 
-    this.element = this.shadowRoot.querySelector('.overlay');
+    this.overlay = this.shadowRoot.querySelector('.overlay');
     this.window = this.shadowRoot.querySelector('.window');
     const header = this.querySelector('header');
     header && header.setAttribute('slot', 'header');
     document.addEventListener('click', event => this.onClickOutside(event));
-    this.element.addEventListener('click', event => this.onClickInside(event));
+    this.window.addEventListener('click', event => this.onClickInside(event));
+    this.overlay.addEventListener('click', event => this.onClickOverlay(event));
 
     this.arrangeWindow();
   }
@@ -28,19 +29,30 @@ export class FtuiPopup extends FtuiElement {
   template() {
     return `
       <style> @import "components/popup/popup.component.css"; </style>
+      <style> 
+        .overlay {
+          position: fixed;
+          top: 0; left: 0; bottom: 0; right: 0;
+          overflow: auto;
+          background-color:var(--popup-overlay-color, #000);
+          z-index: 99;
+          opacity: ${this.opacity};
+        }
+      </style>
       <div class="overlay">
-        <div class="window">
-          <slot name="header"></slot>
-          <span class="box-close">
-            <slot name="close">
-              <span class="close" popup-close>&times;</span>
-            </slot>
-          </span>
-          <div class="content">
-            <slot></slot>
-          </div>
-        </div>
-      </div>`;
+
+      </div>
+      <div class="window">
+      <slot name="header"></slot>
+      <span class="box-close">
+        <slot name="close">
+          <span class="close" popup-close>&times;</span>
+        </slot>
+      </span>
+      <div class="content">
+        <slot></slot>
+      </div>
+    </div>`;
   }
 
   static get properties() {
@@ -53,11 +65,17 @@ export class FtuiPopup extends FtuiElement {
       trigger: '',
       timeout: 10,
       hidden: true,
+      opacity: 0.5,
     };
   }
 
   static get observedAttributes() {
     return [...this.convertToAttributes(FtuiPopup.properties), ...super.observedAttributes];
+  }
+
+  onClickOverlay(event) {
+    this.setState(false);
+    event.preventDefault();
   }
 
   onClickOutside(event) {
@@ -72,11 +90,7 @@ export class FtuiPopup extends FtuiElement {
   }
 
   onClickInside(event) {
-    const target = event.target;
-    // Close window when the backdrop is clicked
-    // or an element with popup-close attribute
-    if (target.classList.contains('overlay')
-      || target.hasAttribute('popup-close')) {
+    if (event.target.hasAttribute('popup-close')) {
       this.setState(false);
       event.preventDefault();
     }

@@ -82,9 +82,11 @@
 
   --popup-color: var(--text-color);
   --popup-background-color: var(--grid-background-color);
-  --popup-overlay-color: rgba(0, 0, 0, 0.5);
+  --popup-overlay-color: var(--fullblack);
   --popup-header-color: var(--grid-header-color);
   --popup-header-background-color: var(--grid-header-background-color);
+
+  --circlemenu-overlay-color: var(--fullblack);
 
   --chart-text-color: var(--gray55);
 

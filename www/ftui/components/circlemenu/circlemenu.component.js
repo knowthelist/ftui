@@ -61,13 +61,13 @@ export class FtuiCircleMenu extends FtuiElement {
     .fixed {
       position: fixed;
       top: 0; left: 0; right: 0; bottom: 0;
-      background-color: #000;
+      background-color:var(--circlemenu-overlay-color, #000);
       opacity: ${this.opacity};
       z-index: 2;
     }    
     </style>
-      <div class="overlay"></div>
-      <slot></slot>`;
+    <div class="overlay"></div>
+    <slot></slot>`;
   }
 
   static get properties() {

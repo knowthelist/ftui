@@ -59,9 +59,7 @@ export class FtuiLabel extends FtuiElement {
     switch (name) {
       case 'text':
         this.mainSlotElement.innerHTML = this.text;
-        if (this.text.length === 0) {
-          this.unitSlotElement.innerHTML = '';
-        }
+        this.unitSlotElement.innerHTML = this.text.length === 0 ? '' : this.unit;
         this.checkInterval();
         break;
       case 'unit':
