@@ -105,7 +105,7 @@ export class FtuiMedialist extends FtuiElement {
           const elemItem = document.createElement('div');
           elemItem.classList.add('media');
           elemItem.file = item.File;
-          elemItem.track = item.Track || index + 1;
+          elemItem.track = index + 1;
           elemItem.setAttribute('data-file', elemItem.file);
           elemItem.setAttribute('data-track', elemItem.track);
           elemItem.addEventListener('click', () => this.onClicked(elemItem));

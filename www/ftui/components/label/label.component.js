@@ -27,14 +27,15 @@ export class FtuiLabel extends FtuiElement {
           --color-base: currentColor;
           color: var(--color-base);
         }
-        :host(.is-empty) { display: none; }
+        :host(:empty:not([text])) slot[name="unit"]
+        , :host([text=""]) slot[name="unit"] { visibility: hidden; }
         :host([scroll]) { overflow: auto; }
         :host([size="10"]),:host([size="11"]),:host([size="12"]) {
           font-family: "HelveticaNeue-UltraLight", "Segoe UI", "Roboto Light", sans-serif;
           line-height: 0.8em;
         }
       </style>
-      <slot name="pre"></slot><slot></slot><slot name="content"></slot><slot name="unit"></slot>`;
+      <slot name="pre"></slot><slot></slot><slot name="content"></slot><slot name="unit">${this.unit}</slot>`;
   }
 
   static get properties() {
@@ -59,13 +60,10 @@ export class FtuiLabel extends FtuiElement {
     switch (name) {
       case 'text':
         this.mainSlotElement.innerHTML = this.text;
-        this.unitSlotElement.innerHTML = this.text.length === 0 ? '' : this.unit;
         this.checkInterval();
         break;
       case 'unit':
-        if (this.text.length > 0) {
-          this.unitSlotElement.innerHTML = this.unit;
-        }
+        this.unitSlotElement.innerHTML = this.unit;
         break;
       case 'interval':
         this.checkInterval();
