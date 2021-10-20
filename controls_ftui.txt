@@ -26,7 +26,7 @@ UPD 2021-04-13_21:43:34 1576 www/ftui/components/grid/grid-tile.component.css
 UPD 2021-02-09_23:03:56 847 www/ftui/components/grid/grid-tile.component.js
 UPD 2021-05-26_22:39:03 3230 www/ftui/components/grid/grid.component.js
 UPD 2021-10-13_14:27:57 913 www/ftui/components/icon/icon.component.css
-UPD 2021-10-16_22:10:24 2657 www/ftui/components/icon/icon.component.js
+UPD 2021-10-19_18:22:52 2313 www/ftui/components/icon/icon.component.js
 UPD 2021-02-03_14:43:36 2489 www/ftui/components/image/image.component.js
 UPD 2021-02-03_14:48:37 8329 www/ftui/components/image/image_not_available.js
 UPD 2021-10-03_12:50:26 997 www/ftui/components/knob/knob.component.css
@@ -34,7 +34,7 @@ UPD 2021-10-11_22:43:44 13097 www/ftui/components/knob/knob.component.js
 UPD 2021-10-19_18:05:08 2992 www/ftui/components/label/label.component.js
 UPD 2021-02-01_19:44:36 1816 www/ftui/components/main/main.component.js
 UPD 2021-04-21_00:05:17 983 www/ftui/components/medialist/medialist.component.css
-UPD 2021-10-19_13:43:04 3686 www/ftui/components/medialist/medialist.component.js
+UPD 2021-10-20_21:07:44 3710 www/ftui/components/medialist/medialist.component.js
 UPD 2021-10-17_20:49:35 1042 www/ftui/components/menu/menu-button.component.js
 UPD 2020-12-31_16:39:02 351 www/ftui/components/menu/menu.component.css
 UPD 2020-12-31_16:39:02 1526 www/ftui/components/menu/menu.component.js
@@ -87,7 +87,7 @@ UPD 2021-02-13_21:42:59 472 www/ftui/examples/contents/content-rows.html
 UPD 2021-10-19_13:57:52 275 www/ftui/examples/contents/content-view1.html
 UPD 2021-10-19_13:57:56 684 www/ftui/examples/contents/content-view2.html
 UPD 2021-02-09_23:33:23 998 www/ftui/examples/contents/content-weather-day.html
-UPD 2020-12-31_16:39:02 5293 www/ftui/examples/contents/content-weather.html
+UPD 2021-10-19_19:05:47 5317 www/ftui/examples/contents/content-weather.html
 UPD 2021-10-02_19:10:30 2485 www/ftui/examples/contents/mobile-view-sonos.html
 UPD 2021-02-01_19:44:46 189 www/ftui/examples/contents/mobile-view1.html
 UPD 2021-10-03_12:43:52 2749 www/ftui/examples/departure.html
