@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!--FTUI3 starting base -->
+  <base href="../" />
+  <script src="ftui.js"></script>
+  <link href="ftui.css" rel="stylesheet">
+  <link href="themes/ftui-theme.css" rel="stylesheet">
+  <link href="favicon.ico" rel="icon" type="image/x-icon" />
+
+  <title>FTUI3</title>
+</head>
+
+<body>
+
+  <ftui-grid base-width="150" base-height="150">
+
+    <ftui-grid-tile row="1" col="1" height="1" width="1">
+      <header>GET</header>
+      <ftui-label get-text="ftuitest"></ftui-label>
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="1" col="2" height="1" width="1">
+      <header>SET </header>
+      <ftui-button set-value="ftuitest">on,off</ftui-button>
+      <ftui-label get-text="ftuitest"></ftui-label>
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="1" col="3" height="1" width="1">
+      <header>GET SET</header>
+      <ftui-button gset-value="ftuitest">on,off</ftui-button>
+      <ftui-label get-text="ftuitest"></ftui-label>
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="2" col="1" height="1" width="1">
+      <header>short GET</header>
+      <ftui-label [text]="ftuitest"></ftui-label>
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="2" col="2" height="1" width="1">
+      <header>short SET </header>
+      <ftui-button (value)="ftuitest">on,off</ftui-button>
+      <ftui-label [text]="ftuitest"></ftui-label>
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="2" col="3" height="1" width="1">
+      <header>short GET SET</header>
+      <ftui-button [(value)]="ftuitest">on,off</ftui-button>
+      <ftui-label [text]="ftuitest"></ftui-label>
+    </ftui-grid-tile>
+
+  </ftui-grid>
+
+</body>
+
+</html>

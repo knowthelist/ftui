@@ -145,8 +145,9 @@ export class FtuiBinding {
     });
   }
 
-  initInputBinding(name, attribute) {
+  initInputBinding(attribute, targetAttributeName) {
     const semicolonNotInQuotes = /;(?=(?:[^']*'[^']*')*[^']*$)/;
+    const name = ftuiHelper.toCamelCase(targetAttributeName);
 
     attribute.value.split(semicolonNotInQuotes).forEach((attrValue) => {
       const { readingID, property, filter } = this.parseInputBinding(attrValue);
@@ -154,53 +155,54 @@ export class FtuiBinding {
         this.config.input.readings[readingID] = { attributes: {} };
       }
       const readingConfig = this.config.input.readings[readingID];
-      readingConfig.attributes[attribute.name] = { property, filter };
+      readingConfig.attributes[name] = { property, filter };
     });
     // remove binding attr from DOM
-    this.element.removeAttribute(name);
+    this.element.removeAttribute(attribute.name);
   }
 
 
-  initOutputBinding(name, attribute) {
+  initOutputBinding(attribute, targetAttributeName) {
     const { cmd, readingID, value, filter } = this.parseOutputBinding(attribute.value);
+    const name = ftuiHelper.toCamelCase(targetAttributeName);
 
-    if (!this.config.output.attributes[attribute.name]) {
-      this.config.output.attributes[attribute.name] = { readings: {} };
+    if (!this.config.output.attributes[name]) {
+      this.config.output.attributes[name] = { readings: {} };
     }
-    const attributeConfig = this.config.output.attributes[attribute.name];
+    const attributeConfig = this.config.output.attributes[name];
     attributeConfig.readings[readingID] = { cmd, value, filter }
 
-    this.private.outputAttributes.add(attribute.name);
+    this.private.outputAttributes.add(name);
     // remove binding attr from DOM
-    this.element.removeAttribute(name);
+    this.element.removeAttribute(attribute.name);
   }
 
-  initEventListener(name, attribute) {
-    this.element.addEventListener(attribute.name,
+  initEventListener(attribute, targetAttributeName) {
+    const name = ftuiHelper.toCamelCase(targetAttributeName);
+    this.element.addEventListener(name,
       this.evalInContext.bind(this.element, attribute.value)
     );
   }
 
   readAttributes(attributes) {
-
     [...attributes].forEach(attr => {
-      const name = ftuiHelper.toCamelCase(attr.name);
+      const name = attr.name;
       if (name.startsWith('[(') && name.endsWith(')]')) {
-        this.initInputBinding(attr, { name: name.slice(2, -2), value: attr.value });
-        this.initOutputBinding(name,{ name: name.slice(2, -2), value: attr.value });
+        this.initInputBinding(attr, name.slice(2, -2));
+        this.initOutputBinding(attr, name.slice(2, -2));
       } else if (name.startsWith('@')) {
-        this.initEventListener(name,{ name: name.slice(1), value: attr.value });
+        this.initEventListener(attr, name.slice(1));
       } else if (name.startsWith('[') && name.endsWith(']')) {
-        this.initInputBinding(name,{ name: name.slice(1, -1), value: attr.value });
+        this.initInputBinding(attr, name.slice(1, -1));
       } else if (name.startsWith('(') && name.endsWith(')')) {
-        this.initOutputBinding(name, { name: name.slice(1, -1), value: attr.value });
-      } else if (name.startsWith('bind:')) {
-        this.initInputBinding(name,{ name: name.slice(5), value: attr.value });
-      } else if (name.startsWith('on:')) {
-        this.initOutputBinding(name,{ name: name.slice(3), value: attr.value });
-      } else if (name.startsWith('bindon:')) {
-        this.initInputBinding(name,{ name: name.slice(7), value: attr.value });
-        this.initOutputBinding(name,{ name: name.slice(7), value: attr.value });
+        this.initOutputBinding(attr, name.slice(1, -1));
+      } else if (name.startsWith('get-')) {
+        this.initInputBinding(attr, name.slice(4));
+      } else if (name.startsWith('set-')) {
+        this.initOutputBinding(attr, name.slice(4));
+      } else if (name.startsWith('gset-')) {
+        this.initInputBinding(attr, name.slice(5));
+        this.initOutputBinding(attr, name.slice(5));
       }
     });
   }

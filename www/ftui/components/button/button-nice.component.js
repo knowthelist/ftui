@@ -9,7 +9,9 @@
 */
 
 import { FtuiElement } from '../element.component.js';
+// eslint-disable-next-line no-unused-vars
 import { FtuiIcon } from '../icon/icon.component.js';
+// eslint-disable-next-line no-unused-vars
 import { FtuiButton } from '../button/button.component.js';
 
 export class FtuiButtonNice extends FtuiElement {
@@ -24,7 +26,7 @@ export class FtuiButtonNice extends FtuiElement {
       <ftui-button shape="circle" color="medium" 
           [value]="${this.get}" 
           (value)="${this.set || this.get}" 
-          [color]="${this.get} | map('${this.getOn || 'on'}:primary, ${this.getOff || 'off'}:medium')"
+          [color]="${this.get} | map('${this.on || 'on'}:primary, ${this.off || 'off'}:medium')"
           states="${this.states || 'on,off'}">
         <ftui-icon name="${this.icon}" color="grid"></ftui-icon>
       </ftui-button>

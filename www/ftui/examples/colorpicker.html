@@ -45,7 +45,8 @@
     <ftui-grid-tile row="1" col="3" height="1" width="1">
       <header>HUE-DEVICE</header>
 
-        <ftui-colorpicker [hex]="HUEDevice6:rgb" (hex)="replace('#','') | HUEDevice6:rgb"></ftui-colorpicker>
+        <ftui-colorpicker [hex]="HUEDevice6:rgb" (hex)="replace('#','') | HUEDevice6:rgb"
+                          layout="wheel,valueSlider"></ftui-colorpicker>
       
     </ftui-grid-tile>
 
@@ -60,8 +61,9 @@
       <header>RGB-SLIDER</header>
       <ftui-row>
 
-        <div class="column w-20 h-60"><span>R</span><span>G</span><span>B</span></div>
-        <ftui-colorpicker [hex]="HUEDevice6:rgb" (hex)="replace('#','') | HUEDevice6:rgb" has-red-slider has-green-slider has-blue-slider></ftui-colorpicker>
+        <ftui-column width="10%" height="70%"><span>R</span><span>G</span><span>B</span></ftui-column>
+        <ftui-colorpicker [hex]="HUEDevice6:rgb" (hex)="replace('#','') | HUEDevice6:rgb" 
+                      layout="redSlider, greenSlider, blueSlider"></ftui-colorpicker>
 
       </ftui-row>
     </ftui-grid-tile>
@@ -69,7 +71,7 @@
     <ftui-grid-tile row="2" col="2" height="1" width="1">
       <header>HORIZONTAL</header>
       
-        <ftui-colorpicker direction="horizontal" has-hue-slider has-value-slider
+        <ftui-colorpicker direction="horizontal" layout="hueSlider, valueSlider"
         [hex]="HUEDevice6:rgb" (hex)="replace('#','') | HUEDevice6:rgb"></ftui-colorpicker>
     </ftui-grid-tile>
 
@@ -77,7 +79,7 @@
     <ftui-grid-tile row="2" col="3" height="1" width="1">
       <header>SAT/BRI/HUE</header>
       
-        <ftui-colorpicker direction="horizontal" has-hue-slider has-saturation-slider has-value-slider
+        <ftui-colorpicker direction="horizontal" layout="hueSlider,saturationSlider,valueSlider"
                 [hue]="HUEDevice6:hue | divide(182.0425) | toInt() | "
                 [saturation]="HUEDevice6:sat | divide(2.55) | toInt()"
                 [brightness]="HUEDevice6:bri | divide(2.55) | toInt()"
@@ -85,6 +87,21 @@
                 (saturation)="multiply(2.55) | toInt() | HUEDevice6:sat"
                 (brightness)="multiply(2.55) | toInt() | HUEDevice6:bri">
         </ftui-colorpicker>
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="3" col="1" height="1" width="1">
+      <header>WHEEL</header>
+        <ftui-colorpicker layout="wheel"></ftui-colorpicker>
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="3" col="2" height="1" width="1">
+      <header>BOX</header>
+        <ftui-colorpicker layout="box"></ftui-colorpicker>
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="3" col="3" height="1" width="1">
+      <header>SLIDER</header>
+        <ftui-colorpicker layout="hueSlider"></ftui-colorpicker>
     </ftui-grid-tile>
   </ftui-grid>
 

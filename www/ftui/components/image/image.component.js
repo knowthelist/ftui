@@ -41,7 +41,9 @@ export class FtuiImage extends FtuiElement {
       width: '100%',
       height: 'auto',
       interval: 0,
-      refresh: ''
+      refresh: '',
+      user: '',
+      pass: '',
     };
   }
 
@@ -77,21 +79,33 @@ export class FtuiImage extends FtuiElement {
     this.imageElement.onerror = null;
   }
 
-  updateImage() {
+  async updateImage() {
     if (ftui.isVisible(this.imageElement)) {
       this.imageElement.onerror = this.onError.bind(this);
-      this.imageElement.src = this.getUrl();
+      this.imageElement.src = await this.createUrl();
     }
   }
 
-  getUrl() {
+  async createUrl() {
     const src = this.base + this.src;
-    if (src && (this.hasAttribute('nocache') || this.refresh)) {
-      const url = new URL(src);
-      url.searchParams.set('_', Date.now());
-      return url;
+
+    if (this.user.length) {
+      const options = {
+        username: this.user,
+        password: this.pass
+      };
+      const result = await fetch(src, options);
+      const content = await result.blob();
+      return URL.createObjectURL(content);
+    } else {
+      if (src && (this.hasAttribute('nocache') || this.refresh)) {
+        const url = new URL(src);
+        url.searchParams.set('_', Date.now());
+        return url;
+      }
+      return src;
     }
-    return src
+
   }
 
   checkInterval() {

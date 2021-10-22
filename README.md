@@ -103,7 +103,7 @@ Input binding
 bind a FHEM reading to a attribute. Changes of the reading changes the attribute
 
 ```html
-<ftui-label bind:color="dummy1:color">demo</ftui-label>
+<ftui-label get-color="dummy1:color">demo</ftui-label>
 ```
 
 short format
@@ -117,7 +117,7 @@ Output binding
 on attribute changes set the FHEM reading
 
 ```html
-<ftui-button on:value="dummy1"></ftui-button>
+<ftui-button set-value="dummy1"></ftui-button>
 ```
 
 short format
@@ -128,7 +128,7 @@ short format
 Two way binding
 
 ```html
-<ftui-button bindon:value="dummy1"></ftui-button>
+<ftui-button getset-value="dummy1"></ftui-button>
 ```
 
 short syntax ("banana in a box")

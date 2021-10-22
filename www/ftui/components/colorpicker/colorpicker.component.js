@@ -1,7 +1,7 @@
 /*
 * colorpicker component for FTUI version 3
 *
-* Copyright (c) 2020 Mario Stephan <mstephan@shared-files.de>
+* Copyright (c) 2020-2021 Mario Stephan <mstephan@shared-files.de>
 * Under MIT License (http://www.opensource.org/licenses/mit-license.php)
 *
 * uses github.com/jaames/iro.js
@@ -10,7 +10,6 @@
 */
 
 import { FtuiElement } from '../element.component.js';
-import * as ftuiHelper from '../../modules/ftui/ftui.helper.js';
 import iro from '../../modules/iro.js/iro.min.js';
 
 export class FtuiColorpicker extends FtuiElement {
@@ -18,8 +17,7 @@ export class FtuiColorpicker extends FtuiElement {
 
     super(Object.assign(FtuiColorpicker.properties, properties));
 
-    this.layout = new Map;
-
+    this.layoutMap = new Map;
     this.colorPicker = new iro.ColorPicker(this, this.options);
     this.updateOptions();
 
@@ -34,16 +32,8 @@ export class FtuiColorpicker extends FtuiElement {
       saturation: '',
       brightness: '',
       direction: 'vertical',
-      hasWheel: false,
-      hasHueSlider: false,
-      hasSaturationSlider: false,
-      hasValueSlider: false,
-      hasRedSlider: false,
-      hasGreenSlider: false,
-      hasBlueSlider: false,
-      hasAlphaSlider: false,
-      hasKelvinSlider: false,
-      debounce: 300
+      debounce: 300,
+      layout: 'wheel'
     };
   }
 
@@ -55,7 +45,7 @@ export class FtuiColorpicker extends FtuiElement {
     return {
       width: this.width,
       layoutDirection: this.direction,
-      layout: [...this.layout.values()]
+      layout: [...this.layoutMap.values()]
     }
   }
 
@@ -64,29 +54,25 @@ export class FtuiColorpicker extends FtuiElement {
   }
 
   connectedCallback() {
-    if (this.layout.size === 0) {
-      this.hasWheel = true;
-      this.hasValueSlider = true;
+    // set default layout if nothing is set
+    if (this.layoutMap.size === 0) {
+      this.layout = 'wheel,valueSlider';
     }
   }
 
   onAttributeChanged(name, newValue, oldValue) {
     if (oldValue !== newValue) {
       switch (name) {
-        case 'has-wheel':
-        case 'has-hue-slider':
-        case 'has-value-slider':
-        case 'has-saturation-slider':
-        case 'has-red-slider':
-        case 'has-green-slider':
-        case 'has-blue-slider':
-        case 'has-alpha-slider':
-        case 'has-kelvin-slider':
+        case 'layout':
           this.updateOptions();
           break;
-        case 'hex':
-          this.colorPicker.color.hexString = `#${this.hex.replace('#', '')}`;
+        case 'hex': {
+          const hex = this.hex && this.hex.match(/^#?([0-9a-fA-F]{6}|[0-9a-fA-F]{3})$/);
+          if (hex && hex.length > 1 && hex[1]) {
+            this.colorPicker.color.hexString = '#' + hex[1];
+          }
           break;
+        }
         case 'hue':
           this.colorPicker.color.hue = this.hue;
           break;
@@ -120,16 +106,18 @@ export class FtuiColorpicker extends FtuiElement {
   }
 
   updateOptions() {
-    if (this.hasWheel) {
-      this.layout.set('hasWheel', { component: iro.ui.Wheel, options: { wheelLightness: false } });
+    if (this.layout.includes('wheel')) {
+      this.layoutMap.set('hasWheel', { component: iro.ui.Wheel, options: { wheelLightness: false } });
+    } else if (this.layout.includes('box')) {
+      this.layoutMap.set('hasBox', { component: iro.ui.Box, options: { wheelLightness: false } });
     } else {
-      this.layout.delete('hasWheel');
+      this.layoutMap.delete('hasWheel');
     }
     this.sliderTypes.forEach(sliderType => {
-      if (this['has' + ftuiHelper.capitalize(sliderType) + 'Slider']) {
-        this.layout.set(sliderType, { component: iro.ui.Slider, options: { sliderType } });
+      if (this.layout.includes(sliderType + 'Slider')) {
+        this.layoutMap.set(sliderType, { component: iro.ui.Slider, options: { sliderType } });
       } else {
-        this.layout.delete(sliderType);
+        this.layoutMap.delete(sliderType);
       }
     })
     this.colorPicker.setOptions(this.options);
