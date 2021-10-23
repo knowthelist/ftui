@@ -29,7 +29,9 @@ class FtuiRotor extends FtuiElement {
       ::slotted(*) {
         opacity: 0;
         transform-origin: 50% 100%;
+        -webkit-transform-origin: 50% 100%;
         transform: rotateX(180deg);
+        -webkit-transform: rotateX(180deg);
         position: absolute;
         left: 0;
         top: 0;
@@ -42,11 +44,13 @@ class FtuiRotor extends FtuiElement {
         position: relative;
         opacity: 1;
         transform: rotateX(0deg);
+        -webkit-transform: rotateX(0deg);
         animation: rotate-in 1.2s;
       }
       
       ::slotted(*.is-hidden) {
         transform: rotateX(180deg);
+        -webkit-transform: rotateX(180deg);
         animation: rotate-out 1.2s;
       }
       </style>
@@ -88,35 +92,33 @@ class FtuiRotor extends FtuiElement {
     }
   }
 
-  next(iteration = 0) {
-    let currentBlade = this.blades[this.current];
-    if (currentBlade) {
-      currentBlade.classList.remove('is-visible');
-      currentBlade.classList.add('is-hidden');
-    }
+  showNext(iteration = 0) {
+    this.fadeCurrent('is-visible', 'is-hidden');
     this.current++;
     if (this.current >= this.blades.length) {
       this.current = 0;
     }
+    // is current blade hidden then go to the next one
     if (this.blades[this.current].hidden && iteration < this.blades.length) {
       iteration++;
-      this.next(iteration);
-    } else {
-      if (iteration === this.blades.length) {
-        this.current = 0;
-      }
+      this.showNext(iteration);
     }
-    currentBlade = this.blades[this.current];
-    if (currentBlade) {
-      currentBlade.classList.remove('is-hidden');
-      currentBlade.classList.add('is-visible');
+    this.fadeCurrent('is-hidden', 'is-visible');
+  }
+
+  fadeCurrent(remove, add) {
+    const currentBlade = this.blades[this.current];
+    if (!currentBlade) {
+      return
     }
+    currentBlade.classList.remove(remove);
+    currentBlade.classList.add(add);
   }
 
   checkInterval() {
     clearInterval(this.intervalTimer);
     if (this.interval) {
-      this.intervalTimer = setInterval(() => this.next(), this.interval * 1000);
+      this.intervalTimer = setInterval(() => this.showNext(), this.interval * 1000);
     }
   }
 }
