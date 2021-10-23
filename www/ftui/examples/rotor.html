@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <base href="../" />
+  <script src="ftui.js"></script>
+  <link href="ftui.css" rel="stylesheet">
+  <link href="themes/ftui-theme.css" rel="stylesheet">
+  <link href="favicon.ico" rel="icon" type="image/x-icon" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+
+  <title>FTUI Rotor Example</title>
+
+</head>
+
+<body>
+
+  <ftui-grid base-width="75" base-height="60" margin="1" shape="round">
+
+<!--     <ftui-grid-tile row="2" col="2" height="2" width="3">
+
+      <ftui-rotor class="size-7">
+        <span>Bath</span>
+        <span>Lounge</span>
+        <span>Corridor</span>
+      </ftui-rotor>
+
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="4" col="2" height="2" width="3">
+
+      <ftui-row align-items="center" class="size-3"> 
+        <ftui-label>Stau: </ftui-label>
+        <ftui-rotor width="4em">
+          <ftui-label>A4</ftui-label>
+          <ftui-label>A6</ftui-label>
+          <ftui-label>B6</ftui-label>
+          <ftui-label hidden>B96</ftui-label>
+          <ftui-label>B107</ftui-label>
+        </ftui-rotor>
+      </ftui-row>
+
+    </ftui-grid-tile> -->
+
+    <ftui-grid-tile row="6" col="2" height="2" width="3">
+
+      <ftui-row align-items="center" class="size-3"> 
+        <ftui-label>Status: </ftui-label>
+        <ftui-rotor width="4em">
+          <ftui-label [text]="dummy1" [hidden]="dummy1 | map('on: true, off: false') | toBool()"></ftui-label>
+          <ftui-label [text]="dummy2" [hidden]="dummy2 | map('on: true, off: false') | toBool()"></ftui-label>
+          <ftui-label [text]="dummy3" [hidden]="dummy3 | map('on: true, off: false') | toBool()"></ftui-label>
+          <ftui-label [text]="dummy4" [hidden]="dummy4 | map('on: true, off: false') | toBool()"></ftui-label>
+        </ftui-rotor>
+      </ftui-row>
+
+    </ftui-grid-tile>
+
+  </ftui-grid>
+
+</body>
+
+</html>

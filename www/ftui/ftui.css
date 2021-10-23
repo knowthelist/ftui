@@ -35,7 +35,7 @@ body:before {
   box-sizing: border-box;
 }
 
-*:not(:defined){
+*:not(:defined) {
   opacity: 0;
 }
 
@@ -161,7 +161,6 @@ footer {
   height: 100%;
 }
 
-
 .w-20 {
   width: 20%;
 }
@@ -235,39 +234,39 @@ footer {
   font-family: "HelveticaNeue-UltraLight", "Segoe UI", "Roboto Light", sans-serif;
 }
 
-.size-9  {
+.size-9 {
   font-size: 3.5rem;
 }
 
-.size-8  {
+.size-8 {
   font-size: 3rem;
 }
 
-.size-7  {
+.size-7 {
   font-size: 2.5rem;
 }
 
-.size-6  {
+.size-6 {
   font-size: 2rem;
 }
 
-.size-5  {
+.size-5 {
   font-size: 1.75rem;
 }
 
-.size-4  {
+.size-4 {
   font-size: 1.5rem;
 }
 
-.size-3  {
+.size-3 {
   font-size: 1.25rem;
 }
 
-.size-2  {
+.size-2 {
   font-size: 1rem;
 }
 
-.size-1  {
+.size-1 {
   font-size: 0.875rem;
 }
 
@@ -290,8 +289,8 @@ footer {
 .size--4 {
   font-size: 0.25rem;
 }
-/* end font sizes */
 
+/* end font sizes */
 
 .verticalLine {
   border-right-style: outset;
@@ -320,7 +319,6 @@ ul, li {
   transform: translateZ(0);
   will-change: transform;
 }
-
 
 .led {
   height: 2em;
@@ -419,16 +417,30 @@ ul, li {
   animation: marquee 10s linear infinite;
 }
 
-/* animation keyframes */ 
+/* animation keyframes */
 
 @keyframes hop {
-  0%   { transform: scale(1,1)      translateY(0); }
-  10%  { transform: scale(1.1,.9)   translateY(0); }
-  30%  { transform: scale(.9,1.1)   translateY(-1em); }
-  50%  { transform: scale(1.05,.95) translateY(0); }
-  57%  { transform: scale(1,1)      translateY(-0.1em); }
-  64%  { transform: scale(1,1)      translateY(0); }
-  100% { transform: scale(1,1)      translateY(0); }
+  0% {
+    transform: scale(1, 1) translateY(0);
+  }
+  10% {
+    transform: scale(1.1, .9) translateY(0);
+  }
+  30% {
+    transform: scale(.9, 1.1) translateY(-1em);
+  }
+  50% {
+    transform: scale(1.05, .95) translateY(0);
+  }
+  57% {
+    transform: scale(1, 1) translateY(-0.1em);
+  }
+  64% {
+    transform: scale(1, 1) translateY(0);
+  }
+  100% {
+    transform: scale(1, 1) translateY(0);
+  }
 }
 
 @keyframes fade-in {
@@ -630,8 +642,12 @@ ul, li {
 }
 
 @keyframes spin {
-  from {transform:rotate(0deg);}
-  to {transform:rotate(360deg);}
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes flash {
@@ -648,9 +664,46 @@ ul, li {
     opacity: 0.0;
   }
 }
+
 @-webkit-keyframes blink {
   50% {
     opacity: 0.0;
+  }
+}
+
+@keyframes rotate-in {
+  0% {
+    transform: rotateX(180deg);
+    opacity: 0;
+  }
+  35% {
+    transform: rotateX(120deg);
+    opacity: 0;
+  }
+  65% {
+    opacity: 0;
+  }
+  100% {
+    transform: rotateX(360deg);
+    opacity: 1;
+  }
+}
+
+@keyframes rotate-out {
+  0% {
+    transform: rotateX(0deg);
+    opacity: 1;
+  }
+  35% {
+    transform: rotateX(-40deg);
+    opacity: 1;
+  }
+  65% {
+    opacity: 0;
+  }
+  100% {
+    transform: rotateX(180deg);
+    opacity: 0;
   }
 }
 
@@ -674,8 +727,8 @@ ul, li {
 /* components specials */
 
 /* icon badge */
-ftui-circlemenu ~ ftui-badge,
-ftui-icon ~ ftui-badge {
+
+ftui-circlemenu~ftui-badge, ftui-icon~ftui-badge {
   position: absolute;
   margin: -1.5em -1.5em 1em 1em;
   min-width: 1.2em;
@@ -685,7 +738,6 @@ ftui-icon ~ ftui-badge {
   z-index: 1;
 }
 
-[popup-target], 
-[onclick] {
+[popup-target], [onclick] {
   cursor: pointer;
 }
