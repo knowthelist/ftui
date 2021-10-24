@@ -31,9 +31,9 @@ export class FtuiChart extends FtuiElement {
           display: false,
           text: '',
           font: {
-            size: getStylePropertyValue('--chart-title-font-size') || 16,
-            style: getStylePropertyValue('--chart-title-font-style') || '500',
-            color: getStylePropertyValue('--chart-title-color') || getStylePropertyValue('--light-color')
+            size: getStylePropertyValue('--chart-title-font-size', this) || 16,
+            style: getStylePropertyValue('--chart-title-font-style', this) || '500',
+            color: getStylePropertyValue('--chart-title-color', this) || getStylePropertyValue('--light-color', this)
           }
         },
         legend: {
@@ -42,8 +42,8 @@ export class FtuiChart extends FtuiElement {
             boxWidth: 6,
             padding: 8,
             font: {
-              size: getStylePropertyValue('--chart-legend-font-size') || 13,
-              color: getStylePropertyValue('--chart-legend-color') || getStylePropertyValue('--chart-text-color')
+              size: getStylePropertyValue('--chart-legend-font-size', this) || 13,
+              color: getStylePropertyValue('--chart-legend-color', this) || getStylePropertyValue('--chart-text-color', this)
             },
             filter: item => item.text
           }
@@ -57,14 +57,14 @@ export class FtuiChart extends FtuiElement {
               displayFormats: { millisecond: 'HH:mm:ss.SSS', second: 'HH:mm:ss', minute: 'HH:mm', hour: 'HH:mm', day: 'd. MMM' }
             },
             gridLines: {
-              color: getStylePropertyValue('--dark-color')
+              color: getStylePropertyValue('--chart-grid-line-color', this) || getStylePropertyValue('--dark-color', this)
             },
             ticks: {
               maxRotation: 0,
               autoSkip: true,
               autoSkipPadding: 30,
               font: {
-                size: getStylePropertyValue('--chart-tick-font-size') || 11
+                size: getStylePropertyValue('--chart-tick-font-size', this) || 11
               }
             }
           },
@@ -76,13 +76,13 @@ export class FtuiChart extends FtuiElement {
               labelString: this.yLabel,
             },
             gridLines: {
-              color: getStylePropertyValue('--dark-color')
+              color: getStylePropertyValue('--chart-grid-line-color', this) || getStylePropertyValue('--dark-color', this)
             },
             ticks: {
               autoSkip: true,
               autoSkipPadding: 30,
               font: {
-                size: getStylePropertyValue('--chart-tick-font-size') || 11
+                size: getStylePropertyValue('--chart-tick-font-size', this) || 11
               }
             }
           },
@@ -94,13 +94,13 @@ export class FtuiChart extends FtuiElement {
               labelString: this.y1Label,
             },
             gridLines: {
-              color: getStylePropertyValue('--dark-color')
+              color: getStylePropertyValue('--chart-grid-line-color', this) || getStylePropertyValue('--dark-color', this)
             },
             ticks: {
               autoSkip: true,
               autoSkipPadding: 30,
               font: {
-                size: getStylePropertyValue('--chart-tick-font-size') || 11
+                size: getStylePropertyValue('--chart-tick-font-size', this) || 11
               }
             }
           }
@@ -108,13 +108,14 @@ export class FtuiChart extends FtuiElement {
       }
     };
 
-    if (getStylePropertyValue('--chart-font-family')) {
-      Chart.defaults.font.family = getStylePropertyValue('--chart-font-family')
+    if (getStylePropertyValue('--chart-font-family', this)) {
+      Chart.defaults.font.family = getStylePropertyValue('--chart-font-family', this)
     }
-    if (getStylePropertyValue('--chart-font-style')) {
-      Chart.defaults.font.style = getStylePropertyValue('--chart-font-style')
+    if (getStylePropertyValue('--chart-font-style', this)) {
+      Chart.defaults.font.style = getStylePropertyValue('--chart-font-style', this)
     }
-    Chart.defaults.font.color = getStylePropertyValue('--chart-text-color');
+
+    Chart.defaults.font.color = getStylePropertyValue('--chart-text-color', this);
 
     this.controlsElement = this.querySelector('ftui-chart-controls');
     this.chartContainer = this.shadowRoot.querySelector('#container');

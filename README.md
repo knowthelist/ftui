@@ -368,6 +368,20 @@ Chart Types are:
 - Area chart
 or mixed types
 
+style variables:
+
+--chart-legend-font-size
+--chart-legend-color
+--chart-title-color
+--chart-title-font-style
+--chart-text-color
+--chart-grid-line-color
+--chart-tick-font-size
+--chart-font-style
+--chart-font-family
+
+
+
 Main component: **ftui-chart**  
 
 
