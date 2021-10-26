@@ -125,7 +125,7 @@
         <ftui-icon name="trash" color="yellow" class="hop"></ftui-icon>
         <ftui-icon name="trash" color="blue" [class-name]="dummy2 | map('1:hop,2:')"></ftui-icon>
         <ftui-icon name="trash" color="black" [class-list]="dummy2 | map('1:hop size-6,2:')"></ftui-icon>
-        <ftui-icon name="trash" color="gray"></ftui-icon>
+        <ftui-icon name="trash" color="gray" [class-name]="dummy1 | step('0=``, 1=blink, 100=``')" ></ftui-icon>
       </ftui-row>
     </ftui-grid-tile>
 

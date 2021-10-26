@@ -20,6 +20,10 @@
   z-index: 100;
 }
 
+:host([position="page"]) .window {
+  position: fixed;
+}
+
 :host([left='']) .window {
   left: 25%;
 }
