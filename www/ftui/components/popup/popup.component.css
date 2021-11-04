@@ -25,12 +25,19 @@
 }
 
 :host([left='']) .window {
-  left: 25%;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 :host([top='']) .window {
   top: 50%;
-  transform: translate(0, -50%);
+  transform: translateY(-50%);
+}
+
+:host([top=''][left='']) .window {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .box-close {

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!--
+    /* FHEM tablet ui - FTUI */
+    /**
+    * UI builder framework for FHEM
+    *
+    * Version: 3.0.0
+    *
+    * Copyright (c) 2021 Mario Stephan <mstephan@shared-files.de>
+    * Under MIT License (http://www.opensource.org/licenses/mit-license.php)
+    * https://github.com/knowthelist/ftui
+    */
+    -->
+  <base href="../" />
+  <script src="ftui.js"></script>
+  <link href="ftui.css" rel="stylesheet">
+  <link href="themes/ftui-theme.css" rel="stylesheet">
+  <link href="favicon.ico" rel="icon" type="image/x-icon" />
+
+  <title>FTUI Meter Example</title>
+</head>
+
+<body>
+
+  <ftui-grid>
+
+    <ftui-grid-tile row="1" col="1" height="1" width="3">
+      <header>DEFAULT</header>
+      <ftui-meter value="50" min="1" max="100"> </ftui-meter>
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="2" col="1" height="1" width="3">
+      <header>SIZE</header>
+      <ftui-meter value="90" min="1" max="100" class="size-5" color="alert"> </ftui-meter>
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="3" col="1" height="1" width="3">
+      <header>NUMBER</header>
+      <ftui-input [(value)]="ftuitest" min="1" max="100" type="number"></ftui-input>
+      <ftui-meter [value]="ftuitest" min="1" max="100" 
+                  [color]="ftuitest | step('0:primary, 60:warning, 80:alert')"> </ftui-meter>
+    </ftui-grid-tile>
+
+  </ftui-grid>
+  
+</body>
+
+</html>

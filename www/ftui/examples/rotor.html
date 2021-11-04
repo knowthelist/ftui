@@ -32,7 +32,7 @@
 
     <ftui-grid-tile row="4" col="2" height="2" width="3">
 
-      <ftui-row align-items="center" class="size-3"> 
+      <ftui-row align-items="center" class="size-3">
         <ftui-label>Stau: </ftui-label>
         <ftui-rotor width="4em">
           <ftui-label>A4</ftui-label>
@@ -47,7 +47,7 @@
 
     <ftui-grid-tile row="6" col="2" height="2" width="3">
 
-      <ftui-row align-items="center" class="size-3"> 
+      <ftui-row align-items="center" class="size-3">
         <ftui-label>Status: </ftui-label>
         <ftui-rotor width="4em">
           <ftui-label [text]="dummy1" [hidden]="dummy1 | map('on: true, off: false') | toBool()"></ftui-label>
@@ -59,8 +59,49 @@
 
     </ftui-grid-tile>
 
+    <ftui-grid-tile row="3" col="7" height="3" width="3">
+
+      <ftui-rotor class="size-5">
+        <ftui-cell>
+          <ftui-icon name="bed" @click="onClicked('View2')"></ftui-icon>
+          <ftui-label>Bed</ftui-label>
+        </ftui-cell>
+        <ftui-cell>
+          <ftui-icon name="train"></ftui-icon>
+          <ftui-label>Train</ftui-label>
+        </ftui-cell>
+        <ftui-cell>
+          <ftui-icon name="industry"></ftui-icon>
+          <ftui-label>Industry</ftui-label>
+        </ftui-cell>
+      </ftui-rotor>
+
+    </ftui-grid-tile>
+
+    <ftui-tab-view id="View1">
+      <ftui-grid-tile row="1" col="2" height="5" width="9" align-items="top">
+        <ftui-content file="examples/contents/content-rows.html" header="VARIANT1"></ftui-content>
+      </ftui-grid-tile>
+    </ftui-tab-view>
+
+    <ftui-tab-view id="View2">
+      <ftui-grid-tile row="1" col="2" height="5" width="9" align-items="top">
+        <ftui-content file="examples/contents/content-rows.html" header="VARIANT1"></ftui-content>
+      </ftui-grid-tile>
+    </ftui-tab-view>
   </ftui-grid>
 
 </body>
+<script>
+  function onClicked(view) {
+    document.querySelectorAll('ftui-tab-view').forEach(elem => {
+      if (elem.id !== view) {
+        elem.setAttribute('hidden', '');
+      } else {
+        elem.removeAttribute('hidden');
+      }
+    });
+  }
+</script>
 
 </html>
