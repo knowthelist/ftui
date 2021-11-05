@@ -26,7 +26,7 @@ export class FtuiChartControls extends FtuiElement {
     if (this.units) {
       const units = String(this.units).split(/[;,:]/).map(item => item.toLowerCase().trim());
       units.forEach(unit => {
-        const element = this.shadowRoot.querySelector('#' + unit);
+        const element = this.shadowRoot.querySelector('#unit_' + unit);
         element.classList.add('enabled');
         element.addEventListener('click', () => ftuiHelper.triggerEvent('ftuiUnit' + unit, this));
       });
@@ -43,11 +43,13 @@ export class FtuiChartControls extends FtuiElement {
           <span id="forward">▶</span>
         </div>
         <div id="units">
-          <span class="unit" id="year">Year</span>
-          <span class="unit" id="month">Month</span>
-          <span class="unit" id="week">Week</span>
-          <span class="unit" id="day">Day</span>
-          <span class="unit" id="hour">Hour</span>
+          <span class="unit" id="unit_year">Year</span>
+          <span class="unit" id="unit_month">Month</span>
+          <span class="unit" id="unit_week">Week</span>
+          <span class="unit" id="unit_day">Day</span>
+          <span class="unit" id="unit_24h">24h</span>
+          <span class="unit" id="unit_30d">30d</span>
+          <span class="unit" id="unit_hour">Hour</span>
         </div>
       </div>`;
   }
@@ -66,11 +68,14 @@ export class FtuiChartControls extends FtuiElement {
   }
 
   get dateString() {
-    let dateString;
+    let dateString = '';
 
     switch (this.unit) {
       case 'hour':
+        dateString = ftuiHelper.dateFormat(ftuiHelper.dateFromString(this.startDate), 'ee DD.MM hh:00');
+        break;
       case 'day':
+      case '24h':
         dateString = ftuiHelper.dateFormat(ftuiHelper.dateFromString(this.startDate), 'ee DD.MM');
         break;
       case 'week': {
@@ -80,6 +85,7 @@ export class FtuiChartControls extends FtuiElement {
         break;
       }
       case 'month':
+      case '30d':
         dateString = ftuiHelper.dateFormat(ftuiHelper.dateFromString(this.startDate), 'MM.YYYY');
         break;
       case 'year':
@@ -95,12 +101,17 @@ export class FtuiChartControls extends FtuiElement {
       case 'end-date':
         this.dateElement.innerHTML = this.dateString;
         break;
-      case 'unit':
+      case 'unit': {
         this.shadowRoot.querySelectorAll('.unit').forEach(element => {
           element.classList.remove('active');
         });
-        this.shadowRoot.querySelector('#' + this.unit).classList.add('active');
+        const currentUnit = this.shadowRoot.querySelector('#unit_' + this.unit);
+        if (currentUnit) {
+          currentUnit.classList.add('active');
+        }
         break;
+      }
+
     }
   }
 

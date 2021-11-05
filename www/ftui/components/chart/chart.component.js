@@ -13,6 +13,9 @@ import { Chart } from '../../modules/chart.js/chart.min.js';
 import { dateFormat, getStylePropertyValue } from '../../modules/ftui/ftui.helper.js';
 import '../../modules/chart.js/chartjs-adapter-date-fns.bundle.min.js';
 
+const HOUR =  3600 * 1000;
+const DAY =  24 * 3600 * 1000;
+
 export class FtuiChart extends FtuiElement {
   constructor(properties) {
 
@@ -137,7 +140,7 @@ export class FtuiChart extends FtuiElement {
     if (this.controlsElement) {
       this.controlsElement.addEventListener('ftuiForward', () => this.offset += 1);
       this.controlsElement.addEventListener('ftuiBackward', () => this.offset -= 1);
-      ['hour', 'day', 'week', 'month', 'year'].forEach(unit => {
+      ['hour', 'day', 'week', 'month', 'year', '24h', '30d'].forEach(unit => {
         this.controlsElement.addEventListener('ftuiUnit' + unit, () => this.unit = unit);
       });
     }
@@ -187,35 +190,45 @@ export class FtuiChart extends FtuiElement {
   }
 
   get startDate() {
-    return this.getDate();
+    return this.getDate(this.offset);
   }
 
   get endDate() {
-    return this.getDate(1);
+    return this.getDate(this.offset + 1);
   }
 
   getDate(offset = 0) {
-    const date = new Date();
+    let date;
+    const ts = new Date().getTime();
 
     switch (this.unit) {
       case 'hour':
-        date.setHours(date.getHours() + offset + this.offset, 0, 0, 0);
+        date = new Date(ts + offset * HOUR);
+        date.setMinutes(0,0,0);
         break;
       case 'day':
-        date.setDate(date.getDate() + offset + this.offset);
+        date = new Date(ts + offset * DAY);
         date.setHours(0, 0, 0, 0);
         break;
       case 'week':
+        date = new Date(ts + offset * 7 * DAY);
         date.setHours(0, 0, 0, 0);
-        date.setDate((date.getDate() + (offset * 7) + this.offset * 7) - (date.getDay() - 1));
         break;
       case 'month':
+        date = new Date();
         date.setHours(0, 0, 0, 0);
-        date.setMonth(date.getMonth() + offset + this.offset, 1);
+        date.setMonth(date.getMonth() + offset, 1);
         break;
       case 'year':
+        date = new Date();
         date.setHours(0, 0, 0, 0);
-        date.setFullYear(date.getFullYear() + offset + this.offset, 0, 1);
+        date.setFullYear(date.getFullYear() + offset, 0, 1);
+        break;
+      case '24h':
+        date = new Date(ts + offset * DAY - DAY);
+        break;
+      case '30d':
+        date = new Date(ts + (offset * 30 * DAY - 30 * DAY ));
         break;
     }
     return dateFormat(date, 'YYYY-MM-DD_hh:mm:ss');
@@ -238,7 +251,6 @@ export class FtuiChart extends FtuiElement {
         this.chart.update();
         break;
       case 'y1-min':
-        console.log(this.y1Min, value)
         this.configuration.options.scales.y1.min = this.y1Min;
         this.chart.update();
         break;
