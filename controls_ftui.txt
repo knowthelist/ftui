@@ -30,7 +30,7 @@ UPD 2021-10-13_14:27:57 913 www/ftui/components/icon/icon.component.css
 UPD 2021-10-19_18:22:52 2313 www/ftui/components/icon/icon.component.js
 UPD 2021-10-22_14:42:49 2832 www/ftui/components/image/image.component.js
 UPD 2021-02-03_14:48:37 8329 www/ftui/components/image/image_not_available.js
-UPD 2021-11-05_17:41:06 2352 www/ftui/components/input/input.component.js
+UPD 2021-11-06_00:28:53 2354 www/ftui/components/input/input.component.js
 UPD 2021-10-03_12:50:26 997 www/ftui/components/knob/knob.component.css
 UPD 2021-10-11_22:43:44 13097 www/ftui/components/knob/knob.component.js
 UPD 2021-10-19_18:05:08 2992 www/ftui/components/label/label.component.js
@@ -101,7 +101,7 @@ UPD 2021-02-15_21:49:38 3847 www/ftui/examples/dropdown.html
 UPD 2021-10-05_20:08:00 3482 www/ftui/examples/grid.html
 UPD 2021-10-26_14:03:15 5204 www/ftui/examples/icon.html
 UPD 2021-10-22_19:45:42 3144 www/ftui/examples/image.html
-UPD 2021-11-04_23:35:17 2096 www/ftui/examples/input.html
+UPD 2021-11-06_00:29:33 2108 www/ftui/examples/input.html
 UPD 2021-10-05_20:08:00 5040 www/ftui/examples/knob.html
 UPD 2021-10-19_16:47:42 9376 www/ftui/examples/label.html
 UPD 2021-10-13_18:09:20 2385 www/ftui/examples/medialist.html

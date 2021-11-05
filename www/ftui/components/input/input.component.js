@@ -36,6 +36,8 @@ export class FtuiInput extends FtuiElement {
               color: var(--text-color);  
               outline: none;
               cursor: pointer;
+              height: ${this.height};
+              width: ${this.width};
             }
             input:invalid { border: solid 2px var(--red); }
           </style>
@@ -46,9 +48,7 @@ export class FtuiInput extends FtuiElement {
             maxLength="${this.maxLength}" 
             value="${this.value}" 
             placeholder="${this.placeholder}" 
-            pattern="${this.pattern}" 
-            height="${this.height}" 
-            width="${this.width}">`;
+            pattern="${this.pattern}">`;
   }
 
   static get properties() {
