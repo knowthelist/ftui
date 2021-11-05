@@ -198,8 +198,8 @@ export class FtuiChart extends FtuiElement {
   }
 
   getDate(offset = 0) {
-    let date;
-    const ts = new Date().getTime();
+    let date = new Date();
+    const ts = date.getTime();
 
     switch (this.unit) {
       case 'hour':
@@ -211,7 +211,8 @@ export class FtuiChart extends FtuiElement {
         date.setHours(0, 0, 0, 0);
         break;
       case 'week':
-        date = new Date(ts + offset * 7 * DAY);
+        date.setHours(-24 * ((date.getDay() || 7) - 1));
+        date = new Date(date.getTime() + offset * 7 * DAY);
         date.setHours(0, 0, 0, 0);
         break;
       case 'month':

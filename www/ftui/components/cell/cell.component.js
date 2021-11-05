@@ -30,7 +30,6 @@ export class FtuiCell extends FtuiElement {
         align-items: center;
         background: var(--color-base);
         color: var(--color-contrast);
-        
       }
       :host(:not(ftui-row)[align-items~=top])    { justify-content: start; }
       :host(:not(ftui-row)[align-items~=bottom]) { justify-content: end; }

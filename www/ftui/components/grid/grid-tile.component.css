@@ -14,14 +14,17 @@
   border-radius: var(--grid-tile-border-radius);
 }
 
-
+::slotted(ftui-grid-header),
 ::slotted(header) {
-  color: var(--grid-header-color);
-  background: var(--grid-header-background-color);
+  color: var(--color-contrast, --grid-header-color);
+  background: var(--color-base, --grid-header-background-color);
   font-weight: bold;
   padding: 0.25em;
-  width: 100%;
   text-align: center;
+}
+
+::slotted(header) {
+  width: 100%;
 }
 
 .content {
@@ -54,6 +57,7 @@
 :host([align-items~=stretch]) .content { justify-content: space-between; }
 :host([align-items~=around]) .content  { justify-content: space-around; }
 
+:host([shape="round"]) ::slotted(ftui-grid-header),
 :host([shape="round"]) ::slotted(header) {
   border-top-right-radius: 1em;
   border-top-left-radius: 1em;

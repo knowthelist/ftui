@@ -1,7 +1,7 @@
 /*
 * GridTile component for FTUI version 3
 *
-* Copyright (c) 2019-2020 Mario Stephan <mstephan@shared-files.de>
+* Copyright (c) 2019-2021 Mario Stephan <mstephan@shared-files.de>
 * Under MIT License (http://www.opensource.org/licenses/mit-license.php)
 *
 * https://github.com/knowthelist/ftui
@@ -21,7 +21,7 @@ export class FtuiGridTile extends FtuiElement {
     };
     super(properties);
 
-    const header = this.querySelector('header');
+    const header = this.querySelector('header, ftui-grid-header');
     header && header.setAttribute('slot', 'header');
   }
 

@@ -24,20 +24,20 @@ export class FtuiInput extends FtuiElement {
   template() {
     return `
           <style>
-          input {
-            border-radius: 0.75em;
-            border: 2px solid var(--border-color);
-            background: transparent;
-            padding: 0.4em;
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            appearance: none;
-            font-size: 1em;
-            color: var(--text-color);  
-            outline: none;
-            cursor: pointer;
-          }
-          input:invalid { border: solid 2px var(--red); }
+            input {
+              border-radius: 0.75em;
+              border: 2px solid var(--border-color);
+              background: transparent;
+              padding: 0.4em;
+              -webkit-appearance: none;
+              -moz-appearance: none;
+              appearance: none;
+              font-size: 1em;
+              color: var(--text-color);  
+              outline: none;
+              cursor: pointer;
+            }
+            input:invalid { border: solid 2px var(--red); }
           </style>
           <input type="${this.type}"
             min="${this.min}" 
