@@ -18,12 +18,15 @@ export class FtuiContent extends FtuiElement {
 
     ftui.log(2, '[FtuiContent] constructor  file = ', this.file);
     ftuiApp.config.refreshDelay = 500;
-    this.loadFileContent();
+    if (this.file) {
+      this.loadFileContent();
+    }
   }
 
   static get properties() {
     return {
       file: '',
+      content: '',
     };
   }
 
@@ -31,10 +34,21 @@ export class FtuiContent extends FtuiElement {
     return [...this.convertToAttributes(FtuiContent.properties), ...super.observedAttributes];
   }
 
+  onAttributeChanged(name) {
+    switch (name) {
+      case 'content':
+        this.initContent();
+        break;
+    }
+  }
+
   async loadFileContent() {
     const result = await fetch(this.file);
-    const content = await result.text();
-    const solvedContent = String(content).replace(/\{\{([^}]+)\}\}/g, variable => {
+    this.content = await result.text();
+  }
+
+  initContent() {
+    const solvedContent = String(this.content).replace(/\{\{([^}]+)\}\}/g, variable => {
       return this.getAttribute(variable.slice(2, -2)) || '';
     });
 
