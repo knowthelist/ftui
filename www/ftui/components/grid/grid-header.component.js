@@ -24,6 +24,7 @@ export class FtuiGridHeader extends FtuiElement {
     return `
     <style>
     :host {
+      --color-base: var(--grid-header-background-color, #272727);
       height: ${this.height};
       width: ${this.width};
     }

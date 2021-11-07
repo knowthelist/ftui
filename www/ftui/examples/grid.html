@@ -50,7 +50,7 @@
       </ftui-row>
     </ftui-grid-tile>
 
-    <ftui-grid-tile row="2" col="3" height="2" width="2">
+    <ftui-grid-tile row="2" col="2" height="2" width="2">
       <ftui-row>
         <ftui-column align-items="left" margin="1">
           <ftui-label text="Thermostat"></ftui-label>
@@ -79,7 +79,7 @@
       </ftui-row>
     </ftui-grid-tile>
 
-    <ftui-grid-tile row="4" col="3" height="2" width="2">
+    <ftui-grid-tile row="4" col="2" height="2" width="2">
       <ftui-column>
         <ftui-row align-items="top" margin="1">
           <ftui-label [text]="ftuitest:temperature1" unit="°C"></ftui-label>
@@ -98,6 +98,25 @@
       </ftui-row>
     </ftui-grid-tile>
     
+    <!-- ftui-grid-header -->
+    <ftui-grid-tile row="1" col="4" height="1" width="1">
+      <ftui-grid-header [color]="ftuitest  | step('0:ok, 700:alert')" height="1em"></ftui-grid-header>
+      <ftui-label size="3">Stove</ftui-label>
+      <ftui-icon name="cutlery" size="3"></ftui-icon>
+      <ftui-label [text]="ftuitest"></ftui-label>
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="1" col="5" height="1" width="1">
+      <ftui-grid-header [color]="ftuitest  | step('0:ok, 30:warning, 70:alert')" height="1em"></ftui-grid-header>
+      <ftui-label size="3">Test</ftui-label>
+      <ftui-icon name="signal" size="3"></ftui-icon>
+      <ftui-label [text]="ftuitest"></ftui-label>
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="1" col="6" height="1" width="1">
+      <ftui-grid-header>FTUI-HEADER</ftui-grid-header>
+      <ftui-button [(value)]="ftuitest" states="0,10,50,80">0,10,50,80</ftui-button>
+    </ftui-grid-tile>
   </ftui-grid>
 </body>
 
