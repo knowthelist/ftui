@@ -25,6 +25,7 @@
 
 ::slotted(header) {
   width: 100%;
+  --color-base: var(--grid-header-background-color, #272727);
 }
 
 .content {

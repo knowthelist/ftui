@@ -23,7 +23,7 @@ UPD 2021-02-01_19:44:34 496 www/ftui/components/dropdown/dropdown.component.css
 UPD 2021-10-11_22:55:43 2102 www/ftui/components/dropdown/dropdown.component.js
 UPD 2021-10-16_14:12:04 4708 www/ftui/components/element.component.js
 UPD 2021-11-07_12:21:43 752 www/ftui/components/grid/grid-header.component.js
-UPD 2021-11-05_23:48:33 1711 www/ftui/components/grid/grid-tile.component.css
+UPD 2021-11-09_10:47:15 1773 www/ftui/components/grid/grid-tile.component.css
 UPD 2021-11-05_23:21:38 865 www/ftui/components/grid/grid-tile.component.js
 UPD 2021-05-26_22:39:03 3230 www/ftui/components/grid/grid.component.js
 UPD 2021-10-13_14:27:57 913 www/ftui/components/icon/icon.component.css
@@ -699,7 +699,7 @@ UPD 2021-01-07_17:45:12 1284 www/ftui/icons/windy2.svg
 UPD 2021-01-07_17:45:12 822 www/ftui/icons/wpforms.svg
 UPD 2021-01-07_17:45:12 798 www/ftui/icons/wrench.svg
 UPD 2021-01-07_17:45:12 777 www/ftui/icons/youtube-play.svg
-CRE 2021-10-18_17:19:58 9436 www/ftui/index.html
+CRE 2021-11-09_10:50:16 9453 www/ftui/index.html
 UPD 2020-12-31_16:39:06 445455 www/ftui/modules/chart.js/chart.js
 UPD 2020-12-31_16:39:06 192031 www/ftui/modules/chart.js/chart.min.js
 UPD 2020-12-31_16:39:06 49580 www/ftui/modules/chart.js/chartjs-adapter-date-fns.bundle.min.js
