@@ -49,10 +49,10 @@ export class FtuiMenu extends FtuiElement {
 
   setState(value) {
     if (value) {
-      this.element.style.width = '250px';
+      this.element.classList.add('open');
       this.startTimeout();
     } else {
-      this.element.style.width = '0';
+      this.element.classList.remove('open');
     }
     this.emitChangeEvent('open', this.open);
   }

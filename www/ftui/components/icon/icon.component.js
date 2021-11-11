@@ -38,7 +38,7 @@ export class FtuiIcon extends FtuiElement {
       height: '',
       width: '',
       top: '',
-      right: '',
+      left: '',
     };
   }
 
@@ -60,8 +60,8 @@ export class FtuiIcon extends FtuiElement {
       case 'top':
         this.style.top = isNumeric(newValue) ? newValue + 'em' : newValue;
         break;
-      case 'right':
-        this.style.right = isNumeric(newValue) ? newValue + 'em' : newValue;
+      case 'left':
+        this.style.left = isNumeric(newValue) ? newValue + 'em' : newValue;
         break;
       case 'size':
         if (this.size > -7 && this.size < 13) {

@@ -48,7 +48,7 @@ export class FtuiLabel extends FtuiElement {
       width: '',
       height: '',
       top: '',
-      right: '',
+      left: '',
     };
   }
 
@@ -82,8 +82,8 @@ export class FtuiLabel extends FtuiElement {
       case 'top':
         this.style.top = isNumeric(value) ? value + 'em' : value;
         break;
-      case 'right':
-        this.style.right = isNumeric(value) ? value + 'em' : value;
+      case 'left':
+        this.style.left = isNumeric(value) ? value + 'em' : value;
         break;
       case 'width':
         this.style.width = value;

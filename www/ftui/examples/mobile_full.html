@@ -41,8 +41,11 @@
         <ftui-label slot="header">Status</ftui-label>
 
         <ftui-view-item target="viewWindows">
-          <ftui-icon name="plane" color="green" slot="start" invert></ftui-icon>
-          Item 1
+          <ftui-icon name="home1" color="green" slot="start" invert></ftui-icon>
+          Homestatus
+          <ftui-label size="4"
+          [text]="HomeStatus | map('1:Home,2:Sleep,3:Gone,4:Holiday')"
+          slot="end"></ftui-label>
         </ftui-view-item>
 
         <ftui-view-item target="details-2">

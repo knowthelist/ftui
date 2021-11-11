@@ -24,14 +24,23 @@ export class FtuiImage extends FtuiElement {
   template() {
     return `
     <style>
+      :host {position: relative;}
       :host([shape="round"]) img {
         border-radius: 1.5em;
       }
       :host([shape="circle"]) img {
         border-radius: 50%;
       }
+      ::slotted(ftui-badge),
+      ::slotted(ftui-icon),
+      ::slotted(ftui-label)  {
+        top: 0;
+        position: absolute;
+        right: 0;
+      }
     </style>
-    <img></img>`;
+    <img></img>
+    <slot></slot>`;
   }
 
   static get properties() {

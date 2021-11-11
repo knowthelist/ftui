@@ -72,9 +72,9 @@ export class FtuiButton extends FtuiElement {
   }
 
   playEffect() {
-    this.classList.add('activated');
+    this.onDownEvent();
     setTimeout(() => {
-      this.classList.remove('activated');
+      this.onUpEvent();
     }, 100);
   }
 }
