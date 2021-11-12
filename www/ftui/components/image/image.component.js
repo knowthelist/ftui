@@ -9,6 +9,7 @@
 
 import { FtuiElement } from '../element.component.js';
 import { notAvailable } from './image_not_available.js';
+import { isNumeric } from '../../modules/ftui/ftui.helper.js';
 import * as ftui from '../../modules/ftui/ftui.helper.js';
 
 export class FtuiImage extends FtuiElement {
@@ -33,6 +34,7 @@ export class FtuiImage extends FtuiElement {
       }
       ::slotted(ftui-badge),
       ::slotted(ftui-icon),
+      ::slotted(ftui-image),
       ::slotted(ftui-label)  {
         top: 0;
         position: absolute;
@@ -53,6 +55,8 @@ export class FtuiImage extends FtuiElement {
       refresh: '',
       user: '',
       pass: '',
+      top: '',
+      left: '',
     };
   }
 
@@ -65,7 +69,7 @@ export class FtuiImage extends FtuiElement {
     this.imageElement.style.height = this.height;
   }
 
-  onAttributeChanged(name) {
+  onAttributeChanged(name, newValue) {
     switch (name) {
       case 'src':
       case 'refresh':
@@ -80,6 +84,11 @@ export class FtuiImage extends FtuiElement {
       case 'interval':
         this.checkInterval();
         break;
+      case 'top':
+        this.style.top = isNumeric(newValue) ? newValue + 'em' : newValue;
+        break;
+      case 'left':
+        this.style.left = isNumeric(newValue) ? newValue + 'em' : newValue;
     }
   }
 
