@@ -7,7 +7,7 @@ UPD 2020-12-31_16:39:02 722 www/ftui/components/chart/chart-controls.component.c
 UPD 2021-11-05_13:51:07 3862 www/ftui/components/chart/chart-controls.component.js
 UPD 2021-10-17_15:27:28 3587 www/ftui/components/chart/chart-data.component.js
 UPD 2020-12-31_16:39:02 231 www/ftui/components/chart/chart.component.css
-UPD 2021-11-05_23:56:06 10083 www/ftui/components/chart/chart.component.js
+UPD 2021-11-20_13:19:56 10337 www/ftui/components/chart/chart.component.js
 UPD 2021-03-01_21:00:54 358 www/ftui/components/checkbox/checkbox.component.css
 UPD 2021-10-11_22:43:44 2257 www/ftui/components/checkbox/checkbox.component.js
 UPD 2021-10-18_08:47:23 2554 www/ftui/components/circlemenu/circlemenu.component.js
@@ -77,7 +77,7 @@ UPD 2021-10-05_20:08:00 1910 www/ftui/examples/badge.html
 UPD 2021-10-22_22:56:18 1624 www/ftui/examples/binding.html
 UPD 2020-12-31_16:39:02 913 www/ftui/examples/button-nice.html
 UPD 2021-10-22_21:37:27 6682 www/ftui/examples/button.html
-UPD 2021-11-06_00:18:25 2423 www/ftui/examples/chart.html
+UPD 2021-11-20_13:27:31 2824 www/ftui/examples/chart.html
 UPD 2021-02-23_20:21:29 1385 www/ftui/examples/checkbox.html
 UPD 2021-10-18_07:35:34 9431 www/ftui/examples/circlemenu.html
 UPD 2021-02-06_14:42:41 1655 www/ftui/examples/clock.html
@@ -88,7 +88,7 @@ UPD 2021-04-27_20:19:53 277 www/ftui/examples/contents/content-components.html
 UPD 2021-02-10_21:37:12 267 www/ftui/examples/contents/content-components2.html
 UPD 2021-02-09_22:28:34 549 www/ftui/examples/contents/content-grid.html
 UPD 2021-10-26_15:34:52 423 www/ftui/examples/contents/content-popup.html
-UPD 2021-02-13_21:42:59 472 www/ftui/examples/contents/content-rows.html
+UPD 2021-11-15_21:59:43 472 www/ftui/examples/contents/content-rows.html
 UPD 2021-10-19_13:57:52 275 www/ftui/examples/contents/content-view1.html
 UPD 2021-10-19_13:57:56 684 www/ftui/examples/contents/content-view2.html
 UPD 2021-11-09_10:48:30 1789 www/ftui/examples/contents/content-weather-2-day.html
@@ -100,9 +100,9 @@ UPD 2021-10-03_12:43:52 2749 www/ftui/examples/departure.html
 UPD 2021-02-15_21:49:38 3847 www/ftui/examples/dropdown.html
 UPD 2021-11-07_12:24:19 4409 www/ftui/examples/grid.html
 UPD 2021-10-26_14:03:15 5204 www/ftui/examples/icon.html
-UPD 2021-11-11_20:24:10 3911 www/ftui/examples/image.html
+UPD 2021-11-13_12:00:45 3911 www/ftui/examples/image.html
 UPD 2021-11-06_00:29:33 2108 www/ftui/examples/input.html
-UPD 2021-10-05_20:08:00 5040 www/ftui/examples/knob.html
+UPD 2021-11-15_21:59:33 5040 www/ftui/examples/knob.html
 UPD 2021-10-19_16:47:42 9376 www/ftui/examples/label.html
 UPD 2021-10-13_18:09:20 2385 www/ftui/examples/medialist.html
 UPD 2021-10-17_20:45:00 2012 www/ftui/examples/menu.html

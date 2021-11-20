@@ -33,8 +33,8 @@
 
   <ftui-grid responsive>
 
-    <ftui-grid-tile row="1" col="1" height="3" width="3">
-      <header>DEFAULT</header>
+    <ftui-grid-tile row="1" col="1" height="2" width="3">
+      <header>3 DATA</header>
 
         <ftui-chart title="demo-chart" y-label="Heizung" y1-label="Außen">
           <ftui-chart-data label="Außen" color="warning" log="FileLog_AgroWeather" spec="4:AgroWeather.temperature" y-axis-id="y1"></ftui-chart-data>
@@ -42,6 +42,16 @@
           <ftui-chart-data label="Rücklauf" fill background-color="#d6305650" color="#d63056" log="FileLog_Heizung_Ruecklauf" spec="4:temperature"></ftui-chart-data>
           
           <ftui-chart-controls units="day, week"></ftui-chart-controls>
+        </ftui-chart>
+      
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="3" col="1" height="2" width="3">
+      <header>6am-8pm</header>
+
+        <ftui-chart title="Temp 6am-8pm" y-label="Temp in °C" x-min="6" x-max="20">
+          <ftui-chart-data color="warning" log="FileLog_AgroWeather" spec="4:AgroWeather.temperature"></ftui-chart-data>
+          <ftui-chart-controls></ftui-chart-controls>
         </ftui-chart>
       
     </ftui-grid-tile>

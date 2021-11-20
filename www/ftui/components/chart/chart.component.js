@@ -175,6 +175,8 @@ export class FtuiChart extends FtuiElement {
       y1Min: 0,
       yMax: 0,
       y1Max: 0,
+      xMin: 0,
+      xMax: 0,
       offset: 0,
       prefetch: 0,
       extend: false,
@@ -190,14 +192,20 @@ export class FtuiChart extends FtuiElement {
   }
 
   get startDate() {
+    if (this.unit === 'day' && this.xMin > 0) {
+      return this.getDate(this.offset, this.xMin);
+    }
     return this.getDate(this.offset);
   }
 
   get endDate() {
-    return this.getDate(this.offset + 1);
+    if (this.unit === 'day' && this.xMax > 0) {
+      return this.getDate(this.offset, this.xMax);
+    }
+    return this.getDate(this.offset + 1 );
   }
 
-  getDate(offset = 0) {
+  getDate(offset = 0, hour = 0) {
     let date = new Date();
     const ts = date.getTime();
 
@@ -208,7 +216,7 @@ export class FtuiChart extends FtuiElement {
         break;
       case 'day':
         date = new Date(ts + offset * DAY);
-        date.setHours(0, 0, 0, 0);
+        date.setHours(hour, 0, 0, 0);
         break;
       case 'week':
         date.setHours(-24 * ((date.getDay() || 7) - 1));
