@@ -49,8 +49,11 @@
     <ftui-grid-tile row="3" col="1" height="2" width="3">
       <header>6am-8pm</header>
 
-        <ftui-chart title="Temp 6am-8pm" y-label="Temp in °C" x-min="6" x-max="20">
-          <ftui-chart-data color="warning" log="FileLog_AgroWeather" spec="4:AgroWeather.temperature"></ftui-chart-data>
+        <ftui-chart title="Power 6am-8pm" y-label="Power in VA" x-min="6" x-max="20" y-max="600">
+          <ftui-chart-data fill background-color="#d6305650" color="#d63056" 
+                           log="FileLog_MQTT2_PV_GROWATT_GAH0A4406L" 
+                           spec="4:MQTT2_PV_GROWATT_GAH0A4406L.Pac1">
+          </ftui-chart-data>
           <ftui-chart-controls></ftui-chart-controls>
         </ftui-chart>
       
