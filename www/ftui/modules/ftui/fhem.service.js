@@ -38,13 +38,11 @@ class FhemService {
       }
     };
 
-
     // define debounced function
     this.debouncedUpdateFhem = debounce(this.updateFhem, this);
 
     this.debugEvents = new Subject();
     this.errorEvents = new Subject();
-
     this.readingsMap = new Map();
   }
 
@@ -287,7 +285,6 @@ class FhemService {
   reconnect(delay = 0) {
     log(2, '[websocket] restart connection');
     clearTimeout(this.states.connection.timer);
-
     this.disconnect();
 
     this.states.connection.timer = setTimeout(() => {
@@ -378,6 +375,7 @@ class FhemService {
   }
 
   scheduleHealthCheck() {
+    this.debugEvents.publish('scheduleHealthCheck')
     // request dummy fhem event
     if (this.states.connection.websocket &&
       this.states.connection.websocket.readyState === WebSocket.OPEN) {
@@ -391,7 +389,7 @@ class FhemService {
 
   healthCheck() {
     const timeDiff = new Date() - this.states.connection.lastEventTimestamp;
-    if (timeDiff / 1000 > 60) {
+    if (timeDiff / 1000 > 3) {
       log(1, 'No update event since ' + timeDiff / 1000 + 'secondes -> restart connection');
       this.reconnect();
     }

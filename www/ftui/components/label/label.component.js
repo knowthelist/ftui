@@ -30,10 +30,19 @@ export class FtuiLabel extends FtuiElement {
         :host(:empty:not([text])) slot[name="unit"]
         , :host([text=""]) slot[name="unit"] { visibility: hidden; }
         :host([scroll]) { overflow: auto; }
+        :host(:empty[text=""][placeholder]) { display: inline-block;
+          background-color: var(--medium-color);
+          height: .75em; border-radius: 2em;
+          opacity: .3; animation: fading 1.5s infinite;
+          min-width: 4em; }
         :host([size="10"]),:host([size="11"]),:host([size="12"]) {
           font-family: "HelveticaNeue-UltraLight", "Segoe UI", "Roboto Light", sans-serif;
           line-height: 0.8em;
         }
+        @keyframes fading { 
+          0% { opacity: .3; }
+          50% { opacity: .5; }
+          100% { opacity: .3; }}
       </style>
       <slot name="pre"></slot><slot></slot><slot name="content"></slot><slot name="unit">${this.unit}</slot>`;
   }
@@ -97,8 +106,12 @@ export class FtuiLabel extends FtuiElement {
   checkInterval() {
     clearInterval(this.intervalTimer);
     if (this.interval) {
-      this.intervalTimer = setInterval(() => this.binding.forceUpdate('text'), this.interval * 1000);
+      this.intervalTimer = setInterval(() => this.refresh(), this.interval * 1000);
     }
+  }
+
+  refresh() {
+    this.binding.forceUpdate('text');
   }
 }
 

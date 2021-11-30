@@ -33,34 +33,52 @@
 
 <body>
   <ftui-view-stage>
-    <ftui-view id="view-1">
+    <ftui-view id="viewMain">
 
-      <ftui-view-toolbar>My House</ftui-view-toolbar>
+      <ftui-view-toolbar>My Home</ftui-view-toolbar>
 
       <ftui-view-section>
         <ftui-label slot="header">Status</ftui-label>
 
-        <ftui-view-item target="viewWindows">
-          <ftui-icon name="home1" color="green" slot="start" invert></ftui-icon>
+        <ftui-view-item target="viewHomeStatus">
+          <ftui-icon name="home" color="green" slot="start" invert></ftui-icon>
           Homestatus
-          <ftui-label size="4"
-          [text]="HomeStatus | map('1:Home,2:Sleep,3:Gone,4:Holiday')"
-          slot="end"></ftui-label>
+          <ftui-label slot="end" color="medium" placeholder
+                      [text]="HomeStatus | map('1:Home,2:Sleep,3:Gone,4:Holiday')"></ftui-label>
         </ftui-view-item>
 
-        <ftui-view-item target="details-2">
-          <ftui-icon name="volume-off" color="yellow" slot="start" invert></ftui-icon>
-          Item 2
+        <ftui-view-item target="viewLamps">
+          <ftui-icon name="lightbulb-on" color="yellow" slot="start" invert></ftui-icon>
+          Lights
+          <ftui-label slot="end" color="medium" placeholder
+                      [text]="AllLights:count"></ftui-label>
         </ftui-view-item>
 
-        <ftui-view-item target="view-2">
-          <ftui-icon name="wrench" color="red" slot="start" invert></ftui-icon>
-          Item 3
+        <ftui-view-item target="viewShutter">
+          <ftui-icon name="window-shutter" color="red" slot="start" invert></ftui-icon>
+          Shutter
+          <ftui-label slot="end" color="medium" placeholder
+                      [text]="AllJalousie:position | toInt()" unit="%"></ftui-label>
         </ftui-view-item>
 
-        <ftui-view-item target="view-3">
-          <ftui-icon name="phone" color="blue" slot="start" invert></ftui-icon>
-          Item 4
+        <ftui-view-item target="viewWindows">
+          <ftui-icon name="classic-window" color="blue" slot="start" invert></ftui-icon>
+          Windows
+          <ftui-label slot="end" color="medium" placeholder [text]="AlleFenster"></ftui-label>
+
+        </ftui-view-item>
+
+        <ftui-view-item target="view-4">
+          <ftui-icon name="front-door" color="blue" slot="start" invert></ftui-icon>
+          Door
+          <ftui-label slot="end" color="medium" placeholder [text]="Eingangstuer:secure"></ftui-label>
+        </ftui-view-item>
+
+        <ftui-view-item target="viewTemp">
+          <ftui-icon name="thermometer-2" color="red" slot="start" invert></ftui-icon>
+          Temperature
+          <ftui-label [text]="KuechenHeizung:ist-get | toNumber() | fix(1)" unit="°C" slot="end" color="medium"
+                      placeholder></ftui-label>
         </ftui-view-item>
 
         <ftui-label slot="footer">This footer explains the meaning of the section to the user</ftui-label>
@@ -68,7 +86,68 @@
       </ftui-view-section>
 
       <ftui-view-section>
-        <ftui-label slot="header">Sonos</ftui-label>
+        <ftui-label slot="header">media</ftui-label>
+
+        <ftui-view-item target="viewSonos">
+          <ftui-icon name="volume-off" color="green" slot="start" invert></ftui-icon>
+          Sonos
+        </ftui-view-item>
+
+        <ftui-view-item target="viewTV">
+          <ftui-icon name="volume-off" color="green" slot="start" invert></ftui-icon>
+          TV
+        </ftui-view-item>
+
+      </ftui-view-section>
+
+      <ftui-view-section>
+        <ftui-label slot="header">power</ftui-label>
+
+        <ftui-view-item target="viewSolar">
+          <ftui-icon name="sun" color="yellow" slot="start" invert></ftui-icon>
+          Solar
+          <ftui-label slot="end" color="medium" placeholder [text]="PVConverter:Vpv1" Unit="W"></ftui-label>
+        </ftui-view-item>
+
+        <ftui-view-item target="viewPower">
+          <ftui-icon name="bolt" color="yellow" slot="start" invert></ftui-icon>
+          Consumption
+          <ftui-label slot="end" color="medium" placeholder [text]="Stromzaehler:W" Unit="W"></ftui-label>
+        </ftui-view-item>
+
+      </ftui-view-section>
+
+      <ftui-view-section>
+        <ftui-label slot="header">outdoor</ftui-label>
+
+        <ftui-view-item target="viewSolar">
+          <ftui-icon name="thermometer-2" color="yellow" slot="start" invert></ftui-icon>
+          Temperature
+          <ftui-label [text]="AussenTemp:temperature| fix(1)" Unit="°C" slot="end" color="medium" placeholder>
+          </ftui-label>
+        </ftui-view-item>
+
+        <ftui-view-item target="viewPower">
+          <ftui-icon name="rainy" color="blue" slot="start" invert></ftui-icon>
+          Rain
+          <ftui-label [text]="Regenzaehler:statLiterDay | fix(1)" Unit="l" slot="end" color="medium" placeholder>
+          </ftui-label>
+        </ftui-view-item>
+
+      </ftui-view-section>
+
+    </ftui-view>
+
+    <!-- SONOS -->
+
+    <ftui-view id="viewSonos">
+      <ftui-view-toolbar>
+        <ftui-nav-link slot="start"></ftui-nav-link>
+        Sonos
+      </ftui-view-toolbar>
+
+      <ftui-view-section>
+        <ftui-label slot="header">Rooms</ftui-label>
 
         <ftui-view-item target="viewSonosWZ">
           <ftui-icon name="volume-off" color="green" slot="start"></ftui-icon>
@@ -91,32 +170,6 @@
         </ftui-view-item>
 
       </ftui-view-section>
-
-      <ftui-view-section>
-
-        <ftui-view-item target="view-2">
-          <ftui-icon name="plane" color="green" slot="start"></ftui-icon>
-          Item 1
-        </ftui-view-item>
-
-        <ftui-view-item target="details-2">
-          <ftui-icon name="shopping-cart" color="yellow" slot="start"></ftui-icon>
-          Item 2
-        </ftui-view-item>
-
-        <!-- is-plain attribute will suppress the arrow icon -->
-        <ftui-view-item target="view-2" plain>
-          <ftui-icon name="wrench" color="red" slot="start"></ftui-icon>
-          Item 3
-        </ftui-view-item>
-
-        <ftui-view-item target="view-3">
-          <ftui-icon name="phone" color="blue" slot="start"></ftui-icon>
-          Item 4
-        </ftui-view-item>
-
-      </ftui-view-section>
-
     </ftui-view>
 
     <ftui-view id="viewSonosWZ">
@@ -138,7 +191,7 @@
       </ftui-view-item>
 
 
-      <ftui-view-sheet shape="round" >
+      <ftui-view-sheet shape="round">
 
         <ftui-image [src]="Sonos_Play5:currentAlbumArtURL" width="8em"></ftui-image>
 
@@ -193,60 +246,375 @@
       <ftui-content file="examples/contents/mobile-view-sonos.html" name="Bad"></ftui-content>
     </ftui-view>
 
-    <ftui-view id="details-1">
+    <!-- TV -->
+    <ftui-view id="viewTV">
       <ftui-view-toolbar>
         <ftui-nav-link slot="start"></ftui-nav-link>
-        Details 1
+        TV
       </ftui-view-toolbar>
+      <!-- Sat section -->
+      <ftui-view-section>
+        <ftui-label slot="header">Sat</ftui-label>
+
+        <ftui-view-item>
+          Channel
+          <ftui-row slot="end" align-items="stretch">
+            <ftui-label [(text)]="SatReceiver:servicename" color="medium"></ftui-label>
+            <ftui-button (value)="SatReceiver" states="channelDown" color="current" fill="none">
+              <ftui-icon name="angle-down" class="size-2"></ftui-icon>
+            </ftui-button>
+            <ftui-button (value)="SatReceiver" states="channelUp" color="current" fill="none"
+                         margin="-1em">
+              <ftui-icon name="angle-up" class="size-2"></ftui-icon>
+            </ftui-button>
+          </ftui-row>
+        </ftui-view-item>
+        <ftui-view-item>
+          Power
+          <ftui-switch [(value)]="SatReceiver" slot="end"></ftui-switch>
+        </ftui-view-item>
+        <ftui-view-item>
+          Video
+          <ftui-row>
+            <ftui-button (value)="SatReceiver" states="backward" color="medium" fill="none">
+              <ftui-icon name="backward" class="size-0" margin="0 -1em 0 0"></ftui-icon>
+            </ftui-button>
+            <ftui-button (value)="SatReceiver" states="stop" color="medium" fill="none">
+              <ftui-icon name="stop" class="size-0" margin="0 -1em 0 0"></ftui-icon>
+            </ftui-button>
+            <ftui-button (value)="SatReceiver" states="play" color="medium" fill="none">
+              <ftui-icon name="play" class="size-0" margin="0 -1em 0 0"></ftui-icon>
+            </ftui-button>
+            <ftui-button (value)="SatReceiver" states="pause" color="medium" fill="none">
+              <ftui-icon name="pause" class="size-0" margin="0 -1em 0 0"></ftui-icon>
+            </ftui-button>
+            <ftui-button (value)="SatReceiver" states="forward" color="medium" fill="none">
+              <ftui-icon name="forward" class="size-0" margin="0 -1em 0 0"></ftui-icon>
+            </ftui-button>
+          </ftui-row>
+        </ftui-view-item>
+      </ftui-view-section>
+
+      <!-- AvReceiver section -->
+      <ftui-view-section>
+        <ftui-label slot="header">AvReceiver</ftui-label>
+
+        <ftui-view-item>
+          AvReceiver
+          <ftui-switch [(value)]="AvReceiver:power" slot="end"></ftui-switch>
+        </ftui-view-item>
+        <ftui-view-item>
+          Volume
+          <ftui-label [(text)]="AvReceiver:volume" color="medium" slot="end"></ftui-label>
+          <ftui-slider [(value)]="AvReceiver:volume" max="60" slot="end"></ftui-slider>
+        </ftui-view-item>
+        <ftui-view-item>
+          Center
+          <ftui-label [(text)]="AvReceiver:center-temporary-level" color="medium" slot="end"></ftui-label>
+          <ftui-slider [(value)]="AvReceiver:center-temporary-level" min="-6" max="6" slot="end"></ftui-slider>
+        </ftui-view-item>
+
+      </ftui-view-section>
+      <!-- Beamer section -->
+      <ftui-view-section>
+        <ftui-label slot="header">Beamer</ftui-label>
+
+        <ftui-view-item>Power
+          <ftui-switch [(value)]="Beamer" slot="end"></ftui-switch>
+        </ftui-view-item>
+        <ftui-view-item>OK
+          <ftui-button (value)="BeamerOk" states="ok" slot="end">OK</ftui-button>
+        </ftui-view-item>
+        <ftui-view-item>Screen
+          <ftui-row slot="end" align-items="stretch">
+
+            <ftui-label [(text)]="Leinwand | map('on:down,off:up')" color="medium"></ftui-label>
+            <ftui-button (value)="Leinwand" states="on" color="current" fill="none">
+              <ftui-icon name="angle-down" class="size-2"></ftui-icon>
+
+            </ftui-button>
+            <ftui-button (value)="Leinwand" states="off" color="current" fill="none"
+                         margin="-1em">
+              <ftui-icon name="angle-up" class="size-2"></ftui-icon>
+
+            </ftui-button>
+          </ftui-row>
+        </ftui-view-item>
+      </ftui-view-section>
 
     </ftui-view>
 
-    <ftui-view id="details-2">
+    <!-- HomeStatus -->
+    <ftui-view id="viewHomeStatus">
       <ftui-view-toolbar>
         <ftui-nav-link slot="start"></ftui-nav-link>
-        Details 2
+        Homestatus
       </ftui-view-toolbar>
 
-      <ftui-segment id="segment2">
-        <ftui-segment-button value="home">
-          <ftui-label>Home</ftui-label>
-        </ftui-segment-button>
-        <ftui-segment-button value="sleep">
-          <ftui-label>Sleep</ftui-label>
-        </ftui-segment-button>
-        <ftui-segment-button value="absent">
-          <ftui-label>Absent</ftui-label>
-        </ftui-segment-button>
-        <ftui-segment-button value="holiday">
-          <ftui-label>Holiday</ftui-label>
-        </ftui-segment-button>
-      </ftui-segment>
-
       <ftui-view-item>
-        <ftui-segment id="segment2">
-          <ftui-segment-button value="home">
+        <ftui-segment [(value)]="HomeStatus">
+          <ftui-segment-button value="1">
             <ftui-label>Home</ftui-label>
           </ftui-segment-button>
-          <ftui-segment-button value="sleep">
+          <ftui-segment-button value="2">
             <ftui-label>Sleep</ftui-label>
           </ftui-segment-button>
-          <ftui-segment-button value="absent">
+          <ftui-segment-button value="3">
             <ftui-label>Absent</ftui-label>
           </ftui-segment-button>
-          <ftui-segment-button value="holiday">
+          <ftui-segment-button value="4">
             <ftui-label>Holiday</ftui-label>
           </ftui-segment-button>
         </ftui-segment>
       </ftui-view-item>
     </ftui-view>
 
-    <ftui-view id="details-3">
+    <!-- Lamps -->
+    <ftui-view id="viewLamps">
       <ftui-view-toolbar>
         <ftui-nav-link slot="start"></ftui-nav-link>
-        Details 3
+        Lampen
       </ftui-view-toolbar>
+
+      <ftui-view-section>
+        <ftui-label slot="header">Bad</ftui-label>
+        <ftui-view-item>Decke
+          <ftui-switch [(value)]="BadLicht" slot="end"></ftui-switch>
+        </ftui-view-item>
+        <ftui-view-item>Wand
+          <ftui-switch [(value)]="BadWandlicht" slot="end"></ftui-switch>
+        </ftui-view-item>
+        <ftui-view-item>BWM Sperre
+          <ftui-checkbox states="disable,enable" [(value)]="BadLichtSperre" slot="end">
+          </ftui-checkbox>
+        </ftui-view-item>
+      </ftui-view-section>
+
+      <ftui-view-section>
+        <ftui-label slot="header">Schlafzimmer</ftui-label>
+        <ftui-view-item>Decke
+          <ftui-switch [(value)]="SchlafzimmerLicht" slot="end"></ftui-switch>
+        </ftui-view-item>
+        <ftui-view-item>Bett Links
+          <ftui-switch [(value)]="SchlafzimmerBettLinks" slot="end"></ftui-switch>
+        </ftui-view-item>
+        <ftui-view-item>Bett Rechts
+          <ftui-switch [(value)]="SchlafzimmerBettRechts" slot="end"></ftui-switch>
+        </ftui-view-item>
+        <ftui-view-item>Gäste
+          <ftui-switch [(value)]="GaestezimmerLicht" slot="end"></ftui-switch>
+        </ftui-view-item>
+        <ftui-view-item>Kind Decke
+          <ftui-switch [(value)]="KinderzimmerLicht" slot="end"></ftui-switch>
+        </ftui-view-item>
+        <ftui-view-item>Kind Wand
+          <ftui-switch [(value)]="KinderzimmerWandlicht" slot="end"></ftui-switch>
+        </ftui-view-item>
+      </ftui-view-section>
+
+      <ftui-view-section>
+        <ftui-label slot="header">Living Room</ftui-label>
+        <ftui-view-item>Esstisch
+          <ftui-switch [(value)]="EsstischLampe" slot="end"></ftui-switch>
+        </ftui-view-item>
+        <ftui-view-item>Decke
+          <ftui-switch [(value)]="WohnzimmerDeckenLicht" slot="end"></ftui-switch>
+        </ftui-view-item>
+        <ftui-view-item>KüchenSchrank
+          <ftui-switch [(value)]="KNX_KuechenSchrankLicht" slot="end"></ftui-switch>
+        </ftui-view-item>
+        <ftui-view-item>Schrank
+          <ftui-switch [(value)]="SchrankLicht_Sw" slot="end"></ftui-switch>
+        </ftui-view-item>
+        <ftui-view-item>Stehlampe
+          <ftui-switch [value]="Stehlampe | map('on|dim.*: on, off|0: off')"
+                       (value)="Stehlampe" slot="end"></ftui-switch>
+        </ftui-view-item>
+        <ftui-view-item>Hue
+          <ftui-switch [value]="HUEDevice6 | map('on|dim.*: on, off|0: off')"
+                       (value)="HUEDevice6" slot="end"></ftui-switch>
+        </ftui-view-item>
+
+      </ftui-view-section>
+      <ftui-view-section>
+        <ftui-label slot="header">Terasse</ftui-label>
+        <ftui-view-item>Steckdose Strasse
+          <ftui-switch [(value)]="SteckdoseStrasse" slot="end"></ftui-switch>
+        </ftui-view-item>
+        <ftui-view-item>Kueche
+          <ftui-switch [(value)]="TerasseKuecheLicht" slot="end"></ftui-switch>
+        </ftui-view-item>
+        <ftui-view-item>Strasse
+          <ftui-switch [(value)]="TerrasseStrasseLicht" slot="end"></ftui-switch>
+        </ftui-view-item>
+      </ftui-view-section>
+
+      <ftui-view-section>
+        <ftui-label slot="header">Flur</ftui-label>
+        <ftui-view-item>Galerie
+          <ftui-switch [(value)]="GalerieLicht" slot="end"></ftui-switch>
+        </ftui-view-item>
+        <ftui-view-item>Kueche
+          <ftui-switch [(value)]="TerasseKuecheLicht" slot="end"></ftui-switch>
+        </ftui-view-item>
+        <ftui-view-item>Strasse
+          <ftui-switch [(value)]="TerrasseStrasseLicht" slot="end"></ftui-switch>
+        </ftui-view-item>
+      </ftui-view-section>
+    </ftui-view>
+
+    <!-- Shutter -->
+    <ftui-view id="viewShutter">
+      <ftui-view-toolbar>
+        <ftui-nav-link slot="start"></ftui-nav-link>
+        Shutter
+      </ftui-view-toolbar>
+
+      <ftui-view-sheet shape="round">
+        <ftui-row height="45%">
+          <ftui-button (value)="set AllJalousie fahren up" direction="vertical" color="current" fill="none"
+                       margin="-1em">
+            <ftui-icon name="angle-up" class="size-1" height="90%"></ftui-icon>
+            <ftui-label>Tag</ftui-label>
+          </ftui-button>
+          <ftui-icon name="window-shutter" class="size-4"></ftui-icon>
+          <ftui-button @click="sendFhem('{setJalousieNight()}')" direction="vertical" color="current" fill="none"
+                       margin="-1em">
+            <ftui-icon name="angle-down" class="size-1" height="90%"></ftui-icon>
+            <ftui-label>Nacht</ftui-label>
+          </ftui-button>
+        </ftui-row>
+      </ftui-view-sheet>
+
+      <ftui-view-section>
+        <ftui-label slot="header">Living Room</ftui-label>
+        <ftui-view-item>Left
+          <ftui-row slot="end">
+            <ftui-button (value)="set AllJalousie fahren up" color="current" fill="none">
+              <ftui-icon name="angle-up" class="size-2"></ftui-icon>
+
+            </ftui-button>
+            <ftui-icon name="window-shutter"></ftui-icon>
+            <ftui-button @click="sendFhem('{setJalousieNight()}')" color="current" fill="none"
+                         margin="-1em">
+              <ftui-icon name="angle-down" class="size-2"></ftui-icon>
+
+            </ftui-button>
+          </ftui-row>
+
+        </ftui-view-item>
+
+      </ftui-view-section>
+
+    </ftui-view>
+
+    <!-- Solar -->
+    <ftui-view id="viewSolar">
+      <ftui-view-toolbar>
+        <ftui-nav-link slot="start"></ftui-nav-link>
+        Solar
+      </ftui-view-toolbar>
+
+      <ftui-view-sheet shape="round">
+        <ftui-chart width="300px" height="200px" y-label="Power in VA" x-min="6" x-max="20">
+          <ftui-chart-data fill log="FileLog_PVConverter" spec="4:PVConverter.Pac" [update]="PVConverter:Pac:time">
+          </ftui-chart-data>
+          <ftui-chart-controls units="day, hour"></ftui-chart-controls>
+        </ftui-chart>
+      </ftui-view-sheet>
+
+    </ftui-view>
+
+    <!-- Windows -->
+    <ftui-view id="viewWindows">
+      <ftui-view-toolbar>
+        <ftui-nav-link slot="start"></ftui-nav-link>
+        Windows
+      </ftui-view-toolbar>
+
+      <ftui-view-section>
+        <ftui-label slot="header">Living Room</ftui-label>
+        <ftui-view-item>Kitchen
+          <ftui-label [text]="KuechenFenster:state:time | toDate() | ago() | humanized()" ago-refresh color="medium" size="1"></ftui-label>
+          </ftui-row>
+          <ftui-icon [name]="KuechenFenster | map('closed:window-closed-variant, open:window-open-variant')"
+                     [color]="KuechenFenster | map('closed:medium, open:primary')" slot="end"></ftui-icon>
+        </ftui-view-item>
+        <ftui-view-item>Left
+          <ftui-label [text]="WohnzimmerFensterLinks:state:time | toDate() | ago() | humanized()" ago-refresh color="medium" size="1">
+          </ftui-label>
+          </ftui-row>
+          <ftui-icon [name]="WohnzimmerFensterLinks | map('closed:window-closed-variant, open:window-open-variant')"
+                     [color]="WohnzimmerFensterLinks | map('closed:medium, open:primary')" slot="end"></ftui-icon>
+        </ftui-view-item>
+        <ftui-view-item>Right
+          <ftui-label [text]="WohnzimmerFensterRechts:state:time | toDate() | ago() | humanized()" ago-refresh color="medium" size="1">
+          </ftui-label>
+          <ftui-icon [name]="WohnzimmerFensterRechts | map('closed:window-closed-variant, open:window-open-variant')"
+                     [color]="WohnzimmerFensterRechts | map('closed:medium, open:primary')" slot="end"></ftui-icon>
+        </ftui-view-item>
+      </ftui-view-section>
+
+      <ftui-view-section>
+        <ftui-label slot="header">Bed Rooms</ftui-label>
+        <ftui-view-item>Child Left
+          <ftui-label [text]="KinderzimmerFensterLinks:state:time | toDate() | ago() | humanized()" ago-refresh color="medium" size="1">
+          </ftui-label>
+
+          <ftui-icon [name]="KinderzimmerFensterLinks | map('closed:window-closed-variant, open:window-open-variant')"
+                     [color]="KinderzimmerFensterLinks | map('closed:medium, open:primary')" slot="end"></ftui-icon>
+        </ftui-view-item>
+        <ftui-view-item>Child Right
+          <ftui-label [text]="KinderzimmerFensterRechts:state:time | toDate() | ago() | humanized()" ago-refresh color="medium" size="1">
+          </ftui-label>
+          <ftui-icon [name]="KinderzimmerFensterRechts | map('closed:window-closed-variant, open:window-open-variant')"
+                     [color]="KinderzimmerFensterRechts | map('closed:medium, open:primary')" slot="end"></ftui-icon>
+        </ftui-view-item>
+        <ftui-view-item>Guest
+          <ftui-label [text]="GaestezimmerFenster:state:time | toDate() | ago() | humanized()" ago-refresh color="medium" size="1">
+          </ftui-label>
+          <ftui-icon [name]="GaestezimmerFenster | map('closed:window-closed-variant, open:window-open-variant')"
+                     [color]="GaestezimmerFenster | map('closed:medium, open:primary')" slot="end"></ftui-icon>
+        </ftui-view-item>
+        <ftui-view-item>Bed Room
+          <ftui-label [text]="SchlafzimmerFenster:state:time | toDate() | ago() | humanized()" ago-refresh color="medium" size="1">
+          </ftui-label>
+          <ftui-icon [name]="SchlafzimmerFenster | map('closed:window-closed-variant, open:window-open-variant')"
+                     [color]="SchlafzimmerFenster | map('closed:medium, open:primary')" slot="end">
+            </ftui-switch>
+        </ftui-view-item>
+      </ftui-view-section>
+
+      <ftui-view-section>
+        <ftui-view-item>Bath
+          <ftui-label [text]="BadFenster:state:time | toDate() | ago() | humanized()" ago-refresh color="medium" size="1"></ftui-label>
+          <ftui-icon [name]="BadFenster | map('closed:window-closed-variant, open:window-open-variant')"
+                     [color]="BadFenster  | map('closed:medium, open:primary')" slot="end"></ftui-icon>
+        </ftui-view-item>
+        <ftui-view-item>Cellar Left
+          <ftui-label [text]="KellerFensterLinks:state:time | toDate() | ago() | humanized()" ago-refresh color="medium" size="1">
+          </ftui-label>
+          <ftui-icon [name]="KellerFensterLinks | map('closed:window-closed-variant, open:window-open-variant')"
+                     [color]="KellerFensterLinks  | map('closed:medium, open:primary')" slot="end"></ftui-icon>
+        </ftui-view-item>
+        <ftui-view-item>Cellar Right
+          <ftui-label [text]="KellerFensterRechts:state:time | toDate() | ago() | humanized()" ago-refresh color="medium" size="1">
+          </ftui-label>
+          <ftui-icon [name]="KellerFensterRechts | map('closed:window-closed-variant, open:window-open-variant')"
+                     [color]="KellerFensterRechts  | map('closed:medium, open:primary')" slot="end"></ftui-icon>
+        </ftui-view-item>
+      </ftui-view-section>
+
     </ftui-view>
 
   </ftui-view-stage>
 
+  <script>
+    // refresh all ago-label each minute
+    setInterval(() => {
+      document.querySelectorAll('ftui-label[ago-refresh]').forEach(elem => {
+        elem.refresh();
+      });
+    }, 60000);
+  </script>
 </html>

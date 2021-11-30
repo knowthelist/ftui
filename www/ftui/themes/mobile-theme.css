@@ -69,6 +69,7 @@
   --view-background-color: var(--gray95);
   --view-footer-color: var(--white);
   --view-item-background-color: var(--white);
+  --view-item-active-color: var(--gray75);
   --view-border-color: rgb(200, 199, 204);
 
   --page-background-color: var(--gray90);
@@ -89,7 +90,10 @@
   
   --circlemenu-overlay-color: var(--fullblack);
 
-  --chart-text-color: var(--gray55);
+  --chart-text-color: var(--medium-color);
+  --chart-text-active-color: var(--dark-color);
+  --chart-grid-line-color: var(--medium-color);
+  --chart-title-color: var(--medium-color);
 
   --border-color: var(--light-color);
 

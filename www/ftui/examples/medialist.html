@@ -29,14 +29,14 @@
 
   <ftui-grid base-width="150" base-height="150">
 
-    <ftui-grid-tile row="1" col="1" height="1" width="1">
+   <ftui-grid-tile row="1" col="1" height="2" width="2">
       <header>DEFAULT</header>
 
       <ftui-medialist></ftui-medialist>
 
     </ftui-grid-tile>
 
-    <ftui-grid-tile row="1" col="2" height="4" width="3">
+    <ftui-grid-tile row="1" col="3" height="2" width="2">
       <header>FIX-LIST</header>
 
       <ftui-medialist list='[
@@ -72,8 +72,8 @@
                       (track)="setreading ftuitest:currentTrack"></ftui-medialist>
 
     </ftui-grid-tile>
-
-    <ftui-grid-tile row="5" col="1" height="3" width="3">
+  
+    <ftui-grid-tile row="3" col="1" height="3" width="3">
       <header>FHEM-LIST</header>
 
       <ftui-medialist [list]="ftuitest:medialist2" [file]="dummy1:currentFile"

@@ -83,7 +83,7 @@ Single-colored icons can be modified like so:
   width: 0.7857142857142857em;
 }
 
-./home1 {
+./home {
   width: 0.9285714285714285em;
 }
 
@@ -119,11 +119,11 @@ Single-colored icons can be modified like so:
   width: 0.8571428571428571em;
 }
 
-./repeat1 {
+./repeat {
   width: 0.8571428571428571em;
 }
 
-./refresh1 {
+./refresh {
   width: 0.8571428571428571em;
 }
 
@@ -163,7 +163,7 @@ Single-colored icons can be modified like so:
   width: 1.0597142857142856em;
 }
 
-./book1 {
+./book {
   width: 0.9302142857142857em;
 }
 
@@ -311,7 +311,7 @@ Single-colored icons can be modified like so:
   width: 0.8571428571428571em;
 }
 
-./compress1 {
+./compress {
   width: 0.8571428571428571em;
 }
 
@@ -499,7 +499,7 @@ Single-colored icons can be modified like so:
   width: 0.7857142857142857em;
 }
 
-./floppy-o {
+./save {
   width: 0.8571428571428571em;
 }
 
@@ -507,7 +507,7 @@ Single-colored icons can be modified like so:
   width: 0.8571428571428571em;
 }
 
-./bars {
+./bar {
   width: 0.8571428571428571em;
 }
 
@@ -551,7 +551,7 @@ Single-colored icons can be modified like so:
   width: 0.9285714285714285em;
 }
 
-./sort1 {
+./sort {
   width: 0.5714285714285714em;
 }
 
@@ -895,7 +895,7 @@ Single-colored icons can be modified like so:
   width: 0.8571428571428571em;
 }
 
-./eur {
+./euro {
   width: 0.5664285714285714em;
 }
 
@@ -1143,7 +1143,7 @@ Single-colored icons can be modified like so:
   width: 0.8571428571428571em;
 }
 
-./paper-plane {
+./send {
   width: 1.0011428571428571em;
 }
 
@@ -1443,11 +1443,11 @@ Single-colored icons can be modified like so:
   width: 0.9597857142857142em;
 }
 
-./wikipedia-w {
+./wikipedia {
   width: 1.2857142857142856em;
 }
 
-./television {
+./tv {
   width: 1.0714285714285714em;
 }
 

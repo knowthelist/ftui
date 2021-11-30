@@ -1,57 +1,117 @@
-:host  {
+:host {
   width: 100%;
   height: 100%;
 }
-.media-list{
+
+.media.placeholder .title, 
+.media.placeholder .artist, 
+.media.placeholder .duration,
+.media.placeholder .media-image  {
+  display: inline-block;
+  background-color: var(--medium-color);
+  height: .75em;
+  border-radius: 4em;
+  opacity: .3;
+  animation: fading 1.5s infinite;
+  min-width: 6em;
+  max-width: 6em;
+}
+
+.media-list {
   overflow: auto;
   height: 100%;
 }
-.media-list .media{
-  position: relative;
+
+.media {
   display: block;
   border-bottom: 1px solid var(--dark-color);
-  margin: 0 1em;
-  padding: 0.5em 0 0.25em;
+  padding: 0.5em 1em;
   cursor: pointer;
 }
-.media-list .media:hover{
+
+.media:hover {
   background-color: var(--medium-color);
 }
-.media-list .media-image{
-  width: calc(15% - 1em);
+
+.media .media-image {
   display: inline-block;
-  padding-left: 0.5em;
 }
-.media-list .media-text{
-  width: calc(85% - 1em);
+
+.media .media-text {
+  position: relative;
+  width: calc(100% - 4.5em);
   display: inline-block;
-  padding-left: 1em;
+  margin-left: 1em;
+  height: 4em;
 }
-.media-list .cover {
+
+.media .cover {
   width: 3.5em;
   height: 3.5em;
+  min-width: 3.5em;
 }
-.media-list .title {
+
+.media.placeholder .media-image {
+  width: 3.5em;
+  height: 3.5em;
+  min-width: 3.5em;
+  margin: 0.25em;
+}
+
+.media .title {
   font-weight: bold;
   font-size: larger;
-  position: relative;
+  position: absolute;
   left: 0;
-  top: 0.5em;
+  top: 0.25em;
   text-align: left;
+  max-width: 90%;
 }
-.media-list .artist {
+
+.media .artist {
   font-weight: normal;
-  position: relative;
+  position: absolute;
   left: 0;
-  top: 0.75em;
+  top: 2.5em;
   text-align: left;
+  width: 100%;
 }
-.media-list .duration {
-  position: relative;
-  right: 1em;
-  top: -1em;
+
+.media .duration {
+  position: absolute;
+  right: 0em;
+  top: 1.5em;
   text-align: right;
 }
+
+.media.placeholder .duration {
+  min-width: 3em;
+  max-width: 3em;
+}
+
+.media.placeholder .media-text {
+  width: calc(100% - 5.5em);
+}
+
+.media .artist,
+.media .title {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
 .media.current {
   background: var(--dark-color);
+}
+
+@keyframes fading {
+  0% {
+    opacity: .3;
+  }
+  50% {
+    opacity: .5;
+  }
+  100% {
+    opacity: .3;
+  }
 }

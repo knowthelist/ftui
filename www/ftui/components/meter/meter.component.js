@@ -33,14 +33,14 @@ export class FtuiMeter extends FtuiElement {
             height: ${this.height};
             padding: 0.15em 0 0.07em 0.1em;
             background: var(--dark-color);
-            border-radius: 6px;
+            border-radius: var(--meter-border-radius, 1em);
             -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.25), 0 1px rgba(255, 255, 255, 0.08);
             box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.25), 0 1px rgba(255, 255, 255, 0.08);
           }
           .progress-bar {
             height: 100%;
             background-color: var(--color-base, #20639b);
-            border-radius: 4px;
+            border-radius: var(--meter-border-radius, 1em);
             -webkit-transition: 0.4s linear;
             transition: 0.4s linear;
             -webkit-transition-property: width, background-color;

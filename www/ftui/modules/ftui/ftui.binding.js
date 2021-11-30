@@ -7,7 +7,9 @@ const part = value => input => ftuiHelper.getPart(input, value);
 const toDate = value => input => ftuiHelper.dateFromString(input, value);
 const toBool = () => input => ftuiHelper.toBool(input);
 const toInt = () => input => parseInt(input, 10);
+const toNumber = () => input => parseFloat(input, 10);
 const format = value => input => ftuiHelper.dateFormat(input, value);
+const humanized = () => input => ftuiHelper.durationHumanized(input);
 const round = value => input => ftuiHelper.round(input, value);
 const fix = value => input => Number(input).toFixed(value);
 const encode = () => input => encodeURI(input);
@@ -82,6 +84,9 @@ export class FtuiBinding {
 
   // received events from FHEM
   onReadingEvent(readingData) {
+    if (!this.config.input.readings[readingData.id]) {
+      return;
+    }
     const readingAttributeMap = this.config.input.readings[readingData.id].attributes;
     Object.entries(readingAttributeMap)
       .forEach(([attribute, options]) => {

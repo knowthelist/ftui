@@ -4,10 +4,15 @@
   display: flex;
 }
 
-:host(:hover:not([target=''])),
-:host(.clickable:hover) {
-  cursor: pointer;
-  background-color: var(--view-toolbar-background-color);
+@media only screen and (min-device-width: 768px) {
+  :host(:hover:not([target=''])) {
+    cursor: pointer;
+    background-color: var(--view-item-active-color);
+  }
+}
+
+:host(:active:not([target=''])) {
+  background-color: var(--view-item-active-color);
 }
 
 :host(:last-child) .content {
@@ -21,7 +26,7 @@
   display: flex;
   flex-direction: row;
   width: 100%;
-  padding-inline-start: var(--view-item-padding-start, 2em);
+  padding-inline-start: var(--view-item-padding-start, 1.5em);
   align-items: center;
   min-height: 4em;
 }
@@ -34,28 +39,34 @@
   background-size: 100% 1px;
   background-repeat: no-repeat;
   background-position: bottom;
-  padding-inline-end: var(--view-item-padding-end, 1.75em);
+  padding-inline-end: var(--view-item-padding-end, 0.75em);
   min-height: inherit;
   position: relative;
+}
+
+:host(:not([target='']):not([plain])) .inner {
+  padding-inline-end: var(--view-item-padding-end, 1.75em);
 }
 
 .inner-wrapper {
   display: flex;
   flex: 1;
-  font-size: initial;
+  font-size: 1.125rem;
+  justify-content: space-between;
+  padding-inline-end: var(--view-item-padding-end, 0.75em);
 }
 
 :host(:not([target='']):not([plain])) .inner:after {
   content: "\276F";
   position: absolute;
-  top: 15px;
-  right: 15px;
+  top: 1rem;
+  right: 1rem;
   color: #aaa;
-  font-size: 19px;
+  font-size: 1rem;
 }
 
 ::slotted([slot=start]) {
-  margin-inline-end: 20px;
+  margin-inline-end: 1rem;
 }
 
 ::slotted(ftui-icon[slot=start]) {
@@ -63,8 +74,13 @@
 }
 
 ::slotted(ftui-icon[slot=start]) {
-  margin-inline-end: 10px;
-  margin-inline-start: -10px;
+  margin-inline-end: 0.75rem;
+  margin-inline-start: -0.75rem;
+}
+
+::slotted(ftui-label[slot=end]) {
+  margin-top: -0.125rem;
+  font-size: 1.25rem;
 }
 
 ::slotted([slot=end]) {

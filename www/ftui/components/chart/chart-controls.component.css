@@ -14,7 +14,7 @@
 }
 
 #date {
-  color: var(--light-color);
+  color: var(--chart-text-color);
   opacity: 0.8;
 }
 
@@ -41,10 +41,10 @@
 }
 
 .unit.enabled.active {
-  color: var(--light-color);
+  color: var(--chart-text-active-color, #fff);
 }
 
 .unit.enabled ~ .unit.enabled::before {
   content: ' | ';
-  color: var(--chart-text-color);
+  color: var(--chart-text-color, #8c8c8c);
 }

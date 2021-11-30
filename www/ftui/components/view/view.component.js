@@ -17,7 +17,11 @@ export class FtuiView extends FtuiElement {
     super();
 
     const header = this.querySelector('ftui-view-toolbar');
+    this.content = this.shadowRoot.querySelector('.content');
     header && header.setAttribute('slot', 'header');
+
+    this.addEventListener('touchstart', this.startTouch, false);
+    this.addEventListener('touchmove', this.moveTouch, false);
   }
 
   template() {
@@ -50,6 +54,37 @@ export class FtuiView extends FtuiElement {
             <div class="content">
               <slot></slot>
             </div>`;
+  }
+  startTouch(e) {
+    this.initialX = e.touches[0].clientX;
+    this.initialY = e.touches[0].clientY;
+  }
+
+  moveTouch(e) {
+    if (this.initialX === null) {
+      return;
+    }
+
+    if (this.initialY === null) {
+      return;
+    }
+
+    const currentY = e.touches[0].clientY;
+
+    const diffY = this.initialY - currentY;
+
+    if (this.isPullDown(this.content.scrollTop, diffY)) {
+      //alert('Swipe Down!');
+    }
+
+  }
+
+  isPullDown(Y, dY) {
+    console.log( Y, dY)
+    // methods of checking slope, length, direction of line created by swipe action
+    return (
+      Y == 0 && dY < 0 && Math.abs(dY) > 300
+    );
   }
 }
 

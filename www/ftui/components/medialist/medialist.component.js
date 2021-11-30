@@ -22,7 +22,23 @@ export class FtuiMedialist extends FtuiElement {
   template() {
     return `
       <style> @import "components/medialist/medialist.component.css"; </style>
-      <div class="media-list"></div>
+      <div class="media-list">
+        <div class="media placeholder">
+          <div class="media-image"></div>
+          <div class="media-text"><div class="title"></div>
+          <div class="artist"></div><div class="duration"></div></div>
+        </div>
+        <div class="media placeholder">
+          <div class="media-image"></div>
+          <div class="media-text"><div class="title"></div>
+          <div class="artist"></div><div class="duration"></div></div>
+        </div>
+        <div class="media placeholder">
+          <div class="media-image"></div>
+          <div class="media-text"><div class="title"></div>
+          <div class="artist"></div><div class="duration"></div></div>
+        </div>
+      </div>
       <slot></slot>
       `;
   }
@@ -34,7 +50,7 @@ export class FtuiMedialist extends FtuiElement {
       track: '',
       width: '',
       height: '',
-      padding: '1',
+      padding: '0.5',
     };
   }
 
@@ -113,7 +129,7 @@ export class FtuiMedialist extends FtuiElement {
           elemItem.addEventListener('click', () => this.onClicked(elemItem));
 
           let content = '<div class="media-image">';
-          content += '<img class="cover" src="' + item.Cover + '"/>';
+          content += '<img class="cover" src="' + item.Cover + '" onerror="this.src=\'components/medialist/album_icon.svg\';this.onerror=\'\';"/>';
           content += '</div>';
           content += '<div class="media-text">';
           content += '<div class="title">' + item.Title + '</div>';

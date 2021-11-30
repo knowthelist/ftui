@@ -31,6 +31,7 @@ export class FtuiColorpicker extends FtuiElement {
       hue: '',
       saturation: '',
       brightness: '',
+      kelvin: '',
       direction: 'vertical',
       debounce: 300,
       layout: 'wheel'
@@ -73,6 +74,9 @@ export class FtuiColorpicker extends FtuiElement {
           }
           break;
         }
+        case 'kelvin':
+          this.colorPicker.color.kelvin = this.kelvin;
+          break;
         case 'hue':
           this.colorPicker.color.hue = this.hue;
           break;
@@ -92,6 +96,9 @@ export class FtuiColorpicker extends FtuiElement {
   onColorChange(color) {
     if (this.hex != color.hexString) {
       this.submitChange('hex', color.hexString);
+    }
+    if (this.kelvin != color.kelvin) {
+      this.submitChange('kelvin', color.kelvin);
     }
     if (this.hue != color.hue) {
       this.submitChange('hue', color.hue);

@@ -34,7 +34,7 @@ export class FtuiCell extends FtuiElement {
       :host(:not(ftui-row)[align-items~=top])    { justify-content: start; }
       :host(:not(ftui-row)[align-items~=bottom]) { justify-content: end; }
       :host(:not(ftui-row)[align-items~=left])   { align-items: start; }
-      :host(:not(ftui-row)[align-items~=right])  { align-items: end; }
+      :host(:not(ftui-row)[c])  { align-items: end; }
       :host([align-items~=center]) { justify-content: center; }
       :host([align-items~=stretch]) { justify-content: space-between; }
       :host([align-items~=around]) { justify-content: space-around; }

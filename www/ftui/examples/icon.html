@@ -117,6 +117,15 @@
       <ftui-icon class="size-5" path="../images/openautomation" name="it_wifi" color="red"></ftui-icon>
     </ftui-grid-tile>
 
+    <ftui-grid-tile row="7" col="7" height="2" width="3">
+      <header>HIDDEN INVALID</header>
+
+      <ftui-label [text]="dummyXY:state:invalid"></ftui-label>
+
+      <ftui-icon name="lightning"
+                 [hidden]="dummyXY:state:invalid"></ftui-icon>
+    </ftui-grid-tile>
+
 
     <ftui-grid-tile row="1" col="10" height="2" width="4">
       <header>COLOR</header>
@@ -125,7 +134,7 @@
         <ftui-icon name="trash" color="yellow" class="hop"></ftui-icon>
         <ftui-icon name="trash" color="blue" [class-name]="dummy2 | map('1:hop,2:')"></ftui-icon>
         <ftui-icon name="trash" color="black" [class-list]="dummy2 | map('1:hop size-6,2:')"></ftui-icon>
-        <ftui-icon name="trash" color="gray" [class-name]="dummy1 | step('0=``, 1=blink, 100=``')" ></ftui-icon>
+        <ftui-icon name="trash" color="gray" [class-name]="dummy1 | step('0=``, 1=blink, 100=``')"></ftui-icon>
       </ftui-row>
     </ftui-grid-tile>
 
@@ -134,13 +143,13 @@
       <ftui-column>
         <ftui-row>
           <ftui-icon name="smile-o" color="green" margin="1" size="3"></ftui-icon>
-          <ftui-label> name="smile-o" size="-3"</ftui-label>
+          <ftui-label> name="smile-o" size="3"</ftui-label>
         </ftui-row>
         <ftui-row>
           <ftui-icon name="meh-o" color="yellow" margin="1" size="-3"></ftui-icon>
           <ftui-label width="5rem"> name="meh-o" size="-3"</ftui-label>
         </ftui-row>
-        <ftui-row>  
+        <ftui-row>
           <ftui-icon name="frown-o" color="red" margin="1" size="-3"></ftui-icon>
           <ftui-label width="5rem"> name="frown-o" size="-3"</ftui-label>
         </ftui-row>

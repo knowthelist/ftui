@@ -32,10 +32,10 @@ export class FtuiRow extends FtuiCell {
           align-items: end;
         }
         :host([align-items~=left]) {
-          justify-content: start;
+          justify-content: flex-start;
         }
         :host([align-items~=right]) {
-          justify-content: end;
+          justify-content: flex-end;
         }
       </style>`;
   }

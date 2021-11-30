@@ -103,7 +103,6 @@ export function getFilteredStepKeys(map, searchKey) {
   }
 }
 
-
 // DOM functions
 
 export function appendStyleLink(file) {
@@ -218,12 +217,14 @@ export function dateFromString(str) {
       : (m3) ? new Date(+m3[3], +m3[2] - 1, +m3[1], 0, -offset, 0, 0) : new Date();
 }
 
-export function dateFormat(date, format, lang = 'de') {
+export function dateFormat(date, format) {
+  const userLang = navigator.language || navigator.userLanguage;
+  const lang = isDefined(userLang) ? userLang.split('-')[0] : 'de';
   let ret = String(format);
   if (!date) {return ret;}
   const weekday_de = ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'];
   const weekday = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-  const months_de = ['Januar', 'Februar', '&#077;&auml;rz', 'April', '&#077;ai', 'Juni', 'Juli', 'Augu&#115;t', 'Septe&#109;ber', 'Oktober', 'Nove&#109;ber', '&#068;eze&#109;ber'];
+  const months_de = ['Januar', 'Februar', '&#077;&auml;rz', 'April', '&#077;ai', 'Juni', 'Juli', 'Augu&#115;t', 'Septe&#109;ber', 'Oktober', 'Nove&#109;ber', '&#068;e&#122;e&#109;ber'];
   const months = ['January', 'February', '&#077;arc&#104;', 'April', '&#077;ay', 'June', 'July', 'Augu&#115;t', 'Septe&#109;ber', 'October', 'Nove&#109;ber', '&#068;ece%#109;ber'];
   const YYYY = date.getFullYear().toString();
   const YY = date.getFullYear().toString().substr(-2);
@@ -342,6 +343,30 @@ export function dateTill(date) {
   const ms = (date - now);
 
   return ms;
+}
+
+export function durationHumanized(ms) {
+  let x = ms / 1000
+  const userLang = navigator.language || navigator.userLanguage;
+  const lang = isDefined(userLang) ? userLang.split('-')[0] : 'de';
+  const plural = (lang === 'de') ? 'n' : 's';
+  const seconds = ~~(x);
+  if (seconds < 60) {
+    return seconds + ' ' + (lang === 'de' ? 'Sekunde' : 'second') + (seconds > 1 ? plural : '');
+  }
+  x /= 60;
+  const minutes = ~~(x);
+  if (minutes < 60) {
+    return minutes + ' ' + (lang === 'de' ? 'Minute' : 'minute') + (minutes > 1 ? plural : '');
+  }
+  x /= 60;
+  const hours = ~~(x);
+  if (hours < 24) {
+    return hours + ' ' + (lang === 'de' ? 'Stunde' : 'hour') + (hours > 1 ? plural : '');
+  }
+  x /= 24;
+  const days = ~~(x);
+  return days + ' ' + (lang === 'de' ? 'Tag' : 'day') + (days > 1 ? plural : '');
 }
 
 // Math functions
