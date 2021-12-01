@@ -2,7 +2,7 @@ UPD 2021-11-09_20:11:11 1622 www/ftui/components/badge/badge.component.js
 UPD 2021-10-22_21:53:28 1326 www/ftui/components/button/button-nice.component.js
 UPD 2021-10-14_21:17:44 2050 www/ftui/components/button/button.component.css
 UPD 2021-11-27_22:16:42 2145 www/ftui/components/button/button.component.js
-UPD 2021-11-28_23:05:20 1901 www/ftui/components/cell/cell.component.js
+UPD 2021-12-01_20:24:01 1928 www/ftui/components/cell/cell.component.js
 UPD 2021-11-28_20:53:02 754 www/ftui/components/chart/chart-controls.component.css
 UPD 2021-11-05_13:51:07 3862 www/ftui/components/chart/chart-controls.component.js
 UPD 2021-12-01_16:11:10 3720 www/ftui/components/chart/chart-data.component.js
@@ -99,7 +99,7 @@ UPD 2021-10-02_19:10:30 2485 www/ftui/examples/contents/mobile-view-sonos.html
 UPD 2021-02-01_19:44:46 189 www/ftui/examples/contents/mobile-view1.html
 UPD 2021-10-03_12:43:52 2749 www/ftui/examples/departure.html
 UPD 2021-02-15_21:49:38 3847 www/ftui/examples/dropdown.html
-UPD 2021-11-07_12:24:19 4409 www/ftui/examples/grid.html
+UPD 2021-12-01_20:36:41 7626 www/ftui/examples/grid.html
 UPD 2021-11-29_23:29:35 5481 www/ftui/examples/icon.html
 UPD 2021-11-13_12:00:45 3911 www/ftui/examples/image.html
 UPD 2021-11-06_00:29:33 2108 www/ftui/examples/input.html

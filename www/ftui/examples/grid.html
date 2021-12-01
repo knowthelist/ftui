@@ -99,14 +99,14 @@
     </ftui-grid-tile>
     
     <!-- ftui-grid-header -->
-    <ftui-grid-tile row="1" col="4" height="1" width="1">
+    <ftui-grid-tile row="2" col="6" height="1" width="1">
       <ftui-grid-header [color]="ftuitest  | step('0:ok, 700:alert')" height="1em"></ftui-grid-header>
       <ftui-label size="3">Stove</ftui-label>
       <ftui-icon name="cutlery" size="3"></ftui-icon>
       <ftui-label [text]="ftuitest"></ftui-label>
     </ftui-grid-tile>
 
-    <ftui-grid-tile row="1" col="5" height="1" width="1">
+    <ftui-grid-tile row="3" col="6" height="1" width="1">
       <ftui-grid-header [color]="ftuitest  | step('0:ok, 30:warning, 70:alert')" height="1em"></ftui-grid-header>
       <ftui-label size="3">Test</ftui-label>
       <ftui-icon name="signal" size="3"></ftui-icon>
@@ -116,6 +116,115 @@
     <ftui-grid-tile row="1" col="6" height="1" width="1">
       <ftui-grid-header>FTUI-HEADER</ftui-grid-header>
       <ftui-button [(value)]="ftuitest" states="0,10,50,80">0,10,50,80</ftui-button>
+    </ftui-grid-tile>
+
+    <!-- ALIGN -->
+    <ftui-grid-tile row="1" col="4" height="1" width="1">
+      <ftui-grid-header color="green">COL-DEFAULT</ftui-grid-header>
+      <ftui-column>
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+      </ftui-column>
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="2" col="4" height="1" width="1">
+      <ftui-grid-header color="green">COL-LEFT</ftui-grid-header>
+      <ftui-column align-items="left">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+      </ftui-column>
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="3" col="4" height="1" width="1">
+      <ftui-grid-header color="green">COL-RIGHT</ftui-grid-header>
+      <ftui-column align-items="right">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+      </ftui-column>
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="4" col="4" height="1" width="1">
+      <ftui-grid-header color="green">COL-STRETCH</ftui-grid-header>
+      <ftui-column align-items="stretch">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+      </ftui-column>
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="5" col="4" height="1" width="1">
+      <ftui-grid-header color="green">COL-AROUND</ftui-grid-header>
+      <ftui-column align-items="around">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+      </ftui-column>
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="6" col="4" height="1" width="1">
+      <ftui-grid-header color="green">COL-CENTER</ftui-grid-header>
+      <ftui-column align-items="center">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+      </ftui-column>
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="1" col="5" height="1" width="1">
+      <ftui-grid-header color="blue">ROW-DEFAULT</ftui-grid-header>
+      <ftui-row>
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+      </ftui-row>
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="2" col="5" height="1" width="1">
+      <ftui-grid-header color="blue">ROW-LEFT</ftui-grid-header>
+      <ftui-row align-items="left">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+      </ftui-row>
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="3" col="5" height="1" width="1">
+      <ftui-grid-header color="blue">ROW-RIGHT</ftui-grid-header>
+      <ftui-row align-items="right">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+      </ftui-row>
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="4" col="5" height="1" width="1">
+      <ftui-grid-header color="blue">ROW-STRETCH</ftui-grid-header>
+      <ftui-row align-items="stretch">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+      </ftui-row>
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="5" col="5" height="1" width="1">
+      <ftui-grid-header color="blue">ROW-AROUND</ftui-grid-header>
+      <ftui-row align-items="around">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+      </ftui-row>
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="6" col="5" height="1" width="1">
+      <ftui-grid-header color="blue">ROW-CENTER</ftui-grid-header>
+      <ftui-row align-items="center">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+      </ftui-row>
     </ftui-grid-tile>
   </ftui-grid>
 </body>
