@@ -375,7 +375,6 @@ class FhemService {
   }
 
   scheduleHealthCheck() {
-    this.debugEvents.publish('scheduleHealthCheck')
     // request dummy fhem event
     if (this.states.connection.websocket &&
       this.states.connection.websocket.readyState === WebSocket.OPEN) {

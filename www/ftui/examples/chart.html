@@ -49,10 +49,14 @@
     <ftui-grid-tile row="3" col="1" height="2" width="3">
       <header>6am-8pm</header>
 
-        <ftui-chart title="Power 6am-8pm" y-label="Power in VA" x-min="6" x-max="20" y-max="600">
-          <ftui-chart-data fill background-color="#d6305650" color="#d63056" 
+        <ftui-chart title="Power 6am-8pm" y-label="Power in VA" 
+                    x-min="6" x-max="20" y-max="600" y1-max="1" y1-label="Gain in KWh">
+          <ftui-chart-data background-color="#d6305650" color="#d63056" 
                            log="FileLog_PVConverter" 
                            spec="4:PVConverter.Pac1">
+          <ftui-chart-data type="bar" y-axis-id="y1"
+                           log="FileLog_PVConverter" 
+                           spec="4:PVConverter.Eac_tota::delta-h">                           
           </ftui-chart-data>
           <ftui-chart-controls></ftui-chart-controls>
         </ftui-chart>
@@ -70,7 +74,7 @@
     </ftui-grid-tile>
 
     <ftui-grid-tile row="3" col="4" height="2" width="2">
-      <header>FIX SIZE</header>
+      <header>24h, 30d</header>
 
         <ftui-chart id="mychart1" title="humidity" width="300px" height="200px" unit="24h">
           <ftui-chart-data fill log="FileLog_THSensorWZ" spec="4:THSensorWZ.humidity" [update]="THSensorWZ:state:time"></ftui-chart-data>

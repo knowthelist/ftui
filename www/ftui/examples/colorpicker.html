@@ -104,10 +104,12 @@
         <ftui-colorpicker layout="hueSlider"></ftui-colorpicker>
     </ftui-grid-tile>
 
-    <ftui-grid-tile row="2" col="4" height="1" width="1">
-      <header>KELVIN</header>
-        <ftui-colorpicker layout="kelvinSlider" (kelvin)="scale(2200,11000,500,150) | toInt() |  Stehlampe:ct"></ftui-colorpicker>
-    </ftui-grid-tile>
+      <ftui-grid-tile row="2" col="4" height="1" width="1">
+        <header>KELVIN</header>
+          <ftui-colorpicker layout="kelvinSlider" 
+          (kelvin)="scale(2200,11000,454,154) | toInt() |  Stehlampe:ct"
+          [kelvin]="Stehlampe:ct | toInt() | scale(154,454,11000,2200)"></ftui-colorpicker>
+      </ftui-grid-tile>
     
   </ftui-grid>
 

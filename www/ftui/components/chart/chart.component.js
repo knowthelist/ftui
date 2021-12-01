@@ -326,6 +326,7 @@ export class FtuiChart extends FtuiElement {
       });
       dataset.data = dataElement.data;
       this.configuration.data.datasets.push(dataset);
+      this.configuration.data.labels = dataElement.labels;
       dataElement.startDate = this.startDate;
       dataElement.endDate = this.endDate;
     });

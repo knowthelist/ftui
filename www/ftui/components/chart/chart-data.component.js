@@ -74,7 +74,9 @@ export class FtuiChartData extends FtuiElement {
     fhemService.sendCommand(cmd)
       .then(response => response.text())
       .then((response) => {
-        this.data = this.parseLogItems(response);
+        const { labels, data } = this.parseLogItems(response);
+        this.data = data;
+        this.labels = labels;
         this.updateColor();
         ftuiHelper.triggerEvent('ftuiDataChanged', this);
       })
@@ -82,6 +84,7 @@ export class FtuiChartData extends FtuiElement {
 
   parseLogItems(response) {
     const data = [];
+    const labels = [];
     let date, value;
     const lines = response.split('\n');
 
@@ -90,6 +93,7 @@ export class FtuiChartData extends FtuiElement {
         [date, value] = line.split(' ');
         if (date && ftuiHelper.isNumeric(value)) {
           data.push({ 'x': date, 'y': parseFloat(value) + parseFloat(this.offset) });
+          labels.push(date);
         }
       }
     });
@@ -99,7 +103,7 @@ export class FtuiChartData extends FtuiElement {
       data.push({ 'x': now, 'y': parseFloat(value) + parseFloat(this.offset) });
     }
 
-    return data;
+    return { labels, data };
   }
 
   onAttributeChanged(name) {
