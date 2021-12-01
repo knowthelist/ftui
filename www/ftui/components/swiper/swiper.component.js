@@ -95,6 +95,7 @@ class FtuiSwiper extends FtuiElement {
         break;
       case 'interval':
       case 'auto-play':
+        console.log('auto-play')
         this.checkInterval();
         break;
     }
@@ -122,6 +123,7 @@ class FtuiSwiper extends FtuiElement {
   }
 
   next(iteration = 0) {
+    console.log('next')
     this.currentIndex++;
     if (this.currentIndex >= this.slides.length) {
       this.currentIndex = 0;
@@ -177,6 +179,7 @@ class FtuiSwiper extends FtuiElement {
 
   checkInterval() {
     clearInterval(this.intervalTimer);
+    console.log(this.interval,this.autoPlay)
     if (this.interval && this.autoPlay) {
       this.intervalTimer = setInterval(() => this.next(), this.interval * 1000);
     }

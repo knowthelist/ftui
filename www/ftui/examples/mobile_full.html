@@ -490,14 +490,29 @@
         <ftui-label slot="header">Living Room</ftui-label>
         <ftui-view-item>Left
           <ftui-row slot="end">
-            <ftui-button (value)="set AllJalousie fahren up" color="current" fill="none">
+            <ftui-button (value)="KuechenJalousie" states="up" color="current" fill="none">
               <ftui-icon name="angle-up" class="size-2"></ftui-icon>
 
             </ftui-button>
             <ftui-icon name="window-shutter"></ftui-icon>
-            <ftui-button @click="sendFhem('{setJalousieNight()}')" color="current" fill="none"
-                         margin="-1em">
+            <ftui-button (value)="KuechenJalousie" states="down" color="current" fill="none"
+            margin="-1em">
               <ftui-icon name="angle-down" class="size-2"></ftui-icon>
+
+            </ftui-button>
+          </ftui-row>
+
+        </ftui-view-item>
+        <ftui-view-item>Right 
+          <ftui-row slot="end">
+            <ftui-button (value)="WohnzimmerJalousieLinks" states="down" color="current" fill="none">
+              <ftui-icon name="angle-down" class="size-2"></ftui-icon>
+
+            </ftui-button>
+            <ftui-icon name="window-shutter"></ftui-icon>
+            <ftui-button (value)="WohnzimmerJalousieLinks" states="up" color="current" fill="none"
+                         >
+              <ftui-icon name="angle-up" class="size-2"></ftui-icon>
 
             </ftui-button>
           </ftui-row>

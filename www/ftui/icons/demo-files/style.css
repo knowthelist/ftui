@@ -15,6 +15,10 @@ Single-colored icons can be modified like so:
 }
 ========================================== */
 
+./eur {
+  width: 0.5625em;
+}
+
 ./asterisk {
   width: 0.9285714285714285em;
 }
