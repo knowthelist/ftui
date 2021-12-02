@@ -74,7 +74,3 @@ slot[name=dots] {
   align-items: center;
   flex-direction: column;
 }
-
-::slotted(ftui-content) {
-  display: flex !important;
-}

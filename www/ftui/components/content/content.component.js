@@ -44,11 +44,13 @@ export class FtuiContent extends FtuiElement {
 
   async loadFileContent() {
     const result = await fetch(this.file);
-    this.content = await result.text();
+    // saving in a property only to avoid huge attr values in DOM
+    this.contentHtml = await result.text();
+    this.initContent();
   }
 
   initContent() {
-    const solvedContent = String(this.content).replace(/\{\{([^}]+)\}\}/g, variable => {
+    const solvedContent = String(this.contentHtml).replace(/\{\{([^}]+)\}\}/g, variable => {
       return this.getAttribute(variable.slice(2, -2)) || '';
     });
 

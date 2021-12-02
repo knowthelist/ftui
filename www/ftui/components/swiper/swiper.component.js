@@ -51,13 +51,14 @@ class FtuiSwiper extends FtuiElement {
   }
 
   onConnected() {
-    this.initObservers();
     this.createDots();
     this.checkInterval();
+    this.initObservers();
   }
 
   initObservers() {
     this.slides.forEach(item => this.initInViewportObserver(item));
+    this.slides.forEach(item => this.initMutationObserver(item));
   }
 
   initInViewportObserver(elem) {
@@ -71,12 +72,30 @@ class FtuiSwiper extends FtuiElement {
     observer.observe(elem);
   }
 
+  initMutationObserver(elem) {
+    const observer = new MutationObserver(
+      this.onMutations.bind(this));
+    observer.observe(elem,
+      {
+        attributes: true,
+        attributeFilter: ['hidden']
+      });
+  }
+
   onIntersectionChange(entries) {
     entries.forEach(entry => {
       entry.target.isVisible = ('isVisible' in entry) ? entry.isVisible : entry.isIntersecting;
       if (entry.target.isVisible && this.value !== entry.target.id) {
         this.submitChange('value', entry.target.id);
       }
+    });
+  }
+
+  // refresh if a slide changes visibility
+  onMutations(entries) {
+    entries.forEach(() => {
+      this.updateDots();
+      this.next();
     });
   }
 

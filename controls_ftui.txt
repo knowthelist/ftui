@@ -14,8 +14,8 @@ UPD 2021-10-18_08:47:23 2554 www/ftui/components/circlemenu/circlemenu.component
 UPD 2021-02-06_14:53:43 1727 www/ftui/components/clock/clock.component.js
 UPD 2021-11-30_23:46:58 3773 www/ftui/components/colorpicker/colorpicker.component.js
 UPD 2021-01-28_21:05:34 574 www/ftui/components/column/column.component.js
-UPD 2021-02-11_15:04:25 39 www/ftui/components/content/content.component.css
-UPD 2021-11-09_20:11:11 1641 www/ftui/components/content/content.component.js
+UPD 2021-12-02_14:03:47 86 www/ftui/components/content/content.component.css
+UPD 2021-12-02_14:10:05 1739 www/ftui/components/content/content.component.js
 UPD 2021-10-03_12:43:52 4159 www/ftui/components/departure/departure.component.css
 UPD 2021-10-08_11:29:53 12357 www/ftui/components/departure/departure.component.js
 UPD 2021-02-01_19:44:34 496 www/ftui/components/dropdown/dropdown.component.css
@@ -52,8 +52,8 @@ UPD 2021-10-11_22:43:44 2765 www/ftui/components/segment/segment.component.js
 UPD 2021-02-01_19:44:37 3379 www/ftui/components/slider/slider.component.css
 UPD 2021-11-02_17:27:03 3503 www/ftui/components/slider/slider.component.js
 UPD 2021-10-16_21:36:15 1989 www/ftui/components/speak/speak.component.js
-UPD 2021-10-23_13:18:12 1326 www/ftui/components/swiper/swiper.component.css
-UPD 2021-12-01_22:16:06 4996 www/ftui/components/swiper/swiper.component.js
+UPD 2021-12-02_14:07:06 1269 www/ftui/components/swiper/swiper.component.css
+UPD 2021-12-02_14:11:54 5437 www/ftui/components/swiper/swiper.component.js
 UPD 2021-11-27_00:07:16 1335 www/ftui/components/switch/switch.component.css
 UPD 2021-03-01_20:28:00 1091 www/ftui/components/switch/switch.component.js
 UPD 2021-01-05_19:05:30 680 www/ftui/components/tab/tab-view.component.js
@@ -220,6 +220,7 @@ UPD 2021-12-01_21:50:02 1323 www/ftui/icons/calendar-times-o.svg
 UPD 2021-12-01_21:50:02 1342 www/ftui/icons/calendar.svg
 UPD 2021-12-01_21:50:02 930 www/ftui/icons/camera-retro.svg
 UPD 2021-12-01_21:50:02 626 www/ftui/icons/camera.svg
+UPD 2021-12-01_21:50:02 393 www/ftui/icons/car-battery.svg
 UPD 2021-12-01_21:50:02 402 www/ftui/icons/caret-down.svg
 UPD 2021-12-01_21:50:02 394 www/ftui/icons/caret-left.svg
 UPD 2021-12-01_21:50:02 405 www/ftui/icons/caret-right.svg
@@ -312,6 +313,7 @@ UPD 2021-12-01_21:50:02 932 www/ftui/icons/envelope-open.svg
 UPD 2021-12-01_21:50:02 963 www/ftui/icons/envelope-square.svg
 UPD 2021-12-01_21:50:02 783 www/ftui/icons/envelope.svg
 UPD 2021-12-01_21:50:02 478 www/ftui/icons/eraser.svg
+UPD 2021-12-01_21:50:02 1184 www/ftui/icons/eur.svg
 UPD 2021-12-01_21:50:02 1185 www/ftui/icons/euro.svg
 UPD 2021-12-01_21:50:02 848 www/ftui/icons/exchange.svg
 UPD 2021-12-01_21:50:02 740 www/ftui/icons/exclamation-circle.svg
@@ -356,6 +358,12 @@ UPD 2021-12-01_21:50:02 471 www/ftui/icons/ftui-circle-thin.svg
 UPD 2021-12-01_21:50:02 381 www/ftui/icons/ftui-square-o.svg
 UPD 2021-12-01_21:50:02 760 www/ftui/icons/futbol-o.svg
 UPD 2021-12-01_21:50:02 973 www/ftui/icons/gamepad.svg
+UPD 2021-12-01_21:50:02 430 www/ftui/icons/garage-alert-variant.svg
+UPD 2021-12-01_21:50:02 312 www/ftui/icons/garage-open-variant.svg
+UPD 2021-12-01_21:50:02 385 www/ftui/icons/garage-variant.svg
+UPD 2021-12-01_21:50:02 386 www/ftui/icons/garage-variant1.svg
+UPD 2021-12-01_21:50:02 596 www/ftui/icons/gate-arrow-right.svg
+UPD 2021-12-01_21:50:02 432 www/ftui/icons/gate-open.svg
 UPD 2021-12-01_21:50:02 1301 www/ftui/icons/gavel.svg
 UPD 2021-12-01_21:50:02 837 www/ftui/icons/gbp.svg
 UPD 2021-12-01_21:50:02 387 www/ftui/icons/genderless.svg
@@ -461,6 +469,7 @@ UPD 2021-12-01_21:50:02 741 www/ftui/icons/moon-o.svg
 UPD 2021-12-01_21:50:02 704 www/ftui/icons/moon.svg
 UPD 2021-12-01_21:50:02 1513 www/ftui/icons/motorcycle.svg
 UPD 2021-12-01_21:50:02 603 www/ftui/icons/mouse-pointer.svg
+UPD 2021-12-01_21:50:02 593 www/ftui/icons/mower.svg
 UPD 2021-12-01_21:50:02 561 www/ftui/icons/music.svg
 UPD 2021-12-01_21:50:02 480 www/ftui/icons/neuter.svg
 UPD 2021-12-01_21:50:02 765 www/ftui/icons/newspaper-o.svg
@@ -494,6 +503,7 @@ UPD 2021-12-01_21:50:02 1585 www/ftui/icons/podcast.svg
 UPD 2021-12-01_21:50:02 715 www/ftui/icons/power-off.svg
 UPD 2021-12-01_21:50:02 802 www/ftui/icons/print.svg
 UPD 2021-12-01_21:50:02 468 www/ftui/icons/product-hunt.svg
+UPD 2021-12-01_21:50:02 935 www/ftui/icons/projector.svg
 UPD 2021-12-01_21:50:02 1273 www/ftui/icons/puzzle-piece.svg
 UPD 2021-12-01_21:50:02 716 www/ftui/icons/qrcode.svg
 UPD 2021-12-01_21:50:02 1140 www/ftui/icons/question-circle-o.svg
@@ -653,6 +663,7 @@ UPD 2021-12-01_21:50:02 1857 www/ftui/icons/volume-control-phone.svg
 UPD 2021-12-01_21:50:02 711 www/ftui/icons/volume-down.svg
 UPD 2021-12-01_21:50:02 444 www/ftui/icons/volume-off.svg
 UPD 2021-12-01_21:50:02 1595 www/ftui/icons/volume-up.svg
+UPD 2021-12-01_21:50:02 736 www/ftui/icons/washing-machine.svg
 UPD 2021-12-01_21:50:02 890 www/ftui/icons/weather-cloud.svg
 UPD 2021-12-01_21:50:02 991 www/ftui/icons/weather-night.svg
 UPD 2021-12-01_21:50:02 1492 www/ftui/icons/weather-partly-lightning.svg
