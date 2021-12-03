@@ -10,6 +10,7 @@
 */
 
 import { FtuiElement } from '../element.component.js';
+import { scale } from '../../modules/ftui/ftui.helper.js';
 
 export class FtuiMeter extends FtuiElement {
 
@@ -39,6 +40,7 @@ export class FtuiMeter extends FtuiElement {
           }
           .progress-bar {
             height: 100%;
+            max-width: 100%;
             background-color: var(--color-base, #20639b);
             border-radius: var(--meter-border-radius, 1em);
             -webkit-transition: 0.4s linear;
@@ -63,6 +65,8 @@ export class FtuiMeter extends FtuiElement {
       height: '1em',
       width: '10em',
       color: 'primary',
+      min: 0,
+      max: 100,
       value: 0,
     };
   }
@@ -74,9 +78,16 @@ export class FtuiMeter extends FtuiElement {
   onAttributeChanged(name) {
     switch (name) {
       case 'value':
-        this.bar.style.width = this.value + '%';
+      case 'min':
+      case 'max':
+        this.updateBar();
         break;
     }
+  }
+
+  updateBar() {
+    const value = scale(this.value, this.min, this.max, 0, 100);
+    this.bar.style.width = value + '%';
   }
 
 }

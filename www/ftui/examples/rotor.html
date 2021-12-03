@@ -30,6 +30,16 @@
 
     </ftui-grid-tile>
 
+    <ftui-grid-tile row="2" col="5" height="2" width="3">
+
+      <ftui-rotor animation="fade" class="size-7">
+        <span>Bath</span>
+        <span>Lounge</span>
+        <span>Corridor</span>
+      </ftui-rotor>
+
+    </ftui-grid-tile>
+
     <ftui-grid-tile row="4" col="2" height="2" width="3">
 
       <ftui-row align-items="center" class="size-3">
@@ -59,7 +69,7 @@
 
     </ftui-grid-tile>
 
-    <ftui-grid-tile row="3" col="7" height="3" width="3">
+    <ftui-grid-tile row="8" col="2" height="3" width="3">
 
       <ftui-rotor class="size-5">
         <ftui-cell>
@@ -92,16 +102,16 @@
   </ftui-grid>
 
 </body>
-<script>
-  function onClicked(view) {
-    document.querySelectorAll('ftui-tab-view').forEach(elem => {
-      if (elem.id !== view) {
-        elem.setAttribute('hidden', '');
-      } else {
-        elem.removeAttribute('hidden');
-      }
-    });
-  }
-</script>
+  <script>
+    function onClicked(view) {
+      document.querySelectorAll('ftui-tab-view').forEach(elem => {
+        if (elem.id !== view) {
+          elem.setAttribute('hidden', '');
+        } else {
+          elem.removeAttribute('hidden');
+        }
+      });
+    }
+  </script>
 
 </html>

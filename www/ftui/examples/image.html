@@ -24,18 +24,27 @@
   <title>FTUI Example Image</title>
 </head>
 
+<script>
+  setInterval(
+    () => myout.innerText =
+      ftuiApp.fhemService.states.connection.lastEventTimestamp.toLocaleString(),
+    60000
+  );
+</script>
+
 <body>
 
   <ftui-grid base-width="150" base-height="165">
 
     <ftui-grid-tile row="1" col="1" height="1" width="1">
       <header>DEFAULT</header>
-      <ftui-image></ftui-image>
+      <!--       <ftui-image></ftui-image> -->
+      <div id="myout"></div>
     </ftui-grid-tile>
 
     <ftui-grid-tile row="1" col="2" height="1" width="1">
       <header>FIX SRC</header>
-      <ftui-image src="https://picsum.photos/seed/huhu/200/200" ></ftui-image>
+      <ftui-image src="https://picsum.photos/seed/huhu/200/200"></ftui-image>
     </ftui-grid-tile>
 
     <ftui-grid-tile row="2" col="2" height="1" width="1">
@@ -55,29 +64,28 @@
     <ftui-grid-tile row="1" col="4" height="2" width="2">
       <header>COVER IMAGE</header>
 
-        <ftui-image [src]="Spotify01:track_album_cover_medium"
-                    ></ftui-image>
+      <ftui-image [src]="Spotify01:track_album_cover_medium"></ftui-image>
     </ftui-grid-tile>
 
     <ftui-grid-tile row="1" col="6" height="2" width="2">
       <header>REFRESH INTERVAL</header>
-      
-        <ftui-image id="weather" src="https://www.dwd.de/DWD/wetter/aktuell/deutschland/bilder/wx_deutschland.jpg" 
-                    interval="300" nocache
-                    ></ftui-image>
+
+      <ftui-image id="weather" src="https://www.dwd.de/DWD/wetter/aktuell/deutschland/bilder/wx_deutschland.jpg"
+                  interval="300" nocache></ftui-image>
 
     </ftui-grid-tile>
 
     <ftui-grid-tile row="1" col="8" height="2" width="2">
       <header>BASE URL</header>
-      
-        <ftui-image base="http://fhem:8083/fhem/images/" src="fhemSVG/3d_printer.svg" interval="5" width="250px" height="200px"></ftui-image>
+
+      <ftui-image base="http://fhem:8083/fhem/images/" src="fhemSVG/3d_printer.svg" interval="5" nocache width="250px"
+                  height="200px"></ftui-image>
 
     </ftui-grid-tile>
 
     <ftui-grid-tile row="3" col="2" height="1" width="1">
       <header>ROUND</header>
-        <ftui-image src="https://i.pravatar.cc/300" width="90px" shape="round"></ftui-image>
+      <ftui-image src="https://i.pravatar.cc/300" width="90px" shape="round"></ftui-image>
     </ftui-grid-tile>
 
     <ftui-grid-tile row="4" col="2" height="1" width="1">
@@ -87,7 +95,8 @@
 
     <ftui-grid-tile row="4" col="1" height="1" width="1">
       <header>CREDENTIALS</header>
-      <ftui-image base="http://fhem:8083/fhem/images/default/" src="black_up.png" width="90px" user="fhemuser" pass="fhempass"></ftui-image>
+      <ftui-image base="http://fhem:8083/fhem/images/default/" src="black_up.png" width="90px" user="fhemuser"
+                  pass="fhempass"></ftui-image>
     </ftui-grid-tile>
 
     <ftui-grid-tile row="3" col="3" height="2" width="2">

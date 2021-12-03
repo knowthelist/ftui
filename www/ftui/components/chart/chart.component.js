@@ -27,6 +27,7 @@ export class FtuiChart extends FtuiElement {
         datasets: []
       },
       options: {
+        locale: window.ftuiApp ? ftuiApp.config.lang === 'de' ? 'de-DE' : 'en-US' : 'en-US',
         responsive: true,
         maintainAspectRatio: false,
         title: {
@@ -57,7 +58,7 @@ export class FtuiChart extends FtuiElement {
             type: 'time',
             time: {
               parser: 'yyyy-MM-dd_HH:mm:ss',
-              displayFormats: { millisecond: 'HH:mm:ss.SSS', second: 'HH:mm:ss', minute: 'HH:mm', hour: 'HH:mm', day: 'd. MMM' }
+              displayFormats: { millisecond: 'HH:mm:ss.SSS', second: 'HH:mm:ss', minute: 'HH:mm', hour: 'HH:mm', day: 'd. MMM', month: 'MMMM' }
             },
             gridLines: {
               color: getStylePropertyValue('--chart-grid-line-color', this) || getStylePropertyValue('--dark-color', this)

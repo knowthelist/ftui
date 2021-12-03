@@ -21,49 +21,7 @@ class FtuiRotor extends FtuiElement {
 
   template() {
     return `
-      <style> 
-      :host {
-        perspective: 300px;
-      }
-      
-      ::slotted(*) {
-        opacity: 0;
-        transform-origin: 50% 100%;
-        transform: rotateX(180deg);
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        display: flex;
-        justify-content: center;
-      }
-      
-      ::slotted(*.is-visible) {
-        position: relative;
-        opacity: 1;
-        transform: rotateX(0deg);
-        animation: rotate-in 1.2s;
-      }
-      
-      ::slotted(*.is-hidden) {
-        transform: rotateX(180deg);
-        animation: rotate-out 1.2s;
-      }
-
-      @keyframes rotate-in {
-        0% { transform: rotateX(180deg); opacity: 0;}
-        35% { transform: rotateX(120deg); opacity: 0;}
-        65% {opacity: 0;}
-        100% { transform: rotateX(360deg);opacity: 1;}
-      }
-      
-      @keyframes rotate-out {
-        0% { transform: rotateX(0deg); opacity: 1; }
-        35% { transform: rotateX(-40deg); opacity: 1;}
-        65% { opacity: 0;}
-        100% { transform: rotateX(180deg); opacity: 0; }
-      }
-      </style>
+      <style> @import "components/rotor/rotor.component.css"</style>
       <slot></slot>
       `;
   }

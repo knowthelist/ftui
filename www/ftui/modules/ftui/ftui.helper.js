@@ -219,7 +219,7 @@ export function dateFromString(str) {
 
 export function dateFormat(date, format) {
   const userLang = navigator.language || navigator.userLanguage;
-  const lang = isDefined(userLang) ? userLang.split('-')[0] : 'de';
+  const lang = window.ftuiApp ? ftuiApp.config.lang : isDefined(userLang) ? userLang.split('-')[0] : 'de';
   let ret = String(format);
   if (!date) {return ret;}
   const weekday_de = ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'];
@@ -348,7 +348,7 @@ export function dateTill(date) {
 export function durationHumanized(ms) {
   let x = ms / 1000
   const userLang = navigator.language || navigator.userLanguage;
-  const lang = isDefined(userLang) ? userLang.split('-')[0] : 'de';
+  const lang = window.ftuiApp ? ftuiApp.config.lang : isDefined(userLang) ? userLang.split('-')[0] : 'de';
   const plural = (lang === 'de') ? 'n' : 's';
   const seconds = ~~(x);
   if (seconds < 60) {
