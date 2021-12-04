@@ -34,17 +34,21 @@ export class FtuiContent extends FtuiElement {
     return [...this.convertToAttributes(FtuiContent.properties), ...super.observedAttributes];
   }
 
-  onAttributeChanged(name) {
+  onAttributeChanged(name, newValue) {
     switch (name) {
       case 'content':
-        this.initContent();
-        break;
+        if (newValue !== '/* ... */') {
+          this.contentHtml = newValue;
+          // remove long texts to avoid huge attr values in DOM
+          this.setAttribute(name, '/* ... */');
+          this.initContent();
+          break;
+        }
     }
   }
 
   async loadFileContent() {
     const result = await fetch(this.file);
-    // saving in a property only to avoid huge attr values in DOM
     this.contentHtml = await result.text();
     this.initContent();
   }
