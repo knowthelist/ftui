@@ -61,3 +61,10 @@ svg[viewBox="0 0 448 512"] {
   position: absolute;
   right: -0.75em;
 }
+
+:host([right]:not([right=""])),
+:host([left]:not([left=""])),
+:host([top]:not([top=""])),
+:host([bottom]:not([bottom=""]))  {
+  position: absolute;
+}

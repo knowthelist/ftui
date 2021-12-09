@@ -26,10 +26,12 @@ export class FtuiLabel extends FtuiElement {
         :host {
           --color-base: currentColor;
           color: var(--color-base);
+          white-space: nowrap;
         }
         :host(:empty:not([text])) slot[name="unit"]
         , :host([text=""]) slot[name="unit"] { visibility: hidden; }
         :host([scroll]) { overflow: auto; }
+        :host([bold]) { font-weight: bold; }
         :host(:empty[text=""][placeholder]) { display: inline-block;
           background-color: var(--medium-color);
           height: .75em; border-radius: 2em;
@@ -37,8 +39,7 @@ export class FtuiLabel extends FtuiElement {
           min-width: 4em; }
         :host([size="10"]),:host([size="11"]),:host([size="12"]) {
           font-family: "HelveticaNeue-UltraLight", "Segoe UI", "Roboto Light", sans-serif;
-          line-height: 0.8em;
-        }
+          line-height: 0.8em; }
         @keyframes fading { 
           0% { opacity: .3; }
           50% { opacity: .5; }

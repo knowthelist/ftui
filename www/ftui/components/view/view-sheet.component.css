@@ -4,13 +4,15 @@
 
 .content {
   width: 100%;
-  min-height: 10em;
+  min-height: 7em;
   display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
   background-color: var(--view-item-background-color);
-  align-items: center;
-  margin: 2em;
+  align-items: flex-start;
+  margin: 1em 1.5em;
   border-radius: 1em;
+  font-size: 1.125rem;
+  padding: 1em;
+  position: relative;
 }

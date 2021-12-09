@@ -64,9 +64,10 @@ export class FtuiImage extends FtuiElement {
     return [...this.convertToAttributes(FtuiImage.properties), ...super.observedAttributes];
   }
 
-  connectedCallback() {
+  onConnected() {
     this.imageElement.style.width = this.width;
     this.imageElement.style.height = this.height;
+    this.checkInterval();
   }
 
   onAttributeChanged(name, newValue) {
@@ -76,19 +77,18 @@ export class FtuiImage extends FtuiElement {
         this.updateImage();
         break;
       case 'width':
-        this.imageElement.style.width = this.width;
-        break;
       case 'height':
-        this.imageElement.style.height = this.height;
+        this.imageElement.style[name] = this[name];
         break;
       case 'interval':
         this.checkInterval();
         break;
       case 'top':
-        this.style.top = isNumeric(newValue) ? newValue + 'em' : newValue;
-        break;
       case 'left':
-        this.style.left = isNumeric(newValue) ? newValue + 'em' : newValue;
+      case 'bottom':
+      case 'right':
+        this.style[name] = isNumeric(newValue) ? newValue + 'em' : newValue;
+        break;
     }
   }
 

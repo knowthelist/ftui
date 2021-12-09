@@ -52,6 +52,7 @@
   display: flex;
   flex: 1;
   font-size: 1.125rem;
+  align-items: center;
   justify-content: space-between;
   padding-inline-end: var(--view-item-padding-end, 0.75em);
 }

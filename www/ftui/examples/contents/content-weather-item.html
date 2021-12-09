@@ -1,0 +1,13 @@
+<ftui-view-item>
+  <ftui-label [text]="AgroWeather:{{day}}_date | toDate() | format('ee')" size="4" bold placeholder></ftui-label>
+  <ftui-cell>
+    <ftui-label color="medium" size="1" placeholder>Min</ftui-label>
+    <ftui-label [text]="AgroWeather:{{day}}_tempMin" unit="°C" placeholder></ftui-label>
+  </ftui-cell>
+  <ftui-cell>
+    <ftui-label color="medium" size="1" placeholder>Rain</ftui-label>
+    <ftui-label [text]="AgroWeather:{{day}}_chOfRainDay" unit="%" placeholder></ftui-label>
+  </ftui-cell>
+    <ftui-weather [condition]="AgroWeather:{{day}}_weatherDay" ></ftui-weather>
+    <ftui-label [text]="AgroWeather:{{day}}_tempMax" unit="°C" size="4" slot="end" placeholder></ftui-label>
+</ftui-view-item>

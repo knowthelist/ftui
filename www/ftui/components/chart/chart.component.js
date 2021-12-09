@@ -9,12 +9,12 @@
 
 import { FtuiElement } from '../element.component.js';
 import { FtuiChartData } from './chart-data.component.js';
-import { Chart } from '../../modules/chart.js/chart.min.js';
+import { Chart } from '../../modules/chart.js/chart.js';
 import { dateFormat, getStylePropertyValue } from '../../modules/ftui/ftui.helper.js';
 import '../../modules/chart.js/chartjs-adapter-date-fns.bundle.min.js';
 
-const HOUR =  3600 * 1000;
-const DAY =  24 * 3600 * 1000;
+const HOUR = 3600 * 1000;
+const DAY = 24 * 3600 * 1000;
 
 export class FtuiChart extends FtuiElement {
   constructor(properties) {
@@ -127,13 +127,15 @@ export class FtuiChart extends FtuiElement {
 
     this.chart = new Chart(this.chartElement, this.configuration);
 
-    let hasY1Data= false;
+    let hasY1Data = false;
     this.dataElements = this.querySelectorAll('ftui-chart-data');
-    this.dataElements.forEach(dataElement => {
+    this.dataElements.forEach((dataElement, index) => {
+      dataElement.index = index;
+      this.configuration.data.datasets[index] = {};
       if (dataElement.yAxisID === 'y1') {
         hasY1Data = true;
       }
-      dataElement.addEventListener('ftuiDataChanged', () => this.onDataChanged())
+      dataElement.addEventListener('ftuiDataChanged', (data) => this.onDataChanged(data))
     });
 
     this.configuration.options.scales.y1.display = hasY1Data && !this.noY1;
@@ -146,6 +148,7 @@ export class FtuiChart extends FtuiElement {
       });
     }
     this.chart.update();
+    document.addEventListener('ftuiVisibilityChanged', () => this.refresh());
   }
 
   connectedCallback() {
@@ -203,7 +206,7 @@ export class FtuiChart extends FtuiElement {
     if (this.unit === 'day' && this.xMax > 0) {
       return this.getDate(this.offset, this.xMax);
     }
-    return this.getDate(this.offset + 1 );
+    return this.getDate(this.offset + 1);
   }
 
   getDate(offset = 0, hour = 0) {
@@ -213,7 +216,7 @@ export class FtuiChart extends FtuiElement {
     switch (this.unit) {
       case 'hour':
         date = new Date(ts + offset * HOUR);
-        date.setMinutes(0,0,0);
+        date.setMinutes(0, 0, 0);
         break;
       case 'day':
         date = new Date(ts + offset * DAY);
@@ -238,7 +241,7 @@ export class FtuiChart extends FtuiElement {
         date = new Date(ts + offset * DAY - DAY);
         break;
       case '30d':
-        date = new Date(ts + (offset * 30 * DAY - 30 * DAY ));
+        date = new Date(ts + (offset * 30 * DAY - 30 * DAY));
         break;
     }
     return dateFormat(date, 'YYYY-MM-DD_hh:mm:ss');
@@ -288,6 +291,8 @@ export class FtuiChart extends FtuiElement {
         this.offset = 0;
         break;
       case 'offset':
+      case 'extend':
+      case 'prefetch':
         this.refresh();
         break;
       case 'height':
@@ -300,11 +305,7 @@ export class FtuiChart extends FtuiElement {
   }
 
   refresh() {
-    if (this.controlsElement) {
-      this.controlsElement.unit = this.unit;
-      this.controlsElement.startDate = this.startDate;
-      this.controlsElement.endDate = this.endDate;
-    }
+    this.updateControls();
 
     this.dataElements.forEach(dataElement => {
       dataElement.startDate = this.startDate;
@@ -316,21 +317,30 @@ export class FtuiChart extends FtuiElement {
     });
   }
 
-  onDataChanged() {
+  updateControls() {
+    if (this.controlsElement) {
+      this.controlsElement.unit = this.unit;
+      this.controlsElement.startDate = this.startDate;
+      this.controlsElement.endDate = this.endDate;
+    }
+  }
+
+  onDataChanged(event) {
+
     this.configuration.options.scales.x.min = this.startDate;
     this.configuration.options.scales.x.max = this.endDate;
-    this.configuration.data.datasets = [];
-    this.dataElements.forEach(dataElement => {
-      const dataset = {};
-      Object.keys(FtuiChartData.properties).forEach(property => {
-        dataset[property] = dataElement[property];
-      });
-      dataset.data = dataElement.data;
-      this.configuration.data.datasets.push(dataset);
-      this.configuration.data.labels = dataElement.labels;
-      dataElement.startDate = this.startDate;
-      dataElement.endDate = this.endDate;
+    const dataElement = event.target
+    const dataset = {};
+    Object.keys(FtuiChartData.properties).forEach(property => {
+      dataset[property] = dataElement[property];
     });
+    dataset.data = dataElement.data;
+    this.configuration.data.datasets[dataElement.index] = dataset;
+    this.configuration.data.labels = dataElement.labels;
+    dataElement.startDate = this.startDate;
+    dataElement.endDate = this.endDate;
+
+    this.updateControls();
     this.chart.update();
     // disable animation after first update
     this.configuration.options.animation.duration = 0;

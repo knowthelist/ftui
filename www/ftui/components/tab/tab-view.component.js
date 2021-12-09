@@ -15,6 +15,18 @@ export class FtuiTabView extends FtuiElement {
     super(FtuiTabView.properties);
   }
 
+  template() {
+    return `
+      <style>
+        :host {
+         width: calc(100vw - 1px);
+         height: calc(100vh - 100px);
+         display: block;
+        }
+        </style>
+        <slot></slot>`
+  }
+
   static get properties() {
     return {
       group: 'default',

@@ -15,6 +15,14 @@ Single-colored icons can be modified like so:
 }
 ========================================== */
 
+./skull-crossbones {
+  width: 0.875em;
+}
+
+./house-user {
+  width: 1.125em;
+}
+
 ./eur {
   width: 0.5625em;
 }
@@ -361,10 +369,6 @@ Single-colored icons can be modified like so:
 
 ./bar-chart {
   width: 1.1428571428571428em;
-}
-
-./key {
-  width: 0.9391428571428571em;
 }
 
 ./cogs {

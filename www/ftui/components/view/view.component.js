@@ -30,8 +30,8 @@ export class FtuiView extends FtuiElement {
             :host {
               background: var(--view-background-color);
               will-change: transform;
-              width: 100%;
-              height: 100%;
+              width: 100vw;
+              height: 100vh;
               position: fixed;
               left: 0;
               top: 0;
@@ -42,7 +42,7 @@ export class FtuiView extends FtuiElement {
               overflow: hidden;
             }
             :host([outside]) {
-              transform: translateX(100%);
+              transform: translateX(100vw);
             }
             .content {
               padding-top: 44px;

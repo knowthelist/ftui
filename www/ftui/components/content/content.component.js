@@ -16,10 +16,15 @@ export class FtuiContent extends FtuiElement {
   constructor(properties) {
     super(Object.assign(FtuiContent.properties, properties));
 
-    ftui.log(2, '[FtuiContent] constructor  file = ', this.file);
-    ftuiApp.config.refreshDelay = 500;
+    this.onPageInitialized = this.onPageInitialized.bind(this);
+
     if (this.file) {
-      this.loadFileContent();
+      if (this.lazy) {
+        document.addEventListener('ftuiPageInitialized', this.onPageInitialized);
+      } else {
+        ftuiApp.config.refreshDelay = 500;
+        this.loadFileContent();
+      }
     }
   }
 
@@ -27,6 +32,7 @@ export class FtuiContent extends FtuiElement {
     return {
       file: '',
       content: '',
+      lazy: false,
     };
   }
 
@@ -38,31 +44,59 @@ export class FtuiContent extends FtuiElement {
     switch (name) {
       case 'content':
         if (newValue !== '/* ... */') {
-          this.contentHtml = newValue;
+          this.rawText = newValue;
           // remove long texts to avoid huge attr values in DOM
-          this.setAttribute(name, '/* ... */');
+          setTimeout(() => {
+            this.setAttribute(name, '/* ... */');
+          }, 1000)
           this.initContent();
           break;
         }
     }
   }
 
+  onPageInitialized() {
+    if (!this.observer) {
+      this.container = this.closest('ftui-view, ftui-tab-view') || this.parentElement;
+      document.removeEventListener('ftuiPageInitialized', this.onPageInitialized);
+      this.initInViewportObserver();
+    }
+  }
+
+  initInViewportObserver() {
+    this.observer = new IntersectionObserver(
+      this.onIntersectionChange.bind(this),
+      {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.5,
+      });
+    this.observer.observe(this.container);
+  }
+
+  onIntersectionChange(entries){
+    if(entries[0].isIntersecting) {
+      this.loadFileContent();
+    }
+  }
+
   async loadFileContent() {
+    if (this.lazy) {
+      this.observer.unobserve(this.container);
+    }
     const result = await fetch(this.file);
-    this.contentHtml = await result.text();
+    this.rawText = await result.text();
     this.initContent();
   }
 
   initContent() {
-    const solvedContent = String(this.contentHtml).replace(/\{\{([^}]+)\}\}/g, variable => {
+    const solvedContent = String(this.rawText).replace(/\{\{([^}]+)\}\}/g, variable => {
       return this.getAttribute(variable.slice(2, -2)) || '';
     });
-
     this.insertAdjacentHTML('beforeend', solvedContent);
     ftui.log(2, '[FtuiContent] file loaded and content inserted');
     ftuiApp.initComponents(this);
   }
-
 }
 
 ftui.appendStyleLink('components/content/content.component.css');

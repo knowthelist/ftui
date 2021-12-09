@@ -39,6 +39,8 @@ export class FtuiIcon extends FtuiElement {
       width: '',
       top: '',
       left: '',
+      bottom: '',
+      right: '',
     };
   }
 
@@ -54,14 +56,15 @@ export class FtuiIcon extends FtuiElement {
       case 'rgb':
         this.elementIcon.style.color = `#${newValue.replace('#', '')}`;
         break;
+      case 'width':
       case 'height':
-        this.style.height = isNumeric(newValue) ? newValue + 'em' : newValue;
+        this.style[name] = this[name];
         break;
       case 'top':
-        this.style.top = isNumeric(newValue) ? newValue + 'em' : newValue;
-        break;
       case 'left':
-        this.style.left = isNumeric(newValue) ? newValue + 'em' : newValue;
+      case 'bottom':
+      case 'right':
+        this.style[name] = isNumeric(newValue) ? newValue + 'em' : newValue;
         break;
       case 'size':
         if (this.size > -7 && this.size < 13) {

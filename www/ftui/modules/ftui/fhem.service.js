@@ -221,7 +221,7 @@ class FhemService {
         parameterData.update = now
 
         // update components only if necessary
-        this.updateReadingItem(parameterId, parameterData, doPublish);
+        this.updateReadingItem(parameterId, parameterData, true);
       }
     }
   }
@@ -391,6 +391,7 @@ class FhemService {
     if (timeDiff / 1000 > 3) {
       log(1, 'No update event since ' + timeDiff / 1000 + 'secondes -> restart connection');
       this.reconnect();
+      this.refresh();
     }
   }
 
