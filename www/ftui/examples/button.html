@@ -31,16 +31,16 @@
 
     <ftui-grid-tile row="1" col="1" height="1" width="1">
       <header>Default</header>
-        <ftui-button>FTUI</ftui-button>
+      <ftui-button>FTUI</ftui-button>
     </ftui-grid-tile>
 
     <ftui-grid-tile row="2" col="1" height="1" width="1">
       <header>Icon & Text</header>
 
-        <ftui-button>
-          <ftui-icon name="lightbulb"></ftui-icon>
-          MyLamp
-        </ftui-button>
+      <ftui-button>
+        <ftui-icon name="lightbulb"></ftui-icon>
+        MyLamp
+      </ftui-button>
 
     </ftui-grid-tile>
 
@@ -48,10 +48,10 @@
     <ftui-grid-tile row="3" col="1" height="1" width="1">
       <header>Text & Icon</header>
 
-        <ftui-button>
-          MyLamp
-          <ftui-icon name="lightbulb"></ftui-icon>
-        </ftui-button>
+      <ftui-button>
+        MyLamp
+        <ftui-icon name="lightbulb"></ftui-icon>
+      </ftui-button>
 
     </ftui-grid-tile>
 
@@ -59,11 +59,11 @@
     <ftui-grid-tile row="1" col="2" height="3" width="1">
       <header>Size</header>
 
-        <ftui-button size="small">small</ftui-button>
+      <ftui-button size="small">small</ftui-button>
 
-        <ftui-button>default</ftui-button>
+      <ftui-button>default</ftui-button>
 
-        <ftui-button size="large">large</ftui-button>
+      <ftui-button size="large">large</ftui-button>
 
     </ftui-grid-tile>
 
@@ -71,11 +71,11 @@
     <ftui-grid-tile row="1" col="3" height="3" width="1">
       <header>Shape</header>
 
-        <ftui-button>default</ftui-button>
+      <ftui-button>default</ftui-button>
 
-        <ftui-button shape="circle">circle</ftui-button>
+      <ftui-button shape="circle">circle</ftui-button>
 
-        <ftui-button shape="round">round</ftui-button>
+      <ftui-button shape="round">round</ftui-button>
 
     </ftui-grid-tile>
 
@@ -84,32 +84,32 @@
     <ftui-grid-tile row="1" col="4" height="3" width="1">
       <header>Fill</header>
 
-        <ftui-button>default</ftui-button>
- 
-        <ftui-button fill="solid">solid</ftui-button>
+      <ftui-button>default</ftui-button>
 
-        <ftui-button fill="outline">outline</ftui-button>
+      <ftui-button fill="solid">solid</ftui-button>
+
+      <ftui-button fill="outline">outline</ftui-button>
 
     </ftui-grid-tile>
 
 
     <ftui-grid-tile row="1" col="5" height="3" width="1">
       <header>Color</header>
-        <ftui-button>primary</ftui-button>
+      <ftui-button>primary</ftui-button>
 
-        <ftui-button color="secondary">secondary</ftui-button>
+      <ftui-button color="secondary">secondary</ftui-button>
 
-        <ftui-button color="success">success</ftui-button>
+      <ftui-button color="success">success</ftui-button>
 
-        <ftui-button color="warning">warning</ftui-button>
+      <ftui-button color="warning">warning</ftui-button>
 
-        <ftui-button color="danger">danger</ftui-button>
+      <ftui-button color="danger">danger</ftui-button>
 
-        <ftui-button color="light">light</ftui-button>
+      <ftui-button color="light">light</ftui-button>
 
-        <ftui-button color="medium">medium</ftui-button>
+      <ftui-button color="medium">medium</ftui-button>
 
-        <ftui-button color="dark">dark</ftui-button>
+      <ftui-button color="dark">dark</ftui-button>
     </ftui-grid-tile>
 
 
@@ -223,6 +223,108 @@
       </ftui-button>
     </ftui-grid-tile>
 
+
+    <ftui-grid-tile row="4" col="2" height="3" width="2">
+      <ftui-grid-header>ROUND</ftui-grid-header>
+      <ftui-row>
+        <ftui-column>
+          <ftui-row>
+            <ftui-label text="room1"></ftui-label>
+            <ftui-button
+                         shape="circle"
+                         [(value)]="ftuitest"
+                         [color]="ftuitest | map('on:primary, off:dark')">
+              <ftui-icon name="lightbulb" color="grid"></ftui-icon>
+            </ftui-button>
+          </ftui-row>
+          <ftui-row>
+            <ftui-label text="room2"></ftui-label>
+            <ftui-button
+                         shape="circle"
+                         [(value)]="ftuitest"
+                         [color]="ftuitest | map('on:primary, off:dark')">
+              <ftui-icon name="lightbulb" color="grid"></ftui-icon>
+            </ftui-button>
+          </ftui-row>
+          <ftui-row>
+            <ftui-label text="room3"></ftui-label>
+            <ftui-button
+                         shape="circle"
+                         [(value)]="ftuitest"
+                         [color]="ftuitest | map('on:primary, off:dark')">
+              <ftui-icon name="lightbulb" color="grid"></ftui-icon>
+            </ftui-button>
+          </ftui-row>
+          <ftui-row>
+            <ftui-label text="room4"></ftui-label>
+            <ftui-button
+                         shape="circle"
+                         [(value)]="ftuitest"
+                         [color]="ftuitest | map('on:primary, off:dark')">
+              <ftui-icon name="lightbulb" color="grid"></ftui-icon>
+            </ftui-button>
+          </ftui-row>
+        </ftui-column>
+
+
+        <ftui-column>
+          <ftui-row>
+            <ftui-label text="room5"></ftui-label>
+            <ftui-button
+                         shape="circle"
+                         [(value)]="ftuitest"
+                         [color]="ftuitest | map('on:primary, off:dark')">
+              <ftui-icon name="lightbulb" color="grid"></ftui-icon>
+            </ftui-button>
+          </ftui-row>
+          <ftui-row>
+            <ftui-label text="room6"></ftui-label>
+            <ftui-button
+                         shape="circle"
+                         [(value)]="ftuitest"
+                         [color]="ftuitest | map('on:primary, off:dark')">
+              <ftui-icon name="lightbulb" color="grid"></ftui-icon>
+            </ftui-button>
+          </ftui-row>
+          <ftui-row>
+            <ftui-label text="room7"></ftui-label>
+            <ftui-button
+                         shape="circle"
+                         [(value)]="ftuitest"
+                         [color]="ftuitest | map('on:primary, off:dark')">
+              <ftui-icon name="lightbulb" color="grid"></ftui-icon>
+            </ftui-button>
+          </ftui-row>
+          <ftui-row>
+            <ftui-label text="room8"></ftui-label>
+            <ftui-button
+                         shape="circle"
+                         [(value)]="ftuitest"
+                         [color]="ftuitest | map('on:primary, off:dark')">
+              <ftui-icon name="lightbulb" color="grid"></ftui-icon>
+            </ftui-button>
+          </ftui-row>
+        </ftui-column>
+      </ftui-row>
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="4" col="5" height="1" width="1" shape="round">
+      <ftui-grid-header>SHUTTER</ftui-grid-header>
+      <ftui-column height="70%">
+      <ftui-row> 
+        <ftui-button states="open" color="current" fill="none" margin="-1em">
+          <ftui-icon name="angle-up" size="2"></ftui-icon>
+        </ftui-button>
+        <ftui-icon name="window-shutter-open" size="3"></ftui-icon>
+        <ftui-button states="closed" color="current" fill="none" margin="-1em">
+          <ftui-icon name="angle-down" size="2"></ftui-icon>
+        </ftui-button>
+      </ftui-row>
+      <ftui-row>
+          <ftui-label>LABEL</ftui-label>
+      </ftui-row>
+      </ftui-column>
+    </ftui-grid-tile>
   </ftui-grid>
 </body>
 

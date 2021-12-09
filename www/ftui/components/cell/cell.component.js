@@ -64,7 +64,11 @@ export class FtuiCell extends FtuiElement {
         }
         break;
       case 'height':
-        this.style.height = value;
+        if (this.tagName === 'FTUI-ROW') {
+          this.style.flex = `0 0 ${value}`;
+        } else {
+          this.style.height = value;
+        }
         break;
     }
   }

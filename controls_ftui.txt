@@ -2,7 +2,7 @@ UPD 2021-11-09_20:11:11 1622 www/ftui/components/badge/badge.component.js
 UPD 2021-10-22_21:53:28 1326 www/ftui/components/button/button-nice.component.js
 UPD 2021-10-14_21:17:44 2050 www/ftui/components/button/button.component.css
 UPD 2021-11-27_22:16:42 2145 www/ftui/components/button/button.component.js
-UPD 2021-12-01_20:24:01 1928 www/ftui/components/cell/cell.component.js
+UPD 2021-12-09_22:21:58 2044 www/ftui/components/cell/cell.component.js
 UPD 2021-11-28_20:53:02 754 www/ftui/components/chart/chart-controls.component.css
 UPD 2021-11-05_13:51:07 3862 www/ftui/components/chart/chart-controls.component.js
 UPD 2021-12-08_15:59:01 3720 www/ftui/components/chart/chart-data.component.js
@@ -78,7 +78,7 @@ UPD 2021-10-16_22:09:49 546 www/ftui/examples/_empty.html
 UPD 2021-10-05_20:08:00 1910 www/ftui/examples/badge.html
 UPD 2021-10-22_22:56:18 1624 www/ftui/examples/binding.html
 UPD 2020-12-31_16:39:02 913 www/ftui/examples/button-nice.html
-UPD 2021-11-21_10:09:50 6756 www/ftui/examples/button.html
+UPD 2021-12-09_22:40:27 10664 www/ftui/examples/button.html
 UPD 2021-12-01_19:39:21 3182 www/ftui/examples/chart.html
 UPD 2021-02-23_20:21:29 1385 www/ftui/examples/checkbox.html
 UPD 2021-11-30_17:17:52 9424 www/ftui/examples/circlemenu.html
@@ -96,6 +96,7 @@ UPD 2021-10-19_13:57:52 275 www/ftui/examples/contents/content-view1.html
 UPD 2021-10-19_13:57:56 684 www/ftui/examples/contents/content-view2.html
 UPD 2021-11-09_10:48:30 1789 www/ftui/examples/contents/content-weather-2-day.html
 UPD 2021-12-05_22:13:16 998 www/ftui/examples/contents/content-weather-day.html
+UPD 2021-12-09_17:19:30 717 www/ftui/examples/contents/content-weather-item.html
 UPD 2021-10-19_19:05:47 5317 www/ftui/examples/contents/content-weather.html
 UPD 2021-10-02_19:10:30 2485 www/ftui/examples/contents/mobile-view-sonos.html
 UPD 2021-02-01_19:44:46 189 www/ftui/examples/contents/mobile-view1.html
@@ -329,6 +330,7 @@ UPD 2021-12-04_19:51:20 1404 www/ftui/icons/eye-slash.svg
 UPD 2021-12-04_19:51:20 882 www/ftui/icons/eye.svg
 UPD 2021-12-04_19:51:20 694 www/ftui/icons/eyedropper.svg
 UPD 2021-12-04_19:51:20 676 www/ftui/icons/fa.svg
+UPD 2021-12-04_19:51:20 739 www/ftui/icons/fan.svg
 UPD 2021-12-04_19:51:20 711 www/ftui/icons/fast-backward.svg
 UPD 2021-12-04_19:51:20 715 www/ftui/icons/fast-forward.svg
 UPD 2021-12-04_19:51:20 2185 www/ftui/icons/fax.svg
@@ -403,6 +405,7 @@ UPD 2021-12-04_19:51:20 845 www/ftui/icons/hourglass-2.svg
 UPD 2021-12-04_19:51:20 934 www/ftui/icons/hourglass-3.svg
 UPD 2021-12-04_19:51:20 935 www/ftui/icons/hourglass-o.svg
 UPD 2021-12-04_19:51:20 687 www/ftui/icons/hourglass.svg
+UPD 2021-12-04_19:51:20 1031 www/ftui/icons/house-user.svg
 UPD 2021-12-04_19:51:20 881 www/ftui/icons/id-badge.svg
 UPD 2021-12-04_19:51:20 712 www/ftui/icons/image.svg
 UPD 2021-12-04_19:51:20 595 www/ftui/icons/inbox.svg
@@ -525,6 +528,7 @@ UPD 2021-12-04_19:51:20 984 www/ftui/icons/road.svg
 UPD 2021-12-04_19:51:20 870 www/ftui/icons/rocket.svg
 UPD 2021-12-04_19:51:20 780 www/ftui/icons/rotate-left.svg
 UPD 2021-12-04_19:51:20 1072 www/ftui/icons/rss-square.svg
+UPD 2021-12-04_19:51:20 1193 www/ftui/icons/satellite-dish.svg
 UPD 2021-12-04_19:51:20 1264 www/ftui/icons/satellite.svg
 UPD 2021-12-04_19:51:20 885 www/ftui/icons/save.svg
 UPD 2021-12-04_19:51:20 722 www/ftui/icons/search-minus.svg
@@ -548,6 +552,7 @@ UPD 2021-12-04_19:51:20 1960 www/ftui/icons/sign-language.svg
 UPD 2021-12-04_19:51:20 811 www/ftui/icons/sign-out.svg
 UPD 2021-12-04_19:51:20 1005 www/ftui/icons/signal.svg
 UPD 2021-12-04_19:51:20 976 www/ftui/icons/sitemap.svg
+UPD 2021-12-04_19:51:20 986 www/ftui/icons/skull-crossbones.svg
 UPD 2021-12-04_19:51:20 1281 www/ftui/icons/slack.svg
 UPD 2021-12-04_19:51:20 909 www/ftui/icons/sliders.svg
 UPD 2021-12-04_19:51:20 1217 www/ftui/icons/slideshare.svg
