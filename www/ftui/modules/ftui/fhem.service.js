@@ -127,7 +127,7 @@ class FhemService {
       || (now - this.states.lastRefresh) < this.config.refreshInterval
     ) { return; }
     log(1, '[refresh] start now');
-    //console.log('[refresh] start now');
+    //console.log('[refresh] start now', this.states.isOffline);
     window.performance.mark('start refresh');
     this.states.lastRefresh = now;
 

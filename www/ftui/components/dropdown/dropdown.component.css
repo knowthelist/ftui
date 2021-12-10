@@ -7,7 +7,7 @@
   position: absolute;
   right: 1em;
   top: -0.05em;
-  content: "\2304";
+  content: var(--dropdown-chevron, "\2335");
   font-size: 1.2rem;
   pointer-events: none;
 }
