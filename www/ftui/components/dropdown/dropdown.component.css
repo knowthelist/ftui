@@ -3,7 +3,7 @@
   padding: 0 1em;
 }
 
-:host:after {
+:host(:not([nochevron])):after {
   position: absolute;
   right: 1em;
   top: -0.05em;
@@ -25,4 +25,8 @@ select {
   color: var(--text-color);  
   outline: none;
   cursor: pointer;
+}
+
+:host([nochevron]) select {
+  padding: 0.4em 0.5em 0.4em 0.5em;
 }
