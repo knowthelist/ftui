@@ -93,7 +93,7 @@ export class FtuiContent extends FtuiElement {
     const solvedContent = String(this.rawText).replace(/\{\{([^}]+)\}\}/g, variable => {
       return this.getAttribute(variable.slice(2, -2)) || '';
     });
-    this.insertAdjacentHTML('beforeend', solvedContent);
+    this.innerHTML = solvedContent;
     ftui.log(2, '[FtuiContent] file loaded and content inserted');
     ftuiApp.initComponents(this);
   }

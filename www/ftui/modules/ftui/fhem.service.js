@@ -127,6 +127,7 @@ class FhemService {
       || (now - this.states.lastRefresh) < this.config.refreshInterval
     ) { return; }
     log(1, '[refresh] start now');
+    //console.log('[refresh] start now');
     window.performance.mark('start refresh');
     this.states.lastRefresh = now;
 
@@ -388,7 +389,8 @@ class FhemService {
 
   healthCheck() {
     const timeDiff = new Date() - this.states.connection.lastEventTimestamp;
-    if (timeDiff / 1000 > 3) {
+    //console.log( timeDiff / 1000 )
+    if (timeDiff / 1000 > 6) {
       log(1, 'No update event since ' + timeDiff / 1000 + 'secondes -> restart connection');
       this.reconnect();
       this.refresh();

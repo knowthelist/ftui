@@ -15,7 +15,7 @@ UPD 2021-02-06_14:53:43 1727 www/ftui/components/clock/clock.component.js
 UPD 2021-11-30_23:46:58 3773 www/ftui/components/colorpicker/colorpicker.component.js
 UPD 2021-01-28_21:05:34 574 www/ftui/components/column/column.component.js
 UPD 2021-12-02_14:03:47 86 www/ftui/components/content/content.component.css
-UPD 2021-12-09_00:09:26 2784 www/ftui/components/content/content.component.js
+UPD 2021-12-09_23:26:15 2763 www/ftui/components/content/content.component.js
 UPD 2021-10-03_12:43:52 4159 www/ftui/components/departure/departure.component.css
 UPD 2021-10-08_11:29:53 12357 www/ftui/components/departure/departure.component.js
 UPD 2021-02-01_19:44:34 496 www/ftui/components/dropdown/dropdown.component.css
@@ -32,7 +32,7 @@ UPD 2021-02-03_14:48:37 8329 www/ftui/components/image/image_not_available.js
 UPD 2021-11-06_00:28:53 2354 www/ftui/components/input/input.component.js
 UPD 2021-10-03_12:50:26 997 www/ftui/components/knob/knob.component.css
 UPD 2021-10-11_22:43:44 13097 www/ftui/components/knob/knob.component.js
-UPD 2021-12-04_20:57:30 3466 www/ftui/components/label/label.component.js
+UPD 2021-12-10_13:17:22 3487 www/ftui/components/label/label.component.js
 UPD 2021-02-01_19:44:36 1816 www/ftui/components/main/main.component.js
 UPD 2021-11-21_18:01:44 180 www/ftui/components/medialist/album_icon.svg
 UPD 2021-11-21_18:47:45 1716 www/ftui/components/medialist/medialist.component.css
@@ -705,7 +705,7 @@ UPD 2020-12-31_16:39:06 192031 www/ftui/modules/chart.js/chart.min.js
 UPD 2020-12-31_16:39:06 49580 www/ftui/modules/chart.js/chartjs-adapter-date-fns.bundle.min.js
 UPD 2021-02-04_22:43:17 8388 www/ftui/modules/circle-menu/circle-menu.js
 UPD 2021-02-01_19:44:50 5063 www/ftui/modules/circle-menu/circle-menu.min.js
-UPD 2021-12-09_00:08:43 13613 www/ftui/modules/ftui/fhem.service.js
+UPD 2021-12-10_13:19:57 13692 www/ftui/modules/ftui/fhem.service.js
 UPD 2021-12-09_00:04:47 7731 www/ftui/modules/ftui/ftui.app.js
 UPD 2021-12-07_21:06:51 11893 www/ftui/modules/ftui/ftui.binding.js
 UPD 2021-12-03_17:59:39 14072 www/ftui/modules/ftui/ftui.helper.js

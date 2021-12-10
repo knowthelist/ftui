@@ -30,7 +30,7 @@ export class FtuiLabel extends FtuiElement {
         }
         :host(:empty:not([text])) slot[name="unit"]
         , :host([text=""]) slot[name="unit"] { visibility: hidden; }
-        :host([scroll]) { overflow: auto; }
+        :host([scroll]) { overflow: auto; white-space: normal; }
         :host([bold]) { font-weight: bold; }
         :host(:empty[text=""][placeholder]) { display: inline-block;
           background-color: var(--medium-color);
