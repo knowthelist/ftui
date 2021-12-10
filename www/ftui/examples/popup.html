@@ -24,6 +24,9 @@
     #pop2 {
       --popup-background-color: translucent;
     }
+    #pop3 {
+      --popup-border-radius: 0.5em;
+    }
   </style>
 <!--   <meta name="debug" content="2"> -->
   <title>FTUI Example Popup</title>
@@ -137,7 +140,7 @@
     </ftui-row>    
   </ftui-popup>
 
-  <ftui-popup shape="round" [trigger]="dummy3:state:time" timeout="0" left="10%" top="50%" opacity="1">
+  <ftui-popup id="pop3" shape="round" [trigger]="dummy3:state:time" timeout="0" left="10%" top="50%" opacity="1">
     <header>Popup 3</header>
     <ftui-image [src]="ftuitest:thumbnail"></ftui-image>
   </ftui-popup>

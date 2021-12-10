@@ -42,7 +42,7 @@ UPD 2021-11-09_22:11:36 407 www/ftui/components/menu/menu.component.css
 UPD 2021-11-09_22:09:43 1533 www/ftui/components/menu/menu.component.js
 UPD 2021-12-05_22:01:31 2681 www/ftui/components/meter/meter.component.js
 UPD 2021-02-01_19:44:36 1083 www/ftui/components/nav/nav-link.component.js
-UPD 2021-10-27_19:12:21 1305 www/ftui/components/popup/popup.component.css
+UPD 2021-12-10_17:26:17 1411 www/ftui/components/popup/popup.component.css
 UPD 2021-10-18_18:34:48 3616 www/ftui/components/popup/popup.component.js
 UPD 2021-12-03_18:58:15 1347 www/ftui/components/rotor/rotor.component.css
 UPD 2021-12-03_18:57:34 2220 www/ftui/components/rotor/rotor.component.js
@@ -114,7 +114,7 @@ UPD 2021-12-02_21:59:54 1385 www/ftui/examples/meter.html
 UPD 2021-11-09_20:38:25 1725 www/ftui/examples/mobile.html
 UPD 2021-12-09_00:06:19 38891 www/ftui/examples/mobile_full.html
 UPD 2021-02-01_19:44:48 5457 www/ftui/examples/mobile_plain.html
-UPD 2021-10-18_18:24:11 4381 www/ftui/examples/popup.html
+UPD 2021-12-10_17:30:41 4445 www/ftui/examples/popup.html
 UPD 2021-12-02_22:57:32 3576 www/ftui/examples/rotor.html
 UPD 2021-11-30_17:17:52 2360 www/ftui/examples/segment.html
 UPD 2021-10-11_18:49:22 3982 www/ftui/examples/slider.html

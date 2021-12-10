@@ -1,16 +1,17 @@
-:host([shape="round"]) .window {
-  border-radius: 1.5em;
+:host([shape="round"]) {
+  --popup-border-radius: 1.5em;
 }
 
 :host([shape="round"]) ::slotted(header) {
-  border-top-right-radius: 1em;
-  border-top-left-radius: 1em;
+  border-top-right-radius: var(--popup-border-radius, 1em);
+  border-top-left-radius: var(--popup-border-radius, 1em);
 }
 
 .window {
   position: absolute;
   background-color: var(--popup-background-color, #777777);
   color: var(--popup-color, #000000);
+  border-radius: var(--popup-border-radius, 1em);
   display: flex;
   justify-content: center;
   align-items: center;
