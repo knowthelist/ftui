@@ -36,7 +36,7 @@
 
         <ftui-button [(value)]="dummy1">on,off</ftui-button>
         <ftui-button [(value)]="ftuitest" states="0,1,2,10,50,100">0,1,2,10,50,100</ftui-button>
-        <ftui-button [(value)]="dummy2" states="1,2,3,4">1,2,3,4</ftui-button>
+        <ftui-button [(value)]="dummy2" states="0,1,2,3,4">0,1,2,3,4</ftui-button>
 
       </ftui-column>
     </ftui-grid-tile>
@@ -124,6 +124,15 @@
 
       <ftui-icon name="lightning"
                  [hidden]="dummyXY:state:invalid"></ftui-icon>
+    </ftui-grid-tile>
+
+
+    <ftui-grid-tile row="7" col="10" height="2" width="3">
+      <header>$VALUE</header>
+
+      <ftui-label [text]="dummy2:state"></ftui-label>
+      <ftui-label [text]="dummy2 | map('`0|1|2|3`: battery-$value, `.*`: battery')"></ftui-label>
+      <ftui-icon [name]="dummy2 | map('`0|1|2|3`: battery-$value, `.*`: battery')"></ftui-icon>
     </ftui-grid-tile>
 
 
