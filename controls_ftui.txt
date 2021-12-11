@@ -73,7 +73,7 @@ UPD 2021-02-01_19:44:44 1257 www/ftui/components/view/view-toolbar.component.css
 UPD 2021-02-01_19:44:45 893 www/ftui/components/view/view-toolbar.component.js
 UPD 2021-12-08_15:43:20 2245 www/ftui/components/view/view.component.js
 UPD 2021-10-13_11:04:36 1277 www/ftui/components/weather/weather.component.js
-UPD 2021-10-17_22:08:59 8014 www/ftui/components/weather/weather.map.js
+UPD 2021-12-11_14:04:43 8120 www/ftui/components/weather/weather.map.js
 UPD 2021-10-16_22:09:49 546 www/ftui/examples/_empty.html
 UPD 2021-10-05_20:08:00 1910 www/ftui/examples/badge.html
 UPD 2021-10-22_22:56:18 1624 www/ftui/examples/binding.html
