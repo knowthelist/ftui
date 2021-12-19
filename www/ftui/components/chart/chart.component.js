@@ -58,7 +58,8 @@ export class FtuiChart extends FtuiElement {
             type: 'time',
             time: {
               parser: 'yyyy-MM-dd_HH:mm:ss',
-              displayFormats: { millisecond: 'HH:mm:ss.SSS', second: 'HH:mm:ss', minute: 'HH:mm', hour: 'HH:mm', day: 'd. MMM', month: 'MMMM' }
+              displayFormats: { millisecond: 'HH:mm:ss.SSS', second: 'HH:mm:ss', minute: 'HH:mm', hour: 'HH:mm', day: 'd. MMM', month: 'MMMM' },
+              tooltipFormat: 'd.MM.yyyy HH:mm:ss',
             },
             gridLines: {
               color: getStylePropertyValue('--chart-grid-line-color', this) || getStylePropertyValue('--dark-color', this)
@@ -87,7 +88,8 @@ export class FtuiChart extends FtuiElement {
               autoSkipPadding: 30,
               font: {
                 size: getStylePropertyValue('--chart-tick-font-size', this) || 11
-              }
+              },
+              callback: val => val + this.yUnit,
             }
           },
           y1: {
@@ -105,7 +107,8 @@ export class FtuiChart extends FtuiElement {
               autoSkipPadding: 30,
               font: {
                 size: getStylePropertyValue('--chart-tick-font-size', this) || 11
-              }
+              },
+              callback: val => val + this.y1Unit,
             }
           }
         }
@@ -187,7 +190,9 @@ export class FtuiChart extends FtuiElement {
       noscale: false,
       noY: false,
       noY1: false,
-      noX: false
+      noX: false,
+      yUnit: '',
+      y1Unit: ''
     };
   }
 

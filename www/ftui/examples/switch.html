@@ -49,6 +49,13 @@
         <ftui-switch [color]="dummy2"></ftui-switch>
 
     </ftui-grid-tile>
+
+    <ftui-grid-tile row="1" col="7" height="1" width="2">
+      <header>AT</header>
+
+        <ftui-switch [value]="AtSeven | map('`Next.*`:active')" (value)="AtSeven" states="inactive,active"></ftui-switch>
+
+    </ftui-grid-tile>
   </ftui-grid>
 </body>
 

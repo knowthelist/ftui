@@ -4,7 +4,7 @@ import {
   log, error,
   dateFormat,
   getReadingID,
-  triggerEvent
+  triggerEvent, isAppVisible
 } from './ftui.helper.js';
 
 class FhemService {
@@ -122,12 +122,13 @@ class FhemService {
   refresh() {
     const now = Date.now() / 1000;
     if (
-      this.config.refresh.filter
-      && this.config.refresh.filter.length < 2
+      !isAppVisible() ||
+      (this.config.refresh.filter
+      && this.config.refresh.filter.length < 2)
       || (now - this.states.lastRefresh) < this.config.refreshInterval
     ) { return; }
     log(1, '[refresh] start now');
-    //console.log('[refresh] start now', this.states.isOffline);
+    console.log(new Date(), '[refresh] start now isOffline:', this.states.isOffline, 'isAppVisible()', isAppVisible());
     window.performance.mark('start refresh');
     this.states.lastRefresh = now;
 
@@ -228,6 +229,7 @@ class FhemService {
   }
 
   connect() {
+    console.log('connect visible:', isAppVisible());
     if (this.states.connection.websocket) {
       log(3, '[websocket] a valid instance has been found - do not newly connect');
       return;
@@ -248,7 +250,7 @@ class FhemService {
       if (event.code == 1006) {
         reason = 'The connection was closed abnormally, e.g., without sending or receiving a Close control frame';
       } else { reason = 'Unknown reason'; }
-      log(1, '[websocket] closed! reason=' + reason + ' - URL = ' + event.target.url );
+      log(1, '[websocket] closed! reason=' + reason + ' - URL = ' + event.target.url);
       // if current socket closes then restart websocket
       if (event.target.url === this.states.connection.URL) {
         this.debugEvents.publish('Disconnected from FHEM<br>' + reason + '<br>Retry in 5s');
@@ -284,13 +286,18 @@ class FhemService {
   }
 
   reconnect(delay = 0) {
-    log(2, '[websocket] restart connection');
-    clearTimeout(this.states.connection.timer);
-    this.disconnect();
+    if (isAppVisible()) {
+      log(2, '[websocket] restart connection');
+      clearTimeout(this.states.connection.timer);
+      this.disconnect();
 
-    this.states.connection.timer = setTimeout(() => {
-      this.connect();
-    }, delay);
+      this.states.connection.timer = setTimeout(() => {
+        this.connect();
+      }, delay);
+    } else {
+      log(2, '[websocket] app is not visible => do not restart connection');
+    }
+
   }
 
   handleFhemEvent(data) {
@@ -389,8 +396,8 @@ class FhemService {
 
   healthCheck() {
     const timeDiff = new Date() - this.states.connection.lastEventTimestamp;
-    //console.log( timeDiff / 1000 )
-    if (timeDiff / 1000 > 6) {
+    console.log('[healthCheck] ', new Date(), timeDiff / 1000, 'isAppVisible():', isAppVisible())
+    if (isAppVisible() && timeDiff / 1000 > 6) {
       log(1, 'No update event since ' + timeDiff / 1000 + 'secondes -> restart connection');
       this.reconnect();
       this.refresh();

@@ -96,7 +96,9 @@ export class FtuiBinding {
         if (ftuiHelper.isDefined(value)) {
           let filteredValue = this.filterValue(value, options.filter);
           if (ftuiHelper.isDefined(filteredValue)) {
-            filteredValue = String(filteredValue).replace(/\$value/g, value);
+            if (typeof filteredValue === 'string') {
+              filteredValue = filteredValue.replace(/\$value/g, value);
+            }
             if (String(this.element[attribute]) !== String(filteredValue)) {
               ftuiHelper.log(1, `${this.element.id}  -  onReadingEvent: set this.${attribute}=${filteredValue}`);
               // change element's property

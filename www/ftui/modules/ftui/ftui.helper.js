@@ -161,6 +161,10 @@ export function precision(a) {
 
 // checker
 
+export function isAppVisible() {
+  return document.visibilityState === 'visible';
+}
+
 export function isVisible(element) {
   return (element.offsetParent !== null);
 }

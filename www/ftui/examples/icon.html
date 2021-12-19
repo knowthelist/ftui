@@ -130,7 +130,7 @@
     <ftui-grid-tile row="7" col="10" height="2" width="3">
       <header>$VALUE</header>
 
-      <ftui-label [text]="dummy2:state"></ftui-label>
+      <ftui-label [text]="dummy2"></ftui-label>
       <ftui-label [text]="dummy2 | map('`0|1|2|3`: battery-$value, `.*`: battery')"></ftui-label>
       <ftui-icon [name]="dummy2 | map('`0|1|2|3`: battery-$value, `.*`: battery')"></ftui-icon>
     </ftui-grid-tile>

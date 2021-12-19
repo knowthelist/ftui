@@ -200,7 +200,7 @@
           </ftui-button>
 
           <ftui-row height="40%">
-            <ftui-label [text]="Sonos_Play5:infoSummarize1"></ftui-label>
+            <ftui-label [text]="Sonos_Play5:infoSummarize1" scroll></ftui-label>
           </ftui-row>
 
         </ftui-column>
@@ -434,8 +434,11 @@
         <ftui-view-item>Decke
           <ftui-switch [(value)]="WohnzimmerDeckenLicht" slot="end"></ftui-switch>
         </ftui-view-item>
-        <ftui-view-item>KüchenSchrank
+        <ftui-view-item>Spüle oben
           <ftui-switch [(value)]="KNX_KuechenSchrankLicht" slot="end"></ftui-switch>
+        </ftui-view-item>
+        <ftui-view-item>Spüle unten
+          <ftui-switch [(value)]="KuechenArbeitsLicht" slot="end"></ftui-switch>
         </ftui-view-item>
         <ftui-view-item>Schrank
           <ftui-switch [(value)]="SchrankLicht_Sw" slot="end"></ftui-switch>
