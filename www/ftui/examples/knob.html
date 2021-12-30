@@ -110,7 +110,7 @@
 
     <ftui-grid-tile row="3" col="5" height="1" width="1">
       <header>STEPS</header>
-      <ftui-knob value="1.2" max="2.0" min="1.0" ticks="6" type="scale" has-value-text has-scale-text></ftui-knob>
+      <ftui-knob value="1.2" min="1.0" max="2.0" ticks="10" type="scale" has-value-text has-scale-text></ftui-knob>
     </ftui-grid-tile>
 
     <ftui-grid-tile row="4" col="1" height="1" width="1">
@@ -136,6 +136,13 @@
     <ftui-grid-tile row="4" col="5" height="1" width="1">
       <header>desired-value</header>
       <ftui-knob value="33" desired-value="20" type="handle" has-desired has-value-text></ftui-knob>
+    </ftui-grid-tile>
+
+
+    <ftui-grid-tile row="5" col="1" height="1" width="1">
+      <header>1/2 STEP</header>
+      <ftui-knob value="18" max="26" scale-decimals="0" step="0.5" min="18" ticks="8" 
+      value-size="2em" type="scale" has-value-text has-scale-text></ftui-knob>
     </ftui-grid-tile>
 
   </ftui-grid>

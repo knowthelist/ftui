@@ -8,7 +8,7 @@
 */
 
 import { FtuiElement } from '../element.component.js';
-import {countDecimals, round} from '../../modules/ftui/ftui.helper.js';
+import { countDecimals, round } from '../../modules/ftui/ftui.helper.js';
 
 
 export class FtuiKnob extends FtuiElement {
@@ -52,8 +52,15 @@ export class FtuiKnob extends FtuiElement {
     this.svg.addEventListener('touchmove', (evt) => this.onPointerMoveEvent(evt), false);
     this.svg.addEventListener('mousemove', (evt) => this.onPointerMoveEvent(evt), false);
 
-    if (this.decimals < 0 ) {
-      this.decimals = countDecimals(this.getAttribute('max'));
+    if (this.step < 0) {
+      const range = Math.abs(this.max - this.min);
+      this.step = range <= 1 ? (this.max - this.min) / this.ticks : 1;
+    }
+    if (this.valueDecimals < 0) {
+      this.valueDecimals = countDecimals(this.step);
+    }
+    if (this.scaleDecimals < 0) {
+      this.scaleDecimals = countDecimals(this.step);
     }
     this.draw(this.valueToAngle(this.value));
   }
@@ -85,7 +92,9 @@ export class FtuiKnob extends FtuiElement {
       max: 100,
       offsetY: 20,
       ticks: 10,
-      decimals: -1,
+      step: -1,
+      valueDecimals: -1,
+      scaleDecimals: -1,
       height: '150',
       width: '150',
       strokeWidth: 15,
@@ -132,7 +141,7 @@ export class FtuiKnob extends FtuiElement {
               this.hasHandle = false;
               this.hasScale = true;
               this.hasNeedle = true;
-              this.strokeWidth = 15;
+              this.strokeWidth = 10;
               break;
             default:
               break;
@@ -237,7 +246,7 @@ export class FtuiKnob extends FtuiElement {
             y: this.centerY + textRadius * Math.sin(a * this.radian)
           };
           this.setSVGAttributes(scaleText, scaleTextObj);
-          scaleText.textContent = this.angleToValue(a).toFixed(this.decimals);
+          scaleText.textContent = this.angleToValue(a).toFixed(this.scaleDecimals);
           this.scale.appendChild(scaleText);
         }
       }
@@ -264,11 +273,11 @@ export class FtuiKnob extends FtuiElement {
     const nx1 = this.centerX + lowerRadius * Math.cos((angle - expansion) * this.radian);
     const ny1 = this.centerY + lowerRadius * Math.sin((angle - expansion) * this.radian);
 
-    const nx2 = this.centerX + this.radius * Math.cos((angle - 3) * this.radian);
-    const ny2 = this.centerY + this.radius * Math.sin((angle - 3) * this.radian);
+    const nx2 = this.centerX + (this.radius + 5) * Math.cos((angle - 3) * this.radian);
+    const ny2 = this.centerY + (this.radius + 5) * Math.sin((angle - 3) * this.radian);
 
-    const nx3 = this.centerX + this.radius * Math.cos((angle + 3) * this.radian);
-    const ny3 = this.centerY + this.radius * Math.sin((angle + 3) * this.radian);
+    const nx3 = this.centerX + (this.radius + 5) * Math.cos((angle + 3) * this.radian);
+    const ny3 = this.centerY + (this.radius + 5) * Math.sin((angle + 3) * this.radian);
 
     const nx4 = this.centerX + lowerRadius * Math.cos((angle + expansion) * this.radian);
     const ny4 = this.centerY + lowerRadius * Math.sin((angle + expansion) * this.radian);
@@ -306,7 +315,7 @@ export class FtuiKnob extends FtuiElement {
       'alignment-baseline': 'middle'
     };
     this.setSVGAttributes(scaleText, scaleTextObj);
-    scaleText.textContent = this.angleToValue(angle).toFixed(this.decimals);
+    scaleText.textContent = this.angleToValue(angle).toFixed(this.valueDecimals);
     scaleText.style.fontSize = this.valueSize;
     this.scale.appendChild(scaleText);
   }
@@ -348,9 +357,8 @@ export class FtuiKnob extends FtuiElement {
     const max = parseFloat(this.max);
     let normAngle = (angle - 360 >= this.startAngle) ? angle - 360 : angle;
     normAngle = (normAngle < this.startAngle) ? this.startAngle : (normAngle > this.endAngle) ? this.endAngle : normAngle;
-    const value = round((((normAngle - this.startAngle) * (max - min)) / this.rangeAngle) + min, this.decimals);
-
-    return value
+    const value = round((((normAngle - this.startAngle) * (max - min)) / this.rangeAngle) + min, this.valueDecimals);
+    return value;
   }
 
   describeArc(x, y, radius, startArc, endArc) {
@@ -380,7 +388,11 @@ export class FtuiKnob extends FtuiElement {
     const y = Math.round(clientY - clientRect.top - this.centerY);
     let angle = Math.atan2(y, x) * 180 / Math.PI;
     angle = angle < 0 ? angle + 360 : angle;
-    return Math.floor(angle);
+    const min = this.startAngle < 0 ? this.startAngle + 360 : this.startAngle;
+    const step = (this.rangeAngle / ((this.max - this.min) / this.step));
+    const offset = min - ((Math.ceil(min / step)) * step);
+    const out = ((Math.ceil(angle / step)) * step) + offset;
+    return Math.floor(out);
   }
 
   clearRect(node) {

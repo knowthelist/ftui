@@ -39,7 +39,8 @@ class FtuiTab extends FtuiButton {
       group: 'default',
       color: '',
       fill: 'clear',
-      view: ''
+      view: '',
+      timeout: 0,
     };
   }
 
@@ -68,7 +69,7 @@ class FtuiTab extends FtuiButton {
     });
 
     // change tab title
-    ftui.selectAll(`*[tab-group="${this.group}"]`)
+    ftui.selectAll(`ftui-tab[group="${this.group}"]`)
       .forEach(elem => {
         elem.setAttribute('text', this.title || this.view);
       });
@@ -76,6 +77,7 @@ class FtuiTab extends FtuiButton {
     // activate clicked tab
     this.submitChange('value', 'on');
     this.active = true;
+    this.startTimeout();
 
     // emit event
     ftui.triggerEvent('ftuiVisibilityChanged');
@@ -88,6 +90,20 @@ class FtuiTab extends FtuiButton {
           this.onClicked();
         }
         break;
+    }
+  }
+
+  goHome() {
+    const homeElem = ftui.selectOne(`ftui-tab[group="${this.group}"]:first-of-type`);
+    if (homeElem) {
+      homeElem.onClicked();
+    }
+  }
+
+  startTimeout() {
+    clearTimeout(this.timer);
+    if (this.timeout) {
+      this.timer = setTimeout(() => this.goHome(), this.timeout * 1000);
     }
   }
 }

@@ -10,6 +10,7 @@
 import { FtuiElement } from '../element.component.js';
 // eslint-disable-next-line no-unused-vars
 import { FtuiSegmentButton } from './segment-button.component.js';
+import { getStylePropertyValue } from '../../modules/ftui/ftui.helper.js';
 
 class FtuiSegment extends FtuiElement {
 
@@ -97,7 +98,8 @@ class FtuiSegment extends FtuiElement {
       this.currentIndex = 0;
     }
     // pill position
-    this.selector.style.transform = 'translateX(' + ((this.selector.scrollWidth + 0.5)  * this.currentIndex) + 'px)';
+    const width = Number(getStylePropertyValue('width',this.selector).replace('px','')) - 0.5;
+    this.selector.style.transform = 'translateX(' + (width  * this.currentIndex) + 'px)';
     // active button
     this.segments.forEach((segment, index) => {
       if (this.currentIndex === index) {
