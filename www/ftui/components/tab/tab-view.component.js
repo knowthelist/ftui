@@ -8,11 +8,14 @@
 */
 
 import { FtuiElement } from '../element.component.js';
+import { selectAll } from '../../modules/ftui/ftui.helper.js';
 
 export class FtuiTabView extends FtuiElement {
 
   constructor() {
     super(FtuiTabView.properties);
+
+    this.addEventListener('click', this.onClicked);
   }
 
   template() {
@@ -36,6 +39,14 @@ export class FtuiTabView extends FtuiElement {
 
   static get observedAttributes() {
     return [...this.convertToAttributes(FtuiTabView.properties), ...super.observedAttributes];
+  }
+
+  onClicked() {
+    // restart all goHome timeouts
+    selectAll(`ftui-tab[group="${this.group}"]`)
+      .forEach(elem => {
+        elem.startTimeout();
+      });
   }
 
 }

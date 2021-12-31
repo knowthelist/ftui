@@ -8,7 +8,7 @@
 */
 
 import { FtuiButton } from '../button/button.component.js';
-import * as ftui from '../../modules/ftui/ftui.helper.js';
+import { selectAll, selectOne, triggerEvent } from '../../modules/ftui/ftui.helper.js';
 // eslint-disable-next-line no-unused-vars
 import { FtuiTabView } from './tab-view.component.js';
 
@@ -50,7 +50,7 @@ class FtuiTab extends FtuiButton {
 
   onClicked() {
     // hide all views and show selected view
-    ftui.selectAll('ftui-tab-view').forEach(elem => {
+    selectAll('ftui-tab-view').forEach(elem => {
       if (elem.group === this.group) {
         if (elem.id !== this.view) {
           elem.setAttribute('hidden', '');
@@ -61,15 +61,16 @@ class FtuiTab extends FtuiButton {
     });
 
     // de-activated all tabs
-    ftui.selectAll('ftui-tab').forEach(elem => {
+    selectAll('ftui-tab').forEach(elem => {
       if (elem.group === this.group && elem.id !== this.id) {
         elem.value = 'off';
         elem.active = false;
+        elem.clearTimeout();
       }
     });
 
     // change tab title
-    ftui.selectAll(`ftui-tab[group="${this.group}"]`)
+    selectAll(`ftui-tab[group="${this.group}"]`)
       .forEach(elem => {
         elem.setAttribute('text', this.title || this.view);
       });
@@ -80,7 +81,7 @@ class FtuiTab extends FtuiButton {
     this.startTimeout();
 
     // emit event
-    ftui.triggerEvent('ftuiVisibilityChanged');
+    triggerEvent('ftuiVisibilityChanged');
   }
 
   onAttributeChanged(name, newValue, oldValue) {
@@ -94,14 +95,18 @@ class FtuiTab extends FtuiButton {
   }
 
   goHome() {
-    const homeElem = ftui.selectOne(`ftui-tab[group="${this.group}"]:first-of-type`);
+    const homeElem = selectOne(`ftui-tab[group="${this.group}"]:first-of-type`);
     if (homeElem) {
       homeElem.onClicked();
     }
   }
 
+  clearTimeout() {
+    window.clearTimeout(this.timer);
+  }
+
   startTimeout() {
-    clearTimeout(this.timer);
+    this.clearTimeout();
     if (this.timeout) {
       this.timer = setTimeout(() => this.goHome(), this.timeout * 1000);
     }

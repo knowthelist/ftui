@@ -38,8 +38,8 @@
         <ftui-tab view="View3" >
           <ftui-label size="5">Tab3</ftui-label>
         </ftui-tab>
-        <ftui-tab view="View4" fill="solid">Tab4</ftui-tab>
-        <ftui-tab view="View5" fill="solid" timeout="3">Tab5</ftui-tab>
+        <ftui-tab view="View4" fill="solid" timeout="10">Tab4</ftui-tab>
+        <ftui-tab view="View5" fill="solid" timeout="5">Tab5</ftui-tab>
         <ftui-tab view="View6" fill="solid" shape="circle">
           <ftui-icon name="road"></ftui-icon>
         </ftui-tab>
@@ -76,6 +76,8 @@
     <ftui-tab-view id="View5">
       <ftui-grid-tile row="1" col="2" height="5" width="9">
         <div class="size-10">Tab-View5</div>
+        <ftui-dropdown list=",item1,item2,item3" value="item2"></ftui-dropdown>
+        <ftui-button>DoSomething</ftui-button>
       </ftui-grid-tile>
     </ftui-tab-view>
 
