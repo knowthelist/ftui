@@ -43,7 +43,7 @@ export class FtuiTabView extends FtuiElement {
 
   onClicked() {
     // restart all goHome timeouts
-    selectAll(`ftui-tab[group="${this.group}"]`)
+    selectAll(`ftui-tab[group="${this.group}"][view="${this.id}"]`)
       .forEach(elem => {
         elem.startTimeout();
       });

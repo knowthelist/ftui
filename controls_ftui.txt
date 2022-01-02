@@ -57,9 +57,9 @@ UPD 2021-12-02_14:07:06 1269 www/ftui/components/swiper/swiper.component.css
 UPD 2021-12-02_14:11:54 5437 www/ftui/components/swiper/swiper.component.js
 UPD 2021-11-27_00:07:16 1335 www/ftui/components/switch/switch.component.css
 UPD 2021-03-01_20:28:00 1091 www/ftui/components/switch/switch.component.js
-UPD 2021-12-31_15:33:17 1176 www/ftui/components/tab/tab-view.component.js
+UPD 2022-01-02_12:44:00 1195 www/ftui/components/tab/tab-view.component.js
 UPD 2021-12-08_16:56:12 498 www/ftui/components/tab/tab.component.css
-UPD 2021-12-31_15:33:17 2751 www/ftui/components/tab/tab.component.js
+UPD 2022-01-02_13:00:03 2845 www/ftui/components/tab/tab.component.js
 UPD 2021-10-17_21:34:53 5376 www/ftui/components/timeset/timeset.component.js
 UPD 2020-12-31_16:39:02 524 www/ftui/components/title/title.component.js
 UPD 2021-12-04_17:57:09 1981 www/ftui/components/view/view-item.component.css
@@ -125,7 +125,7 @@ UPD 2021-11-30_17:17:52 2816 www/ftui/examples/tab-content.html
 UPD 2021-12-08_23:45:05 2924 www/ftui/examples/tab-segment-local.html
 UPD 2021-11-30_17:17:52 2575 www/ftui/examples/tab-segment.html
 UPD 2021-11-30_17:17:52 2776 www/ftui/examples/tab-trans.html
-UPD 2021-12-31_15:31:30 2767 www/ftui/examples/tab.html
+UPD 2022-01-02_13:00:26 2767 www/ftui/examples/tab.html
 UPD 2021-11-30_23:24:56 2997 www/ftui/examples/themes.html
 UPD 2021-10-17_21:39:50 1601 www/ftui/examples/timeset.html
 UPD 2021-10-13_11:05:41 3841 www/ftui/examples/weather.html

@@ -95,7 +95,10 @@ class FtuiTab extends FtuiButton {
   }
 
   goHome() {
-    const homeElem = selectOne(`ftui-tab[group="${this.group}"]:first-of-type`);
+    let homeElem = selectOne(`ftui-tab[group="${this.group}"][home]`);
+    if (!homeElem) {
+      homeElem = selectOne(`ftui-tab[group="${this.group}"]:first-of-type`);
+    }
     if (homeElem) {
       homeElem.onClicked();
     }
