@@ -19,10 +19,9 @@ class FtuiTab extends FtuiButton {
 
     super(Object.assign(FtuiTab.properties, properties));
 
-    this.addEventListener('click', this.onClicked);
     window.customElements.whenDefined('ftui-tab-view').then(() => {
       if (this.hasAttribute('active')) {
-        this.onClicked();
+        this.onClickEvent();
       }
     })
 
@@ -48,32 +47,22 @@ class FtuiTab extends FtuiButton {
     return [...this.convertToAttributes(FtuiTab.properties), ...super.observedAttributes];
   }
 
-  onClicked() {
+  onClickEvent() {
     // hide all views and show selected view
-    selectAll('ftui-tab-view').forEach(elem => {
-      if (elem.group === this.group) {
-        if (elem.id !== this.view) {
-          elem.setAttribute('hidden', '');
-        } else {
-          elem.removeAttribute('hidden');
-        }
+    selectAll(`ftui-tab-view[group="${this.group}"]`).forEach(elem => {
+      if (elem.id !== this.view) {
+        elem.setAttribute('hidden', '');
+      } else {
+        elem.removeAttribute('hidden');
       }
     });
 
     // de-activated all tabs
-    selectAll('ftui-tab').forEach(elem => {
-      if (elem.group === this.group && elem.id !== this.id) {
-        elem.value = 'off';
-        elem.active = false;
-        elem.clearTimeout();
-      }
+    selectAll(`ftui-tab[group="${this.group}"][active]`).forEach(elem => {
+      elem.submitChange('value', 'off');
+      elem.active = false;
+      elem.clearTimeout();
     });
-
-    // change tab title
-    selectAll(`ftui-tab[group="${this.group}"]`)
-      .forEach(elem => {
-        elem.setAttribute('text', this.title || this.view);
-      });
 
     // activate clicked tab
     this.submitChange('value', 'on');
@@ -88,7 +77,7 @@ class FtuiTab extends FtuiButton {
     switch (name) {
       case 'value':
         if (newValue === 'on' && oldValue !== 'on') {
-          this.onClicked();
+          this.onClickEvent();
         }
         break;
     }
@@ -100,7 +89,7 @@ class FtuiTab extends FtuiButton {
       homeElem = selectOne(`ftui-tab[group="${this.group}"]:first-of-type`);
     }
     if (homeElem) {
-      homeElem.onClicked();
+      homeElem.onClickEvent();
     }
   }
 
