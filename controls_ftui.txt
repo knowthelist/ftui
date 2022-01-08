@@ -17,7 +17,7 @@ UPD 2021-01-28_21:05:34 574 www/ftui/components/column/column.component.js
 UPD 2021-12-02_14:03:47 86 www/ftui/components/content/content.component.css
 UPD 2021-12-09_23:26:15 2763 www/ftui/components/content/content.component.js
 UPD 2021-10-03_12:43:52 4159 www/ftui/components/departure/departure.component.css
-UPD 2021-10-08_11:29:53 12357 www/ftui/components/departure/departure.component.js
+UPD 2022-01-08_14:06:50 12356 www/ftui/components/departure/departure.component.js
 UPD 2021-12-10_19:00:08 606 www/ftui/components/dropdown/dropdown.component.css
 UPD 2021-10-11_22:55:43 2102 www/ftui/components/dropdown/dropdown.component.js
 UPD 2021-10-16_14:12:04 4708 www/ftui/components/element.component.js
@@ -31,7 +31,7 @@ UPD 2022-01-07_08:13:43 3297 www/ftui/components/image/image.component.js
 UPD 2021-02-03_14:48:37 8329 www/ftui/components/image/image_not_available.js
 UPD 2021-11-06_00:28:53 2354 www/ftui/components/input/input.component.js
 UPD 2021-10-03_12:50:26 997 www/ftui/components/knob/knob.component.css
-UPD 2022-01-08_12:59:47 13974 www/ftui/components/knob/knob.component.js
+UPD 2022-01-08_13:45:59 14025 www/ftui/components/knob/knob.component.js
 UPD 2021-12-10_13:17:22 3487 www/ftui/components/label/label.component.js
 UPD 2021-02-01_19:44:36 1816 www/ftui/components/main/main.component.js
 UPD 2021-11-21_18:01:44 180 www/ftui/components/medialist/album_icon.svg
@@ -100,7 +100,7 @@ UPD 2021-12-09_17:19:30 717 www/ftui/examples/contents/content-weather-item.html
 UPD 2021-10-19_19:05:47 5317 www/ftui/examples/contents/content-weather.html
 UPD 2021-12-12_15:47:48 2518 www/ftui/examples/contents/mobile-view-sonos.html
 UPD 2021-02-01_19:44:46 189 www/ftui/examples/contents/mobile-view1.html
-UPD 2021-10-03_12:43:52 2749 www/ftui/examples/departure.html
+UPD 2022-01-08_14:06:50 2747 www/ftui/examples/departure.html
 UPD 2021-02-15_21:49:38 3847 www/ftui/examples/dropdown.html
 UPD 2021-12-01_20:36:41 7626 www/ftui/examples/grid.html
 UPD 2021-12-12_12:00:16 5841 www/ftui/examples/icon.html

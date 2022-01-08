@@ -118,6 +118,7 @@ export class FtuiKnob extends FtuiElement {
       unitOffsetX: 0,
       valueOffsetY: 0,
       valueOffsetX: 0,
+      scaleTextOffset: 4,
     };
   }
 
@@ -227,7 +228,7 @@ export class FtuiKnob extends FtuiElement {
   drawScale() {
     const upperRadius = this.radius + 5;
     const lowerRadius = this.radius - this.strokeWidth
-    const textRadius = this.radius + this.strokeWidth + 4
+    const textRadius = this.radius + this.strokeWidth + this.scaleTextOffset
 
     this.clearRect(this.scale);
     if (this.hasScale) {
@@ -240,7 +241,7 @@ export class FtuiKnob extends FtuiElement {
           x1: this.centerX + upperRadius * Math.cos(angleInRadians),
           y1: this.centerY + upperRadius * Math.sin(angleInRadians),
           x2: this.centerX + lowerRadius * Math.cos(angleInRadians),
-          y2: this.centerY + lowerRadius * Math.sin(angleInRadians)
+          y2: this.centerY + lowerRadius * Math.sin(angleInRadians),
         };
         this.setSVGAttributes(scaleLine, scaleLineObj);
         this.scale.appendChild(scaleLine);
@@ -251,7 +252,7 @@ export class FtuiKnob extends FtuiElement {
           const scaleTextObj = {
             class: 'scale',
             x: this.centerX + textRadius * Math.cos(a * this.radian),
-            y: this.centerY + textRadius * Math.sin(a * this.radian)
+            y: this.centerY + textRadius * Math.sin(a * this.radian),
           };
           this.setSVGAttributes(scaleText, scaleTextObj);
           scaleText.textContent = this.angleToValue(a).toFixed(this.scaleDecimals);
@@ -320,7 +321,7 @@ export class FtuiKnob extends FtuiElement {
       class: 'value',
       x: this.centerX + this.valueOffsetX,
       y: this.centerY + this.valueOffsetY,
-      'alignment-baseline': 'middle'
+      'alignment-baseline': 'middle',
     };
     this.setSVGAttributes(scaleText, scaleTextObj);
     scaleText.textContent = this.angleToValue(angle).toFixed(this.valueDecimals);
@@ -334,7 +335,7 @@ export class FtuiKnob extends FtuiElement {
       class: 'unit',
       x: this.centerX + this.unitOffsetX,
       y: this.centerY + this.unitOffsetY,
-      'alignment-baseline': 'middle'
+      'alignment-baseline': 'middle',
     };
     this.setSVGAttributes(scaleText, scaleTextObj);
     scaleText.textContent = this.unit;
@@ -349,7 +350,7 @@ export class FtuiKnob extends FtuiElement {
 
     return {
       x: centerX + (radius * Math.cos(angleInRadians)),
-      y: centerY + (radius * Math.sin(angleInRadians))
+      y: centerY + (radius * Math.sin(angleInRadians)),
     };
   }
 
@@ -382,7 +383,7 @@ export class FtuiKnob extends FtuiElement {
 
     const d = [
       'M', start.x, start.y,
-      'A', radius, radius, 0, largeArcFlag, 0, end.x, end.y
+      'A', radius, radius, 0, largeArcFlag, 0, end.x, end.y,
     ].join(' ');
 
     return d;
