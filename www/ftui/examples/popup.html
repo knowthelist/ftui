@@ -89,14 +89,20 @@
 
     </ftui-grid-tile>
 
+    <ftui-grid-tile row="1" col="5" height="1" width="1">
+      <header>OPEN</header>
+      <ftui-label @click="pop1.open()">Open Pop1</ftui-label>
+    </ftui-grid-tile>
+
   </ftui-grid>
 
   <ftui-popup id="pop1" timeout="0">
     <header>Popup 1</header>
     <ftui-button popup-close>close</ftui-button>
+    <ftui-label @click="pop1.close()">Close Pop1</ftui-label>
   </ftui-popup>
   
-  <ftui-popup id="pop2" [open]="dummy2 | map('on: true, off: false')" timeout="0">
+  <ftui-popup id="pop2" [active]="dummy2 | map('on: true, off: false')" timeout="0">
     <header>Popup 2</header>
     <ftui-row>
       <ftui-column>

@@ -762,6 +762,6 @@ ftui-circlemenu~ftui-badge, ftui-icon~ftui-badge {
   z-index: 1;
 }
 
-[popup-target], [onclick] {
+[popup-target], [onclick], [\40 click] {
   cursor: pointer;
 }

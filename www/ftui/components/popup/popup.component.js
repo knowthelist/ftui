@@ -61,7 +61,7 @@ export class FtuiPopup extends FtuiElement {
       width: '50%',
       left: '',
       top: '',
-      open: false,
+      active: false,
       trigger: '',
       timeout: 10,
       hidden: true,
@@ -105,7 +105,7 @@ export class FtuiPopup extends FtuiElement {
       case 'top':
         this.arrangeWindow();
         break;
-      case 'open':
+      case 'active':
         this.setState(newValue !== null);
         break;
       case 'trigger':
@@ -133,6 +133,14 @@ export class FtuiPopup extends FtuiElement {
       this.setAttribute('hidden', '');
       this.emitEvent('close');
     }
+  }
+
+  open() {
+    this.setState(true);
+  }
+
+  close() {
+    this.setState(false);
   }
 
   startTimeout() {
