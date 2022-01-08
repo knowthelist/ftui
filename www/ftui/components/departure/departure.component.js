@@ -88,7 +88,7 @@ export class FtuiDeparture extends FtuiElement {
       list: '',
       icon: 'bus',
       station: 'Haltestelle',
-      refbutton: 'refresh1',
+      refbutton: 'refresh',
       color: 'Default',
       bgcolor: '',
       depcolor: '',
