@@ -28,7 +28,7 @@ export const providerSet = {
     klar: 'CLEAR',
   },
   proplantaICON: {
-    /* Day Icons */ 
+    /* Day Icons */
     t1: 'CLOUDLESS',
     t2: 'PARTLY_CLOUDY',
     t3: 'MOSTLY_CLOUDY',
@@ -61,9 +61,9 @@ export const providerSet = {
     na: 'NA',
   },
   proplantaICON_LONG: {
-    /* Day Icons */ 
-    'https://www.proplanta.de/wetterdaten/images/symbole/t1.gif': 'CLOUDLESS',	
-    'https://www.proplanta.de/wetterdaten/images/symbole/t2.gif': 'PARTLY_CLOUDY',	
+    /* Day Icons */
+    'https://www.proplanta.de/wetterdaten/images/symbole/t1.gif': 'CLOUDLESS',
+    'https://www.proplanta.de/wetterdaten/images/symbole/t2.gif': 'PARTLY_CLOUDY',
     'https://www.proplanta.de/wetterdaten/images/symbole/t3.gif': 'MOSTLY_CLOUDY',
     'https://www.proplanta.de/wetterdaten/images/symbole/t4.gif': 'CLOUDY',
     'https://www.proplanta.de/wetterdaten/images/symbole/t5.gif': 'OVERCAST',
@@ -92,7 +92,7 @@ export const providerSet = {
     'https://www.proplanta.de/wetterdaten/images/symbole/n13.gif': 'FOGGY_NIGHT',
     'https://www.proplanta.de/wetterdaten/images/symbole/n14.gif': 'DRIZZLE_NIGHT',
     na: 'NA',
-  }
+  },
 }
 
 export const iconSet = {
@@ -194,7 +194,7 @@ export const iconSet = {
     DRIZZLE_NIGHT:'./icons/weather/bas/bas_drizzle.svg',
     CLEAR: './icons/weather/bas/bas_clear-night.svg',
     NA:'./icons/none.svg',
-  },  
+  },
   basfill: {
     CLOUDLESS:'./icons/weather/bas/fill/all/clear-day.svg',
     SUNNY:'./icons/weather/bas/fill/all/clear-day.svg',
@@ -291,7 +291,7 @@ export const iconSet = {
     THUNDERSTORM: './icons/lightning1.svg',
     SNOW: './icons/snowy2.svg',
     SCATTERED_THUNDERSTORM: './icons/sunny-sleet-storm.svg',
-    HAZE: './icons/weather.svg',   
+    HAZE: './icons/weather.svg',
     CLOUDLESS_NIGHT: './icons/moon.svg',
     FAIR_NIGHT: './icons/moon.svg',
     PARTLY_CLOUDY_NIGHT: './icons/cloud1.svg',
@@ -310,7 +310,7 @@ export const iconSet = {
     FOGGY_NIGHT: './icons/lines.svg',
     DRIZZLE_NIGHT: './icons/rainy.svg',
     NA: './icons/none.svg',
-    CLEAR: './icons/moon.svg',   
+    CLEAR: './icons/moon.svg',
   },
   weathericons: {
     CLEAR: './icons/weather/wi/wi-night-clear.svg',
@@ -340,5 +340,5 @@ export const iconSet = {
     THUNDERSTORM_NIGHT: './icons/weather/wi/wi-night-alt-thunderstorm.svg',
     FOGGY_NIGHT: './icons/weather/wi/wi-night-fog.svg',
     NA: './icons/weather/wi/wi-na.svg',
-  }
+  },
 }
