@@ -37,7 +37,7 @@ export class FtuiButtonNice extends FtuiElement {
     return {
       icon: 'lightbulb',
       get: '',
-      set: ''
+      set: '',
     };
   }
 }

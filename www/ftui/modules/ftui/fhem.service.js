@@ -4,7 +4,7 @@ import {
   log, error,
   dateFormat,
   getReadingID,
-  triggerEvent, isAppVisible
+  triggerEvent, isAppVisible,
 } from './ftui.helper.js';
 
 class FhemService {
@@ -18,7 +18,7 @@ class FhemService {
       refreshInterval: 0,
       refresh: {},
       update: {
-        filter: ''
+        filter: '',
       },
     };
     this.states = {
@@ -29,13 +29,13 @@ class FhemService {
         lastTimestamp: new Date(),
         timer: null,
         request: null,
-        result: null
+        result: null,
       },
       connection: {
         lastEventTimestamp: new Date(),
         timer: null,
-        result: null
-      }
+        result: null,
+      },
     };
 
     // define debounced function
@@ -140,7 +140,7 @@ class FhemService {
       this.sendCommand('jsonlist2 ' + this.config.refresh.filter)
         .then(res => res.json())
         .catch(error => this.debugEvents.publish('<u>FHEM Command failed</u><br>' + error))
-        .then(fhemJSON => this.parseRefreshResult(fhemJSON)
+        .then(fhemJSON => this.parseRefreshResult(fhemJSON),
         );
   }
 
@@ -202,7 +202,7 @@ class FhemService {
       if (typeof parameter !== 'object') {
         parameter = {
           'Value': parameter,
-          'Time': ''
+          'Time': '',
         };
       }
 
@@ -347,11 +347,11 @@ class FhemService {
       cmd: cmdline,
       asyncCmd: async,
       fwcsrf: this.config.csrf,
-      XHR: '1'
+      XHR: '1',
     };
     const options = {
       username: this.config.username,
-      password: this.config.password
+      password: this.config.password,
     };
     url.search = new URLSearchParams(params)
     log(1, '[fhemService] send to FHEM: ' + cmdline);
@@ -374,7 +374,7 @@ class FhemService {
 
   fetchCSrf() {
     return fetch(this.config.fhemDir + '?XHR=1', {
-      cache: 'no-cache'
+      cache: 'no-cache',
     })
       .then(response => {
         this.config.csrf = response.headers.get('X-FHEM-csrfToken');

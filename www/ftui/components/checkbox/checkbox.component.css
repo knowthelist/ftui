@@ -1,24 +1,17 @@
-:host {
-  --color-base: var(--checkbox-off-color);
-}
-
-
-
 .checkbox {
   display: block;
   overflow: hidden;
   cursor: pointer;
   border-radius: 2.25em;
-  color: var(--color-base);
+  color: var(--checkbox-off-color);
 }
 
 svg {
   width: var(--checkbox-width, 4em);
   height: var(--checkbox-height, 4em);
   fill: currentColor;
-  visibility: hidden;
 }
 
 .checkbox.checked svg {
-  visibility: visible;
+  color: var(--color-base);
 }

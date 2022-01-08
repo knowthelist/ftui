@@ -24,7 +24,7 @@ export class FtuiChart extends FtuiElement {
     this.configuration = {
       type: this.type,
       data: {
-        datasets: []
+        datasets: [],
       },
       options: {
         locale: window.ftuiApp ? ftuiApp.config.lang === 'de' ? 'de-DE' : 'en-US' : 'en-US',
@@ -37,8 +37,8 @@ export class FtuiChart extends FtuiElement {
           font: {
             size: getStylePropertyValue('--chart-title-font-size', this) || 16,
             style: getStylePropertyValue('--chart-title-font-style', this) || '500',
-            color: getStylePropertyValue('--chart-title-color', this) || getStylePropertyValue('--light-color', this)
-          }
+            color: getStylePropertyValue('--chart-title-color', this) || getStylePropertyValue('--light-color', this),
+          },
         },
         legend: {
           labels: {
@@ -47,10 +47,10 @@ export class FtuiChart extends FtuiElement {
             padding: 8,
             font: {
               size: getStylePropertyValue('--chart-legend-font-size', this) || 13,
-              color: getStylePropertyValue('--chart-legend-color', this) || getStylePropertyValue('--chart-text-color', this)
+              color: getStylePropertyValue('--chart-legend-color', this) || getStylePropertyValue('--chart-text-color', this),
             },
-            filter: item => item.text
-          }
+            filter: item => item.text,
+          },
         },
         scales: {
           x: {
@@ -62,16 +62,16 @@ export class FtuiChart extends FtuiElement {
               tooltipFormat: 'd.MM.yyyy HH:mm:ss',
             },
             gridLines: {
-              color: getStylePropertyValue('--chart-grid-line-color', this) || getStylePropertyValue('--dark-color', this)
+              color: getStylePropertyValue('--chart-grid-line-color', this) || getStylePropertyValue('--dark-color', this),
             },
             ticks: {
               maxRotation: 0,
               autoSkip: true,
               autoSkipPadding: 30,
               font: {
-                size: getStylePropertyValue('--chart-tick-font-size', this) || 11
-              }
-            }
+                size: getStylePropertyValue('--chart-tick-font-size', this) || 11,
+              },
+            },
           },
           y: {
             display: !this.noscale && !this.noY,
@@ -81,16 +81,16 @@ export class FtuiChart extends FtuiElement {
               labelString: this.yLabel,
             },
             gridLines: {
-              color: getStylePropertyValue('--chart-grid-line-color', this) || getStylePropertyValue('--dark-color', this)
+              color: getStylePropertyValue('--chart-grid-line-color', this) || getStylePropertyValue('--dark-color', this),
             },
             ticks: {
               autoSkip: true,
               autoSkipPadding: 30,
               font: {
-                size: getStylePropertyValue('--chart-tick-font-size', this) || 11
+                size: getStylePropertyValue('--chart-tick-font-size', this) || 11,
               },
               callback: val => val + this.yUnit,
-            }
+            },
           },
           y1: {
             display: (!this.noscale && !this.noY1),
@@ -100,19 +100,19 @@ export class FtuiChart extends FtuiElement {
               labelString: this.y1Label,
             },
             gridLines: {
-              color: getStylePropertyValue('--chart-grid-line-color', this) || getStylePropertyValue('--dark-color', this)
+              color: getStylePropertyValue('--chart-grid-line-color', this) || getStylePropertyValue('--dark-color', this),
             },
             ticks: {
               autoSkip: true,
               autoSkipPadding: 30,
               font: {
-                size: getStylePropertyValue('--chart-tick-font-size', this) || 11
+                size: getStylePropertyValue('--chart-tick-font-size', this) || 11,
               },
               callback: val => val + this.y1Unit,
-            }
-          }
-        }
-      }
+            },
+          },
+        },
+      },
     };
 
     if (getStylePropertyValue('--chart-font-family', this)) {
@@ -192,7 +192,7 @@ export class FtuiChart extends FtuiElement {
       noY1: false,
       noX: false,
       yUnit: '',
-      y1Unit: ''
+      y1Unit: '',
     };
   }
 

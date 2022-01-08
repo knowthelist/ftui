@@ -23,7 +23,7 @@ export class FtuiGrid extends FtuiElement {
       cols: 0,
       rows: 0,
       margin: 8,
-      resize: false
+      resize: false,
     };
     super(properties);
 

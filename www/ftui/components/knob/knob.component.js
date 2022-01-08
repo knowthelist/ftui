@@ -62,6 +62,10 @@ export class FtuiKnob extends FtuiElement {
     if (this.scaleDecimals < 0) {
       this.scaleDecimals = countDecimals(this.step);
     }
+    if (this.unit && this.unitOffsetY === 0 && this.valueOffsetY === 0) {
+      this.unitOffsetY = 20;
+      this.valueOffsetY = -5;
+    }
     this.draw(this.valueToAngle(this.value));
   }
 
@@ -110,6 +114,10 @@ export class FtuiKnob extends FtuiElement {
       color: 'primary',
       valueSize: '2.5em',
       unitSize: '1em',
+      unitOffsetY: 0,
+      unitOffsetX: 0,
+      valueOffsetY: 0,
+      valueOffsetX: 0,
     };
   }
 
@@ -310,8 +318,8 @@ export class FtuiKnob extends FtuiElement {
     const scaleText = document.createElementNS(this.NS, 'text');
     const scaleTextObj = {
       class: 'value',
-      x: this.centerX,
-      y: this.centerY + (this.unit ? -5 : 0),
+      x: this.centerX + this.valueOffsetX,
+      y: this.centerY + this.valueOffsetY,
       'alignment-baseline': 'middle'
     };
     this.setSVGAttributes(scaleText, scaleTextObj);
@@ -324,8 +332,8 @@ export class FtuiKnob extends FtuiElement {
     const scaleText = document.createElementNS(this.NS, 'text');
     const scaleTextObj = {
       class: 'unit',
-      x: this.centerX,
-      y: this.centerY + 20,
+      x: this.centerX + this.unitOffsetX,
+      y: this.centerY + this.unitOffsetY,
       'alignment-baseline': 'middle'
     };
     this.setSVGAttributes(scaleText, scaleTextObj);

@@ -31,7 +31,7 @@ export class FtuiCircleMenu extends FtuiElement {
       },
       select: () => {
         this.onClose();
-      }
+      },
     });
   }
 
@@ -76,7 +76,7 @@ export class FtuiCircleMenu extends FtuiElement {
       keepOpen: false,
       direction: 'full',
       opacity: 0.75,
-      timeout: 4
+      timeout: 4,
     }
   }
 

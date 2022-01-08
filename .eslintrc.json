@@ -28,6 +28,10 @@
         "allowTemplateLiterals": true
       }
     ],
+    "comma-dangle": [
+      "error",
+      "always-multiline"
+    ],
     "eol-last": [
       "error",
       "always"

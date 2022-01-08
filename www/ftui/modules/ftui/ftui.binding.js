@@ -48,7 +48,7 @@ export class FtuiBinding {
     this.isThirdPartyElement = false;
     this.config = {
       input: { readings: {} },
-      output: { attributes: {} }
+      output: { attributes: {} },
     };
     this.readAttributes(element.attributes);
 
@@ -141,7 +141,7 @@ export class FtuiBinding {
         invalid: false,
         value,
         time: now,
-        update: now
+        update: now,
       });
 
       // notify FHEM
@@ -188,7 +188,7 @@ export class FtuiBinding {
   initEventListener(attribute, targetAttributeName) {
     const name = ftuiHelper.toCamelCase(targetAttributeName);
     this.element.addEventListener(name,
-      this.evalInContext.bind(this.element, attribute.value)
+      this.evalInContext.bind(this.element, attribute.value),
     );
   }
 
@@ -270,7 +270,7 @@ export class FtuiBinding {
     return {
       readingID: ftuiHelper.getReadingID(device, reading),
       property: property || 'value',
-      filter
+      filter,
     }
   }
 
@@ -285,7 +285,7 @@ export class FtuiBinding {
       cmd,
       readingID: ftuiHelper.getReadingID(device, reading),
       value,
-      filter: attrTextItems.join('|')
+      filter: attrTextItems.join('|'),
     }
   }
 

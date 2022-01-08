@@ -57,7 +57,7 @@ export const providerSet = {
     n13: 'FOGGY_NIGHT',
     n14: 'DRIZZLE_NIGHT',
     na: 'NA',
-  }
+  },
 }
 
 export const iconSet = {
@@ -180,5 +180,5 @@ export const iconSet = {
     SCATTERED_THUNDERSTORM: './icons/sunny-sleet-storm.svg',
     NA: './icons/none.svg',
     CLEAR: './icons/moon.svg',
-  }
+  },
 }

@@ -110,7 +110,7 @@ export class FtuiImage extends FtuiElement {
     if (this.user.length) {
       const options = {
         username: this.user,
-        password: this.pass
+        password: this.pass,
       };
       const result = await fetch(src, options);
       const content = await result.blob();

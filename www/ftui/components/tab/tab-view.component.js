@@ -33,7 +33,7 @@ export class FtuiTabView extends FtuiElement {
   static get properties() {
     return {
       group: 'default',
-      hidden: true
+      hidden: true,
     };
   }
 
