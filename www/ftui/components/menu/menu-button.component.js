@@ -24,6 +24,7 @@ export class FtuiMenuButton extends FtuiElement {
       <style>
         :host {
           font-size:2em;
+          line-height: 1em;
           cursor:pointer;
         }
       </style>

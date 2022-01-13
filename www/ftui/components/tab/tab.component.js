@@ -9,8 +9,9 @@
 
 import { FtuiButton } from '../button/button.component.js';
 import { selectAll, selectOne, triggerEvent } from '../../modules/ftui/ftui.helper.js';
-// eslint-disable-next-line no-unused-vars
+/* eslint-disable no-unused-vars */
 import { FtuiTabView } from './tab-view.component.js';
+import { FtuiTabTitle} from './tab-title.component.js';
 
 
 class FtuiTab extends FtuiButton {
@@ -68,6 +69,11 @@ class FtuiTab extends FtuiButton {
     this.submitChange('value', 'on');
     this.active = true;
     this.startTimeout();
+
+    // change all titles
+    selectAll(`ftui-tab-title[group="${this.group}"]`).forEach(elem => {
+      elem.text = this.title;
+    });
 
     // emit event
     triggerEvent('ftuiVisibilityChanged');

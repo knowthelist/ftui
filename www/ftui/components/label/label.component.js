@@ -23,6 +23,8 @@ export class FtuiLabel extends FtuiElement {
   template() {
     return `
       <style>
+      :host([text-align=left])   { text-align: left; width: 100%;}
+      :host([text-align=right])  { text-align: right; width: 100%;}
         :host {
           --color-base: currentColor;
           color: var(--color-base);

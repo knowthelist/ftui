@@ -17,7 +17,7 @@
   <base href="../" />
   <script src="ftui.js"></script>
   <link href="ftui.css" rel="stylesheet">
-  <link href="themes/bright-theme.css" rel="stylesheet">
+  <link href="themes/mobile-theme.css" rel="stylesheet">
   <link href="favicon.ico" rel="icon" type="image/x-icon" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -29,15 +29,54 @@
 
 <body>
 
+  <ftui-view>
+
+    <ftui-view-toolbar slot="header">
+      <ftui-tab-title></ftui-tab-title>
+    </ftui-view-toolbar>
+
   <ftui-tab-view id="View1">
 
-    <ftui-cell class="size-7">Tab1</ftui-cell>
+    <ftui-view-section>
+      <ftui-label slot="header">overview</ftui-label>
+    
+      <ftui-view-item>
+        <ftui-icon name="classic-window" color="blue" slot="start" invert></ftui-icon>
+        Windows
+        <ftui-label slot="end" text="closed" color="medium" placeholder></ftui-label>
+      </ftui-view-item>
+    
+      <ftui-view-item>
+        <ftui-icon name="thermometer-2" color="red" slot="start" invert></ftui-icon>
+        Temperature
+        <ftui-label slot="end" text="21.3" unit="°C" color="medium" placeholder></ftui-label>
+      </ftui-view-item>
+    
+    </ftui-view-section>
+
+    <ftui-view-section>
+      <ftui-label slot="header">details</ftui-label>
+    
+      <ftui-view-item>
+        <ftui-icon name="thermometer-2" color="orange" slot="start" invert></ftui-icon>
+        Temperature 1st floor
+        <ftui-label slot="end" text="20.3" unit="°C" color="medium" placeholder></ftui-label>
+      </ftui-view-item>
+    
+      <ftui-view-item>
+        <ftui-icon name="thermometer-2" color="orange" slot="start" invert></ftui-icon>
+        Temperature 2nd floor
+        <ftui-label slot="end" text="21.3" unit="°C" color="medium" placeholder></ftui-label>
+      </ftui-view-item>
+    
+      <ftui-label slot="footer">This footer explains the meaning of the section to the user</ftui-label>
+    </ftui-view-section>
 
   </ftui-tab-view>
 
   <ftui-tab-view id="View2">
 
-    <ftui-cell class="size-7" style="height: 1350px">Tab2</ftui-cell>
+    <ftui-cell class="size-7" style="height: 1250px">Tab2</ftui-cell>
 
   </ftui-tab-view>
 
@@ -47,16 +86,18 @@
 
   </ftui-tab-view>
 
+  </ftui-view>
+
   <footer class="row fixed border-top">
-    <ftui-tab fill="clear" direction="vertical" view="View1" active>
-      <ftui-icon name="home1"></ftui-icon>
+    <ftui-tab fill="clear" direction="vertical" view="View1" title="Tab1" active>
+      <ftui-icon name="home"></ftui-icon>
       <label class="small">Tab1</label>
     </ftui-tab>
-    <ftui-tab fill="clear" direction="vertical" view="View2">
+    <ftui-tab fill="clear" direction="vertical" view="View2" title="Tab2">
       <ftui-icon name="cog"></ftui-icon>
       <label class="small">Tab2</label>
     </ftui-tab>
-    <ftui-tab fill="clear" direction="vertical" view="View3">
+    <ftui-tab fill="clear" direction="vertical" view="View3" title="Tab3">
       <ftui-icon name="clock-o"></ftui-icon>
       <label class="small">Tab3</label>
     </ftui-tab>

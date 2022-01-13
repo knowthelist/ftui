@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!--
+    /* FHEM tablet ui - FTUI */
+    /**
+    * UI builder framework for FHEM
+    *
+    * Version: 3.0.0
+    *
+    * Copyright (c) 
+    2020 Mario Stephan <mstephan@shared-files.de>
+    * Under MIT License (http://www.opensource.org/licenses/mit-license.php)
+    * https://github.com/knowthelist/ftui
+    */
+    -->
+  <base href="../" />
+  <script src="ftui.js"></script>
+  <link href="ftui.css" rel="stylesheet">
+  <link href="themes/mobile-theme.css" rel="stylesheet">
+  <link href="favicon.ico" rel="icon" type="image/x-icon" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+
+  <title>FTUI Menu Example</title>
+</head>
+
+<body>
+
+  <ftui-menu timeout="0">
+    <ftui-tab view="View1" title="Home" active>
+      <ftui-icon name="home"></ftui-icon>
+      Home
+    </ftui-tab>
+    <ftui-tab view="View2" title="Bedroom">
+      <ftui-icon name="bed"></ftui-icon>
+      Bedroom
+    </ftui-tab>
+    <ftui-tab view="View3" title="Bath">
+      <ftui-icon name="bath"></ftui-icon>
+      Bath
+    </ftui-tab>
+    <ftui-tab view="View4" title="Outdoor">
+      <ftui-icon name="pagelines"></ftui-icon>
+      Outdoor
+    </ftui-tab>
+  </ftui-menu>
+
+  <ftui-main>
+    <ftui-view>
+
+      <ftui-view-toolbar slot="header">
+        <ftui-menu-button slot="start"></ftui-menu-button>
+        <ftui-tab-title text-align="left"></ftui-tab-title>
+      </ftui-view-toolbar>
+
+      <ftui-tab-view id="View1">
+        <ftui-content file="examples/contents/content-view3.html" 
+        win="closed" temp="22.0"></ftui-content>
+      </ftui-tab-view>
+  
+      <ftui-tab-view id="View2">
+        <ftui-content file="examples/contents/content-view3.html" 
+        win="open" temp="21.5"></ftui-content>
+      </ftui-tab-view>
+  
+      <ftui-tab-view id="View3">
+        <ftui-content file="examples/contents/content-view3.html" 
+        win="closed" temp="21.8"></ftui-content>
+      </ftui-tab-view>
+  
+      <ftui-tab-view id="View4">
+        <ftui-content file="examples/contents/content-view3.html" 
+        win="closed" temp="22.3"></ftui-content>
+      </ftui-tab-view>
+
+    </ftui-view>
+  </ftui-main>
+
+</body>
+
+</html>

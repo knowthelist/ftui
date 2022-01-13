@@ -7,6 +7,10 @@
   border-top-left-radius: var(--popup-border-radius, 1em);
 }
 
+:host([disabled-overlay]) .overlay {
+  pointer-events: none;
+}
+
 .window {
   position: absolute;
   background-color: var(--popup-background-color, #777777);
@@ -77,3 +81,5 @@
   width: 100%;
   height: 100%;
 }
+
+
