@@ -57,11 +57,11 @@ UPD 2021-12-02_14:07:06 1269 www/ftui/components/swiper/swiper.component.css
 UPD 2021-12-02_14:11:54 5437 www/ftui/components/swiper/swiper.component.js
 UPD 2021-11-27_00:07:16 1335 www/ftui/components/switch/switch.component.css
 UPD 2021-03-01_20:28:00 1091 www/ftui/components/switch/switch.component.js
+UPD 2022-01-13_22:24:26 668 www/ftui/components/tab/tab-title.component.js
 UPD 2022-01-13_22:37:30 1041 www/ftui/components/tab/tab-view.component.js
 UPD 2021-12-08_16:56:12 498 www/ftui/components/tab/tab.component.css
 UPD 2022-01-13_19:24:38 2758 www/ftui/components/tab/tab.component.js
 UPD 2021-10-17_21:34:53 5376 www/ftui/components/timeset/timeset.component.js
-MOV www/ftui/components/title/title.component.js unused
 UPD 2021-12-04_17:57:09 1981 www/ftui/components/view/view-item.component.css
 UPD 2021-03-01_20:30:46 1638 www/ftui/components/view/view-item.component.js
 UPD 2021-02-01_19:44:40 912 www/ftui/components/view/view-section.component.css
@@ -94,6 +94,7 @@ UPD 2021-10-26_15:34:52 423 www/ftui/examples/contents/content-popup.html
 UPD 2021-11-15_21:59:43 472 www/ftui/examples/contents/content-rows.html
 UPD 2022-01-13_18:57:28 305 www/ftui/examples/contents/content-view1.html
 UPD 2022-01-13_18:56:31 714 www/ftui/examples/contents/content-view2.html
+UPD 2022-01-13_19:43:47 643 www/ftui/examples/contents/content-view3.html
 UPD 2021-11-09_10:48:30 1789 www/ftui/examples/contents/content-weather-2-day.html
 UPD 2021-12-05_22:13:16 998 www/ftui/examples/contents/content-weather-day.html
 UPD 2021-12-09_17:19:30 717 www/ftui/examples/contents/content-weather-item.html
@@ -110,6 +111,7 @@ UPD 2022-01-08_13:05:47 5812 www/ftui/examples/knob.html
 UPD 2022-01-08_12:02:52 9574 www/ftui/examples/label.html
 UPD 2021-11-21_18:44:23 2386 www/ftui/examples/medialist.html
 UPD 2022-01-13_17:51:31 1942 www/ftui/examples/menu.html
+UPD 2022-01-13_22:25:03 2315 www/ftui/examples/menu2.html
 UPD 2021-12-02_21:59:54 1385 www/ftui/examples/meter.html
 UPD 2022-01-13_23:43:20 3195 www/ftui/examples/mobile.html
 UPD 2021-12-16_23:24:23 39039 www/ftui/examples/mobile_full.html
