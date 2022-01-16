@@ -50,6 +50,32 @@ export class FtuiChart extends FtuiElement {
               color: getStylePropertyValue('--chart-legend-color', this) || getStylePropertyValue('--chart-text-color', this),
             },
             filter: item => item.text,
+            generateLabels: function (chart) {
+              const data = chart.data;
+              return Chart.helpers.isArray(data.datasets) ? data.datasets.map((dataset, i) => {
+                const values = dataset.data.map(i => i.y);
+                let resLabel = dataset.label;
+                if (resLabel) {
+                  resLabel = resLabel.replace(/\$min/g, Math.min(...values));
+                  resLabel = resLabel.replace(/\$max/g, Math.max(...values));
+                  resLabel = resLabel.replace(/\$avg/g, values.reduce((a, b) => a + b) / values.length );
+                  resLabel = resLabel.replace(/\$last/g, values[values.length - 1]);
+                }
+                return {
+                  text: resLabel,
+                  fillStyle: (!Chart.helpers.isArray(dataset.backgroundColor) ? dataset.backgroundColor : dataset.backgroundColor[0]),
+                  hidden: !chart.isDatasetVisible(i),
+                  lineCap: dataset.borderCapStyle,
+                  lineDash: dataset.borderDash,
+                  lineDashOffset: dataset.borderDashOffset,
+                  lineJoin: dataset.borderJoinStyle,
+                  lineWidth: dataset.borderWidth,
+                  strokeStyle: dataset.borderColor,
+                  pointStyle: dataset.pointStyle,
+                  datasetIndex: i,
+                };
+              }, this) : [];
+            },
           },
         },
         scales: {
@@ -313,12 +339,13 @@ export class FtuiChart extends FtuiElement {
     this.updateControls();
 
     this.dataElements.forEach(dataElement => {
-      dataElement.startDate = this.startDate;
-      dataElement.endDate = this.endDate;
-      dataElement.prefetch = (!dataElement.prefetch) ? this.prefetch : dataElement.prefetch;
-      dataElement.extend = (!dataElement.extend) ? this.extend : dataElement.extend;
-
-      dataElement.fetch();
+      if (typeof dataElement.fetch === 'function') {
+        dataElement.startDate = this.startDate;
+        dataElement.endDate = this.endDate;
+        dataElement.prefetch = (!dataElement.prefetch) ? this.prefetch : dataElement.prefetch;
+        dataElement.extend = (!dataElement.extend) ? this.extend : dataElement.extend;
+        dataElement.fetch();
+      }
     });
   }
 

@@ -40,7 +40,7 @@ export class FtuiChartData extends FtuiElement {
       log: '-',
       file: '-',
       spec: '4:.*',
-      unit: '°C',
+      unit: '',
       startDate: '',
       endDate: '',
       prefetch: 0,
