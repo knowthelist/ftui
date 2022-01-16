@@ -79,7 +79,7 @@ UPD 2021-10-05_20:08:00 1910 www/ftui/examples/badge.html
 UPD 2021-10-22_22:56:18 1624 www/ftui/examples/binding.html
 UPD 2020-12-31_16:39:02 913 www/ftui/examples/button-nice.html
 UPD 2021-12-09_22:40:27 10664 www/ftui/examples/button.html
-UPD 2022-01-16_21:53:13 3343 www/ftui/examples/chart.html
+UPD 2022-01-16_22:01:11 3340 www/ftui/examples/chart.html
 UPD 2022-01-06_22:08:43 1408 www/ftui/examples/checkbox.html
 UPD 2021-11-30_17:17:52 9424 www/ftui/examples/circlemenu.html
 UPD 2021-02-06_14:42:41 1655 www/ftui/examples/clock.html

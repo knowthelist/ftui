@@ -72,7 +72,7 @@
       <header>FIX SIZE</header>
 
       <ftui-chart title="Demo-Chart 2" width="300px" height="200px">
-        <ftui-chart-data label="humidity (Min $min °C, Max $max °C, Last $last °C)"
+        <ftui-chart-data label="Humidity (Min: $min %, Max: $max %, Last: $last %)"
                          fill log="FileLog_THSensorWZ" spec="4:THSensorWZ.humidity" [update]="THSensorWZ:state:time">
         </ftui-chart-data>
         <ftui-chart-controls units="day, hour"></ftui-chart-controls>
