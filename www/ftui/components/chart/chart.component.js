@@ -55,7 +55,7 @@ export class FtuiChart extends FtuiElement {
               return Chart.helpers.isArray(data.datasets) ? data.datasets.map((dataset, i) => {
                 const values = dataset.data.map(i => i.y);
                 let resLabel = dataset.label;
-                if (resLabel) {
+                if (resLabel && values && values.length) {
                   resLabel = resLabel.replace(/\$min/g, Math.min(...values));
                   resLabel = resLabel.replace(/\$max/g, Math.max(...values));
                   resLabel = resLabel.replace(/\$avg/g, values.reduce((a, b) => a + b) / values.length );
