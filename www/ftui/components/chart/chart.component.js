@@ -156,18 +156,12 @@ export class FtuiChart extends FtuiElement {
 
     this.chart = new Chart(this.chartElement, this.configuration);
 
-    let hasY1Data = false;
     this.dataElements = this.querySelectorAll('ftui-chart-data');
     this.dataElements.forEach((dataElement, index) => {
       dataElement.index = index;
       this.configuration.data.datasets[index] = {};
-      if (dataElement.yAxisID === 'y1') {
-        hasY1Data = true;
-      }
       dataElement.addEventListener('ftuiDataChanged', (data) => this.onDataChanged(data))
     });
-
-    this.configuration.options.scales.y1.display = hasY1Data && !this.noY1;
 
     if (this.controlsElement) {
       this.controlsElement.addEventListener('ftuiForward', () => this.offset += 1);
@@ -358,17 +352,20 @@ export class FtuiChart extends FtuiElement {
   }
 
   onDataChanged(event) {
-
-    this.configuration.options.scales.x.min = this.startDate;
-    this.configuration.options.scales.x.max = this.endDate;
     const dataElement = event.target
     const dataset = {};
     Object.keys(FtuiChartData.properties).forEach(property => {
       dataset[property] = dataElement[property];
     });
     dataset.data = dataElement.data;
+    if (dataElement.yAxisID === 'y1') {
+      this.hasY1Data = true;
+    }
     this.configuration.data.datasets[dataElement.index] = dataset;
     this.configuration.data.labels = dataElement.labels;
+    this.configuration.options.scales.x.min = this.startDate;
+    this.configuration.options.scales.x.max = this.endDate;
+    this.configuration.options.scales.y1.display = this.hasY1Data && !this.noY1;
     dataElement.startDate = this.startDate;
     dataElement.endDate = this.endDate;
 
