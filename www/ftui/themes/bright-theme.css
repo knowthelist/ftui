@@ -96,6 +96,10 @@
   --switch-off-color: var(--gray80);
   --checkbox-off-color: var(--gray80);
 
+  --slider-track-color: var(--light-color);
+  --slider-handle-shadow: 1px 1px 4px #ddd;
+  --slider-handle-border: 1px solid #f2f2f2;
+  
   --swiper-scrollbar-thumb: rgba(0, 0, 0, 0.5);
   --swiper-scrollbar-track: var(--white);
   --swiper-dot: var(--dark-color);

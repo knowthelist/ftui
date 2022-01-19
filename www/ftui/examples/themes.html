@@ -9,7 +9,7 @@
     *
     * Version: 3.0.0
     *
-    * Copyright (c) 2015-2021 Mario Stephan <mstephan@shared-files.de>
+    * Copyright (c) 2015-2022 Mario Stephan <mstephan@shared-files.de>
     * Under MIT License (http://www.opensource.org/licenses/mit-license.php)
     * https://github.com/knowthelist/ftui
     */
@@ -68,6 +68,13 @@
       <ftui-label>secure</ftui-label>
     </ftui-grid-tile>
 
+    <!-- DIMMER -->
+    <ftui-grid-tile row="5" col="2" height="2" width="2">
+      <ftui-slider 
+      value="30" max="60" tooltips="always"></ftui-slider>
+    </ftui-grid-tile>
+
+
   </ftui-grid>
 
 </body>
@@ -85,7 +92,7 @@
     // set theme on change
     setTheme(isDark);
   });
-
+  
   function setTheme(isDark) {
     if (isDark) {
       lightCSS.setAttribute('disabled', '');

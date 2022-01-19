@@ -8,7 +8,6 @@
 :host([is-vertical]) {
   height: calc(100% - 3.5em);
   width: initial;
-
 }
 
 .wrapper {
@@ -27,8 +26,8 @@
   border: none;
   width: 2em;
   height: 2em;
-  box-shadow: var(--slider-handle-shadow);
-  border: var(--slider-handle-border);
+  box-shadow: var(--slider-handle-shadow, none);
+  border: var(--slider-handle-border, none);
 }
 
 

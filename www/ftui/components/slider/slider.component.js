@@ -26,18 +26,17 @@ export class FtuiSlider extends FtuiElement {
 
     this.rangeable = new Rangeable(this.input, {
       vertical: this.isVertical,
-      tooltips: this.hasTooltips,
+      tooltips: this.tooltips,
       min: this.min,
       max: this.max,
       step: this.step,
       onStart: () => this.onSliderStart(),
       onChange: (value) => this.onSliderChanged(Number(value)),
-      onEnd: (value) => this.onSliderEnd(Number(value))
+      onEnd: (value) => this.onSliderEnd(Number(value)),
     });
 
     this.updateRangable();
     this.drawTicks();
-
 
     // force re-render if visible
     document.addEventListener('ftuiVisibilityChanged', () => {
@@ -45,6 +44,16 @@ export class FtuiSlider extends FtuiElement {
         this.rangeable.update();
       }
     }, false);
+
+    // force re-render when resize
+    const resize_ob = new ResizeObserver(() => {
+      requestAnimationFrame(() => {
+        this.updateRangable();
+      });
+    });
+
+    resize_ob.observe(this.input);
+
   }
 
   template() {
@@ -75,7 +84,7 @@ export class FtuiSlider extends FtuiElement {
       max: 100,
       value: -99,
       isVertical: false,
-      hasTooltips: true,
+      tooltips: 'false',
       handle: 'default',
       type: 'single',
       color: 'primary',

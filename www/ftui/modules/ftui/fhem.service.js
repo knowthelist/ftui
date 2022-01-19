@@ -128,7 +128,6 @@ class FhemService {
       || (now - this.states.lastRefresh) < this.config.refreshInterval
     ) { return; }
     log(1, '[refresh] start now');
-    console.log(new Date(), '[refresh] start now isOffline:', this.states.isOffline, 'isAppVisible()', isAppVisible());
     window.performance.mark('start refresh');
     this.states.lastRefresh = now;
 
@@ -229,7 +228,6 @@ class FhemService {
   }
 
   connect() {
-    console.log('connect visible:', isAppVisible());
     if (this.states.connection.websocket) {
       log(3, '[websocket] a valid instance has been found - do not newly connect');
       return;
@@ -396,7 +394,6 @@ class FhemService {
 
   healthCheck() {
     const timeDiff = new Date() - this.states.connection.lastEventTimestamp;
-    console.log('[healthCheck] ', new Date(), timeDiff / 1000, 'isAppVisible():', isAppVisible())
     if (isAppVisible() && timeDiff / 1000 > 6) {
       log(1, 'No update event since ' + timeDiff / 1000 + 'secondes -> restart connection');
       this.reconnect();
