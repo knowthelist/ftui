@@ -18,7 +18,8 @@ svg g [fill]  {
   fill: inherit;
 }
 
-svg path[style] {
+svg path[style],
+svg g[style] {
   fill: inherit !important;
 }
 

@@ -25,7 +25,7 @@ UPD 2021-11-07_12:21:43 752 www/ftui/components/grid/grid-header.component.js
 UPD 2021-11-09_10:47:15 1773 www/ftui/components/grid/grid-tile.component.css
 UPD 2021-11-05_23:21:38 865 www/ftui/components/grid/grid-tile.component.js
 UPD 2022-01-07_08:13:48 3231 www/ftui/components/grid/grid.component.js
-UPD 2022-01-20_18:39:27 1079 www/ftui/components/icon/icon.component.css
+UPD 2022-01-20_21:27:02 1093 www/ftui/components/icon/icon.component.css
 UPD 2021-12-04_19:26:55 2278 www/ftui/components/icon/icon.component.js
 UPD 2022-01-07_08:13:43 3297 www/ftui/components/image/image.component.js
 UPD 2021-02-03_14:48:37 8329 www/ftui/components/image/image_not_available.js
@@ -104,7 +104,7 @@ UPD 2021-02-01_19:44:46 189 www/ftui/examples/contents/mobile-view1.html
 UPD 2022-01-08_14:06:50 2747 www/ftui/examples/departure.html
 UPD 2021-02-15_21:49:38 3847 www/ftui/examples/dropdown.html
 UPD 2021-12-01_20:36:41 7626 www/ftui/examples/grid.html
-UPD 2022-01-20_18:34:56 6519 www/ftui/examples/icon.html
+UPD 2022-01-20_21:28:46 6514 www/ftui/examples/icon.html
 UPD 2021-12-03_13:59:42 4092 www/ftui/examples/image.html
 UPD 2021-11-06_00:29:33 2108 www/ftui/examples/input.html
 UPD 2022-01-08_13:05:47 5812 www/ftui/examples/knob.html
