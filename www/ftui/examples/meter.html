@@ -44,6 +44,21 @@
                   [color]="ftuitest | step('0:primary, 60:warning, 80:alert')"> </ftui-meter>
     </ftui-grid-tile>
 
+    <ftui-grid-tile row="4" col="1" height="2" width="1">
+      <header>VERTICAL</header>
+      <ftui-meter [value]="ftuitest" min="1" max="100" is-vertical has-scale> </ftui-meter>
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="4" col="2" height="1" width="2">
+      <header>SCALE</header>
+      <ftui-meter [value]="ftuitest" min="1" max="100" has-scale> </ftui-meter>
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="5" col="2" height="1" width="2">
+      <header>GRADIENT</header>
+      <ftui-meter [value]="ftuitest" min="1" max="100" has-scale min-color="blue" max-color="red"> </ftui-meter>
+    </ftui-grid-tile>
+
   </ftui-grid>
   
 </body>

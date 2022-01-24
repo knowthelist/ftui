@@ -29,6 +29,8 @@ const contains = value => input => String(input).indexOf(value) < 0 ? true : fal
 const is = value => input => String(input) === value ? true : false;
 const isNot = value => input => String(input) !== value ? true : false;
 const pad = (cnt, char) => input => String(input).padStart(cnt, char);
+const append = value => input => String(input) + value;
+const prepend = value => input => value + String(input);
 
 const pipe = (f1, ...fns) => (...args) => {
   return fns.reduce((res, fn) => fn(res), f1.apply(null, args));

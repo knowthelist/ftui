@@ -49,6 +49,7 @@ export class FtuiImage extends FtuiElement {
     return {
       base: '',
       src: '',
+      suffix: '',
       width: '100%',
       height: 'auto',
       interval: 0,
@@ -105,7 +106,7 @@ export class FtuiImage extends FtuiElement {
   }
 
   async createUrl() {
-    const src = this.base + this.src;
+    const src = this.base + this.src + this.suffix;
 
     if (this.user.length) {
       const options = {

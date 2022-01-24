@@ -10,7 +10,7 @@
 */
 
 import { FtuiElement } from '../element.component.js';
-import { scale } from '../../modules/ftui/ftui.helper.js';
+import { scale, cssGradient, getStylePropertyValue } from '../../modules/ftui/ftui.helper.js';
 
 export class FtuiMeter extends FtuiElement {
 
@@ -19,15 +19,38 @@ export class FtuiMeter extends FtuiElement {
 
     this.progress = this.shadowRoot.querySelector('.progress');
     this.bar = this.shadowRoot.querySelector('.progress-bar');
-
   }
 
   template() {
     return `
           <style>
+          :host([is-vertical]) .progress {
+            height: ${this.width};
+            width: ${this.height};
+            display: flex;
+            flex-direction: column-reverse;
+          }
+          :host([is-vertical]) .container {
+            flex-direction: row;
+          }
           .container {
             width: 100%;
             text-align: center;
+            flex-direction: column;
+            display: flex;
+          }
+          .scale { display: none; }
+          :host([is-vertical][has-scale]) .scale {
+            flex-direction: column-reverse;
+            margin-left: 0.5em;
+          }
+          :host([has-scale]) .scale {
+            flex-direction: row;
+            display: flex;
+            justify-content: space-between;
+          }
+          :host(:not([is-vertical])[has-scale]) .scale {
+            margin-top: 0.5em;
           }
           .progress {
             width: ${this.width};
@@ -56,6 +79,10 @@ export class FtuiMeter extends FtuiElement {
                 <div class="progress-bar"></div>
                 <slot></slot>
               </div>
+              <div class="scale">
+                <div class="min">${this.min}</div>
+                <div class="max">${this.max}</div>
+              </div>
             </div>`;
 
   }
@@ -68,6 +95,8 @@ export class FtuiMeter extends FtuiElement {
       min: 0,
       max: 100,
       value: 0,
+      minColor: '',
+      maxColor: '',
     };
   }
 
@@ -87,7 +116,13 @@ export class FtuiMeter extends FtuiElement {
 
   updateBar() {
     const value = scale(this.value, this.min, this.max, 0, 100);
-    this.bar.style.width = value + '%';
+    const direction = this.hasAttribute('is-vertical') ? 'height' : 'width';
+    this.bar.style[direction] = value + '%';
+    if (this.minColor && this.maxColor) {
+      this.bar.style.background = cssGradient('linear', this.hasAttribute('is-vertical') ? 'to top' : 'to right',
+        [[130 - value, getStylePropertyValue('--' + this.minColor, this)],
+          [170 - value, getStylePropertyValue('--' + this.maxColor, this)]]);
+    }
   }
 
 }
