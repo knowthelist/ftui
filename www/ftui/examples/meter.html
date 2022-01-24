@@ -39,28 +39,43 @@
 
     <ftui-grid-tile row="3" col="1" height="1" width="3">
       <header>NUMBER</header>
-      <ftui-input [(value)]="ftuitest" min="1" max="100" type="number"></ftui-input>
-      <ftui-meter [value]="ftuitest" min="1" max="100" 
-                  [color]="ftuitest | step('0:primary, 60:warning, 80:alert')"> </ftui-meter>
+      <ftui-row>
+        <ftui-input [(value)]="ftuitest" min="1" max="100" type="number" size="4"></ftui-input>
+        <ftui-meter [value]="ftuitest" min="1" max="100"
+                    [color]="ftuitest | step('0:primary, 60:warning, 80:alert')"></ftui-meter>
+      </ftui-row>
     </ftui-grid-tile>
 
-    <ftui-grid-tile row="4" col="1" height="2" width="1">
+    <ftui-grid-tile row="4" col="1" height="1" width="1">
       <header>VERTICAL</header>
-      <ftui-meter [value]="ftuitest" min="1" max="100" is-vertical has-scale> </ftui-meter>
+      <ftui-row>
+        <ftui-meter [value]="ftuitest" min="-10" max="30" height="6em"
+                    is-vertical has-scale> </ftui-meter>
+        <ftui-meter [value]="ftuitest" min="-10" max="30" height="6em"
+                    min-color="blue" max-color="lightered"
+                    is-vertical has-scale has-color-scale></ftui-meter>
+      </ftui-row>
     </ftui-grid-tile>
 
-    <ftui-grid-tile row="4" col="2" height="1" width="2">
+    <ftui-grid-tile row="4" col="2" height="1" width="1">
       <header>SCALE</header>
-      <ftui-meter [value]="ftuitest" min="1" max="100" has-scale> </ftui-meter>
+      <ftui-meter [value]="ftuitest" min="-10" max="30" has-scale> </ftui-meter>
     </ftui-grid-tile>
 
-    <ftui-grid-tile row="5" col="2" height="1" width="2">
+    <ftui-grid-tile row="5" col="2" height="1" width="1">
       <header>GRADIENT</header>
-      <ftui-meter [value]="ftuitest" min="1" max="100" has-scale min-color="blue" max-color="red"> </ftui-meter>
+      <ftui-meter [value]="ftuitest" min="-10" max="30" has-scale min-color="blue" max-color="lightered"> </ftui-meter>
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="4" col="3" height="1" width="1">
+      <header>COLOR SCALE</header>
+      <ftui-meter [value]="ftuitest" min="0" max="100"
+                  min-color="blue" max-color="lightered"
+                  has-scale has-color-scale></ftui-meter>
     </ftui-grid-tile>
 
   </ftui-grid>
-  
+
 </body>
 
 </html>

@@ -11,6 +11,8 @@
 
 import { FtuiElement } from '../element.component.js';
 
+const sizes = [0.75, 0.875, 1, 1.25, 1.5, 1.75, 2, 2.5, 3, 3.5, 4, 6, 8];
+
 export class FtuiInput extends FtuiElement {
 
   constructor() {
@@ -65,6 +67,7 @@ export class FtuiInput extends FtuiElement {
       height: '',
       width: '',
       debounce: 400,
+      size: -1,
     };
   }
 
@@ -73,7 +76,17 @@ export class FtuiInput extends FtuiElement {
   }
 
   onAttributeChanged(name, value) {
-    this.input[name] = value;
+    switch (name) {
+      case 'size':
+        if (this.size > -1) {
+          this.style.fontSize = sizes[this.size] + 'rem';
+        }
+        break;
+      case 'debounce':
+        break;
+      default:
+        this.input[name] = value;
+    }
   }
 
   onEnter(event) {

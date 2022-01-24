@@ -10,7 +10,7 @@
 */
 
 import { FtuiElement } from '../element.component.js';
-import { scale, cssGradient, getStylePropertyValue } from '../../modules/ftui/ftui.helper.js';
+import { limit, scale, cssGradient, getStylePropertyValue } from '../../modules/ftui/ftui.helper.js';
 
 export class FtuiMeter extends FtuiElement {
 
@@ -19,84 +19,38 @@ export class FtuiMeter extends FtuiElement {
 
     this.progress = this.shadowRoot.querySelector('.progress');
     this.bar = this.shadowRoot.querySelector('.progress-bar');
+    this.minElement = this.shadowRoot.querySelector('.min');
+    this.maxElement = this.shadowRoot.querySelector('.max');
+
+    this.progress.style.width = this.width || (this.isVertical ? '1em' : '10em');
+    this.progress.style.height = this.height || (this.isVertical ? '10em' : '1em');
   }
 
   template() {
-    return `
-          <style>
-          :host([is-vertical]) .progress {
-            height: ${this.width};
-            width: ${this.height};
-            display: flex;
-            flex-direction: column-reverse;
-          }
-          :host([is-vertical]) .container {
-            flex-direction: row;
-          }
-          .container {
-            width: 100%;
-            text-align: center;
-            flex-direction: column;
-            display: flex;
-          }
-          .scale { display: none; }
-          :host([is-vertical][has-scale]) .scale {
-            flex-direction: column-reverse;
-            margin-left: 0.5em;
-          }
-          :host([has-scale]) .scale {
-            flex-direction: row;
-            display: flex;
-            justify-content: space-between;
-          }
-          :host(:not([is-vertical])[has-scale]) .scale {
-            margin-top: 0.5em;
-          }
-          .progress {
-            width: ${this.width};
-            height: ${this.height};
-            padding: 0.15em 0 0.07em 0.1em;
-            background: var(--meter-background-color,var(--dark-color));
-            border-radius: var(--meter-border-radius, 1em);
-            -webkit-box-shadow: inset 0 0 1px rgba(0, 0, 0, 0.25), 0 1px rgba(255, 255, 255, 0.08);
-            box-shadow: inset 0 0 1px rgba(0, 0, 0, 0.25), 0 1px rgba(255, 255, 255, 0.08);
-          }
-          .progress-bar {
-            height: 100%;
-            max-width: 100%;
-            background-color: var(--meter-bar-color,var(--color-base, #20639b));
-            border-radius: var(--meter-border-radius, 1em);
-            -webkit-transition: 0.4s linear;
-            transition: 0.4s linear;
-            -webkit-transition-property: width, background-color;
-            transition-property: width, background-color;
-            -webkit-box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.25), inset 0 1px rgba(255, 255, 255, 0.1);
-            box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.25), inset 0 1px rgba(255, 255, 255, 0.1);
-          }
-            </style>
+    return `<style> @import "components/meter/meter.component.css";</style>
             <div class="container">
               <div class="progress">
                 <div class="progress-bar"></div>
                 <slot></slot>
               </div>
               <div class="scale">
-                <div class="min">${this.min}</div>
-                <div class="max">${this.max}</div>
+                <div class="min"></div>
+                <div class="max"></div>
               </div>
             </div>`;
-
   }
 
   static get properties() {
     return {
-      height: '1em',
-      width: '10em',
+      height: '',
+      width: '',
       color: 'primary',
       min: 0,
       max: 100,
       value: 0,
       minColor: '',
       maxColor: '',
+      isVertical: false,
     };
   }
 
@@ -115,13 +69,22 @@ export class FtuiMeter extends FtuiElement {
   }
 
   updateBar() {
-    const value = scale(this.value, this.min, this.max, 0, 100);
-    const direction = this.hasAttribute('is-vertical') ? 'height' : 'width';
-    this.bar.style[direction] = value + '%';
+    const limitedValue = limit(this.value, this.min, this.max);
+    const value = scale(limitedValue, this.min, this.max, 0, 100);
+    const size = this.isVertical ? 'height' : 'width';
+    this.bar.style[size] = value + '%';
+    this.minElement.innerHTML = this.min;
+    this.maxElement.innerHTML = this.max;
     if (this.minColor && this.maxColor) {
-      this.bar.style.background = cssGradient('linear', this.hasAttribute('is-vertical') ? 'to top' : 'to right',
-        [[130 - value, getStylePropertyValue('--' + this.minColor, this)],
-          [170 - value, getStylePropertyValue('--' + this.maxColor, this)]]);
+      const minColor = getStylePropertyValue('--' + this.minColor, this);
+      const maxColor = getStylePropertyValue('--' + this.maxColor, this);
+      this.bar.style.background = cssGradient('linear',
+        this.isVertical ? 'to top' : 'to right',
+        [[130 - value, minColor], [170 - value, maxColor]]);
+      if (this.hasAttribute('has-color-scale')) {
+        this.minElement.style.color = minColor;
+        this.maxElement.style.color = maxColor;
+      }
     }
   }
 

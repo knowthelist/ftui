@@ -183,7 +183,7 @@ export function isDefined(value) {
 
 export function isUndefined(value) {
   return typeof value === 'undefined'
-  || value === null;
+    || value === null;
 }
 
 export function isString(value) {
@@ -233,7 +233,7 @@ export function dateFormat(date, format) {
   const userLang = navigator.language || navigator.userLanguage;
   const lang = window.ftuiApp ? ftuiApp.config.lang : isDefined(userLang) ? userLang.split('-')[0] : 'de';
   let ret = String(format);
-  if (!date) {return ret;}
+  if (!date) { return ret; }
   const weekday_de = ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'];
   const weekday = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
   const months_de = ['Januar', 'Februar', '&#077;&auml;rz', 'April', '&#077;ai', 'Juni', 'Juli', 'Augu&#115;t', 'Septe&#109;ber', 'Oktober', 'Nove&#109;ber', '&#068;e&#122;e&#109;ber'];
@@ -398,6 +398,11 @@ export function scale(value, minIn, maxIn, minOut, maxOut) {
   const slope = (minOut - maxOut) / (minIn - maxIn);
   const intercept = slope * -(minIn) + minOut;
   return value * slope + intercept;
+}
+
+export function limit(value, minIn, maxIn) {
+  return value < minIn ? minIn
+    : value > maxIn ? maxIn : value;
 }
 
 export function countDecimals(value) {
