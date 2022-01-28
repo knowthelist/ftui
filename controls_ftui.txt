@@ -100,8 +100,12 @@ UPD 2021-11-09_10:48:30 1789 www/ftui/examples/contents/content-weather-2-day.ht
 UPD 2021-12-05_22:13:16 998 www/ftui/examples/contents/content-weather-day.html
 UPD 2021-12-09_17:19:30 717 www/ftui/examples/contents/content-weather-item.html
 UPD 2021-10-19_19:05:47 5317 www/ftui/examples/contents/content-weather.html
+UPD 2022-01-27_21:05:40 8204 www/ftui/examples/contents/mobile-shutter.html
+UPD 2022-01-27_21:05:55 1723 www/ftui/examples/contents/mobile-solar.html
+UPD 2022-01-27_21:12:05 1769 www/ftui/examples/contents/mobile-temp.html
 UPD 2021-12-12_15:47:48 2518 www/ftui/examples/contents/mobile-view-sonos.html
 UPD 2021-02-01_19:44:46 189 www/ftui/examples/contents/mobile-view1.html
+UPD 2022-01-27_21:10:12 4579 www/ftui/examples/contents/mobile-windows.html
 UPD 2022-01-08_14:06:50 2747 www/ftui/examples/departure.html
 UPD 2021-02-15_21:49:38 3847 www/ftui/examples/dropdown.html
 UPD 2021-12-01_20:36:41 7626 www/ftui/examples/grid.html
@@ -113,7 +117,7 @@ UPD 2022-01-08_12:02:52 9574 www/ftui/examples/label.html
 UPD 2021-11-21_18:44:23 2386 www/ftui/examples/medialist.html
 UPD 2022-01-13_17:51:31 1942 www/ftui/examples/menu.html
 UPD 2022-01-13_22:25:03 2315 www/ftui/examples/menu2.html
-UPD 2022-01-28_17:53:46 2565 www/ftui/examples/meter.html
+UPD 2022-01-28_18:19:23 2782 www/ftui/examples/meter.html
 UPD 2022-01-13_23:43:20 3195 www/ftui/examples/mobile.html
 UPD 2022-01-27_21:12:04 21388 www/ftui/examples/mobile_full.html
 UPD 2021-02-01_19:44:48 5457 www/ftui/examples/mobile_plain.html
@@ -723,6 +727,6 @@ UPD 2020-12-31_16:39:06 1922 www/ftui/modules/vanilla-notify/vanilla-notify.css
 UPD 2020-12-31_16:39:06 6339 www/ftui/modules/vanilla-notify/vanilla-notify.js
 UPD 2020-12-31_16:39:06 3390 www/ftui/modules/vanilla-notify/vanilla-notify.min.js
 UPD 2022-01-18_22:17:34 3503 www/ftui/themes/bright-theme.css
-UPD 2022-01-28_17:58:12 3082 www/ftui/themes/color-attributes.css
-UPD 2022-01-28_17:42:55 3455 www/ftui/themes/ftui-theme.css
+UPD 2022-01-28_18:18:58 3062 www/ftui/themes/color-attributes.css
+UPD 2022-01-28_18:14:32 3517 www/ftui/themes/ftui-theme.css
 UPD 2022-01-13_23:46:57 3881 www/ftui/themes/mobile-theme.css

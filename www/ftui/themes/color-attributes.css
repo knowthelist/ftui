@@ -95,24 +95,21 @@
 }
 
 /* gradient colors */
-[color="blue-red"],
-[color="v-blue-red"] {
-  --color-base: linear-gradient(var(--lightblue) 30%, var(--tomato) 70%);
+[color="cold-warm"][is-vertical] {
+  --color-base: linear-gradient(var(--warm-color) 30%, var(--cold-color) 70%);
 } 
-[color="h-blue-red"] {
-  --color-base: linear-gradient(90deg, var(--lightblue) 40%, var(--tomato) 80%);
+[color="cold-warm"] {
+  --color-base: linear-gradient(90deg, var(--cold-color) 40%, var(--warm-color) 80%);
 } 
-[color="green-red"],
-[color="v-green-red"] {
-  --color-base: linear-gradient(var(--success-color) 30%, var(--tomato) 70%);
+[color="ok-alert"][is-vertical] {
+  --color-base: linear-gradient(var(--success-color) 30%, var(--danger-color) 70%);
 } 
-[color="h-green-red"] {
-  --color-base: linear-gradient(90deg, var(--success-color) 30%, var(--tomato) 70%);
+[color="ok-alert"] {
+  --color-base: linear-gradient(90deg, var(--success-color) 30%, var(--danger-color) 70%);
 } 
-[color="ok-warning-alert"],
-[color="v-ok-warning-alert"] {
+[color="ok-warning-alert"][is-vertical] {
   --color-base: linear-gradient(var(--danger-color) 20%, var(--warning-color) 40%, var(--success-color) 60% );
 } 
-[color="h-ok-warning-alert"] {
+[color="ok-warning-alert"] {
   --color-base: linear-gradient(90deg, var(--success-color) 30%, var(--warning-color) 70%, var(--danger-color) 90%);
 } 
