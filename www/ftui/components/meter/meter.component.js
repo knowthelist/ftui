@@ -10,7 +10,7 @@
 */
 
 import { FtuiElement } from '../element.component.js';
-import { limit, scale, cssGradient, getStylePropertyValue } from '../../modules/ftui/ftui.helper.js';
+import { limit, scale } from '../../modules/ftui/ftui.helper.js';
 
 export class FtuiMeter extends FtuiElement {
 
@@ -48,8 +48,7 @@ export class FtuiMeter extends FtuiElement {
       min: 0,
       max: 100,
       value: 0,
-      minColor: '',
-      maxColor: '',
+      gradient: '',
       isVertical: false,
     };
   }
@@ -71,21 +70,16 @@ export class FtuiMeter extends FtuiElement {
   updateBar() {
     const limitedValue = limit(this.value, this.min, this.max);
     const value = scale(limitedValue, this.min, this.max, 0, 100);
-    const size = this.isVertical ? 'height' : 'width';
-    this.bar.style[size] = value + '%';
+    const direction = this.isVertical ? 'height' : 'width';
+    this.bar.style[direction] = value + '%';
     this.minElement.innerHTML = this.min;
     this.maxElement.innerHTML = this.max;
-    if (this.minColor && this.maxColor) {
-      const minColor = getStylePropertyValue('--' + this.minColor, this);
-      const maxColor = getStylePropertyValue('--' + this.maxColor, this);
-      this.bar.style.background = cssGradient('linear',
-        this.isVertical ? 'to top' : 'to right',
-        [[130 - value, minColor], [170 - value, maxColor]]);
-      if (this.hasAttribute('has-color-scale')) {
-        this.minElement.style.color = minColor;
-        this.maxElement.style.color = maxColor;
-      }
-    }
+
+    /*       if (this.hasAttribute('has-color-scale')) {
+        this.minElement.style.color = ?;
+        this.maxElement.style.color = ?;
+      } */
+
   }
 
 }

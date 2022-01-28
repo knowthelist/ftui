@@ -12,6 +12,7 @@
   text-align: center;
   flex-direction: column;
   display: flex;
+  position: relative;
 }
 
 .scale {
@@ -44,7 +45,7 @@
 .progress-bar {
   height: 100%;
   max-width: 100%;
-  background-color: var(--meter-bar-color, var(--color-base, #20639b));
+  --bar-color: var(--meter-bar-color, var(--color-base, #20639b));
   border-radius: var(--meter-border-radius, 1em);
   -webkit-transition: 0.4s linear;
   transition: 0.4s linear;
@@ -52,4 +53,16 @@
   transition-property: width, background-color;
   -webkit-box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.25), inset 0 1px rgba(255, 255, 255, 0.1);
   box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.25), inset 0 1px rgba(255, 255, 255, 0.1);
+  -webkit-mask:linear-gradient(#fff 0 0);
+  mask:linear-gradient(#fff 0 0);
+}
+
+.progress-bar::before {
+  content:"";
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  background: var(--bar-color);
 }

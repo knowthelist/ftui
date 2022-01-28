@@ -1,0 +1,52 @@
+<ftui-view-toolbar>
+  <ftui-nav-link slot="start"></ftui-nav-link>
+  Solar
+</ftui-view-toolbar>
+
+<ftui-view-sheet shape="round">
+  <ftui-chart width="300px" height="200px" y-label="Power in VA" x-min="6" x-max="20">
+    <ftui-chart-data fill log="FileLog_PVConverter" spec="4:PVConverter.Pac1" [update]="PVConverter:Pac1:time">
+    </ftui-chart-data>
+    <ftui-chart-controls units="day, hour"></ftui-chart-controls>
+  </ftui-chart>
+</ftui-view-sheet>
+
+<ftui-view-section>
+  <ftui-label slot="header" [text]="PVConverter:Eac_total:time"></ftui-label>
+
+  <ftui-view-item>Energy total
+    <ftui-label [text]="PVConverter:Eac_total" unit="KWh"></ftui-label>
+  </ftui-view-item>
+  <ftui-view-item>Energy today
+    <ftui-label [text]="PVConverter:Eac_today" unit="KWh"></ftui-label>
+  </ftui-view-item>
+</ftui-view-section>
+
+<ftui-view-section>
+  <ftui-label slot="header">ac</ftui-label>
+
+  <ftui-view-item>Power
+    <ftui-meter [value]="PVConverter:Pac1" max="600"></ftui-meter>
+    <ftui-label [text]="PVConverter:Pac1" unit="VA"></ftui-label>
+  </ftui-view-item>
+  <ftui-view-item>Voltage
+    <ftui-label [text]="PVConverter:Vac1" unit="V"></ftui-label>
+  </ftui-view-item>
+  <ftui-view-item>Current
+    <ftui-label [text]="PVConverter:Iac1" unit="A"></ftui-label>
+  </ftui-view-item>
+</ftui-view-section>
+
+<ftui-view-section>
+  <ftui-label slot="header">pv</ftui-label>
+
+  <ftui-view-item>Power
+    <ftui-label [text]="PVConverter:Ppv1" unit="W"></ftui-label>
+  </ftui-view-item>
+  <ftui-view-item>Voltage
+    <ftui-label [text]="PVConverter:Vpv1" unit="V"></ftui-label>
+  </ftui-view-item>
+  <ftui-view-item>Current
+    <ftui-label [text]="PVConverter:Ipv1" unit="A"></ftui-label>
+  </ftui-view-item>
+</ftui-view-section>
