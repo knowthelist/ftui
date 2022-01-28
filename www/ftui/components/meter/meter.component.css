@@ -66,3 +66,11 @@
   bottom:0;
   background: var(--bar-color);
 }
+
+:host([has-color-scale]) .scale .min {
+  color: var(--color-min, currentColor);
+}
+
+:host([has-color-scale]) .scale .max {
+  color: var(--color-max, currentColor);
+}

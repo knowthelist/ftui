@@ -40,8 +40,8 @@ UPD 2021-12-01_00:12:02 4481 www/ftui/components/medialist/medialist.component.j
 UPD 2022-01-13_19:57:41 1070 www/ftui/components/menu/menu-button.component.js
 UPD 2021-11-09_22:11:36 407 www/ftui/components/menu/menu.component.css
 UPD 2021-11-09_22:09:43 1533 www/ftui/components/menu/menu.component.js
-UPD 2022-01-28_17:49:57 1630 www/ftui/components/meter/meter.component.css
-UPD 2022-01-28_17:56:19 2336 www/ftui/components/meter/meter.component.js
+UPD 2022-01-28_18:35:20 1796 www/ftui/components/meter/meter.component.css
+UPD 2022-01-28_18:37:07 2168 www/ftui/components/meter/meter.component.js
 UPD 2021-02-01_19:44:36 1083 www/ftui/components/nav/nav-link.component.js
 UPD 2022-01-11_18:32:57 1477 www/ftui/components/popup/popup.component.css
 UPD 2022-01-10_19:02:11 3783 www/ftui/components/popup/popup.component.js
@@ -727,6 +727,6 @@ UPD 2020-12-31_16:39:06 1922 www/ftui/modules/vanilla-notify/vanilla-notify.css
 UPD 2020-12-31_16:39:06 6339 www/ftui/modules/vanilla-notify/vanilla-notify.js
 UPD 2020-12-31_16:39:06 3390 www/ftui/modules/vanilla-notify/vanilla-notify.min.js
 UPD 2022-01-18_22:17:34 3503 www/ftui/themes/bright-theme.css
-UPD 2022-01-28_18:18:58 3062 www/ftui/themes/color-attributes.css
+UPD 2022-01-28_18:30:05 3273 www/ftui/themes/color-attributes.css
 UPD 2022-01-28_18:14:32 3517 www/ftui/themes/ftui-theme.css
 UPD 2022-01-13_23:46:57 3881 www/ftui/themes/mobile-theme.css

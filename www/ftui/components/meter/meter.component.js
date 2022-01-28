@@ -3,7 +3,7 @@
 *
 * for FTUI version 3
 *
-* Copyright (c) 2021 Mario Stephan <mstephan@shared-files.de>
+* Copyright (c) 2021-2022 Mario Stephan <mstephan@shared-files.de>
 * Under MIT License (http://www.opensource.org/licenses/mit-license.php)
 *
 * https://github.com/knowthelist/ftui
@@ -48,7 +48,6 @@ export class FtuiMeter extends FtuiElement {
       min: 0,
       max: 100,
       value: 0,
-      gradient: '',
       isVertical: false,
     };
   }
@@ -74,14 +73,7 @@ export class FtuiMeter extends FtuiElement {
     this.bar.style[direction] = value + '%';
     this.minElement.innerHTML = this.min;
     this.maxElement.innerHTML = this.max;
-
-    /*       if (this.hasAttribute('has-color-scale')) {
-        this.minElement.style.color = ?;
-        this.maxElement.style.color = ?;
-      } */
-
   }
-
 }
 
 window.customElements.define('ftui-meter', FtuiMeter);
