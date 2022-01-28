@@ -44,8 +44,6 @@
 
 .progress-bar {
   height: 100%;
-  max-width: 100%;
-  --bar-color: var(--meter-bar-color, var(--color-base, #20639b));
   border-radius: var(--meter-border-radius, 1em);
   -webkit-transition: 0.4s linear;
   transition: 0.4s linear;
@@ -64,7 +62,7 @@
   left:0;
   right:0;
   bottom:0;
-  background: var(--bar-color);
+  background: var(--meter-bar-color, var(--color-base, #20639b));
 }
 
 :host([has-color-scale]) .scale .min {

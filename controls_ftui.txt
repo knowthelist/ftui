@@ -40,7 +40,7 @@ UPD 2021-12-01_00:12:02 4481 www/ftui/components/medialist/medialist.component.j
 UPD 2022-01-13_19:57:41 1070 www/ftui/components/menu/menu-button.component.js
 UPD 2021-11-09_22:11:36 407 www/ftui/components/menu/menu.component.css
 UPD 2021-11-09_22:09:43 1533 www/ftui/components/menu/menu.component.js
-UPD 2022-01-28_18:35:20 1796 www/ftui/components/meter/meter.component.css
+UPD 2022-01-28_18:45:26 1744 www/ftui/components/meter/meter.component.css
 UPD 2022-01-28_18:37:07 2168 www/ftui/components/meter/meter.component.js
 UPD 2021-02-01_19:44:36 1083 www/ftui/components/nav/nav-link.component.js
 UPD 2022-01-11_18:32:57 1477 www/ftui/components/popup/popup.component.css
