@@ -115,8 +115,8 @@ export class Rangeable {
         disabled: 'rangeable-disabled',
         tooltips: 'rangeable-tooltips',
         tooltip: 'rangeable-tooltip',
-        visible: 'rangeable-tooltips--visible'
-      }
+        visible: 'rangeable-tooltips--visible',
+      },
     };
 
     // user has passed a CSS3 selector string
@@ -129,15 +129,15 @@ export class Rangeable {
 
     this.mouseAxis = {
       x: 'clientX',
-      y: 'clientY'
+      y: 'clientY',
     };
     this.trackSize = {
       x: 'width',
-      y: 'height'
+      y: 'height',
     };
     this.trackPos = {
       x: 'left',
-      y: 'top'
+      y: 'top',
     };
     this.lastPos = 0;
     this.double =
@@ -162,7 +162,7 @@ export class Rangeable {
         min: 0,
         max: 100,
         step: 1,
-        value: this.input.value
+        value: this.input.value,
       };
 
       for (const prop in props) {
@@ -227,7 +227,7 @@ export class Rangeable {
 
       handle.forEach((node, i) => {
         node.index = i;
-        progress.appendChild(node);
+        container.appendChild(node);
         node.appendChild(tooltip[i]);
         node.tabIndex = 1;
 
@@ -240,14 +240,14 @@ export class Rangeable {
       });
 
       if (o.vertical) {
-        progress.appendChild(handle[0]);
+        container.appendChild(handle[0]);
       }
 
-      progress.appendChild(tooltip[2]);
+      container.appendChild(tooltip[2]);
 
       container.classList.add(c.multiple);
     } else {
-      progress.appendChild(handle);
+      container.appendChild(handle);
       handle.appendChild(tooltip);
 
       handle.tabIndex = 1;
@@ -285,7 +285,7 @@ export class Rangeable {
       track,
       progress,
       handle,
-      tooltip
+      tooltip,
     };
 
     if (this.double) {
@@ -372,6 +372,7 @@ export class Rangeable {
     const size = rect.container[this.trackSize[this.axis]];
 
     if (e.type === 'mousedown') {
+      console.log(e.target)
       if (
         (!this.double && this.nodes.handle.contains(e.target)) ||
         (this.double &&
@@ -381,7 +382,7 @@ export class Rangeable {
         return false;
       }
     }
-
+    console.log('weiter')
     // get the position of the cursor over the bar as a percentage
     const position = this.config.vertical ?
       (size - point) / size * 100 :
@@ -638,7 +639,7 @@ export class Rangeable {
 
     this.rects = {
       handle: handle,
-      container: this.nodes.container.getBoundingClientRect()
+      container: this.nodes.container.getBoundingClientRect(),
     };
   }
 
@@ -682,7 +683,7 @@ export class Rangeable {
         setStyle(
           this.nodes.buffer,
           this.limits.min / limits.max * size,
-          this.limits.max
+          this.limits.max,
         );
       }
       this.setValue(this.limit(value));
@@ -783,7 +784,7 @@ export class Rangeable {
   getLimits() {
     return {
       min: parseFloat(this.input.min),
-      max: parseFloat(this.input.max)
+      max: parseFloat(this.input.max),
     };
   }
 
@@ -841,6 +842,11 @@ export class Rangeable {
 
     // set the end point of the bar
     this.nodes.progress.style[this.trackSize[this.axis]] = `${width}px`;
+    if (this.axis === 'y') {
+      this.nodes.handle.style[this.trackPos[this.axis]] = `calc(100% - ${width}px)`;
+    } else {
+      this.nodes.handle.style[this.trackPos[this.axis]] = `${width -26}px`;
+    }
   }
 
   /**
@@ -873,10 +879,10 @@ export class Rangeable {
 
     const r = this.rects;
     const distA = Math.abs(
-      e[this.mouseAxis[this.axis]] - r.handle[0][this.trackPos[this.axis]]
+      e[this.mouseAxis[this.axis]] - r.handle[0][this.trackPos[this.axis]],
     );
     const distB = Math.abs(
-      e[this.mouseAxis[this.axis]] - r.handle[1][this.trackPos[this.axis]]
+      e[this.mouseAxis[this.axis]] - r.handle[1][this.trackPos[this.axis]],
     );
     let handle = e.target.closest(`.${this.config.classes.handle}`);
 
@@ -899,7 +905,7 @@ export class Rangeable {
     on(
       this.nodes.container,
       this.touch ? 'touchstart' : 'mousedown',
-      this.events.start
+      this.events.start,
     );
 
     if (this.double) {
@@ -921,7 +927,7 @@ export class Rangeable {
     off(
       this.nodes.container,
       this.touch ? 'touchstart' : 'mousedown',
-      this.events.start
+      this.events.start,
     );
 
     if (this.double) {
@@ -948,7 +954,7 @@ export class Rangeable {
       'update',
       'reset',
       'native',
-      'keydown'
+      'keydown',
     ];
 
     // bind so we can remove later
@@ -958,11 +964,11 @@ export class Rangeable {
 
     this.events.scroll = throttle(
       this.events.update,
-      this.config.updateThrottle
+      this.config.updateThrottle,
     );
     this.events.resize = throttle(
       this.events.update,
-      this.config.updateThrottle
+      this.config.updateThrottle,
     );
 
     // throttle the scroll callback for performance
@@ -978,7 +984,7 @@ export class Rangeable {
     on(
       this.nodes.container,
       this.touch ? 'touchstart' : 'mousedown',
-      this.events.start
+      this.events.start,
     );
 
     // listen for native input to allow keyboard control on focus
@@ -1006,7 +1012,7 @@ export class Rangeable {
     off(
       this.nodes.container,
       this.touch ? 'touchstart' : 'mousedown',
-      this.events.start
+      this.events.start,
     );
 
     // listen for native input to allow keyboard control on focus
@@ -1035,7 +1041,7 @@ export class Rangeable {
       // kill all nodes
       this.nodes.container.parentNode.replaceChild(
         this.input,
-        this.nodes.container
+        this.nodes.container,
       );
 
       // remove the reference from the input

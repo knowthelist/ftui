@@ -28,6 +28,7 @@
   height: 2em;
   box-shadow: var(--slider-handle-shadow, none);
   border: var(--slider-handle-border, none);
+  z-index: 3;
 }
 
 
@@ -50,14 +51,33 @@
 
 .rangeable-track {
   background-color: var(--slider-track-color);
+  display: flex;
+  flex-direction: column-reverse;
 }
 
 .rangeable-tooltip::before {
   border-color: var(--color-base) transparent transparent;
+  color: var(--primary-color);
 }
 
-.rangeable-progress, .rangeable-tooltip {
-  background-color: var(--color-base);
+.rangeable-progress {
+  -webkit-mask: linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0);
+  position: initial;
+}
+
+.rangeable-tooltip {
+  background-color: var(--primary-color);
+}
+
+.rangeable-progress::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--color-base, #20639b);
 }
 
 .rangeable-container.rangeable-vertical .rangeable-tooltip::before {
@@ -111,6 +131,7 @@
 :host(:not([is-vertical])[handle="retro"]) .rangeable-handle {
   width: 15px;
   height: 35px;
+  margin-left: 12px;
 }
 
 :host(:not([is-vertical])) .numbers #min {

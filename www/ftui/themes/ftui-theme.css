@@ -51,7 +51,7 @@
   --dark-color: var(--gray25);
 
   --cold-color: var(--blue1);
-  --warm-color: var(--tomato);
+  --hot-color: var(--tomato);
 
   --primary-contrast-color: var(--white);
   --secondary-contrast-color: var(--white);
