@@ -40,7 +40,7 @@ UPD 2021-12-01_00:12:02 4481 www/ftui/components/medialist/medialist.component.j
 UPD 2022-01-13_19:57:41 1070 www/ftui/components/menu/menu-button.component.js
 UPD 2021-11-09_22:11:36 407 www/ftui/components/menu/menu.component.css
 UPD 2021-11-09_22:09:43 1533 www/ftui/components/menu/menu.component.js
-UPD 2022-01-28_18:45:26 1744 www/ftui/components/meter/meter.component.css
+UPD 2022-01-29_18:30:09 1760 www/ftui/components/meter/meter.component.css
 UPD 2022-01-28_18:37:07 2168 www/ftui/components/meter/meter.component.js
 UPD 2021-02-01_19:44:36 1083 www/ftui/components/nav/nav-link.component.js
 UPD 2022-01-11_18:32:57 1477 www/ftui/components/popup/popup.component.css
@@ -117,7 +117,7 @@ UPD 2022-01-08_12:02:52 9574 www/ftui/examples/label.html
 UPD 2021-11-21_18:44:23 2386 www/ftui/examples/medialist.html
 UPD 2022-01-13_17:51:31 1942 www/ftui/examples/menu.html
 UPD 2022-01-13_22:25:03 2315 www/ftui/examples/menu2.html
-UPD 2022-01-29_14:55:18 2780 www/ftui/examples/meter.html
+UPD 2022-01-29_15:33:20 2979 www/ftui/examples/meter.html
 UPD 2022-01-13_23:43:20 3195 www/ftui/examples/mobile.html
 UPD 2022-01-27_21:12:04 21388 www/ftui/examples/mobile_full.html
 UPD 2021-02-01_19:44:48 5457 www/ftui/examples/mobile_plain.html
