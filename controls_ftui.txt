@@ -117,7 +117,7 @@ UPD 2022-01-30_12:35:43 9924 www/ftui/examples/label.html
 UPD 2021-11-21_18:44:23 2386 www/ftui/examples/medialist.html
 UPD 2022-01-13_17:51:31 1942 www/ftui/examples/menu.html
 UPD 2022-01-13_22:25:03 2315 www/ftui/examples/menu2.html
-UPD 2022-01-30_17:34:13 3074 www/ftui/examples/meter.html
+UPD 2022-01-31_09:02:01 3066 www/ftui/examples/meter.html
 UPD 2022-01-13_23:43:20 3195 www/ftui/examples/mobile.html
 UPD 2022-01-31_02:12:52 21388 www/ftui/examples/mobile_full.html
 UPD 2021-02-01_19:44:48 5457 www/ftui/examples/mobile_plain.html
