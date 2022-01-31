@@ -16,8 +16,8 @@
 
 ::slotted(ftui-grid-header),
 ::slotted(header) {
-  color: var(--color-contrast, --grid-header-color);
-  background: var(--color-base, --grid-header-background-color);
+  color: var(--color-contrast, var(--grid-header-color));
+  background: var(--color-base, var(--grid-header-background-color));
   font-weight: bold;
   padding: 0.25em;
   text-align: center;

@@ -100,6 +100,7 @@
   --color-min: var(--cold-color);
   --color-max: var(--hot-color);
   --color-mix: var(--cold-hot-color);
+  --color-contrast: var(--white);
 }
 
 [color="cold-hot"][is-vertical] {
@@ -111,6 +112,7 @@
   --color-min: var(--success-color);
   --color-max: var(--danger-color);
   --color-mix: var(--success-danger-color);
+  --color-contrast: var(--white);
 }
 
 [color="ok-alert"][is-vertical] {
@@ -121,6 +123,7 @@
   --color-base: linear-gradient(90deg, var(--success-color) 30%, var(--warning-color) 70%, var(--danger-color) 90%);
   --color-min: var(--success-color);
   --color-max: var(--danger-color);
+  --color-contrast: var(--black);
 }
 
 [color="ok-warning-alert"][is-vertical] {

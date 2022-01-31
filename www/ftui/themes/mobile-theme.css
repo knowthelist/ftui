@@ -19,8 +19,6 @@
   --yellow: #f6d55c;
   --yellow-dark: #ffb716;
   --red: #ed553b;
-  --red-dark: #ad3333;
-  --red-light: rgb(238, 92, 66);
   --green: #32a054;
   --green-light: #3caea3;
   --green-dark: #365a38;
@@ -42,8 +40,8 @@
 
   --success-color: var(--green-light);
   --info-color: var(--ligthblue);
-  --warning-color: var(--yellow1);
-  --danger-color: var(--red-dark1);
+  --warning-color: var(--yellow);
+  --danger-color: var(--red);
   --light-color: var(--gray90);
   --medium-color: var(--gray50);
   --dark-color: var(--gray25);
@@ -75,7 +73,7 @@
 
   --grid-background-color: var(--white);
   --grid-header-color: var(--gray55);
-  --grid-header-background-color: var(--gray30);
+  --grid-header-background-color: var(--white);
 
   --tab-color: var(--medium-color);
   --tab-contrast-color: var(--primary-contrast-color);

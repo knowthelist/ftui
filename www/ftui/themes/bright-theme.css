@@ -76,8 +76,8 @@
   --page-background-color: var(--gray90);
 
   --grid-background-color: var(--white);
-  --grid-header-color: var(--gray55);
-  --grid-header-background-color: var(--gray30);
+  --grid-header-color: var(--gray15);
+  --grid-header-background-color: var(--white);
 
   --tab-color: var(--medium-color);
   --tab-contrast-color: var(--primary-contrast-color);
