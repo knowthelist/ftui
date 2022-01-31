@@ -31,7 +31,7 @@
     <ftui-grid-tile row="1" col="1" height="1" width="1">
       <header>TEST IT</header>
 
-        <ftui-button [(value)]="dummy1:state" states="hey you, ho ho ho, how do you do?">Press here</ftui-button>
+        <ftui-button [value]="dummy1:state" (value)="setreading dummy1:state" states="hey you, ho ho ho, how do you do?">Press here</ftui-button>
 
     </ftui-grid-tile>
 

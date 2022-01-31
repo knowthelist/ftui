@@ -9,8 +9,8 @@
 
 import { FtuiElement } from '../element.component.js';
 import { notAvailable } from './image_not_available.js';
-import { isNumeric } from '../../modules/ftui/ftui.helper.js';
-import * as ftui from '../../modules/ftui/ftui.helper.js';
+import { isNumeric, isVisible } from '../../modules/ftui/ftui.helper.js';
+
 
 export class FtuiImage extends FtuiElement {
   constructor(properties) {
@@ -99,7 +99,7 @@ export class FtuiImage extends FtuiElement {
   }
 
   async updateImage() {
-    if (ftui.isVisible(this.imageElement)) {
+    if (isVisible(this.imageElement)) {
       this.imageElement.onerror = this.onError.bind(this);
       this.imageElement.src = await this.createUrl();
     }

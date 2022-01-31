@@ -19,10 +19,6 @@
 .outline {
   stroke: var(--knob-outline-color, var(--dark-color));
 }
-
-.fill {
-  stroke: var(--knob-fill-color, var(--color-base));
-}
  
 .needle {
   fill: var(--knob-needle-color, var(--color-base));
@@ -61,4 +57,14 @@ text {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+}
+
+#min {
+  stop-color: var(--color-min, var(--knob-fill-color, var(--color-base)));
+}
+.mix {
+  stop-color: var(--color-mix, var(--knob-fill-color, var(--color-base)));
+}
+#max {
+  stop-color: var(--color-max, var(--knob-fill-color, var(--color-base)));
 }

@@ -78,7 +78,7 @@ Just add some of the FTUI web components to your HTML code
 ```
 
 ```html
-<ftui-label [value]="dummy1"></ftui-label>
+<ftui-label [text]="dummy1"></ftui-label>
 ```
 
 ```html

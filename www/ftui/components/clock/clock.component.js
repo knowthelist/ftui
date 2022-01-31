@@ -23,7 +23,7 @@ export class FtuiClock extends FtuiLabel {
       format: 'hh:mm:ss',
       serverDiff: 0,
       offset: 0,
-      isFhemTime: false
+      isFhemTime: false,
     }
   }
 

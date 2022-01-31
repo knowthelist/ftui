@@ -78,7 +78,7 @@ class FtuiSwiper extends FtuiElement {
     observer.observe(elem,
       {
         attributes: true,
-        attributeFilter: ['hidden']
+        attributeFilter: ['hidden'],
       });
   }
 

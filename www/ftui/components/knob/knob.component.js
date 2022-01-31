@@ -74,10 +74,27 @@ export class FtuiKnob extends FtuiElement {
     <style> @import "components/knob/knob.component.css"</style>
     <svg class="svg" height="${this.height}" width="${this.width}" focusable="false">
    
+    <defs>
+        <linearGradient id="gradient1" gradientTransform="rotate(100)">
+        <stop class="mix" offset="0%" />
+        <stop id="min" offset="7%" />
+      </linearGradient>
+      <linearGradient id="gradient2" gradientTransform="rotate(80)">
+        <stop class="mix" offset="7%" />
+        <stop id="max" offset="20%" />
+      </linearGradient>
+        <pattern id="pattern" x="0" y="0" patternUnits="userSpaceOnUse">
+          <g transform="rotate(0, 0, 0)">
+            <rect shape-rendering="crispEdges" fill="url(#gradient1)"/>
+            <rect shape-rendering="crispEdges" fill="url(#gradient2)"/>
+          </g>
+        </pattern>
+      </defs>
+
       <g class="scale" stroke="gray"></g>
    
       <path class="outline" d="" fill="none" stroke-width="${this.strokeWidth}" />
-      <path class="fill" d="" fill="none" stroke-width="${this.strokeWidth}" />
+      <path class="fill" d="" fill="none" stroke="url(#pattern)" stroke-width="${this.strokeWidth}" />
       <polygon class="needle" />
       <circle class="handle" r="9" fill="none" />
       <circle class="desired" r="5" fill="none" />

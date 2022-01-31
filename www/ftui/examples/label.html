@@ -89,12 +89,12 @@
     <ftui-grid-tile row="2" col="9" height="1" width="2" shape="round">
       <header>LONG</header>
       <ftui-label margin="1" scroll>
-        Lorem Ipsum dolor sit amet, consectetur adipiscing elit, 
-        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi 
-        ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit 
-        in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia 
+        Lorem Ipsum dolor sit amet, consectetur adipiscing elit,
+        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+        ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
+        in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
         deserunt mollit anim id est laborum.
       </ftui-label>
     </ftui-grid-tile>
@@ -205,13 +205,22 @@
       <ftui-button (value)="setreading ftuitest:watt" states="9,10,12.45">Values</ftui-button>
       <ftui-button @click="labelUnit.unit=event.target.value" value="V" states="W,V,A,WA">Units</ftui-button>
     </ftui-grid-tile>
-    
+
     <ftui-grid-tile row="5" col="3" height="1" width="2">
       <header>PLACEHOLDER</header>
       <ftui-label placeholder></ftui-label>
       <ftui-label placeholder></ftui-label>
     </ftui-grid-tile>
 
+    <ftui-grid-tile row="5" col="5" height="1" width="2">
+      <header>DETAILS</header>
+      <details>
+        <summary>Batteries: <ftui-label text="Ok" color="ok"></ftui-label>
+        </summary>
+        <ftui-label text="2.7" unit="V">Room1: </ftui-label>
+        <ftui-label text="2.5" unit="V">Room2: </ftui-label>
+      </details>
+    </ftui-grid-tile>
   </ftui-grid>
 </body>
 

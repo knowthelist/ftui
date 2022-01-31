@@ -765,3 +765,13 @@ ftui-circlemenu~ftui-badge, ftui-icon~ftui-badge {
 [popup-target], [onclick], [\40 click] {
   cursor: pointer;
 }
+
+details {
+  display: flex;
+}
+
+summary {
+  outline: none;
+  margin: 0.5em;
+  cursor: pointer;
+}

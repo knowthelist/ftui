@@ -99,6 +99,7 @@
   --color-base: linear-gradient(90deg, var(--cold-color) 35%, var(--hot-color) 65%);
   --color-min: var(--cold-color);
   --color-max: var(--hot-color);
+  --color-mix: var(--cold-hot-color);
 }
 
 [color="cold-hot"][is-vertical] {

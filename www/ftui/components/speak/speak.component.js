@@ -9,14 +9,17 @@
 
 import { FtuiElement } from '../element.component.js';
 import { fhemService } from '../../modules/ftui/fhem.service.js';
-import * as ftuiHelper from '../../modules/ftui/ftui.helper.js';
+import { isDefined } from '../../modules/ftui/ftui.helper.js';
 
 
 export class FtuiSpeak extends FtuiElement {
   constructor(properties) {
     super(Object.assign(FtuiSpeak.properties, properties));
 
-    this.findVoice();
+    if (typeof speechSynthesis !== 'undefined' && speechSynthesis.onvoiceschanged !== undefined) {
+      speechSynthesis.onvoiceschanged = this.findVoice.bind(this);
+    }
+
     this.readingName = this.binding.getReadingsOfAttribute('text')[0];
   }
 
@@ -26,7 +29,7 @@ export class FtuiSpeak extends FtuiElement {
       pitch: 0.9,
       rate: 1.0,
       volume: 1.0,
-      text: ''
+      text: '',
     };
   }
 
@@ -56,7 +59,7 @@ export class FtuiSpeak extends FtuiElement {
     utter.rate = this.rate;
     utter.pitch = this.pitch;
     utter.volume = this.volume;
-    if (ftuiHelper.isDefined(this.synthVoice)) {
+    if (isDefined(this.synthVoice)) {
       utter.voice = this.synthVoice;
     }
     window.speechSynthesis.speak(utter);

@@ -15,8 +15,8 @@
     */
     -->
   <base href="../" />
-  <script src="ftui.js"></script>
-  <link href="ftui.css" rel="stylesheet">
+  <script src="ftui.min.js"></script>
+  <link href="ftui.min.css" rel="stylesheet">
   <link href="themes/ftui-theme.css" rel="stylesheet">
   <link href="favicon.ico" rel="icon" type="image/x-icon" />
 
@@ -46,6 +46,7 @@
       <header>NUMBER</header>
       <ftui-row>
         <ftui-input [(value)]="ftuitest" min="1" max="100" type="number" size="4"></ftui-input>
+        <ftui-button (value)="ftuitest" states="0,4,10,45,75,90,100">Try</ftui-button>
         <ftui-meter [value]="ftuitest" min="1" max="100"
                     [color]="ftuitest | step('0:primary, 60:warning, 80:alert')"></ftui-meter>
       </ftui-row>
