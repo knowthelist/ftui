@@ -18,26 +18,28 @@
   --gray95: #f2f2f2;
   --gray-trans: rgba(40, 40, 40, 0.5);
   --lightgray: #777777;
-  --orange: #f8b13e;
-  --red: #ad3333;
-  --lightered: #DB4846;
-  --tomato: #EE5C42;
+  --red: #DB4846;
+  --red-light: #EE5C42;
+  --red-dark: #ad3333;
   --green: #32a054;
-  --seagreen: #365a38;
+  --green-light: #80d534;
+  --green-dark: #365a38;
   --mint: #5bc995;
   --blue: #436D8D; 
   --blue1: #20639b;
   --blue2: #173f5f;
-  --green1: #3caea3;
-  --yellow1: #f6d55c;
-  --red1: #ed553b;
+  --yellow: #e2c637;
+  --yellow-light: #ffe066;
+  --yellow-dark: #f6d55c;
+  --red-dark1: #ed553b;
   --lightblue: #66aaFF;
   --royalblue: #394b98;
+  --orange: #f8b13e;
   --white: #ffffff; 
   --brown: #bf7a37;
   --black: #111111;
   --fullblack: #000000;
-  --yellow: #ffe066;
+ 
   --violet: #9400d3;
   --violet2: #87606f;
   --transparent: transparent;
@@ -45,16 +47,18 @@
   --primary-color: var(--blue1);
   --secondary-color: var(--blue2);
 
-  --success-color: var(--green1);
+  --success-color: var(--green-light);
   --info-color: var(--lightblue);
-  --warning-color: var(--yellow1);
-  --danger-color: var(--red1);
+  --warning-color: var(--yellow-dark);
+  --danger-color: var(--red);
   --light-color: var(--gray75);
   --medium-color: var(--gray40);
   --dark-color: var(--gray25);
+  --success-danger-color: var(--yellow);
+
 
   --cold-color: var(--blue1);
-  --hot-color: var(--tomato);
+  --hot-color: var(--red-light);
   --cold-hot-color: var(--violet2);
 
   --primary-contrast-color: var(--white);

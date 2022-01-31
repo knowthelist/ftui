@@ -6,6 +6,8 @@
   <script src="ftui.js"></script>
   <link href="ftui.css" rel="stylesheet">
   <link href="themes/ftui-theme.css" rel="stylesheet">
+  <link href="themes/bright-theme.css" rel="stylesheet"
+        id="lightCSS" ftui-binding [disabled]="dummy11 | map('dark:true, light:false') | toBool()">
   <link href="favicon.ico" rel="icon" type="image/x-icon" />
 
 <!--   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -19,7 +21,12 @@
 
   <ftui-grid base-width="150" base-height="50" margin="15">
 
-    <ftui-grid-tile row="1" col="1" height="4" width="2" shape="round">
+    <ftui-grid-tile row="1" col="1" height="2" width="2">
+      <!-- Change color theme via FHEM reading-->
+      <ftui-button [(value)]="dummy11" states="dark,light">Dark,Light</ftui-button>
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="1" col="3" height="4" width="2" shape="round">
       <header>MAIN</header>
       <ftui-row color="primary">primary</ftui-row>
       <ftui-row color="secondary">secondary</ftui-row>
@@ -28,14 +35,14 @@
       <ftui-row color="dark">dark</ftui-row>
     </ftui-grid-tile>
 
-    <ftui-grid-tile row="1" col="3" height="4" width="2" shape="round">
+    <ftui-grid-tile row="1" col="5" height="4" width="2" shape="round">
       <header>RESULTS</header>
       <ftui-row color="success">success</ftui-row>
       <ftui-row color="warning">warning</ftui-row>
       <ftui-row color="danger">danger</ftui-row>
     </ftui-grid-tile>
 
-    <ftui-grid-tile row="5" col="1" height="4" width="2" shape="round">
+    <ftui-grid-tile row="5" col="3" height="4" width="2" shape="round">
       <header>SPECTRUM</header>
       <ftui-row color="red">red</ftui-row>
       <ftui-row color="orange">orange</ftui-row>
@@ -45,14 +52,14 @@
       <ftui-row color="violet">violet</ftui-row>
     </ftui-grid-tile>
 
-    <ftui-grid-tile row="5" col="3" height="4" width="2" shape="round">
+    <ftui-grid-tile row="5" col="5" height="4" width="2" shape="round">
       <header>STATES</header>
       <ftui-row color="ok">ok</ftui-row>
       <ftui-row color="warning">warning</ftui-row>
       <ftui-row color="error">error</ftui-row>
     </ftui-grid-tile>
 
-    <ftui-grid-tile row="9" col="1" height="4" width="2" shape="round">
+    <ftui-grid-tile row="9" col="3" height="4" width="2" shape="round">
       <header>OTHER</header>
       <ftui-row color="white">white</ftui-row>
       <ftui-row color="black">black</ftui-row>
@@ -62,7 +69,7 @@
       <ftui-row color="translucent">translucent</ftui-row>
     </ftui-grid-tile>
 
-    <ftui-grid-tile row="9" col="3" height="4" width="2" shape="round">
+    <ftui-grid-tile row="9" col="5" height="4" width="2" shape="round">
       <header>LABEL COLOR</header>
       <ftui-label color="red">red</ftui-label>
       <ftui-label color="orange">orange</ftui-label>
@@ -76,5 +83,28 @@
 
 
 </body>
+
+<!--  automatic change of color theme -->
+<script>
+
+  const darkSchema = '(prefers-color-scheme: dark)';
+  const isDark = window.matchMedia && window.matchMedia(darkSchema).matches;
+  // set theme on start
+  setTheme(isDark);
+
+  window.matchMedia(darkSchema).addEventListener('change', e => {
+    const isDark = e.matches;
+    // set theme on change
+    setTheme(isDark);
+  });
+  
+  function setTheme(isDark) {
+    if (isDark) {
+      lightCSS.setAttribute('disabled', '');
+    } else {
+      lightCSS.removeAttribute('disabled');
+    }
+  }
+</script>
 
 </html>

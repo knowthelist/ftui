@@ -2,12 +2,12 @@
 
 /* "primary", "secondary", "ok",                 "error",  "white", "medium", "dark" */
 
-/*                         "green",   "yellow",  "red",    "light", "medium", "dark" */
+/*                         "green",   "yellow-light",  "red",    "light", "medium", "dark" */
 
 [color="primary"] {
   --color-base: var(--primary-color);
   --color-contrast: var(--primary-contrast-color);
-  --color-shade: var(--seagreen);
+  --color-shade: var(--green-dark);
 }
 
 [color="secondary"] {
@@ -110,6 +110,7 @@
   --color-base: linear-gradient(90deg, var(--success-color) 35%, var(--danger-color) 65%);
   --color-min: var(--success-color);
   --color-max: var(--danger-color);
+  --color-mix: var(--success-danger-color);
 }
 
 [color="ok-alert"][is-vertical] {

@@ -16,35 +16,37 @@
   --gray90: #e5e5e5;
   --gray95: #f2f2f2;
   --gray-trans: rgba(40, 40, 40, 0.5);
-  --orange: #aa6900;
-  --red: #ad3333;
-  --lightered: rgb(219, 72, 70);
-  --tomato: rgb(238, 92, 66);
+
+  --red: rgb(219, 72, 70);
+  --red-light: rgb(238, 92, 66);
+  --red-dark: #ed553b;
   --green: #32a054;
-  --seagreen: #365a38;
+  --green-dark: #365a38;
   --mint: #5bc995;
   --blue: #3880ff; 
   --blue1: #20639b;
   --blue2: #173f5f;
-  --green1: #3caea3;
-  --yellow1: #f6d55c;
-  --red1: #ed553b;
+  --green-light: #3caea3;
+  --yellow: #f6d55c;
+  --yellow-dark: #aa6900;
+  --yellow-light: #ffe066;
+  --red-dark1: #ed553b;
   --lightblue: #66aaFF;
   --royalblue: #394b98;
   --white: #ffffff;
   --black: #111111;
   --fullblack: #000000;
-  --yellow: #ffe066;
+  
   --violet: #9400d3;
   --transparent: transparent;
 
   --primary-color: var(--blue);
   --secondary-color: var(--blue2);
 
-  --success-color: var(--green1);
+  --success-color: var(--green-light);
   --info-color: var(--ligthblue);
-  --warning-color: var(--yellow1);
-  --danger-color: var(--red1);
+  --warning-color: var(--yellow-light);
+  --danger-color: var(--red-dark);
   --light-color: var(--gray75);
   --medium-color: var(--gray50);
   --dark-color: var(--gray25);

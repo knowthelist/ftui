@@ -77,16 +77,16 @@ export class FtuiKnob extends FtuiElement {
     <defs>
         <linearGradient id="gradient1" gradientTransform="rotate(100)">
         <stop class="mix" offset="0%" />
-        <stop id="min" offset="7%" />
+        <stop id="min" offset="10%" />
       </linearGradient>
       <linearGradient id="gradient2" gradientTransform="rotate(80)">
-        <stop class="mix" offset="7%" />
-        <stop id="max" offset="20%" />
+        <stop class="mix" offset="5%" />
+        <stop id="max" offset="15%" />
       </linearGradient>
-        <pattern id="pattern" x="0" y="0" patternUnits="userSpaceOnUse">
+        <pattern id="pattern" x="0" y="0" width="100%" height="100%" patternUnits="userSpaceOnUse">
           <g transform="rotate(0, 0, 0)">
-            <rect shape-rendering="crispEdges" fill="url(#gradient1)"/>
-            <rect shape-rendering="crispEdges" fill="url(#gradient2)"/>
+            <rect shape-rendering="crispEdges" x="0" y="5%" width="100%" height="300%" fill="url(#gradient1)"/>
+            <rect shape-rendering="crispEdges" x="50%" y="20%" width="100%" height="300%" fill="url(#gradient2)"/>
           </g>
         </pattern>
       </defs>

@@ -56,7 +56,7 @@
 
     <ftui-grid-tile row="2" col="2" height="1" width="1">
       <header>GRADIENT</header>
-      <ftui-knob [(value)]="dummy1" color="cold-hot"></ftui-knob>
+      <ftui-knob [(value)]="dummy1" color="ok-alert"></ftui-knob>
     </ftui-grid-tile>
 
     <ftui-grid-tile row="1" col="3" height="1" width="1">
@@ -153,11 +153,24 @@
                  margin="-18px 0 0 0" unit-offset-y="13" value-offset-y="-5"
                  has-value-text value-size="22px" stroke-width="6" class="bold">
       </ftui-knob>
-
       <ftui-label margin="-20px 0 0 0">Flur</ftui-label>
-
     </ftui-grid-tile>
 
+    <ftui-grid-tile row="5" col="3" height="0.6" width="0.6">
+      <header>SMALL</header>
+      <ftui-knob value="10"
+                 height="90" width="90" offset-y="10" has-arc min="-20" max="40" unit="°C"
+                 margin="-18px 0 0 0" unit-offset-y="13" value-offset-y="-5"
+                 color="cold-hot"
+                 has-value-text value-size="22px" stroke-width="8" class="bold">
+      </ftui-knob>
+      <ftui-label margin="-20px 0 0 0">Outdoor</ftui-label>
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="5" col="4" height="1.5" width="1.5">
+      <header>BIG</header>
+      <ftui-knob [(value)]="dummy1" color="cold-hot" width=300 height=300 stroke-width="65" ></ftui-knob>
+    </ftui-grid-tile>
 
   </ftui-grid>
 
