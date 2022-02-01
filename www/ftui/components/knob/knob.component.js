@@ -8,7 +8,7 @@
 */
 
 import { FtuiElement } from '../element.component.js';
-import { countDecimals, round } from '../../modules/ftui/ftui.helper.js';
+import { countDecimals, round, limit, scale } from '../../modules/ftui/ftui.helper.js';
 
 
 export class FtuiKnob extends FtuiElement {
@@ -374,8 +374,9 @@ export class FtuiKnob extends FtuiElement {
   valueToAngle(val) {
     const min = parseFloat(this.min);
     const max = parseFloat(this.max);
-    const newVal = (!isNaN(val) && val >= min && val <= max) ? parseFloat(val) : min;
-    return ((newVal - min) * this.rangeAngle / (max - min) - this.rangeAngle) + this.endAngle;
+    const newVal = !isNaN(val) ? parseFloat(val) : min;
+    const limitedValue = limit(newVal, min, max);
+    return scale(limitedValue, min, max, this.startAngle, this.endAngle)
   }
 
   angleToValue(angle) {

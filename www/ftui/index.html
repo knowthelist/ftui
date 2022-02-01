@@ -138,7 +138,7 @@
       <!-- Temp -->
       <ftui-grid-tile row="3" col="2" height="2" width="2" shape="round">
         <ftui-knob [value]="THSensorWZ:temperature"
-                   [color]="THSensorWZ:temperature | step('0: blue, 18: ok, 20: yellow, 22: orange, 30: danger')"
+                   [color]="THSensorWZ:temperature | step('0: primary, 18: ok, 20: yellow, 22: orange, 30: danger')"
                    width="130" offset-y="10"
                    type="handle" min="16" max="25" decimals="1" unit="°C" readonly has-value-text></ftui-knob>
       </ftui-grid-tile>
@@ -147,7 +147,7 @@
       <ftui-grid-tile row="5" col="2" height="3" width="2" shape="round">
         <ftui-label size="2">Außen</ftui-label>
         <ftui-knob [value]="AussenTemp:temperature"
-                   [color]="AussenTemp:temperature | step('-99: blue, 10: ok, 25: warning, 30: danger')"
+                   [color]="AussenTemp:temperature | step('-99: primary, 10: ok, 25: warning, 30: danger')"
                    width="130" offset-y="10"
                    type="handle" min="-10" max="30" decimals="1" unit="°C" readonly has-value-text></ftui-knob>
       </ftui-grid-tile>

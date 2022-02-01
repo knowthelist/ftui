@@ -7,7 +7,7 @@
 [color="primary"] {
   --color-base: var(--primary-color);
   --color-contrast: var(--primary-contrast-color);
-  --color-shade: var(--green-dark);
+  --color-active: var(--primary-active-color);
 }
 
 [color="secondary"] {
@@ -30,29 +30,44 @@
   --color-contrast: var(--dark-contrast-color);
 }
 
-[color="ok"], [color="success"], [color="green"] {
+[color="ok"], [color="success"] {
   --color-base: var(--success-color);
   --color-contrast: var(--success-contrast-color);
 }
 
-[color="warning"], [color="yellow"] {
+[color="warning"] {
   --color-base: var(--warning-color);
   --color-contrast: var(--warning-contrast-color);
 }
 
-[color="danger"], [color="error"], [color="alert"], [color="red"] {
+[color="danger"], [color="error"], [color="alert"] {
   --color-base: var(--danger-color);
   --color-contrast: var(--danger-contrast-color);
 }
 
+[color="red"] {
+  --color-base: var(--red);
+  --color-contrast: var(--danger-contrast-color);
+}
+
+[color="green"] {
+  --color-base: var(--green);
+  --color-contrast: var(--success-contrast-color);
+}
+
 [color="blue"] {
-  --color-base: var(--lightblue);
+  --color-base: var(--blue);
   --color-contrast: var(--success-contrast-color);
 }
 
 [color="orange"] {
   --color-base: var(--orange);
   --color-contrast: var(--success-contrast-color);
+}
+
+[color="yellow"] {
+  --color-base: var(--yellow);
+  --color-contrast: var(--warning-contrast-color);
 }
 
 [color="violet"] {
@@ -99,7 +114,7 @@
   --color-base: linear-gradient(90deg, var(--cold-color) 35%, var(--hot-color) 65%);
   --color-min: var(--cold-color);
   --color-max: var(--hot-color);
-  --color-mix: var(--cold-hot-color);
+  --color-mix: var(--cold-hot-mix-color);
   --color-contrast: var(--white);
 }
 

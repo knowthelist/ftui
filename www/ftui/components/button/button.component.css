@@ -79,7 +79,7 @@
 }
 
 :host(.activated) .button-inner {
-  --color-base: var(--color-shade);
+  --color-base: var(--color-active);
 }
 
 :host .button-inner {
