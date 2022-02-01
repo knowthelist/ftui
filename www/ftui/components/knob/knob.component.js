@@ -374,8 +374,8 @@ export class FtuiKnob extends FtuiElement {
   valueToAngle(val) {
     const min = parseFloat(this.min);
     const max = parseFloat(this.max);
-    const newVal = !isNaN(val) ? parseFloat(val) : min;
-    const limitedValue = limit(newVal, min, max);
+    const numericValue = !isNaN(val) ? parseFloat(val) : min;
+    const limitedValue = limit(numericValue, min, max);
     return scale(limitedValue, min, max, this.startAngle, this.endAngle)
   }
 

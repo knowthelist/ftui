@@ -18,17 +18,17 @@
   --gray95: #f2f2f2;
   --gray-trans: rgba(40, 40, 40, 0.5);
 
-  --red: #db5d3a;
+  --red: #F06060;
   --red-light: #EE5C42;
   --red-dark: #ad3333;
-  --green: #05aaad;
+  --green: #8CBEB2;
   --green-light: #80d534;
   --green-dark: #365a38;
   --blue: #436D8D; 
   --blue1: #20639b;
   --blue2: #173f5f;
   --blue-light: #66aaFF;
-  --yellow: #eeca82;
+  --yellow: #F3B562;
   --yellow-light: #faeaa9;
   --yellow-dark: #deb82e;
   --orange: #f8b13e;
@@ -50,7 +50,7 @@
   --danger-color: var(--red);
   --light-color: var(--gray75);
   --medium-color: var(--gray40);
-  --dark-color: var(--gray25);
+  --dark-color: var(--lightgray);
   --success-danger-color: var(--yellow);
 
   --cold-color: var(--blue1);

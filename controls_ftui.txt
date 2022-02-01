@@ -31,7 +31,7 @@ UPD 2022-01-31_02:09:56 3277 www/ftui/components/image/image.component.js
 UPD 2021-02-03_14:48:37 8329 www/ftui/components/image/image_not_available.js
 UPD 2022-01-24_22:06:30 2660 www/ftui/components/input/input.component.js
 UPD 2022-01-31_08:39:23 1186 www/ftui/components/knob/knob.component.css
-UPD 2022-02-01_14:08:20 14838 www/ftui/components/knob/knob.component.js
+UPD 2022-02-01_14:10:29 14850 www/ftui/components/knob/knob.component.js
 UPD 2022-01-31_02:08:35 3623 www/ftui/components/label/label.component.js
 UPD 2021-02-01_19:44:36 1816 www/ftui/components/main/main.component.js
 UPD 2021-11-21_18:01:44 180 www/ftui/components/medialist/album_icon.svg
@@ -112,7 +112,7 @@ UPD 2021-12-01_20:36:41 7626 www/ftui/examples/grid.html
 UPD 2022-01-20_21:28:46 6514 www/ftui/examples/icon.html
 UPD 2021-12-03_13:59:42 4092 www/ftui/examples/image.html
 UPD 2021-11-06_00:29:33 2108 www/ftui/examples/input.html
-UPD 2022-01-31_15:19:12 6532 www/ftui/examples/knob.html
+UPD 2022-02-01_22:09:10 6532 www/ftui/examples/knob.html
 UPD 2022-01-30_12:35:43 9924 www/ftui/examples/label.html
 UPD 2021-11-21_18:44:23 2386 www/ftui/examples/medialist.html
 UPD 2022-01-13_17:51:31 1942 www/ftui/examples/menu.html
@@ -128,7 +128,7 @@ UPD 2022-01-29_14:55:18 4705 www/ftui/examples/slider.html
 UPD 2022-01-31_02:40:12 1268 www/ftui/examples/speak.html
 UPD 2021-12-01_22:28:20 15512 www/ftui/examples/swiper.html
 UPD 2021-12-17_19:15:32 1583 www/ftui/examples/switch.html
-UPD 2021-11-30_17:17:52 2816 www/ftui/examples/tab-content.html
+UPD 2022-02-01_22:19:05 2816 www/ftui/examples/tab-content.html
 UPD 2021-12-08_23:45:05 2924 www/ftui/examples/tab-segment-local.html
 UPD 2021-11-30_17:17:52 2575 www/ftui/examples/tab-segment.html
 UPD 2021-11-30_17:17:52 2776 www/ftui/examples/tab-trans.html
@@ -706,7 +706,7 @@ UPD 2021-12-04_19:51:20 1284 www/ftui/icons/windy2.svg
 UPD 2021-12-04_19:51:20 822 www/ftui/icons/wpforms.svg
 UPD 2021-12-04_19:51:20 798 www/ftui/icons/wrench.svg
 UPD 2021-12-04_19:51:20 777 www/ftui/icons/youtube-play.svg
-CRE 2022-02-01_00:13:35 9460 www/ftui/index.html
+CRE 2022-02-01_22:09:18 9460 www/ftui/index.html
 UPD 2020-12-31_16:39:06 445455 www/ftui/modules/chart.js/chart.js
 UPD 2022-01-31_15:27:32 192031 www/ftui/modules/chart.js/chart.min.js
 UPD 2020-12-31_16:39:06 49580 www/ftui/modules/chart.js/chartjs-adapter-date-fns.bundle.min.js
@@ -726,7 +726,7 @@ UPD 2022-01-28_22:15:56 12249 www/ftui/modules/rangeable/rangeable.min.js
 UPD 2020-12-31_16:39:06 1922 www/ftui/modules/vanilla-notify/vanilla-notify.css
 UPD 2020-12-31_16:39:06 6339 www/ftui/modules/vanilla-notify/vanilla-notify.js
 UPD 2020-12-31_16:39:06 3390 www/ftui/modules/vanilla-notify/vanilla-notify.min.js
-UPD 2022-01-31_23:57:26 3490 www/ftui/themes/bright-theme.css
+UPD 2022-02-01_19:41:11 3486 www/ftui/themes/bright-theme.css
 UPD 2022-02-01_13:46:24 3723 www/ftui/themes/color-attributes.css
-UPD 2022-02-01_13:46:57 3734 www/ftui/themes/ftui-theme.css
-UPD 2022-01-31_23:46:42 3790 www/ftui/themes/mobile-theme.css
+UPD 2022-02-01_20:08:32 3670 www/ftui/themes/ftui-theme.css
+UPD 2022-02-01_19:41:11 3771 www/ftui/themes/mobile-theme.css

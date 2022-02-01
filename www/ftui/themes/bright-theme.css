@@ -16,28 +16,22 @@
   --gray90: #e5e5e5;
   --gray95: #f2f2f2;
   --gray-trans: rgba(40, 40, 40, 0.5);
-
   --red: rgb(219, 72, 70);
   --red-light: rgb(238, 92, 66);
   --red-dark: #ed553b;
-
   --green: #32a054;
   --green-light: #3caea3;
   --green-dark: #365a38;
-  --mint: #5bc995;
-
   --blue: #3880ff; 
   --blue-light: #66aaFF;
   --blue-dark: #173f5f;
-
   --yellow: #f6d55c;
   --yellow-dark: #aa6900;
   --yellow-light: #ffe066;
-
+  --orange: #f8b13e;
   --white: #ffffff;
   --black: #111111;
-  --fullblack: #000000;
-  
+  --fullblack: #000000;  
   --violet: #9400d3;
   --transparent: transparent;
 
