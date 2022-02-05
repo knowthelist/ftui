@@ -4,26 +4,19 @@
 
 :root {
   --gray: #393939;
-  --gray10: #1a1a1a;
-  --gray15: #272727;
-  --gray20: #333333;
-  --gray25: #3f3f3f;
-  --gray33: #545454;
-  --gray40: #666666;
-  --gray55: #8c8c8c;
-  --gray75: #bfbfbf;
-  --gray80: #cccccc;
-  --gray85: #d8d8d8;
-  --gray90: #e5e5e5;
-  --gray95: #f2f2f2;
+  --gray-dark: #534349;
+  --gray-light: #4a3c41;
+  --gray-darker: #2e2629;
+  --gray-darkest: #1c1718;
+
   --gray-trans: rgba(40, 40, 40, 0.5);
 
   --red: #F06060;
   --red-light: #EE5C42;
   --red-dark: #ad3333;
-  --green: #8CBEB2;
+  --green: #4b8b7b;
   --green-light: #80d534;
-  --green-dark: #365a38;
+  --green-dark: #4b5c56;
   --blue: #436D8D; 
   --blue1: #20639b;
   --blue2: #173f5f;
@@ -34,6 +27,9 @@
   --orange: #f8b13e;
   --white: #ffffff; 
   --brown: #bf7a37;
+  --brown-dark: #534349;
+  --brown-darker: #251e20;
+  --brown-darkest: #251e20;
   --black: #111111;
   --fullblack: #000000;
  
@@ -72,17 +68,18 @@
   --text-color: var(--gray75);
   --inactive-text-color: #1e1bcc;
 
+  --page-background-color: var(--gray-darkest);
+
+  --grid-background-color: var(--gray-dark);
+  --grid-header-color: var(--gray55);
+  --grid-header-background-color: var(--gray-darker);
+
   --view-toolbar-color: var(--gray15);
   --view-toolbar-background-color: var(--white);
   --view-content-color: var(--white);
   --view-background-color: var(--white);
   --view-footer-color: var(--white);
 
-  --page-background-color: var(--fullblack);
-
-  --grid-background-color: var(--gray20);
-  --grid-header-color: var(--gray55);
-  --grid-header-background-color: var(--gray15);
 
   --tab-color: var(--gray40);
   --tab-contrast-color: var(--gray20);

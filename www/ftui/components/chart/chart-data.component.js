@@ -19,7 +19,11 @@ export class FtuiChartData extends FtuiElement {
     super(Object.assign(FtuiChartData.properties, properties));
 
     if (this.backgroundColor.length === 0) {
-      this.hasCalculatedBackgroundColor = true;
+      if (this.type === 'bubble') {
+        this.backgroundColor = ftuiHelper.getStylePropertyValue('--color-base', this) || this.color;
+      } else {
+        this.hasCalculatedBackgroundColor = true;
+      }
     }
   }
 
@@ -69,7 +73,8 @@ export class FtuiChartData extends FtuiElement {
     const endDate = ftuiHelper.dateFromString(this.endDate);
     endDate.setSeconds(endDate.getSeconds() + this.prefetch);
     const endDateFormatted = ftuiHelper.dateFormat(endDate, 'YYYY-MM-DD_hh:mm:ss');
-
+    this.rangeDate = endDate.getTime() - startDate.getTime();
+    this.risingDate = this.startDate;
     const cmd = 'get ' + log + ' ' + file + ' - ' + startDateFormatted + ' ' + endDateFormatted + ' ' + spec;
     fhemService.sendCommand(cmd)
       .then(response => response.text())
@@ -87,13 +92,31 @@ export class FtuiChartData extends FtuiElement {
     const labels = [];
     let date, value;
     const lines = response.split('\n');
-
+    const timeStep = this.rangeDate / 150 ;
+    const isStepped = this.hasAttribute('stepped');
+    let risingValue;
     lines.forEach(line => {
       if (line.length > 0 && !line.startsWith('#')) {
         [date, value] = line.split(' ');
         if (date && ftuiHelper.isNumeric(value)) {
-          data.push({ 'x': date, 'y': parseFloat(value) + parseFloat(this.offset) });
-          labels.push(date);
+          const parsedValue = parseFloat(value) + parseFloat(this.offset);
+          if (parsedValue > 0 || this.type !== 'bubble') {
+            this.risingDate = date;
+            risingValue = parsedValue;
+            data.push({ 'x': date, 'y': parsedValue });
+            labels.push(date);
+          } else if (this.type === 'bubble' && parsedValue === 0 && isStepped) {
+            // interpolate times between rising and falling flank
+            // to create a kind of gantt chart
+            const startDate = ftuiHelper.dateFromString(this.risingDate).getTime();
+            const endDate = ftuiHelper.dateFromString(date).getTime();
+            for (let i = startDate; i < endDate; i += timeStep) {
+              const interpolatedDate = ftuiHelper.dateFormat(new Date(i), 'YYYY-MM-DD_hh:mm:ss');
+              data.push({ 'x': interpolatedDate, 'y': risingValue });
+              labels.push(interpolatedDate);
+            }
+          }
+
         }
       }
     });

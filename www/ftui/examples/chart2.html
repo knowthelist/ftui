@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!--
+    /* FHEM tablet ui - FTUI */
+    /**
+    * UI builder framework for FHEM
+    *
+    * Version: 3.0.0
+    *
+    * Copyright (c) 2020 Mario Stephan <mstephan@shared-files.de>
+    * Under MIT License (http://www.opensource.org/licenses/mit-license.php)
+    * https://github.com/knowthelist/ftui
+    */
+    -->
+  <base href="../" />
+  <script src="ftui.js"></script>
+  <link href="ftui.css" rel="stylesheet">
+  <link href="themes/ftui-theme.css" rel="stylesheet">
+  <link href="favicon.ico" rel="icon" type="image/x-icon" />
+
+  <style>
+    #mychart1 {
+      --chart-text-color: #ffdd55;
+    }
+
+  </style>
+
+  <title>FTUI Example Chart</title>
+</head>
+
+<body>
+
+  <ftui-grid base-width="150" base-height="120">
+
+    <ftui-grid-tile row="1" col="1" height="2" width="3">
+      <header>Floor</header>
+
+      <ftui-chart y-label="Open" type="bubble"
+                  y-min="1" y-max="4" unit="24h">
+        <ftui-chart-data color="alert" type="bubble"
+                         log="FileLog_EingangstuerRiegel"
+                         label="locked"
+                         spec="4:EingangstuerRiegel::$fld[2]=~'closed'?2:0"
+                         stepped></ftui-chart-data>
+        <ftui-chart-data color="warning" type="bubble"
+                         log="FileLog_FlurAnwesenheit"
+                         label="presence"
+                         spec="4:FlurAnwesenheit.getG1::$fld[3]=~'on'?3:0"
+                         ></ftui-chart-data>
+        <ftui-chart-controls units="24h, 30d"></ftui-chart-controls>
+      </ftui-chart>
+
+    </ftui-grid-tile>
+
+  </ftui-grid>
+
+</body>
+
+</html>

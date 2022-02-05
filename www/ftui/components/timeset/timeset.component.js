@@ -41,16 +41,14 @@ export class FtuiTimeSet extends FtuiElement {
   template() {
     return `
       <style>
-      :host  {
-        position: relative;
-        padding: 0 1em;
+      .container, .divider, .hours, .minutes {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
       }
-      :host:after {
-        position: absolute;
-        right: 1em;
-        top: -0.05em;
-        content: "";
-        pointer-events: none;
+      .container {
+        flex-direction: row;
       }
       select {
         border: none;
@@ -74,6 +72,9 @@ export class FtuiTimeSet extends FtuiElement {
         cursor: pointer;
         margin: 0 0.15em;
       }
+      :host(:not([hasbuttons]):not([has-buttons])) button {
+        display: none;
+      }
       select option {
         color: var(--text-color);
       }
@@ -85,9 +86,10 @@ export class FtuiTimeSet extends FtuiElement {
       }
       </style>
       <div class="container">
-        ${(this.hasAttribute('hasButtons') ? '<div class="buttons"><button id="left-plus">&#708;</button><button id="right-plus">&#708;</button></div>' : '')}  
-        <div class="selects"><select id="0"></select>:<select id="1"></select><slot></slot></div>
-        ${(this.hasAttribute('hasButtons') ? '<div class="buttons"><button id="left-minus">&#709;</button></td><td></td><td><button id="right-minus">&#709;</button></div>' : '')}
+      <div class="hours"><button id="left-plus">&#708;</button><select id="0"></select><button id="left-minus">&#709;</button></div>
+      <div class="divider">:</div>
+      <div class="minutes"><button id="right-plus">&#708;</button><select id="1"></select><button id="right-minus">&#709;</button></div>
+      <slot></slot>
       </div>
       `;
   }

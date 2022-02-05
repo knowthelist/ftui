@@ -19,7 +19,12 @@
   <link href="ftui.css" rel="stylesheet">
   <link href="themes/ftui-theme.css" rel="stylesheet">
   <link href="themes/bright-theme.css" rel="stylesheet"
-        id="lightCSS" ftui-binding [disabled]="dummy11 | map('dark:true, light:false') | toBool()">
+        id="lightCSS" ftui-binding [disabled]="dummy11 | map('`.*`:true, light:false') | toBool()">
+  <link href="themes/vivid-theme.css" rel="stylesheet"
+        ftui-binding [disabled]="dummy11 | map('`.*`:true, vivid:false') | toBool()">
+  <link href="themes/retro-theme.css" rel="stylesheet"
+        ftui-binding [disabled]="dummy11 | map('`.*`:true, retro:false') | toBool()">
+
   <link href="favicon.ico" rel="icon" type="image/x-icon" />
 
   <title>FTUI Day Night</title>
@@ -29,9 +34,10 @@
 
   <ftui-grid base-width="80" base-height="75" shape="round">
 
-    <ftui-grid-tile row="1" col="1" height="1" width="2">
+    <ftui-grid-tile row="1" col="1" height="1.5" width="2">
       <!-- Change color theme via FHEM reading-->
-      <ftui-button [(value)]="dummy11" states="dark,light">Dark,Light</ftui-button>
+      <ftui-button [(value)]="dummy11" states="dark,light,retro,vivid">Try me!</ftui-button>
+      <ftui-label [text]="dummy11"></ftui-label>
     </ftui-grid-tile>
 
     <!-- BLINDS -->
@@ -52,7 +58,7 @@
     </ftui-grid-tile>
 
     <!-- WINDOWS -->
-    <ftui-grid-tile row="3" col="4" height="2" width="2">
+    <ftui-grid-tile row="3" col="4" height="2" width="2" color="green">
       <ftui-label size="3">Windows</ftui-label>
       <ftui-icon name="classic-window" size="3"></ftui-icon>
       <ftui-label>All closed</ftui-label>
@@ -70,8 +76,8 @@
 
     <!-- DIMMER -->
     <ftui-grid-tile row="5" col="2" height="2" width="2">
-      <ftui-slider 
-      value="30" max="60" tooltips="always"></ftui-slider>
+      <ftui-slider
+                   value="30" max="60" tooltips="always"></ftui-slider>
     </ftui-grid-tile>
 
 
@@ -92,7 +98,7 @@
     // set theme on change
     setTheme(isDark);
   });
-  
+
   function setTheme(isDark) {
     if (isDark) {
       lightCSS.setAttribute('disabled', '');

@@ -357,6 +357,7 @@ export class FtuiChart extends FtuiElement {
     Object.keys(FtuiChartData.properties).forEach(property => {
       dataset[property] = dataElement[property];
     });
+
     dataset.data = dataElement.data;
     if (dataElement.yAxisID === 'y1') {
       this.hasY1Data = true;

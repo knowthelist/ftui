@@ -154,21 +154,21 @@ export class FtuiElement extends HTMLElement {
         } else {
           this.removeAttribute(attr);
         }
-      }
+      },
     });
   }
 
   defineNumberProperty(name, attr) {
     Object.defineProperty(this, name, {
       get() { return Number(this.getAttribute(attr)); },
-      set(value) { this.setAttribute(attr, value); }
+      set(value) { this.setAttribute(attr, value); },
     });
   }
 
   defineStringProperty(name, attr) {
     Object.defineProperty(this, name, {
       get() { return this.getAttribute(attr); },
-      set(value) { this.setAttribute(attr, value); }
+      set(value) { this.setAttribute(attr, value); },
     });
   }
 }

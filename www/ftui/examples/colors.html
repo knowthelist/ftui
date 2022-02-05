@@ -7,8 +7,13 @@
   <link href="ftui.css" rel="stylesheet">
   <link href="themes/ftui-theme.css" rel="stylesheet">
   <link href="themes/bright-theme.css" rel="stylesheet"
-        id="lightCSS" ftui-binding [disabled]="dummy11 | map('dark:true, light:false') | toBool()">
-  <link href="favicon.ico" rel="icon" type="image/x-icon" />
+        id="lightCSS" ftui-binding [disabled]="dummy11 | map('`.*`:true, light:false') | toBool()">
+  <link href="themes/vivid-theme.css" rel="stylesheet"
+        ftui-binding [disabled]="dummy11 | map('`.*`:true, vivid:false') | toBool()">
+  <link href="themes/retro-theme.css" rel="stylesheet"
+        ftui-binding [disabled]="dummy11 | map('`.*`:true, retro:false') | toBool()">
+
+        <link href="favicon.ico" rel="icon" type="image/x-icon" />
 
 <!--   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <meta name="mobile-web-app-capable" content="yes">
@@ -23,7 +28,8 @@
 
     <ftui-grid-tile row="1" col="1" height="2" width="2">
       <!-- Change color theme via FHEM reading-->
-      <ftui-button [(value)]="dummy11" states="dark,light">Dark,Light</ftui-button>
+      <ftui-button [(value)]="dummy11" states="dark,light,retro,vivid">Try me!</ftui-button>
+      <ftui-label [text]="dummy11"></ftui-label>
     </ftui-grid-tile>
 
     <ftui-grid-tile row="1" col="3" height="4" width="2" shape="round">

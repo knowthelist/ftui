@@ -103,18 +103,6 @@ export function getFilteredStepKeys(map, searchKey) {
   }
 }
 
-export function cssGradient(type, direction, stops) {
-  return type + '-gradient(' + direction + ', ' + stops + ')';
-}
-
-/* export function cssGradient(type, direction, stops) {
-  return type + '-gradient(' + direction + ', ' + stops.map(function (_ref) {
-    const o = _ref[0],
-      col = _ref[1];
-    return col + ' ' + o + '%';
-  }).join(',') + ')';
-} */
-
 // DOM functions
 
 export function appendStyleLink(file) {
