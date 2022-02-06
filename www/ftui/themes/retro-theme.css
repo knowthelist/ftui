@@ -27,9 +27,7 @@
   --orange: #f8b13e;
   --white: #ffffff; 
   --brown: #bf7a37;
-  --brown-dark: #534349;
-  --brown-darker: #251e20;
-  --brown-darkest: #251e20;
+
   --black: #111111;
   --fullblack: #000000;
  
@@ -44,9 +42,9 @@
   --info-color: var(--blue);
   --warning-color: var(--yellow);
   --danger-color: var(--red);
-  --light-color: var(--gray75);
-  --medium-color: var(--gray40);
-  --dark-color: var(--lightgray);
+  --light-color: var(--gray-light);
+  --medium-color: var(--gray-dark);
+  --dark-color: var(--gray-darker);
   --success-danger-color: var(--yellow);
 
   --cold-color: var(--blue1);
@@ -59,7 +57,7 @@
 
   --success-contrast-color: var(--white);
   --info-contrast-color: var(--white);
-  --warning-contrast-color: var(--gray20);
+  --warning-contrast-color: var(--gray);
   --danger-contrast-color: var(--white);
   --light-contrast-color: var(--black);
   --medium-contrast-color: var(--white);
@@ -71,7 +69,7 @@
   --page-background-color: var(--gray-darkest);
 
   --grid-background-color: var(--gray-dark);
-  --grid-header-color: var(--gray55);
+  --grid-header-color: var(--brown);
   --grid-header-background-color: var(--gray-darker);
 
   --view-toolbar-color: var(--gray15);

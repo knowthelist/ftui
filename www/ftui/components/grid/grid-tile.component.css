@@ -1,11 +1,10 @@
 :host([shape="round"]) {
-  --grid-tile-border-radius: 1.5em;
+  --grid-tile-border-radius: 1.5rem;
 }
 
 :host {
   --color-base: var(--grid-background-color, #333333);
   background: var(--color-base);
-  position: absolute;
   display: flex;
   flex-direction: column;
   align-items: center;

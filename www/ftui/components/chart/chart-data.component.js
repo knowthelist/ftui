@@ -1,7 +1,7 @@
 /*
 * Chart data component for FTUI version 3
 *
-* Copyright (c) 2020 Mario Stephan <mstephan@shared-files.de>
+* Copyright (c) 2020-2022 Mario Stephan <mstephan@shared-files.de>
 * Under MIT License (http://www.opensource.org/licenses/mit-license.php)
 *
 * https://github.com/knowthelist/ftui
@@ -92,12 +92,17 @@ export class FtuiChartData extends FtuiElement {
     const labels = [];
     let date, value;
     const lines = response.split('\n');
-    const timeStep = this.rangeDate / 150 ;
-    const isStepped = this.hasAttribute('stepped');
+    const len = lines.length;
+    const timeStep = this.rangeDate / 150;
+    const now = ftuiHelper.dateFormat(new Date(), 'YYYY-MM-DD_hh:mm:ss');
     let risingValue;
-    lines.forEach(line => {
+    if (this.type === 'bubble' && this.stepped) {
+      lines.push(now + ' ' + 0);
+    }
+    lines.forEach((line, index) => {
       if (line.length > 0 && !line.startsWith('#')) {
         [date, value] = line.split(' ');
+
         if (date && ftuiHelper.isNumeric(value)) {
           const parsedValue = parseFloat(value) + parseFloat(this.offset);
           if (parsedValue > 0 || this.type !== 'bubble') {
@@ -105,11 +110,14 @@ export class FtuiChartData extends FtuiElement {
             risingValue = parsedValue;
             data.push({ 'x': date, 'y': parsedValue });
             labels.push(date);
-          } else if (this.type === 'bubble' && parsedValue === 0 && isStepped) {
+          } else if (this.type === 'bubble'
+            && (parsedValue === 0)
+            && this.stepped) {
             // interpolate times between rising and falling flank
             // to create a kind of gantt chart
             const startDate = ftuiHelper.dateFromString(this.risingDate).getTime();
             const endDate = ftuiHelper.dateFromString(date).getTime();
+            console.log(index , len)
             for (let i = startDate; i < endDate; i += timeStep) {
               const interpolatedDate = ftuiHelper.dateFormat(new Date(i), 'YYYY-MM-DD_hh:mm:ss');
               data.push({ 'x': interpolatedDate, 'y': risingValue });
@@ -121,7 +129,6 @@ export class FtuiChartData extends FtuiElement {
       }
     });
 
-    const now = ftuiHelper.dateFormat(new Date(), 'YYYY-MM-DD_hh:mm:ss');
     if (value && this.extend && this.endDate > now) {
       data.push({ 'x': now, 'y': parseFloat(value) + parseFloat(this.offset) });
     }
