@@ -16,12 +16,8 @@ export class FtuiGrid extends FtuiElement {
 
   constructor() {
     const properties = {
-      minX: 0,
-      minY: 0,
-      baseWidth: 0,
-      baseHeight: 0,
-      cols: 0,
-      rows: 0,
+      baseWidth: 140,
+      baseHeight: 140,
       margin: 8,
       resize: false,
       responsive: false,
@@ -61,8 +57,8 @@ export class FtuiGrid extends FtuiElement {
       }
       :host([responsive]) {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-        grid-template-rows: repeat(auto-fill, minmax(120px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        grid-template-rows: repeat(auto-fill, minmax(140px, 1fr));
         grid-auto-flow: dense;
         grid-auto-columns: 25%;
         grid-auto-rows: 25%;
@@ -70,7 +66,7 @@ export class FtuiGrid extends FtuiElement {
         margin: ${this.margin}px;
       }
       :host([shape="round"]) {
-        --grid-tile-border-radius: 1.5rem;
+        --grid-tile-border-radius: 1rem;
       }
     </style>
     <slot></slot>
@@ -82,68 +78,29 @@ export class FtuiGrid extends FtuiElement {
   }
 
   configResponsiveGrid() {
-    let cols = 0;
-    let rows = 0;
-
     this.tiles.forEach(tile => {
-      const width = tile.getAttribute('width');
-      const height = tile.getAttribute('height');
-      cols += Number(width);
-      rows += Number(height);
-      tile.style['grid-row'] = 'span ' + width;
-      tile.style['grid-column'] = 'span ' + height;
+      tile.style['grid-row'] = 'span ' + tile.getAttribute('width');
+      tile.style['grid-column'] = 'span ' + tile.getAttribute('height');
     });
-
-    cols = (this.cols > 0) ? this.cols : cols;
-    rows = (this.rows > 0) ? this.rows : rows;
-
-    const baseWidth = (this.baseWidth > 0) ? this.baseWidth : (window.innerWidth - this.margin) / cols;
-    const baseHeight = (this.baseHeight > 0) ? this.baseHeight : (window.innerHeight - this.margin) / rows;
-    this.style['grid-auto-rows'] = baseHeight + 'px';
-    this.style['grid-auto-columns'] = baseWidth + 'px';
+    this.style['grid-auto-rows'] = this.baseHeight + 'px';
+    this.style['grid-auto-columns'] = this.baseWidth + 'px';
   }
 
   configureGrid() {
-    let highestCol = -1;
-    let highestRow = -1;
-    let baseWidth = 0;
-    let baseHeight = 0;
-    let cols = 0;
-    let rows = 0;
-
-    // find highest
-    this.tiles.forEach(tile => {
-      const colVal = Number(tile.col) + Number(tile.width) - 1;
-      if (colVal > highestCol) { highestCol = colVal; }
-      const rowVal = Number(tile.row) + Number(tile.height) - 1;
-      if (rowVal > highestRow) { highestRow = rowVal; }
-    });
-
-    cols = (this.cols > 0) ? this.cols : highestCol;
-    rows = (this.rows > 0) ? this.rows : highestRow;
-    baseWidth = (this.baseWidth > 0) ? this.baseWidth : (window.innerWidth - this.margin) / cols;
-    baseHeight = (this.baseHeight > 0) ? this.baseHeight : (window.innerHeight - this.margin) / rows;
-
-    if (baseWidth < this.minX) {
-      baseWidth = this.minX;
-    }
-    if (baseHeight < this.minY) {
-      baseHeight = this.minY;
-    }
-
     this.tiles.forEach(tile => {
       const style = tile.style;
-      style.width = (tile.width * baseWidth - this.margin) + 'px';
-      style.height = (tile.height * baseHeight - this.margin) + 'px';
+      console.log(tile.height, this.baseHeight, this.margin)
+      style.width = (tile.width * this.baseWidth - this.margin) + 'px';
+      style.height = (tile.height * this.baseHeight - this.margin) + 'px';
       style['position'] = 'absolute';
       tile.setAttribute('title', `row: ${tile.row} | col: ${tile.col}`);
       if (tile.querySelector('ftui-grid')) {
         style.backgroundColor = 'transparent';
-        style.left = ((tile.col - 1) * baseWidth) + 'px';
-        style.top = ((tile.row - 1) * baseHeight) + 'px';
+        style.left = ((tile.col - 1) * this.baseWidth) + 'px';
+        style.top = ((tile.row - 1) * this.baseHeight) + 'px';
       } else {
-        style.left = ((tile.col - 1) * baseWidth + this.margin) + 'px';
-        style.top = ((tile.row - 1) * baseHeight + this.margin) + 'px';
+        style.left = ((tile.col - 1) * this.baseWidth + this.margin) + 'px';
+        style.top = ((tile.row - 1) * this.baseHeight + this.margin) + 'px';
       }
     });
   }

@@ -72,7 +72,7 @@ export class FtuiTimeSet extends FtuiElement {
         cursor: pointer;
         margin: 0 0.15em;
       }
-      :host(:not([hasbuttons]):not([has-buttons])) button {
+      :host(:not([has-buttons])) button {
         display: none;
       }
       select option {

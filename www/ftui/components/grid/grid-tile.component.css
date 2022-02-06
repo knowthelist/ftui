@@ -1,5 +1,5 @@
 :host([shape="round"]) {
-  --grid-tile-border-radius: 1.5rem;
+  --grid-tile-border-radius: 1rem;
 }
 
 :host {
