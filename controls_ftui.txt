@@ -62,7 +62,7 @@ UPD 2022-01-13_22:24:26 668 www/ftui/components/tab/tab-title.component.js
 UPD 2022-01-31_02:08:35 1041 www/ftui/components/tab/tab-view.component.js
 UPD 2021-12-08_16:56:12 498 www/ftui/components/tab/tab.component.css
 UPD 2022-01-31_02:08:35 2758 www/ftui/components/tab/tab.component.js
-UPD 2022-02-06_23:52:21 5340 www/ftui/components/timeset/timeset.component.js
+UPD 2022-02-07_18:16:29 5349 www/ftui/components/timeset/timeset.component.js
 UPD 2021-12-04_17:57:09 1981 www/ftui/components/view/view-item.component.css
 UPD 2021-03-01_20:30:46 1638 www/ftui/components/view/view-item.component.js
 UPD 2021-02-01_19:44:40 912 www/ftui/components/view/view-section.component.css

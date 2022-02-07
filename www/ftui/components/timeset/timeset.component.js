@@ -21,7 +21,7 @@ export class FtuiTimeSet extends FtuiElement {
     this.rightSelect = this.shadowRoot.querySelector('select[id="1"]');
     this.container = this.shadowRoot.querySelector('.container');
 
-    if (this.hasAttribute('hasButtons')) {
+    if (this.hasButtons) {
       this.buttonLeftMinus = this.shadowRoot.querySelector('button[id="left-minus"]');
       this.buttonLeftPlus = this.shadowRoot.querySelector('button[id="left-plus"]');
       this.buttonRightMinus = this.shadowRoot.querySelector('button[id="right-minus"]');
@@ -100,6 +100,7 @@ export class FtuiTimeSet extends FtuiElement {
       color: '',
       width: '',
       height: '',
+      hasButtons: false,
       debounce: 300,
     };
   }
