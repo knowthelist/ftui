@@ -89,7 +89,6 @@ export class FtuiGrid extends FtuiElement {
   configureGrid() {
     this.tiles.forEach(tile => {
       const style = tile.style;
-      console.log(tile.height, this.baseHeight, this.margin)
       style.width = (tile.width * this.baseWidth - this.margin) + 'px';
       style.height = (tile.height * this.baseHeight - this.margin) + 'px';
       style['position'] = 'absolute';

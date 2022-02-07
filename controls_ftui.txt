@@ -24,7 +24,7 @@ UPD 2022-02-04_14:48:49 4711 www/ftui/components/element.component.js
 UPD 2022-02-06_23:45:56 758 www/ftui/components/grid/grid-header.component.js
 UPD 2022-02-07_00:18:17 1760 www/ftui/components/grid/grid-tile.component.css
 UPD 2022-02-06_19:37:51 866 www/ftui/components/grid/grid-tile.component.js
-UPD 2022-02-07_00:31:37 3281 www/ftui/components/grid/grid.component.js
+UPD 2022-02-07_18:33:16 3220 www/ftui/components/grid/grid.component.js
 UPD 2022-01-20_21:27:02 1093 www/ftui/components/icon/icon.component.css
 UPD 2022-01-31_02:08:35 2278 www/ftui/components/icon/icon.component.js
 UPD 2022-01-31_02:09:56 3277 www/ftui/components/image/image.component.js
@@ -55,7 +55,7 @@ UPD 2022-01-29_15:25:07 3770 www/ftui/components/slider/slider.component.css
 UPD 2022-01-31_02:08:35 3707 www/ftui/components/slider/slider.component.js
 UPD 2022-01-31_08:35:15 2128 www/ftui/components/speak/speak.component.js
 UPD 2021-12-02_14:07:06 1269 www/ftui/components/swiper/swiper.component.css
-UPD 2022-01-31_02:08:35 5438 www/ftui/components/swiper/swiper.component.js
+UPD 2022-02-07_19:07:31 5364 www/ftui/components/swiper/swiper.component.js
 UPD 2021-11-27_00:07:16 1335 www/ftui/components/switch/switch.component.css
 UPD 2021-03-01_20:28:00 1091 www/ftui/components/switch/switch.component.js
 UPD 2022-01-13_22:24:26 668 www/ftui/components/tab/tab-title.component.js
