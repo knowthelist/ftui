@@ -356,6 +356,14 @@ class FhemService {
     return fetch(url, options);
   }
 
+  checkText(response) {
+    if (response.status >= 200 && response.status <= 299) {
+      return response.text();
+    } else {
+      throw Error(response.statusText);
+    }
+  }
+
   onUpdateDone() {
     triggerEvent('updateDone');
     this.publishInvalidReadings();

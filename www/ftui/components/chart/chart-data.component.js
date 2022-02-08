@@ -62,77 +62,78 @@ export class FtuiChartData extends FtuiElement {
   }
 
   fetch() {
-    this.fetchLogItems(this.log, this.file, this.spec);
+    if (!this.isLoading) {
+      this.fetchLogItems(this.log, this.file, this.spec);
+    }
   }
 
   fetchLogItems(log, file, spec) {
+    this.isLoading = true;
     const startDate = ftuiHelper.dateFromString(this.startDate);
     startDate.setSeconds(startDate.getSeconds() - this.prefetch);
     const startDateFormatted = ftuiHelper.dateFormat(startDate, 'YYYY-MM-DD_hh:mm:ss');
-
     const endDate = ftuiHelper.dateFromString(this.endDate);
     endDate.setSeconds(endDate.getSeconds() + this.prefetch);
     const endDateFormatted = ftuiHelper.dateFormat(endDate, 'YYYY-MM-DD_hh:mm:ss');
     this.rangeDate = endDate.getTime() - startDate.getTime();
-    this.risingDate = this.startDate;
     const cmd = 'get ' + log + ' ' + file + ' - ' + startDateFormatted + ' ' + endDateFormatted + ' ' + spec;
     fhemService.sendCommand(cmd)
-      .then(response => response.text())
+      .then(fhemService.checkText)
       .then((response) => {
         const { labels, data } = this.parseLogItems(response);
         this.data = data;
         this.labels = labels;
         this.updateColor();
         ftuiHelper.triggerEvent('ftuiDataChanged', this);
-      })
+        this.isLoading = false;
+      }).catch(() => {
+        this.isLoading = false;
+      });
   }
 
   parseLogItems(response) {
     const data = [];
     const labels = [];
-    let date, value;
-    const lines = response.split('\n');
-    const len = lines.length;
+    const lines = response.split('\n').filter(l => l.length > 0 && !l.startsWith('#'));
     const timeStep = this.rangeDate / 150;
-    const now = ftuiHelper.dateFormat(new Date(), 'YYYY-MM-DD_hh:mm:ss');
-    let risingValue;
+    let risingDate = this.startDate;
+    const risingValue = this.offset + 1;
     if (this.type === 'bubble' && this.stepped) {
-      lines.push(now + ' ' + 0);
+      // fill missing start and end points
+      if (lines[0].split(' ')[1] === '0') {
+        lines.unshift(this.startDate + ' 1');
+      }
+      if (lines[lines.length-1].split(' ')[1] !== '0') {
+        lines.push(this.endDate + ' 0');
+      }
     }
-    lines.forEach((line, index) => {
-      if (line.length > 0 && !line.startsWith('#')) {
-        [date, value] = line.split(' ');
-
-        if (date && ftuiHelper.isNumeric(value)) {
-          const parsedValue = parseFloat(value) + parseFloat(this.offset);
-          if (parsedValue > 0 || this.type !== 'bubble') {
-            this.risingDate = date;
-            risingValue = parsedValue;
-            data.push({ 'x': date, 'y': parsedValue });
-            labels.push(date);
-          } else if (this.type === 'bubble'
-            && (parsedValue === 0)
-            && this.stepped) {
-            // interpolate times between rising and falling flank
-            // to create a kind of gantt chart
-            const startDate = ftuiHelper.dateFromString(this.risingDate).getTime();
-            const endDate = ftuiHelper.dateFromString(date).getTime();
-            console.log(index , len)
-            for (let i = startDate; i < endDate; i += timeStep) {
-              const interpolatedDate = ftuiHelper.dateFormat(new Date(i), 'YYYY-MM-DD_hh:mm:ss');
-              data.push({ 'x': interpolatedDate, 'y': risingValue });
-              labels.push(interpolatedDate);
-            }
+    lines.forEach(line => {
+      const [date, value] = line.split(' ');
+      if (date && ftuiHelper.isNumeric(value)) {
+        const parsedValue = parseFloat(value) + parseFloat(this.offset);
+        if (parseFloat(value) > 0 || this.type !== 'bubble') {
+          risingDate = date;
+          data.push({ 'x': date, 'y': parsedValue });
+          labels.push(date);
+        } else if (this.type === 'bubble'
+          && (parseFloat(value) === 0)
+          && this.stepped) {
+          // interpolate times between rising and falling flank
+          // to create a kind of gantt chart
+          const startDate = ftuiHelper.dateFromString(risingDate).getTime();
+          const endDate = ftuiHelper.dateFromString(date).getTime();
+          for (let i = startDate; i < endDate; i += timeStep) {
+            const interpolatedDate = ftuiHelper.dateFormat(new Date(i), 'YYYY-MM-DD_hh:mm:ss');
+            data.push({ 'x': interpolatedDate, 'y': risingValue });
+            labels.push(interpolatedDate);
           }
-
         }
       }
     });
 
-    if (value && this.extend && this.endDate > now) {
+    /*     if (value && this.extend && this.endDate > now) {
       data.push({ 'x': now, 'y': parseFloat(value) + parseFloat(this.offset) });
-    }
-
+    } */
     return { labels, data };
   }
 
@@ -142,7 +143,7 @@ export class FtuiChartData extends FtuiElement {
         this.updateColor();
         break;
       case 'update':
-        this.fetch();
+        //this.fetch();
         break;
     }
   }

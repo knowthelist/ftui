@@ -12,7 +12,7 @@
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes"> -->
 
-  <title>FTUI Grid Responsive Example</title>
+  <title>FTUI Grid Resize Example</title>
   <style>
     ftui-grid {
       font-size: 3em;
@@ -22,12 +22,12 @@
 
 <body>
 
-  <ftui-grid shape="round" responsive>
+  <ftui-grid shape="round" resize>
 
-    <ftui-grid-tile height="3" width="1" color="blue">3x1</ftui-grid-tile>
-    <ftui-grid-tile height="2" width="2" color="red">2x2</ftui-grid-tile>
-    <ftui-grid-tile height="1" width="3" color="blue">1x3</ftui-grid-tile>
-    <ftui-grid-tile height="1" width="1" color="red">1x1</ftui-grid-tile>
+    <ftui-grid-tile row="1" col="1" height="3" width="1" color="blue">3x1</ftui-grid-tile>
+    <ftui-grid-tile row="1" col="2" height="2" width="2" color="red">2x2</ftui-grid-tile>
+    <ftui-grid-tile row="1" col="4" height="1" width="3" color="blue">1x3</ftui-grid-tile>
+    <ftui-grid-tile row="4" col="1" height="1" width="1" color="red">1x1</ftui-grid-tile>
 
   </ftui-grid>
 

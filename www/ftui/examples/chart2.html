@@ -42,14 +42,16 @@
         <ftui-chart-data color="alert" type="bubble"
                          log="FileLog_EingangstuerRiegel"
                          label="locked"
-                         spec="4:EingangstuerRiegel::$fld[2]=~'closed'?2:0"
+                         spec="4:EingangstuerRiegel::$fld[2]=~'closed'?1:0"
+                         offset="2"
                          stepped></ftui-chart-data>
-        <ftui-chart-data color="warning" type="bubble"
+<!--         <ftui-chart-data color="warning" type="bubble"
                          log="FileLog_FlurAnwesenheit"
                          label="presence"
-                         spec="4:FlurAnwesenheit.getG1::$fld[3]=~'on'?3:0"
-                         ></ftui-chart-data>
-        <ftui-chart-controls units="24h, 30d"></ftui-chart-controls>
+                         spec="4:FlurAnwesenheit.getG1::$fld[3]=~'on'?1:0"
+                         offset="2"
+                         ></ftui-chart-data> -->
+        <ftui-chart-controls units="day, 24h, 30d"></ftui-chart-controls>
       </ftui-chart>
 
     </ftui-grid-tile>
