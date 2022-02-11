@@ -34,7 +34,7 @@
 
   <ftui-grid base-width="80" base-height="75" shape="round">
 
-    <ftui-grid-tile row="1" col="1" height="1.5" width="2">
+    <ftui-grid-tile row="1" col="1" height="1" width="1.5">
       <!-- Change color theme via FHEM reading-->
       <ftui-button [(value)]="dummy11" states="dark,light,retro,vivid">Try me!</ftui-button>
       <ftui-label [text]="dummy11"></ftui-label>
@@ -58,7 +58,7 @@
     </ftui-grid-tile>
 
     <!-- WINDOWS -->
-    <ftui-grid-tile row="3" col="4" height="2" width="2" color="green">
+    <ftui-grid-tile row="3" col="4" height="2" width="2" color="success">
       <ftui-label size="3">Windows</ftui-label>
       <ftui-icon name="classic-window" size="3"></ftui-icon>
       <ftui-label>All closed</ftui-label>
@@ -80,6 +80,41 @@
                    value="30" max="60" tooltips="always"></ftui-slider>
     </ftui-grid-tile>
 
+    <!-- POWER -->
+    <ftui-grid-tile row="5" col="4" height="2" width="2" align-items="top">
+      <ftui-cell  height="40%">
+         <ftui-label size="3">Power</ftui-label>
+      </ftui-cell>
+     
+      <ftui-meter value="3" max="6" has-scale> 
+        <div slot="scale">2</div>
+        <div slot="scale">4</div></ftui-meter>
+    </ftui-grid-tile>
+
+    <!-- WITH GRID HEADERS -->
+
+    <!-- POWER -->
+    <ftui-grid-tile row="8" col="2" height="2" width="2">
+      <ftui-grid-header size="3">Power</ftui-grid-header>
+      <ftui-icon name="classic-window" size="3"></ftui-icon>
+      <ftui-label>All closed</ftui-label>
+    </ftui-grid-tile>
+
+    <!-- BLINDS -->
+    <ftui-grid-tile row="8" col="4" height="2" width="2">
+      <ftui-grid-header size="3">Blinds</ftui-grid-header>
+      <ftui-row height="33%">
+        <ftui-icon name="window-shutter" class="size-4"></ftui-icon>
+      </ftui-row>
+      <ftui-label unit="%" size="1" value="90"></ftui-label>
+    </ftui-grid-tile>
+
+    <!-- LAMPS -->
+    <ftui-grid-tile row="8" col="6" height="2" width="2">
+      <ftui-grid-header size="3">Lamps</ftui-grid-header>
+      <ftui-icon name="lightbulb-on" size="3"></ftui-icon>
+      <ftui-label>All off</ftui-label>
+    </ftui-grid-tile>
 
   </ftui-grid>
 

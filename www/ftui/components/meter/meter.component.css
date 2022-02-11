@@ -1,6 +1,7 @@
 :host([is-vertical]) .progress {
   display: flex;
   flex-direction: column-reverse;
+  margin: 0 0.5em 0 0.5em;
 }
 
 :host([is-vertical]) .container {
@@ -21,7 +22,6 @@
 
 :host([is-vertical][has-scale]) .scale {
   flex-direction: column-reverse;
-  margin-left: 0.5em;
 }
 
 :host([has-scale]) .scale {
@@ -30,16 +30,13 @@
   justify-content: space-between;
 }
 
-:host(:not([is-vertical])[has-scale]) .scale {
-  margin-top: 0.5em;
-}
-
 .progress {
-  padding: 0.15em 0 0.07em 0.1em;
+  padding: 0.05em 0 0.07em 0.1em;
   background: var(--meter-background-color, var(--dark-color));
   border-radius: var(--meter-border-radius, 1em);
   -webkit-box-shadow: inset 0 0 1px rgba(0, 0, 0, 0.25), 0 1px rgba(255, 255, 255, 0.08);
   box-shadow: inset 0 0 1px rgba(0, 0, 0, 0.25), 0 1px rgba(255, 255, 255, 0.08);
+  margin: 0.5em 0 0.5em 0;
 }
 
 .progress-bar {

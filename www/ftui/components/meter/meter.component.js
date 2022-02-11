@@ -29,12 +29,13 @@ export class FtuiMeter extends FtuiElement {
   template() {
     return `<style> @import "components/meter/meter.component.css";</style>
             <div class="container">
+              <slot></slot>
               <div class="progress">
                 <div class="progress-bar"></div>
-                <slot></slot>
               </div>
               <div class="scale">
                 <div class="min"></div>
+                <slot name="scale"></slot>
                 <div class="max"></div>
               </div>
             </div>`;
