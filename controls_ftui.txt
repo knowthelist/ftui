@@ -129,7 +129,7 @@ UPD 2021-12-02_22:57:32 3576 www/ftui/examples/rotor.html
 UPD 2021-11-30_17:17:52 2360 www/ftui/examples/segment.html
 UPD 2022-01-29_14:55:18 4705 www/ftui/examples/slider.html
 UPD 2022-02-07_00:30:28 1233 www/ftui/examples/speak.html
-UPD 2021-12-01_22:28:20 15512 www/ftui/examples/swiper.html
+UPD 2022-02-12_19:11:15 20520 www/ftui/examples/swiper.html
 UPD 2021-12-17_19:15:32 1583 www/ftui/examples/switch.html
 UPD 2022-02-01_22:19:05 2816 www/ftui/examples/tab-content.html
 UPD 2021-12-08_23:45:05 2924 www/ftui/examples/tab-segment-local.html

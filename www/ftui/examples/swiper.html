@@ -28,9 +28,10 @@
 
 <body>
 
-  <ftui-grid base-width="75" base-height="60" margin="1" shape="round">
+  <ftui-grid base-width="30" base-height="30" margin="1" shape="round">
 
-     <ftui-grid-tile row="2" col="2" height="4" width="4">
+    <!-- weather swiper -->
+    <ftui-grid-tile row="2" col="2" height="8" width="10">
 
       <ftui-swiper id="swiper1" scrollbar>
         <ftui-content id="sw1_1" file="examples/contents/content-weather-day.html" day="fc0"></ftui-content>
@@ -44,13 +45,14 @@
 
     </ftui-grid-tile>
 
-    <ftui-grid-tile row="4" col="6" height="1" width="2" is-row>
+    <!-- weather selector -->
+    <ftui-grid-tile row="4" col="12" height="2" width="4" is-row>
       <ftui-icon name="chevron-left" @click="swiper1.back()"></ftui-icon>
       <ftui-icon name="chevron-right" @click="swiper1.next()"></ftui-icon>
     </ftui-grid-tile>
 
-    <ftui-grid-tile row="7" col="2" height="2" width="2">
-
+    <!-- icon swiper -->
+    <ftui-grid-tile row="11" col="4" height="4" width="4">
       <ftui-swiper id="swiper2" dots>
         <ftui-icon id="sw2_1" name="washing-machine" size="6"></ftui-icon>
         <ftui-icon id="sw2_2" name="garage-variant" size="6"></ftui-icon>
@@ -58,37 +60,18 @@
         <ftui-icon id="sw2_4" name="mower" size="6"></ftui-icon>
         <ftui-icon id="sw2_5" name="projector" size="6"></ftui-icon>
       </ftui-swiper>
-
     </ftui-grid-tile>
 
-    <ftui-grid-tile row="9" col="1" height="1" width="4" is-row>
+    <!-- icon selector -->
+    <ftui-grid-tile row="15" col="2" height="2" width="8" is-row>
       <ftui-icon name="chevron-left" onclick="swiper2.back()"></ftui-icon>
       <ftui-icon name="garage-variant" onclick="swiper2.value = 'sw2_2'"></ftui-icon>
       <ftui-icon name="projector" onclick="swiper2.value = 'sw2_5'"></ftui-icon>
       <ftui-icon name="chevron-right" onclick="swiper2.next()"></ftui-icon>
     </ftui-grid-tile>
 
-    <ftui-grid-tile row="7" col="6" height="2" width="2">
-
-      <ftui-swiper id="swiper3" dots auto-play interval="3">
-        <ftui-image src="https://i.pravatar.cc/100?img=1" width="90px" shape="circle"></ftui-image>
-        <ftui-image src="https://i.pravatar.cc/100?img=2" width="90px" shape="circle"></ftui-image>
-        <ftui-image src="https://i.pravatar.cc/100?img=3" width="90px" shape="circle"></ftui-image>
-        <ftui-image src="https://i.pravatar.cc/100?img=4" width="90px" shape="circle"></ftui-image>
-        <ftui-image src="https://i.pravatar.cc/100?img=5" width="90px" shape="circle"></ftui-image>
-      </ftui-swiper>
-
-    </ftui-grid-tile>
-
-    <ftui-grid-tile row="7" col="8" height="2" width="2">
-      <label>auto-play</label>
-      <ftui-switch value="on" @value-change="swiper3.autoPlay = (event.detail==='on')">
-      </ftui-switch>
-
-    </ftui-grid-tile>
-
-    <ftui-grid-tile row="9" col="6" height="2" width="2">
-
+    <!-- image swiper -->
+    <ftui-grid-tile row="18" col="4" height="4" width="4">
       <ftui-swiper id="swiper4" auto-play>
         <ftui-image src="https://i.pravatar.cc/100?img=6" width="90px" shape="circle"></ftui-image>
         <ftui-image src="https://i.pravatar.cc/100?img=7" width="90px" shape="circle"></ftui-image>
@@ -96,7 +79,104 @@
         <ftui-image src="https://i.pravatar.cc/100?img=9" width="90px" shape="circle"></ftui-image>
         <ftui-image src="https://i.pravatar.cc/100?img=10" width="90px" shape="circle"></ftui-image>
       </ftui-swiper>
+    </ftui-grid-tile>
 
+    <!-- image swiper -->
+    <ftui-grid-tile row="18" col="8" height="4" width="4">
+      <ftui-swiper id="swiper3" dots auto-play interval="3">
+        <ftui-image src="https://i.pravatar.cc/100?img=1" width="90px" shape="circle"></ftui-image>
+        <ftui-image src="https://i.pravatar.cc/100?img=2" width="90px" shape="circle"></ftui-image>
+        <ftui-image src="https://i.pravatar.cc/100?img=3" width="90px" shape="circle"></ftui-image>
+        <ftui-image src="https://i.pravatar.cc/100?img=4" width="90px" shape="circle"></ftui-image>
+        <ftui-image src="https://i.pravatar.cc/100?img=5" width="90px" shape="circle"></ftui-image>
+      </ftui-swiper>
+    </ftui-grid-tile>
+
+    <!-- image auto play switch -->
+    <ftui-grid-tile row="18" col="12" height="4" width="4">
+      <label>auto-play</label>
+      <ftui-switch value="on" @value-change="swiper3.autoPlay = (event.detail==='on')">
+      </ftui-switch>
+    </ftui-grid-tile>
+
+    <!-- warn swiper - on / off multiple readings -->
+    <ftui-grid-tile row="2" col="20" height="6" width="6">
+      <ftui-swiper scrollbar auto-play interval="3">
+        <ftui-content [hidden]="warning:warn1 | is('off')" file="examples/contents/content-warn.html" warn="1">
+        </ftui-content>
+        <ftui-content [hidden]="warning:warn2 | is('off')" file="examples/contents/content-warn.html" warn="2">
+        </ftui-content>
+        <ftui-content [hidden]="warning:warn3 | is('off')" file="examples/contents/content-warn.html" warn="3">
+        </ftui-content>
+        <ftui-content [hidden]="warning:warn4 | is('off')" file="examples/contents/content-warn.html" warn="4">
+        </ftui-content>
+        <ftui-content [hidden]="warning:warn5 | is('off')" file="examples/contents/content-warn.html" warn="5">
+        </ftui-content>
+        <ftui-content [hidden]="warning:warn6 | is('off')" file="examples/contents/content-warn.html" warn="6">
+        </ftui-content>
+        <ftui-content [hidden]="warning:warn7 | is('off')" file="examples/contents/content-warn.html" warn="7">
+        </ftui-content>
+      </ftui-swiper>
+    </ftui-grid-tile>
+
+    <!-- warn selector - on / off multiple readings -->
+    <ftui-grid-tile row="8" col="18" height="2" width="10">
+      <ftui-row>
+        <ftui-button [(value)]="warning:warn1" value="on" [fill]="warning:warn1 | map('off: outline, on: solid')">1
+        </ftui-button>
+        <ftui-button [(value)]="warning:warn2" value="on" [fill]="warning:warn2 | map('off: outline, on: solid')">2
+        </ftui-button>
+        <ftui-button [(value)]="warning:warn3" value="on" [fill]="warning:warn3 | map('off: outline, on: solid')">3
+        </ftui-button>
+        <ftui-button [(value)]="warning:warn4" value="on" [fill]="warning:warn4 | map('off: outline, on: solid')">4
+        </ftui-button>
+        <ftui-button [(value)]="warning:warn5" value="on" [fill]="warning:warn5 | map('off: outline, on: solid')">5
+        </ftui-button>
+        <ftui-button [(value)]="warning:warn6" value="on" [fill]="warning:warn6 | map('off: outline, on: solid')">6
+        </ftui-button>
+        <ftui-button [(value)]="warning:warn7" value="on" [fill]="warning:warn7 | map('off: outline, on: solid')">7
+        </ftui-button>
+      </ftui-row>
+    </ftui-grid-tile>
+
+    <!-- warn swiper - count in single reading -->
+    <ftui-grid-tile row="11" col="20" height="6" width="6">
+      <ftui-swiper scrollbar auto-play interval="3">
+        <ftui-content [hidden]="warning:count | step('0:true, 1:false')" file="examples/contents/content-warn.html"
+                      warn="1"></ftui-content>
+        <ftui-content [hidden]="warning:count | step('0:true, 2:false')" file="examples/contents/content-warn.html"
+                      warn="2"></ftui-content>
+        <ftui-content [hidden]="warning:count | step('0:true, 3:false')" file="examples/contents/content-warn.html"
+                      warn="3"></ftui-content>
+        <ftui-content [hidden]="warning:count | step('0:true, 4:false')" file="examples/contents/content-warn.html"
+                      warn="4"></ftui-content>
+        <ftui-content [hidden]="warning:count | step('0:true, 5:false')" file="examples/contents/content-warn.html"
+                      warn="5"></ftui-content>
+        <ftui-content [hidden]="warning:count | step('0:true, 6:false')" file="examples/contents/content-warn.html"
+                      warn="6"></ftui-content>
+        <ftui-content [hidden]="warning:count | step('0:true, 7:false')" file="examples/contents/content-warn.html"
+                      warn="7"></ftui-content>
+      </ftui-swiper>
+    </ftui-grid-tile>
+
+    <!-- warn selector - count in single reading -->
+    <ftui-grid-tile row="17" col="18" height="2" width="10">
+      <ftui-row>
+        <ftui-button [(value)]="warning:count" states="1" fill="outline" [fill]="warning:count | step('1: solid')">1
+        </ftui-button>
+        <ftui-button [(value)]="warning:count" states="2" fill="outline" [fill]="warning:count | step('2: solid')">2
+        </ftui-button>
+        <ftui-button [(value)]="warning:count" states="3" fill="outline" [fill]="warning:count | step('3: solid')">3
+        </ftui-button>
+        <ftui-button [(value)]="warning:count" states="4" fill="outline" [fill]="warning:count | step('4: solid')">4
+        </ftui-button>
+        <ftui-button [(value)]="warning:count" states="5" fill="outline" [fill]="warning:count | step('5: solid')">5
+        </ftui-button>
+        <ftui-button [(value)]="warning:count" states="6" fill="outline" [fill]="warning:count | step('6: solid')">6
+        </ftui-button>
+        <ftui-button [(value)]="warning:count" states="7" fill="outline" [fill]="warning:count | step('7: solid')">7
+        </ftui-button>
+      </ftui-row>
     </ftui-grid-tile>
 
   </ftui-grid>
