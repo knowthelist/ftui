@@ -1,7 +1,7 @@
 /*
 * Swiper component for FTUI version 3
 *
-* Copyright (c) 2021 Mario Stephan <mstephan@shared-files.de>
+* Copyright (c) 2021-2022 Mario Stephan <mstephan@shared-files.de>
 * Under MIT License (http://www.opensource.org/licenses/mit-license.php)
 *
 * https://github.com/knowthelist/ftui
@@ -83,12 +83,14 @@ class FtuiSwiper extends FtuiElement {
   }
 
   onIntersectionChange(entries) {
-    entries.forEach(entry => {
-      entry.target.isVisible = ('isVisible' in entry) ? entry.isVisible : entry.isIntersecting;
-      if (entry.target.isVisible && this.value !== entry.target.id) {
-        this.submitChange('value', entry.target.id);
-      }
-    });
+    if (!this.autoPlay) {
+      entries.forEach(entry => {
+        entry.target.isVisible = ('isVisible' in entry) ? entry.isVisible : entry.isIntersecting;
+        if (entry.target.isVisible && this.value !== entry.target.id) {
+          this.submitChange('value', entry.target.id);
+        }
+      });
+    }
   }
 
   // refresh if a slide changes visibility

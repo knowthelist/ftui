@@ -101,7 +101,7 @@
 
     <!-- warn swiper - on / off multiple readings -->
     <ftui-grid-tile row="2" col="20" height="6" width="6">
-      <ftui-swiper scrollbar auto-play interval="3">
+      <ftui-swiper scrollbar auto-play interval="2">
         <ftui-content [hidden]="warning:warn1 | is('off')" file="examples/contents/content-warn.html" warn="1">
         </ftui-content>
         <ftui-content [hidden]="warning:warn2 | is('off')" file="examples/contents/content-warn.html" warn="2">
@@ -141,7 +141,7 @@
 
     <!-- warn swiper - count in single reading -->
     <ftui-grid-tile row="11" col="20" height="6" width="6">
-      <ftui-swiper scrollbar auto-play interval="3">
+      <ftui-swiper scrollbar auto-play interval="2">
         <ftui-content [hidden]="warning:count | step('0:true, 1:false')" file="examples/contents/content-warn.html"
                       warn="1"></ftui-content>
         <ftui-content [hidden]="warning:count | step('0:true, 2:false')" file="examples/contents/content-warn.html"

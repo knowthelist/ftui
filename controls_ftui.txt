@@ -54,8 +54,8 @@ UPD 2022-01-31_02:08:35 2907 www/ftui/components/segment/segment.component.js
 UPD 2022-01-29_15:25:07 3770 www/ftui/components/slider/slider.component.css
 UPD 2022-01-31_02:08:35 3707 www/ftui/components/slider/slider.component.js
 UPD 2022-01-31_08:35:15 2128 www/ftui/components/speak/speak.component.js
-UPD 2021-12-02_14:07:06 1269 www/ftui/components/swiper/swiper.component.css
-UPD 2022-02-07_19:07:31 5364 www/ftui/components/swiper/swiper.component.js
+UPD 2022-02-12_21:33:17 1269 www/ftui/components/swiper/swiper.component.css
+UPD 2022-02-12_21:35:18 5413 www/ftui/components/swiper/swiper.component.js
 UPD 2021-11-27_00:07:16 1335 www/ftui/components/switch/switch.component.css
 UPD 2021-03-01_20:28:00 1091 www/ftui/components/switch/switch.component.js
 UPD 2022-01-13_22:24:26 668 www/ftui/components/tab/tab-title.component.js
@@ -97,6 +97,7 @@ UPD 2021-11-15_21:59:43 472 www/ftui/examples/contents/content-rows.html
 UPD 2022-01-13_18:57:28 305 www/ftui/examples/contents/content-view1.html
 UPD 2022-01-13_18:56:31 714 www/ftui/examples/contents/content-view2.html
 UPD 2022-01-13_19:43:47 643 www/ftui/examples/contents/content-view3.html
+UPD 2022-02-12_18:07:58 144 www/ftui/examples/contents/content-warn.html
 UPD 2021-11-09_10:48:30 1789 www/ftui/examples/contents/content-weather-2-day.html
 UPD 2021-12-05_22:13:16 998 www/ftui/examples/contents/content-weather-day.html
 UPD 2021-12-09_17:19:30 717 www/ftui/examples/contents/content-weather-item.html
@@ -129,7 +130,7 @@ UPD 2021-12-02_22:57:32 3576 www/ftui/examples/rotor.html
 UPD 2021-11-30_17:17:52 2360 www/ftui/examples/segment.html
 UPD 2022-01-29_14:55:18 4705 www/ftui/examples/slider.html
 UPD 2022-02-07_00:30:28 1233 www/ftui/examples/speak.html
-UPD 2022-02-12_19:11:15 20520 www/ftui/examples/swiper.html
+UPD 2022-02-12_21:35:51 20520 www/ftui/examples/swiper.html
 UPD 2021-12-17_19:15:32 1583 www/ftui/examples/switch.html
 UPD 2022-02-01_22:19:05 2816 www/ftui/examples/tab-content.html
 UPD 2021-12-08_23:45:05 2924 www/ftui/examples/tab-segment-local.html
