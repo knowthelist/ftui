@@ -50,7 +50,5 @@ window.onerror = function (msg, url, lineNo, columnNo, error) {
 
 // set theme on change
 window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-  const isDark = e.matches;
-
-  window.ftuiApp.setTheme(isDark);
+  window.ftuiApp.setTheme(e.matches);
 });

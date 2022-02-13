@@ -214,11 +214,11 @@
     <ftui-grid-tile row="4" col="1" height="1" width="1">
       <header>Temp-Stepper</header>
       <!-- set debounce="400" to gather multiple clicks before sending-->
-      <ftui-button [value]="dummyThermo" (value)="add(0.5) | dummyThermo" states="$value" debounce="400" fill="">
+      <ftui-button [value]="local:thermo" value="20" (value)="add(0.5) | local:thermo" states="$value" debounce="400" fill="">
         <ftui-icon size="-2" name="plus"></ftui-icon>
       </ftui-button>
-      <ftui-label [text]="dummyThermo | fix(1)" unit=" °C"></ftui-label>
-      <ftui-button [value]="dummyThermo" (value)="add(-0.5) | dummyThermo" states="$value" debounce="400" fill="">
+      <ftui-label [text]="local:thermo | fix(1)" value="20.0" unit=" °C"></ftui-label>
+      <ftui-button [value]="local:thermo" value="20" (value)="add(-0.5) | local:thermo" states="$value" debounce="400" fill="">
         <ftui-icon size="-2" name="minus"></ftui-icon>
       </ftui-button>
     </ftui-grid-tile>

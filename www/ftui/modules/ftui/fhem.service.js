@@ -134,7 +134,6 @@ class FhemService {
 
     // invalidate all readings for detection of outdated ones
     this.readingsMap.forEach(reading => reading.data.invalid = true);
-    console.log(this.readingsMap.size)
     window.performance.mark('start get jsonlist2');
     this.states.refresh.request =
       this.sendCommand('jsonlist2 ' + this.config.refresh.filter)

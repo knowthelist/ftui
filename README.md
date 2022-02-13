@@ -126,6 +126,7 @@ short format
 ```
 
 Two way binding
+--------
 
 ```html
 <ftui-button getset-value="dummy1"></ftui-button>
@@ -135,6 +136,18 @@ short syntax ("banana in a box")
 ```html
 <ftui-button [(value)]="dummy1"></ftui-button>
 ```
+
+Local binding
+--------
+
+The device name 'local' is a reserved name for binding which keeps local  on client and is not synced with FHEM
+
+```html
+  <link href="themes/mobile-dark-theme.css" rel="stylesheet"
+        ftui-binding [disabled]="local:dark">
+```
+
+- local:dark    FTUI sets this to true if the OS switches to dark mode
 
 Events
 -------
