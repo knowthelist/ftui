@@ -214,6 +214,17 @@ class FtuiApp {
     return defaultVal;
   }
 
+  setTheme(isDark) {
+    const now = ftui.dateFormat(new Date(), 'YYYY-MM-DD hh:mm:ss');
+    fhemService.updateReadingItem('local-dark', {
+      id: 'local-dark',
+      invalid: false,
+      value: isDark,
+      time: now,
+      update: now,
+    });
+  }
+
   toast(text, level = 'debug') {
     // https://github.com/MLaritz/Vanilla-Notify
 

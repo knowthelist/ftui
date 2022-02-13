@@ -19,11 +19,11 @@
   <link href="ftui.css" rel="stylesheet">
   <link href="themes/ftui-theme.css" rel="stylesheet">
   <link href="themes/bright-theme.css" rel="stylesheet"
-        id="lightCSS" ftui-binding [disabled]="dummy11 | map('`.*`:true, light:false') | toBool()">
+        ftui-binding [disabled]="local:theme | map('`.*`:true, light:false') | toBool()">
   <link href="themes/vivid-theme.css" rel="stylesheet"
-        ftui-binding [disabled]="dummy11 | map('`.*`:true, vivid:false') | toBool()">
+        ftui-binding [disabled]="local:theme | map('`.*`:true, vivid:false') | toBool()">
   <link href="themes/retro-theme.css" rel="stylesheet"
-        ftui-binding [disabled]="dummy11 | map('`.*`:true, retro:false') | toBool()">
+        ftui-binding [disabled]="local:theme | map('`.*`:true, retro:false') | toBool()">
 
   <link href="favicon.ico" rel="icon" type="image/x-icon" />
 
@@ -36,8 +36,8 @@
 
     <ftui-grid-tile row="1" col="1" height="1" width="1.5">
       <!-- Change color theme via FHEM reading-->
-      <ftui-button [(value)]="dummy11" states="dark,light,retro,vivid">Try me!</ftui-button>
-      <ftui-label [text]="dummy11"></ftui-label>
+      <ftui-button [(value)]="local:theme" states="dark,light,retro,vivid">Try me!</ftui-button>
+      <ftui-label [text]="local:theme"></ftui-label>
     </ftui-grid-tile>
 
     <!-- BLINDS -->
@@ -86,7 +86,7 @@
          <ftui-label size="3">Power</ftui-label>
       </ftui-cell>
      
-      <ftui-meter value="3" max="6" has-scale> 
+      <ftui-meter value="3" max="6" height="0.5em" has-scale> 
         <div slot="scale">2</div>
         <div slot="scale">4</div></ftui-meter>
     </ftui-grid-tile>
@@ -119,28 +119,5 @@
   </ftui-grid>
 
 </body>
-
-<!--  automatic change of color theme -->
-<script>
-
-  const darkSchema = '(prefers-color-scheme: dark)';
-  const isDark = window.matchMedia && window.matchMedia(darkSchema).matches;
-  // set theme on start
-  setTheme(isDark);
-
-  window.matchMedia(darkSchema).addEventListener('change', e => {
-    const isDark = e.matches;
-    // set theme on change
-    setTheme(isDark);
-  });
-
-  function setTheme(isDark) {
-    if (isDark) {
-      lightCSS.setAttribute('disabled', '');
-    } else {
-      lightCSS.removeAttribute('disabled');
-    }
-  }
-</script>
 
 </html>

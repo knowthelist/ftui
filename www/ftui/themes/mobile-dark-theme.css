@@ -3,54 +3,43 @@
 /* gradient color helper: https://colordesigner.io/gradient-generator */
 
 :root {
-  --gray: #393939;
-  --gray10: #1a1a1a;
-  --gray15: #272727;
-  --gray20: #333333;
-  --gray25: #3f3f3f;
-  --gray33: #545454;
-  --gray40: #666666;
-  --gray55: #8c8c8c;
-  --gray75: #bfbfbf;
-  --gray80: #cccccc;
-  --gray85: #d8d8d8;
-  --gray90: #e5e5e5;
-  --gray95: #f2f2f2;
+  --blue: #007bff;
+  --indigo: #6610f2;
+  --purple: #6f42c1;
+  --pink: #e83e8c;
+  --red: #dc3545;
+  --orange: #fd7e14;
+  --yellow: #ffc107;
+  --green: #2dc16f;
+  --teal: #20c997;
+  --cyan: #17a2b8;
+  --white: #fff;
+  --gray: #d6dde4;
+  --gray1: #eaecf1;
+  --gray-light: #c5c5c5;
+  --gray-lighter: #e5e5e5;
+  --gray-dark: #343a40;
+  --gray-darker: #222222;
+  --primary: #007bff;
+  --secondary: #6c757d;
+  --success: #28a745;
+  --info: #17a2b8;
+  --warning: #ffc107;
+  --danger: #dc3545;
+  --light: #f8f9fa;
+  --dark: #343a40;
 
-  --red: #db5d3a;
-  --red-light: #EE5C42;
-  --red-dark: #ad3333;
-  --green: #05aaad;
-  --green-light: #80d534;
-  --green-dark: #365a38;
-  --blue: #436D8D; 
-  --blue1: #20639b;
-  --blue2: #173f5f;
-  --blue-light: #66aaFF;
-  --yellow: #eeca82;
-  --yellow-light: #faeaa9;
-  --yellow-dark: #deb82e;
-  --orange: #f8b13e;
-  --white: #ffffff; 
-  --brown: #bf7a37;
-  --black: #111111;
-  --black-dark: #000000;
- 
-  --violet: #9400d3;
-  --violet2: #87606f;
-  --transparent: transparent;
+  --primary-color: var(--primary);
+  --secondary-color: var(--secondary);
 
-  --primary-color: var(--blue1);
-  --secondary-color: var(--blue2);
-
-  --success-color: var(--green);
-  --info-color: var(--blue);
-  --warning-color: var(--yellow);
+  --success-color: var(--success);
+  --info-color: var(--info);
+  --warning-color: var(--warning);
   --danger-color: var(--red);
-  --light-color: var(--gray75);
-  --medium-color: var(--gray40);
-  --dark-color: var(--gray25);
-  --success-danger-color: var(--yellow);
+  --light-color: var(--light);
+  --medium-color: var(--gray);
+  --dark-color: var(--dark);
+  --success-danger-color: var(--warning);
 
   --cold-color: var(--blue1);
   --hot-color: var(--red-light);
@@ -68,14 +57,17 @@
   --medium-contrast-color: var(--white);
   --dark-contrast-color: var(--white);
 
-  --text-color: var(--gray75);
+  --text-color: var(--light);
   --inactive-text-color: #1e1bcc;
 
-  --view-toolbar-color: var(--gray15);
-  --view-toolbar-background-color: var(--white);
+  --view-toolbar-color: var(--light);
+  --view-toolbar-background-color: rgba(48, 48, 48, 0.9);
   --view-content-color: var(--white);
-  --view-background-color: var(--white);
+  --view-background-color: var(--black-dark);
   --view-footer-color: var(--white);
+  --view-item-background-color: var(--black);
+  --view-item-active-color: var(--gray-darker);
+  --view-border-color: var(--gray-dark);
 
   --page-background-color: var(--black-dark);
 
@@ -95,26 +87,26 @@
 
   --circlemenu-overlay-color: var(--black-dark);
 
-  --chart-text-color: var(--gray55);
+  --chart-text-color: var(--dark);
   --chart-text-active-color: var(--white);
 
   --border-color: var(--gray55);
 
-  --switch-off-color: var(--medium-color);
-  --checkbox-off-color: var(--dark-color);
+  --switch-off-color: var(--dark);
+  --checkbox-off-color: var(--light);
 
   --slider-track-color: var(--dark-color);
   --slider-handle-shadow: none;
   --slider-handle-border: none;
 
   --swiper-scrollbar-thumb: rgba(0, 0, 0, 0.5);
-  --swiper-scrollbar-track: var(--transparent);
+  --swiper-scrollbar-track: transparent;
   --swiper-dot: var(--medium-color);
   --swiper-dot-active: var(--info-color);
 
-  --segments-background-color: var(--medium-color);
-  --segments-separator-color: var(--dark-color);
-  --segments-selection-color: var(--primary-color);
+  --segments-background-color: var(--dark);
+  --segments-separator-color: var(--gray-dark);
+  --segments-selection-color: var(--primary);
   --segments-selection-contrast-color: var(--primary-contrast-color);
   --segments-hover-color: var(--light-color);
   --segments-text-color: var(--text-color);

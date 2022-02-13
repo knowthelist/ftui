@@ -9,8 +9,6 @@
   --gray-darker: #2e2629;
   --gray-darkest: #1c1718;
 
-  --gray-trans: rgba(40, 40, 40, 0.5);
-
   --red: #F06060;
   --red-light: #EE5C42;
   --red-dark: #ad3333;
@@ -29,7 +27,7 @@
   --brown: #bf7a37;
 
   --black: #111111;
-  --fullblack: #000000;
+  --black-dark: #000000;
  
   --violet: #9400d3;
   --violet2: #87606f;
@@ -85,11 +83,11 @@
 
   --popup-color: var(--text-color);
   --popup-background-color: var(--grid-background-color);
-  --popup-overlay-color: var(--fullblack);
+  --popup-overlay-color: var(--black-dark);
   --popup-header-color: var(--grid-header-color);
   --popup-header-background-color: var(--grid-header-background-color);
 
-  --circlemenu-overlay-color: var(--fullblack);
+  --circlemenu-overlay-color: var(--black-dark);
 
   --chart-text-color: var(--gray55);
   --chart-text-active-color: var(--white);

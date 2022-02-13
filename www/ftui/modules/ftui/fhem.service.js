@@ -85,7 +85,8 @@ class FhemService {
   }
 
   createFilterParameter() {
-    const readingsArray = Array.from(this.readingsMap.values()).filter(value => value.events.observers.length);
+    const readingsArray = Array.from(this.readingsMap.values())
+      .filter(value => value.events.observers.length && value.device !== 'local');
     const devs = [... new Set(readingsArray.map(value => value.device))];
     const reads = [... new Set(readingsArray.map(value => value.reading || 'STATE'))];
     const devicelist = devs.length ? devs.join() : '';
@@ -124,7 +125,7 @@ class FhemService {
     if (
       !isAppVisible() ||
       (this.config.refresh.filter
-      && this.config.refresh.filter.length < 2)
+        && this.config.refresh.filter.length < 2)
       || (now - this.states.lastRefresh) < this.config.refreshInterval
     ) { return; }
     log(1, '[refresh] start now');
@@ -133,7 +134,7 @@ class FhemService {
 
     // invalidate all readings for detection of outdated ones
     this.readingsMap.forEach(reading => reading.data.invalid = true);
-
+    console.log(this.readingsMap.size)
     window.performance.mark('start get jsonlist2');
     this.states.refresh.request =
       this.sendCommand('jsonlist2 ' + this.config.refresh.filter)

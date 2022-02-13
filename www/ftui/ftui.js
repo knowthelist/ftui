@@ -5,6 +5,7 @@ async function main() {
 
   // start FTUI
   ftuiModule.ftuiApp.init();
+  window.ftuiApp.setTheme(window.matchMedia('(prefers-color-scheme: dark)').matches);
 }
 
 document.addEventListener('readystatechange', () => {
@@ -46,3 +47,10 @@ window.onerror = function (msg, url, lineNo, columnNo, error) {
   window.ftuiApp.toast([file + ':' + lineNo, error].join('<br/>'), 'error');
   return false;
 };
+
+// set theme on change
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+  const isDark = e.matches;
+
+  window.ftuiApp.setTheme(isDark);
+});

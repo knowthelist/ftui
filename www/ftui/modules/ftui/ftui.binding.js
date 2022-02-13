@@ -147,6 +147,8 @@ export class FtuiBinding {
         update: now,
       });
 
+      if (deviceName === 'local') { return }
+
       // notify FHEM
       if (this.element.debounce) {
         fhemService.debouncedUpdateFhem(this.element.debounce, cmdLine);

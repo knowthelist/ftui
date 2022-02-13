@@ -15,7 +15,7 @@
   --gray85: #d8d8d8;
   --gray90: #e5e5e5;
   --gray95: #f2f2f2;
-  --gray-trans: rgba(40, 40, 40, 0.5);
+
   --red: rgb(219, 72, 70);
   --red-light: rgb(238, 92, 66);
   --red-dark: #ed553b;
@@ -31,7 +31,7 @@
   --orange: #f8b13e;
   --white: #ffffff;
   --black: #111111;
-  --fullblack: #000000;  
+  --black-dark: #000000;  
   --violet: #9400d3;
   --transparent: transparent;
 
@@ -84,7 +84,7 @@
   --popup-header-color: var(--grid-header-color);
   --popup-header-background-color: var(--grid-header-background-color);
   
-  --circlemenu-overlay-color: var(--fullblack);
+  --circlemenu-overlay-color: var(--black-dark);
 
   --chart-text-color: var(--gray55);
 
