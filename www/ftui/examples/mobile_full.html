@@ -17,9 +17,9 @@
   <base href="../" />
   <script src="ftui.js"></script>
   <link href="ftui.css" rel="stylesheet">
-  <link href="themes/mobile-theme.css" rel="stylesheet">
-  <link href="themes/mobile-dark-theme.css" rel="stylesheet"
-        ftui-binding [disabled]="local:dark">
+  <link href="themes/mobile-dark-theme.css" rel="stylesheet">
+  <link href="themes/mobile-theme.css" rel="stylesheet"
+        ftui-binding [disabled]="local:dark | toBool()">
   <link href="favicon.ico" rel="icon" type="image/x-icon" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -421,11 +421,11 @@
         </ftui-view-item>
         <ftui-view-item>Kind Desktop
           <ftui-switch [(value)]="HUEDevice17" slot="end"></ftui-switch>
-        </ftui-view-item>        
+        </ftui-view-item>
         <ftui-view-item>Kind Fenster
           <ftui-switch [(value)]="HUEPlug" slot="end"></ftui-switch>
         </ftui-view-item>
-      
+
       </ftui-view-section>
 
       <ftui-view-section>
@@ -492,7 +492,7 @@
     </ftui-view>
 
     <!-- Shutter -->
-    <ftui-view id="viewShutter"> 
+    <ftui-view id="viewShutter">
       <ftui-content file="examples/contents/mobile-shutter.html"></ftui-content>
     </ftui-view>
 
@@ -526,7 +526,7 @@
         </ftui-cell>
         <ftui-cell align-items="left">
           <ftui-label color="medium" size="1">Rain</ftui-label>
-          <ftui-label [text]="AgroWeather:fc0_rain" size="2" unit="mm"  bold></ftui-label>
+          <ftui-label [text]="AgroWeather:fc0_rain" size="2" unit="mm" bold></ftui-label>
         </ftui-cell>
 
       </ftui-view-sheet>
@@ -542,7 +542,7 @@
       </ftui-view-section>
 
     </ftui-view>
-    
+
 
   </ftui-view-stage>
 

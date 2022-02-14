@@ -13,13 +13,10 @@
   --green: #2dc16f;
   --teal: #20c997;
   --cyan: #17a2b8;
+  --brown: #bf7a37;
   --white: #fff;
   --gray: #d6dde4;
-  --gray1: #eaecf1;
-  --gray-light: #c5c5c5;
-  --gray-lighter: #e5e5e5;
-  --gray-dark: #343a40;
-  --gray-darker: #222222;
+  --black: #000000;
   --primary: #007bff;
   --secondary: #6c757d;
   --success: #28a745;
@@ -28,6 +25,7 @@
   --danger: #dc3545;
   --light: #f8f9fa;
   --dark: #343a40;
+  --darker: #272727;
 
   --primary-color: var(--primary);
   --secondary-color: var(--secondary);
@@ -41,9 +39,9 @@
   --dark-color: var(--dark);
   --success-danger-color: var(--warning);
 
-  --cold-color: var(--blue1);
-  --hot-color: var(--red-light);
-  --cold-hot-mix-color: var(--violet2);
+  --cold-color: var(--blue);
+  --hot-color: var(--red);
+  --cold-hot-mix-color: var(--indigo);
 
   --primary-contrast-color: var(--white);
   --secondary-contrast-color: var(--white);
@@ -51,64 +49,65 @@
 
   --success-contrast-color: var(--white);
   --info-contrast-color: var(--white);
-  --warning-contrast-color: var(--gray20);
+  --warning-contrast-color: var(--dark);
   --danger-contrast-color: var(--white);
   --light-contrast-color: var(--black);
   --medium-contrast-color: var(--white);
   --dark-contrast-color: var(--white);
 
   --text-color: var(--light);
-  --inactive-text-color: #1e1bcc;
+  --inactive-text-color: var(--purple);
 
   --view-toolbar-color: var(--light);
-  --view-toolbar-background-color: rgba(48, 48, 48, 0.9);
+  --view-toolbar-background-color: var(--dark);
   --view-content-color: var(--white);
-  --view-background-color: var(--black-dark);
+  --view-background-color: var(--black);
   --view-footer-color: var(--white);
-  --view-item-background-color: var(--black);
-  --view-item-active-color: var(--gray-darker);
-  --view-border-color: var(--gray-dark);
+  --view-item-background-color: var(--darker);
+  --view-item-active-color: var(--dark);
+  --view-border-color: var(--dark);
 
-  --page-background-color: var(--black-dark);
+  --page-background-color: var(--black);
 
-  --grid-background-color: var(--gray20);
-  --grid-header-color: var(--gray55);
-  --grid-header-background-color: var(--gray15);
+  --grid-background-color: var(--dark);
+  --grid-header-color: var(--dark);
+  --grid-header-background-color: var(--light);
 
-  --tab-color: var(--gray40);
-  --tab-contrast-color: var(--gray20);
-  --tab-active-color: var(--primary-color);
+  --tab-color: var(--dark);
+  --tab-contrast-color: var(--light);
+  --tab-active-color: var(--primary);
 
   --popup-color: var(--text-color);
   --popup-background-color: var(--grid-background-color);
-  --popup-overlay-color: var(--black-dark);
+  --popup-overlay-color: var(--black);
   --popup-header-color: var(--grid-header-color);
   --popup-header-background-color: var(--grid-header-background-color);
 
-  --circlemenu-overlay-color: var(--black-dark);
+  --circlemenu-overlay-color: var(--black);
 
-  --chart-text-color: var(--dark);
+  --chart-text-color: var(--light);
   --chart-text-active-color: var(--white);
+  --chart-grid-line-color: var(--gray);
 
-  --border-color: var(--gray55);
+  --border-color: var(--dark);
 
   --switch-off-color: var(--dark);
   --checkbox-off-color: var(--light);
 
-  --slider-track-color: var(--dark-color);
+  --slider-track-color: var(--dark);
   --slider-handle-shadow: none;
   --slider-handle-border: none;
 
   --swiper-scrollbar-thumb: rgba(0, 0, 0, 0.5);
   --swiper-scrollbar-track: transparent;
-  --swiper-dot: var(--medium-color);
-  --swiper-dot-active: var(--info-color);
+  --swiper-dot: var(--medium);
+  --swiper-dot-active: var(--info);
 
   --segments-background-color: var(--dark);
-  --segments-separator-color: var(--gray-dark);
+  --segments-separator-color: var(--gray);
   --segments-selection-color: var(--primary);
   --segments-selection-contrast-color: var(--primary-contrast-color);
-  --segments-hover-color: var(--light-color);
+  --segments-hover-color: var(--light);
   --segments-text-color: var(--text-color);
 }
 

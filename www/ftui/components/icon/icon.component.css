@@ -24,8 +24,20 @@ svg g[style] {
 }
 
 img {
-  width: var(--icon-width, 2.5em);
-  height: var(--icon-height, 2.5em);
+  width: var(--icon-width, 4em);
+  height: var(--icon-height, 4em);
+  object-fit: cover;
+}
+
+:host([crop]) img {
+object-fit: none;
+}
+
+:host([shape="round"]) img {
+  border-radius: 1.5em;
+}
+:host([shape="circle"]) img {
+  border-radius: 50%;
 }
 
 svg[viewBox="0 0 448 512"] {

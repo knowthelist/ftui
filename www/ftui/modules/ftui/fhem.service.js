@@ -52,21 +52,21 @@ class FhemService {
 
   getReadingEvents(readingName) {
     if (isDefined(readingName)) {
-      const [readingId, device, reading] = parseReadingId(readingName);
-      if (!this.readingsMap.has(readingId)) {
-        this.readingsMap.set(readingId, { data: { id: readingId }, events: new Subject(), device: device, reading: reading });
-      }
-      return this.readingsMap.get(readingId).events;
+      const readingItem = this.getReadingItem(readingName);
+      return readingItem.events;
     } else {
       // empty dummy object
       return { subscribe: () => { }, unsubscribe: () => { } }
     }
   }
 
-  getReadingItem(readingID) {
-    const id = readingID.replace(':', '-');
-    if (this.readingsMap.has(id)) {
-      return this.readingsMap.get(id);
+  getReadingItem(readingIdOrName) {
+    const [readingId, device, reading] = parseReadingId(readingIdOrName);
+    if (!this.readingsMap.has(readingId)) {
+      this.readingsMap.set(readingId, { data: { id: readingId }, events: new Subject(), device: device, reading: reading });
+    }
+    if (this.readingsMap.has(readingId)) {
+      return this.readingsMap.get(readingId);
     } else {
       return {};
     }
@@ -75,7 +75,6 @@ class FhemService {
   updateReadingItem(readingID, newData, doPublish = true) {
     log(3, 'FhemService.updateReadingItem - update for ', readingID, 'newData=', newData, 'doPublish=', doPublish);
     const readingItem = this.getReadingItem(readingID);
-
     if (readingItem.data) {
       readingItem.data = Object.assign(readingItem.data, newData);
       if (doPublish) {

@@ -58,7 +58,7 @@ export class FtuiIcon extends FtuiElement {
         break;
       case 'width':
       case 'height':
-        this.style[name] = this[name];
+        this.style.setProperty(`--icon-${name}`, newValue);
         break;
       case 'top':
       case 'left':
