@@ -39,7 +39,7 @@ export class FtuiDropdown extends FtuiElement {
       value: '',
       delimiter: '[;,:|]',
       width: '',
-      height: ''
+      height: '',
     };
   }
 
@@ -74,7 +74,7 @@ export class FtuiDropdown extends FtuiElement {
     list.forEach((item) => {
       const opt = document.createElement('option');
       opt.value = item;
-      opt.innerHTML = item;
+      opt.textContent = item;
       this.selectElement.appendChild(opt);
     });
     this.selectElement.value = this.value;

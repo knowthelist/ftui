@@ -121,16 +121,16 @@ export class FtuiSlider extends FtuiElement {
   }
 
   updateRangable() {
-    this.minElement.innerHTML = this.min;
+    this.minElement.textContent = this.min;
     this.input.min = this.min;
-    this.maxElement.innerHTML = this.max;
+    this.maxElement.textContent = this.max;
     this.input.max = this.max;
     this.rangeable.setValue(Number(this.value));
     this.rangeable.update();
   }
 
   drawTicks() {
-    this.ticksElement.innerHTML = '';
+    this.ticksElement.textContent = '';
     for (let i = 0; i < this.tickCount; i++) {
       const elem = document.createElement('span');
       if ((i * this.tick) % this.wideTick !== 0) {

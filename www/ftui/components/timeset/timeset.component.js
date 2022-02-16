@@ -169,7 +169,7 @@ export class FtuiTimeSet extends FtuiElement {
       const opt = document.createElement('option');
       const hour = String(i).padStart(2, '0');
       opt.value = hour;
-      opt.innerHTML = hour;
+      opt.textContent = hour;
       this.leftSelect.appendChild(opt);
       i++;
     }
@@ -178,7 +178,7 @@ export class FtuiTimeSet extends FtuiElement {
       const opt = document.createElement('option');
       const min = String(i).padStart(2, '0');
       opt.value = min;
-      opt.innerHTML = min;
+      opt.textContent = min;
       this.rightSelect.appendChild(opt);
       i++;
     }

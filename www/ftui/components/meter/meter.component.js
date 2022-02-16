@@ -72,8 +72,8 @@ export class FtuiMeter extends FtuiElement {
     const value = scale(limitedValue, this.min, this.max, 0, 100);
     const direction = this.isVertical ? 'height' : 'width';
     this.bar.style[direction] = value + '%';
-    this.minElement.innerHTML = this.min;
-    this.maxElement.innerHTML = this.max;
+    this.minElement.textContent = this.min;
+    this.maxElement.textContent = this.max;
   }
 }
 

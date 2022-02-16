@@ -59,7 +59,7 @@ export class FtuiChartControls extends FtuiElement {
       unit: '',
       units: '',
       startDate: '',
-      endDate: ''
+      endDate: '',
     };
   }
 
@@ -99,7 +99,7 @@ export class FtuiChartControls extends FtuiElement {
     switch (name) {
       case 'start-date':
       case 'end-date':
-        this.dateElement.innerHTML = this.dateString;
+        this.dateElement.textContent = this.dateString;
         break;
       case 'unit': {
         this.shadowRoot.querySelectorAll('.unit').forEach(element => {

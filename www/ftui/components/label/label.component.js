@@ -78,7 +78,7 @@ export class FtuiLabel extends FtuiElement {
         this.checkInterval();
         break;
       case 'unit':
-        this.unitSlotElement.innerHTML = this.unit;
+        this.unitSlotElement.textContent = this.unit;
         break;
       case 'interval':
         this.checkInterval();

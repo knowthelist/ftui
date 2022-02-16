@@ -27,7 +27,8 @@
   --light: #bfbfbf;
   --medium: #8c8c8c;
   --dark: #3f3f3f;
-  --darker: #272727;
+  --darker: #333333;
+  --darkest: #272727;
 
   --primary-color: var(--primary);
   --secondary-color: var(--secondary);
@@ -68,9 +69,9 @@
 
   --page-background-color: var(--black);
 
-  --grid-background-color: var(--dark);
+  --grid-background-color: var(--darker);
   --grid-header-color: var(--medium);
-  --grid-header-background-color: var(--darker);
+  --grid-header-background-color: var(--darkest);
 
   --tab-color: var(--gray);
   --tab-contrast-color: var(--light);
@@ -107,6 +108,8 @@
   --segments-selection-contrast-color: var(--primary-contrast-color);
   --segments-hover-color: var(--light);
   --segments-text-color: var(--text-color);
+
+  --meter-background-color: var(--dark);
 }
 
 body {

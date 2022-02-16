@@ -114,7 +114,7 @@ export class FtuiMedialist extends FtuiElement {
   fillList() {
     if (isDefined(this.list)) {
       try {
-        this.elemList.innerHTML = '';
+        this.elemList.textContent = '';
         const collection = parseHocon(this.list
           .replace(/`/g, '\'')
           .replace(/´/g, '\''));

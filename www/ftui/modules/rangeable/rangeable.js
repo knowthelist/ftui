@@ -372,7 +372,6 @@ export class Rangeable {
     const size = rect.container[this.trackSize[this.axis]];
 
     if (e.type === 'mousedown') {
-      console.log(e.target)
       if (
         (!this.double && this.nodes.handle.contains(e.target)) ||
         (this.double &&
@@ -382,7 +381,7 @@ export class Rangeable {
         return false;
       }
     }
-    console.log('weiter')
+
     // get the position of the cursor over the bar as a percentage
     const position = this.config.vertical ?
       (size - point) / size * 100 :
@@ -845,7 +844,7 @@ export class Rangeable {
     if (this.axis === 'y') {
       this.nodes.handle.style[this.trackPos[this.axis]] = `calc(100% - ${width}px)`;
     } else {
-      this.nodes.handle.style[this.trackPos[this.axis]] = `${width -26}px`;
+      this.nodes.handle.style[this.trackPos[this.axis]] = `${width - 26}px`;
     }
   }
 
