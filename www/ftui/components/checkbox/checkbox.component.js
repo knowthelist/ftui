@@ -37,7 +37,7 @@ export class FtuiCheckbox extends FtuiElement {
       states: 'off,on',
       texts: ',',
       color: 'primary',
-      value: 'off'
+      value: 'off',
     };
   }
 

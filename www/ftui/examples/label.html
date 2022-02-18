@@ -221,6 +221,15 @@
         <ftui-label text="2.5" unit="V">Room2: </ftui-label>
       </details>
     </ftui-grid-tile>
+
+    <ftui-grid-tile row="5" col="7" height="1" width="3">
+      <header>CONCAT</header>
+      <span>
+        <ftui-label [text]="Sonos_Terasse:currentArtist"></ftui-label> - 
+        <ftui-label [text]="Sonos_Terasse:currentTitle"></ftui-label>
+      </span>
+    </ftui-grid-tile>
+
   </ftui-grid>
 </body>
 

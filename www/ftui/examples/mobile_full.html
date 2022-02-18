@@ -26,6 +26,8 @@
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
 
+  <meta name="fhemweb_url" content="http://fhem:8083/fhem/">
+
   <title>FTUI Mobile Example</title>
 </head>
 
@@ -171,65 +173,7 @@
     </ftui-view>
 
     <ftui-view id="viewSonosWZ">
-
-      <ftui-view-toolbar>
-        <ftui-nav-link slot="start"></ftui-nav-link>
-        Sonos Wohnzimmer
-      </ftui-view-toolbar>
-
-      <ftui-view-item>
-        Volume
-        <ftui-slider [(value)]="Sonos_Play5:Volume" max="60" slot="end"></ftui-slider>
-      </ftui-view-item>
-
-      <ftui-view-item>Crossfade
-        <ftui-switch states="0,1"
-                     [(value)]="Sonos_Kueche:CrossfadeMode"
-                     slot="end"></ftui-switch>
-      </ftui-view-item>
-
-
-      <ftui-view-sheet shape="round">
-
-        <ftui-image [src]="Sonos_Play5:currentAlbumArtURL" width="8em"></ftui-image>
-
-        <ftui-column width="60%">
-          <ftui-button fill="outline" shape="circle"
-                       [value]="Sonos_Play5:transportState | map('PLAYING: play, PAUSED_PLAYBACK|STOPPED: pause')"
-                       (value)="Sonos_Play5" states="play, pause">
-            <ftui-icon [name]="Sonos_Play5:transportState  | map('PLAYING: stop, PAUSED_PLAYBACK|STOPPED: play')">
-            </ftui-icon>
-          </ftui-button>
-
-          <ftui-row height="40%">
-            <ftui-label [text]="Sonos_Play5:infoSummarize1" scroll></ftui-label>
-          </ftui-row>
-
-        </ftui-column>
-      </ftui-view-sheet>
-
-      <ftui-view-section>
-        <ftui-label slot="header">Groups</ftui-label>
-        <ftui-view-item>Bad
-          <ftui-checkbox states="false, true"
-                         (value)="map('false:RemoveMember, true:AddMember') | Sonos_Play5 $value Sonos_Bad"
-                         [value]="Sonos_Play5:AvailablePlayer | contains('Sonos_Bad')"
-                         slot="end"></ftui-checkbox>
-        </ftui-view-item>
-        <ftui-view-item>Kinderzimmer
-          <ftui-checkbox states="false, true"
-                         (value)="map('false:RemoveMember, true:AddMember') | Sonos_Play5 $value Sonos_Kinderzimmer"
-                         [value]="Sonos_Play5:AvailablePlayer | contains('Sonos_Kinderzimmer')"
-                         slot="end"></ftui-checkbox>
-        </ftui-view-item>
-        <ftui-view-item>Terasse
-          <ftui-checkbox states="false, true"
-                         (value)="map('false:RemoveMember, true:AddMember') | Sonos_Play5 $value Sonos_Terasse"
-                         [value]="Sonos_Play5:AvailablePlayer | contains('Sonos_Terasse')"
-                         slot="end"></ftui-checkbox>
-        </ftui-view-item>
-      </ftui-view-section>
-
+      <ftui-content file="examples/contents/mobile-view-sonos.html" name="Play5" lazy></ftui-content>
     </ftui-view>
 
     <ftui-view id="viewSonosKind">

@@ -6,12 +6,13 @@
   --padding-start: 1em;
   --padding-end: 1em;
   --transition: background-color, opacity 100ms linear;
-  height: 2.5em;
   letter-spacing: -.025em;
   cursor: pointer;
   border-color: var(--color-base, #20639b);
   background: transparent;
   color: var(--color-base, #20639b);
+  height: auto;
+  min-height: 2.5em;
 }
 
 /* size */

@@ -27,6 +27,7 @@
   --light: #bfbfbf;
   --medium: #8c8c8c;
   --dark: #3f3f3f;
+  --dark-light: #535353;
   --darker: #333333;
   --darkest: #272727;
 
@@ -102,7 +103,7 @@
   --swiper-dot: var(--medium);
   --swiper-dot-active: var(--info);
 
-  --segments-background-color: var(--medium);
+  --segments-background-color: var(--dark-light);
   --segments-separator-color: var(--dark);
   --segments-selection-color: var(--primary);
   --segments-selection-contrast-color: var(--primary-contrast-color);
