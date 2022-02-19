@@ -1,0 +1,24 @@
+<ftui-view-toolbar>
+  <ftui-nav-link slot="start"></ftui-nav-link>
+  Color
+</ftui-view-toolbar>
+
+<ftui-view-sheet shape="round">
+  <ftui-label bold>Color</ftui-label>
+  <ftui-colorpicker [hex]="KNX_KuechenSchrankLicht:wert-get"
+                    (hex)="replace('#','') | KNX_KuechenSchrankLicht"
+                    layout="hueSlider,saturationSlider,valueSlider"></ftui-colorpicker>
+
+</ftui-view-sheet>
+
+</ftui-view-section>
+
+<ftui-view-section>
+  <ftui-label slot="header">Other</ftui-label>
+
+  <ftui-view-item>Color
+    <ftui-switch [value]="KNX_KuechenSchrankLicht:status-get"
+                 (value)="KNX_KuechenSchrankLicht" slot="end"></ftui-switch>
+  </ftui-view-item>
+
+</ftui-view-section>

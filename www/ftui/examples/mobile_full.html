@@ -381,7 +381,13 @@
           <ftui-switch [(value)]="WohnzimmerDeckenLicht" slot="end"></ftui-switch>
         </ftui-view-item>
         <ftui-view-item>Spüle oben
-          <ftui-switch [(value)]="KNX_KuechenSchrankLicht" slot="end"></ftui-switch>
+          <ftui-nav-link target="viewKitchenColor">
+            <ftui-icon name="circle" size="0"
+                       [rgb]="KNX_KuechenSchrankLicht:wert-get">
+            </ftui-icon>
+          </ftui-nav-link>
+          <ftui-switch [value]="KNX_KuechenSchrankLicht:status-get"
+                       (value)="KNX_KuechenSchrankLicht" slot="end"></ftui-switch>
         </ftui-view-item>
         <ftui-view-item>Spüle unten
           <ftui-switch [(value)]="KuechenArbeitsLicht" slot="end"></ftui-switch>
@@ -454,6 +460,12 @@
     <ftui-view id="viewTemp">
       <ftui-content file="examples/contents/mobile-temp.html"></ftui-content>
     </ftui-view>
+
+    <!-- KITCHEN COLOR -->
+    <ftui-view id="viewKitchenColor">
+      <ftui-content file="examples/contents/mobile-color.html"></ftui-content>
+    </ftui-view>
+
 
     <!-- OUTDOORS TEMPERATURES -->
     <ftui-view id="viewOutdoorTemp">

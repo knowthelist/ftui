@@ -31,7 +31,7 @@ export class FtuiNavLink extends FtuiElement {
 
   static get properties() {
     return {
-      target: 'back'
+      target: 'back',
     };
   }
 

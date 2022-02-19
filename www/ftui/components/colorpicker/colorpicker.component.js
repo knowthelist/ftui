@@ -21,7 +21,7 @@ export class FtuiColorpicker extends FtuiElement {
     this.colorPicker = new iro.ColorPicker(this, this.options);
     this.updateOptions();
 
-    this.colorPicker.on('input:change', (color) => this.onColorChange(color));
+    this.colorPicker.on('input:change', color => this.onColorChange(color));
   }
 
   static get properties() {
@@ -34,7 +34,7 @@ export class FtuiColorpicker extends FtuiElement {
       kelvin: '',
       direction: 'vertical',
       debounce: 300,
-      layout: 'wheel'
+      layout: 'wheel',
     };
   }
 
@@ -46,7 +46,7 @@ export class FtuiColorpicker extends FtuiElement {
     return {
       width: this.width,
       layoutDirection: this.direction,
-      layout: [...this.layoutMap.values()]
+      layout: [...this.layoutMap.values()],
     }
   }
 
@@ -97,7 +97,7 @@ export class FtuiColorpicker extends FtuiElement {
     if (this.hex != color.hexString) {
       this.submitChange('hex', color.hexString);
     }
-    if (this.kelvin != color.kelvin) {
+    if (this.layoutMap.has('kelvin') && this.kelvin != color.kelvin) {
       this.submitChange('kelvin', color.kelvin);
     }
     if (this.hue != color.hue) {

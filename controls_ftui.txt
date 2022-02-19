@@ -12,7 +12,7 @@ UPD 2022-01-05_08:58:04 293 www/ftui/components/checkbox/checkbox.component.css
 UPD 2022-02-16_17:26:57 2258 www/ftui/components/checkbox/checkbox.component.js
 UPD 2022-01-07_08:14:01 2556 www/ftui/components/circlemenu/circlemenu.component.js
 UPD 2022-01-31_02:08:35 1728 www/ftui/components/clock/clock.component.js
-UPD 2021-11-30_23:46:58 3773 www/ftui/components/colorpicker/colorpicker.component.js
+UPD 2022-02-19_00:07:37 3805 www/ftui/components/colorpicker/colorpicker.component.js
 UPD 2021-01-28_21:05:34 574 www/ftui/components/column/column.component.js
 UPD 2021-12-02_14:03:47 86 www/ftui/components/content/content.component.css
 UPD 2022-02-15_19:37:34 2763 www/ftui/components/content/content.component.js
@@ -42,7 +42,7 @@ UPD 2021-11-09_22:11:36 407 www/ftui/components/menu/menu.component.css
 UPD 2021-11-09_22:09:43 1533 www/ftui/components/menu/menu.component.js
 UPD 2022-02-11_23:58:36 1721 www/ftui/components/meter/meter.component.css
 UPD 2022-02-15_18:27:19 2213 www/ftui/components/meter/meter.component.js
-UPD 2021-02-01_19:44:36 1083 www/ftui/components/nav/nav-link.component.js
+UPD 2022-02-19_01:16:35 1084 www/ftui/components/nav/nav-link.component.js
 UPD 2022-01-11_18:32:57 1477 www/ftui/components/popup/popup.component.css
 UPD 2022-01-31_02:08:35 3783 www/ftui/components/popup/popup.component.js
 UPD 2021-12-03_18:58:15 1347 www/ftui/components/rotor/rotor.component.css
@@ -85,7 +85,7 @@ UPD 2022-02-08_19:44:11 1704 www/ftui/examples/chart2.html
 UPD 2022-01-06_22:08:43 1408 www/ftui/examples/checkbox.html
 UPD 2021-11-30_17:17:52 9424 www/ftui/examples/circlemenu.html
 UPD 2022-02-07_00:30:28 1620 www/ftui/examples/clock.html
-UPD 2021-12-01_11:32:15 3845 www/ftui/examples/colorpicker.html
+UPD 2022-02-18_23:48:28 3845 www/ftui/examples/colorpicker.html
 UPD 2022-02-13_21:55:42 4382 www/ftui/examples/colors.html
 UPD 2021-12-08_17:37:03 1865 www/ftui/examples/content.html
 UPD 2022-02-07_00:30:28 919 www/ftui/examples/content2.html
@@ -123,7 +123,7 @@ UPD 2022-01-13_17:51:31 1942 www/ftui/examples/menu.html
 UPD 2022-01-13_22:25:03 2315 www/ftui/examples/menu2.html
 UPD 2022-02-11_20:59:51 3377 www/ftui/examples/meter.html
 UPD 2022-01-31_15:27:11 3195 www/ftui/examples/mobile.html
-UPD 2022-02-17_17:37:06 19230 www/ftui/examples/mobile_full.html
+UPD 2022-02-19_01:35:32 19674 www/ftui/examples/mobile_full.html
 UPD 2022-02-17_17:37:00 5457 www/ftui/examples/mobile_plain.html
 UPD 2022-01-10_19:14:03 4689 www/ftui/examples/popup.html
 UPD 2021-12-02_22:57:32 3576 www/ftui/examples/rotor.html
