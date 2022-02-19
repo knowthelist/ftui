@@ -133,8 +133,9 @@
   padding-bottom: 3px;
   padding-top: 3px;
   overflow: hidden;
-  background: var(--departure-bgcolor);
+  background: var(--departure-bgcolor, #898989);
   border-radius: 0.5em;
+  color: var(--departure-txtcolor, #444)
 }
 
 .listDefault {
@@ -147,8 +148,8 @@
   overflow-y: auto;
   overflow-x: hidden;
   scrollbar-width: none;
-  color: var(--departure-deptxtcolor);
-  background: var(--departure-depcolor);
+  color: var(--departure-deptxtcolor,#CCC);
+  background: var(--departure-depcolor, #484848);
   border-radius: 0.5em;
   line-height: 1.5;
   -ms-overflow-style: none;
@@ -192,17 +193,6 @@ table td, th {
 @-o-keyframes fadein {
   from { opacity:0.5; }
   to { opacity: 1; }
-}
-
-.table {
-  color: #444;
-  background: #898989;
-}
-
-.table-body {
-  color: #CCC;
-  background: #484848;
-  font-size: 13px;
 }
 
 :host([RVSOE]) .table {
