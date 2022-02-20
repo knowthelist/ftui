@@ -29,7 +29,7 @@ export class FtuiGrid extends FtuiElement {
     this.debouncedResize = debounce(this.configureGrid, this);
 
     this.windowWidth = 0;
-    this.tiles = this.querySelectorAll('ftui-grid-tile');
+    this.tiles = this.querySelectorAll('ftui-grid-tile, .ftui-grid-tile');
 
 
     if (this.responsive) {

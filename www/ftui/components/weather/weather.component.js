@@ -20,7 +20,7 @@ class FtuiWeather extends FtuiIcon {
   static get properties() {
     return {
       provider: 'proplanta',
-      iconSet: 'meteocons',
+      iconset: 'meteocons',
       condition: '',
       name: '', // base class property (icon)
       rgb: '', // base class property (icon)
@@ -35,7 +35,7 @@ class FtuiWeather extends FtuiIcon {
     switch (name) {
       case 'condition': {
         const conditions = providerSet[this.provider] || {};
-        const icons = iconSet[this.iconSet] || {};
+        const icons = iconSet[this.iconset] || {};
         this.loadIcon(icons[conditions[newValue]] || 'icons/none.svg');
         break;
       }

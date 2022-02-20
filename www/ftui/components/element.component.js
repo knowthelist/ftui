@@ -9,6 +9,7 @@
 
 
 import * as ftuiHelper from '../modules/ftui/ftui.helper.js';
+let ftuiAppMod = await import( '../modules/ftui/ftui.app.js');
 
 const uids = {};
 
@@ -32,9 +33,7 @@ export class FtuiElement extends HTMLElement {
       this.createShadowRoot(this.template());
     }
 
-    if (window.ftuiApp) {
-      ftuiApp.attachBinding(this);
-    }
+    ftuiAppMod.ftuiApp.attachBinding(this);
   }
 
   createShadowRoot(content) {
