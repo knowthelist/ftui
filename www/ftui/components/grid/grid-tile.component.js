@@ -11,15 +11,8 @@ import { FtuiElement } from '../element.component.js';
 
 export class FtuiGridTile extends FtuiElement {
 
-  constructor() {
-    const properties = {
-      row: 0,
-      col: 0,
-      height: 0,
-      width: 0,
-      color: '',
-    };
-    super(properties);
+  constructor(properties) {
+    super(Object.assign(FtuiGridTile.properties, properties));
 
     const header = this.querySelector('header, ftui-grid-header');
     header && header.setAttribute('slot', 'header');
@@ -31,6 +24,20 @@ export class FtuiGridTile extends FtuiElement {
     <div class="content">
       <slot></slot>
     </div>`;
+  }
+
+  static get properties() {
+    return {
+      row: 0,
+      col: 0,
+      height: 0,
+      width: 0,
+      color: ''
+    };
+  }
+
+  static get observedAttributes() {
+    return [...this.convertToAttributes(FtuiGridTile.properties), ...super.observedAttributes];
   }
 }
 
