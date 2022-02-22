@@ -42,6 +42,7 @@ export class FtuiIcon extends FtuiElement {
       left: '',
       bottom: '',
       right: '',
+      rotate: 0,
     };
   }
 
@@ -71,6 +72,11 @@ export class FtuiIcon extends FtuiElement {
         if (this.size > -7 && this.size < 13) {
           this.style.fontSize = sizes[this.size + 4] + 'rem';
         }
+        break;
+      case 'rotate':
+        this.elementIcon.style.setProperty('-webkit-transform', 'rotateZ(' + newValue + 'deg)');
+        this.elementIcon.style.setProperty('-transform', 'rotateZ(' + newValue + 'deg)');
+        this.elementIcon.style.setProperty('-moz-transform', 'rotateZ(' + newValue + 'deg)');
         break;
     }
   }

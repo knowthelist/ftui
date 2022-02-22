@@ -27,7 +27,7 @@
   <ftui-grid base-width="150" base-height="50" margin="15">
 
     <ftui-grid-tile row="1" col="1" height="2" width="2">
-      <!-- Change color theme via FHEM reading-->
+      <!-- Change color theme via local variable-->
       <ftui-button [(value)]="local:theme" states="dark,light,retro,vivid">Try me!</ftui-button>
       <ftui-label [text]="local:theme"></ftui-label>
     </ftui-grid-tile>
@@ -96,28 +96,5 @@
 
 
 </body>
-
-<!--  automatic change of color theme -->
-<script>
-
-  const darkSchema = '(prefers-color-scheme: dark)';
-  const isDark = window.matchMedia && window.matchMedia(darkSchema).matches;
-  // set theme on start
-  setTheme(isDark);
-
-  window.matchMedia(darkSchema).addEventListener('change', e => {
-    const isDark = e.matches;
-    // set theme on change
-    setTheme(isDark);
-  });
-  
-  function setTheme(isDark) {
-    if (isDark) {
-      lightCSS.setAttribute('disabled', '');
-    } else {
-      lightCSS.removeAttribute('disabled');
-    }
-  }
-</script>
 
 </html>

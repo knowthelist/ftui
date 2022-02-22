@@ -179,6 +179,14 @@
       </ftui-row>
     </ftui-grid-tile>
 
+    <ftui-grid-tile row="8" col="4" height="2" width="2">
+      <header>ROTATE</header>
+      <ftui-icon [rotate]="AgroWeather:windDir | add(135)" name="location-arrow"
+        [color]="AgroWeather:wind | step('0:white,30:gray,50:danger')">
+      </ftui-icon>
+      <ftui-label [text]="AgroWeather:wind" unit="km/h"></ftui-label>
+    </ftui-grid-tile>
+
   </ftui-grid>
 </body>
 
