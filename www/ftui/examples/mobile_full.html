@@ -9,7 +9,7 @@
     *
     * Version: 3.0.0
     *
-    * Copyright (c) 2020-2021 Mario Stephan <mstephan@shared-files.de>
+    * Copyright (c) 2020-2022 Mario Stephan <mstephan@shared-files.de>
     * Under MIT License (http://www.opensource.org/licenses/mit-license.php)
     * https://github.com/knowthelist/ftui
     */
@@ -400,6 +400,11 @@
                        (value)="Stehlampe" slot="end"></ftui-switch>
         </ftui-view-item>
         <ftui-view-item>Hue
+          <ftui-nav-link target="viewHueColor">
+            <ftui-icon name="circle" size="0"
+                       [rgb]="HUEDevice6:rgb">
+            </ftui-icon>
+          </ftui-nav-link>
           <ftui-switch [value]="HUEDevice6 | map('on|dim.*: on, off|0: off')"
                        (value)="HUEDevice6" slot="end"></ftui-switch>
         </ftui-view-item>
@@ -463,9 +468,17 @@
 
     <!-- KITCHEN COLOR -->
     <ftui-view id="viewKitchenColor">
-      <ftui-content file="examples/contents/mobile-color.html"></ftui-content>
+      <ftui-content file="examples/contents/mobile-color.html"
+                    get="KNX_KuechenSchrankLicht:wert-get" set="KNX_KuechenSchrankLicht"
+                    ></ftui-content>
     </ftui-view>
 
+    <!-- HUE COLOR -->
+    <ftui-view id="viewHueColor">
+      <ftui-content file="examples/contents/mobile-color.html"
+                    get="HUEDevice6:rgb" set="HUEDevice6:rgb"
+                    ></ftui-content>
+    </ftui-view>
 
     <!-- OUTDOORS TEMPERATURES -->
     <ftui-view id="viewOutdoorTemp">

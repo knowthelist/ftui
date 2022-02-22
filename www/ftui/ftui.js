@@ -5,7 +5,7 @@ async function main() {
 
   // start FTUI
   ftuiModule.ftuiApp.init();
-  window.ftuiApp.setTheme(window.matchMedia('(prefers-color-scheme: dark)').matches);
+  ftuiModule.ftuiApp.setTheme(window.matchMedia('(prefers-color-scheme: dark)').matches);
 }
 
 document.addEventListener('readystatechange', () => {

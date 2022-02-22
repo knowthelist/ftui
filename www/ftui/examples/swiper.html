@@ -53,7 +53,7 @@
 
     <!-- icon swiper -->
     <ftui-grid-tile row="11" col="4" height="4" width="4">
-      <ftui-swiper id="swiper2" dots>
+      <ftui-swiper id="swiper2" [(value)]=local:swiper2 dots>
         <ftui-icon id="sw2_1" name="washing-machine" size="6"></ftui-icon>
         <ftui-icon id="sw2_2" name="garage-variant" size="6"></ftui-icon>
         <ftui-icon id="sw2_3" name="car-battery" size="6"></ftui-icon>
@@ -66,7 +66,7 @@
     <ftui-grid-tile row="15" col="2" height="2" width="8" is-row>
       <ftui-icon name="chevron-left" onclick="swiper2.back()"></ftui-icon>
       <ftui-icon name="garage-variant" onclick="swiper2.value = 'sw2_2'"></ftui-icon>
-      <ftui-icon name="projector" onclick="swiper2.value = 'sw2_5'"></ftui-icon>
+      <ftui-icon name="projector" onclick="swiper2.value = 'sw2_5'" [color]="local:swiper2 | map('sw2_5:primary,.*:currentColor')"></ftui-icon>
       <ftui-icon name="chevron-right" onclick="swiper2.next()"></ftui-icon>
     </ftui-grid-tile>
 

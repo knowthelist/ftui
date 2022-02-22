@@ -86,7 +86,7 @@
 
   --circlemenu-overlay-color: var(--black);
 
-  --chart-text-color: var(--gray);
+  --chart-text-color: var(--light);
   --chart-text-active-color: var(--white);
 
   --border-color: var(--gray);

@@ -26,13 +26,14 @@ export class FtuiLabel extends FtuiElement {
       <style>
       :host([text-align=left])   { text-align: left; width: 100%;}
       :host([text-align=right])  { text-align: right; width: 100%;}
+      :host([text-align=center])   { text-align: center; width: 100%;}
         :host {
           --color-base: currentColor;
           color: var(--color-base);
           white-space: nowrap;
         }
-        :host(:empty:not([text][value])) slot[name="unit"],
-        :host([text=""][value=""]) slot[name="unit"] { visibility: hidden; }
+        :host(:empty:not([text])) slot[name="unit"],
+        :host([text=""]) slot[name="unit"] { visibility: hidden; }
         :host([scroll]) { overflow: auto; white-space: normal; }
         :host([bold]) { font-weight: bold; }
         :host(:empty[text=""][placeholder]) { display: inline-block;
@@ -54,7 +55,6 @@ export class FtuiLabel extends FtuiElement {
   static get properties() {
     return {
       text: '',
-      value: '',
       color: '',
       unit: '',
       size: -1,
@@ -73,7 +73,6 @@ export class FtuiLabel extends FtuiElement {
   onAttributeChanged(name, value) {
     switch (name) {
       case 'text':
-      case 'value':
         this.mainSlotElement.innerHTML = value;
         this.checkInterval();
         break;
