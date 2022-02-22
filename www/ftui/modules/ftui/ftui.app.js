@@ -39,6 +39,7 @@ class FtuiApp {
     this.config.enableDebug = (this.config.debugLevel > 0);
     this.config.enableToast = this.getMetaNumber('toast', 5); // 1,2,3...= n Toast-Messages, 0: No Toast-Messages
     this.config.toastDuration = this.getMetaString('toast_duration', 5);
+    this.config.toastPosition = this.getMetaString('toast_position', this.config.toastPosition);
     this.config.refreshInterval = this.getMetaNumber('refresh_interval', 15 * 60); // 15 minutes
     this.config.refreshDelay = this.getMetaString('refresh_restart_delay', 3);
     // self path

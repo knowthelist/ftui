@@ -5,7 +5,8 @@ const vNotify = (function () {
     topRight: 'topRight',
     bottomLeft: 'bottomLeft',
     bottomRight: 'bottomRight',
-    center: 'center'
+    topCenter: 'topCenter',
+    center: 'center',
   };
 
   const options = {
@@ -16,7 +17,7 @@ const vNotify = (function () {
     postHoverVisibleDuration: 500,
     position: positionOption.topRight,
     sticky: false,
-    showClose: true
+    showClose: true,
   };
 
   const info = function (params) {
@@ -93,12 +94,12 @@ const vNotify = (function () {
     const container = getNotifyContainer(item.options.position);
     container.appendChild(frag);
 
-    item.addEventListener("mouseover", resetInterval);
+    item.addEventListener('mouseover', resetInterval);
 
     fade('in', item.options.fadeInDuration, item);
 
     if (!item.options.sticky) {
-      item.addEventListener("mouseout", hideTimeout);
+      item.addEventListener('mouseout', hideTimeout);
       hideTimeout();
     }
 
@@ -155,6 +156,8 @@ const vNotify = (function () {
         return 'vn-bottom-left';
       case positionOption.center:
         return 'vn-center';
+      case positionOption.topCenter:
+        return 'vn-top-center';
       default:
         return 'vn-top-right';
     }
@@ -169,7 +172,7 @@ const vNotify = (function () {
       postHoverVisibleDuration: opts.postHoverVisibleDuration || options.postHoverVisibleDuration,
       position: opts.position || options.position,
       sticky: opts.sticky != null ? opts.sticky : options.sticky,
-      showClose: opts.showClose != null ? opts.showClose : options.showClose
+      showClose: opts.showClose != null ? opts.showClose : options.showClose,
     };
   };
 
@@ -181,10 +184,10 @@ const vNotify = (function () {
 
   //New fade - based on http://toddmotto.com/raw-javascript-jquery-style-fadein-fadeout-functions-hugo-giraudel/
   const fade = function (type, ms, el) {
-    let isIn = type === 'in';
+    const isIn = type === 'in';
     let opacity = isIn ? 0 : el.style.opacity || 1;
-    let goal = isIn ? 0.8 : 0;
-    let gap = options.fadeInterval / ms;
+    const goal = isIn ? 0.8 : 0;
+    const gap = options.fadeInterval / ms;
 
     if (isIn) {
       el.style.display = 'block';
@@ -212,7 +215,7 @@ const vNotify = (function () {
     const item = document.querySelector('.vnotify-item');
     if (!item) {
       const container = document.querySelectorAll('.vnotify-container');
-      for (const i = 0; i < container.length; i++) {
+      for (let i = 0; i < container.length; i++) {
         container[i].outerHTML = '';
         container[i] = null;
       }
@@ -227,7 +230,7 @@ const vNotify = (function () {
     notify: notify,
     custom: custom,
     options: options,
-    positionOption: positionOption
+    positionOption: positionOption,
   };
 })();
 

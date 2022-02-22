@@ -718,7 +718,7 @@ UPD 2020-12-31_16:39:06 49580 www/ftui/modules/chart.js/chartjs-adapter-date-fns
 UPD 2021-02-04_22:43:17 8388 www/ftui/modules/circle-menu/circle-menu.js
 UPD 2021-02-01_19:44:50 5063 www/ftui/modules/circle-menu/circle-menu.min.js
 UPD 2022-02-14_14:33:47 14041 www/ftui/modules/ftui/fhem.service.js
-UPD 2022-02-15_19:38:35 8073 www/ftui/modules/ftui/ftui.app.js
+UPD 2022-02-22_21:27:40 8170 www/ftui/modules/ftui/ftui.app.js
 UPD 2022-02-19_21:29:54 12265 www/ftui/modules/ftui/ftui.binding.js
 UPD 2022-02-03_14:02:41 14278 www/ftui/modules/ftui/ftui.helper.js
 UPD 2020-12-31_16:39:06 9247 www/ftui/modules/hocon/hocon.js
@@ -729,8 +729,8 @@ UPD 2022-02-16_09:23:36 24903 www/ftui/modules/rangeable/rangeable.js
 UPD 2020-12-31_16:39:06 4564 www/ftui/modules/rangeable/rangeable.min.css
 UPD 2022-02-16_09:23:29 12205 www/ftui/modules/rangeable/rangeable.min.js
 UPD 2020-12-31_16:39:06 1922 www/ftui/modules/vanilla-notify/vanilla-notify.css
-UPD 2020-12-31_16:39:06 6339 www/ftui/modules/vanilla-notify/vanilla-notify.js
-UPD 2020-12-31_16:39:06 3390 www/ftui/modules/vanilla-notify/vanilla-notify.min.js
+UPD 2022-02-22_21:49:40 6445 www/ftui/modules/vanilla-notify/vanilla-notify.js
+UPD 2022-02-22_21:49:45 3461 www/ftui/modules/vanilla-notify/vanilla-notify.min.js
 UPD 2022-02-22_16:36:51 3425 www/ftui/themes/bright-theme.css
 UPD 2022-02-13_22:55:18 3723 www/ftui/themes/color-attributes.css
 UPD 2022-02-22_17:21:38 3379 www/ftui/themes/ftui-theme.css
