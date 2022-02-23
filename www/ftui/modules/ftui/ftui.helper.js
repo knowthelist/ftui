@@ -107,7 +107,6 @@ export function getFilteredStepKeys(map, searchKey) {
 // Path calculation functions
 
 export function getLocalCssPath(inClassFileUrl, inFileName = null) {
-  console.log("getLocalCssPath: " + ((new URL(inClassFileUrl)).pathname.replace(/.js$/, '.css')));
   if (inFileName == null)
     return ((new URL(inClassFileUrl)).pathname.replace(/.js$/, '.css'));
   else
