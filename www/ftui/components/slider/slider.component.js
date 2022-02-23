@@ -8,7 +8,7 @@
 */
 
 import { FtuiElement } from '../element.component.js';
-import * as ftui from '../../modules/ftui/ftui.helper.js';
+import { isVisible, getLocalCssPath, getModulesPath } from '../../modules/ftui/ftui.helper.js';
 import { Rangeable } from '../../modules/rangeable/rangeable.min.js';
 
 
@@ -40,7 +40,7 @@ export class FtuiSlider extends FtuiElement {
 
     // force re-render if visible
     document.addEventListener('ftuiVisibilityChanged', () => {
-      if (ftui.isVisible(this)) {
+      if (isVisible(this)) {
         this.rangeable.update();
       }
     }, false);
@@ -58,8 +58,8 @@ export class FtuiSlider extends FtuiElement {
 
   template() {
     return `
-    <style> @import "modules/rangeable/rangeable.min.css"; </style>
-    <style> @import "components/slider/slider.component.css"; </style>
+    <style> @import "${getModulesPath('rangeable/rangeable.min.css')}"; </style>
+    <style> @import "${getLocalCssPath(import.meta.url)}"; </style>
 
     <div class="wrapper">
       <input type="range" orient="vertical">

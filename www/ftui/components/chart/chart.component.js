@@ -10,7 +10,7 @@
 import { FtuiElement } from '../element.component.js';
 import { FtuiChartData } from './chart-data.component.js';
 import { Chart } from '../../modules/chart.js/chart.min.js';
-import { dateFormat, getStylePropertyValue } from '../../modules/ftui/ftui.helper.js';
+import { dateFormat, getStylePropertyValue, getLocalCssPath } from '../../modules/ftui/ftui.helper.js';
 import '../../modules/chart.js/chartjs-adapter-date-fns.bundle.min.js';
 
 const HOUR = 3600 * 1000;
@@ -58,7 +58,7 @@ export class FtuiChart extends FtuiElement {
                 if (resLabel && values && values.length) {
                   resLabel = resLabel.replace(/\$min/g, Math.min(...values));
                   resLabel = resLabel.replace(/\$max/g, Math.max(...values));
-                  resLabel = resLabel.replace(/\$avg/g, values.reduce((a, b) => a + b) / values.length );
+                  resLabel = resLabel.replace(/\$avg/g, values.reduce((a, b) => a + b) / values.length);
                   resLabel = resLabel.replace(/\$last/g, values[values.length - 1]);
                 }
                 return {
@@ -182,7 +182,7 @@ export class FtuiChart extends FtuiElement {
 
   template() {
     return `
-      <style> @import "components/chart/chart.component.css"; </style>
+      <style> @import "${getLocalCssPath(import.meta.url)}"; </style>
       <div id="container">
         <canvas id="chart"></canvas>
       </div>

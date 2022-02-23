@@ -10,6 +10,7 @@
 */
 
 import { FtuiElement } from '../element.component.js';
+import { getLocalCssPath } from '../../modules/ftui/ftui.helper.js';
 
 export class FtuiMenu extends FtuiElement {
 
@@ -21,7 +22,7 @@ export class FtuiMenu extends FtuiElement {
   }
 
   template() {
-    return `<style> @import "components/menu/menu.component.css"; </style>
+    return `<style> @import "${getLocalCssPath(import.meta.url)}"; </style>
     <div class="box-menu"><slot></slot></div>`;
   }
 

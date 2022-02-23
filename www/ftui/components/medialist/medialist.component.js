@@ -8,7 +8,7 @@
 */
 
 import { FtuiElement } from '../element.component.js';
-import { isDefined, durationFromSeconds, log, error, isNumeric } from '../../modules/ftui/ftui.helper.js';
+import { isDefined, durationFromSeconds, log, error, isNumeric, getLocalCssPath } from '../../modules/ftui/ftui.helper.js';
 import { parseHocon } from '../../modules/hocon/hocon.min.js';
 
 export class FtuiMedialist extends FtuiElement {
@@ -21,7 +21,7 @@ export class FtuiMedialist extends FtuiElement {
 
   template() {
     return `
-      <style> @import "components/medialist/medialist.component.css"; </style>
+      <style> @import "${getLocalCssPath(import.meta.url)}"; </style>
       <div class="media-list">
         <div class="media placeholder">
           <div class="media-image"></div>

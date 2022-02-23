@@ -10,7 +10,7 @@
 import { FtuiElement } from '../element.component.js';
 // eslint-disable-next-line no-unused-vars
 import { FtuiSegmentButton } from './segment-button.component.js';
-import { getStylePropertyValue } from '../../modules/ftui/ftui.helper.js';
+import { getStylePropertyValue, getLocalCssPath } from '../../modules/ftui/ftui.helper.js';
 
 class FtuiSegment extends FtuiElement {
 
@@ -27,7 +27,7 @@ class FtuiSegment extends FtuiElement {
 
   template() {
     return `
-    <style> @import "components/segment/segment.component.css"; </style>
+    <style> @import "${getLocalCssPath(import.meta.url)}"; </style>
 		<div class="segments">
 			<span class="selection"></span>
 			<slot></slot>

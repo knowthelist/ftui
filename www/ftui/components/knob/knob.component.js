@@ -8,7 +8,7 @@
 */
 
 import { FtuiElement } from '../element.component.js';
-import { countDecimals, round, limit, scale } from '../../modules/ftui/ftui.helper.js';
+import { countDecimals, round, limit, scale, getLocalCssPath } from '../../modules/ftui/ftui.helper.js';
 
 
 export class FtuiKnob extends FtuiElement {
@@ -71,7 +71,7 @@ export class FtuiKnob extends FtuiElement {
 
   template() {
     return `
-    <style> @import "components/knob/knob.component.css"</style>
+    <style> @import "${getLocalCssPath(import.meta.url)}"</style>
     <svg class="svg" height="${this.height}" width="${this.width}" focusable="false">
    
     <defs>

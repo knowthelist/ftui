@@ -8,7 +8,7 @@
 */
 
 import { FtuiButton } from '../button/button.component.js';
-import { selectAll, selectOne, triggerEvent } from '../../modules/ftui/ftui.helper.js';
+import { selectAll, selectOne, triggerEvent, getLocalCssPath } from '../../modules/ftui/ftui.helper.js';
 /* eslint-disable no-unused-vars */
 import { FtuiTabView } from './tab-view.component.js';
 import { FtuiTabTitle} from './tab-title.component.js';
@@ -29,7 +29,7 @@ class FtuiTab extends FtuiButton {
   }
 
   template() {
-    return `<style> @import "components/tab/tab.component.css"; </style>`
+    return `<style> @import "${getLocalCssPath(import.meta.url)}"; </style>`
       + super.template();
   }
 

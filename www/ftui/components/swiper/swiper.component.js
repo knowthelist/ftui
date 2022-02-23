@@ -8,7 +8,7 @@
 */
 
 import { FtuiElement } from '../element.component.js';
-import { createElement } from '../../modules/ftui/ftui.helper.js';
+import { createElement, getLocalCssPath } from '../../modules/ftui/ftui.helper.js';
 
 class FtuiSwiper extends FtuiElement {
 
@@ -24,7 +24,7 @@ class FtuiSwiper extends FtuiElement {
 
   template() {
     return `
-      <style> @import "components/swiper/swiper.component.css"; </style>
+      <style> @import "${getLocalCssPath(import.meta.url)}"; </style>
       <div class="slides">
         <slot></slot>
       </div>

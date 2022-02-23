@@ -8,7 +8,7 @@
 */
 
 import { FtuiElement } from '../element.component.js';
-import { isNumeric } from '../../modules/ftui/ftui.helper.js';
+import { isNumeric, getLocalCssPath } from '../../modules/ftui/ftui.helper.js';
 
 const sizes = [0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1, 1.25, 1.5, 1.75, 2, 2.5, 3, 3.5, 4, 6, 8];
 const cache = {};
@@ -22,7 +22,7 @@ export class FtuiIcon extends FtuiElement {
 
   template() {
     return `
-        <style> @import "components/icon/icon.component.css"; </style>
+        <style> @import "${getLocalCssPath(import.meta.url)}"; </style>
         <span class="icon"></span>
         <slot></slot>
       `;

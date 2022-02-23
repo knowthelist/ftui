@@ -8,6 +8,7 @@
 */
 
 import { FtuiElement } from '../element.component.js';
+import { getLocalCssPath } from '../../modules/ftui/ftui.helper.js';
 
 export class FtuiDropdown extends FtuiElement {
   constructor(properties) {
@@ -27,7 +28,7 @@ export class FtuiDropdown extends FtuiElement {
 
   template() {
     return `
-      <style> @import "components/dropdown/dropdown.component.css"; </style>
+      <style> @import "${getLocalCssPath(import.meta.url)}"; </style>
       <select></select>
       <slot></slot>
       `;

@@ -8,6 +8,7 @@
 */
 
 import { FtuiElement } from '../element.component.js';
+import { getLocalCssPath } from '../../modules/ftui/ftui.helper.js';
 
 class FtuiRotor extends FtuiElement {
 
@@ -21,7 +22,7 @@ class FtuiRotor extends FtuiElement {
 
   template() {
     return `
-      <style> @import "components/rotor/rotor.component.css"</style>
+      <style> @import "${getLocalCssPath(import.meta.url)}"</style>
       <slot></slot>
       `;
   }

@@ -8,7 +8,7 @@
 */
 
 import { FtuiElement } from '../element.component.js';
-import * as ftui from '../../modules/ftui/ftui.helper.js';
+import { triggerEvent, getLocalCssPath} from '../../modules/ftui/ftui.helper.js';
 
 export class FtuiPopup extends FtuiElement {
 
@@ -30,7 +30,7 @@ export class FtuiPopup extends FtuiElement {
 
   template() {
     return `
-      <style> @import "components/popup/popup.component.css"; </style>
+      <style> @import "${getLocalCssPath(import.meta.url)}"; </style>
       <style> 
         .overlay {
           position: fixed;
@@ -129,7 +129,7 @@ export class FtuiPopup extends FtuiElement {
   setState(value) {
     if (value) {
       this.removeAttribute('hidden');
-      ftui.triggerEvent('ftuiVisibilityChanged');
+      triggerEvent('ftuiVisibilityChanged');
       this.startTimeout();
     } else {
       this.setAttribute('hidden', '');

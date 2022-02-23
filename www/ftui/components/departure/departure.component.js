@@ -12,7 +12,7 @@ import { FtuiElement } from '../element.component.js';
 // eslint-disable-next-line no-unused-vars
 import { FtuiIcon } from '../icon/icon.component.js';
 import { fhemService } from '../../modules/ftui/fhem.service.js';
-import { dateFormat, dateFromString, getReadingID } from '../../modules/ftui/ftui.helper.js';
+import { dateFormat, dateFromString, getReadingID, getLocalCssPath } from '../../modules/ftui/ftui.helper.js';
 
 export class FtuiDeparture extends FtuiElement {
 
@@ -50,7 +50,7 @@ export class FtuiDeparture extends FtuiElement {
 
   template() {
     return `
-      <style> @import "components/departure/departure.component.css";</style>
+      <style> @import "${getLocalCssPath(import.meta.url)}";</style>
       <main>
         <div class="pos">
           <div class="size">

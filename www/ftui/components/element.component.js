@@ -9,7 +9,7 @@
 
 
 import * as ftuiHelper from '../modules/ftui/ftui.helper.js';
-let ftuiAppMod = await import( '../modules/ftui/ftui.app.js');
+let ftuiAppMod = await import('../modules/ftui/ftui.app.js');
 
 const uids = {};
 
@@ -108,7 +108,7 @@ export class FtuiElement extends HTMLElement {
   submitChange(property, value) {
     this.isActiveChange[property] = true;
     this[property] = value;
-    this.emitChangeEvent(property, value );
+    this.emitChangeEvent(property, value);
   }
 
   emitChangeEvent(attribute, value) {

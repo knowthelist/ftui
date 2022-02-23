@@ -16,7 +16,7 @@ class FtuiApp {
       toastPosition: 'bottomLeft',
       toastDuration: 5,
       styleList: [
-        'modules/vanilla-notify/vanilla-notify.css',
+        ftui.getModulesPath( 'vanilla-notify/vanilla-notify.css')
       ],
     };
     this.states = {

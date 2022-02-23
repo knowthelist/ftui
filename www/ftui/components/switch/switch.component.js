@@ -8,6 +8,7 @@
 */
 
 import { FtuiCheckbox } from '../checkbox/checkbox.component.js';
+import { getLocalCssPath } from '../../modules/ftui/ftui.helper.js';
 
 export class FtuiSwitch extends FtuiCheckbox {
 
@@ -24,7 +25,7 @@ export class FtuiSwitch extends FtuiCheckbox {
 
   template() {
     return `
-    <style> @import "components/switch/switch.component.css"; </style>
+    <style> @import "${getLocalCssPath(import.meta.url)}"; </style>
 
       <span class="checkbox">
           <span class="inner"></span>

@@ -10,6 +10,7 @@
 */
 
 import { FtuiElement } from '../element.component.js';
+import { getLocalCssPath } from '../../modules/ftui/ftui.helper.js';
 
 export class FtuiViewSection extends FtuiElement {
 
@@ -18,7 +19,7 @@ export class FtuiViewSection extends FtuiElement {
   }
 
   template() {
-    return `<style> @import "components/view/view-section.component.css"; </style>
+    return `<style> @import "${getLocalCssPath(import.meta.url)}"; </style>
             <div class="header">
               <slot name="header"></slot>
             </div>         

@@ -9,7 +9,7 @@
 */
 
 import { FtuiElement } from '../element.component.js';
-import * as ftuiHelper from '../../modules/ftui/ftui.helper.js';
+import { triggerEvent, getLocalCssPath, dateFormat, dateFromString } from '../../modules/ftui/ftui.helper.js';
 
 export class FtuiChartControls extends FtuiElement {
   constructor(properties) {
@@ -20,22 +20,22 @@ export class FtuiChartControls extends FtuiElement {
     this.backwardElement = this.shadowRoot.querySelector('#backward');
     this.forwardElement = this.shadowRoot.querySelector('#forward');
 
-    this.backwardElement.addEventListener('click', () => ftuiHelper.triggerEvent('ftuiBackward', this));
-    this.forwardElement.addEventListener('click', () => ftuiHelper.triggerEvent('ftuiForward', this));
+    this.backwardElement.addEventListener('click', () => triggerEvent('ftuiBackward', this));
+    this.forwardElement.addEventListener('click', () => triggerEvent('ftuiForward', this));
 
     if (this.units) {
       const units = String(this.units).split(/[;,:]/).map(item => item.toLowerCase().trim());
       units.forEach(unit => {
         const element = this.shadowRoot.querySelector('#unit_' + unit);
         element.classList.add('enabled');
-        element.addEventListener('click', () => ftuiHelper.triggerEvent('ftuiUnit' + unit, this));
+        element.addEventListener('click', () => triggerEvent('ftuiUnit' + unit, this));
       });
     }
   }
 
   template() {
     return `
-      <style> @import "components/chart/chart-controls.component.css"; </style>
+      <style> @import "${getLocalCssPath(import.meta.url)}"; </style>
       <div id="container">
         <div id="controls">
           <span id="backward">◀</span>
@@ -72,24 +72,24 @@ export class FtuiChartControls extends FtuiElement {
 
     switch (this.unit) {
       case 'hour':
-        dateString = ftuiHelper.dateFormat(ftuiHelper.dateFromString(this.startDate), 'ee DD.MM hh:00');
+        dateString = dateFormat(dateFromString(this.startDate), 'ee DD.MM hh:00');
         break;
       case 'day':
       case '24h':
-        dateString = ftuiHelper.dateFormat(ftuiHelper.dateFromString(this.startDate), 'ee DD.MM');
+        dateString = dateFormat(dateFromString(this.startDate), 'ee DD.MM');
         break;
       case 'week': {
-        const endDate = ftuiHelper.dateFromString(this.endDate);
-        endDate.setDate(endDate.getDate()-1);
-        dateString = ftuiHelper.dateFormat(ftuiHelper.dateFromString(this.startDate), 'DD.MM') + ' - ' + ftuiHelper.dateFormat(endDate, 'DD.MM');
+        const endDate = dateFromString(this.endDate);
+        endDate.setDate(endDate.getDate() - 1);
+        dateString = dateFormat(dateFromString(this.startDate), 'DD.MM') + ' - ' + dateFormat(endDate, 'DD.MM');
         break;
       }
       case 'month':
       case '30d':
-        dateString = ftuiHelper.dateFormat(ftuiHelper.dateFromString(this.startDate), 'MM.YYYY');
+        dateString = dateFormat(dateFromString(this.startDate), 'MM.YYYY');
         break;
       case 'year':
-        dateString = ftuiHelper.dateFormat(ftuiHelper.dateFromString(this.startDate), 'YYYY');
+        dateString = dateFormat(dateFromString(this.startDate), 'YYYY');
         break;
     }
     return dateString;

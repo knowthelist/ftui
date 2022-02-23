@@ -8,6 +8,7 @@
 */
 
 import { FtuiElement } from '../element.component.js';
+import { getLocalCssPath } from '../../modules/ftui/ftui.helper.js';
 
 export class FtuiCheckbox extends FtuiElement {
 
@@ -21,7 +22,7 @@ export class FtuiCheckbox extends FtuiElement {
 
   template() {
     return `
-    <style> @import "components/checkbox/checkbox.component.css"; </style>
+    <style> @import "${getLocalCssPath(import.meta.url)}"; </style>
 
     <span class="checkbox">
       <svg viewBox="0 0 512 512">

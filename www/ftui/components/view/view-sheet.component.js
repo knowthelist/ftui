@@ -10,6 +10,7 @@
 */
 
 import { FtuiElement } from '../element.component.js';
+import { getLocalCssPath } from '../../modules/ftui/ftui.helper.js';
 
 export class FtuiViewSheet extends FtuiElement {
 
@@ -20,7 +21,7 @@ export class FtuiViewSheet extends FtuiElement {
   }
 
   template() {
-    return `<style> @import "components/view/view-sheet.component.css"; </style>
+    return `<style> @import "${getLocalCssPath(import.meta.url)}"; </style>
             <div class="content">
 
                   <slot></slot>

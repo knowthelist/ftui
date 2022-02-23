@@ -8,8 +8,7 @@
 */
 
 import { FtuiElement } from '../element.component.js';
-import * as ftui from '../../modules/ftui/ftui.helper.js';
-
+import { getLocalCssPath, isEqual } from '../../modules/ftui/ftui.helper.js';
 
 export class FtuiButton extends FtuiElement {
   constructor(properties) {
@@ -26,7 +25,7 @@ export class FtuiButton extends FtuiElement {
 
   template() {
     return `
-      <style> @import "components/button/button.component.css"; </style>
+      <style> @import "${getLocalCssPath(import.meta.url)}"; </style>
       <span class="button-inner">
         <slot></slot>
       </span>
@@ -65,7 +64,7 @@ export class FtuiButton extends FtuiElement {
 
   getNextValue() {
     const states = String(this.states).split(/[;,:]/).map(item => item.trim());
-    let currentIndex = states.findIndex((pattern) => ftui.isEqual(pattern, this.value));
+    let currentIndex = states.findIndex((pattern) => isEqual(pattern, this.value));
     // increase the index to the next value in the array of possible values
     currentIndex = ++currentIndex % states.length;
     return states[currentIndex].replace('$value', this.value );

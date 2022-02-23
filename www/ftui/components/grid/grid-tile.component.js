@@ -8,6 +8,7 @@
 */
 
 import { FtuiElement } from '../element.component.js';
+import { getLocalCssPath } from '../../modules/ftui/ftui.helper.js';
 
 export class FtuiGridTile extends FtuiElement {
 
@@ -19,7 +20,7 @@ export class FtuiGridTile extends FtuiElement {
   }
 
   template() {
-    return `<style> @import "components/grid/grid-tile.component.css"; </style>
+    return `<style> @import "${getLocalCssPath(import.meta.url)}"; </style>
     <slot name="header"></slot>
     <div class="content">
       <slot></slot>

@@ -8,7 +8,7 @@
 */
 
 import { ftuiApp } from '../../modules/ftui/ftui.app.js';
-import * as ftui from '../../modules/ftui/ftui.helper.js';
+import { log, appendStyleLink, getLocalCssPath } from '../../modules/ftui/ftui.helper.js';
 import { FtuiElement } from '../element.component.js';
 
 export class FtuiContent extends FtuiElement {
@@ -74,8 +74,8 @@ export class FtuiContent extends FtuiElement {
     this.observer.observe(this.container);
   }
 
-  onIntersectionChange(entries){
-    if(entries[0].isIntersecting) {
+  onIntersectionChange(entries) {
+    if (entries[0].isIntersecting) {
       this.loadFileContent();
     }
   }
@@ -94,10 +94,10 @@ export class FtuiContent extends FtuiElement {
       return this.getAttribute(variable.slice(2, -2)) || '';
     });
     this.innerHTML = solvedContent;
-    ftui.log(2, '[FtuiContent] file loaded and content inserted');
+    log(2, '[FtuiContent] file loaded and content inserted');
     ftuiApp.initComponents(this);
   }
 }
 
-ftui.appendStyleLink('components/content/content.component.css');
+appendStyleLink(getLocalCssPath(import.meta.url));
 window.customElements.define('ftui-content', FtuiContent);

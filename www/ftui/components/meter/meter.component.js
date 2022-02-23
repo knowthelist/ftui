@@ -10,7 +10,7 @@
 */
 
 import { FtuiElement } from '../element.component.js';
-import { limit, scale } from '../../modules/ftui/ftui.helper.js';
+import { limit, scale, getLocalCssPath } from '../../modules/ftui/ftui.helper.js';
 
 export class FtuiMeter extends FtuiElement {
 
@@ -27,7 +27,7 @@ export class FtuiMeter extends FtuiElement {
   }
 
   template() {
-    return `<style> @import "components/meter/meter.component.css";</style>
+    return `<style> @import "${getLocalCssPath(import.meta.url)}";</style>
             <div class="container">
               <slot></slot>
               <div class="progress">
