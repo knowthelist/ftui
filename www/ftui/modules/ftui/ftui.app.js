@@ -89,6 +89,7 @@ class FtuiApp {
     if (this.config.debugLevel > 1) this.toast(dur);
     ftui.log(1, '[ftuiApp] ' + dur);
 
+    this.setTheme(window.matchMedia('(prefers-color-scheme: dark)').matches);
     document.body.classList.remove('loading');
   }
 

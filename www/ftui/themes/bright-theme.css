@@ -85,8 +85,9 @@
   
   --circlemenu-overlay-color: var(--black);
 
-  --chart-text-color: var(--black);
-  --chart-legend-color: var(--black);
+  --chart-text-color: var(--dark);
+  --chart-legend-color: var(--dark);
+  --chart-title-color: var(--dark);
   
 
   --border-color: var(--medium);
