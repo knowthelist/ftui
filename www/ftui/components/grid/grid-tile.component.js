@@ -32,7 +32,7 @@ export class FtuiGridTile extends FtuiElement {
       col: 0,
       height: 0,
       width: 0,
-      color: ''
+      color: '',
     };
   }
 
