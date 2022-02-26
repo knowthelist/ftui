@@ -16,7 +16,7 @@ UPD 2022-02-19_00:07:37 3805 www/ftui/components/colorpicker/colorpicker.compone
 UPD 2021-01-28_21:05:34 574 www/ftui/components/column/column.component.js
 UPD 2021-12-02_14:03:47 86 www/ftui/components/content/content.component.css
 UPD 2022-02-15_19:37:34 2763 www/ftui/components/content/content.component.js
-UPD 2021-10-03_12:43:52 4159 www/ftui/components/departure/departure.component.css
+UPD 2022-02-26_14:50:27 4100 www/ftui/components/departure/departure.component.css
 UPD 2022-02-15_18:23:01 12356 www/ftui/components/departure/departure.component.js
 UPD 2021-12-10_19:00:08 606 www/ftui/components/dropdown/dropdown.component.css
 UPD 2022-02-15_18:26:02 2105 www/ftui/components/dropdown/dropdown.component.js
