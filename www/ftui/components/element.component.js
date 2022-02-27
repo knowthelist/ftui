@@ -9,7 +9,6 @@
 
 
 import * as ftuiHelper from '../modules/ftui/ftui.helper.js';
-let ftuiAppMod = await import( '../modules/ftui/ftui.app.js');
 
 const uids = {};
 
@@ -33,7 +32,11 @@ export class FtuiElement extends HTMLElement {
       this.createShadowRoot(this.template());
     }
 
-    ftuiAppMod.ftuiApp.attachBinding(this);
+    // solution adapted from the very useful thread https://stackoverflow.com/questions/7307983/while-variable-is-not-defined-wait
+    (async () => {
+      while (typeof window.ftuiApp === 'undefined') await new Promise(resolve => setTimeout(resolve, 2000));
+      window.ftuiApp.attachBinding(this);
+    })();
   }
 
   createShadowRoot(content) {
