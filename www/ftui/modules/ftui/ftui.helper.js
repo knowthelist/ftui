@@ -1,3 +1,5 @@
+import { fhemService } from '../../modules/ftui/fhem.service.js';
+
 export function getPart(value, part) {
   if (this.isDefined(part)) {
     if (this.isNumeric(part)) {
@@ -431,6 +433,11 @@ export function triggerEvent(eventName, source = document) {
 
 export function getStylePropertyValue(property, element = document.body) {
   return getComputedStyle(element).getPropertyValue(property).trim();
+}
+
+export async function sendCommand() {
+  const result = await fhemService.sendCommand('get Sonos_KuecheRG_Favourites html');
+  return await result.text();
 }
 
 export function timeoutPromise(promises, ms = 5000) {

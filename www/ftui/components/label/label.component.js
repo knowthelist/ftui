@@ -116,7 +116,7 @@ export class FtuiLabel extends FtuiElement {
   }
 
   refresh() {
-    this.binding.forceUpdate('text');
+    this.binding && this.binding.forceUpdate('text');
   }
 }
 

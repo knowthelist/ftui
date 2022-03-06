@@ -15,7 +15,7 @@ UPD 2022-01-31_02:08:35 1728 www/ftui/components/clock/clock.component.js
 UPD 2022-02-19_00:07:37 3805 www/ftui/components/colorpicker/colorpicker.component.js
 UPD 2021-01-28_21:05:34 574 www/ftui/components/column/column.component.js
 UPD 2021-12-02_14:03:47 86 www/ftui/components/content/content.component.css
-UPD 2022-02-15_19:37:34 2763 www/ftui/components/content/content.component.js
+UPD 2022-03-06_16:04:54 2763 www/ftui/components/content/content.component.js
 UPD 2022-02-26_14:50:27 4100 www/ftui/components/departure/departure.component.css
 UPD 2022-02-15_18:23:01 12356 www/ftui/components/departure/departure.component.js
 UPD 2021-12-10_19:00:08 606 www/ftui/components/dropdown/dropdown.component.css
@@ -32,7 +32,7 @@ UPD 2021-02-03_14:48:37 8329 www/ftui/components/image/image_not_available.js
 UPD 2022-01-24_22:06:30 2660 www/ftui/components/input/input.component.js
 UPD 2022-02-01_22:51:33 1252 www/ftui/components/knob/knob.component.css
 UPD 2022-02-01_14:10:29 14850 www/ftui/components/knob/knob.component.js
-UPD 2022-02-26_10:22:12 3691 www/ftui/components/label/label.component.js
+UPD 2022-03-05_22:15:20 3707 www/ftui/components/label/label.component.js
 UPD 2021-02-01_19:44:36 1816 www/ftui/components/main/main.component.js
 UPD 2021-11-21_18:01:44 180 www/ftui/components/medialist/album_icon.svg
 UPD 2021-11-21_18:47:45 1716 www/ftui/components/medialist/medialist.component.css
@@ -124,7 +124,7 @@ UPD 2022-01-13_17:51:31 1942 www/ftui/examples/menu.html
 UPD 2022-01-13_22:25:03 2315 www/ftui/examples/menu2.html
 UPD 2022-02-11_20:59:51 3377 www/ftui/examples/meter.html
 UPD 2022-01-31_15:27:11 3195 www/ftui/examples/mobile.html
-UPD 2022-02-26_14:10:19 20213 www/ftui/examples/mobile_full.html
+UPD 2022-02-27_19:32:56 20213 www/ftui/examples/mobile_full.html
 UPD 2022-02-17_17:37:00 5457 www/ftui/examples/mobile_plain.html
 UPD 2022-01-10_19:14:03 4689 www/ftui/examples/popup.html
 UPD 2021-12-02_22:57:32 3576 www/ftui/examples/rotor.html
@@ -719,8 +719,8 @@ UPD 2021-02-04_22:43:17 8388 www/ftui/modules/circle-menu/circle-menu.js
 UPD 2021-02-01_19:44:50 5063 www/ftui/modules/circle-menu/circle-menu.min.js
 UPD 2022-02-14_14:33:47 14041 www/ftui/modules/ftui/fhem.service.js
 UPD 2022-02-24_02:35:40 8248 www/ftui/modules/ftui/ftui.app.js
-UPD 2022-02-19_21:29:54 12265 www/ftui/modules/ftui/ftui.binding.js
-UPD 2022-02-23_21:12:56 14245 www/ftui/modules/ftui/ftui.helper.js
+UPD 2022-03-06_16:03:57 12420 www/ftui/modules/ftui/ftui.binding.js
+UPD 2022-03-06_15:59:12 14469 www/ftui/modules/ftui/ftui.helper.js
 UPD 2020-12-31_16:39:06 9247 www/ftui/modules/hocon/hocon.js
 UPD 2020-12-31_16:39:06 3192 www/ftui/modules/hocon/hocon.min.js
 UPD 2021-10-13_09:24:35 65090 www/ftui/modules/iro.js/iro.js
