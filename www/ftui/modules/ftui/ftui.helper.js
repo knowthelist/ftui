@@ -435,8 +435,8 @@ export function getStylePropertyValue(property, element = document.body) {
   return getComputedStyle(element).getPropertyValue(property).trim();
 }
 
-export async function sendCommand() {
-  const result = await fhemService.sendCommand('get Sonos_KuecheRG_Favourites html');
+export async function sendCommand(command) {
+  const result = await fhemService.sendCommand(command);
   return await result.text();
 }
 

@@ -31,8 +31,8 @@ const isNot = value => input => String(input) !== value ? true : false;
 const pad = (cnt, char) => input => String(input).padStart(cnt, char);
 const append = value => input => String(input) + value;
 const prepend = value => input => value + String(input);
-const sendCommand = () => input => ftuiHelper.sendCommand();
-const getHTML = () => input => ftuiHelper.sendCommand('get ' + input + ' html');
+const sendCommand = value => input => ftuiHelper.sendCommand(value);
+const getHTML = value => input => ftuiHelper.sendCommand('get ' + value + ' html');
 
 
 const pipe = (f1, ...fns) => (...args) => {
