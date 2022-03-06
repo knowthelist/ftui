@@ -12,4 +12,15 @@
 
 </ftui-view-sheet>
 
+<ftui-view-sheet shape="round">
+
+  <ftui-colorpicker width="300"
+                    [kelvin]="{{kget}} | toInt() | scale(2200,12000,11000,2200)"
+                    (kelvin)="scale(2200,11000,12000,2200) | toInt() | {{kset}}"
+                    [brightness]="{{wget}}"
+                    (brightness)="replace('#','') | {{wset}}"
+                    layout="kelvinSlider,valueSlider"></ftui-colorpicker>
+
+</ftui-view-sheet>
+
 </ftui-view-section>

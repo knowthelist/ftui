@@ -161,11 +161,7 @@
 
     <ftui-grid-tile row="2" col="1" height="2" width="1">
       <header>MAP</header>
-      <ftui-icon [name]="dummy1 | map('on: window-open,off: window-closed')"></ftui-icon>
       <ftui-label [text]="dummy1 | map('on: offen, off: geschlossen')"></ftui-label>
-      <ftui-icon [name]="dummy1 | map('on: window-open, off: window-closed')"
-                 [color]="dummy1 | map('on: danger, off: medium')">
-      </ftui-icon>
     </ftui-grid-tile>
 
     <ftui-grid-tile row="3" col="2" height="1" width="1">
@@ -197,6 +193,7 @@
       <ftui-label text="42" unit="s"></ftui-label>
       <ftui-label text="" unit="ms"></ftui-label>
       <ftui-label [text]="ftuitest:watt" unit="W" class="size-0" id="labelUnit"></ftui-label>
+      <ftui-label text="100"><span slot="unit"> %<sub>rel</sub></span></ftui-label>
     </ftui-grid-tile>
 
     <ftui-grid-tile row="5" col="2" height="2" width="1">

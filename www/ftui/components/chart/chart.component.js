@@ -89,6 +89,7 @@ export class FtuiChart extends FtuiElement {
             },
           },
           y: {
+            stacked: this.stackedY,
             display: !this.noscale && !this.noY,
             position: 'left',
             scaleLabel: {
@@ -104,6 +105,7 @@ export class FtuiChart extends FtuiElement {
             },
           },
           y1: {
+            stacked: this.stackedY1,
             display: (!this.noscale && !this.noY1),
             position: 'right',
             scaleLabel: {
@@ -198,6 +200,8 @@ export class FtuiChart extends FtuiElement {
       noX: false,
       yUnit: '',
       y1Unit: '',
+      stackedY: false,
+      stackedY1: false,
     };
   }
 
@@ -258,11 +262,11 @@ export class FtuiChart extends FtuiElement {
   }
 
   onAttributeChanged(name, value) {
-
+    const options = this.configuration.options;
     switch (name) {
       case 'title':
-        this.configuration.options.title.text = value;
-        this.configuration.options.title.display = (value && value.length > 0);
+        options.title.text = value;
+        options.title.display = (value && value.length > 0);
         this.chart.update();
         break;
       case 'type':
@@ -270,31 +274,31 @@ export class FtuiChart extends FtuiElement {
         this.chart.update();
         break;
       case 'y-min':
-        this.configuration.options.scales.y.min = this.yMin;
+        options.scales.y.min = this.yMin;
         this.chart.update();
         break;
       case 'y1-min':
-        this.configuration.options.scales.y1.min = this.y1Min;
+        options.scales.y1.min = this.y1Min;
         this.chart.update();
         break;
       case 'y-max':
-        this.configuration.options.scales.y.max = this.yMax;
+        options.scales.y.max = this.yMax;
         this.chart.update();
         break;
       case 'y1-max':
-        this.configuration.options.scales.y1.max = this.y1Max;
+        options.scales.y1.max = this.y1Max;
         this.chart.update();
         break;
       case 'no-y':
-        this.configuration.options.scales.y.display = !this.noY;
+        options.scales.y.display = !this.noY;
         this.chart.update();
         break;
       case 'no-y1':
-        this.configuration.options.scales.y1.display = !this.noY1;
+        options.scales.y1.display = !this.noY1;
         this.chart.update();
         break;
       case 'no-x':
-        this.configuration.options.scales.x.display = !this.noX;
+        options.scales.x.display = !this.noX;
         this.chart.update();
         break;
       case 'unit':
@@ -362,23 +366,24 @@ export class FtuiChart extends FtuiElement {
   }
 
   onStyleChanged() {
-    this.configuration.options.font.color = getStylePropertyValue('--chart-text-color', this);
+    const options = this.configuration.options;
+    options.font.color = getStylePropertyValue('--chart-text-color', this);
 
-    this.configuration.options.title.font.size = getStylePropertyValue('--chart-title-font-size', this) || 16;
-    this.configuration.options.title.font.style = getStylePropertyValue('--chart-title-font-style', this) || '500';
-    this.configuration.options.title.font.color = getStylePropertyValue('--chart-title-color', this);// || getStylePropertyValue('--chart-text-color', this);
+    options.title.font.size = getStylePropertyValue('--chart-title-font-size', this) || 16;
+    options.title.font.style = getStylePropertyValue('--chart-title-font-style', this) || '500';
+    options.title.font.color = getStylePropertyValue('--chart-title-color', this);// || getStylePropertyValue('--chart-text-color', this);
 
-    this.configuration.options.legend.labels.font.size = getStylePropertyValue('--chart-legend-font-size', this) || 13;
-    this.configuration.options.legend.labels.font.color = getStylePropertyValue('--chart-legend-color', this) || getStylePropertyValue('--chart-text-color', this);
+    options.legend.labels.font.size = getStylePropertyValue('--chart-legend-font-size', this) || 13;
+    options.legend.labels.font.color = getStylePropertyValue('--chart-legend-color', this) || getStylePropertyValue('--chart-text-color', this);
 
-    this.configuration.options.scales.x.gridLines.color = getStylePropertyValue('--chart-grid-line-color', this) || getStylePropertyValue('--dark-color', this);
-    this.configuration.options.scales.x.ticks.font.size = getStylePropertyValue('--chart-tick-font-size', this) || 11;
+    options.scales.x.gridLines.color = getStylePropertyValue('--chart-grid-line-color', this) || getStylePropertyValue('--dark-color', this);
+    options.scales.x.ticks.font.size = getStylePropertyValue('--chart-tick-font-size', this) || 11;
 
-    this.configuration.options.scales.y.gridLines.color = getStylePropertyValue('--chart-grid-line-color', this) || getStylePropertyValue('--dark-color', this);
-    this.configuration.options.scales.y.ticks.font.size = getStylePropertyValue('--chart-tick-font-size', this) || 11;
+    options.scales.y.gridLines.color = getStylePropertyValue('--chart-grid-line-color', this) || getStylePropertyValue('--dark-color', this);
+    options.scales.y.ticks.font.size = getStylePropertyValue('--chart-tick-font-size', this) || 11;
 
-    this.configuration.options.scales.y1.gridLines.color = getStylePropertyValue('--chart-grid-line-color', this) || getStylePropertyValue('--dark-color', this);
-    this.configuration.options.scales.y1.ticks.font.size = getStylePropertyValue('--chart-tick-font-size', this) || 11;
+    options.scales.y1.gridLines.color = getStylePropertyValue('--chart-grid-line-color', this) || getStylePropertyValue('--dark-color', this);
+    options.scales.y1.ticks.font.size = getStylePropertyValue('--chart-tick-font-size', this) || 11;
 
     this.chart.update();
   }
