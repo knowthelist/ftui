@@ -32,6 +32,7 @@ export class FtuiElement extends HTMLElement {
       this.createShadowRoot(this.template());
     }
 
+    this.isActiveChange = {};
     if (window.ftuiApp) {
       ftuiApp.attachBinding(this);
     }

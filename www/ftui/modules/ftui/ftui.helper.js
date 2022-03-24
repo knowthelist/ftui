@@ -1,5 +1,3 @@
-import { fhemService } from '../../modules/ftui/fhem.service.js';
-
 export function getPart(value, part) {
   if (this.isDefined(part)) {
     if (this.isNumeric(part)) {
@@ -433,11 +431,6 @@ export function triggerEvent(eventName, source = document) {
 
 export function getStylePropertyValue(property, element = document.body) {
   return getComputedStyle(element).getPropertyValue(property).trim();
-}
-
-export async function sendCommand(command) {
-  const result = await fhemService.sendCommand(command);
-  return await result.text();
 }
 
 export function timeoutPromise(promises, ms = 5000) {

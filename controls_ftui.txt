@@ -20,7 +20,7 @@ UPD 2022-02-26_14:50:27 4100 www/ftui/components/departure/departure.component.c
 UPD 2022-02-15_18:23:01 12356 www/ftui/components/departure/departure.component.js
 UPD 2021-12-10_19:00:08 606 www/ftui/components/dropdown/dropdown.component.css
 UPD 2022-02-15_18:26:02 2105 www/ftui/components/dropdown/dropdown.component.js
-UPD 2022-02-16_17:26:55 4944 www/ftui/components/element.component.js
+UPD 2022-03-22_21:26:50 4974 www/ftui/components/element.component.js
 UPD 2022-02-06_23:45:56 758 www/ftui/components/grid/grid-header.component.js
 UPD 2022-02-11_22:35:35 1992 www/ftui/components/grid/grid-tile.component.css
 UPD 2022-02-26_14:12:40 1074 www/ftui/components/grid/grid-tile.component.js
@@ -80,7 +80,7 @@ UPD 2022-02-07_00:30:28 1875 www/ftui/examples/badge.html
 UPD 2022-02-07_00:30:28 1589 www/ftui/examples/binding.html
 UPD 2020-12-31_16:39:02 913 www/ftui/examples/button-nice.html
 UPD 2022-02-13_23:28:11 10704 www/ftui/examples/button.html
-UPD 2022-03-06_21:18:13 3326 www/ftui/examples/chart.html
+UPD 2022-03-10_17:58:47 3326 www/ftui/examples/chart.html
 UPD 2022-02-08_19:44:11 1704 www/ftui/examples/chart2.html
 UPD 2022-01-06_22:08:43 1408 www/ftui/examples/checkbox.html
 UPD 2021-11-30_17:17:52 9424 www/ftui/examples/circlemenu.html
@@ -118,13 +118,13 @@ UPD 2022-02-22_20:02:56 6867 www/ftui/examples/icon.html
 UPD 2022-02-13_23:34:53 4118 www/ftui/examples/image.html
 UPD 2021-11-06_00:29:33 2108 www/ftui/examples/input.html
 UPD 2022-02-01_22:09:10 6532 www/ftui/examples/knob.html
-UPD 2022-03-06_19:45:21 10057 www/ftui/examples/label.html
+UPD 2022-03-10_18:41:31 10057 www/ftui/examples/label.html
 UPD 2022-02-07_00:30:28 2351 www/ftui/examples/medialist.html
 UPD 2022-01-13_17:51:31 1942 www/ftui/examples/menu.html
 UPD 2022-01-13_22:25:03 2315 www/ftui/examples/menu2.html
 UPD 2022-02-11_20:59:51 3377 www/ftui/examples/meter.html
 UPD 2022-01-31_15:27:11 3195 www/ftui/examples/mobile.html
-UPD 2022-03-06_19:45:21 20409 www/ftui/examples/mobile_full.html
+UPD 2022-03-10_20:32:05 20409 www/ftui/examples/mobile_full.html
 UPD 2022-02-17_17:37:00 5457 www/ftui/examples/mobile_plain.html
 UPD 2022-01-10_19:14:03 4689 www/ftui/examples/popup.html
 UPD 2021-12-02_22:57:32 3576 www/ftui/examples/rotor.html
@@ -142,7 +142,7 @@ UPD 2022-02-13_20:22:49 4259 www/ftui/examples/themes.html
 UPD 2022-02-07_00:30:27 1568 www/ftui/examples/timeset.html
 UPD 2022-02-14_14:31:00 4666 www/ftui/examples/weather.html
 UPD 2022-01-30_12:23:53 10900 www/ftui/ftui.css
-UPD 2022-02-24_01:53:28 1536 www/ftui/ftui.js
+UPD 2022-03-24_22:51:40 1269 www/ftui/ftui.js
 UPD 2021-12-04_19:51:20 1881 www/ftui/icons/Celsius.svg
 UPD 2021-12-04_19:51:20 1097 www/ftui/icons/Fahrenheit.svg
 UPD 2021-12-04_19:51:20 1133 www/ftui/icons/address-book-o.svg
@@ -717,10 +717,10 @@ UPD 2022-01-31_15:27:32 192031 www/ftui/modules/chart.js/chart.min.js
 UPD 2020-12-31_16:39:06 49580 www/ftui/modules/chart.js/chartjs-adapter-date-fns.bundle.min.js
 UPD 2021-02-04_22:43:17 8388 www/ftui/modules/circle-menu/circle-menu.js
 UPD 2021-02-01_19:44:50 5063 www/ftui/modules/circle-menu/circle-menu.min.js
-UPD 2022-02-14_14:33:47 14041 www/ftui/modules/ftui/fhem.service.js
-UPD 2022-02-24_02:35:40 8248 www/ftui/modules/ftui/ftui.app.js
-UPD 2022-03-06_16:17:47 12431 www/ftui/modules/ftui/ftui.binding.js
-UPD 2022-03-06_16:18:11 14447 www/ftui/modules/ftui/ftui.helper.js
+UPD 2022-03-10_18:32:48 14041 www/ftui/modules/ftui/fhem.service.js
+UPD 2022-03-10_20:46:20 8283 www/ftui/modules/ftui/ftui.app.js
+UPD 2022-03-24_22:21:53 12550 www/ftui/modules/ftui/ftui.binding.js
+UPD 2022-03-10_18:20:56 14245 www/ftui/modules/ftui/ftui.helper.js
 UPD 2020-12-31_16:39:06 9247 www/ftui/modules/hocon/hocon.js
 UPD 2020-12-31_16:39:06 3192 www/ftui/modules/hocon/hocon.min.js
 UPD 2021-10-13_09:24:35 65090 www/ftui/modules/iro.js/iro.js
@@ -733,7 +733,7 @@ UPD 2022-02-22_21:49:40 6445 www/ftui/modules/vanilla-notify/vanilla-notify.js
 UPD 2022-02-22_21:49:45 3461 www/ftui/modules/vanilla-notify/vanilla-notify.min.js
 UPD 2022-03-06_19:45:22 3458 www/ftui/themes/bright-theme.css
 UPD 2022-02-13_22:55:18 3723 www/ftui/themes/color-attributes.css
-UPD 2022-02-24_02:37:21 3416 www/ftui/themes/ftui-theme.css
+UPD 2022-03-10_21:10:05 3431 www/ftui/themes/ftui-theme.css
 UPD 2022-02-18_19:18:46 3441 www/ftui/themes/mobile-dark-theme.css
 UPD 2022-02-16_07:38:42 3734 www/ftui/themes/mobile-theme.css
 UPD 2022-02-13_20:51:12 3506 www/ftui/themes/retro-theme.css

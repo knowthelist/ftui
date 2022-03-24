@@ -74,9 +74,9 @@
   --grid-header-color: var(--medium);
   --grid-header-background-color: var(--darkest);
 
-  --tab-color: var(--gray);
-  --tab-contrast-color: var(--light);
-  --tab-active-color: var(--primary);
+  --tab-color: var(--medium-color);
+  --tab-contrast-color: var(--darker);
+  --tab-active-color: var(--primary-color);
 
   --popup-color: var(--text-color);
   --popup-background-color: var(--grid-background-color);

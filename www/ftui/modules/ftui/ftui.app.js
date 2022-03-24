@@ -151,6 +151,7 @@ class FtuiApp {
     const selectors = ['[ftui-binding]'];
     const bindElements = ftui.selectElements(selectors.join(', '), area);
     bindElements.forEach((element) => {
+      element.isActiveChange = {};
       element.binding = new FtuiBinding(element);
       element.binding.isThirdPartyElement = true;
     });

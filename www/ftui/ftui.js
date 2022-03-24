@@ -2,24 +2,12 @@
 async function main() {
   const ftuiModule = await import('./modules/ftui/ftui.app.js');
   window.ftuiApp = ftuiModule.ftuiApp;
-
   // start FTUI
   ftuiModule.ftuiApp.init();
 }
 
 document.addEventListener('readystatechange', () => {
   document.body.classList.add('loading');
-});
-
-// initially loading the page
-// or navigating to the page from another page in the same window or tab
-window.addEventListener('pageshow', () => {
-  if (typeof window.ftuiApp === 'undefined') {
-    // load FTUI
-    main();
-  } else {
-    window.ftuiApp.setOnline();
-  }
 });
 
 window.addEventListener('beforeunload', () => {
@@ -51,3 +39,5 @@ window.onerror = function (msg, url, lineNo, columnNo, error) {
 window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
   window.ftuiApp.setTheme(e.matches);
 });
+
+main();
