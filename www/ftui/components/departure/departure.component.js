@@ -89,6 +89,7 @@ export class FtuiDeparture extends FtuiElement {
   static get properties() {
     return {
       list: '',
+      get: '',
       icon: 'bus',
       station: 'Haltestelle',
       refbutton: 'refresh',
@@ -208,7 +209,7 @@ export class FtuiDeparture extends FtuiElement {
   }
 
   requestUpdate() {
-    fhemService.sendCommand('get ' + this.listAttr);
+    fhemService.sendCommand('get ' + (this.get?this.get:this.listAttr));
   }
 
   manGetRefresh(event) {
