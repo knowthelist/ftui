@@ -62,7 +62,7 @@
 
 		  <header>Departure</header>
 
-		  <ftui-departure [list]="VVO:Hauptstrasse" VVO icon="bus" getinterval="50" station="VVO" alternate deptime>
+		  <ftui-departure [list]="VVO:Hauptstrasse" VVO icon="bus" set="dummy read" getinterval="50" station="VVO" alternate deptime>
 		  </ftui-departure>
 		  
 		</ftui-grid-tile>
@@ -70,7 +70,7 @@
 
 		  <header>Departure</header>
 
-		  <ftui-departure [list]="depDummy:HBF" DB icon="train" getinterval="40" station="DB" alternate>
+		  <ftui-departure [list]="depDummy:HBF" DB icon="train" get="dummy read" getinterval="40" station="DB" alternate>
 		  </ftui-departure>
 		  
 		</ftui-grid-tile>
