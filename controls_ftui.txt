@@ -18,7 +18,7 @@ UPD 2021-12-02_14:03:47 86 www/ftui/components/content/content.component.css
 UPD 2022-03-06_16:04:54 2763 www/ftui/components/content/content.component.js
 UPD 2022-02-26_14:50:27 4100 www/ftui/components/departure/departure.component.css
 UPD 2022-02-15_18:23:01 12356 www/ftui/components/departure/departure.component.js
-UPD 2021-12-10_19:00:08 606 www/ftui/components/dropdown/dropdown.component.css
+UPD 2022-03-30_21:52:50 856 www/ftui/components/dropdown/dropdown.component.css
 UPD 2022-02-15_18:26:02 2105 www/ftui/components/dropdown/dropdown.component.js
 UPD 2022-03-22_21:26:50 4974 www/ftui/components/element.component.js
 UPD 2022-02-06_23:45:56 758 www/ftui/components/grid/grid-header.component.js
@@ -142,7 +142,7 @@ UPD 2022-02-13_20:22:49 4259 www/ftui/examples/themes.html
 UPD 2022-02-07_00:30:27 1568 www/ftui/examples/timeset.html
 UPD 2022-02-14_14:31:00 4666 www/ftui/examples/weather.html
 UPD 2022-01-30_12:23:53 10900 www/ftui/ftui.css
-UPD 2022-03-24_22:51:40 1269 www/ftui/ftui.js
+UPD 2022-03-30_21:42:43 1326 www/ftui/ftui.js
 UPD 2021-12-04_19:51:20 1881 www/ftui/icons/Celsius.svg
 UPD 2021-12-04_19:51:20 1097 www/ftui/icons/Fahrenheit.svg
 UPD 2021-12-04_19:51:20 1133 www/ftui/icons/address-book-o.svg
