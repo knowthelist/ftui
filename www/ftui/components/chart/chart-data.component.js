@@ -143,7 +143,7 @@ export class FtuiChartData extends FtuiElement {
         this.updateColor();
         break;
       case 'update':
-        //this.fetch();
+        this.fetch();
         break;
     }
   }
