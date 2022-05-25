@@ -219,8 +219,8 @@ class FtuiApp {
 
   setTheme(isDark) {
     const now = ftui.dateFormat(new Date(), 'YYYY-MM-DD hh:mm:ss');
-    fhemService.updateReadingItem('local-dark', {
-      id: 'local-dark',
+    fhemService.updateReadingItem('ftui-isDark', {
+      id: 'ftui-isDark',
       invalid: false,
       value: isDark,
       time: now,

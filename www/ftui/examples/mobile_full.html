@@ -19,7 +19,7 @@
   <link href="ftui.css" rel="stylesheet">
   <link href="themes/mobile-dark-theme.css" rel="stylesheet">
   <link href="themes/mobile-theme.css" rel="stylesheet"
-        ftui-binding [disabled]="local:dark | toBool()">
+        ftui-binding [disabled]="ftui:isDark | toBool()">
   <link href="favicon.ico" rel="icon" type="image/x-icon" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -35,7 +35,12 @@
   <ftui-view-stage>
     <ftui-view id="viewMain">
 
-      <ftui-view-toolbar>My Home</ftui-view-toolbar>
+      <ftui-view-toolbar>My Home
+        <ftui-row slot="end" width="6em">
+        <ftui-label [text]="ftui:lastEvent:time | toDate() | format('hh:mm:ss')" color="primary" size="1"></ftui-label>
+        <ftui-icon name="refresh" color="primary" size="-2" @click="forceRefresh()"></ftui-icon>
+      </ftui-row>
+      </ftui-view-toolbar>
 
       <ftui-view-section>
         <ftui-label slot="header">Status</ftui-label>
@@ -277,7 +282,7 @@
           <ftui-row slot="end" align-items="stretch">
 
             <ftui-label [(text)]="Leinwand | map('on:down,off:up')" color="medium"></ftui-label>
-            <ftui-button (value)="Leinwand" states="on" color="current" fill="none">
+            <ftui-button (value)="Leinwand" states="75%" color="current" fill="none">
               <ftui-icon name="angle-down" class="size-2"></ftui-icon>
 
             </ftui-button>
@@ -518,6 +523,7 @@
   </ftui-view-stage>
 
   <script>
+    
     // refresh all ago-label each minute
     setInterval(() => {
       document.querySelectorAll('ftui-label[ago-refresh]').forEach(elem => {

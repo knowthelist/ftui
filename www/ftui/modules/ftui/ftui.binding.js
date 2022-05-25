@@ -324,6 +324,7 @@ export class FtuiBinding {
 
   evalInContext(command = '', $event) {
     command = command.replace('sendFhem', 'this.binding.sendFhem');
+    command = command.replace('forceRefresh', 'this.binding.forceRefresh');
     eval(command);
   }
 
@@ -349,5 +350,9 @@ export class FtuiBinding {
 
   sendFhem(command) {
     fhemService.updateFhem(command);
+  }
+
+  forceRefresh() {
+    fhemService.forceRefresh();
   }
 }

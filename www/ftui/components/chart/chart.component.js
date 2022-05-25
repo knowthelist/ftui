@@ -158,7 +158,7 @@ export class FtuiChart extends FtuiElement {
 
     document.addEventListener('ftuiVisibilityChanged', () => this.refresh());
 
-    fhemService.getReadingEvents('local-dark').subscribe(() => this.onStyleChanged());
+    fhemService.getReadingEvents('ftui-isDark').subscribe(() => this.onStyleChanged());
   }
 
   connectedCallback() {
