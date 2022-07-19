@@ -84,8 +84,8 @@ export class FtuiGrid extends FtuiElement {
     const baseWidth = (this.baseWidth > 0) ? this.baseWidth : 140;
     const baseHeight = (this.baseHeight > 0) ? this.baseHeight : 140;
     this.tiles.forEach(tile => {
-      tile.style['grid-row'] = 'span ' + tile.getAttribute('width');
-      tile.style['grid-column'] = 'span ' + tile.getAttribute('height');
+      tile.style['grid-row'] = 'span ' + tile.getAttribute('height');
+      tile.style['grid-column'] = 'span ' + tile.getAttribute('width');
     });
     this.style['grid-auto-rows'] = baseHeight + 'px';
     this.style['grid-auto-columns'] = baseWidth + 'px';
