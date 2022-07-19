@@ -76,6 +76,7 @@ export class FtuiChart extends FtuiElement {
           x: {
             display: !this.noscale && !this.noX,
             type: 'time',
+            stacked: this.stackedX,
             time: {
               parser: 'yyyy-MM-dd_HH:mm:ss',
               displayFormats: { millisecond: 'HH:mm:ss.SSS', second: 'HH:mm:ss', minute: 'HH:mm', hour: 'HH:mm', day: 'd. MMM', month: 'MMMM' },
@@ -201,6 +202,7 @@ export class FtuiChart extends FtuiElement {
       noX: false,
       yUnit: '',
       y1Unit: '',
+      stackedX: false,
       stackedY: false,
       stackedY1: false,
     };
