@@ -1,0 +1,67 @@
+<ftui-view-toolbar>
+  <ftui-nav-link slot="start"></ftui-nav-link>
+  Water
+</ftui-view-toolbar>
+
+<ftui-view-sheet shape="round">
+  <ftui-chart width="300px" height="200px" y-label="Humidity in %" y1-label="Temp in °C" y-min="40" y-max="70">
+    <ftui-chart-data fill log="FileLog_Bodenfeuchte" spec="4:Bodenfeuchte.Feuchte" [update]="Bodenfeuchte:Feuchte:time" point-radius="1">
+    </ftui-chart-data>
+    <ftui-chart-data log="FileLog_BodenTemp" spec="4:BodenTemp.temperature" [update]="BodenTemp:temperature:time" 
+    color="alert" point-radius="1" y-axis-id="y1">
+    </ftui-chart-data>
+    <ftui-chart-controls units="day, hour"></ftui-chart-controls>
+  </ftui-chart>
+</ftui-view-sheet>
+
+<ftui-view-section>
+  <ftui-view-item>Humidity
+    <ftui-label [text]="Bodenfeuchte:Feuchte | fix(1)" unit=" %" placeholder></ftui-label>
+  </ftui-view-item>
+</ftui-view-section>
+
+<ftui-view-section>
+  <ftui-label slot="header" text="Amount of rain"></ftui-label>
+
+  <ftui-view-item>Hour
+    <ftui-label [text]="Regenzaehler:statLiterHour | fix(1)" unit=" l" placeholder></ftui-label>
+  </ftui-view-item>
+  <ftui-view-item>Today
+    <ftui-label [text]="Regenzaehler:statLiterDay | fix(1)" unit=" l" placeholder></ftui-label>
+  </ftui-view-item>
+  <ftui-view-item>Yesterday
+    <ftui-label [text]="Regenzaehler:statLiterDayLast | fix(1)" unit=" l" placeholder></ftui-label>
+  </ftui-view-item>
+  <ftui-view-item>Month
+    <ftui-label [text]="Regenzaehler:statLiterMonth | fix(1)" unit=" l" placeholder‚></ftui-label>
+  </ftui-view-item>
+</ftui-view-section>
+
+<ftui-view-section>
+  <ftui-label slot="header" text="Sprinkle"></ftui-label>
+  <ftui-view-item>Last
+    <ftui-label [text]="Bodenfeuchte:lastSprinkle:time" color="medium" size="2"></ftui-label>
+    <ftui-label [text]="Bodenfeuchte:lastSprinkle" unit=" %"></ftui-label>
+  </ftui-view-item>
+  <ftui-view-item>
+    Will sprinkle today
+    <ftui-label [text]="Bodenfeuchte:sprinkleDay0| map('0:No,1:Yes')""></ftui-label>
+  </ftui-view-item>  
+  <ftui-view-item>
+    Will sprinkle tomorrow
+    <ftui-label [text]="Bodenfeuchte:sprinkleDay1| map('0:No,1:Yes')"></ftui-label>
+  </ftui-view-item>  
+  <ftui-view-item>
+    Ventil1
+    <ftui-switch [(value)]="BewaesserungsVentil1" slot="end"></ftui-switch>
+  </ftui-view-item>
+  <ftui-view-item>
+    Ventil2
+    <ftui-switch [(value)]="BewaesserungsVentil2" slot="end"></ftui-switch>
+  </ftui-view-item>
+  <ftui-view-item>
+    Ventil3
+    <ftui-switch [(value)]="BewaesserungsVentil3" slot="end"></ftui-switch>
+  </ftui-view-item>
+</ftui-view-section>
+

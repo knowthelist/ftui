@@ -49,7 +49,7 @@ export class FtuiLabel extends FtuiElement {
           50% { opacity: .5; }
           100% { opacity: .3; }}
       </style>
-      <slot name="pre"></slot><slot></slot><slot name="content"></slot><slot name="unit">${this.unit}</slot>`;
+      <slot name="start"></slot><slot></slot><slot name="content"></slot><slot name="unit">${this.unit}</slot><slot name="end"></slot>`;
   }
 
   static get properties() {

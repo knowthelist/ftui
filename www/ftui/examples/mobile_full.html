@@ -37,9 +37,10 @@
 
       <ftui-view-toolbar>My Home
         <ftui-row slot="end" width="6em">
-        <ftui-label [text]="ftui:lastEvent:time | toDate() | format('hh:mm:ss')" color="primary" size="1"></ftui-label>
-        <ftui-icon name="refresh" color="primary" size="-2" @click="forceRefresh()"></ftui-icon>
-      </ftui-row>
+          <ftui-label [text]="ftui:lastEvent:time | toDate() | format('hh:mm:ss')" color="primary" size="1">
+          </ftui-label>
+          <ftui-icon name="refresh" color="primary" size="-2" @click="forceRefresh()"></ftui-icon>
+        </ftui-row>
       </ftui-view-toolbar>
 
       <ftui-view-section>
@@ -117,7 +118,7 @@
         <ftui-view-item target="viewPower">
           <ftui-icon name="bolt" color="yellow" slot="start" invert></ftui-icon>
           Consumption
-          <ftui-label slot="end" color="medium" placeholder [text]="Stromzaehler:W" Unit="W"></ftui-label>
+          <ftui-label slot="end" color="medium" placeholder [text]="LeistungGesamt"></ftui-label>
         </ftui-view-item>
 
       </ftui-view-section>
@@ -453,12 +454,17 @@
 
     <!-- Shutter -->
     <ftui-view id="viewShutter">
-      <ftui-content file="examples/contents/mobile-shutter.html"></ftui-content>
+      <ftui-content file="examples/contents/mobile-shutter.html" lazy></ftui-content>
     </ftui-view>
 
     <!-- Solar -->
     <ftui-view id="viewSolar">
-      <ftui-content file="examples/contents/mobile-solar.html"></ftui-content>
+      <ftui-content file="examples/contents/mobile-solar.html" lazy></ftui-content>
+    </ftui-view>
+
+    <!-- Power -->
+    <ftui-view id="viewPower">
+      <ftui-content file="examples/contents/mobile-power.html" lazy></ftui-content>
     </ftui-view>
 
     <!-- Windows -->
@@ -471,20 +477,23 @@
       <ftui-content file="examples/contents/mobile-temp.html"></ftui-content>
     </ftui-view>
 
+    <!-- Rain / Water -->
+    <ftui-view id="viewOutdoorRain">
+      <ftui-content file="examples/contents/mobile-water.html" lazy></ftui-content>
+    </ftui-view>
+
     <!-- KITCHEN COLOR -->
     <ftui-view id="viewKitchenColor">
       <ftui-content file="examples/contents/mobile-color.html"
                     get="KNX_KuechenSchrankLicht:wert-get" set="KNX_KuechenSchrankLicht"
                     wget="KNX_KuechenSchrankLicht:wwert-get" wset="KNX_KuechenSchrankLicht:wwert"
-                    kget="KNX_KuechenSchrankLicht:wtemp-get" kset="KNX_KuechenSchrankLicht:wtemp"
-                    ></ftui-content>
+                    kget="KNX_KuechenSchrankLicht:wtemp-get" kset="KNX_KuechenSchrankLicht:wtemp"></ftui-content>
     </ftui-view>
 
     <!-- HUE COLOR -->
     <ftui-view id="viewHueColor">
       <ftui-content file="examples/contents/mobile-color.html"
-                    get="HUEDevice6:rgb" set="HUEDevice6:rgb"
-                    ></ftui-content>
+                    get="HUEDevice6:rgb" set="HUEDevice6:rgb"></ftui-content>
     </ftui-view>
 
     <!-- OUTDOORS TEMPERATURES -->
@@ -523,7 +532,7 @@
   </ftui-view-stage>
 
   <script>
-    
+
     // refresh all ago-label each minute
     setInterval(() => {
       document.querySelectorAll('ftui-label[ago-refresh]').forEach(elem => {

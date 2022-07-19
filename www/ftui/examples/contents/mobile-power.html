@@ -1,0 +1,42 @@
+<ftui-view-toolbar>
+  <ftui-nav-link slot="start"></ftui-nav-link>
+  Power
+</ftui-view-toolbar>
+
+<ftui-view-sheet shape="round">
+  <ftui-row>
+    <ftui-icon name="bolt" size="4"></ftui-icon>
+    <ftui-label [text]="LeistungGesamt" size="8"></ftui-label>
+  </ftui-row>
+</ftui-view-sheet>
+
+<ftui-view-section>
+  <ftui-label slot="header" text="Energy"></ftui-label>
+
+  <ftui-view-item>Total
+    <ftui-label [text]="Stromzaehler"></ftui-label>
+  </ftui-view-item>
+  <ftui-view-item>Today
+    <ftui-label [text]="StromRechner:Stromzaehler_state_EnergyDay" unit=" KWh"></ftui-label>
+  </ftui-view-item>
+  <ftui-view-item>Yesterday
+    <ftui-label [text]="StromRechner:Stromzaehler_state_EnergyDayLast" unit=" KWh"></ftui-label>
+  </ftui-view-item>
+  <ftui-view-item>Month
+    <ftui-label [text]="StromRechner:Stromzaehler_state_EnergyMonth" unit=" KWh"></ftui-label>
+  </ftui-view-item>
+</ftui-view-section>
+
+<ftui-view-section>
+  <ftui-label slot="header" text="Cost"></ftui-label>
+  <ftui-view-item>Today
+    <ftui-label [text]="StromRechner:Stromzaehler_state_EnergyCostDay | fix(2)" unit=" €"></ftui-label>
+  </ftui-view-item>
+  <ftui-view-item>Yesterday
+    <ftui-label [text]="StromRechner:Stromzaehler_state_EnergyCostDayLast | fix(2)" unit=" €"></ftui-label>
+  </ftui-view-item>  
+  <ftui-view-item>Month
+    <ftui-label [text]="StromRechner:Stromzaehler_state_EnergyCostMonth | fix(2)" unit=" €"></ftui-label>
+  </ftui-view-item>  
+</ftui-view-section>
+

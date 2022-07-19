@@ -17,9 +17,13 @@
 
 <ftui-view-sheet shape="round" >
 
-  <ftui-image [src]="Sonos_{{Name}}:currentAlbumArtURL" width="8em"></ftui-image>
+  <ftui-column>
+    <ftui-image [src]="Sonos_{{Name}}:currentAlbumArtURL" width="8em"></ftui-image>
+    <ftui-label id="jjjj2" [text]="Sonos_{{Name}}:infoSummarize1" scroll></ftui-label>
+  </ftui-column>
 
-  <ftui-column width="60%">
+
+  <ftui-cell width="60%">
     <ftui-button fill="outline" shape="circle"
                  [value]="Sonos_{{Name}}:transportState | map('PLAYING: play, PAUSED_PLAYBACK|STOPPED: pause')"
                  (value)="Sonos_{{Name}}" states="play, pause">
@@ -31,7 +35,7 @@
         <ftui-label id="jjjj2" [text]="Sonos_{{Name}}:infoSummarize1" scroll></ftui-label>
       </ftui-row> -->
 
-  </ftui-column>
+  </ftui-cell>
 </ftui-view-sheet>
 
 <ftui-view-section>

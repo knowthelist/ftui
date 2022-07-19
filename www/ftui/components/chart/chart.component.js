@@ -51,7 +51,7 @@ export class FtuiChart extends FtuiElement {
                 if (resLabel && values && values.length) {
                   resLabel = resLabel.replace(/\$min/g, Math.min(...values));
                   resLabel = resLabel.replace(/\$max/g, Math.max(...values));
-                  resLabel = resLabel.replace(/\$sum/g, values.reduce((a, b) => a + b));;
+                  resLabel = resLabel.replace(/\$sum/g, values.reduce((a, b) => a + b));
                   resLabel = resLabel.replace(/\$avg/g, values.reduce((a, b) => a + b) / values.length);
                   resLabel = resLabel.replace(/\$last/g, values[values.length - 1]);
                 }
