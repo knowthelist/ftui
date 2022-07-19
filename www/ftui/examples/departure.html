@@ -30,7 +30,7 @@
 
 		  <header>Departure</header>
 
-		  <ftui-departure [list]="depDummy:HBF" icon="bus"  getinterval="120" get="depDummy HBF" station="Default" alternate>
+		  <ftui-departure [list]="depDummy:HBF" icon="bus"  getinterval="120" station="Default" alternate>
 		  </ftui-departure>
 		  
 		</ftui-grid-tile>
@@ -38,7 +38,7 @@
 
 		  <header>Departure</header>
 
-		  <ftui-departure list='[["U8","Vaihingen","0"],["U12","Dürrlewang","1"],["U8","Ostfildern","6"],["U3","Vaihingen","6"],["U12","Hallschlag","7"],["U3","Plieningen","9"],["U8","Vaihingen","12"],["U12","Haltestellentext mit scroll bei click","14"],["U8","Waldau","15"],["U3","Vaihingen","16"],["U12","Dürrlewang","19"],["U8","Waldau","21"],["U3","Vaihingen","25"],["U12","Dürrlewang","64"],["U8","Waldau","120"],["U3","Vaihingen","1000"]]' icon="bus" bgcolor="green" depcolor="yellow" width="80%" height="80%" top="23px" txtcolor="#fff" deptxtcolor="#000" get="depDummy HBF" station="Benutzer" refreshlist="60" deptxtlength="20" manuell switch alternate nextday depscroll>
+		  <ftui-departure list='[["U8","Vaihingen","0"],["U12","Dürrlewang","1"],["U8","Ostfildern","6"],["U3","Vaihingen","6"],["U12","Hallschlag","7"],["U3","Plieningen","9"],["U8","Vaihingen","12"],["U12","Haltestellentext mit scroll bei click","14"],["U8","Waldau","15"],["U3","Vaihingen","16"],["U12","Dürrlewang","19"],["U8","Waldau","21"],["U3","Vaihingen","25"],["U12","Dürrlewang","64"],["U8","Waldau","120"],["U3","Vaihingen","1000"]]' icon="bus" bgcolor="green" depcolor="yellow" width="80%" height="80%" top="23px" txtcolor="#fff" deptxtcolor="#000" station="Benutzer" refreshlist="60" deptxtlength="20" manuell switch alternate nextday depscroll>
 		  </ftui-departure>
 		  
 		</ftui-grid-tile>
@@ -46,7 +46,7 @@
 
 		  <header>Departure</header>
 
-		  <ftui-departure [list]="depDummy:HBF" DVB icon="bus" getinterval="10" get="depDummy HBF" station="DVB" manuell alternate>
+		  <ftui-departure [list]="depDummy:HBF" DVB icon="bus" getinterval="10" station="DVB" manuell alternate>
 		  </ftui-departure>
 		  
 		</ftui-grid-tile>
@@ -54,7 +54,7 @@
 
 		  <header>Departure</header>
 
-		  <ftui-departure [list]="depDummy:HBF" RVSOE icon="bus" getinterval="30" get="depDummy HBF" station="RVSOE" alternate>
+		  <ftui-departure [list]="depDummy:HBF" RVSOE icon="bus" getinterval="30" station="RVSOE" alternate>
 		  </ftui-departure>
 		  
 		</ftui-grid-tile>
@@ -62,7 +62,7 @@
 
 		  <header>Departure</header>
 
-		  <ftui-departure [list]="VVO:Hauptstrasse" VVO icon="bus" getinterval="50" get="depDummy HBF" station="VVO" alternate deptime>
+		  <ftui-departure [list]="VVO:Hauptstrasse" VVO icon="bus" set="dummy read" getinterval="50" station="VVO" alternate deptime>
 		  </ftui-departure>
 		  
 		</ftui-grid-tile>
@@ -70,7 +70,7 @@
 
 		  <header>Departure</header>
 
-		  <ftui-departure [list]="depDummy:HBF" DB icon="train" getinterval="40" get="depDummy HBF" station="DB" alternate>
+		  <ftui-departure [list]="depDummy:HBF" DB icon="train" get="dummy read" getinterval="40" station="DB" alternate>
 		  </ftui-departure>
 		  
 		</ftui-grid-tile>

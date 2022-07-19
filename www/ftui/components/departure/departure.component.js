@@ -36,6 +36,9 @@ export class FtuiDeparture extends FtuiElement {
     this.elementSwitch = this.shadowRoot.querySelector('.switch');
     this.elementSwitch.addEventListener('click', event => this.switchDepMode(event));
 
+    this.listAttr = this.binding.getReadingsOfAttribute('list');
+    if (this.listAttr[0]) { this.listAttr = this.listAttr[0].replace('-',' '); }
+
     if (!(this.hasAttribute('switch'))) { this.elementSwitch.style.display = 'none'; }
 
     if (this.hasAttribute('depmin')) {
@@ -86,6 +89,8 @@ export class FtuiDeparture extends FtuiElement {
   static get properties() {
     return {
       list: '',
+      get: '',
+      set: '',
       icon: 'bus',
       station: 'Haltestelle',
       refbutton: 'refresh',
@@ -102,7 +107,6 @@ export class FtuiDeparture extends FtuiElement {
       top: '40px',
       getinterval: 60,
       refreshlist: 0,
-      get: '',
     };
   }
 
@@ -192,7 +196,7 @@ export class FtuiDeparture extends FtuiElement {
   startTimerUpdate() {
     clearInterval(this.timerUpdate);
     clearTimeout(this.timerUpdate);
-    if (this.getinterval) {
+    if (this.listAttr[0]) {
       ((dateFormat(new Date(), 'ss') === '00') ? this.timerUpdate = setTimeout(() => this.startTimerUpdate(), this.getinterval * 1000) ? this.requestUpdate() : clearTimeout(this.timerUpdate) : this.timerUpdate = setInterval(() => this.startTimerUpdate(), 1000));
     }
   }
@@ -200,13 +204,13 @@ export class FtuiDeparture extends FtuiElement {
   startTimerRefreshList() {
     clearInterval(this.timerRefreshList);
     clearTimeout(this.timerRefreshList);
-    if (this.refreshlist) {
+    if (!this.listAttr[0]) {
       ((dateFormat(new Date(), 'ss') === '00') ? this.timerRefreshList = setTimeout(() => this.startTimerRefreshList(), this.refreshlist * 1000) ? this.fillList() : clearTimeout(this.timerRefreshList) : this.timerRefreshList = setInterval(() => this.startTimerRefreshList(), 1000));
     }
   }
 
   requestUpdate() {
-    fhemService.sendCommand('get ' + this.get);
+    fhemService.sendCommand((this.get || this.set ? (this.get ? 'get '+this.get : 'set '+this.set) : 'get '+this.listAttr));
   }
 
   manGetRefresh(event) {
@@ -224,8 +228,7 @@ export class FtuiDeparture extends FtuiElement {
 
   fillList() {
     if (this.list) {
-      const listAttr = this.attributes['[list]'];
-      const refDate = ((listAttr) ? dateFromString(fhemService.getReadingItem(getReadingID(listAttr.value.split(':')[0], listAttr.value.split(':')[1])).data.time) : new Date(this.timeNow));
+      const refDate = ((this.listAttr[0]) ? dateFromString(fhemService.getReadingItem(getReadingID(this.listAttr.split(' ')[0], this.listAttr.split(' ')[1])).data.time) : new Date(this.timeNow));
       refDate.setSeconds(59);
       const currentTime = new Date();
       const nextDay = dateFormat(new Date(currentTime.setDate(currentTime.getDate() + 1)), 'ee');
