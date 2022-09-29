@@ -71,7 +71,7 @@
 }
 
 [color="violet"] {
-  --color-base: var(--indigo);
+  --color-base: var(--violet);
   --color-contrast: var(--success-contrast-color);
 }
 
