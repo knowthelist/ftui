@@ -8,7 +8,7 @@
 */
 
 
-import * as ftuiHelper from '../modules/ftui/ftui.helper.js';
+import { isNumeric, toKebabCase, log } from '../modules/ftui/ftui.helper.js';
 
 const uids = {};
 
@@ -60,7 +60,7 @@ export class FtuiElement extends HTMLElement {
   }
 
   static convertToAttributes(properties) {
-    return Object.keys(properties).map(property => ftuiHelper.toKebabCase(property));
+    return Object.keys(properties).map(property => toKebabCase(property));
   }
 
   connectedCallback() {
@@ -71,7 +71,7 @@ export class FtuiElement extends HTMLElement {
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
-    ftuiHelper.log(3, `${this.id} -  attributeChangedCallback name=${name}, oldValue=${oldValue}, newValue=${newValue}`)
+    log(3, `${this.id} -  attributeChangedCallback name=${name}, oldValue=${oldValue}, newValue=${newValue}`)
     if (typeof this.onAttributeChanged === 'function') {
       // call the hook function of the instance
       this.onAttributeChanged(name, newValue, oldValue);
@@ -89,12 +89,12 @@ export class FtuiElement extends HTMLElement {
         break;
       case 'margin': {
         if (this.tagName !== 'FTUI-GRID') {
-          this.style.margin = ftuiHelper.isNumeric(newValue) ? newValue + 'em' : newValue;
+          this.style.margin = isNumeric(newValue) ? newValue + 'em' : newValue;
         }
         break;
       }
       case 'padding': {
-        this.style.padding = ftuiHelper.isNumeric(newValue) ? newValue + 'em' : newValue;
+        this.style.padding = isNumeric(newValue) ? newValue + 'em' : newValue;
         break;
       }
     }
@@ -124,7 +124,7 @@ export class FtuiElement extends HTMLElement {
 
   initProperties(properties) {
     Object.entries(properties).forEach(([name, defaultValue]) => {
-      const attr = ftuiHelper.toKebabCase(name);
+      const attr = toKebabCase(name);
       if (typeof properties[name] === 'boolean') {
         this.defineBooleanProperty(name, attr);
         this.initBooleanAttribute(attr, defaultValue);

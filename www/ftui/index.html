@@ -211,6 +211,22 @@
         </ftui-segment>
       </ftui-grid-tile>
 
+      <!-- LIGHTS -->
+      <ftui-grid-tile row="7" col="12" height="2" width="2" shape="round">
+        <ftui-button @click="sendFhem('{LightsOffAtAway()}')" color="current" fill="none" direction="vertical" gap="1">
+          <ftui-icon name="lightbulb-o" class="size-1" height="90%"></ftui-icon>
+          <ftui-label>Lampen aus</ftui-label>
+        </ftui-button>
+      </ftui-grid-tile>
+
+      <!-- SOUND -->
+      <ftui-grid-tile row="9" col="12" height="2" width="2" shape="round">
+        <ftui-button @click="sendFhem('{discardAV()}')" color="current" fill="none" direction="vertical" gap="1">
+          <ftui-icon name="volume-up" class="size-1" height="90%"></ftui-icon>
+          <ftui-label>Musik aus</ftui-label>
+        </ftui-button>
+      </ftui-grid-tile>
+
     </ftui-tab-view>
 
     <ftui-tab-view id="View2">

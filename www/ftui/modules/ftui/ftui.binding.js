@@ -32,8 +32,8 @@ const isNot = value => input => String(input) !== value ? true : false;
 const pad = (cnt, char) => input => String(input).padStart(cnt, char);
 const append = value => input => String(input) + value;
 const prepend = value => input => value + String(input);
-const sendCommand = value => input => send(value);
-const getHTML = value => input => send('get ' + value + ' html');
+const sendCommand = value => () => send(value);
+const getHTML = value => () => send('get ' + value + ' html');
 
 const pipe = (f1, ...fns) => (...args) => {
   return fns.reduce((res, fn) => fn(res), f1.apply(null, args));
