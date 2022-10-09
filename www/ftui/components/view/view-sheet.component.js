@@ -20,12 +20,25 @@ export class FtuiViewSheet extends FtuiElement {
   }
 
   template() {
-    return `<style> @import "components/view/view-sheet.component.css"; </style>
-            <div class="content">
-
-                  <slot></slot>
-
-            </div>`;
+    return `<style>
+        :host {
+          display: flex;
+        }
+        
+        .content {
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          background-color: var(--view-item-background-color);
+          align-items: flex-start;
+          margin: 1em 1.5em;
+          border-radius: 1em;
+          font-size: 1.125rem;
+          padding: 1em;
+          position: relative;
+        } </style>
+        <div class="content"><slot></slot></div>`;
   }
 
   static get properties() {

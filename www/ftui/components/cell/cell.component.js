@@ -10,6 +10,7 @@
 */
 
 import { FtuiElement } from '../element.component.js';
+import { isNumeric } from '../../modules/ftui/ftui.helper.js';
 
 export class FtuiCell extends FtuiElement {
 
@@ -46,6 +47,7 @@ export class FtuiCell extends FtuiElement {
     return {
       height: '',
       width: '',
+      gap: '',
       color: 'transparent',
     };
   }
@@ -60,15 +62,18 @@ export class FtuiCell extends FtuiElement {
         if (this.tagName === 'FTUI-COLUMN') {
           this.style.flex = `0 0 ${value}`;
         } else {
-          this.style.width = value;
+          this.style.width = isNumeric(value) ? value + 'em' : value;
         }
         break;
       case 'height':
         if (this.tagName === 'FTUI-ROW') {
           this.style.flex = `0 0 ${value}`;
         } else {
-          this.style.height = value;
+          this.style.height = isNumeric(value) ? value + 'em' : value;
         }
+        break;
+      case 'gap':
+        this.style.gap = isNumeric(value) ? value + 'em' : value;
         break;
     }
   }

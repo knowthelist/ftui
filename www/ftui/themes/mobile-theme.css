@@ -47,6 +47,7 @@
 
   --primary-contrast-color: var(--white);
   --secondary-contrast-color: var(--white);
+  --primary-active-color: var(--medium-color);
 
   --success-contrast-color: var(--white);
   --info-contrast-color: var(--white);

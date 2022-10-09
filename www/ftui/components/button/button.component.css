@@ -83,6 +83,11 @@
   --color-base: var(--color-active);
 }
 
+:host([fill="none"].activated) .button-inner {
+  background-image: radial-gradient(circle, var(--primary-active-color),transparent,transparent);
+  transition:0.5s ease;
+}
+
 :host .button-inner {
   display: flex;
   flex-flow: row nowrap;

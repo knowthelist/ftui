@@ -10,7 +10,6 @@
 import { FtuiElement } from '../element.component.js';
 import * as ftui from '../../modules/ftui/ftui.helper.js';
 
-
 export class FtuiButton extends FtuiElement {
   constructor(properties) {
 

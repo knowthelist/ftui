@@ -22,11 +22,10 @@ export class FtuiLabel extends FtuiElement {
   }
 
   template() {
-    return `
-      <style>
-      :host([text-align=left])   { text-align: left; width: 100%;}
-      :host([text-align=right])  { text-align: right; width: 100%;}
-      :host([text-align=center])   { text-align: center; width: 100%;}
+    return `<style>
+        :host([text-align=left])   { text-align: left; width: 100%;}
+        :host([text-align=right])  { text-align: right; width: 100%;}
+        :host([text-align=center])  { text-align: center; width: 100%;}
         :host {
           --color-base: currentColor;
           color: var(--color-base);
@@ -34,6 +33,7 @@ export class FtuiLabel extends FtuiElement {
         }
         :host(:empty:not([text])) slot[name="unit"],
         :host([text=""]) slot[name="unit"] { visibility: hidden; }
+        :host slot[name="unit"] { margin-left: 0.25em; display: initial; }
         :host([scroll]) { overflow: auto; white-space: normal; }
         :host([bold]) { font-weight: bold; }
         :host(:empty[text=""][placeholder]) { display: inline-block;
@@ -93,18 +93,10 @@ export class FtuiLabel extends FtuiElement {
           this.style.fontFamily = '"HelveticaNeue-UltraLight", "Segoe UI", "Roboto Light", sans-serif';
         }
         break;
-      case 'top':
-        this.style.top = isNumeric(value) ? value + 'em' : value;
-        break;
-      case 'left':
-        this.style.left = isNumeric(value) ? value + 'em' : value;
-        break;
-      case 'width':
-        this.style.width = value;
-        break;
-      case 'height':
-        this.style.height = value;
-        break;
+      case 'top': this.style.top = isNumeric(value) ? value + 'em' : value; break;
+      case 'left': this.style.left = isNumeric(value) ? value + 'em' : value; break;
+      case 'width': this.style.width = isNumeric(value) ? value + 'em' : value; break;
+      case 'height': this.style.height = isNumeric(value) ? value + 'em' : value; break;
     }
   }
 

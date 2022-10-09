@@ -4,19 +4,64 @@
 </ftui-view-toolbar>
 
 <ftui-view-sheet shape="round">
-  <ftui-label bold>Air Quality</ftui-label>
-  <ftui-icon name="fan" [color]="WCLuft | part(1)| step('0: green, 1000: warning, 2000: alert')" right="1em"
-             top="1em"></ftui-icon>
-  <ftui-cell align-items="left">
-    <ftui-label color="medium" size="1">Bath</ftui-label>
-    <ftui-label [text]="BadLuftQualitaet" bold></ftui-label>
+  <ftui-cell gap="1" align-items="left">
+    <ftui-label bold>Air Quality</ftui-label>
+    <ftui-icon name="fan" [color]="WCLuft | part(1)| step('0: green, 1000: warning, 2000: alert')" right="1em"
+               top="1em"></ftui-icon>
+    <ftui-row>
+      <ftui-label color="medium" size="1" width="3">Bath</ftui-label>
+      <ftui-label [text]="BadLuftQualitaet | toInt()" bold  unit="ppm"></ftui-label>
+    </ftui-row>
+    <ftui-row>
+      <ftui-label color="medium" size="1" width="3">WC</ftui-label>
+      <ftui-label [text]="WCLuft | toInt()" bold  unit="ppm"></ftui-label>
+    </ftui-row>
   </ftui-cell>
-  <ftui-cell align-items="left">
-    <ftui-label color="medium" size="1">WC</ftui-label>
-    <ftui-label [text]="WCLuft" bold></ftui-label>
-  </ftui-cell>
-
 </ftui-view-sheet>
+
+<ftui-view-section>
+  <ftui-label slot="header">Rooms</ftui-label>
+
+  <ftui-view-item>Living
+    <ftui-cell>
+      <ftui-label size="1" color="medium">Valve:</ftui-label>
+      <ftui-label [text]="KuechenHeizung:stellgroesse-get" color="medium" size="1"></ftui-label>
+    </ftui-cell>
+    <ftui-label [text]="KuechenHeizung:ist-get | part(1) | toNumber() | fix(1)" unit="°C" slot="end"></ftui-label>
+  </ftui-view-item>
+
+  <ftui-view-item>Sleep
+    <ftui-cell>
+      <ftui-label size="1" color="medium">Valve:</ftui-label>
+      <ftui-label [text]="SchlafzimmerHeizung:stellgroesse-get" color="medium" size="1"></ftui-label>
+    </ftui-cell>
+    <ftui-label [text]="SchlafzimmerHeizung:ist-get | part(1) | toNumber() | fix(1)" unit="°C" slot="end"></ftui-label>
+  </ftui-view-item>
+
+  <ftui-view-item>Kid
+    <ftui-cell>
+      <ftui-label size="1" color="medium">Valve:</ftui-label>
+      <ftui-label [text]="KinderzimmerHeizung:stellgroesse-get" color="medium" size="1"></ftui-label>
+    </ftui-cell>
+    <ftui-label [text]="KinderzimmerHeizung:ist-get | part(1) | toNumber() | fix(1)" unit="°C" slot="end"></ftui-label>
+  </ftui-view-item>
+
+  <ftui-view-item>Guest
+    <ftui-cell>
+      <ftui-label size="1" color="medium">Valve:</ftui-label>
+      <ftui-label [text]="GaestezimmerHeizung:stellgroesse-get" color="medium" size="1"></ftui-label>
+    </ftui-cell>
+    <ftui-label [text]="GaestezimmerHeizung:ist-get | part(1) | toNumber() | fix(1)" unit="°C" slot="end"></ftui-label>
+  </ftui-view-item>
+
+  <ftui-view-item>WC
+    <ftui-cell>
+      <ftui-label size="1" color="medium">Valve:</ftui-label>
+      <ftui-label [text]="WCHeizung:stellgroesse-get" color="medium" size="1"></ftui-label>
+    </ftui-cell>
+    <ftui-label [text]="WCHeizung:ist-get | part(1) | toNumber() | fix(1)" unit="°C" slot="end"></ftui-label>
+  </ftui-view-item>
+</ftui-view-section>
 
 <ftui-view-section>
   <ftui-label slot="header">Other</ftui-label>
@@ -35,14 +80,5 @@
       <ftui-label [text]="BadLuftfeuchte" color="medium" size="1"></ftui-label>
     </ftui-cell>
     <ftui-label [text]="BadHeizung:ist-get | part(1) | toNumber()| fix(1)" unit="°C" slot="end"></ftui-label>
-  </ftui-view-item>
-
-  <ftui-view-item>WC
-
-    <ftui-cell>
-      <ftui-label size="1" color="medium">Valve:</ftui-label>
-      <ftui-label [text]="WCHeizung:stellgroesse-get" color="medium" size="1"></ftui-label>
-    </ftui-cell>
-    <ftui-label [text]="WCHeizung:ist-get | part(1) | toNumber() | fix(1)" unit="°C" slot="end"></ftui-label>
   </ftui-view-item>
 </ftui-view-section>
