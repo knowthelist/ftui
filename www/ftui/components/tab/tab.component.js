@@ -99,7 +99,7 @@ class FtuiTab extends FtuiButton {
     if (!homeElem) {
       homeElem = selectOne(`ftui-tab[group="${this.group}"]:first-of-type`);
     }
-    if (homeElem) {
+    if ((homeElem) && (homeElem.id !== this.id)) {
       homeElem.onClickEvent();
     }
   }
