@@ -57,6 +57,10 @@ class FtuiApp {
     this.config.username = this.getMetaString('username');
     this.config.password = this.getMetaString('password');
 
+     // react on URL parameter(s)
+    this.initialView = (new URLSearchParams(window.location.search)).get('initialView');
+    this.homeView = (new URLSearchParams(window.location.search)).get('homeView');
+    
     // init FhemService
     fhemService.setConfig(this.config);
     fhemService.debugEvents.subscribe(text => this.toast(text));
