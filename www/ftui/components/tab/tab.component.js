@@ -20,6 +20,11 @@ class FtuiTab extends FtuiButton {
 
     super(Object.assign(FtuiTab.properties, properties));
 
+    selectAll(`ftui-tab[group="${this.group}"]`).forEach(elem => {
+      if (window.ftuiApp.initialView) (elem.view === window.ftuiApp.initialView)?elem.setAttribute("active","active"):elem.removeAttribute('active');
+      if (window.ftuiApp.homeView) (elem.view === window.ftuiApp.homeView)?elem.setAttribute("home","home"):elem.removeAttribute('home');
+    });
+    
     window.customElements.whenDefined('ftui-tab-view').then(() => {
       if (this.hasAttribute('active')) {
         this.onClickEvent();
@@ -94,7 +99,7 @@ class FtuiTab extends FtuiButton {
     if (!homeElem) {
       homeElem = selectOne(`ftui-tab[group="${this.group}"]:first-of-type`);
     }
-    if (homeElem) {
+    if ((homeElem) && (homeElem.id !== this.id)) {
       homeElem.onClickEvent();
     }
   }
