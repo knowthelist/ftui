@@ -39,6 +39,7 @@ export class FtuiCell extends FtuiElement {
       :host([align-items~=center]) { justify-content: center; }
       :host([align-items~=stretch]) { justify-content: space-between; }
       :host([align-items~=around]) { justify-content: space-around; }
+      :host([align-items~=baseline])  { align-items: baseline; }
     </style>
     <slot></slot>`;
   }

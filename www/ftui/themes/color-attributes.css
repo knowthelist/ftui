@@ -109,6 +109,16 @@
   background-color: rgba(255, 255, 255, 0.2);
 }
 
+[color="cold"] {
+  --color-base: var(--cold-color);
+  --color-contrast: var(--success-contrast-color);
+}
+
+[color="hot"] {
+  --color-base: var(--hot-color);
+  --color-contrast: var(--danger-contrast-color);
+}
+
 /* gradient colors */
 [color="cold-hot"] {
   --color-base: linear-gradient(90deg, var(--cold-color) 35%, var(--hot-color) 65%);

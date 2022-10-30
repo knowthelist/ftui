@@ -33,7 +33,7 @@ export class FtuiLabel extends FtuiElement {
         }
         :host(:empty:not([text])) slot[name="unit"],
         :host([text=""]) slot[name="unit"] { visibility: hidden; }
-        :host slot[name="unit"] { margin-left: 0.25em; display: initial; }
+        :host slot[name="unit"] { margin-left: 0.15em; display: initial; }
         :host([scroll]) { overflow: auto; white-space: normal; }
         :host([bold]) { font-weight: bold; }
         :host(:empty[text=""][placeholder]) { display: inline-block;
@@ -41,8 +41,8 @@ export class FtuiLabel extends FtuiElement {
           height: .75em; border-radius: 2em;
           opacity: .3; animation: fading 1.5s infinite;
           min-width: 4em; }
-        :host([size="10"]),:host([size="11"]),:host([size="12"]) {
-          font-family: "HelveticaNeue-UltraLight", "Segoe UI", "Roboto Light", sans-serif;
+        :host([size="10"]),:host([size="11"]),:host([size="12"]),:host([thin]) {
+          font-family: "HelveticaNeue-UltraLight", "Segoe UI", "Roboto Light", "San Francisco", sans-serif;
           line-height: 0.8em; }
         @keyframes fading { 
           0% { opacity: .3; }

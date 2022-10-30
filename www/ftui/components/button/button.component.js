@@ -56,7 +56,9 @@ export class FtuiButton extends FtuiElement {
   }
 
   onUpEvent() {
-    this.classList.remove('activated');
+    setTimeout(() => {
+      this.classList.remove('activated');
+    },300)
   }
 
   onClickEvent() {

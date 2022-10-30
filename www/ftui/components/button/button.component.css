@@ -84,11 +84,26 @@
 }
 
 :host([fill="none"].activated) .button-inner {
-  background-image: radial-gradient(circle, var(--primary-active-color),transparent,transparent);
-  transition:0.5s ease;
+  animation: glow 500ms infinite;
+}
+
+@keyframes glow {
+  0% {
+    background-color:rgba(140,140,140,0.3);
+    box-shadow: 0 0 5px rgba(140,140,140,0.3);
+  }
+  50% {
+    background-color: rgba(140,140,140,0.5);
+    box-shadow: 0 0 20px rgba(140,140,140,0.5);
+  }
+  100% {
+    background-color: rgba(140,140,140,1);
+    box-shadow: 0 0 5px rgba(140,140,140,1);
+  }
 }
 
 :host .button-inner {
+  transition: background-color 0.2s ease-out;
   display: flex;
   flex-flow: row nowrap;
   align-items: center;

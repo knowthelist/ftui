@@ -26,7 +26,7 @@ svg g[style] {
 img {
   width: var(--icon-width, 4em);
   height: var(--icon-height, 4em);
-  object-fit: cover;
+  object-fit: contain;
 }
 
 :host([crop]) img {

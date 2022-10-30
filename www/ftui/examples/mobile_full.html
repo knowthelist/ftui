@@ -87,6 +87,12 @@
                       placeholder></ftui-label>
         </ftui-view-item>
 
+        <ftui-view-item target="viewVacuum">
+          <ftui-icon name="mixcloud" color="yellow" slot="start" invert></ftui-icon>
+          Vacuum
+          <ftui-label [text]="RoboRock" slot="end" color="medium" placeholder></ftui-label>
+        </ftui-view-item>
+
         <ftui-label slot="footer">This footer explains the meaning of the section to the user</ftui-label>
 
       </ftui-view-section>
@@ -192,6 +198,10 @@
 
     <ftui-view id="viewSonosBad">
       <ftui-content file="examples/contents/mobile-view-sonos.html" name="Bad" lazy></ftui-content>
+    </ftui-view>
+
+    <ftui-view id="viewVacuum">
+      <ftui-content file="examples/contents/mobile-view-vacuum.html" lazy></ftui-content>
     </ftui-view>
 
     <!-- TV -->

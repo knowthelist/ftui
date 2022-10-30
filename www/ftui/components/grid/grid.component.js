@@ -124,7 +124,6 @@ export class FtuiGrid extends FtuiElement {
       style.width = (tile.width * baseWidth - this.margin) + 'px';
       style.height = (tile.height * baseHeight - this.margin) + 'px';
       style['position'] = 'absolute';
-      tile.setAttribute('title', `row: ${tile.row} | col: ${tile.col}`);
       if (tile.querySelector('ftui-grid')) {
         style.backgroundColor = 'transparent';
         style.left = ((tile.col - 1) * baseWidth) + 'px';
