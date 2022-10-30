@@ -61,7 +61,7 @@ UPD 2021-03-01_20:28:00 1091 www/ftui/components/switch/switch.component.js
 UPD 2022-01-13_22:24:26 668 www/ftui/components/tab/tab-title.component.js
 UPD 2022-01-31_02:08:35 1041 www/ftui/components/tab/tab-view.component.js
 UPD 2021-12-08_16:56:12 498 www/ftui/components/tab/tab.component.css
-UPD 2022-01-31_02:08:35 2758 www/ftui/components/tab/tab.component.js
+UPD 2022-10-30_16:52:45 3454 www/ftui/components/tab/tab.component.js
 UPD 2022-02-15_18:27:19 5353 www/ftui/components/timeset/timeset.component.js
 UPD 2021-12-04_17:57:09 1981 www/ftui/components/view/view-item.component.css
 UPD 2021-03-01_20:30:46 1638 www/ftui/components/view/view-item.component.js
@@ -107,6 +107,7 @@ UPD 2022-10-09_20:42:01 8248 www/ftui/examples/contents/mobile-shutter.html
 UPD 2022-01-27_21:05:55 1723 www/ftui/examples/contents/mobile-solar.html
 UPD 2022-10-07_22:48:38 3397 www/ftui/examples/contents/mobile-temp.html
 UPD 2022-06-19_16:52:05 2637 www/ftui/examples/contents/mobile-view-sonos.html
+UPD 2022-10-24_22:52:16 1378 www/ftui/examples/contents/mobile-view-vacuum.html
 UPD 2021-02-01_19:44:46 189 www/ftui/examples/contents/mobile-view1.html
 UPD 2022-10-24_23:02:44 2544 www/ftui/examples/contents/mobile-water.html
 UPD 2022-01-27_21:10:12 4579 www/ftui/examples/contents/mobile-windows.html
@@ -719,7 +720,7 @@ UPD 2020-12-31_16:39:06 49580 www/ftui/modules/chart.js/chartjs-adapter-date-fns
 UPD 2021-02-04_22:43:17 8388 www/ftui/modules/circle-menu/circle-menu.js
 UPD 2021-02-01_19:44:50 5063 www/ftui/modules/circle-menu/circle-menu.min.js
 UPD 2022-05-25_18:05:01 14463 www/ftui/modules/ftui/fhem.service.js
-UPD 2022-05-24_21:29:01 8285 www/ftui/modules/ftui/ftui.app.js
+UPD 2022-10-30_16:38:49 8285 www/ftui/modules/ftui/ftui.app.js
 UPD 2022-10-09_20:49:31 12676 www/ftui/modules/ftui/ftui.binding.js
 UPD 2022-04-09_20:43:58 14245 www/ftui/modules/ftui/ftui.helper.js
 UPD 2020-12-31_16:39:06 9247 www/ftui/modules/hocon/hocon.js
