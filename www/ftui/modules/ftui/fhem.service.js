@@ -391,12 +391,9 @@ class FhemService {
   }
 
   fetchCSrf() {
-    const options = {
-      username: this.config.username,
-      password: this.config.password,
-      cache: 'no-cache'
-    };
-    return fetch(this.config.fhemDir + '?XHR=1', options)
+    return fetch(this.config.fhemDir + '?XHR=1', {
+      cache: 'no-cache',
+    })
       .then(response => {
         this.config.csrf = response.headers.get('X-FHEM-csrfToken');
         log(1, 'Got csrf from FHEM:' + this.config.csrf);
