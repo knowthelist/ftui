@@ -392,7 +392,7 @@ class FhemService {
 
   fetchCSrf() {
     const options = {
-      headers: new Headers('Authorization', 'Basic ' + base64.encode(this.config.username + ':' + this.config.password)),
+      headers: new Headers('Authorization', 'Basic ' + btoa(this.config.username + ':' + this.config.password)),
       cache: 'no-cache'
     };
     return fetch(this.config.fhemDir + '?XHR=1', options)
