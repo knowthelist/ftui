@@ -391,7 +391,7 @@ class FhemService {
   }
 
   fetchCSrf() {
-    const headers = new Headers();
+    const myHeaders = new Headers();
     myHeaders.append("Authorization", "Basic " + btoa(this.config.username + ':' + this.config.password) );
     const options = {
       headers: myHeaders,
