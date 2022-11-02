@@ -395,7 +395,8 @@ class FhemService {
     myHeaders.append("Authorization", "Basic " + btoa(this.config.username + ':' + this.config.password) );
     const options = {
       headers: myHeaders,
-      cache: 'no-cache'
+      cache: 'no-cache',
+      mode: 'cors'
     };
     return fetch(this.config.fhemDir + '?XHR=1', options ) 
         .then(response => {
