@@ -391,10 +391,14 @@ class FhemService {
   }
 
   fetchCSrf() {
-    return fetch(this.config.fhemDir + '?XHR=1', { 
-	    headers: new Headers({ 'Authorization' : 'Basic ' + btoa(this.config.username + ':' + this.config.password) }),
-            cache: 'no-cache' 
-        }).then(response => {
+    const headers = new Headers();
+    myHeaders.append("Authorization", "Basic " + btoa(this.config.username + ':' + this.config.password) );
+    const options = {
+      headers: myHeaders,
+      cache: 'no-cache'
+    };
+    return fetch(this.config.fhemDir + '?XHR=1', options ) 
+        .then(response => {
           this.config.csrf = response.headers.get('X-FHEM-csrfToken');
           log(1, 'Got csrf from FHEM:' + this.config.csrf);
         });
