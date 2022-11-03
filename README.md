@@ -58,6 +58,8 @@ docker pull knowthelist/ftui
 - Put the <b>fhemweb_url</b> into the head of the index.html: 
 ````
 <meta name="fhemweb_url" content="http://<your_fhem_url>:8083/fhem/">
+<meta name="username" content="your user">
+<meta name="password" content="your password">
 ````
 
 - <b>Run</b> the container: 
