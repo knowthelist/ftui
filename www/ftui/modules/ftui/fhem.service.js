@@ -392,6 +392,17 @@ class FhemService {
       }
     })
   }
+  
+  getCookie(cookie, name) {
+    const q = {}
+    cookie?.replace(/\s/g, '')
+      .split(';')
+      .map(i=>i.split('='))
+      .forEach(([key, value]) => {
+        q[key] = value
+    })
+    return q[name]??null;
+  }
 
   fetchCSrf() {
     const myHeaders = new Headers();
@@ -403,7 +414,7 @@ class FhemService {
     };
     return fetch(this.config.fhemDir + '?XHR=1', options ) 
         .then(response => {
-          this.config.csrf = response.headers.get('X-FHEM-csrfToken');
+          this.config.csrf = getCookie(response.headers.get('set-cookie'),'AuthToken');
           log(1, 'Got csrf from FHEM:' + this.config.csrf);
         });
   }
