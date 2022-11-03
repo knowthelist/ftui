@@ -359,9 +359,12 @@ class FhemService {
       fwcsrf: this.config.csrf,
       XHR: '1',
     };
+    const myHeaders = new Headers();
+    myHeaders.append("Authorization", "Basic " + btoa(this.config.username + ':' + this.config.password) );
     const options = {
-      username: this.config.username,
-      password: this.config.password,
+      headers: myHeaders,
+      cache: 'no-cache',
+      mode: 'cors'
     };
     url.search = new URLSearchParams(params)
     log(1, '[fhemService] send to FHEM: ' + cmdline);
