@@ -414,7 +414,7 @@ class FhemService {
     };
     return fetch(this.config.fhemDir + '?XHR=1', options ) 
         .then(response => {
-          this.config.csrf = getCookie(response.headers.get('set-cookie'),'AuthToken');
+          this.config.csrf = this.getCookie(response.headers.get('set-cookie'),'AuthToken');
           log(1, 'Got csrf from FHEM:' + this.config.csrf);
         });
   }
