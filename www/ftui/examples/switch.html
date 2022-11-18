@@ -30,32 +30,42 @@
     <ftui-grid-tile row="1" col="1" height="1" width="2">
       <header>DEFAULT</header>
 
-        <ftui-switch [value]="dummy1"></ftui-switch>
-    
-      </ftui-grid-tile>
+      <ftui-switch [value]="dummy1"></ftui-switch>
+
+    </ftui-grid-tile>
 
     <ftui-grid-tile row="1" col="3" height="1" width="2">
       <header>TEXTES</header>
 
-        <ftui-switch [(value)]="dummy1" texts='on,off'></ftui-switch>
-        <ftui-switch [value]="dummy1" texts='1,0'></ftui-switch>
+      <ftui-switch [(value)]="dummy1" texts='on,off'></ftui-switch>
+      <ftui-switch [value]="dummy1" texts='1,0'></ftui-switch>
 
     </ftui-grid-tile>
 
     <ftui-grid-tile row="1" col="5" height="1" width="2">
       <header>COLORS</header>
 
-        <ftui-switch [(value)]="dummy1" color="warning"></ftui-switch>
-        <ftui-switch [color]="dummy2"></ftui-switch>
+      <ftui-switch [(value)]="dummy1" color="warning"></ftui-switch>
+      <ftui-switch [color]="dummy2"></ftui-switch>
 
     </ftui-grid-tile>
 
     <ftui-grid-tile row="1" col="7" height="1" width="2">
       <header>AT</header>
 
-        <ftui-switch [value]="AtSeven | map('`Next.*`:active')" (value)="AtSeven" states="inactive,active"></ftui-switch>
+      <ftui-switch [value]="AtSeven | map('`Next.*`:active')" (value)="AtSeven" states="inactive,active"></ftui-switch>
 
     </ftui-grid-tile>
+
+    <ftui-grid-tile row="1" col="9" height="1" width="2">
+      <header>DOIF</header>
+
+      <ftui-switch [value]="diWindowOpen:mode"
+                   (value)="setreading diWindowOpen:mode"
+                   states="disabled,enabled"></ftui-switch>
+
+    </ftui-grid-tile>
+
   </ftui-grid>
 </body>
 

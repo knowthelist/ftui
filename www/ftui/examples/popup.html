@@ -39,21 +39,21 @@
     <ftui-grid-tile row="1" col="1" height="1" width="1">
       <header>POPUP1</header>
 
-      <ftui-icon name="sitemap" popup-target="pop1"></ftui-icon>
+      <ftui-icon name="sitemap" @click="pop1.open()"></ftui-icon>
 
     </ftui-grid-tile>
 
     <ftui-grid-tile row="1" col="1" height="1" width="1">
       <header>POPUP1</header>
 
-      <ftui-icon name="sitemap" popup-target="pop1"></ftui-icon>
+      <ftui-icon name="sitemap" @click="pop1.open()"></ftui-icon>
 
     </ftui-grid-tile>
 
     <ftui-grid-tile row="2" col="1" height="1" width="1">
       <header>POPUP5</header>
 
-      <ftui-icon name="magic" popup-target="pop5"></ftui-icon>
+      <ftui-icon name="magic" @click="pop5.open()"></ftui-icon>
 
     </ftui-grid-tile>
 
@@ -78,14 +78,14 @@
     <ftui-grid-tile row="1" col="3" height="1" width="1">
       <header>POPUP2</header>
 
-      <ftui-icon name="road" popup-target="pop2"></ftui-icon>
+      <ftui-icon name="road" @click="pop2.open()""></ftui-icon>
 
     </ftui-grid-tile>
 
     <ftui-grid-tile row="1" col="4" height="1" width="1">
       <header>CUSTOM-CLOSE</header>
 
-      <ftui-icon name="pencil" popup-target="pop-custom-close"></ftui-icon>
+      <ftui-icon name="pencil" @click="pop_custom_close.open()"></ftui-icon>
 
     </ftui-grid-tile>
 
@@ -151,7 +151,7 @@
     <ftui-image [src]="ftuitest:thumbnail"></ftui-image>
   </ftui-popup>
 
-  <ftui-popup id="pop-custom-close" timeout="0" opacity="0.1">
+  <ftui-popup id="pop_custom_close" timeout="0" opacity="0.1">
     <header>Custom Close</header>
     <ftui-label color="danger" slot="close" popup-close>Close</ftui-label>
   </ftui-popup>

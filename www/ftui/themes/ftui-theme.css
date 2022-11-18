@@ -25,9 +25,8 @@
   --warning: #eeca82;
   --danger: #db5d3a;
   --light: #bfbfbf;
-  --medium: #8c8c8c;
+  --medium: #5d5d5d;
   --dark: #3f3f3f;
-  --dark-light: #535353;
   --darker: #333333;
   --darkest: #272727;
 
@@ -71,7 +70,7 @@
   --page-background-color: var(--black);
 
   --grid-background-color: var(--darker);
-  --grid-header-color: var(--medium);
+  --grid-header-color: var(--light);
   --grid-header-background-color: var(--darkest);
 
   --tab-color: var(--medium-color);
