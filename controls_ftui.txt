@@ -1,7 +1,7 @@
 UPD 2021-11-09_20:11:11 1622 www/ftui/components/badge/badge.component.js
 UPD 2022-11-13_23:00:04 1394 www/ftui/components/button/button-nice.component.js
 UPD 2022-10-19_19:59:15 2530 www/ftui/components/button/button.component.css
-UPD 2022-10-24_18:59:33 2306 www/ftui/components/button/button.component.js
+UPD 2022-11-19_18:54:30 2433 www/ftui/components/button/button.component.js
 UPD 2022-10-18_19:19:21 2354 www/ftui/components/cell/cell.component.js
 UPD 2022-02-24_00:18:16 754 www/ftui/components/chart/chart-controls.component.css
 UPD 2022-02-15_18:21:29 3865 www/ftui/components/chart/chart-controls.component.js
@@ -78,7 +78,7 @@ UPD 2022-02-07_00:30:28 511 www/ftui/examples/_empty.html
 UPD 2022-02-07_00:30:28 1875 www/ftui/examples/badge.html
 UPD 2022-02-07_00:30:28 1589 www/ftui/examples/binding.html
 UPD 2020-12-31_16:39:02 913 www/ftui/examples/button-nice.html
-UPD 2022-02-13_23:28:11 10704 www/ftui/examples/button.html
+UPD 2022-11-19_18:39:15 11239 www/ftui/examples/button.html
 UPD 2022-03-10_17:58:47 3326 www/ftui/examples/chart.html
 UPD 2022-02-08_19:44:11 1704 www/ftui/examples/chart2.html
 UPD 2022-01-06_22:08:43 1408 www/ftui/examples/checkbox.html
@@ -120,7 +120,7 @@ UPD 2022-02-22_20:02:56 6867 www/ftui/examples/icon.html
 UPD 2022-02-13_23:34:53 4118 www/ftui/examples/image.html
 UPD 2021-11-06_00:29:33 2108 www/ftui/examples/input.html
 UPD 2022-02-01_22:09:10 6532 www/ftui/examples/knob.html
-UPD 2022-03-10_18:41:31 10057 www/ftui/examples/label.html
+UPD 2022-11-19_15:30:29 10049 www/ftui/examples/label.html
 UPD 2022-02-07_00:30:28 2351 www/ftui/examples/medialist.html
 UPD 2022-01-13_17:51:31 1942 www/ftui/examples/menu.html
 UPD 2022-01-13_22:25:03 2315 www/ftui/examples/menu2.html
@@ -501,6 +501,7 @@ UPD 2022-11-13_21:53:49 702 www/ftui/icons/paper-plane-o.svg
 UPD 2022-11-13_21:53:49 1089 www/ftui/icons/paperclip.svg
 UPD 2022-11-13_21:53:50 773 www/ftui/icons/pause-circle-o.svg
 UPD 2022-11-13_21:53:50 649 www/ftui/icons/pause-circle.svg
+UPD 2022-11-13_21:53:51 752 www/ftui/icons/pause-o.svg
 UPD 2022-11-13_21:53:51 520 www/ftui/icons/pause.svg
 UPD 2022-11-13_21:53:52 945 www/ftui/icons/paw.svg
 UPD 2022-11-13_21:53:52 782 www/ftui/icons/pencil-square.svg
@@ -512,6 +513,7 @@ UPD 2022-11-13_21:53:55 427 www/ftui/icons/pie-chart.svg
 UPD 2022-11-13_21:53:55 933 www/ftui/icons/plane.svg
 UPD 2022-11-13_21:53:56 701 www/ftui/icons/play-circle-o.svg
 UPD 2022-11-13_21:53:56 568 www/ftui/icons/play-circle.svg
+UPD 2022-11-13_21:53:57 487 www/ftui/icons/play-o.svg
 UPD 2022-11-13_21:53:57 318 www/ftui/icons/play.svg
 UPD 2022-11-13_21:53:57 545 www/ftui/icons/plug.svg
 UPD 2022-11-13_21:53:58 663 www/ftui/icons/plus-circle.svg
@@ -606,6 +608,7 @@ UPD 2022-11-13_21:54:39 583 www/ftui/icons/sticky-note-o.svg
 UPD 2022-11-13_21:54:39 473 www/ftui/icons/sticky-note.svg
 UPD 2022-11-13_21:54:39 606 www/ftui/icons/stop-circle-o.svg
 UPD 2022-11-13_21:54:40 482 www/ftui/icons/stop-circle.svg
+UPD 2022-11-13_21:54:40 426 www/ftui/icons/stop-o.svg
 UPD 2022-11-13_21:54:41 350 www/ftui/icons/stop.svg
 UPD 2022-11-13_21:54:41 918 www/ftui/icons/street-view.svg
 UPD 2022-11-13_21:54:42 798 www/ftui/icons/stumbleupon-circle.svg

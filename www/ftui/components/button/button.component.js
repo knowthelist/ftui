@@ -53,12 +53,16 @@ export class FtuiButton extends FtuiElement {
 
   onDownEvent() {
     this.classList.add('activated');
+    this.longPressTimer = setTimeout(() => {
+      this.emitEvent('hold');
+    }, 500);
   }
 
   onUpEvent() {
     setTimeout(() => {
       this.classList.remove('activated');
     },300)
+    clearTimeout(this.longPressTimer);
   }
 
   onClickEvent() {

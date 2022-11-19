@@ -308,6 +308,18 @@
       </ftui-row>
     </ftui-grid-tile>
 
+    <ftui-grid-tile row="4" col="4" height="1" width="1" shape="round">
+      <ftui-grid-header>LONG PRESS</ftui-grid-header>
+      <ftui-button [(value)]="GalerieLicht" fill="none" @hold="long_press.open()">
+        <ftui-icon name="lightbulb" size="3" [color]="GalerieLicht | map('on:primary, off:medium')"></ftui-icon>
+      </ftui-button>
+    </ftui-grid-tile>
+
+    <ftui-popup id="long_press" timeout="0">
+      <header>LongPress Popup</header>
+      <ftui-label>More settings after Long Press ...</ftui-label>
+    </ftui-popup>
+
     <ftui-grid-tile row="4" col="5" height="1" width="1" shape="round">
       <ftui-grid-header>SHUTTER</ftui-grid-header>
       <ftui-column height="70%">
