@@ -26,7 +26,7 @@ UPD 2022-02-11_22:35:35 1992 www/ftui/components/grid/grid-tile.component.css
 UPD 2022-02-26_14:12:40 1074 www/ftui/components/grid/grid-tile.component.js
 UPD 2022-10-19_20:08:42 4168 www/ftui/components/grid/grid.component.js
 UPD 2022-10-30_15:58:22 1263 www/ftui/components/icon/icon.component.css
-UPD 2022-02-22_20:00:27 2770 www/ftui/components/icon/icon.component.js
+UPD 2022-11-23_20:04:15 2812 www/ftui/components/icon/icon.component.js
 UPD 2022-01-31_02:09:56 3277 www/ftui/components/image/image.component.js
 UPD 2021-02-03_14:48:37 8329 www/ftui/components/image/image_not_available.js
 UPD 2022-01-24_22:06:30 2660 www/ftui/components/input/input.component.js
@@ -40,8 +40,8 @@ UPD 2022-02-15_18:21:52 4483 www/ftui/components/medialist/medialist.component.j
 UPD 2022-01-13_19:57:41 1070 www/ftui/components/menu/menu-button.component.js
 UPD 2021-11-09_22:11:36 407 www/ftui/components/menu/menu.component.css
 UPD 2021-11-09_22:09:43 1533 www/ftui/components/menu/menu.component.js
-UPD 2022-02-11_23:58:36 1721 www/ftui/components/meter/meter.component.css
-UPD 2022-02-15_18:27:19 2213 www/ftui/components/meter/meter.component.js
+UPD 2022-11-20_20:44:23 1539 www/ftui/components/meter/meter.component.css
+UPD 2022-11-20_20:26:08 2213 www/ftui/components/meter/meter.component.js
 UPD 2022-02-19_01:16:35 1084 www/ftui/components/nav/nav-link.component.js
 UPD 2022-01-11_18:32:57 1477 www/ftui/components/popup/popup.component.css
 UPD 2022-11-05_14:21:55 3388 www/ftui/components/popup/popup.component.js
@@ -52,7 +52,7 @@ UPD 2021-04-10_12:07:56 1479 www/ftui/components/segment/segment-button.componen
 UPD 2021-02-05_18:44:32 1066 www/ftui/components/segment/segment.component.css
 UPD 2022-01-31_02:08:35 2907 www/ftui/components/segment/segment.component.js
 UPD 2022-01-29_15:25:07 3770 www/ftui/components/slider/slider.component.css
-UPD 2022-02-15_18:27:19 3713 www/ftui/components/slider/slider.component.js
+UPD 2022-11-22_17:13:49 3768 www/ftui/components/slider/slider.component.js
 UPD 2022-01-31_08:35:15 2128 www/ftui/components/speak/speak.component.js
 UPD 2022-02-12_21:33:17 1269 www/ftui/components/swiper/swiper.component.css
 UPD 2022-02-12_21:35:18 5413 www/ftui/components/swiper/swiper.component.js
@@ -736,7 +736,7 @@ UPD 2022-02-16_09:23:29 12205 www/ftui/modules/rangeable/rangeable.min.js
 UPD 2020-12-31_16:39:06 1922 www/ftui/modules/vanilla-notify/vanilla-notify.css
 UPD 2022-02-22_21:49:40 6445 www/ftui/modules/vanilla-notify/vanilla-notify.js
 UPD 2022-02-22_21:49:45 3461 www/ftui/modules/vanilla-notify/vanilla-notify.min.js
-UPD 2022-03-06_19:45:22 3458 www/ftui/themes/bright-theme.css
+UPD 2022-11-20_12:41:32 3500 www/ftui/themes/bright-theme.css
 UPD 2022-10-19_18:47:16 3933 www/ftui/themes/color-attributes.css
 UPD 2022-11-13_22:32:20 3412 www/ftui/themes/ftui-theme.css
 UPD 2022-02-18_19:18:46 3441 www/ftui/themes/mobile-dark-theme.css

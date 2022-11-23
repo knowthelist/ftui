@@ -111,6 +111,7 @@
   --segments-text-color: var(--text-color);
 
   --knob-outline-color: var(--medium);
+  --meter-background-color: var(--light);
 }
 
 body {

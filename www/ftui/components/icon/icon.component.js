@@ -56,7 +56,7 @@ export class FtuiIcon extends FtuiElement {
         this.loadIcon(`${this.path}/${newValue}.${this.type}`);
         break;
       case 'rgb':
-        this.elementIcon.style.color = `#${newValue.replace('#', '')}`;
+        this.elementIcon.style.setProperty('--color-base', `${newValue ? '#' + newValue.replace('#', '') : ''}`);
         break;
       case 'width':
       case 'height':

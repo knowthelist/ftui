@@ -46,14 +46,15 @@ export class FtuiSlider extends FtuiElement {
     }, false);
 
     // force re-render when resize
-    const resize_ob = new ResizeObserver(() => {
-      requestAnimationFrame(() => {
-        this.updateRangable();
+    if ('ResizeObserver' in window) {
+      const resize_ob = new ResizeObserver(() => {
+        requestAnimationFrame(() => {
+          this.updateRangable();
+        });
       });
-    });
 
-    resize_ob.observe(this.input);
-
+      resize_ob.observe(this.input);
+    }
   }
 
   template() {
