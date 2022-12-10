@@ -11,8 +11,11 @@
   border-color: var(--color-base, #20639b);
   background: transparent;
   color: var(--color-base, #20639b);
-  height: auto;
-  min-height: 2.5em;
+  --button-height: 2.5em;
+  height: var(--button-height);
+  min-height: var(--button-height);
+  width: var(--button-width);
+  min-width: var(--button-width);
 }
 
 /* size */
@@ -23,7 +26,7 @@
   --padding-start: 0.9em;
   --padding-end: 0.9em;
   --padding-bottom: 0;
-  height: 2em;
+  --button-height: 2em;
   font-size: 0.9em;
 }
 
@@ -33,7 +36,7 @@
   --padding-start: 1em;
   --padding-end: 1em;
   --padding-bottom: 0;
-  height: 2.8em;
+  --button-height: 2.8em;
   font-size: 1.5em;
 }
 
@@ -66,7 +69,7 @@
   --padding-end: 0em;
   --padding-bottom: 0;
   width: 3em;
-  height: 3em;
+  --button-height: 3em;
 }
 
 :host([fill="solid"]) .button-inner {

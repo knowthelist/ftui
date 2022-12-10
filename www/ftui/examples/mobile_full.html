@@ -293,7 +293,7 @@
           <ftui-row slot="end" align-items="stretch">
 
             <ftui-label [(text)]="Leinwand | map('on:down,off:up')" color="medium"></ftui-label>
-            <ftui-button (value)="Leinwand" states="75%" color="current" fill="none">
+            <ftui-button (value)="Leinwand:pct" states="75" color="current" fill="none">
               <ftui-icon name="angle-down" class="size-2"></ftui-icon>
 
             </ftui-button>
@@ -394,7 +394,7 @@
           <ftui-switch [(value)]="EsstischLampe" slot="end"></ftui-switch>
         </ftui-view-item>
         <ftui-view-item>Decke
-          <ftui-switch [(value)]="WohnzimmerDeckenLicht" slot="end"></ftui-switch>
+          <ftui-switch [(value)]="WohnenDeckenLicht" slot="end"></ftui-switch>
         </ftui-view-item>
         <ftui-view-item>Spüle oben
           <ftui-nav-link target="viewKitchenColor">

@@ -110,7 +110,7 @@
   --segments-hover-color: var(--light);
   --segments-text-color: var(--text-color);
 
-  --knob-outline-color: var(--medium);
+  --knob-outline-color: var(--light);
   --meter-background-color: var(--light);
 }
 

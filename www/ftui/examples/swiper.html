@@ -92,6 +92,11 @@
       </ftui-swiper>
     </ftui-grid-tile>
 
+    <!-- swiper in popup -->
+    <ftui-grid-tile row="11" col="11" height="4" width="4" @click="swiper_popup.open()">
+      click
+    </ftui-grid-tile>
+
     <!-- image auto play switch -->
     <ftui-grid-tile row="18" col="12" height="4" width="4">
       <label>auto-play</label>
@@ -180,6 +185,17 @@
     </ftui-grid-tile>
 
   </ftui-grid>
+
+  <ftui-popup id="swiper_popup">
+    <header>Swiper in Popup</header>
+    <ftui-swiper id="swiper3" dots auto-play interval="3">
+      <ftui-image src="https://i.pravatar.cc/100?img=11" width="90px" shape="circle"></ftui-image>
+      <ftui-image src="https://i.pravatar.cc/100?img=12" width="90px" shape="circle"></ftui-image>
+      <ftui-image src="https://i.pravatar.cc/100?img=13" width="90px" shape="circle"></ftui-image>
+      <ftui-image src="https://i.pravatar.cc/100?img=14" width="90px" shape="circle"></ftui-image>
+      <ftui-image src="https://i.pravatar.cc/100?img=15" width="90px" shape="circle"></ftui-image>
+    </ftui-swiper>
+  </ftui-popup>
 
 </body>
 

@@ -44,11 +44,22 @@ export class FtuiButton extends FtuiElement {
       value: 'off',
       debounce: 0,
       gap: 0,
+      height: null,
+      width: null,
     };
   }
 
   static get observedAttributes() {
     return [...this.convertToAttributes(FtuiButton.properties), ...super.observedAttributes];
+  }
+
+  onAttributeChanged(name, newValue) {
+    switch (name) {
+      case 'width':
+      case 'height':
+        this.style.setProperty(`--button-${name}`, newValue);
+        break;
+    }
   }
 
   onDownEvent() {
@@ -61,7 +72,7 @@ export class FtuiButton extends FtuiElement {
   onUpEvent() {
     setTimeout(() => {
       this.classList.remove('activated');
-    },300)
+    }, 300)
     clearTimeout(this.longPressTimer);
   }
 
@@ -75,7 +86,7 @@ export class FtuiButton extends FtuiElement {
     let currentIndex = states.findIndex((pattern) => isEqual(pattern, this.value));
     // increase the index to the next value in the array of possible values
     currentIndex = ++currentIndex % states.length;
-    return states[currentIndex].replace('$value', this.value );
+    return states[currentIndex].replace('$value', this.value);
   }
 
   playEffect() {

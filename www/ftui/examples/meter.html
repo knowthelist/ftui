@@ -42,14 +42,23 @@
       <ftui-meter value="65" min="1" max="100" height="8px" color="alert">65</ftui-meter>
     </ftui-grid-tile>
 
-    <ftui-grid-tile row="3" col="1" height="1" width="3">
+    <ftui-grid-tile row="3" col="1" height="1" width="2">
       <header>NUMBER</header>
       <ftui-row>
-        <ftui-input [(value)]="ftuitest" min="1" max="100" type="number" size="4"></ftui-input>
         <ftui-button (value)="ftuitest" states="0,4,10,45,75,90,100">Try</ftui-button>
+        <ftui-input [(value)]="ftuitest" min="1" max="100" type="number" size="2s"></ftui-input>
         <ftui-meter [value]="ftuitest" min="1" max="100"
                     [color]="ftuitest | step('0:primary, 60:warning, 80:alert')"></ftui-meter>
       </ftui-row>
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="3" col="3" height="1" width="1">
+      <header>SCALE</header>
+      <ftui-meter [value]="ftuitest" min="0" max="20" has-scale style="--meter-margin: 0.25em"> 
+        <div slot="scale">&prime;</div>
+        <div slot="scale">&prime;</div>
+        <div slot="scale">&prime;</div>
+      </ftui-meter>
     </ftui-grid-tile>
 
     <ftui-grid-tile row="4" col="1" height="1" width="1">
