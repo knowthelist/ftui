@@ -36,12 +36,18 @@ export class FtuiGrid extends FtuiElement {
       this.configResponsiveGrid();
     } else {
       if (this.resize) {
-        window.addEventListener('resize', () => {
-          if (this.windowWidth !== window.innerWidth) {
+        if ('ResizeObserver' in window) {
+          const resize_ob = new ResizeObserver(() => {
             this.debouncedResize(500);
-            this.windowWidth = window.innerWidth;
-          }
-        });
+          });
+
+          resize_ob.observe(document.body);
+        } else {
+          window.addEventListener('resize', () => {
+            this.debouncedResize(500);
+          });
+        }
+
       }
       this.configureGrid();
       document.addEventListener('ftuiVisibilityChanged', () => this.configureGrid());
