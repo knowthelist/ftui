@@ -115,8 +115,8 @@ export class FtuiGrid extends FtuiElement {
 
     cols = (this.cols > 0) ? this.cols : highestCol;
     rows = (this.rows > 0) ? this.rows : highestRow;
-    baseWidth = (this.baseWidth > 0) ? this.baseWidth : (window.innerWidth - this.margin) / cols;
-    baseHeight = (this.baseHeight > 0) ? this.baseHeight : (window.innerHeight - this.margin) / rows;
+    baseWidth = (this.baseWidth > 0) ? this.baseWidth : (this.clientWidth - this.margin) / cols;
+    baseHeight = (this.baseHeight > 0) ? this.baseHeight : (this.clientHeight - this.margin) / rows;
 
     if (baseWidth < this.minX) {
       baseWidth = this.minX;
