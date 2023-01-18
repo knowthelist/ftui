@@ -29,7 +29,7 @@ export class FtuiGrid extends FtuiElement {
     this.debouncedResize = debounce(this.configureGrid, this);
 
     this.windowWidth = 0;
-    this.tiles = this.querySelectorAll('ftui-grid-tile, [data-grid-tile]');
+    this.tiles = this.querySelectorAll(`#${this.id} ftui-grid-tile, #${this.id} [data-grid-tile]`);
 
 
     if (this.responsive) {
@@ -117,7 +117,6 @@ export class FtuiGrid extends FtuiElement {
     rows = (this.rows > 0) ? this.rows : highestRow;
     baseWidth = (this.baseWidth > 0) ? this.baseWidth : (this.clientWidth - this.margin) / cols;
     baseHeight = (this.baseHeight > 0) ? this.baseHeight : (this.clientHeight - this.margin) / rows;
-
     if (baseWidth < this.minX) {
       baseWidth = this.minX;
     }

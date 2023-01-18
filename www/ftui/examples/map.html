@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!--
+    /* FHEM tablet ui - FTUI */
+    /**
+    * UI builder framework for FHEM
+    *
+    * Version: 3.0.0
+    *
+    * Copyright (c) 2023 Mario Stephan <mstephan@shared-files.de>
+    * Under MIT License (http://www.opensource.org/licenses/mit-license.php)
+    * https://github.com/knowthelist/ftui
+    */
+    -->
+  <base href="../" />
+  <script src="ftui.js"></script>
+  <link href="ftui.css" rel="stylesheet">
+  <link href="themes/ftui-theme.css" rel="stylesheet">
+  <link href="favicon.ico" rel="icon" type="image/x-icon" />
+  <!-- add your api key here -->
+  <meta name="maps_api_key" content="">
+
+
+  <title>FTUI Example Maps</title>
+</head>
+
+<body>
+
+  <ftui-grid base-width="120" base-height="120">
+
+    <ftui-grid-tile row="1" col="1" height="3" width="5">
+      <header>Transit</header>
+
+      <ftui-map
+                id="map1"
+                transit
+                latitude="51.0"
+                longitude="13.6"></ftui-map>
+
+    </ftui-grid-tile>
+    <ftui-grid-tile row="4" col="1" height="3" width="5">
+      <header>Traffic</header>
+
+      <ftui-map
+                id="map2"
+                traffic
+                latitude="51.0"
+                longitude="13.6"></ftui-map>
+
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="1" col="6" height="3" width="2">
+      <ftui-button
+                   margin="1"
+                   @click="map1.refresh()">Refresh&nbsp;
+        <ftui-icon name="refresh"></ftui-icon>
+      </ftui-button>
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="4" col="6" height="3" width="2">
+      <ftui-button
+                   margin="1"
+                   @click="map2.refresh()">Refresh&nbsp;
+        <ftui-icon name="refresh"></ftui-icon>
+      </ftui-button>
+    </ftui-grid-tile>
+
+  </ftui-grid>
+
+</body>
+
+</html>

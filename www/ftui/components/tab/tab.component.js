@@ -70,6 +70,7 @@ class FtuiTab extends FtuiButton {
   }
 
   onClickEvent() {
+    this.isLocked = true;
     // hide all views and show selected view
     selectAll(`ftui-tab-view[group="${this.group}"]`).forEach(elem => {
       if (elem.id !== this.view) {
@@ -98,12 +99,14 @@ class FtuiTab extends FtuiButton {
 
     // emit event
     triggerEvent('ftuiVisibilityChanged');
+    this.isLocked = false;
   }
 
   onAttributeChanged(name, newValue, oldValue) {
     switch (name) {
       case 'value':
-        if (newValue === 'on' && oldValue !== 'on') {
+        if (newValue === 'on' && oldValue !== 'on'
+        &&  !this.isLocked ) {
           this.onClickEvent();
         }
         break;
