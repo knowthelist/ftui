@@ -36,6 +36,7 @@ export class FtuiDropdown extends FtuiElement {
   static get properties() {
     return {
       list: '',
+	  vallist: '',
       value: '',
       delimiter: '[;,:|]',
       width: '',
@@ -57,6 +58,9 @@ export class FtuiDropdown extends FtuiElement {
       case 'list':
         this.fillList();
         break;
+      case 'vallist':
+        this.fillList();
+        break;
       case 'value':
         this.selectElement.value = this.value;
         break;
@@ -70,13 +74,18 @@ export class FtuiDropdown extends FtuiElement {
   fillList() {
     const splitter = this.delimiter.length === 1 ? this.delimiter : new RegExp(this.delimiter);
     const list = String(this.list).split(splitter);
+    const vallist = String(this.vallist).split(splitter);
     this.selectElement.length = 0;
-    list.forEach((item) => {
+    for (let i = 0; i < list.length; i++) {
       const opt = document.createElement('option');
-      opt.value = item;
-      opt.textContent = item;
+	  if(list.length == vallist.length){
+	    opt.value = vallist[i];
+	  }else{
+		opt.value = list[i];
+	  }
+	  opt.textContent = list[i];		  
       this.selectElement.appendChild(opt);
-    });
+    };
     this.selectElement.value = this.value;
   }
 
