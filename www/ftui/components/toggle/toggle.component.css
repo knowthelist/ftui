@@ -1,0 +1,30 @@
+.checkbox {
+  display: block;
+  overflow: hidden;
+  cursor: pointer;
+  border-radius: 2.25em;
+  color: var(--checkbox-off-color);
+}
+svg {
+  width: var(--checkbox-width, 4em);
+  height: var(--checkbox-height, 4em);
+}
+.bg {
+  fill: #ffffff;
+}
+.round {
+  fill: #ffffff;
+  stroke-width:2;
+  stroke: #000000;
+  transition-property: transform;
+  transition-duration: 0.4s;
+  transform:translate(0px,0px);
+}
+.checkbox.checked .bg {
+  fill: #00ff00;
+}
+.checkbox.checked .round {
+  transition-property: transform;
+  transition-duration: 0.4s;
+  transform:translate(232px,0px);
+}
