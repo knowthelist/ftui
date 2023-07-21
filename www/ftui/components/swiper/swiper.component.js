@@ -16,9 +16,12 @@ class FtuiSwiper extends FtuiElement {
 
     super(Object.assign(FtuiSwiper.properties, properties));
     this.currentIndex = 0;
+    this.tempIndex = 0;
     this.container = this.shadowRoot.querySelector('.slides');
     this.slotMain = this.shadowRoot.querySelector('slot');
     this.slotDots = this.shadowRoot.querySelector('slot[name=dots]');
+    const supportTouch = 'ontouchstart' in document;
+    this.container.addEventListener((supportTouch ? 'scroll' : 'mouseleave'), e => this.doScroll(e,supportTouch));
   }
 
 
@@ -66,7 +69,7 @@ class FtuiSwiper extends FtuiElement {
       this.onIntersectionChange.bind(this),
       {
         root: this.container,
-        delay: 500,
+        delay: 100,
         trackVisibility: true,
       });
     observer.observe(elem);
@@ -87,7 +90,7 @@ class FtuiSwiper extends FtuiElement {
       entries.forEach(entry => {
         entry.target.isVisible = ('isVisible' in entry) ? entry.isVisible : entry.isIntersecting;
         if (entry.target.isVisible && this.value !== entry.target.id) {
-          this.submitChange('value', entry.target.id);
+          this.submitChange('value', this.value);
         }
       });
     }
@@ -109,7 +112,8 @@ class FtuiSwiper extends FtuiElement {
           this.currentIndex = this.slides.indexOf(target);
           this.updateDots();
           if (target) {
-            this.container.scrollTo({ left: target.offsetLeft, behavior: 'smooth' });
+           this.tempIndex < this.currentIndex && this.currentIndex !== this.slides.length-1 ? this.tempIndex++ : this.slides[0].style.display === 'none' ? this.tempIndex = 0 : this.tempIndex = this.currentIndex;
+           this.container.scrollTo({left: (target.offsetWidth+50)*(this.tempIndex !== this.currentIndex ? this.tempIndex : this.currentIndex), behavior: 'smooth'});
           }
         }
       }
@@ -119,6 +123,18 @@ class FtuiSwiper extends FtuiElement {
         this.checkInterval();
         break;
     }
+  }
+
+  doScroll(e,supportTouch) {
+   const ePos = Math.ceil((e.target.scrollLeft+e.target.offsetLeft)/10)*10;
+   for(let i = 0; i < this.slides.length; i++){
+    const slidePos = Math.ceil((this.slides[i].offsetLeft)/10)*10;
+    if (slidePos === ePos || slidePos+10 === ePos || slidePos-10 === ePos) {
+     this.tempIndex = i;
+     this.currentIndex = i;
+     supportTouch ? '' : this.submitChange('value', this.slides[this.currentIndex].id);
+    }
+   }
   }
 
   onDotClicked(event) {
