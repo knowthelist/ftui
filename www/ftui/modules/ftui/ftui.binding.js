@@ -26,7 +26,7 @@ const ago = () => input => ftuiHelper.dateAgo(input);
 const till = () => input => ftuiHelper.dateTill(input);
 const timeFormat = (format, inputMode = 'ms', formatMode = 'lower') => input => ftuiHelper.timeFormat(input, format, inputMode, formatMode);
 const minusBlue = (value = 0) => input => Number(input) < value ? 'blue' : null;
-const contains = value => input => String(input).indexOf(value) < 0 ? true : false;
+const contains = value => input => String(input).indexOf(value) > 0 ? true : false;
 const is = value => input => String(input) === value ? true : false;
 const isNot = value => input => String(input) !== value ? true : false;
 const pad = (cnt, char) => input => String(input).padStart(cnt, char);
