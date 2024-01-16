@@ -20,6 +20,9 @@
   <ftui-view-item>Energy today
     <ftui-label [text]="PVConverter:Eac_today" unit="KWh"></ftui-label>
   </ftui-view-item>
+  <ftui-view-item>Energy Given Away
+    <ftui-label [text]="SmartMeter:GS303_Total_out | fix(1)"" unit="KWh"></ftui-label>
+  </ftui-view-item>
 </ftui-view-section>
 
 <ftui-view-section>

@@ -9,7 +9,7 @@
     *
     * Version: 3.0.0
     *
-    * Copyright (c) 2015-2019 Mario Stephan <mstephan@shared-files.de>
+    * Copyright (c) 2015-2024 Mario Stephan <mstephan@shared-files.de>
     * Under MIT License (http://www.opensource.org/licenses/mit-license.php)
     * https://github.com/knowthelist/ftui
     */
@@ -21,7 +21,11 @@
   <link href="favicon.ico" rel="icon" type="image/x-icon" />
 
   <meta name='viewport' content='width=device-width'>
-
+  <style>
+    [data-val1="on"][data-val2="on"] {
+      color: var(--success-color);
+    }
+  </style>
   <!-- when serving the page with other web servers, e.g. lighttpd -->
   <!--     <meta name="fhemweb_url" content="http://fhem.local:8083/fhem/"> -->
   <title>FTUI Example Icon</title>
@@ -45,7 +49,7 @@
 
       <ftui-column>
         <!-- binding short-->
-        <ftui-icon [name]="dummy1 | map('on:lightbulb-on, off:lightbulb')" [rgb]="HUEDevice6:rgb">
+        <ftui-icon [name]="dummy1 | map('on:lightbulb-on, off:lightbulb')" [rgb]="HUEDevice20:rgb">
         </ftui-icon>
 
         <ftui-label [text]="dummy1"></ftui-label>
@@ -186,6 +190,18 @@
       </ftui-icon>
       <ftui-label [text]="AgroWeather:wind" unit="km/h"></ftui-label>
     </ftui-grid-tile>
+
+    <ftui-grid-tile row="7" col="13" height="4" width="2">
+      <header>attribute-binding Logic-OR</header>
+      <!-- color change via Style rule-->
+      <ftui-icon name="file"
+        [attr.data-val1]="local:val1"
+        [attr.data-val2]="local:val2">
+      </ftui-icon>
+      <ftui-switch [(value)]="local:val1"></ftui-switch>
+      <ftui-switch [(value)]="local:val2"></ftui-switch>
+    </ftui-grid-tile>
+
 
   </ftui-grid>
 </body>

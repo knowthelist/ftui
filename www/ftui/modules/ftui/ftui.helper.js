@@ -354,6 +354,7 @@ export function durationHumanized(ms) {
   const userLang = navigator.language || navigator.userLanguage;
   const lang = window.ftuiApp ? ftuiApp.config.lang : isDefined(userLang) ? userLang.split('-')[0] : 'de';
   const plural = (lang === 'de') ? 'n' : 's';
+  const pluralDay = (lang === 'de') ? 'e' : 's';
   const seconds = ~~(x);
   if (seconds < 60) {
     return seconds + ' ' + (lang === 'de' ? 'Sekunde' : 'second') + (seconds > 1 ? plural : '');
@@ -370,7 +371,7 @@ export function durationHumanized(ms) {
   }
   x /= 24;
   const days = ~~(x);
-  return days + ' ' + (lang === 'de' ? 'Tag' : 'day') + (days > 1 ? plural : '');
+  return days + ' ' + (lang === 'de' ? 'Tag' : 'day') + (days > 1 ? pluralDay : '');
 }
 
 // Math functions

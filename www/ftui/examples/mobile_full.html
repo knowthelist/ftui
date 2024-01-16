@@ -9,7 +9,7 @@
     *
     * Version: 3.0.0
     *
-    * Copyright (c) 2020-2022 Mario Stephan <mstephan@shared-files.de>
+    * Copyright (c) 2020-2024 Mario Stephan <mstephan@shared-files.de>
     * Under MIT License (http://www.opensource.org/licenses/mit-license.php)
     * https://github.com/knowthelist/ftui
     */
@@ -25,8 +25,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
-
-  <meta name="fhemweb_url" content="http://fhem:8083/fhem/">
 
   <title>FTUI Mobile Example</title>
 </head>
@@ -124,7 +122,8 @@
         <ftui-view-item target="viewPower">
           <ftui-icon name="bolt" color="yellow" slot="start" invert></ftui-icon>
           Consumption
-          <ftui-label slot="end" color="medium" placeholder [text]="LeistungGesamt"></ftui-label>
+          <ftui-label slot="end" color="medium" placeholder [text]="LeistungGesamt" unit="&nbsp;/&nbsp;"></ftui-label>
+          <ftui-label slot="end" color="medium" placeholder [text]="SmartMeter:GS303_Power_cur" unit="W"></ftui-label>
         </ftui-view-item>
 
       </ftui-view-section>
@@ -418,11 +417,11 @@
         <ftui-view-item>Hue
           <ftui-nav-link target="viewHueColor">
             <ftui-icon name="circle" size="0"
-                       [rgb]="HUEDevice6:rgb">
+                       [rgb]="HUEDevice20:rgb">
             </ftui-icon>
           </ftui-nav-link>
-          <ftui-switch [value]="HUEDevice6 | map('on|dim.*: on, off|0: off')"
-                       (value)="HUEDevice6" slot="end"></ftui-switch>
+          <ftui-switch [value]="HUEDevice20 | map('on|dim.*: on, off|0: off')"
+                       (value)="HUEDevice20" slot="end"></ftui-switch>
         </ftui-view-item>
 
       </ftui-view-section>
@@ -503,7 +502,7 @@
     <!-- HUE COLOR -->
     <ftui-view id="viewHueColor">
       <ftui-content file="examples/contents/mobile-color.html"
-                    get="HUEDevice6:rgb" set="HUEDevice6:rgb"></ftui-content>
+                    get="HUEDevice20:rgb" set="HUEDevice20:rgb"></ftui-content>
     </ftui-view>
 
     <!-- OUTDOORS TEMPERATURES -->
@@ -550,5 +549,5 @@
       });
     }, 60000);
   </script>
-
+</body>
 </html>

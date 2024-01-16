@@ -91,7 +91,7 @@ Just add some of the FTUI web components to your HTML code
 Binding
 ------
 
-no binding - fix value
+- no binding - fix value
 
 ```html
 <ftui-label color="danger">demo</ftui-label>
@@ -99,8 +99,9 @@ no binding - fix value
 
 Input binding
 --------
+- Property binding:
 
-bind a FHEM reading to a attribute. Changes of the reading changes the attribute
+bind a FHEM reading to a property of an element. Changes of the reading changes the property
 
 ```html
 <ftui-label get-color="dummy1:color">demo</ftui-label>
@@ -109,6 +110,14 @@ bind a FHEM reading to a attribute. Changes of the reading changes the attribute
 short format
 ```html
 <ftui-label [color]="dummy1:color">demo</ftui-label>
+```
+
+- Attribute  binding:
+
+Attribute binding helps you to set values for attributes directly.
+
+```html
+<ftui-label [attr.data-my]="dummy1:status">demo</ftui-label>
 ```
 
 Output binding

@@ -9,7 +9,7 @@
     *
     * Version: 3.0.0
     *
-    * Copyright (c) 2020 Mario Stephan <mstephan@shared-files.de>
+    * Copyright (c) 2020-2024 Mario Stephan <mstephan@shared-files.de>
     * Under MIT License (http://www.opensource.org/licenses/mit-license.php)
     * https://github.com/knowthelist/ftui
     */
@@ -45,7 +45,7 @@
     <ftui-grid-tile row="1" col="3" height="1" width="1">
       <header>HUE-DEVICE</header>
 
-        <ftui-colorpicker [hex]="HUEDevice6:rgb" (hex)="replace('#','') | HUEDevice6:rgb"
+        <ftui-colorpicker [hex]="HUEDevice20:rgb" (hex)="replace('#','') | HUEDevice20:rgb"
                           layout="wheel,valueSlider"></ftui-colorpicker>
       
     </ftui-grid-tile>
@@ -62,7 +62,7 @@
       <ftui-row>
 
         <ftui-column width="10%" height="70%"><span>R</span><span>G</span><span>B</span></ftui-column>
-        <ftui-colorpicker [hex]="HUEDevice6:rgb" (hex)="replace('#','') | HUEDevice6:rgb" 
+        <ftui-colorpicker [hex]="HUEDevice20:rgb" (hex)="replace('#','') | HUEDevice20:rgb" 
                       layout="redSlider, greenSlider, blueSlider"></ftui-colorpicker>
 
       </ftui-row>
@@ -72,7 +72,7 @@
       <header>HORIZONTAL</header>
       
         <ftui-colorpicker direction="horizontal" layout="hueSlider, valueSlider"
-        [hex]="HUEDevice6:rgb" (hex)="replace('#','') | HUEDevice6:rgb"></ftui-colorpicker>
+        [hex]="HUEDevice20:rgb" (hex)="replace('#','') | HUEDevice20:rgb"></ftui-colorpicker>
     </ftui-grid-tile>
 
 
@@ -80,12 +80,12 @@
       <header>SAT/BRI/HUE</header>
       
         <ftui-colorpicker direction="horizontal" layout="hueSlider,saturationSlider,valueSlider"
-                [hue]="HUEDevice6:hue | divide(182.0425) | toInt() | "
-                [saturation]="HUEDevice6:sat | divide(2.55) | toInt()"
-                [brightness]="HUEDevice6:bri | divide(2.55) | toInt()"
-                (hue)="multiply(182.0425) | toInt() | HUEDevice6:hue"
-                (saturation)="multiply(2.55) | toInt() | HUEDevice6:sat"
-                (brightness)="multiply(2.55) | toInt() | HUEDevice6:bri">
+                [hue]="HUEDevice20:hue | divide(182.0425) | toInt() | "
+                [saturation]="HUEDevice20:sat | divide(2.55) | toInt()"
+                [brightness]="HUEDevice20:bri | divide(2.55) | toInt()"
+                (hue)="multiply(182.0425) | toInt() | HUEDevice20:hue"
+                (saturation)="multiply(2.55) | toInt() | HUEDevice20:sat"
+                (brightness)="multiply(2.55) | toInt() | HUEDevice20:bri">
         </ftui-colorpicker>
     </ftui-grid-tile>
 

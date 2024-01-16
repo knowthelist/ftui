@@ -1,7 +1,7 @@
 /*
 * Label component for FTUI version 3
 *
-* Copyright (c) 2019-2020 Mario Stephan <mstephan@shared-files.de>
+* Copyright (c) 2019-2024 Mario Stephan <mstephan@shared-files.de>
 * Under MIT License (http://www.opensource.org/licenses/mit-license.php)
 *
 * https://github.com/knowthelist/ftui
@@ -30,7 +30,11 @@ export class FtuiLabel extends FtuiElement {
           --color-base: currentColor;
           color: var(--color-base);
           white-space: nowrap;
+          display: flex;
+          align-items: center;
+          justify-content: center;
         }
+        :host([align-items=baseline])  { align-items: baseline;}
         :host(:empty:not([text])) slot[name="unit"],
         :host([text=""]) slot[name="unit"] { visibility: hidden; }
         :host slot[name="unit"] { margin-left: 0.15em; display: initial; }
@@ -41,7 +45,7 @@ export class FtuiLabel extends FtuiElement {
           height: .75em; border-radius: 2em;
           opacity: .3; animation: fading 1.5s infinite;
           min-width: 4em; }
-        :host([size="10"]),:host([size="11"]),:host([size="12"]),:host([thin]) {
+        :host([thin]) {
           font-family: "HelveticaNeue-UltraLight", "Segoe UI", "Roboto Light", "San Francisco", sans-serif;
           line-height: 0.8em; }
         @keyframes fading { 

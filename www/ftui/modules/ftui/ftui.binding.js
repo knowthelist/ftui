@@ -111,14 +111,19 @@ export class FtuiBinding {
             }
             if (String(this.element[attribute]) !== String(filteredValue)) {
               ftuiHelper.log(1, `${this.element.id}  -  onReadingEvent: set this.${attribute}=${filteredValue}`);
-              // change element's property
-              if (this.isThirdPartyElement) {
+              if (this.isThirdPartyElement || attribute.startsWith('attr.')) {
+                if (attribute.startsWith('attr.')) {
+                  attribute = attribute.split('.')[1];
+                }
+                attribute = ftuiHelper.toKebabCase(attribute);
+                // change element's attribute "attribute binding"
                 if (typeof filteredValue === 'boolean' && filteredValue === false) {
                   this.element.removeAttribute(attribute);
                 } else {
-                  this.element.setAttribute(ftuiHelper.toKebabCase(attribute), filteredValue);
+                  this.element.setAttribute(attribute, filteredValue);
                 }
               } else {
+                // change element's property "property binding"
                 this.element[attribute] = filteredValue;
               }
             }
