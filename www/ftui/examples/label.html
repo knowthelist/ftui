@@ -22,7 +22,10 @@
 
   <meta name="debug" content="0">
   <meta name="toast_position" content="top">
-
+<script>
+  const myDateTimeFormat1 = () => value => new Intl.DateTimeFormat('it', {weekday: "long"}).format(value);
+  const myDateTimeFormat2 = () => value => new Intl.DateTimeFormat('it', {weekday: "short"}).format(value);
+</script>
   <title>FTUI Example Label</title>
 </head>
 
@@ -225,6 +228,13 @@
         <ftui-label [text]="Sonos_Terasse:currentArtist"></ftui-label> - 
         <ftui-label [text]="Sonos_Terasse:currentTitle"></ftui-label>
       </span>
+    </ftui-grid-tile>
+
+
+    <ftui-grid-tile row="6" col="3" height="1" width="3">
+      <header>INTL DateFormat</header>
+      <ftui-label [text]="AgroWeather:state:time | toDate() | myDateTimeFormat1()"></ftui-label>
+      <ftui-label [text]="AgroWeather:state:time | toDate() | myDateTimeFormat2()"></ftui-label>
     </ftui-grid-tile>
 
   </ftui-grid>
