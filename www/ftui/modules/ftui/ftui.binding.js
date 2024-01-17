@@ -295,7 +295,7 @@ export class FtuiBinding {
     const attrTextItems = attrText.split('|');
     const lastItem = attrTextItems.pop().trim();
     const [, cmd = 'set', device, reading = 'STATE', value = '$value'] =
-      /^(?:(set|setreading|attr)\s)?((?:[^-:\s])*)(?:[-:\s]((?:(?!\$value)[^\s])*))?(?:\s(.*)?)?$/
+      /^(?:(set|setreading|attr|trigger)\s)?((?:[^-:\s])*)(?:[-:\s]((?:(?!\$value)[^\s])*))?(?:\s(.*)?)?$/
         .exec(lastItem);
 
     return {
