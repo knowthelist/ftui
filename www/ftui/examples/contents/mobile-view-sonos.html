@@ -16,14 +16,14 @@
 
 
 <ftui-view-sheet shape="round" >
-
+  <ftui-row>
   <ftui-column>
     <ftui-image [src]="Sonos_{{Name}}:currentAlbumArtURL" width="8em"></ftui-image>
     <ftui-label id="jjjj2" [text]="Sonos_{{Name}}:infoSummarize1" scroll></ftui-label>
   </ftui-column>
 
 
-  <ftui-cell width="60%">
+  <ftui-column width="60%">
     <ftui-button fill="outline" shape="circle"
                  [value]="Sonos_{{Name}}:transportState | map('PLAYING: play, PAUSED_PLAYBACK|STOPPED: pause')"
                  (value)="Sonos_{{Name}}" states="play, pause">
@@ -35,7 +35,8 @@
         <ftui-label id="jjjj2" [text]="Sonos_{{Name}}:infoSummarize1" scroll></ftui-label>
       </ftui-row> -->
 
-  </ftui-cell>
+  </ftui-column>
+</ftui-row> 
 </ftui-view-sheet>
 
 <ftui-view-section>
@@ -43,25 +44,31 @@
   <ftui-view-item>Bad
     <ftui-checkbox states="false, true"
                    (value)="map('false:RemoveMember, true:AddMember') | Sonos_{{Name}} $value Sonos_Bad"
-                   [value]="Sonos_{{Name}}:AvailablePlayer | contains('Sonos_Bad')"
+                   [value]="Sonos_{{Name}}:AvailablePlayer | contains('Sonos_Bad') | not()"
                    slot="end"></ftui-checkbox>
   </ftui-view-item>
   <ftui-view-item>Kinderzimmer
     <ftui-checkbox states="false, true"
-                   (value)="map('false:RemoveMember, true:AddMember') | Sonos_{{Name}} $value {{Name}}"
-                   [value]="Sonos_{{Name}}:AvailablePlayer | contains('Sonos_{{Name}}')"
+                   (value)="map('false:RemoveMember, true:AddMember') | Sonos_{{Name}} $value Sonos_Kinderzimmer"
+                   [value]="Sonos_{{Name}}:AvailablePlayer | contains('Sonos_Kinderzimmer') | not()"
                    slot="end"></ftui-checkbox>
   </ftui-view-item>
   <ftui-view-item>Terasse
     <ftui-checkbox states="false, true"
                    (value)="map('false:RemoveMember, true:AddMember') | Sonos_{{Name}} $value Sonos_Terasse"
-                   [value]="Sonos_{{Name}}:AvailablePlayer | contains('Sonos_Terasse')"
+                   [value]="Sonos_{{Name}}:AvailablePlayer | contains('Sonos_Terasse') | not()"
                    slot="end"></ftui-checkbox>
   </ftui-view-item>
   <ftui-view-item>Wohnzimmer
     <ftui-checkbox states="false, true"
                    (value)="map('false:RemoveMember, true:AddMember') | Sonos_{{Name}} $value Sonos_Wohnzimmer"
-                   [value]="Sonos_{{Name}}:AvailablePlayer | contains('Sonos_Wohnzimmer')"
+                   [value]="Sonos_{{Name}}:AvailablePlayer | contains('Sonos_Wohnzimmer') | not()"
+                   slot="end"></ftui-checkbox>
+  </ftui-view-item>
+  <ftui-view-item>WC
+    <ftui-checkbox states="false, true"
+                   (value)="map('false:RemoveMember, true:AddMember') | Sonos_{{Name}} $value Sonos_WC"
+                   [value]="Sonos_{{Name}}:AvailablePlayer | contains('Sonos_WC') | not()"
                    slot="end"></ftui-checkbox>
   </ftui-view-item>
 </ftui-view-section>
