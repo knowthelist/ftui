@@ -211,17 +211,16 @@ export function capitalize(s) {
 // date functions
 
 export function dateFromString(str) {
-  if (str && str.match(/(\d+)-(\d+)-(\d+)[_\s](\d+):(\d+):(\d+).*/)){
-    return new Date(+m[1], +m[2] - 1, +m[3], +m[4], +m[5], +m[6]);
-  } else if (str && str.match(/(\d\d).(\d\d).(\d\d\d\d)/)) {
-    return new Date(+m3[3], +m3[2] - 1, +m3[1], 0, -offset, 0, 0);
-  } else if (str && str.match(/(\d\d\d\d)-(\d\d)-(\d\d)/)) {
-    return new Date(+m4[1], +m4[2] - 1, +m4[3], 0, -offset, 0, 0);
-  } else if (str && str.match(/^(\d+)$/)) {
-    return new Date(70, 0, 1, 0, 0, m2[1], 0);
-  } else {
-    return new Date();
-  }
+  const m = str.match(/(\d+)-(\d+)-(\d+)[_\s](\d+):(\d+):(\d+).*/);
+  const m2 = str.match(/^(\d+)$/);
+  const m3 = str.match(/(\d\d).(\d\d).(\d\d\d\d)/);
+  const m4 = str.match(/(\d\d\d\d)-(\d\d)-(\d\d)/);s
+  const offset = new Date().getTimezoneOffset();
+
+  return (m) ? new Date(+m[1], +m[2] - 1, +m[3], +m[4], +m[5], +m[6])
+    : (m2) ? new Date(70, 0, 1, 0, 0, m2[1], 0)
+      : (m3) ? new Date(+m3[3], +m3[2] - 1, +m3[1], 0, -offset, 0, 0) 
+      : (m4) ? new Date(+m4[1], +m4[2] - 1, +m4[3], 0, -offset, 0, 0): new Date();
 }
 
 export function dateFormat(date, format) {
