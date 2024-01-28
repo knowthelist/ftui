@@ -729,7 +729,7 @@ UPD 2021-02-01_19:44:50 5063 www/ftui/modules/circle-menu/circle-menu.min.js
 UPD 2022-05-25_18:05:01 14463 www/ftui/modules/ftui/fhem.service.js
 UPD 2024-01-24_21:38:22 8347 www/ftui/modules/ftui/ftui.app.js
 UPD 2024-01-19_17:33:44 13029 www/ftui/modules/ftui/ftui.binding.js
-UPD 2024-01-28_13:53:42 14420 www/ftui/modules/ftui/ftui.helper.js
+UPD 2024-01-28_13:59:43 14772 www/ftui/modules/ftui/ftui.helper.js
 UPD 2020-12-31_16:39:06 9247 www/ftui/modules/hocon/hocon.js
 UPD 2020-12-31_16:39:06 3192 www/ftui/modules/hocon/hocon.min.js
 UPD 2021-10-13_09:24:35 65090 www/ftui/modules/iro.js/iro.js

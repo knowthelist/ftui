@@ -211,16 +211,29 @@ export function capitalize(s) {
 // date functions
 
 export function dateFromString(str) {
-  const m = str.match(/(\d+)-(\d+)-(\d+)[_\s](\d+):(\d+):(\d+).*/);
-  const m2 = str.match(/^(\d+)$/);
-  const m3 = str.match(/(\d\d).(\d\d).(\d\d\d\d)/);
-  const m4 = str.match(/(\d\d\d\d)-(\d\d)-(\d\d)/);s
+  const regex1 = /(\d+)-(\d+)-(\d+)[_\s](\d+):(\d+):(\d+).*/;
+  const regex2 = /^(\d+)$/;
+  const regex3 = /(\d\d).(\d\d).(\d\d\d\d)/;
+  const regex4 = /(\d\d\d\d)-(\d\d)-(\d\d)/;
   const offset = new Date().getTimezoneOffset();
 
-  return (m) ? new Date(+m[1], +m[2] - 1, +m[3], +m[4], +m[5], +m[6])
-    : (m2) ? new Date(70, 0, 1, 0, 0, m2[1], 0)
-      : (m3) ? new Date(+m3[3], +m3[2] - 1, +m3[1], 0, -offset, 0, 0) 
-      : (m4) ? new Date(+m4[1], +m4[2] - 1, +m4[3], 0, -offset, 0, 0): new Date();
+  let date = new Date();
+
+  if (regex1.test(str)) {
+    const [, year, month, day, hours, minutes, seconds] = regex1.exec(str);
+    date = new Date(+year, +month - 1, +day, +hours, +minutes, +seconds);
+  } else if (regex2.test(str)) {
+    const [, milliseconds] = regex2.exec(str);
+    date = new Date(70, 0, 1, 0, 0, milliseconds, 0);
+  } else if (regex3.test(str)) {
+    const [, day, month, year] = regex3.exec(str);
+    date = new Date(+year, +month - 1, +day, 0, -offset, 0, 0);
+  } else if (regex4.test(str)) {
+    const [, year, month, day] = regex4.exec(str);
+    date = new Date(+year, +month - 1, +day, 0, -offset, 0, 0);
+  }
+
+  return date;
 }
 
 export function dateFormat(date, format) {
