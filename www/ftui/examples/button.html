@@ -331,6 +331,15 @@
       <ftui-label>More settings after Long Press ...</ftui-label>
     </ftui-popup>
 
+    <ftui-grid-tile row="5" col="4" height="1" width="1" shape="round">
+      <ftui-button [(value)]="GalerieLicht" width="100%" height="100%" direction="vertical"
+      color="grid"
+      [color]="GalerieLicht | map('on: primary, off: grid')">
+        <ftui-icon [name]="GalerieLicht | map('on: lightbulb-on, off: lightbulb')" size="3"></ftui-icon>
+        <ftui-label>Full Tile Size</ftui-label>
+      </ftui-button>
+    </ftui-grid-tile>
+
     <ftui-grid-tile row="4" col="5" height="1" width="1" shape="round">
       <ftui-grid-header>SHUTTER</ftui-grid-header>
       <ftui-column height="70%">
