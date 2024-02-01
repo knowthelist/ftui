@@ -11,7 +11,7 @@ import { FtuiElement } from '../element.component.js';
 import { FtuiChartData } from './chart-data.component.js';
 import { fhemService } from '../../modules/ftui/fhem.service.js';
 import { Chart } from '../../modules/chart.js/chart.min.js';
-import { dateFormat, getStylePropertyValue } from '../../modules/ftui/ftui.helper.js';
+import { dateFormat, getStylePropertyValue, isVisible } from '../../modules/ftui/ftui.helper.js';
 import '../../modules/chart.js/chartjs-adapter-date-fns.bundle.min.js';
 
 const HOUR = 3600 * 1000;
@@ -145,7 +145,7 @@ export class FtuiChart extends FtuiElement {
     this.dataElements.forEach((dataElement, index) => {
       dataElement.index = index;
       this.configuration.data.datasets[index] = {};
-      dataElement.addEventListener('ftuiDataChanged', (data) => this.onDataChanged(data))
+      dataElement.addEventListener('ftuiDataChanged', data => this.onDataChanged(data))
     });
 
     if (this.controlsElement) {
@@ -322,17 +322,19 @@ export class FtuiChart extends FtuiElement {
   }
 
   refresh() {
-    this.updateControls();
+    if (isVisible(this)) {
+      this.updateControls();
 
-    this.dataElements.forEach(dataElement => {
-      if (typeof dataElement.fetch === 'function') {
-        dataElement.startDate = this.startDate;
-        dataElement.endDate = this.endDate;
-        dataElement.prefetch = (!dataElement.prefetch) ? this.prefetch : dataElement.prefetch;
-        dataElement.extend = (!dataElement.extend) ? this.extend : dataElement.extend;
-        dataElement.fetch();
-      }
-    });
+      this.dataElements.forEach(dataElement => {
+        if (typeof dataElement.fetch === 'function') {
+          dataElement.startDate = this.startDate;
+          dataElement.endDate = this.endDate;
+          dataElement.prefetch = (!dataElement.prefetch) ? this.prefetch : dataElement.prefetch;
+          dataElement.extend = (!dataElement.extend) ? this.extend : dataElement.extend;
+          dataElement.fetch();
+        }
+      });
+    }
   }
 
   updateControls() {
@@ -363,7 +365,8 @@ export class FtuiChart extends FtuiElement {
     dataElement.endDate = this.endDate;
 
     this.updateControls();
-    this.chart.update();
+    // run chart update async
+    Promise.resolve().then(this.chart.update());
     // disable animation after first update
     this.configuration.options.animation.duration = 0;
   }

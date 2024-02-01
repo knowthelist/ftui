@@ -16,7 +16,7 @@ export function parseHocon(text, ignoreDots = false) {
   let index = 0;
   if (!text) return null;
   const result = readHocon(text);
-  return handleSubtitutions(result);
+  return handleSubstitutions(result);
 
   function hoconException(message) {
     this.name = 'parseHoconException';
@@ -268,45 +268,48 @@ export function parseHocon(text, ignoreDots = false) {
         const dotIndex = key.indexOf('.');
         if (dotIndex > 0) {
           const partKey = key.substring(0, dotIndex);
-          objt[partKey] = objt[partKey] || {};
+          if (!objt[partKey]) {
+            objt[partKey] = {};
+          }
           setValue(key.substring(dotIndex + 1), objt[partKey]);
           return;
         }
       }
-
+    
       if (!isInQuotes && typeof currentValue === 'string') {
         currentValue = currentValue.trim();
-        if (/^\d+$/.test(currentValue))
+        if (/^\d+$/.test(currentValue)) {
           currentValue = parseInt(currentValue);
-        else if (/^\d+\.\d+$/.test(currentValue))
+        } else if (/^\d+\.\d+$/.test(currentValue)) {
           currentValue = parseFloat(currentValue);
-        else if (currentValue === 'true')
+        } else if (currentValue === 'true') {
           currentValue = true;
-        else if (currentValue === 'false')
+        } else if (currentValue === 'false') {
           currentValue = false;
-        else if (currentValue === 'null')
+        } else if (currentValue === 'null') {
           currentValue = null;
+        }
       }
-
+    
       if (isInArray) {
         objt.push(currentValue);
       } else {
-        if (typeof objt[key] === 'object' && typeof currentValue === 'object')
-          extend(objt[key], currentValue)
-        else {
+        if (typeof objt[key] === 'object' && typeof currentValue === 'object') {
+          extend(objt[key], currentValue);
+        } else {
           objt[key] = currentValue;
-
         }
         isKeyInQuotes = false;
         isReadingValue = false;
       }
+    
       isReadSeparator = false;
       currentKey = '';
       currentValue = '';
     }
   }
 
-  function handleSubtitutions(mainObj, intermidiateObj, loops) {
+  function handleSubstitutions(mainObj, intermidiateObj, loops) {
     loops = loops || 0;
     if (loops > 8)
       return null;
@@ -318,7 +321,7 @@ export function parseHocon(text, ignoreDots = false) {
 
     if (Array.isArray(intermidiateObj)) {
       intermidiateObj.forEach(function (element, index) {
-        intermidiateObj[index] = handleSubtitutions(mainObj, element);
+        intermidiateObj[index] = handleSubstitutions(mainObj, element);
       });
     } else if (typeof intermidiateObj === 'string') {
       const match = /^\$\{(.+?)\}$/.exec(intermidiateObj);
@@ -326,11 +329,11 @@ export function parseHocon(text, ignoreDots = false) {
         const val = eval('mainObj.' + match[1]);
         if (typeof val === 'undefined')
           return null;
-        return handleSubtitutions(mainObj, val, loops + 1);
+        return handleSubstitutions(mainObj, val, loops + 1);
       }
     } else if (typeof intermidiateObj === 'object') {
       Object.keys(intermidiateObj).forEach(function (key) {
-        intermidiateObj[key] = handleSubtitutions(mainObj, intermidiateObj[
+        intermidiateObj[key] = handleSubstitutions(mainObj, intermidiateObj[
           key]);
       });
     }

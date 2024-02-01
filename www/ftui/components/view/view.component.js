@@ -3,13 +3,14 @@
 
 * for FTUI version 3
 *
-* Copyright (c) 2020-2021 Mario Stephan <mstephan@shared-files.de>
+* Copyright (c) 2020-2024 Mario Stephan <mstephan@shared-files.de>
 * Under MIT License (http://www.opensource.org/licenses/mit-license.php)
 *
 * https://github.com/knowthelist/ftui
 */
 
 import { FtuiElement } from '../element.component.js';
+import { supportsPassive } from '../../modules/ftui/ftui.helper.js';
 
 export class FtuiView extends FtuiElement {
 
@@ -20,8 +21,10 @@ export class FtuiView extends FtuiElement {
     this.content = this.shadowRoot.querySelector('.content');
     header && header.setAttribute('slot', 'header');
 
-    this.addEventListener('touchstart', this.startTouch, false);
-    this.addEventListener('touchmove', this.moveTouch, false);
+    const usePassive = supportsPassive();
+
+    this.addEventListener('touchstart', this.startTouch, usePassive ? { passive: true } : false);
+    this.addEventListener('touchmove', this.moveTouch, usePassive ? { passive: true } : false);
   }
 
   template() {

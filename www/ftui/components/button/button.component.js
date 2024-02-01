@@ -8,14 +8,16 @@
 */
 
 import { FtuiElement } from '../element.component.js';
-import { isEqual, isNumeric } from '../../modules/ftui/ftui.helper.js';
+import { isEqual, isNumeric, supportsPassive } from '../../modules/ftui/ftui.helper.js';
 
 export class FtuiButton extends FtuiElement {
   constructor(properties) {
 
     super(Object.assign(FtuiButton.properties, properties));
 
-    this.addEventListener('touchstart', this.onDownEvent);
+    const usePassive = supportsPassive();
+
+    this.addEventListener('touchstart', this.onDownEvent, usePassive ? { passive: true } : false);
     this.addEventListener('mousedown', this.onDownEvent);
     this.addEventListener('touchend', this.onUpEvent);
     this.addEventListener('mouseup', this.onUpEvent);

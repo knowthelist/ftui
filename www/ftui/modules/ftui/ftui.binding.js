@@ -12,6 +12,7 @@ const format = value => input => ftuiHelper.dateFormat(input, value);
 const humanized = () => input => ftuiHelper.durationHumanized(input);
 const round = value => input => ftuiHelper.round(input, value);
 const fix = value => input => Number(input).toFixed(value);
+const roundMoney = () => input => ftuiHelper.formatMoney(Number(input));
 const slice = (start, end)  => input => String(input).slice(start, end);
 const encode = () => input => encodeURI(input);
 const add = value => input => Number(input) + value;
@@ -311,11 +312,7 @@ export class FtuiBinding {
     if (filterSet !== '') {
       try {
         const pipeNotInQuotes = /\|(?=([^']*'[^']*')*[^']*$)/g;
-        filterSet = filterSet
-          .replace(pipeNotInQuotes, ',')
-          .replace(/`/g, '"')
-          .replace(/´/g, '"')
-          .replace(/\n/g, '');
+        filterSet = filterSet.replace(pipeNotInQuotes, ',').replace(/`|´/g, '"').replace(/\n/g, '');
         const fn = eval('pipe(' + filterSet + ')');
         return fn(text);
       } catch (e) {

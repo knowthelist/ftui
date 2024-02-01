@@ -10,7 +10,7 @@
 * https://github.com/knowthelist/ftui
 */
 
-import { Stack } from '../../modules/ftui/ftui.helper.js';
+import { Stack, supportsPassive } from '../../modules/ftui/ftui.helper.js';
 import { FtuiElement } from '../element.component.js';
 
 export class FtuiViewStage extends FtuiElement {
@@ -26,8 +26,10 @@ export class FtuiViewStage extends FtuiElement {
       ? document.querySelector(`#${this.start}`)
       : this.querySelector('ftui-view:first-of-type');
 
-    this.addEventListener('touchstart', this.startTouch, false);
-    this.addEventListener('touchmove', this.moveTouch, false);
+    const usePassive = supportsPassive();
+
+    this.addEventListener('touchstart', this.startTouch, usePassive ? { passive: true } : false);
+    this.addEventListener('touchmove', this.moveTouch, usePassive ? { passive: true } : false);
 
     // move all views out
     const allViews = this.querySelectorAll('ftui-view');

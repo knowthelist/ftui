@@ -1,19 +1,17 @@
 export function getPart(value, part) {
   if (this.isDefined(part)) {
     if (this.isNumeric(part)) {
-      const tokens = (this.isDefined(value)) ? value.toString().split(' ') : '';
-      return (tokens.length >= part && part > 0) ? tokens[part - 1] : value;
+      const tokens = (this.isDefined(value)) ? value.toString().split(' ') : [];
+      if (tokens.length >= part && part > 0) {
+        return tokens[part - 1];
+      }
     } else {
-      let ret = '';
       if (this.isDefined(value)) {
         const matches = value.match(new RegExp('^' + part + '$'));
         if (matches) {
-          for (let i = 1, len = matches.length; i < len; i++) {
-            ret += matches[i];
-          }
+          return matches.slice(1).join('');
         }
       }
-      return ret;
     }
   }
   return value;
@@ -46,21 +44,17 @@ export function getMatchingValue(map, searchKey) {
 
 export function getMatchingKey(map, searchKey) {
   if (this.isDefined(map)) {
-    const filteredKeys =
-      this.getMatchingKeys(map, searchKey)
-        .sort((a, b) => {
-          if (a === '.*') return -1;
-          else if (b === '.*') return 1;
-          else if (isNaN(a) && isNaN(b)) return a < b ? -1 : a == b ? 0 : 1;
-          else if (isNaN(a)) return 1;
-          else if (isNaN(b)) return -1;
-          else return a - b;
-        });
-    // take last item of matching keys
-    return filteredKeys.slice(-1)[0];
-  } else {
-    return null;
+    const filteredKeys = this.getMatchingKeys(map, searchKey).sort((a, b) => {
+      if (a === '.*') return -1;
+      else if (b === '.*') return 1;
+      else if (isNaN(a) || isNaN(b)) return isNaN(a) ? 1 : -1;
+      else return a - b;
+    });
+
+    return filteredKeys[filteredKeys.length - 1];
   }
+
+  return null;
 }
 
 export function getMatchingKeys(map, searchKey) {
@@ -402,6 +396,16 @@ export function round(number, precision) {
   return shift(Math.round(shift(number, precision, false)), precision, true);
 }
 
+export function formatMoney(amount) {
+  if (amount > 99.99) {
+    return Math.round(amount);
+  } else if (amount > 9.99) {
+    return amount.toFixed(1);
+  } else {
+    return amount.toFixed(2);
+  }
+}
+
 export function scale(value, minIn, maxIn, minOut, maxOut) {
   const slope = (minOut - maxOut) / (minIn - maxIn);
   const intercept = slope * -(minIn) + minOut;
@@ -465,6 +469,24 @@ export function timeoutPromise(promises, ms = 5000) {
     timeout,
   ])
 }
+
+export function supportsPassive() {
+  let supportsPassive = false;
+  const opts = {
+    get passive() {
+      supportsPassive = true;
+    }
+  };
+
+  try {
+    window.addEventListener("testPassive", null, opts);
+    window.removeEventListener("testPassive", null, opts);
+  } catch (e) {}
+
+  return supportsPassive;
+}
+
+// Classes
 
 export class Stack {
   constructor() {

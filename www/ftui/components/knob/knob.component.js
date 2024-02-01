@@ -8,7 +8,7 @@
 */
 
 import { FtuiElement } from '../element.component.js';
-import { countDecimals, round, limit, scale } from '../../modules/ftui/ftui.helper.js';
+import { countDecimals, round, limit, scale, supportsPassive } from '../../modules/ftui/ftui.helper.js';
 
 
 export class FtuiKnob extends FtuiElement {
@@ -44,13 +44,15 @@ export class FtuiKnob extends FtuiElement {
 
     this.isDragging = false;
 
-    this.svg.addEventListener('touchstart', (evt) => this.onPointerDownEvent(evt), false);
-    this.svg.addEventListener('mousedown', (evt) => this.onPointerDownEvent(evt), false);
-    this.svg.addEventListener('touchend', (evt) => this.onPointerOutEvent(evt), false);
-    this.svg.addEventListener('mouseup', (evt) => this.onPointerOutEvent(evt), false);
-    this.svg.addEventListener('mouseout', (evt) => this.onPointerOutEvent(evt), false);
-    this.svg.addEventListener('touchmove', (evt) => this.onPointerMoveEvent(evt), false);
-    this.svg.addEventListener('mousemove', (evt) => this.onPointerMoveEvent(evt), false);
+    const usePassive = supportsPassive();
+
+    this.svg.addEventListener('touchstart', (evt) => this.onPointerDownEvent(evt), usePassive ? { passive: true } : false);
+    this.svg.addEventListener('mousedown', (evt) => this.onPointerDownEvent(evt), usePassive ? { passive: true } : false);
+    this.svg.addEventListener('touchend', (evt) => this.onPointerOutEvent(evt), usePassive ? { passive: true } : false);
+    this.svg.addEventListener('mouseup', (evt) => this.onPointerOutEvent(evt), usePassive ? { passive: true } : false);
+    this.svg.addEventListener('mouseout', (evt) => this.onPointerOutEvent(evt), usePassive ? { passive: true } : false);
+    this.svg.addEventListener('touchmove', (evt) => this.onPointerMoveEvent(evt), usePassive ? { passive: true } : false);
+    this.svg.addEventListener('mousemove', (evt) => this.onPointerMoveEvent(evt), usePassive ? { passive: true } : false);
 
     if (this.step < 0) {
       const range = Math.abs(this.max - this.min);

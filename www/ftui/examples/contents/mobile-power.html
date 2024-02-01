@@ -11,47 +11,67 @@
 </ftui-view-sheet>
 
 <ftui-view-section>
-  <ftui-label slot="header" text="Energy Used"></ftui-label>
-  <ftui-view-item>Total
-    <ftui-label [text]="Stromzaehler"></ftui-label>
-  </ftui-view-item>
+  <ftui-label slot="header" text="Energy"></ftui-label>
   <ftui-view-item>Today
-    <ftui-label [text]="StromRechner:Stromzaehler_state_EnergyDay" unit=" KWh"></ftui-label>
+    <ftui-label [text]="StromRechnerIn:SmartMeter_GS303_Total_in_EnergyDay| fix(1)" unit="&nbsp;KWh"></ftui-label>
   </ftui-view-item>
   <ftui-view-item>Yesterday
-    <ftui-label [text]="StromRechner:Stromzaehler_state_EnergyDayLast" unit=" KWh"></ftui-label>
+    <ftui-label [text]="StromRechnerIn:SmartMeter_GS303_Total_in_EnergyDayLast| fix(1)" unit="&nbsp;KWh"></ftui-label>
   </ftui-view-item>
   <ftui-view-item>Month
-    <ftui-label [text]="StromRechner:Stromzaehler_state_EnergyMonth" unit=" KWh"></ftui-label>
+    <ftui-label [text]="StromRechnerIn:SmartMeter_GS303_Total_in_EnergyMonth| fix(0)" unit="&nbsp;KWh"></ftui-label>
   </ftui-view-item>
-</ftui-view-section>
-
-<ftui-view-section>
-  <ftui-label slot="header" text="Energy Paid"></ftui-label>
-  <ftui-view-item>Total
-    <ftui-label [text]="SmartMeter:GS303_Total_in"></ftui-label>
-  </ftui-view-item>
-  <ftui-view-item>Today
-    <ftui-label [text]="StromRechnerIn:SmartMeter_GS303_Total_in_EnergyDay" unit=" KWh"></ftui-label>
-  </ftui-view-item>
-  <ftui-view-item>Yesterday
-    <ftui-label [text]="StromRechnerIn:SmartMeter_GS303_Total_in_EnergyDayLast" unit=" KWh"></ftui-label>
-  </ftui-view-item>
-  <ftui-view-item>Month
-    <ftui-label [text]="StromRechnerIn:SmartMeter_GS303_Total_in_EnergyMonth" unit=" KWh"></ftui-label>
-  </ftui-view-item>
+  <ftui-view-item>Month Last
+    <ftui-label [text]="StromRechnerIn:SmartMeter_GS303_Total_in_EnergyMonthLast| fix(0)" unit="&nbsp;KWh"></ftui-label>
+  </ftui-view-item>  
+  <ftui-view-item>Year
+    <ftui-label [text]="StromRechnerIn:SmartMeter_GS303_Total_in_EnergyYear| fix(0)" unit="&nbsp;KWh"></ftui-label>
+  </ftui-view-item>  
+  <ftui-view-item>Year Last
+    <ftui-label [text]="StromRechnerIn:SmartMeter_GS303_Total_in_EnergyYearLast| fix(0)" unit="&nbsp;KWh"></ftui-label>
+  </ftui-view-item>  
 </ftui-view-section>
 
 <ftui-view-section>
   <ftui-label slot="header" text="Cost"></ftui-label>
   <ftui-view-item>Today
-    <ftui-label [text]="StromRechnerIn:SmartMeter_GS303_Total_in_EnergyCostDay | fix(2)" unit=" €"></ftui-label>
+    <ftui-label [text]="StromRechnerIn:SmartMeter_GS303_Total_in_EnergyCostDay | roundMoney()" unit="&nbsp;€"></ftui-label>
   </ftui-view-item>
-  <ftui-view-item>Saved
-    <ftui-label [text]="StromRechner:gespart | fix(2)" unit=" €"></ftui-label>
-  </ftui-view-item>  
-  <ftui-view-item>Given Away
-    <ftui-label [text]="StromRechnerOut:SmartMeter_GS303_Total_out_EnergyCostDay | fix(2)" unit=" €"></ftui-label>
-  </ftui-view-item>  
+  <ftui-view-item>Yesterday
+    <ftui-label [text]="StromRechnerIn:SmartMeter_GS303_Total_in_EnergyCostDayLast | roundMoney()" unit="&nbsp;€"></ftui-label>
+  </ftui-view-item>
+  <ftui-view-item>Month
+    <ftui-label [text]="StromRechnerIn:SmartMeter_GS303_Total_in_EnergyCostMonth | roundMoney()" unit="&nbsp;€"></ftui-label>
+  </ftui-view-item>
+  <ftui-view-item>Month Last
+    <ftui-label [text]="StromRechnerIn:SmartMeter_GS303_Total_in_EnergyCostMonthLast | roundMoney()" unit="&nbsp;€"></ftui-label>
+  </ftui-view-item>
+  <ftui-view-item>Year
+    <ftui-label [text]="StromRechnerIn:SmartMeter_GS303_Total_in_EnergyCostYear | roundMoney()" unit="&nbsp;€"></ftui-label>
+  </ftui-view-item>
+  <ftui-view-item>Year Last
+    <ftui-label [text]="StromRechnerIn:SmartMeter_GS303_Total_in_EnergyCostYearLast | roundMoney()" unit="&nbsp;€"></ftui-label>
+  </ftui-view-item>
 </ftui-view-section>
 
+<ftui-view-section>
+  <ftui-label slot="header" text="Saved"></ftui-label>
+  <ftui-view-item>Today
+    <ftui-label [text]="StromRechnerSolar:SmartMeter_SolarUsed_EnergyCostDay | roundMoney()" unit="&nbsp;€"></ftui-label>
+  </ftui-view-item>
+  <ftui-view-item>Yesterday
+    <ftui-label [text]="StromRechnerSolar:SmartMeter_SolarUsed_EnergyCostDayLast | roundMoney()" unit="&nbsp;€"></ftui-label>
+  </ftui-view-item>
+  <ftui-view-item>Month
+    <ftui-label [text]="StromRechnerSolar:SmartMeter_SolarUsed_EnergyCostMonth | roundMoney()" unit="&nbsp;€"></ftui-label>
+  </ftui-view-item>
+  <ftui-view-item>Month Last
+    <ftui-label [text]="StromRechnerSolar:SmartMeter_SolarUsed_EnergyCostMonthLast | roundMoney()" unit="&nbsp;€"></ftui-label>
+  </ftui-view-item>
+  <ftui-view-item>Year
+    <ftui-label [text]="StromRechnerSolar:SmartMeter_SolarUsed_EnergyCostYear | roundMoney()" unit="&nbsp;€"></ftui-label>
+  </ftui-view-item>
+  <ftui-view-item>Year Last
+    <ftui-label [text]="StromRechnerSolar:SmartMeter_SolarUsed_EnergyCostYearLast | roundMoney()" unit="&nbsp;€"></ftui-label>
+  </ftui-view-item>
+</ftui-view-section>

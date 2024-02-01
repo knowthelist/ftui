@@ -117,13 +117,14 @@
           <ftui-icon name="sun" color="yellow" slot="start" invert></ftui-icon>
           Solar
           <ftui-label slot="end" color="medium" placeholder [text]="PVConverter:Pac1" Unit="W"></ftui-label>
+          <ftui-label slot="end" color="medium" placeholder size="2" [text]="StromRechnerSolar:SmartMeter_SolarUsed_EnergyDay | fix(1)" unit="kWh"></ftui-label>
         </ftui-view-item>
 
         <ftui-view-item target="viewPower">
           <ftui-icon name="bolt" color="yellow" slot="start" invert></ftui-icon>
           Consumption
-          <ftui-label slot="end" color="medium" placeholder [text]="LeistungGesamt" unit="&nbsp;/&nbsp;"></ftui-label>
           <ftui-label slot="end" color="medium" placeholder [text]="SmartMeter:GS303_Power_cur" unit="W"></ftui-label>
+          <ftui-label slot="end" color="medium" placeholder size="2" [text]="StromRechnerIn:SmartMeter_GS303_Total_in_EnergyDay| fix(1)" unit="kWh"></ftui-label>
         </ftui-view-item>
 
       </ftui-view-section>
