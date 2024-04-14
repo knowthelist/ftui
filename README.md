@@ -101,15 +101,33 @@ Input binding
 --------
 - Property binding:
 
-bind a FHEM reading to a property of an element. Changes of the reading changes the property
+To bind a FHEM reading to a property of an element. Changes of the reading changes the property
 
 ```html
 <ftui-label get-color="dummy1:color">demo</ftui-label>
 ```
 
 short format
+The short format uses square brackets.
 ```html
 <ftui-label [color]="dummy1:color">demo</ftui-label>
+```
+The FHEM reading is given as follow:
+
+    [attribute]="DEVICE:READING:PROPERTY"
+
+DEVICE is the name of the FHEM device e.g. lamp1 or AgroWeather
+READING is the name of the reading e.g. state or temperature (default: STATE)
+PROPERTY is the property of the reading. Possible are: value, time, update, invalid (default: value)
+
+value - the value of the reading in fHEM
+time - the timestamp of the reading in FHEM
+update - update timestamp in FTUIN
+invalid - is true if the reading doesn't exist in FHEM (anymore)
+
+Example to show the timestamp of a reading
+```html
+ <ftui-label [text]="AgroWeather:state:time | toDate() | format('mm:ss')"></ftui-label>
 ```
 
 - Attribute  binding:

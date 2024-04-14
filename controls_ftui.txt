@@ -18,7 +18,7 @@ UPD 2021-12-02_14:03:47 86 www/ftui/components/content/content.component.css
 UPD 2022-11-05_14:25:06 2763 www/ftui/components/content/content.component.js
 UPD 2022-02-26_14:50:27 4100 www/ftui/components/departure/departure.component.css
 UPD 2022-07-19_21:21:30 12552 www/ftui/components/departure/departure.component.js
-UPD 2024-04-09_22:56:39 934 www/ftui/components/dropdown/dropdown.component.css
+UPD 2024-04-14_20:31:14 945 www/ftui/components/dropdown/dropdown.component.css
 UPD 2022-02-15_18:26:02 2105 www/ftui/components/dropdown/dropdown.component.js
 UPD 2022-10-09_21:18:08 4935 www/ftui/components/element.component.js
 UPD 2022-02-06_23:45:56 758 www/ftui/components/grid/grid-header.component.js

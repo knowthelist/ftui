@@ -7,7 +7,8 @@
   position: absolute;
   width: 1em;
   right: 1em;
-  line-height: 1.5em;
+  top: 0;
+  line-height: 1.75em;
   font-family: 'Courier New', Courier, monospace;
   content: var(--dropdown-chevron, "\2335");
   font-size: 1.2em;
