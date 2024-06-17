@@ -160,7 +160,13 @@ export function isAppVisible() {
 }
 
 export function isVisible(element) {
-  return (element.offsetParent !== null);
+  const pop_parent = element.closest('ftui-popup');
+  if (pop_parent){
+    return (pop_parent.offsetParent !== null);
+  } else {
+    return (element.offsetParent !== null);
+  }
+  
 }
 
 export function isDefined(value) {
