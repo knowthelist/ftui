@@ -39,6 +39,7 @@ export class FtuiChartData extends FtuiElement {
       color: primaryColor,
       borderColor: '',
       borderWidth: 1.2,
+      borderDash: [],
       pointRadius: 2,
       title: '-',
       log: '-',
