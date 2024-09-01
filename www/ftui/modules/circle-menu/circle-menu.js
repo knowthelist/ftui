@@ -174,8 +174,8 @@ export class CircleMenu {
     set.forEach((item, index) => {
 
       this._timeouts.push(setTimeout(() => {
-        item.style.left = item.posX + 'em';
-        item.style.top = item.posY + 'em';
+        item.style.left = item.posX + 'px';
+        item.style.top = item.posY + 'px';
         item.style.transform = 'scale(1)';
         item.style.zIndex = parseInt(item.style.zIndex) + 100;
       }

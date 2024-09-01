@@ -29,28 +29,28 @@
   <ftui-grid>
 
     <ftui-grid-tile row="1" col="1" height="1" width="1">
-      <header>TEST IT</header>
+      <ftui-grid-header>TEST IT</ftui-grid-header>
 
         <ftui-button [(value)]="ftuitest" states="0,1,2,10,50,100">Press here</ftui-button>
 
     </ftui-grid-tile>
 
     <ftui-grid-tile row="1" col="2" height="1" width="1">
-      <header>DEFAULT</header>
+      <ftui-grid-header>DEFAULT</ftui-grid-header>
 
         <ftui-badge></ftui-badge>
 
     </ftui-grid-tile>
 
     <ftui-grid-tile row="1" col="3" height="1" width="1">
-      <header>COLOR</header>
+      <ftui-grid-header>COLOR</ftui-grid-header>
 
         <ftui-badge color="error">42</ftui-badge>
 
     </ftui-grid-tile>
 
     <ftui-grid-tile row="1" col="4" height="1" width="1">
-      <header>BINDING</header>
+      <ftui-grid-header>BINDING</ftui-grid-header>
 
         <ftui-badge [color]="ftuitest | step('0=success,50=warning,70=danger')"
                     [text]="ftuitest"></ftui-badge>
@@ -58,7 +58,7 @@
     </ftui-grid-tile>
 
     <ftui-grid-tile row="1" col="5" height="1" width="1">
-      <header>Icon Badge</header>
+      <ftui-grid-header>Icon Badge</ftui-grid-header>
 
         <ftui-icon name="database"></ftui-icon>
         <ftui-badge color="danger" [text]="ftuitest"></ftui-badge>
@@ -66,7 +66,7 @@
     </ftui-grid-tile>
 
     <ftui-grid-tile row="2" col="1" height="1" width="1">
-      <header>Slotted Badge</header>
+      <ftui-grid-header>Slotted Badge</ftui-grid-header>
 
       <ftui-icon name="database">
         <ftui-badge color="danger" [text]="ftuitest"></ftui-badge>

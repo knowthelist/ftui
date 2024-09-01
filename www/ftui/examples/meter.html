@@ -28,22 +28,22 @@
   <ftui-grid>
 
     <ftui-grid-tile row="1" col="1" height="1" width="3">
-      <header>DEFAULT</header>
+      <ftui-grid-header>DEFAULT</ftui-grid-header>
       <ftui-meter value="50" min="1" max="200"> </ftui-meter>
     </ftui-grid-tile>
 
     <ftui-grid-tile row="2" col="1" height="1" width="2">
-      <header>SIZE</header>
+      <ftui-grid-header>SIZE</ftui-grid-header>
       <ftui-meter value="90" min="1" max="100" class="size-5" color="alert"> </ftui-meter>
     </ftui-grid-tile>
 
     <ftui-grid-tile row="2" col="3" height="1" width="1">
-      <header>SMALL</header>
+      <ftui-grid-header>SMALL</ftui-grid-header>
       <ftui-meter value="65" min="1" max="100" height="8px" color="alert">65</ftui-meter>
     </ftui-grid-tile>
 
     <ftui-grid-tile row="3" col="1" height="1" width="2">
-      <header>NUMBER</header>
+      <ftui-grid-header>NUMBER</ftui-grid-header>
       <ftui-row>
         <ftui-button (value)="ftuitest" states="0,4,10,45,75,90,100">Try</ftui-button>
         <ftui-input [(value)]="ftuitest" min="1" max="100" type="number" size="2s"></ftui-input>
@@ -53,7 +53,7 @@
     </ftui-grid-tile>
 
     <ftui-grid-tile row="3" col="3" height="1" width="1">
-      <header>SCALE</header>
+      <ftui-grid-header>SCALE</ftui-grid-header>
       <ftui-meter [value]="ftuitest" min="0" max="20" has-scale style="--meter-margin: 0.25em"> 
         <div slot="scale">&prime;</div>
         <div slot="scale">&prime;</div>
@@ -62,7 +62,7 @@
     </ftui-grid-tile>
 
     <ftui-grid-tile row="4" col="1" height="1" width="1">
-      <header>VERTICAL</header>
+      <ftui-grid-header>VERTICAL</ftui-grid-header>
       <ftui-row>
         <ftui-meter [value]="ftuitest" min="-10" max="30" height="6em"
                     is-vertical has-scale> </ftui-meter>
@@ -73,7 +73,7 @@
     </ftui-grid-tile>
 
     <ftui-grid-tile row="4" col="2" height="1" width="1">
-      <header>SCALE</header>
+      <ftui-grid-header>SCALE</ftui-grid-header>
       <ftui-meter [value]="ftuitest" min="-10" max="20" has-scale> 
         <div slot="scale">0</div>
         <div slot="scale">10</div>
@@ -81,24 +81,24 @@
     </ftui-grid-tile>
 
     <ftui-grid-tile row="5" col="1" height="1" width="1">
-      <header>SCALE</header>
+      <ftui-grid-header>SCALE</ftui-grid-header>
       <ftui-meter [value]="ftuitest" min="-10" max="20" has-scale> 
         <div slot="scale">°C</div>
       </ftui-meter>
     </ftui-grid-tile>
 
     <ftui-grid-tile row="5" col="2" height="1" width="1">
-      <header>GRADIENT</header>
+      <ftui-grid-header>GRADIENT</ftui-grid-header>
       <ftui-meter [value]="ftuitest" min="-10" max="30" has-scale color="cold-hot"> </ftui-meter>
     </ftui-grid-tile>
 
     <ftui-grid-tile row="5" col="3" height="1" width="1">
-      <header>GRADIENT</header>
+      <ftui-grid-header>GRADIENT</ftui-grid-header>
       <ftui-meter [value]="ftuitest" min="-10" max="30" has-scale color="ok-warning-alert"> </ftui-meter>
     </ftui-grid-tile>
 
     <ftui-grid-tile row="4" col="3" height="1" width="1">
-      <header>COLOR SCALE</header>
+      <ftui-grid-header>COLOR SCALE</ftui-grid-header>
       <ftui-meter [value]="ftuitest" min="0" max="100"
                   color="cold-hot"
                   has-scale has-color-scale></ftui-meter>

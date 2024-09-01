@@ -30,14 +30,14 @@
   <ftui-grid>
 
    <ftui-grid-tile row="1" col="1" height="2" width="2">
-      <header>DEFAULT</header>
+      <ftui-grid-header>DEFAULT</ftui-grid-header>
 
       <ftui-medialist></ftui-medialist>
 
     </ftui-grid-tile>
 
     <ftui-grid-tile row="1" col="3" height="2" width="2">
-      <header>FIX-LIST</header>
+      <ftui-grid-header>FIX-LIST</ftui-grid-header>
 
       <ftui-medialist list='[
       { Album: Album1,
@@ -66,7 +66,7 @@
     </ftui-grid-tile>
 
     <ftui-grid-tile row="1" col="5" height="3" width="3">
-      <header>FHEM-LIST</header>
+      <ftui-grid-header>FHEM-LIST</ftui-grid-header>
 
       <ftui-medialist [list]="ftuitest:medialist" [track]="ftuitest:currentTrack"
                       (track)="setreading ftuitest:currentTrack"></ftui-medialist>
@@ -74,7 +74,7 @@
     </ftui-grid-tile>
   
     <ftui-grid-tile row="3" col="1" height="3" width="3">
-      <header>FHEM-LIST</header>
+      <ftui-grid-header>FHEM-LIST</ftui-grid-header>
 
       <ftui-medialist [list]="ftuitest:medialist2" [file]="dummy1:currentFile"
                       (file)="setreading dummy1:currentFile"

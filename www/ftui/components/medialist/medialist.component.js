@@ -59,7 +59,7 @@ export class FtuiMedialist extends FtuiElement {
   }
 
   onConnected() {
-    this.style.padding = isNumeric(this.padding) ? this.padding + 'em' : this.padding;
+    this.style.padding = isNumeric(this.padding) ? this.padding + 'px' : this.padding;
     if (this.list.length > 0) {
       this.fillList();
     }

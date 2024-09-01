@@ -57,7 +57,7 @@
   --dark-contrast-color: var(--white);
 
   --text-color: var(--darkest);
-  --inactive-text-color: #A39B9B;
+  --text-color-inactive: #A39B9B;
 
   --view-toolbar-color: var(--darkest);
   --view-toolbar-background-color: rgba(248, 248, 248, 0.9);
@@ -114,9 +114,19 @@
   --meter-background-color: var(--light);
 }
 
+@supports (font: -apple-system-body) {
+  :root {
+  --text-font:  -apple-system-body;
+  }
+}
+@supports not (font: -apple-system-body) {
+  :root {
+  --text-font: 1em -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Ubuntu', 'Helvetica Neue', sans-serif;  
+  }
+}
+
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Ubuntu', 'Helvetica Neue', sans-serif;
-  font-size: small;
+  font: var(--text-font);
   color: var(--text-color);
   background: var(--page-background-color);
   -webkit-font-smoothing: antialiased;

@@ -8,8 +8,8 @@
 }
 
 svg {
-  width: var(--icon-width, 2.5em);
-  height: var(--icon-height, 2.5em);
+  width: var(--icon-width, 1.5em);
+  height: var(--icon-height, 1.5em);
   fill: currentColor;
 }
 
@@ -41,8 +41,8 @@ object-fit: none;
 }
 
 svg[viewBox="0 0 448 512"] {
-  width: 1.5em;
-  height: 1.5em;
+  width: 1.125em;
+  height: 1.125em;
 }
 
 :host([color]) svg {
@@ -52,9 +52,9 @@ svg[viewBox="0 0 448 512"] {
 
 :host([invert]) {
   background: var(--color-base);
-  border-radius: 0.75em;
-  width: 3em;
-  height: 3em;
+  border-radius: 0.5em;
+  width: 2em;
+  height: 2em;
   display: flex;
   justify-content: center;
   align-items: center;

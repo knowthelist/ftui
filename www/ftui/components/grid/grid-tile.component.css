@@ -1,5 +1,5 @@
 :host([shape="round"]) {
-  --grid-tile-border-radius: 1rem;
+  --grid-tile-border-radius: 1em;
 }
 
 :host {
@@ -22,9 +22,9 @@
 ::slotted(header) {
   color: var(--color-contrast, var(--grid-header-color));
   background: var(--color-base, var(--grid-header-background-color));
-  font-weight: bold;
-  padding: 0.25em;
+  padding: 0.5em;
   text-align: center;
+  font-size: var(--grid-header-font-size, 0.9em);
 }
 
 ::slotted(header) {

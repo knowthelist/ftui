@@ -22,8 +22,8 @@ export class FtuiMeter extends FtuiElement {
     this.minElement = this.shadowRoot.querySelector('.min');
     this.maxElement = this.shadowRoot.querySelector('.max');
 
-    this.progress.style.width = this.width || (this.isVertical ? '1em' : '10em');
-    this.progress.style.height = this.height || (this.isVertical ? '10em' : '1em');
+    this.progress.style.width = this.width || (this.isVertical ? '1em' : '7em');
+    this.progress.style.height = this.height || (this.isVertical ? '7em' : '1em');
   }
 
   template() {

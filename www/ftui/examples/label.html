@@ -34,7 +34,7 @@
   <ftui-grid base-width="120" base-height="120" shape="round" margin="6">
 
     <ftui-grid-tile row="1" col="1" height="1" width="1">
-      <header>TEST IT</header>
+      <ftui-grid-header>TEST IT</ftui-grid-header>
       <div class="cell">
 
         <ftui-button [(value)]="lamp1" states="on,off">Press here</ftui-button>
@@ -44,18 +44,18 @@
     </ftui-grid-tile>
 
     <ftui-grid-tile row="1" col="3" height="1" width="3">
-      <header>Original</header>
+      <ftui-grid-header>Original</ftui-grid-header>
       <ftui-label [text]="AgroWeather:state"></ftui-label>
     </ftui-grid-tile>
 
     <ftui-grid-tile row="1" col="6" height="1" width="2">
-      <header>Color</header>
+      <ftui-grid-header>Color</ftui-grid-header>
       <ftui-label [color]="dummy2">COLOR</ftui-label>
       <ftui-label [color]="dummy1 | map('on: warning, off: success')">ROLOC</ftui-label>
     </ftui-grid-tile>
 
     <ftui-grid-tile row="1" col="8" height="1" width="2">
-      <header>Align</header>
+      <ftui-grid-header>Align</ftui-grid-header>
       <ftui-row>
         <ftui-column>Lamp1</ftui-column>
         <ftui-column [color]="lamp1 | map('on:danger, off:success')">
@@ -66,22 +66,22 @@
     </ftui-grid-tile>
 
     <ftui-grid-tile row="2" col="2" height="1" width="1">
-      <header>text part4</header>
+      <ftui-grid-header>text part4</ftui-grid-header>
       <ftui-label [text]="AgroWeather:state | part(4)"></ftui-label>
     </ftui-grid-tile>
 
     <ftui-grid-tile row="2" col="3" height="1" width="2">
-      <header>time</header>
+      <ftui-grid-header>time</ftui-grid-header>
       <ftui-label [text]="AgroWeather:state:time"></ftui-label>
     </ftui-grid-tile>
 
     <ftui-grid-tile row="2" col="5" height="1" width="2">
-      <header>time min:sec</header>
+      <ftui-grid-header>time min:sec</ftui-grid-header>
       <ftui-label [text]="AgroWeather:state:time | toDate() | format('mm:ss')"></ftui-label>
     </ftui-grid-tile>
 
     <ftui-grid-tile row="2" col="7" height="1" width="2" shape="round">
-      <header>COLORS</header>
+      <ftui-grid-header>COLORS</ftui-grid-header>
       <ftui-row>
         <ftui-column shape="round" color="light">light</ftui-column>
         <ftui-column shape="round" color="medium">medium</ftui-column>
@@ -90,7 +90,7 @@
     </ftui-grid-tile>
 
     <ftui-grid-tile row="2" col="9" height="1" width="2" shape="round">
-      <header>LONG</header>
+      <ftui-grid-header>LONG</ftui-grid-header>
       <ftui-label padding="1" scroll text-align="center">
         Lorem Ipsum dolor sit amet, consectetur adipiscing elit,
         sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
@@ -103,7 +103,7 @@
     </ftui-grid-tile>
 
     <ftui-grid-tile row="4" col="2" height="1" width="1">
-      <header>text pipe</header>
+      <ftui-grid-header>text pipe</ftui-grid-header>
       <ftui-label [text]="AgroWeather:state | part(4) | toInt() | multiply(2) | round(1) "></ftui-label>
     </ftui-grid-tile>
 
@@ -117,7 +117,7 @@
     </ftui-grid-tile>
 
     <ftui-grid-tile row="3" col="5" height="2" width="2" shape="round">
-      <header>ago ...</header>
+      <ftui-grid-header>ago ...</ftui-grid-header>
       <ftui-label [text]="ftuitest:dateTime4ago"></ftui-label>
       <ftui-label [text]="ftuitest:dateTime4ago | toDate() | ago()"></ftui-label>
       <ftui-label [text]="ftuitest:dateTime4ago | toDate() | ago() | timeFormat('[ dd.hh:mm:ss ]')"></ftui-label>
@@ -131,7 +131,7 @@
     </ftui-grid-tile>
 
     <ftui-grid-tile row="3" col="7" height="2" width="2" shape="round">
-      <header>... till</header>
+      <ftui-grid-header>... till</ftui-grid-header>
       <ftui-label [text]="ftuitest:dateTime4till"></ftui-label>
       <ftui-label [text]="ftuitest:dateTime4till | toDate() | till()"></ftui-label>
       <ftui-label [text]="ftuitest:dateTime4till | toDate() | till() | timeFormat('[ dd.hh:mm:ss ]')"></ftui-label>
@@ -146,7 +146,7 @@
     </ftui-grid-tile>
 
     <ftui-grid-tile row="3" col="9" height="2" width="2" shape="round">
-      <header>... till</header>
+      <ftui-grid-header>... till</ftui-grid-header>
       <ftui-label [text]="ftuitest:seconds4timeFormat"></ftui-label>
       <ftui-label [text]="ftuitest:seconds4timeFormat"></ftui-label>
       <ftui-label [text]="ftuitest:seconds4timeFormat | timeFormat('[ dd.hh:mm:ss ]','s')"></ftui-label>
@@ -158,27 +158,27 @@
     </ftui-grid-tile>
 
     <ftui-grid-tile row="1" col="2" height="1" width="1">
-      <header>text-filter regexec</header>
+      <ftui-grid-header>text-filter regexec</ftui-grid-header>
       <ftui-label [text]="AgroWeather:state | part('.*T:(.*)H:.*')"></ftui-label>
     </ftui-grid-tile>
 
     <ftui-grid-tile row="2" col="1" height="2" width="1">
-      <header>MAP</header>
+      <ftui-grid-header>MAP</ftui-grid-header>
       <ftui-label [text]="dummy1 | map('on: offen, off: geschlossen')"></ftui-label>
     </ftui-grid-tile>
 
     <ftui-grid-tile row="3" col="2" height="1" width="1">
-      <header>FIX</header>
+      <ftui-grid-header>FIX</ftui-grid-header>
       <ftui-label [text]="AgroWeather:wind | fix(2)" unit="°C"></ftui-label>
     </ftui-grid-tile>
 
     <ftui-grid-tile row="3" col="2" height="1" width="1">
-      <header>REPLACE</header>
+      <ftui-grid-header>REPLACE</ftui-grid-header>
       <ftui-label [text]="AgroWeather:fc0_date | replace(/\./g, '/')"></ftui-label>
     </ftui-grid-tile>
 
     <ftui-grid-tile row="4" col="1" height="1" width="1">
-      <header>AUTO REFRESH</header>
+      <ftui-grid-header>AUTO REFRESH</ftui-grid-header>
       <ftui-label
                   [text]="AussenTemp:temperature | toInt()"
                   unit="°C">
@@ -192,7 +192,7 @@
     </ftui-grid-tile>
 
     <ftui-grid-tile row="5" col="1" height="2" width="1">
-      <header>UNIT</header>
+      <ftui-grid-header>UNIT</ftui-grid-header>
       <ftui-label text="42" unit="s"></ftui-label>
       <ftui-label text="" unit="ms"></ftui-label>
       <ftui-label [text]="ftuitest:watt" unit="W" class="size-0" id="labelUnit"></ftui-label>
@@ -200,20 +200,20 @@
     </ftui-grid-tile>
 
     <ftui-grid-tile row="5" col="2" height="2" width="1">
-      <header>TEST IT</header>
+      <ftui-grid-header>TEST IT</ftui-grid-header>
       <ftui-button @click="sendFhem(`{CommandSetReading(undef,'ftuitest watt ')}`)">null</ftui-button>
       <ftui-button (value)="setreading ftuitest:watt" states="9,10,12.45">Values</ftui-button>
       <ftui-button @click="labelUnit.unit=event.target.value" value="V" states="W,V,A,WA">Units</ftui-button>
     </ftui-grid-tile>
 
     <ftui-grid-tile row="5" col="3" height="1" width="2">
-      <header>PLACEHOLDER</header>
+      <ftui-grid-header>PLACEHOLDER</ftui-grid-header>
       <ftui-label placeholder></ftui-label>
       <ftui-label placeholder></ftui-label>
     </ftui-grid-tile>
 
     <ftui-grid-tile row="5" col="5" height="1" width="2">
-      <header>DETAILS</header>
+      <ftui-grid-header>DETAILS</ftui-grid-header>
       <details>
         <summary>Batteries: <ftui-label text="Ok" color="ok"></ftui-label>
         </summary>
@@ -223,7 +223,7 @@
     </ftui-grid-tile>
 
     <ftui-grid-tile row="5" col="7" height="1" width="3">
-      <header>CONCAT</header>
+      <ftui-grid-header>CONCAT</ftui-grid-header>
       <span>
         <ftui-label [text]="Sonos_Terasse:currentArtist"></ftui-label> - 
         <ftui-label [text]="Sonos_Terasse:currentTitle"></ftui-label>
@@ -232,7 +232,7 @@
 
 
     <ftui-grid-tile row="6" col="3" height="1" width="3">
-      <header>INTL DateFormat</header>
+      <ftui-grid-header>INTL DateFormat</ftui-grid-header>
       <ftui-label [text]="AgroWeather:state:time | toDate() | myDateTimeFormat1()"></ftui-label>
       <ftui-label [text]="AgroWeather:state:time | toDate() | myDateTimeFormat2()"></ftui-label>
     </ftui-grid-tile>

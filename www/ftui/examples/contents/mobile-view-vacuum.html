@@ -12,31 +12,31 @@
       Stop
     </ftui-button>
   </ftui-row>
-  <ftui-row height="60%">
-    <ftui-label [text]="RoboRock" color="medium" size="2"></ftui-label>
+  <ftui-row>
+    <ftui-label [text]="RoboRock" color="medium" size="2" padding="0.25em 0 0 0"></ftui-label>
   </ftui-row>
   
 </ftui-view-sheet>
 
 <ftui-view-section>
   <ftui-view-item>Battery
-    <ftui-label [text]="RoboRock:batteryPercent" placeholder><sup slot="unit" class="size-0">%</sup></ftui-label>
+    <ftui-label [text]="RoboRock:batteryPercent" placeholder><span slot="unit">%</span></ftui-label>
   </ftui-view-item>
 
   <ftui-view-item>Filter
-    <ftui-label [text]="RoboRock:consumables_filter" placeholder><sup slot="unit" class="size-0">%</sup></ftui-label>
+    <ftui-label [text]="RoboRock:consumables_filter" placeholder><span slot="unit">%</span></ftui-label>
   </ftui-view-item>
 
   <ftui-view-item>Main Brush
-    <ftui-label [text]="RoboRock:consumables_main_brush" placeholder><sup slot="unit" class="size-0">%</sup></ftui-label>
+    <ftui-label [text]="RoboRock:consumables_main_brush" placeholder><span slot="unit">%</span></ftui-label>
   </ftui-view-item>
 
   <ftui-view-item>Side Brush
-    <ftui-label [text]="RoboRock:consumables_side_brush" placeholder><sup slot="unit" class="size-0">%</sup></ftui-label>
+    <ftui-label [text]="RoboRock:consumables_side_brush" placeholder><span slot="unit">%</span></ftui-label>
   </ftui-view-item>
 
   <ftui-view-item>Sensors
-    <ftui-label [text]="RoboRock:consumables_sensors" placeholder><sup slot="unit" class="size-0">%</sup></ftui-label>
+    <ftui-label [text]="RoboRock:consumables_sensors" placeholder><span slot="unit">%</span></ftui-label>
   </ftui-view-item>
 
 </ftui-view-section>

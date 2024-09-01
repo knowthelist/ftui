@@ -184,12 +184,12 @@ The $event object provides the parameter 'detail' that containing the changed pr
 
 ```html
 <ftui-colorpicker @color-change="console.log($event.detail.hexString)"></ftui-colorpicker>
-````
+```
 
 ```html
 <ftui-dropdown [list]="ftuitest:list" [(value)]="ftuitest" @value-change="console.log($event.detail)"></ftui-dropdown>
 
-````
+```
 
 This can be used to communicate between components.
 
@@ -213,6 +213,7 @@ Binding values can be pushed through piped functions to change the value. Follow
 - scale(minIn, maxIn, minOut, maxOut)
 
 Example for input (FHEM reading -> function() -> HTML attribute): 
+
 ```html
 <ftui-label [text]="AgroWeather:state | part(4) | toInt() | multiply(2) | round(1) "></ftui-label>
 ```
@@ -220,7 +221,8 @@ Example for input (FHEM reading -> function() -> HTML attribute):
 Example for output (HTML attribute -> function() -> FHEM reading): 
 ```html
  <ftui-colorpicker (hex)="replace('#','') | HUEDevice6:rgb"></ftui-colorpicker>
- ````
+```
+
 
 Colors
 ------
@@ -261,6 +263,8 @@ Others colors:
 - translucent
 
 [Example](https://knowthelist.github.io/ftui/www/ftui/examples/colors.html)
+
+
 
 Components
 ------

@@ -40,6 +40,16 @@
   font-size: 1.5em;
 }
 
+:host([size="huge"]) {
+  --border-radius: 18px;
+  --padding-top: 0;
+  --padding-start: 1em;
+  --padding-end: 1em;
+  --padding-bottom: 0;
+  --button-height: 3em;
+  font-size: 2em;
+}
+
 /* fill */
 
 :host([fill="outline"]) {

@@ -31,14 +31,14 @@
 
 
     <ftui-grid-tile row="1" col="1" height="1" width="3">
-      <header>DEFAULT</header>
+      <ftui-grid-header>DEFAULT</ftui-grid-header>
 
       <ftui-slider value="20" max="50"></ftui-slider>
 
     </ftui-grid-tile>
 
     <ftui-grid-tile row="2" col="1" height="1" width="3">
-      <header>INVERT</header>
+      <ftui-grid-header>INVERT</ftui-grid-header>
 
       <ftui-slider (value)="scale(50,0,0,50) | fhemDev1" max="50"></ftui-slider>
       <ftui-label [text]="fhemDev1" text="50"></ftui-label>
@@ -46,21 +46,21 @@
     </ftui-grid-tile>
 
     <ftui-grid-tile row="2" col="7" height="1" width="6">
-      <header>RULER</header>
+      <ftui-grid-header>RULER</ftui-grid-header>
 
       <ftui-slider [value]="ftuitest" max="70" has-ruler></ftui-slider>
 
     </ftui-grid-tile>
 
     <ftui-grid-tile row="1" col="4" height="2" width="3">
-      <header>VERTICAL</header>
+      <ftui-grid-header>VERTICAL</ftui-grid-header>
 
       <ftui-slider [(value)]="dummy3" max="60" is-vertical></ftui-slider>
 
     </ftui-grid-tile>
 
     <ftui-grid-tile row="1" col="7" height="1" width="3">
-      <header>WIDE TICKS</header>
+      <ftui-grid-header>WIDE TICKS</ftui-grid-header>
 
       <ftui-slider [(value)]="ftuitest" min="0" max="100"
                    tick="25"
@@ -72,7 +72,7 @@
 
 
     <ftui-grid-tile row="1" col="10" height="1" width="2">
-      <header>VERTICAL RULER</header>
+      <ftui-grid-header>VERTICAL RULER</ftui-grid-header>
 
       <ftui-slider [(value)]="ftuitest" min="10" max="70" is-vertical has-ruler>
       </ftui-slider>
@@ -80,7 +80,7 @@
     </ftui-grid-tile>
 
     <ftui-grid-tile row="1" col="12" height="1" width="2">
-      <header>WIDE TICKS</header>
+      <ftui-grid-header>WIDE TICKS</ftui-grid-header>
 
       <ftui-slider [(value)]="ftuitest" min="0" max="100"
                    tick="25"
@@ -93,7 +93,7 @@
     </ftui-grid-tile>
 
     <ftui-grid-tile row="3" col="1" height="1" width="3">
-      <header>NO HANDLE</header>
+      <ftui-grid-header>NO HANDLE</ftui-grid-header>
 
       <ftui-slider [(value)]="ftuitest" min="10" max="70" handle="none">
       </ftui-slider>
@@ -101,7 +101,7 @@
     </ftui-grid-tile>
 
     <ftui-grid-tile row="3" col="4" height="1" width="3">
-      <header>READONLY</header>
+      <ftui-grid-header>READONLY</ftui-grid-header>
 
       <ftui-slider [(value)]="ftuitest" min="10" max="70" handle="none" readonly>
       </ftui-slider>
@@ -109,7 +109,7 @@
     </ftui-grid-tile>
 
     <ftui-grid-tile row="3" col="7" height="1" width="3">
-      <header>DISABLED</header>
+      <ftui-grid-header>DISABLED</ftui-grid-header>
 
       <ftui-slider [(value)]="ftuitest" min="10" max="70" disabled>
       </ftui-slider>
@@ -117,14 +117,14 @@
     </ftui-grid-tile>
 
     <ftui-grid-tile row="3" col="10" height="1" width="3">
-      <header>TOOLTIP</header>
+      <ftui-grid-header>TOOLTIP</ftui-grid-header>
 
       <ftui-slider [(value)]="dummy3" max="70" tooltips="always"></ftui-slider>
 
     </ftui-grid-tile>
 
     <ftui-grid-tile row="4" col="1" height="1" width="3">
-      <header>RETRO</header>
+      <ftui-grid-header>RETRO</ftui-grid-header>
 
       <ftui-slider [(value)]="dummy3" max="80"
                    tick="10"
@@ -137,7 +137,7 @@
 
 
     <ftui-grid-tile row="4" col="4" height="1" width="3">
-      <header>RETRO</header>
+      <ftui-grid-header>RETRO</ftui-grid-header>
 
         <ftui-slider [(value)]="ftuitest" min="0" max="100"
                     tick="25"
@@ -151,7 +151,7 @@
     </ftui-grid-tile>
 
     <ftui-grid-tile row="4" col="7" height="1" width="3">
-      <header>GRADIENT</header>
+      <ftui-grid-header>GRADIENT</ftui-grid-header>
 
       <ftui-slider [(value)]="dummy3" max="80"
                    tick="10"
@@ -163,7 +163,7 @@
 
 
     <ftui-grid-tile row="4" col="10" height="1" width="3">
-      <header>GRADIENT</header>
+      <ftui-grid-header>GRADIENT</ftui-grid-header>
 
         <ftui-slider [(value)]="ftuitest" min="0" max="100"
                     tick="25"

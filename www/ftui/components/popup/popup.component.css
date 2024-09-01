@@ -64,11 +64,12 @@
   
 }
 
-::slotted(header) {
+::slotted(header),
+::slotted(ftui-popup-header) {
   color: var(--popup-header-color);
   background: var(--popup-header-background-color);
-  font-weight: bold;
-  padding: 0.25em;
+  padding: 0.5em;
+  font-size: var(--popup-header-font-size, 0.9em);
   width: 100%;
   text-align: center;
 }

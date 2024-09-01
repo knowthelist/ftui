@@ -29,48 +29,49 @@
   <ftui-label slot="header">Living Room</ftui-label>
 
   <ftui-view-item>Left
-    <ftui-row width="40%" slot="end">
-      <ftui-button (value)="KuechenJalousie fahren" states="down" color="current" fill="none">
+    <ftui-row width="11em" height="4em" slot="end">
+      <!-- shape="circle"  makes the button smaller -->
+      <ftui-button (value)="KuechenJalousie fahren" states="down" shape="circle" color="current" fill="none">
         <ftui-icon name="angle-down" class="size-2"></ftui-icon>
       </ftui-button>
-      <ftui-button (value)="KuechenJalousie kurz" states="up" color="current" fill="none" direction="vertical">
+      <ftui-button (value)="KuechenJalousie kurz" states="up" shape="circle" color="current" fill="none" direction="vertical">
         <ftui-icon [name]="KuechenJalousie:status-get | part(1) | step('0: window-shutter-open, 10: window-shutter')"
                    size="1"></ftui-icon>
-        <ftui-label [text]="KuechenJalousie" color="medium" margin="-0.5em 0 0 0"></ftui-label>
+        <ftui-label [text]="KuechenJalousie" color="medium" margin="-0.25em 0 0 0"></ftui-label>
       </ftui-button>
-      <ftui-button (value)="KuechenJalousie fahren" states="up" color="current" fill="none">
+      <ftui-button (value)="KuechenJalousie fahren" states="up" shape="circle" color="current" fill="none">
         <ftui-icon name="angle-up" class="size-2"></ftui-icon>
       </ftui-button>
     </ftui-row>
   </ftui-view-item>
 
   <ftui-view-item>Mid
-    <ftui-row width="40%" slot="end">
-      <ftui-button (value)="WohnzimmerJalousieLinks fahren" states="down" color="current" fill="none">
+    <ftui-row width="11em" height="4em" slot="end">
+      <ftui-button (value)="WohnzimmerJalousieLinks fahren" states="down" shape="circle" color="current" fill="none">
         <ftui-icon name="angle-down" class="size-2"></ftui-icon>
       </ftui-button>
-      <ftui-button (value)="WohnzimmerJalousieLinks kurz" states="up" color="current" fill="none" direction="vertical">
+      <ftui-button (value)="WohnzimmerJalousieLinks kurz" states="up" shape="circle" color="current" fill="none" direction="vertical">
         <ftui-icon [name]="WohnzimmerJalousieLinks:status-get  | part(1) | step('0: window-shutter-open, 10: window-shutter')"
                    size="1"></ftui-icon>
-        <ftui-label [text]="WohnzimmerJalousieLinks" color="medium" margin="-0.5em 0 0 0"></ftui-label>
+        <ftui-label [text]="WohnzimmerJalousieLinks" color="medium" margin="-0.25em 0 0 0"></ftui-label>
       </ftui-button>
-      <ftui-button (value)="WohnzimmerJalousieLinks fahren" states="up" color="current" fill="none">
+      <ftui-button (value)="WohnzimmerJalousieLinks fahren" states="up" shape="circle" color="current" fill="none">
         <ftui-icon name="angle-up" class="size-2"></ftui-icon>
       </ftui-button>
     </ftui-row>
   </ftui-view-item>
 
   <ftui-view-item>Right
-    <ftui-row width="40%" slot="end">
-      <ftui-button (value)="WohnzimmerJalousieRechts fahren" states="down" color="current" fill="none">
+    <ftui-row width="11em" height="4em" slot="end">
+      <ftui-button (value)="WohnzimmerJalousieRechts fahren" states="down" shape="circle" shape="circle" color="current" fill="none">
         <ftui-icon name="angle-down" class="size-2"></ftui-icon>
       </ftui-button>
-      <ftui-button (value)="WohnzimmerJalousieRechts kurz" states="up" color="current" fill="none" direction="vertical">
+      <ftui-button (value)="WohnzimmerJalousieRechts kurz" states="up" shape="circle" shape="circle" color="current" fill="none" direction="vertical" >
         <ftui-icon [name]="WohnzimmerJalousieRechts:status-get  | part(1) | step('0: window-shutter-open, 10: window-shutter')"
                    size="1"></ftui-icon>
-        <ftui-label [text]="WohnzimmerJalousieRechts" color="medium" margin="-0.5em 0 0 0"></ftui-label>
+        <ftui-label [text]="WohnzimmerJalousieRechts" color="medium" margin="-0.25em 0 0 0"></ftui-label>
       </ftui-button>
-      <ftui-button (value)="WohnzimmerJalousieRechts fahren" states="up" color="current" fill="none">
+      <ftui-button (value)="WohnzimmerJalousieRechts fahren" states="up" shape="circle" shape="circle" color="current" fill="none">
         <ftui-icon name="angle-up" class="size-2"></ftui-icon>
       </ftui-button>
     </ftui-row>
@@ -81,63 +82,63 @@
 <ftui-view-section>
   <ftui-label slot="header">Bed Rooms</ftui-label>
   <ftui-view-item>Child Left
-    <ftui-row width="40%" slot="end">
-      <ftui-button (value)="KinderzimmerJalousieLinks fahren" states="down" color="current" fill="none">
+    <ftui-row width="11em" height="4em" slot="end">
+      <ftui-button (value)="KinderzimmerJalousieLinks fahren" shape="circle" states="down" color="current" fill="none">
         <ftui-icon name="angle-down" class="size-2"></ftui-icon>
       </ftui-button>
-      <ftui-button (value)="KinderzimmerJalousieLinks kurz" states="up" color="current" fill="none"
-                   direction="vertical">
+      <ftui-button (value)="KinderzimmerJalousieLinks kurz" states="up" shape="circle" color="current" fill="none"
+                   direction="vertical" >
         <ftui-icon [name]="KinderzimmerJalousieLinks:status-get | part(1) | step('0: window-shutter-open, 10: window-shutter')"
                    size="1"></ftui-icon>
-        <ftui-label [text]="KinderzimmerJalousieLinks" color="medium" margin="-0.5em 0 0 0"></ftui-label>
+        <ftui-label [text]="KinderzimmerJalousieLinks" color="medium" margin="-0.25em 0 0 0"></ftui-label>
       </ftui-button>
-      <ftui-button (value)="KinderzimmerJalousieLinks fahren" states="up" color="current" fill="none">
+      <ftui-button (value)="KinderzimmerJalousieLinks fahren" states="up" shape="circle" color="current" fill="none">
         <ftui-icon name="angle-up" class="size-2"></ftui-icon>
       </ftui-button>
     </ftui-row>
   </ftui-view-item>
   <ftui-view-item>Child Right
-    <ftui-row width="40%" slot="end">
-      <ftui-button (value)="KinderzimmerJalousieRechts fahren" states="down" color="current" fill="none">
+    <ftui-row width="11em" height="4em" slot="end">
+      <ftui-button (value)="KinderzimmerJalousieRechts fahren" states="down" shape="circle" color="current" fill="none">
         <ftui-icon name="angle-down" class="size-2"></ftui-icon>
       </ftui-button>
-      <ftui-button (value)="KinderzimmerJalousieRechts kurz" states="up" color="current" fill="none"
+      <ftui-button (value)="KinderzimmerJalousieRechts kurz" states="up" shape="circle" color="current" fill="none"
                    direction="vertical">
         <ftui-icon [name]="KinderzimmerJalousieRechts:status-get | part(1) | step('0: window-shutter-open, 10: window-shutter')"
                    size="1"></ftui-icon>
-        <ftui-label [text]="KinderzimmerJalousieRechts" color="medium" margin="-0.5em 0 0 0"></ftui-label>
+        <ftui-label [text]="KinderzimmerJalousieRechts" color="medium" margin="-0.25em 0 0 0"></ftui-label>
       </ftui-button>
-      <ftui-button (value)="KinderzimmerJalousieRechts fahren" states="up" color="current" fill="none">
+      <ftui-button (value)="KinderzimmerJalousieRechts fahren" states="up" shape="circle" color="current" fill="none">
         <ftui-icon name="angle-up" class="size-2"></ftui-icon>
       </ftui-button>
     </ftui-row>
   </ftui-view-item>
   <ftui-view-item>Guest
-    <ftui-row width="40%" slot="end">
-      <ftui-button (value)="GaestezimmerJalousie" states="down" color="current" fill="none">
+    <ftui-row width="11em" height="4em" slot="end">
+      <ftui-button (value)="GaestezimmerJalousie" states="down" shape="circle" color="current" fill="none">
         <ftui-icon name="angle-down" class="size-2"></ftui-icon>
       </ftui-button>
-      <ftui-button (value)="GaestezimmerJalousie kurz" states="up" color="current" fill="none" direction="vertical">
+      <ftui-button (value)="GaestezimmerJalousie kurz" states="up" shape="circle" color="current" fill="none" direction="vertical">
         <ftui-icon [name]="GaestezimmerJalousie:status-get | part(1) | step('0: window-shutter-open, 10: window-shutter')"
                    size="1"></ftui-icon>
-        <ftui-label [text]="GaestezimmerJalousie" color="medium" margin="-0.5em 0 0 0"></ftui-label>
+        <ftui-label [text]="GaestezimmerJalousie" color="medium" margin="-0.25em 0 0 0"></ftui-label>
       </ftui-button>
-      <ftui-button (value)="GaestezimmerJalousie fahren" states="up" color="current" fill="none">
+      <ftui-button (value)="GaestezimmerJalousie fahren" states="up" shape="circle" color="current" fill="none">
         <ftui-icon name="angle-up" class="size-2"></ftui-icon>
       </ftui-button>
     </ftui-row>
   </ftui-view-item>
   <ftui-view-item>Bed Room
-    <ftui-row width="40%" slot="end">
-      <ftui-button (value)="SchlafzimmerJalousie fahren" states="down" color="current" fill="none">
+    <ftui-row width="11em" height="4em" slot="end">
+      <ftui-button (value)="SchlafzimmerJalousie fahren" states="down" shape="circle" color="current" fill="none">
         <ftui-icon name="angle-down" class="size-2"></ftui-icon>
       </ftui-button>
-      <ftui-button (value)="SchlafzimmerJalousie kurz" states="up" color="current" fill="none" direction="vertical">
+      <ftui-button (value)="SchlafzimmerJalousie kurz" states="up" shape="circle" color="current" fill="none" direction="vertical">
         <ftui-icon [name]="SchlafzimmerJalousie:status-get | part(1) | step('0: window-shutter-open, 10: window-shutter')"
                    size="1"></ftui-icon>
-        <ftui-label [text]="SchlafzimmerJalousie" color="medium" margin="-0.5em 0 0 0"></ftui-label>
+        <ftui-label [text]="SchlafzimmerJalousie" color="medium" margin="-0.25em 0 0 0"></ftui-label>
       </ftui-button>
-      <ftui-button (value)="SchlafzimmerJalousie fahren" states="up" color="current" fill="none">
+      <ftui-button (value)="SchlafzimmerJalousie fahren" states="up" shape="circle" color="current" fill="none">
         <ftui-icon name="angle-up" class="size-2"></ftui-icon>
       </ftui-button>
     </ftui-row>
@@ -145,16 +146,16 @@
 </ftui-view-section>
 
 <ftui-view-item>Bathroom
-  <ftui-row width="40%" slot="end">
-    <ftui-button (value)="BadJalousie fahren" states="down" color="current" fill="none">
+  <ftui-row width="11em" height="4em" slot="end">
+    <ftui-button (value)="BadJalousie fahren" states="down" shape="circle" color="current" fill="none">
       <ftui-icon name="angle-down" class="size-2"></ftui-icon>
     </ftui-button>
-    <ftui-button (value)="BadJalousie kurz" states="up" color="current" fill="none" direction="vertical">
+    <ftui-button (value)="BadJalousie kurz" states="up" shape="circle" color="current" fill="none" direction="vertical">
       <ftui-icon [name]="BadJalousie:status-get | part(1) | step('0: window-shutter-open, 10: window-shutter')"
                  size="1"></ftui-icon>
-      <ftui-label [text]="BadJalousie" color="medium" margin="-0.5em 0 0 0"></ftui-label>
+      <ftui-label [text]="BadJalousie" color="medium" margin="-0.25em 0 0 0"></ftui-label>
     </ftui-button>
-    <ftui-button (value)="BadJalousie fahren" states="up" color="current" fill="none">
+    <ftui-button (value)="BadJalousie fahren" states="up" shape="circle" color="current" fill="none">
       <ftui-icon name="angle-up" class="size-2"></ftui-icon>
     </ftui-button>
   </ftui-row>

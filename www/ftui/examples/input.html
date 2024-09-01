@@ -28,42 +28,42 @@
   <ftui-grid>
 
     <ftui-grid-tile row="1" col="1" height="1" width="3">
-      <header>DEFAULT</header>
+      <ftui-grid-header>DEFAULT</ftui-grid-header>
       <ftui-input value="Test"></ftui-input>
     </ftui-grid-tile>
 
     <ftui-grid-tile row="2" col="1" height="1" width="3">
-      <header>BINDING</header>
+      <ftui-grid-header>BINDING</ftui-grid-header>
       <ftui-input [(value)]="dummy1"></ftui-input>
     </ftui-grid-tile>
 
     <ftui-grid-tile row="3" col="1" height="1" width="3">
-      <header>AUTOCLEAR</header>
+      <ftui-grid-header>AUTOCLEAR</ftui-grid-header>
       <ftui-input [(value)]="dummy2" autoclear></ftui-input>
     </ftui-grid-tile>
 
     <ftui-grid-tile row="4" col="1" height="1" width="3">
-      <header>NUMBER</header>
+      <ftui-grid-header>NUMBER</ftui-grid-header>
       <ftui-input [(value)]="dummy3" type="number" width="2em"></ftui-input>
     </ftui-grid-tile>
 
     <ftui-grid-tile row="1" col="4" height="1" width="3">
-      <header>STEP</header>
+      <ftui-grid-header>STEP</ftui-grid-header>
       <ftui-input value="10" type="number" step="10"></ftui-input>
     </ftui-grid-tile>
 
     <ftui-grid-tile row="2" col="4" height="1" width="3">
-      <header>PATTERN</header>
+      <ftui-grid-header>PATTERN</ftui-grid-header>
       <ftui-input [(value)]="dummy3" pattern=".{8,}" title="Eight or more characters"></ftui-input>
     </ftui-grid-tile>
 
     <ftui-grid-tile row="3" col="4" height="1" width="3">
-      <header>AUTOCLEAR</header>
+      <ftui-grid-header>AUTOCLEAR</ftui-grid-header>
       <ftui-input [(value)]="dummy2" autoclear></ftui-input>
     </ftui-grid-tile>
 
     <ftui-grid-tile row="4" col="4" height="1" width="3">
-      <header>MIN/MAX</header>
+      <ftui-grid-header>MIN/MAX</ftui-grid-header>
       <ftui-input [(value)]="dummy3" min="1" max="100" type="number"></ftui-input>
     </ftui-grid-tile>
     

@@ -75,7 +75,7 @@ export class FtuiGrid extends FtuiElement {
         margin: ${this.margin}px;
       }
       :host([shape="round"]) {
-        --grid-tile-border-radius: 1rem;
+        --grid-tile-border-radius: 1em;
       }
     </style>
     <slot></slot>

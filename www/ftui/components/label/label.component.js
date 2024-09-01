@@ -10,7 +10,7 @@
 import { FtuiElement } from '../element.component.js';
 import { isNumeric } from '../../modules/ftui/ftui.helper.js';
 
-const sizes = [0.75, 0.875, 1, 1.25, 1.5, 1.75, 2, 2.5, 3, 3.5, 4, 6, 8];
+const sizes = [0.125, 0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2, 2.5, 3, 3.5, 4, 5, 10, 11, 12];
 
 export class FtuiLabel extends FtuiElement {
 
@@ -38,8 +38,9 @@ export class FtuiLabel extends FtuiElement {
         :host(:empty:not([text])) slot[name="unit"],
         :host([text=""]) slot[name="unit"] { visibility: hidden; }
         :host slot[name="unit"] { margin-left: 0.15em; display: initial; }
-        :host([scroll]) { overflow: auto; white-space: normal; }
+        :host([scroll]),:host([wrap]) { overflow: auto; white-space: normal; }
         :host([bold]) { font-weight: bold; }
+        :host([thin]) { font-weight: lighter; }
         :host(:empty[text=""][placeholder]) { display: inline-block;
           background-color: var(--medium-color);
           height: .75em; border-radius: 2em;
@@ -61,7 +62,7 @@ export class FtuiLabel extends FtuiElement {
       text: '',
       color: '',
       unit: '',
-      size: -1,
+      size: '',
       interval: 0,
       width: '',
       height: '',
@@ -87,20 +88,29 @@ export class FtuiLabel extends FtuiElement {
         this.checkInterval();
         break;
       case 'size':
-        if (this.size > -1) {
-          this.style.fontSize = sizes[this.size] + 'rem';
+        if (isNumeric(this.size)) {
+          const size = Number(this.size);
+          if (size !== 0 && size >= -4 && size <= 12) {
+            this.style.fontSize = sizes[size + 4] + 'em';
+          } else if (size === 0 ) {
+            this.style.fontSize = null;
+          }
+          if (size >= 6) {
+            this.style.letterSpacing = '-0.05em';
+          }
+          if (size >= 10) {
+            this.style.fontFamily = '"HelveticaNeue-UltraLight", "Segoe UI", "Roboto Light", sans-serif';
+          }
+        } else {
+          // maybe the value is in % or em
+          this.style.fontSize = this.size
         }
-        if (this.size >= 6) {
-          this.style.letterSpacing = '-0.05em';
-        }
-        if (this.size >= 10) {
-          this.style.fontFamily = '"HelveticaNeue-UltraLight", "Segoe UI", "Roboto Light", sans-serif';
-        }
+
         break;
-      case 'top': this.style.top = isNumeric(value) ? value + 'em' : value; break;
-      case 'left': this.style.left = isNumeric(value) ? value + 'em' : value; break;
-      case 'width': this.style.width = isNumeric(value) ? value + 'em' : value; break;
-      case 'height': this.style.height = isNumeric(value) ? value + 'em' : value; break;
+      case 'top': this.style.top = isNumeric(value) ? value + 'px' : value; break;
+      case 'left': this.style.left = isNumeric(value) ? value + 'px' : value; break;
+      case 'width': this.style.width = isNumeric(value) ? value + 'px' : value; break;
+      case 'height': this.style.height = isNumeric(value) ? value + 'px' : value; break;
     }
   }
 

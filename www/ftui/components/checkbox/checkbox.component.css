@@ -7,8 +7,8 @@
 }
 
 svg {
-  width: var(--checkbox-width, 4em);
-  height: var(--checkbox-height, 4em);
+  width: var(--checkbox-width, 2.5em);
+  height: var(--checkbox-height, 2.5em);
   fill: currentColor;
 }
 

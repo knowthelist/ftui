@@ -1,4 +1,4 @@
-<ftui-row class="size-3" height="90%">
+<ftui-row height="90%">
   <ftui-column width="50%">
     <ftui-row>
       <ftui-label>Heute</ftui-label>
@@ -7,11 +7,11 @@
       <ftui-weather [condition]="AgroWeather:fc0_weatherDay" size="5"></ftui-weather>
     </ftui-row>
     <ftui-row>
-      <ftui-label [text]="AgroWeather:fc0_weatherDay" size="2" class="truncate"></ftui-label>
+      <ftui-label [text]="AgroWeather:fc0_weatherDay" scroll height="2em"></ftui-label>
     </ftui-row>
     <ftui-row width="80%">
       <ftui-label [text]="AgroWeather:fc0_tempMin"><span slot="unit">°C</span></ftui-label>
-      <ftui-label [text]="AgroWeather:fc0_tempMax" size="7" class=""><span class="size-0" slot="unit">°C</span>
+      <ftui-label [text]="AgroWeather:fc0_tempMax" size="4" class=""><span slot="unit">°C</span>
       </ftui-label>
     </ftui-row>
     <ftui-row width="80%">
@@ -27,11 +27,11 @@
       <ftui-weather [condition]="AgroWeather:fc1_weatherDay" size="5"></ftui-weather>
     </ftui-row>
     <ftui-row>
-      <ftui-label [text]="AgroWeather:fc1_weatherDay" size="2"></ftui-label>
+      <ftui-label [text]="AgroWeather:fc1_weatherDay" scroll height="2em"></ftui-label>
     </ftui-row>
     <ftui-row width="80%">
       <ftui-label [text]="AgroWeather:fc1_tempMin" ><span slot="unit">°C</span></ftui-label>
-      <ftui-label [text]="AgroWeather:fc1_tempMax" size="7" class=""><span class="size-1" slot="unit">°C</span>
+      <ftui-label [text]="AgroWeather:fc1_tempMax" size="4" class=""><span slot="unit">°C</span>
       </ftui-label>
     </ftui-row>
     <ftui-row width="80%">

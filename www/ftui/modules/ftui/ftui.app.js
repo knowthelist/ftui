@@ -118,6 +118,16 @@ class FtuiApp {
     const componentTypes = [];
     const undefinedComponents = ftui.selectElements(':not(:defined)', area);
 
+    if (undefinedComponents === null) {
+      // nothing found, return self resolving Promise array
+      return [new Promise((resolve) => {
+        const id = setTimeout(() => {
+          clearTimeout(id);
+          resolve('nothing found')
+        }, 10)
+      })];
+    }
+
     // Fetch all the children of <ftui-*> that are not defined yet.
     undefinedComponents.forEach(elem => {
       if (elem.localName.startsWith('ftui-') && !componentTypes.includes(elem.localName)) {
@@ -153,6 +163,11 @@ class FtuiApp {
     // init ftui binding of 3rd party components
     const selectors = ['[ftui-binding]'];
     const bindElements = ftui.selectElements(selectors.join(', '), area);
+
+    if (bindElements === null) {
+      return;
+    }
+
     bindElements.forEach((element) => {
       element.isActiveChange = {};
       element.binding = new FtuiBinding(element);

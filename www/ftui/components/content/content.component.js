@@ -17,15 +17,6 @@ export class FtuiContent extends FtuiElement {
     super(Object.assign(FtuiContent.properties, properties));
 
     this.onPageInitialized = this.onPageInitialized.bind(this);
-
-    if (this.file) {
-      if (this.lazy) {
-        document.addEventListener('ftuiPageInitialized', this.onPageInitialized);
-      } else {
-        ftuiApp.config.refreshDelay = 500;
-        this.loadFileContent();
-      }
-    }
   }
 
   static get properties() {
@@ -40,18 +31,12 @@ export class FtuiContent extends FtuiElement {
     return [...this.convertToAttributes(FtuiContent.properties), ...super.observedAttributes];
   }
 
-  onAttributeChanged(name, newValue) {
+  onAttributeChanged(name, newValue, oldValue) {
     switch (name) {
       case 'content':
-        if (newValue !== '/* ... */') {
           this.rawText = newValue;
-          // remove long texts to avoid huge attr values in DOM
-          setTimeout(() => {
-            this.setAttribute(name, '/* ... */');
-          }, 1000)
           this.initContent();
           break;
-        }
     }
   }
 
@@ -62,6 +47,19 @@ export class FtuiContent extends FtuiElement {
       this.initInViewportObserver();
     }
   }
+
+    
+  onConnected() {
+    if (this.file) {
+      if (this.lazy) {
+        document.addEventListener('ftuiPageInitialized', this.onPageInitialized);
+      } else {
+        ftuiApp.config.refreshDelay = 500;
+        this.loadFileContent();
+      }
+    }
+  }
+
 
   initInViewportObserver() {
     this.observer = new IntersectionObserver(
@@ -76,7 +74,7 @@ export class FtuiContent extends FtuiElement {
 
   onIntersectionChange(entries){
     if(entries[0].isIntersecting) {
-      this.loadFileContent();
+     this.loadFileContent();
     }
   }
 

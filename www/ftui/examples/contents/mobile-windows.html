@@ -7,14 +7,14 @@
   <ftui-label slot="header">Living Room</ftui-label>
   <ftui-view-item>Kitchen
     <ftui-label [text]="KuechenFenster:state:time | toDate() | ago() | humanized()" ago-refresh color="medium"
-                size="1"></ftui-label>
+                ></ftui-label>
     </ftui-row>
     <ftui-icon [name]="KuechenFenster | map('closed:window-closed-variant, open:window-open-variant')"
                [color]="KuechenFenster | map('closed:medium, open:primary')" slot="end"></ftui-icon>
   </ftui-view-item>
   <ftui-view-item>Left
     <ftui-label [text]="WohnzimmerFensterLinks:state:time | toDate() | ago() | humanized()" ago-refresh
-                color="medium" size="1">
+                color="medium" >
     </ftui-label>
     </ftui-row>
     <ftui-icon [name]="WohnzimmerFensterLinks | map('closed:window-closed-variant, open:window-open-variant')"
@@ -22,7 +22,7 @@
   </ftui-view-item>
   <ftui-view-item>Right
     <ftui-label [text]="WohnzimmerFensterRechts:state:time | toDate() | ago() | humanized()" ago-refresh
-                color="medium" size="1">
+                color="medium" >
     </ftui-label>
     <ftui-icon [name]="WohnzimmerFensterRechts | map('closed:window-closed-variant, open:window-open-variant')"
                [color]="WohnzimmerFensterRechts | map('closed:medium, open:primary')" slot="end"></ftui-icon>
@@ -33,7 +33,7 @@
   <ftui-label slot="header">Bed Rooms</ftui-label>
   <ftui-view-item>Child Left
     <ftui-label [text]="KinderzimmerFensterLinks:state:time | toDate() | ago() | humanized()" ago-refresh
-                color="medium" size="1">
+                color="medium" >
     </ftui-label>
 
     <ftui-icon [name]="KinderzimmerFensterLinks | map('closed:window-closed-variant, open:window-open-variant')"
@@ -41,21 +41,21 @@
   </ftui-view-item>
   <ftui-view-item>Child Right
     <ftui-label [text]="KinderzimmerFensterRechts:state:time | toDate() | ago() | humanized()" ago-refresh
-                color="medium" size="1">
+                color="medium" >
     </ftui-label>
     <ftui-icon [name]="KinderzimmerFensterRechts | map('closed:window-closed-variant, open:window-open-variant')"
                [color]="KinderzimmerFensterRechts | map('closed:medium, open:primary')" slot="end"></ftui-icon>
   </ftui-view-item>
   <ftui-view-item>Guest
     <ftui-label [text]="GaestezimmerFenster:state:time | toDate() | ago() | humanized()" ago-refresh
-                color="medium" size="1">
+                color="medium" >
     </ftui-label>
     <ftui-icon [name]="GaestezimmerFenster | map('closed:window-closed-variant, open:window-open-variant')"
                [color]="GaestezimmerFenster | map('closed:medium, open:primary')" slot="end"></ftui-icon>
   </ftui-view-item>
   <ftui-view-item>Bed Room
     <ftui-label [text]="SchlafzimmerFenster:state:time | toDate() | ago() | humanized()" ago-refresh
-                color="medium" size="1">
+                color="medium" >
     </ftui-label>
     <ftui-icon [name]="SchlafzimmerFenster | map('closed:window-closed-variant, open:window-open-variant')"
                [color]="SchlafzimmerFenster | map('closed:medium, open:primary')" slot="end">
@@ -66,20 +66,20 @@
 <ftui-view-section>
   <ftui-view-item>Bath
     <ftui-label [text]="BadFenster:state:time | toDate() | ago() | humanized()" ago-refresh color="medium"
-                size="1"></ftui-label>
+                ></ftui-label>
     <ftui-icon [name]="BadFenster | map('closed:window-closed-variant, open:window-open-variant')"
                [color]="BadFenster  | map('closed:medium, open:primary')" slot="end"></ftui-icon>
   </ftui-view-item>
   <ftui-view-item>Cellar Left
     <ftui-label [text]="KellerFensterLinks:state:time | toDate() | ago() | humanized()" ago-refresh color="medium"
-                size="1">
+                >
     </ftui-label>
     <ftui-icon [name]="KellerFensterLinks | map('closed:window-closed-variant, open:window-open-variant')"
                [color]="KellerFensterLinks  | map('closed:medium, open:primary')" slot="end"></ftui-icon>
   </ftui-view-item>
   <ftui-view-item>Cellar Right
     <ftui-label [text]="KellerFensterRechts:state:time | toDate() | ago() | humanized()" ago-refresh
-                color="medium" size="1">
+                color="medium" >
     </ftui-label>
     <ftui-icon [name]="KellerFensterRechts | map('closed:window-closed-variant, open:window-open-variant')"
                [color]="KellerFensterRechts  | map('closed:medium, open:primary')" slot="end"></ftui-icon>

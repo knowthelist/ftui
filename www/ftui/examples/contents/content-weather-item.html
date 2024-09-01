@@ -1,13 +1,16 @@
-<ftui-view-item>
-  <ftui-label [text]="AgroWeather:{{day}}_date | toDate() | format('ee')" size="4" bold placeholder></ftui-label>
-  <ftui-cell>
-    <ftui-label color="medium" size="1" placeholder>Min</ftui-label>
-    <ftui-label [text]="AgroWeather:{{day}}_tempMin" unit="°C" placeholder></ftui-label>
-  </ftui-cell>
-  <ftui-cell>
-    <ftui-label color="medium" size="1" placeholder>Rain</ftui-label>
-    <ftui-label [text]="AgroWeather:{{day}}_chOfRainDay" unit="%" placeholder></ftui-label>
-  </ftui-cell>
-    <ftui-weather [condition]="AgroWeather:{{day}}_weatherDay" ></ftui-weather>
-    <ftui-label [text]="AgroWeather:{{day}}_tempMax" unit="°C" size="4" slot="end" placeholder></ftui-label>
+<ftui-view-item class="size--1">
+  <ftui-label [text]="AgroWeather:{{day}}_date | toDate() | format('ee')" size="2" 
+        thin placeholder slot="start"
+        width="2em"
+        ></ftui-label>
+
+    <ftui-label [text]="AgroWeather:{{day}}_chOfRainDay" color="blue" width="2em" placeholder><span slot="unit">%</span></ftui-label>
+    <ftui-label [text]="AgroWeather:{{day}}_rain" color="blue" width="2em" ><span class="size--1" slot="unit">mm</span></ftui-label>
+
+    <ftui-weather [condition]="AgroWeather:{{day}}_weatherDay" width="2em"></ftui-weather>
+
+    <ftui-label [text]="AgroWeather:{{day}}_tempMin" color="medium" unit="°C" placeholder></ftui-label>
+
+
+    <ftui-label [text]="AgroWeather:{{day}}_tempMax" unit="°C" size="2" slot="end" placeholder></ftui-label>
 </ftui-view-item>

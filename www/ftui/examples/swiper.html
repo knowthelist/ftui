@@ -125,7 +125,7 @@
     </ftui-grid-tile>
 
     <!-- warn selector - on / off multiple readings -->
-    <ftui-grid-tile row="8" col="18" height="2" width="10">
+    <ftui-grid-tile row="8" col="18" height="2" width="12">
       <ftui-row>
         <ftui-button [(value)]="local:warn1" value="on" [fill]="local:warn1 | map('off: outline, on: solid')">1
         </ftui-button>
@@ -165,7 +165,7 @@
     </ftui-grid-tile>
 
     <!-- warn selector - count in single reading -->
-    <ftui-grid-tile row="17" col="18" height="2" width="10">
+    <ftui-grid-tile row="17" col="18" height="2" width="12">
       <ftui-row>
         <ftui-button [(value)]="local:count" states="1" fill="outline" [fill]="local:count | step('1: solid')">1
         </ftui-button>
@@ -187,7 +187,7 @@
   </ftui-grid>
 
   <ftui-popup id="swiper_popup">
-    <header>Swiper in Popup</header>
+    <ftui-popup-header>Swiper in Popup</ftui-popup-header>
     <ftui-swiper id="swiper3" dots auto-play interval="3">
       <ftui-image src="https://i.pravatar.cc/100?img=11" width="90px" shape="circle"></ftui-image>
       <ftui-image src="https://i.pravatar.cc/100?img=12" width="90px" shape="circle"></ftui-image>

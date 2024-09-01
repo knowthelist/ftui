@@ -70,6 +70,12 @@ export class FtuiElement extends HTMLElement {
     }
   }
 
+  /**
+   * Called when an observed attribute has changed.
+   * @param {String} name The attribute's name.
+   * @param {*} oldValue The old value of the attribute.
+   * @param {*} newValue The new value of the attribute.
+   */
   attributeChangedCallback(name, oldValue, newValue) {
     log(3, `${this.id} -  attributeChangedCallback name=${name}, oldValue=${oldValue}, newValue=${newValue}`)
     if (typeof this.onAttributeChanged === 'function') {
@@ -89,12 +95,12 @@ export class FtuiElement extends HTMLElement {
         break;
       case 'margin': {
         if (this.tagName !== 'FTUI-GRID') {
-          this.style.margin = isNumeric(newValue) ? newValue + 'em' : newValue;
+          this.style.margin = isNumeric(newValue) ? newValue + 'px' : newValue;
         }
         break;
       }
       case 'padding': {
-        this.style.padding = isNumeric(newValue) ? newValue + 'em' : newValue;
+        this.style.padding = isNumeric(newValue) ? newValue + 'px' : newValue;
         break;
       }
     }

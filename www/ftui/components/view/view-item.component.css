@@ -28,7 +28,7 @@
   width: 100%;
   padding-inline-start: var(--view-item-padding-start, 1.5em);
   align-items: center;
-  min-height: 4em;
+  min-height: 2.5em;
 }
 
 .inner {
@@ -51,7 +51,7 @@
 .inner-wrapper {
   display: flex;
   flex: 1;
-  font-size: 1.125rem;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   padding-inline-end: var(--view-item-padding-end, 0.75em);
@@ -60,28 +60,27 @@
 :host(:not([target='']):not([plain])) .inner:after {
   content: "\276F";
   position: absolute;
-  top: 1rem;
-  right: 1rem;
+  top: 0.6em;
+  right: 1em;
   color: #aaa;
-  font-size: 1rem;
 }
 
 ::slotted([slot=start]) {
-  margin-inline-end: 1rem;
+  margin-inline-end: 1em;
 }
 
 ::slotted(ftui-icon[slot=start]) {
-  font-size: 0.9em;
+  font-size: 90%;
 }
 
 ::slotted(ftui-icon[slot=start]) {
-  margin-inline-end: 0.75rem;
-  margin-inline-start: -0.75rem;
+  margin-inline-end: 0.75em;
+  margin-inline-start: -0.75em;
 }
 
 ::slotted(ftui-label[slot=end]) {
-  margin-top: -0.125rem;
-  font-size: 1.25rem;
+  margin-top: -0.125em;
+  font: var(--text-font);
 }
 
 ::slotted([slot=end]) {

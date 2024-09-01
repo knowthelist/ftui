@@ -108,7 +108,12 @@ export function appendStyleLink(file) {
 }
 
 export function selectElements(selector, context = document) {
-  return context.querySelectorAll(selector);
+  if (isHTMLElement(context)) {
+    return context.querySelectorAll(selector);
+  } else {
+    return null;
+  }
+  
 }
 
 export function selectAll(selector) {
@@ -123,6 +128,10 @@ export function getAllTagMatches(regEx) {
   return Array.prototype.slice.call(document.querySelectorAll('*')).filter((el) => {
     return el.tagName.match(regEx);
   });
+}
+
+export function isHTMLElement(obj) {
+  return obj && (obj.nodeType === 1 || obj.nodeType === 9);
 }
 
 export function createElement(type, classes) {

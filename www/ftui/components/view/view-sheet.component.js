@@ -34,7 +34,7 @@ export class FtuiViewSheet extends FtuiElement {
           align-items: flex-start;
           margin: 1em 1.5em;
           border-radius: 1em;
-          font-size: 1.125rem;
+          font: var(--text-font);
           padding: 1em;
           position: relative;
         } </style>

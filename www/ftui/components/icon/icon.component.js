@@ -10,7 +10,7 @@
 import { FtuiElement } from '../element.component.js';
 import { isNumeric } from '../../modules/ftui/ftui.helper.js';
 
-const sizes = [0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1, 1.25, 1.5, 1.75, 2, 2.5, 3, 3.5, 4, 6, 8];
+const sizes = [0.125, 0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2, 2.5, 3, 3.5, 4, 5, 10, 11, 12];
 const cache = {};
 
 export class FtuiIcon extends FtuiElement {
@@ -32,7 +32,7 @@ export class FtuiIcon extends FtuiElement {
     return {
       type: 'svg',
       path: 'icons',
-      size: 0,
+      size: '',
       name: '',
       color: '',
       rgb: '',
@@ -66,11 +66,19 @@ export class FtuiIcon extends FtuiElement {
       case 'left':
       case 'bottom':
       case 'right':
-        this.style[name] = isNumeric(newValue) ? newValue + 'em' : newValue;
+        this.style[name] = isNumeric(newValue) ? newValue + 'px' : newValue;
         break;
       case 'size':
-        if (this.size > -7 && this.size < 13) {
-          this.style.fontSize = sizes[this.size + 4] + 'rem';
+        if (isNumeric(this.size)) {
+          const size = Number(this.size);
+          if (size !== 0 && size >= -4 && size <= 12) {
+            this.style.fontSize = sizes[size + 4] + 'em';
+          } else if (size === 0 ) {
+            this.style.fontSize = null;
+          }
+        } else {
+          // maybe the value is in % or em
+          this.style.fontSize = this.size
         }
         break;
       case 'rotate':

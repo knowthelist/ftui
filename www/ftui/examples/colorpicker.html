@@ -29,21 +29,21 @@
   <ftui-grid base-width="250" base-height="250">
 
     <ftui-grid-tile row="1" col="1" height="1" width="1">
-      <header>DEFAULT</header>
+      <ftui-grid-header>DEFAULT</ftui-grid-header>
 
         <ftui-colorpicker></ftui-colorpicker>
       
     </ftui-grid-tile>
 
     <ftui-grid-tile row="1" col="2" height="1" width="1">
-      <header>BINDING</header>
+      <ftui-grid-header>BINDING</ftui-grid-header>
 
         <ftui-colorpicker [hex]="ftuitest:rgb" (hex)="setreading ftuitest:rgb"></ftui-colorpicker>
 
     </ftui-grid-tile>
 
     <ftui-grid-tile row="1" col="3" height="1" width="1">
-      <header>HUE-DEVICE</header>
+      <ftui-grid-header>HUE-DEVICE</ftui-grid-header>
 
         <ftui-colorpicker [hex]="HUEDevice20:rgb" (hex)="replace('#','') | HUEDevice20:rgb"
                           layout="wheel,valueSlider"></ftui-colorpicker>
@@ -51,14 +51,14 @@
     </ftui-grid-tile>
 
     <ftui-grid-tile row="1" col="4" height="1" width="1">
-      <header>CHANGE EVENT</header>
+      <ftui-grid-header>CHANGE EVENT</ftui-grid-header>
 
         <ftui-colorpicker @color-change="console.log($event.detail.hexString)"></ftui-colorpicker>
 
     </ftui-grid-tile>
 
     <ftui-grid-tile row="2" col="1" height="1" width="1">
-      <header>RGB-SLIDER</header>
+      <ftui-grid-header>RGB-SLIDER</ftui-grid-header>
       <ftui-row>
 
         <ftui-column width="10%" height="70%"><span>R</span><span>G</span><span>B</span></ftui-column>
@@ -69,7 +69,7 @@
     </ftui-grid-tile>
 
     <ftui-grid-tile row="2" col="2" height="1" width="1">
-      <header>HORIZONTAL</header>
+      <ftui-grid-header>HORIZONTAL</ftui-grid-header>
       
         <ftui-colorpicker direction="horizontal" layout="hueSlider, valueSlider"
         [hex]="HUEDevice20:rgb" (hex)="replace('#','') | HUEDevice20:rgb"></ftui-colorpicker>
@@ -77,7 +77,7 @@
 
 
     <ftui-grid-tile row="2" col="3" height="1" width="1">
-      <header>SAT/BRI/HUE</header>
+      <ftui-grid-header>SAT/BRI/HUE</ftui-grid-header>
       
         <ftui-colorpicker direction="horizontal" layout="hueSlider,saturationSlider,valueSlider"
                 [hue]="HUEDevice20:hue | divide(182.0425) | toInt() | "
@@ -90,27 +90,33 @@
     </ftui-grid-tile>
 
     <ftui-grid-tile row="3" col="1" height="1" width="1">
-      <header>WHEEL</header>
+      <ftui-grid-header>WHEEL</ftui-grid-header>
         <ftui-colorpicker layout="wheel"></ftui-colorpicker>
     </ftui-grid-tile>
 
     <ftui-grid-tile row="3" col="2" height="1" width="1">
-      <header>BOX</header>
+      <ftui-grid-header>BOX</ftui-grid-header>
         <ftui-colorpicker layout="box"></ftui-colorpicker>
     </ftui-grid-tile>
 
     <ftui-grid-tile row="3" col="3" height="1" width="1">
-      <header>SLIDER</header>
+      <ftui-grid-header>SLIDER</ftui-grid-header>
         <ftui-colorpicker layout="hueSlider"></ftui-colorpicker>
     </ftui-grid-tile>
 
       <ftui-grid-tile row="2" col="4" height="1" width="1">
-        <header>KELVIN</header>
+        <ftui-grid-header>KELVIN</ftui-grid-header>
           <ftui-colorpicker layout="kelvinSlider" 
           (kelvin)="scale(2200,11000,454,154) | toInt() |  Stehlampe:ct"
           [kelvin]="Stehlampe:ct | toInt() | scale(154,454,11000,2200)"></ftui-colorpicker>
       </ftui-grid-tile>
     
+      <ftui-grid-tile row="3" col="4" height="2" width="2">
+        <ftui-grid-header>400x400 HUE Color-Picker</ftui-grid-header>
+        <ftui-colorpicker width="400" layout="box,hueSlider"></ftui-colorpicker>
+      </ftui-grid-tile>
+      
+
   </ftui-grid>
 
 </body>

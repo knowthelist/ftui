@@ -1,4 +1,7 @@
 .container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: fixed;
   top: 0;
   left: 0;
@@ -23,7 +26,7 @@
   top: 0;
   display: inline-block;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-  font-size: 17px;
+  font: var(--text-font);
   color: rgb(21, 125, 251);
   padding: 0 5px 0 5px;
   font-weight: 300;
@@ -48,7 +51,8 @@
   display: flex;
   justify-content: center;
   padding: 0;
-  font-size: 1.3em;
+  font: var(--text-font);
+  font-weight: 600;
   white-space: nowrap;
   text-overflow: ellipsis;
   text-align: center;
@@ -57,6 +61,5 @@
   -moz-box-flex: 1;
   box-flex: 1;
   margin: 0 65px;
-  font-weight: 600;
   -webkit-tap-highlight-color: transparent;
 }

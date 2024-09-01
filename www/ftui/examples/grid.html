@@ -27,12 +27,12 @@
   <ftui-grid margin="1" shape="round">
 
     <ftui-grid-tile row="1" col="1" height="1" width="1" color="success">
-      <header>TILE1</header>
+      <ftui-grid-header>TILE1</ftui-grid-header>
 
     </ftui-grid-tile>
 
     <ftui-grid-tile row="2" col="1" height="1" width="1">
-      <header>TILE2</header>
+      <ftui-grid-header>TILE2</ftui-grid-header>
       <ftui-row align-items="top" margin="1" >
         <div>1</div>
         <div>2</div>
@@ -42,7 +42,7 @@
 
     <ftui-grid-tile row="3" col="1" height="1" width="1"
                     [color]="ftuitest | step('0=dark,70=medium,100=light')">
-      <header>TILE3</header>
+      <ftui-grid-header>TILE3</ftui-grid-header>
       <ftui-row align-items="bottom around" margin="1" >
         <div>1</div>
         <div>2</div>
@@ -90,7 +90,7 @@
     </ftui-grid-tile>
 
     <ftui-grid-tile row="1" col="2" height="1" width="2">
-      <header class="size-4 thin"><ftui-label color="green">CUSTOM-HEADER</ftui-label></header>
+      <ftui-grid-header class="size-4 thin"><ftui-label color="green">CUSTOM-HEADER</ftui-label></ftui-grid-header>
       <ftui-row>
         <div>1</div>
         <div>2</div>

@@ -59,21 +59,22 @@
       </ftui-column>
     </ftui-grid-tile>
 
+    <!-- View starts here -->
     <ftui-tab-view id="View1">
+
+      <!-- Clock -->
       <ftui-grid-tile row="1" col="2" height="2" width="2" shape="round" color="primary">
-        <ftui-row width="80%" height="10%">
-          <ftui-clock format="ee" size="6"></ftui-clock>
+        <ftui-row width="80%" height="3em">
+          <ftui-clock format="ee" size="4"></ftui-clock>
           <ftui-clock format="DD" size="5"></ftui-clock>
         </ftui-row>
-        <ftui-clock format="hh:mm" size="9"></ftui-clock>
+        <ftui-clock format="hh:mm" size="5"></ftui-clock>
       </ftui-grid-tile>
-
-
 
       <!-- Tonnen -->
       <ftui-grid-tile row="1" col="4" height="2" width="2"
-                      [color]="AbfallView:t_001_daysleft  | step('0:alert, 1:warning, 2:ok')">
-        <ftui-label size="3">Tonnen</ftui-label>
+                      [color]="AbfallView:t_001_daysleft  | step('0:alert, 1:warning, 2:ok')" height="1em">
+        <ftui-label size="3" height="2em">Tonnen</ftui-label>
         <ftui-icon name="trash-o" size="3"></ftui-icon>
         <ftui-row width="80%" height="10%">
           <ftui-label [text]="AbfallView:t_001_summary | part(1)"></ftui-label>
@@ -83,22 +84,22 @@
 
       <!-- Jalousie -->
       <ftui-grid-tile row="1" col="6" height="2" width="2" shape="round"
-                      [color]="AllJalousie:position | step('5:warning, 35:ok')">
-        <ftui-label size="3">Jalousien</ftui-label>
+                      [color]="AllJalousie:position | step('5:warning, 35:ok')" height="1em">
+        <ftui-label size="3" height="2em">Jalousien</ftui-label>
         <ftui-row height="45%">
           <ftui-button (value)="set AllJalousie fahren up" direction="vertical" color="current" fill="none"
                        margin="-1em">
-            <ftui-icon name="angle-up" class="size-1" height="90%"></ftui-icon>
+            <ftui-icon name="angle-up" height="90%"></ftui-icon>
             <ftui-label>Tag</ftui-label>
           </ftui-button>
-          <ftui-icon name="window-shutter" class="size-4"></ftui-icon>
+          <ftui-icon name="window-shutter" size="3"></ftui-icon>
           <ftui-button @click="sendFhem('{setJalousieNight()}')" direction="vertical" color="current" fill="none"
                        margin="-1em">
-            <ftui-icon name="angle-down" class="size-1" height="90%"></ftui-icon>
+            <ftui-icon name="angle-down" height="90%"></ftui-icon>
             <ftui-label>Nacht</ftui-label>
           </ftui-button>
         </ftui-row>
-        <ftui-label [text]="AllJalousie:position | toInt()" unit="%" size="1"></ftui-label>
+        <ftui-label [text]="AllJalousie:position | toInt()" unit="%" size="1" height="2em"></ftui-label>
       </ftui-grid-tile>
 
       <!-- FENSTER -->
@@ -152,29 +153,31 @@
                    type="handle" min="-10" max="30" decimals="1" unit="°C" readonly has-value-text></ftui-knob>
       </ftui-grid-tile>
 
-      <ftui-grid-tile row="3" col="4" height="2" width="3" shape="round">
-        <ftui-column>
-          <ftui-row>
-            <ftui-label>Humidity</ftui-label>
-            <ftui-label class="size-7" [text]="THSensorWZ:humidity">
-              <span slot="unit" class="size-0">%</span>
+      <!-- Humidity -->
+      <ftui-grid-tile row="3" col="4" height="2" width="4" shape="round">
+        <ftui-row>
+          <ftui-column>
+            <ftui-label>Luftfeuchte</ftui-label>
+            <ftui-chart width="220px" height="100px">
+              <ftui-chart-data fill log="FileLog_THSensorWZ" spec="4:THSensorWZ.humidity"
+                               [update]="THSensorWZ:state:time"></ftui-chart-data>
+            </ftui-chart>
+          </ftui-column>
+          <ftui-column>
+            <ftui-label margin="0 0 0 -0.5em " size="6" [text]="THSensorWZ:humidity">
+              <span slot="unit" class="size--2">%</span>
             </ftui-label>
-          </ftui-row>
-          <ftui-chart class="row" width="150px" height="75px">
-            <ftui-chart-data fill log="FileLog_THSensorWZ" spec="4:THSensorWZ.humidity"
-                             [update]="THSensorWZ:state:time"></ftui-chart-data>
-          </ftui-chart>
-        </ftui-column>
+          </ftui-column>
+        </ftui-row>
       </ftui-grid-tile>
 
       <!-- CO² -->
-      <ftui-grid-tile row="3" col="8" height="2" width="2" shape="round"
-                      [color]="WCLuft | step('0:ok, 1000:warning, 2000:danger')"
-                      [title]="WCLuft:state:time">
+      <ftui-grid-tile row="3" col="8" height="2" width="2" shape="round" [title]="WCLuft:state:time"
+                      [color]="WCLuft | step('0:ok, 1000:warning, 2000:danger')" height="1em">
         <ftui-column width="80%" padding="0 1em" align-items="left">
-          <ftui-label id="co2" size="5">CO²</ftui-label>
-          <ftui-label size="7" [text]="WCLuft | part(1) | toInt()">
-            <span slot="unit" class="size-2">ppm</span>
+          <ftui-label id="co2" size="4">CO²</ftui-label>
+          <ftui-label size="4" [text]="WCLuft | part(1) | toInt()">
+            <span slot="unit" class="size--1">ppm</span>
           </ftui-label>
         </ftui-column>
       </ftui-grid-tile>
@@ -213,7 +216,7 @@
 
       <!-- LIGHTS -->
       <ftui-grid-tile row="7" col="12" height="2" width="2" shape="round">
-        <ftui-button @click="sendFhem('{LightsOffAtAway()}')" color="current" fill="none" direction="vertical" gap="1">
+        <ftui-button @click="sendFhem('{LightsOffAtAway()}')" color="current" fill="none" direction="vertical" gap="1em">
           <ftui-icon name="lightbulb-o" class="size-1" height="90%"></ftui-icon>
           <ftui-label>Lampen aus</ftui-label>
         </ftui-button>
@@ -221,7 +224,7 @@
 
       <!-- SOUND -->
       <ftui-grid-tile row="9" col="12" height="2" width="2" shape="round">
-        <ftui-button @click="sendFhem('{discardAV()}')" color="current" fill="none" direction="vertical" gap="1">
+        <ftui-button @click="sendFhem('{discardAV()}')" color="current" fill="none" direction="vertical" gap="1em">
           <ftui-icon name="volume-up" class="size-1" height="90%"></ftui-icon>
           <ftui-label>Musik aus</ftui-label>
         </ftui-button>

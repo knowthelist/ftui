@@ -37,9 +37,10 @@ export class FtuiDropdown extends FtuiElement {
     return {
       list: '',
       value: '',
-      delimiter: '[;,:|]',
+      delimiter: '', // optional, will be auto-detected if not set
       width: '',
       height: '',
+      placeholder: '',
     };
   }
 
@@ -68,16 +69,58 @@ export class FtuiDropdown extends FtuiElement {
   }
 
   fillList() {
-    const splitter = this.delimiter.length === 1 ? this.delimiter : new RegExp(this.delimiter);
-    const list = String(this.list).split(splitter);
-    this.selectElement.length = 0;
-    list.forEach((item) => {
-      const opt = document.createElement('option');
-      opt.value = item;
-      opt.textContent = item;
-      this.selectElement.appendChild(opt);
+    this.options = []; // empty the list before filling it
+    const list = this.parseList();
+    this.options = list; // update the options array
+    if (this.placeholder) {
+      this.options.unshift({ value: '', text: this.placeholder });
+    }
+    this.selectElement.innerHTML = ''; // clear the select element
+    this.options.forEach(option => {
+      const optionElement = document.createElement('option');
+      optionElement.value = option.value;
+      optionElement.text = option.text;
+      this.selectElement.appendChild(optionElement);
     });
-    this.selectElement.value = this.value;
+
+    this.selectElement.value = this.value; // Set the selected value
+  }
+
+  parseList() {
+    const list = this.list;
+    const delimiter = this.delimiter;
+
+    if (delimiter) {
+      // use custom delimiter
+      const parts = list.split(delimiter);
+      return parts.map(part => {
+        if (part.includes(':')) {
+          const [value, text] = part.split(':');
+          return { value, text };
+        } else {
+          return { value: part, text: part };
+        }
+      });
+    } else {
+      // auto-detect delimiter
+      const delimiterRegex = /[,:;|]/; // common delimiters
+      const matches = list.match(delimiterRegex);
+      if (matches) {
+        const detectedDelimiter = matches[0];
+        const parts = list.split(detectedDelimiter);
+        return parts.map(part => {
+          if (part.includes(':')) {
+            const [value, text] = part.split(':');
+            return { value, text };
+          } else {
+            return { value: part, text: part };
+          }
+        });
+      } else {
+        // no delimiter detected, assume simple value list
+        return list.split(',').map(value => ({ value, text: value }));
+      }
+    }
   }
 
 }

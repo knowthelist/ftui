@@ -37,17 +37,17 @@
   <ftui-grid base-width="200" base-height="200">
 
     <ftui-grid-tile row="1" col="1" height="1" width="1">
-      <header>DEFAULT</header>
+      <ftui-grid-header>DEFAULT</ftui-grid-header>
       <ftui-knob value="33"></ftui-knob>
     </ftui-grid-tile>
 
     <ftui-grid-tile row="2" col="1" height="1" width="1">
-      <header>Color Binding</header>
+      <ftui-grid-header>Color Binding</ftui-grid-header>
       <ftui-knob [(value)]="ftuitest" color="warning"></ftui-knob>
     </ftui-grid-tile>
 
     <ftui-grid-tile row="1" col="2" height="1" width="1">
-      <header>ALL</header>
+      <ftui-grid-header>ALL</ftui-grid-header>
       <ftui-knob has-scale has-arc has-scale-text has-value-text has-needle
                  [(value)]="AvReceiver-volume" max="50"
                  [color]="AvReceiver-volume | step('0: success, 10: warning, 30: danger')">
@@ -55,99 +55,99 @@
     </ftui-grid-tile>
 
     <ftui-grid-tile row="2" col="2" height="1" width="1">
-      <header>GRADIENT</header>
+      <ftui-grid-header>GRADIENT</ftui-grid-header>
       <ftui-knob [(value)]="dummy1" color="ok-alert"></ftui-knob>
     </ftui-grid-tile>
 
     <ftui-grid-tile row="1" col="3" height="1" width="1">
-      <header>Scale</header>
+      <ftui-grid-header>Scale</ftui-grid-header>
       <ftui-knob [(value)]="dummy1" has-scale has-needle></ftui-knob>
     </ftui-grid-tile>
 
     <ftui-grid-tile row="2" col="3" height="1" width="1">
-      <header>Scale Text</header>
+      <ftui-grid-header>Scale Text</ftui-grid-header>
       <ftui-knob [(value)]="AvReceiver-volume" max="50" has-scale-text has-scale has-needle></ftui-knob>
     </ftui-grid-tile>
 
     <ftui-grid-tile row="1" col="4" height="1" width="1">
-      <header>Value Text</header>
+      <ftui-grid-header>Value Text</ftui-grid-header>
       <ftui-knob [(value)]="AvReceiver-volume" max="50" has-arc has-value-text></ftui-knob>
     </ftui-grid-tile>
 
     <ftui-grid-tile row="2" col="4" height="1" width="1">
-      <header>Stroke Width</header>
+      <ftui-grid-header>Stroke Width</ftui-grid-header>
       <ftui-knob [(value)]="AvReceiver-volume" max="50" stroke-width="25"></ftui-knob>
     </ftui-grid-tile>
 
     <ftui-grid-tile row="1" col="5" height="1" width="1">
-      <header>Needle</header>
+      <ftui-grid-header>Needle</ftui-grid-header>
       <ftui-knob [(value)]="AvReceiver-volume" max="50" has-arc has-value-text has-needle></ftui-knob>
     </ftui-grid-tile>
 
     <ftui-grid-tile row="2" col="5" height="1" width="1">
-      <header>Custom Needle Color</header>
+      <ftui-grid-header>Custom Needle Color</ftui-grid-header>
       <ftui-knob id="myKnob1" [(value)]="dummy1" has-scale-text has-scale has-needle></ftui-knob>
     </ftui-grid-tile>
 
     <ftui-grid-tile row="3" col="1" height="1" width="1">
-      <header>Type Handle</header>
+      <ftui-grid-header>Type Handle</ftui-grid-header>
       <ftui-knob [(value)]="dummy1" type="handle" has-value-text></ftui-knob>
     </ftui-grid-tile>
 
     <ftui-grid-tile row="3" col="2" height="1" width="1">
-      <header>Type Arc</header>
+      <ftui-grid-header>Type Arc</ftui-grid-header>
       <ftui-knob [(value)]="dummy1" type="arc" has-value-text></ftui-knob>
     </ftui-grid-tile>
 
     <ftui-grid-tile row="3" col="3" height="1" width="1">
-      <header>Type Scale</header>
+      <ftui-grid-header>Type Scale</ftui-grid-header>
       <ftui-knob [(value)]="dummy1" type="scale" has-value-text></ftui-knob>
     </ftui-grid-tile>
 
     <ftui-grid-tile row="3" col="4" height="1" width="1">
-      <header>Unit</header>
+      <ftui-grid-header>Unit</ftui-grid-header>
       <ftui-knob [(value)]="dummy1" type="scale" unit="°C" has-value-text></ftui-knob>
     </ftui-grid-tile>
 
     <ftui-grid-tile row="3" col="5" height="1" width="1">
-      <header>STEPS</header>
+      <ftui-grid-header>STEPS</ftui-grid-header>
       <ftui-knob value="1.2" min="1.0" max="2.0" ticks="10" type="scale" has-value-text has-scale-text></ftui-knob>
     </ftui-grid-tile>
 
     <ftui-grid-tile row="4" col="1" height="1" width="1">
-      <header>360° start right</header>
+      <ftui-grid-header>360° start right</ftui-grid-header>
       <ftui-knob [(value)]="dummy1" start-angle="0" end-angle="359" offset-y="0"></ftui-knob>
     </ftui-grid-tile>
 
     <ftui-grid-tile row="4" col="2" height="1" width="1">
-      <header>360° start left</header>
+      <ftui-grid-header>360° start left</ftui-grid-header>
       <ftui-knob [(value)]="dummy1" start-angle="-179" end-angle="180" offset-y="0"></ftui-knob>
     </ftui-grid-tile>
 
     <ftui-grid-tile row="4" col="3" height="1" width="1">
-      <header>360°</header>
+      <ftui-grid-header>360°</ftui-grid-header>
       <ftui-knob [(value)]="dummy1" start-angle="-179" end-angle="180" offset-y="0" stroke-width="40"></ftui-knob>
     </ftui-grid-tile>
 
     <ftui-grid-tile row="4" col="4" height="1" width="1">
-      <header>Value-Size</header>
+      <ftui-grid-header>Value-Size</ftui-grid-header>
       <ftui-knob [(value)]="dummy1" value-size="20px" type="arc" has-value-text></ftui-knob>
     </ftui-grid-tile>
 
     <ftui-grid-tile row="4" col="5" height="1" width="1">
-      <header>desired-value</header>
+      <ftui-grid-header>desired-value</ftui-grid-header>
       <ftui-knob value="33" desired-value="20" type="handle" has-desired has-value-text></ftui-knob>
     </ftui-grid-tile>
 
 
     <ftui-grid-tile row="5" col="1" height="1" width="1">
-      <header>1/2 STEP</header>
+      <ftui-grid-header>1/2 STEP</ftui-grid-header>
       <ftui-knob value="18" max="26" scale-decimals="0" step="0.5" min="18" ticks="8"
                  value-size="2em" type="scale" has-value-text has-scale-text></ftui-knob>
     </ftui-grid-tile>
 
     <ftui-grid-tile row="5" col="2" height="0.6" width="0.6">
-      <header>SMALL</header>
+      <ftui-grid-header>SMALL</ftui-grid-header>
       <ftui-knob value="-1"
                  height="90" width="90" offset-y="10" has-arc min="-20" max="40" unit="°C" readonly
                  margin="-18px 0 0 0" unit-offset-y="13" value-offset-y="-5"
@@ -157,7 +157,7 @@
     </ftui-grid-tile>
 
     <ftui-grid-tile row="5" col="3" height="0.6" width="0.6">
-      <header>SMALL</header>
+      <ftui-grid-header>SMALL</ftui-grid-header>
       <ftui-knob value="10"
                  height="90" width="90" offset-y="10" has-arc min="-20" max="40" unit="°C"
                  margin="-18px 0 0 0" unit-offset-y="13" value-offset-y="-5"
@@ -168,7 +168,7 @@
     </ftui-grid-tile>
 
     <ftui-grid-tile row="5" col="4" height="1.5" width="1.5">
-      <header>BIG</header>
+      <ftui-grid-header>BIG</ftui-grid-header>
       <ftui-knob [(value)]="dummy1" color="cold-hot" width=300 height=300 stroke-width="65" ></ftui-knob>
     </ftui-grid-tile>
 

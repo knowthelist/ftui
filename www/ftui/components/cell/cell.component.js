@@ -31,6 +31,7 @@ export class FtuiCell extends FtuiElement {
         align-items: center;
         background: var(--color-base);
         color: var(--color-contrast);
+        flex: 1;
       }
       :host(:not(ftui-row)[align-items~=top])    { justify-content: start; }
       :host(:not(ftui-row)[align-items~=bottom]) { justify-content: end; }
@@ -60,23 +61,39 @@ export class FtuiCell extends FtuiElement {
   onAttributeChanged(name, value) {
     switch (name) {
       case 'width':
-        if (this.tagName === 'FTUI-COLUMN') {
-          this.style.flex = `0 0 ${value}`;
-        } else {
-          this.style.width = isNumeric(value) ? value + 'em' : value;
-        }
+        this.style.width = isNumeric(value) ? value + 'px' : value;
         break;
       case 'height':
-        if (this.tagName === 'FTUI-ROW') {
-          this.style.flex = `0 0 ${value}`;
-        } else {
-          this.style.height = isNumeric(value) ? value + 'em' : value;
-        }
+        this.style.flex = this.calculateFlexValue(value);;
+        //this.style.height = isNumeric(value) ? value + 'px' : value;
         break;
       case 'gap':
-        this.style.gap = isNumeric(value) ? value + 'em' : value;
+        this.style.gap = isNumeric(value) ? value + 'px' : value;
         break;
     }
+  }
+
+  calculateFlexValue(height) {
+    // Check if the height is in percentage
+    if (height.endsWith('%')) {
+      const percentage = parseFloat(height);
+      return percentage / 10; // Converts 25% to 2.5 for flex
+    }
+    
+    // Check if the height is in pixels or numeric (assumed to be pixels)
+    if (height.endsWith('px') || /^\d+$/.test(height)) {
+      const pixels = parseFloat(height.endsWith('px') ? height : height + 'px');
+      return pixels / 100; // Adjust this divisor based on your layout needs
+    }
+
+    // Check if the height is in em
+    if (height.endsWith('em')) {
+      const ems = parseFloat(height);
+      return ems * 16 / 100; // Assuming 1em = 16px for conversion, adjust as needed
+    }
+
+    // Default case if the height format is not recognized
+    return 1; // Fallback to a default flex value
   }
 
 }

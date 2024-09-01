@@ -152,7 +152,6 @@ export class FtuiBinding {
 
       // update storage
       const now = ftuiHelper.dateFormat(new Date(), 'YYYY-MM-DD hh:mm:ss');
-
       this.updateReadingItem(parameterId, {
         id: parameterId,
         invalid: false,

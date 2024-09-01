@@ -17,7 +17,7 @@ export class FtuiPopup extends FtuiElement {
 
     this.overlay = this.shadowRoot.querySelector('.overlay');
     this.window = this.shadowRoot.querySelector('.window');
-    const header = this.querySelector('header');
+    const header = this.querySelector('header, ftui-popup-header');
     header && header.setAttribute('slot', 'header');
     // check for popup-close attribute
     this.window.addEventListener('click', event => this.onClickInside(event));
@@ -25,6 +25,7 @@ export class FtuiPopup extends FtuiElement {
 
     this.arrangeWindow();
   }
+
 
   template() {
     return `

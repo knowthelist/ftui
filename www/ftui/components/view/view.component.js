@@ -83,7 +83,6 @@ export class FtuiView extends FtuiElement {
   }
 
   isPullDown(Y, dY) {
-    console.log( Y, dY)
     // methods of checking slope, length, direction of line created by swipe action
     return (
       Y == 0 && dY < 0 && Math.abs(dY) > 300

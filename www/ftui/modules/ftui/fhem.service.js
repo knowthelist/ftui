@@ -174,7 +174,7 @@ class FhemService {
       const now = dateFormat(new Date(), 'YYYY-MM-DD hh:mm:ss');
       this.updateReadingItem('ftui-lastEvent', {
         invalid: false,
-        value: '',
+        value: '?',
         time: now,
         update: now,
       });
@@ -330,6 +330,7 @@ class FhemService {
           this.updateReadingItem(parameterId, parameterData, doPublish);
           this.updateReadingItem('ftui-lastEvent', {
             invalid: false,
+            name: parameterData.id,
             value: parameterData.value,
             time: parameterData.time,
             update: parameterData.update,

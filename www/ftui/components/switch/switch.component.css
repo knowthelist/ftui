@@ -1,6 +1,6 @@
 :host {
   position: relative;
-  width: 4.5em;
+  width: 3em;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -26,10 +26,10 @@
   display: block;
   float: left;
   width: 50%;
-  height: 2.025em;
+  height: 1.75em;
   padding: 0;
-  line-height: 2.025em;
-  font-size: 1.25em;
+  line-height: 1.75em;
+  font-size: 1em;
   color: white;
   font-family: Trebuchet, Arial, sans-serif;
   box-sizing: border-box;
@@ -52,14 +52,14 @@
 
 .switch {
   display: block;
-  width: 2.125em;
-  height: 2.125em;
+  width: 1.5em;
+  height: 1.5em;
   margin: 0px;
   background: #FFFFFF;
   position: absolute;
   border: 2px solid var(--switch-off-color, #777);
   border-radius: 2.25em;
-  right: 2.1em;
+  right: 1.5em;
   transition: all 0.2s ease-in 0s;
 }
 

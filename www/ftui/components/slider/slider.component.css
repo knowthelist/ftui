@@ -24,8 +24,8 @@
 
 .rangeable-handle {
   border: none;
-  width: 2em;
-  height: 2em;
+  width: 1.5em;
+  height: 1.5em;
   box-shadow: var(--slider-handle-shadow, none);
   border: var(--slider-handle-border, none);
   z-index: 3;

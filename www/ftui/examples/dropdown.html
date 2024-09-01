@@ -28,36 +28,36 @@
 
   <ftui-grid>
 
-    <ftui-grid-tile row="1" col="1" height="1" width="1">
-      <header>DEFAULT</header>
+ <ftui-grid-tile row="1" col="1" height="1" width="1">
+      <ftui-grid-header>DEFAULT</ftui-grid-header>
 
         <ftui-dropdown></ftui-dropdown>
 
     </ftui-grid-tile>
 
     <ftui-grid-tile row="1" col="2" height="1" width="1">
-      <header>VALUE-LIST</header>
+      <ftui-grid-header>VALUE-LIST</ftui-grid-header>
 
         <ftui-dropdown list=",item1,item2,item3" value="item2"></ftui-dropdown>
       
     </ftui-grid-tile>
 
     <ftui-grid-tile row="1" col="3" height="1" width="1">
-      <header>LIST BINDING</header>
+      <ftui-grid-header>LIST BINDING</ftui-grid-header>
 
         <ftui-dropdown [list]="ftuitest:list" [(value)]="ftuitest" @value-change="console.log($event.detail)"></ftui-dropdown>
 
     </ftui-grid-tile>
 
     <ftui-grid-tile row="1" col="4" height="1" width="1">
-      <header>AUDIO</header>
+      <ftui-grid-header>AUDIO</ftui-grid-header>
 
         <ftui-dropdown [list]="AvReceiver:inputList" [(value)]="AvReceiver:input"></ftui-dropdown>
 
     </ftui-grid-tile>
 
     <ftui-grid-tile row="1" col="5" height="1" width="1">
-      <header>LONG</header>
+      <ftui-grid-header>LONG</ftui-grid-header>
 
         <ftui-dropdown 
           list=",Long_Long_Value_10000,Long_Long_Value_20000,Long_Long_Value_30000,Long_Long_Value_40000" 
@@ -67,7 +67,7 @@
     </ftui-grid-tile>
 
     <ftui-grid-tile row="2" col="1" height="1" width="1">
-      <header>OPTION</header>
+      <ftui-grid-header>OPTION</ftui-grid-header>
 
         <ftui-dropdown id="opt1" 
           [value]="ftuitest:whiteValue"
@@ -81,7 +81,7 @@
     </ftui-grid-tile>
 
     <ftui-grid-tile row="2" col="2" height="1" width="2">
-      <header>LIST BINDING</header>
+      <ftui-grid-header>LIST BINDING</ftui-grid-header>
 
       <ftui-dropdown 
         width="80%"
@@ -93,7 +93,7 @@
     </ftui-grid-tile>
     
     <ftui-grid-tile row="2" col="4" height="1" width="1">
-      <header>PARSER</header>
+      <ftui-grid-header>PARSER</ftui-grid-header>
 
       <ftui-dropdown 
         width="80%"
@@ -105,19 +105,18 @@
     </ftui-grid-tile>
     
     <ftui-grid-tile row="2" col="5" height="1" width="1">
-      <header>DELIMITER ;</header>
+      <ftui-grid-header>DELIMITER ;</ftui-grid-header>
 
       <ftui-dropdown 
         width="80%"
-        [list]="Spotify:playlists" 
-        delimiter=";"
+        [list]="Sonos_Play5:AvailablePlayerListAlias"
         @value-change="alert($event.detail)">
       </ftui-dropdown>
 
     </ftui-grid-tile>
 
     <ftui-grid-tile row="3" col="1" height="1" width="1">
-      <header>ENCRYPT</header>
+      <ftui-grid-header>Encode string to avoid special characters</ftui-grid-header>
 
       <ftui-dropdown 
         width="80%"
@@ -128,7 +127,7 @@
     </ftui-grid-tile>
 
     <ftui-grid-tile row="3" col="2" height="1" width="2">
-      <header>FAVORITES</header>
+      <ftui-grid-header>FAVORITES</ftui-grid-header>
 
       <ftui-dropdown 
         width="80%"
@@ -141,7 +140,7 @@
     </ftui-grid-tile>
 
     <ftui-grid-tile row="3" col="4" height="1" width="1">
-      <header>No-Border No-Chevron</header>
+      <ftui-grid-header>No-Border No-Chevron</ftui-grid-header>
 
       <ftui-dropdown class="size-3"
         list=",10%,20%,30%,40%,50%,60%,70%,80%,90%,100%" 
@@ -152,8 +151,36 @@
         list=",10%,20%,30%,40%,50%,60%,70%,80%,90%,100%" 
         value="30%">
       </ftui-dropdown>
-      
+
     </ftui-grid-tile>
+
+    <ftui-grid-tile row="3" col="5" height="1" width="1">
+      <ftui-grid-header>Slotted items</ftui-grid-header>
+      <ftui-dropdown>
+        <option value="black">Schwarz</option>
+        <option value="red">Rot</option>
+        <option value="gold">Gold</option>
+      </ftui-dropdown>
+    </ftui-grid-tile> 
+
+    <ftui-grid-tile row="4" col="5" height="1" width="1">
+      <ftui-grid-header>Value Text List</ftui-grid-header>
+      <ftui-dropdown list = "1:First Option,2:Second Option,3:Third Option"
+        delimiter="," value="2">
+      </ftui-dropdown>
+    </ftui-grid-tile> 
+
+
+    <ftui-grid-tile row="4" col="3" height="1" width="2">
+      <ftui-grid-header>Placeholder</ftui-grid-header>
+      <ftui-dropdown 
+      width="12em"
+      list="10%,20%,30%,40%,50%,60%,70%,80%,90%,100%" 
+      placeholder="Please select ..."
+      >
+      </ftui-dropdown>
+    </ftui-grid-tile> 
+
   </ftui-grid>
 
 </body>

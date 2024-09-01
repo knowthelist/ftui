@@ -88,7 +88,7 @@ export class FtuiImage extends FtuiElement {
       case 'left':
       case 'bottom':
       case 'right':
-        this.style[name] = isNumeric(newValue) ? newValue + 'em' : newValue;
+        this.style[name] = isNumeric(newValue) ? newValue + 'px' : newValue;
         break;
     }
   }

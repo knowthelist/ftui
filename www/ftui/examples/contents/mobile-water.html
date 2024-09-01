@@ -4,7 +4,7 @@
 </ftui-view-toolbar>
 
 <ftui-view-sheet shape="round">
-  <ftui-chart width="300px" height="200px" y-label="Humidity in %" y1-label="Temp in °C" y-min="40" y-max="70">
+  <ftui-chart width="300px" height="200px" y-label="Humidity in %" y1-label="Temp in °C" y-min="40" y-max="90">
     <ftui-chart-data fill log="FileLog_Bodenfeuchte" spec="4:Bodenfeuchte.Feuchte" [update]="Bodenfeuchte:Feuchte:time" point-radius="1">
     </ftui-chart-data>
     <ftui-chart-data log="FileLog_BodenTemp" spec="4:BodenTemp.temperature" [update]="BodenTemp:temperature:time" 
@@ -40,7 +40,7 @@
 <ftui-view-section>
   <ftui-label slot="header" text="Sprinkle"></ftui-label>
   <ftui-view-item>Last
-    <ftui-label [text]="Bodenfeuchte:lastSprinkle:time" color="medium" size="2"></ftui-label>
+    <ftui-label [text]="Bodenfeuchte:lastSprinkle:time | toDate() | format('DD.MM.YY hh:mm:ss')"" color="medium" size="80%"></ftui-label>
     <ftui-label [text]="Bodenfeuchte:lastSprinkle" unit=" %"></ftui-label>
   </ftui-view-item>
   <ftui-view-item>
@@ -51,6 +51,12 @@
     Will sprinkle tomorrow
     <ftui-label [text]="Bodenfeuchte:sprinkleDay1| map('0:No,1:Yes')"></ftui-label>
   </ftui-view-item>  
+  <ftui-view-item>
+    Sprinkle Auto
+    <ftui-switch [value]="AtThreeAM | map('inactive:inactive, `Next: 03:00:00`, active')"
+    (value)="AtThreeAM"
+    states="inactive,active"></ftui-switch>
+  </ftui-view-item>
   <ftui-view-item>
     Ventil1
     <ftui-switch [(value)]="BewaesserungsVentil1" slot="end"></ftui-switch>
@@ -63,5 +69,20 @@
     Ventil3
     <ftui-switch [(value)]="BewaesserungsVentil3" slot="end"></ftui-switch>
   </ftui-view-item>
+</ftui-view-section>
+
+<ftui-view-section>
+  <ftui-label slot="header" text="Moisten Seed"></ftui-label>
+  <ftui-view-item>
+     Auto
+    <ftui-switch [value]="diSeed:mode | map('disabled:disable, enabled:enable, initialized:enable')"
+    (value)="diSeed"
+    states="disable,enable"></ftui-switch>
+  </ftui-view-item>
+  <ftui-view-item>
+    Now
+    <ftui-button @click="sendFhem(`{runSeedSprinkle()}`)" size="small">Sprinkle</ftui-button>
+  </ftui-view-item>
+
 </ftui-view-section>
 
