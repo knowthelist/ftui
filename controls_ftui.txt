@@ -22,7 +22,7 @@ UPD 2024-04-14_20:31:14 945 www/ftui/components/dropdown/dropdown.component.css
 UPD 2024-08-31_13:15:21 3480 www/ftui/components/dropdown/dropdown.component.js
 UPD 2024-08-30_12:10:58 5161 www/ftui/components/element.component.js
 UPD 2022-02-06_23:45:56 758 www/ftui/components/grid/grid-header.component.js
-UPD 2024-08-30_10:22:21 2079 www/ftui/components/grid/grid-tile.component.css
+UPD 2024-09-03_22:15:49 2081 www/ftui/components/grid/grid-tile.component.css
 UPD 2022-02-26_14:12:40 1074 www/ftui/components/grid/grid-tile.component.js
 UPD 2024-07-10_00:29:21 4297 www/ftui/components/grid/grid.component.js
 UPD 2024-08-13_19:30:45 1266 www/ftui/components/icon/icon.component.css
@@ -32,7 +32,7 @@ UPD 2021-02-03_14:48:37 8329 www/ftui/components/image/image_not_available.js
 UPD 2022-01-24_22:06:30 2660 www/ftui/components/input/input.component.js
 UPD 2022-02-01_22:51:33 1252 www/ftui/components/knob/knob.component.css
 UPD 2024-01-29_23:20:36 15141 www/ftui/components/knob/knob.component.js
-UPD 2024-08-30_12:14:21 4391 www/ftui/components/label/label.component.js
+UPD 2024-09-06_15:43:16 4425 www/ftui/components/label/label.component.js
 UPD 2024-08-30_12:47:32 1816 www/ftui/components/main/main.component.js
 UPD 2023-01-18_22:53:32 2265 www/ftui/components/map/map.component.js
 UPD 2021-11-21_18:01:44 180 www/ftui/components/medialist/album_icon.svg
@@ -44,6 +44,7 @@ UPD 2021-11-09_22:09:43 1533 www/ftui/components/menu/menu.component.js
 UPD 2024-08-19_20:33:49 1644 www/ftui/components/meter/meter.component.css
 UPD 2024-08-19_20:31:30 2211 www/ftui/components/meter/meter.component.js
 UPD 2022-02-19_01:16:35 1084 www/ftui/components/nav/nav-link.component.js
+UPD 2024-08-29_22:36:06 763 www/ftui/components/popup/popup-header.component.js
 UPD 2024-08-30_12:49:27 1536 www/ftui/components/popup/popup.component.css
 UPD 2024-08-30_12:48:11 3408 www/ftui/components/popup/popup.component.js
 UPD 2024-01-29_20:14:12 1347 www/ftui/components/rotor/rotor.component.css
@@ -75,7 +76,7 @@ UPD 2021-02-01_19:44:45 893 www/ftui/components/view/view-toolbar.component.js
 UPD 2024-09-01_14:53:16 2399 www/ftui/components/view/view.component.js
 UPD 2021-10-13_11:04:36 1277 www/ftui/components/weather/weather.component.js
 UPD 2022-01-08_21:59:15 17924 www/ftui/components/weather/weather.map.js
-UPD 2024-08-29_22:37:19 531 www/ftui/examples/_empty.html
+UPD 2024-09-06_15:27:00 616 www/ftui/examples/_empty.html
 UPD 2024-08-29_22:37:19 1995 www/ftui/examples/badge.html
 UPD 2024-08-29_22:31:38 1709 www/ftui/examples/binding.html
 UPD 2024-08-29_22:31:47 933 www/ftui/examples/button-nice.html
@@ -92,6 +93,7 @@ UPD 2024-08-29_22:33:08 939 www/ftui/examples/content2.html
 UPD 2021-04-27_20:19:53 277 www/ftui/examples/contents/content-components.html
 UPD 2021-02-10_21:37:12 267 www/ftui/examples/contents/content-components2.html
 UPD 2022-12-21_23:34:14 549 www/ftui/examples/contents/content-grid.html
+UPD 2024-08-17_08:57:43 109 www/ftui/examples/contents/content-options.html
 UPD 2024-08-29_22:41:50 445 www/ftui/examples/contents/content-popup.html
 UPD 2021-11-15_21:59:43 472 www/ftui/examples/contents/content-rows.html
 UPD 2022-12-23_09:28:26 819 www/ftui/examples/contents/content-view-grid.html
@@ -105,7 +107,7 @@ UPD 2024-08-23_00:32:57 793 www/ftui/examples/contents/content-weather-item.html
 UPD 2021-10-19_19:05:47 5317 www/ftui/examples/contents/content-weather.html
 UPD 2022-03-06_19:45:21 810 www/ftui/examples/contents/mobile-color.html
 UPD 2024-02-01_07:06:39 3656 www/ftui/examples/contents/mobile-power.html
-UPD 2024-08-30_13:04:54 8831 www/ftui/examples/contents/mobile-shutter.html
+UPD 2024-09-02_18:36:25 8919 www/ftui/examples/contents/mobile-shutter.html
 UPD 2024-04-15_21:06:41 1888 www/ftui/examples/contents/mobile-solar.html
 UPD 2024-08-30_13:19:28 3732 www/ftui/examples/contents/mobile-temp.html
 UPD 2024-01-19_17:37:32 3035 www/ftui/examples/contents/mobile-view-sonos.html
@@ -116,12 +118,12 @@ UPD 2024-08-20_22:11:45 4499 www/ftui/examples/contents/mobile-windows.html
 UPD 2024-08-29_22:33:13 2787 www/ftui/examples/departure.html
 UPD 2024-08-31_13:19:11 5398 www/ftui/examples/dropdown.html
 UPD 2024-08-29_22:33:28 8108 www/ftui/examples/grid.html
-UPD 2022-02-08_08:24:30 1038 www/ftui/examples/grid_resize.html
-UPD 2022-02-08_08:24:28 982 www/ftui/examples/grid_responsive.html
+UPD 2024-09-03_22:12:31 988 www/ftui/examples/grid_resize.html
+UPD 2024-09-03_22:11:17 932 www/ftui/examples/grid_responsive.html
 UPD 2024-08-30_12:17:35 7660 www/ftui/examples/icon.html
 UPD 2024-08-29_22:33:35 4338 www/ftui/examples/image.html
 UPD 2024-08-29_22:33:38 2268 www/ftui/examples/input.html
-UPD 2024-08-29_22:33:41 7012 www/ftui/examples/knob.html
+UPD 2024-09-03_08:04:05 7013 www/ftui/examples/knob.html
 UPD 2024-08-29_22:33:46 11077 www/ftui/examples/label.html
 UPD 2024-08-29_22:37:19 1834 www/ftui/examples/map.html
 UPD 2024-08-29_22:37:19 2431 www/ftui/examples/medialist.html
@@ -143,7 +145,7 @@ UPD 2021-12-08_23:45:05 2924 www/ftui/examples/tab-segment-local.html
 UPD 2021-11-30_17:17:52 2575 www/ftui/examples/tab-segment.html
 UPD 2021-11-30_17:17:52 2776 www/ftui/examples/tab-trans.html
 UPD 2022-01-04_19:47:42 2783 www/ftui/examples/tab.html
-UPD 2024-08-30_10:39:12 4272 www/ftui/examples/themes.html
+UPD 2024-09-06_16:10:15 4253 www/ftui/examples/themes.html
 UPD 2024-08-29_22:37:19 1648 www/ftui/examples/timeset.html
 UPD 2024-08-29_22:37:19 5083 www/ftui/examples/weather.html
 UPD 2022-11-19_19:16:10 15406 www/ftui/favicon.ico
@@ -720,7 +722,7 @@ UPD 2022-11-13_21:55:47 1284 www/ftui/icons/windy2.svg
 UPD 2022-11-13_21:55:48 822 www/ftui/icons/wpforms.svg
 UPD 2022-11-13_21:55:48 798 www/ftui/icons/wrench.svg
 UPD 2022-11-13_21:55:50 777 www/ftui/icons/youtube-play.svg
-CRE 2024-09-01_15:11:24 10400 www/ftui/index.html
+CRE 2024-09-06_15:50:06 10536 www/ftui/index.html
 UPD 2024-01-29_22:33:41 445455 www/ftui/modules/chart.js/chart.js
 UPD 2022-01-31_15:27:32 192031 www/ftui/modules/chart.js/chart.min.js
 UPD 2020-12-31_16:39:06 49580 www/ftui/modules/chart.js/chartjs-adapter-date-fns.bundle.min.js
@@ -740,10 +742,10 @@ UPD 2022-02-16_09:23:29 12205 www/ftui/modules/rangeable/rangeable.min.js
 UPD 2020-12-31_16:39:06 1922 www/ftui/modules/vanilla-notify/vanilla-notify.css
 UPD 2022-02-22_21:49:40 6445 www/ftui/modules/vanilla-notify/vanilla-notify.js
 UPD 2022-02-22_21:49:45 3461 www/ftui/modules/vanilla-notify/vanilla-notify.min.js
-UPD 2024-08-13_22:36:01 3662 www/ftui/themes/bright-theme.css
+UPD 2024-09-06_16:04:57 3513 www/ftui/themes/bright-theme.css
 UPD 2022-10-19_18:47:16 3933 www/ftui/themes/color-attributes.css
-UPD 2024-08-13_18:05:44 3576 www/ftui/themes/ftui-theme.css
-UPD 2024-08-20_22:21:59 3700 www/ftui/themes/mobile-dark-theme.css
+UPD 2024-09-06_16:06:24 3427 www/ftui/themes/ftui-theme.css
+UPD 2024-09-06_16:11:15 3699 www/ftui/themes/mobile-dark-theme.css
 UPD 2024-08-15_09:32:42 4035 www/ftui/themes/mobile-theme.css
-UPD 2024-08-13_22:36:01 3668 www/ftui/themes/retro-theme.css
-UPD 2024-08-13_22:36:01 3617 www/ftui/themes/vivid-theme.css
+UPD 2024-09-06_16:06:03 3519 www/ftui/themes/retro-theme.css
+UPD 2024-09-06_16:06:24 3468 www/ftui/themes/vivid-theme.css

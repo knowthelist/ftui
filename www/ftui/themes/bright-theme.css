@@ -114,18 +114,8 @@
   --meter-background-color: var(--light);
 }
 
-@supports (font: -apple-system-body) {
-  :root {
-  --text-font:  -apple-system-body;
-  }
-}
-@supports not (font: -apple-system-body) {
-  :root {
-  --text-font: 1em -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Ubuntu', 'Helvetica Neue', sans-serif;  
-  }
-}
-
 body {
+  --text-font: 0.9em -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Ubuntu', 'Helvetica Neue', sans-serif;  
   font: var(--text-font);
   color: var(--text-color);
   background: var(--page-background-color);

@@ -335,12 +335,40 @@ A user interface for mobile phones can be implemented with ftui-view.
 <br></br>
 ## Label
 
-| Attribute | Description | Type | Default |
-|-----------|-------------|-------|---------|
+| Attribute | Description | Type | Default | Example|
+|-----------|-------------|-------|---------|------|
 | <b>text</b> |The text to show.|String| <code>""</code>|
 | <b>color</b> |The color to use from color palette.|<code>"primary" \| "secondary" \| "success" \| "warning" \| "danger" \| "light" \| "medium" \| "dark"</code>| <code>""</code>|
 | <b>unit</b> |The unit which should be displayed after the value.|String| <code>""</code>|
 | <b>interval</b> |Reloading every x secondes.|Number| <code>0</code> |
+| <b>size</b> |Size of font.|Number\|String| <code>0</code> | <code>3 <br> "80%" <br> "12px"</code>
+
+#### size
+
+If size is specified as number only it get mapped to following values
+
+| size | font-size |
+|---------------|---------|
+|-4 | 0.125em|
+|-3 | 0.25em |
+|-2 | 0.5em|
+|-1 | 0.75em|
+|0 | 1em|
+|1 | 1.25em|
+|2 | 1.5em|
+|3 | 1.75em|
+|4 | 2em|
+|5 | 2.5em|
+|6 | 3em|
+|7 | 3.5em|
+|8 | 4em|
+|9 | 5em|
+|10 | 10em|
+|11 | 11em|
+|12 | 12em|
+
+size property can also specified as %, px or em as a string.
+e.g. size="80%" or size="12px"
 
 <br></br>
 ## Image
@@ -511,6 +539,59 @@ Example for DbLog
 ### Icon
 
 [List of all icons](https://knowthelist.github.io/ftui/www/ftui/icons/demo.html)
+
+
+
+Here is the updated "Icon" section in the README.md file:
+
+## Icon
+
+The `Icon` component supports the following properties:
+
+* `type`: The type of icon to display.
+* `path`: The path to the icon file.
+* `size`: The size of the icon.
+* `name`: The name of the icon.
+* `color`: The color of the icon.
+* `rgb`: The RGB value of the icon color.
+* `height`: The height of the icon.
+* `width`: The width of the icon.
+* `top`: The top margin of the icon.
+* `left`: The left margin of the icon.
+* `bottom`: The bottom margin of the icon.
+* `right`: The right margin of the icon.
+* `rotate`: The rotation of the icon, in degrees. Defaults to 0.
+
+Here is an example of how to use the `Icon` component:
+```html
+<ftui-icon type="svg" path="icons" name="example-icon" size="24" color="#000" rgb="0,0,0" height="24" width="24" top="10" left="10" bottom="10" right="10" rotate="45"></ftui-icon>
+```
+#### size
+
+If size is specified as number only it get mapped to following values
+
+| size | font-size |
+|---------------|---------|
+|-4 | 0.125em|
+|-3 | 0.25em |
+|-2 | 0.5em|
+|-1 | 0.75em|
+|0 | 1em|
+|1 | 1.25em|
+|2 | 1.5em|
+|3 | 1.75em|
+|4 | 2em|
+|5 | 2.5em|
+|6 | 3em|
+|7 | 3.5em|
+|8 | 4em|
+|9 | 5em|
+|10 | 10em|
+|11 | 11em|
+|12 | 12em|
+
+size property can also specified as %, px or em as a string.
+e.g. size="80%" or size="12px"
 
 <br></br>
 ### Layout

@@ -22,7 +22,7 @@
 ::slotted(header) {
   color: var(--color-contrast, var(--grid-header-color));
   background: var(--color-base, var(--grid-header-background-color));
-  padding: 0.5em;
+  padding: 0.33rem;
   text-align: center;
   font-size: var(--grid-header-font-size, 0.9em);
 }

@@ -27,6 +27,7 @@ export class FtuiLabel extends FtuiElement {
         :host([text-align=right])  { text-align: right; justify-content: right; width: 100%;}
         :host([text-align=center])  { text-align: center; justify-content: center; width: 100%;}
         :host {
+          font: var(--text-font);
           --color-base: currentColor;
           color: var(--color-base);
           white-space: nowrap;

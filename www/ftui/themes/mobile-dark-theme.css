@@ -121,7 +121,7 @@
 }
 @supports not (font: -apple-system-body) {
   :root {
-  --text-font: 1rem -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Ubuntu', 'Helvetica Neue', sans-serif;  
+  --text-font: 1em -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Ubuntu', 'Helvetica Neue', sans-serif;  
   }
 }
 
