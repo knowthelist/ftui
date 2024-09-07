@@ -1,4 +1,4 @@
-@import "./color-attributes.css"; 
+@import "../styles/colors.css"; 
 
 :root {
 
@@ -115,7 +115,7 @@
 }
 
 body {
-  --text-font: 0.9em -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Ubuntu', 'Helvetica Neue', sans-serif;  
+  --text-font: 0.8125em -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Ubuntu', 'Helvetica Neue', sans-serif;  
   font: var(--text-font);
   color: var(--text-color);
   background: var(--page-background-color);

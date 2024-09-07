@@ -113,16 +113,23 @@
       <ftui-label [text]="ftuitest"></ftui-label>
     </ftui-grid-tile>
 
+    <!-- a grid tile aligned items vertically evenly -->
     <ftui-grid-tile row="4" col="6" height="1" width="1">
       <ftui-label size="2">Power</ftui-label>
       <ftui-meter value="30" max="60"></ftui-meter>
     </ftui-grid-tile>
 
+    <!--items aligned with a cell height -->
     <ftui-grid-tile row="5" col="6" height="1" width="1" align-items="top">
-      <ftui-cell  height="30%">
+      <ftui-cell  height="40%">
          <ftui-label size="2">Power2</ftui-label>
       </ftui-cell>
-     
+      <ftui-meter value="30" max="60"></ftui-meter>
+    </ftui-grid-tile>
+
+    <!--items aligned with a label height -->
+    <ftui-grid-tile row="6" col="6" height="1" width="1" align-items="top">
+      <ftui-label size="2" height="2em">Power3</ftui-label>
       <ftui-meter value="30" max="60"></ftui-meter>
     </ftui-grid-tile>
 

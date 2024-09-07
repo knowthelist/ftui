@@ -50,6 +50,7 @@ export class FtuiCell extends FtuiElement {
       height: '',
       width: '',
       gap: '',
+      grow: '',
       color: 'transparent',
     };
   }
@@ -61,39 +62,58 @@ export class FtuiCell extends FtuiElement {
   onAttributeChanged(name, value) {
     switch (name) {
       case 'width':
-        this.style.width = isNumeric(value) ? value + 'px' : value;
+        if (this.tagName === 'FTUI-COLUMN') {
+          this.style.flex = `0 0 ${value}`;
+        } else {
+          this.style.width = isNumeric(value) ? value + 'px' : value;
+          this.style.maxWidth = isNumeric(value) ? value + 'px' : value;
+          this.style.minWidth = isNumeric(value) ? value + 'px' : value;
+        }
         break;
       case 'height':
-        this.style.flex = this.calculateFlexValue(value);;
-        //this.style.height = isNumeric(value) ? value + 'px' : value;
+        if (this.tagName === 'FTUI-ROW') {
+          this.style.flex = `0 0 ${value}`;
+        } else {
+          this.style.height = isNumeric(value) ? value + 'px' : value;
+          this.style.maxHeight = isNumeric(value) ? value + 'px' : value;
+          this.style.minHeight = isNumeric(value) ? value + 'px' : value;
+        }
         break;
       case 'gap':
         this.style.gap = isNumeric(value) ? value + 'px' : value;
         break;
+      case 'grow':
+        this.style.flexGrow = this.calculateFlexValue(value);
+        break;
     }
   }
 
-  calculateFlexValue(height) {
-    // Check if the height is in percentage
-    if (height.endsWith('%')) {
-      const percentage = parseFloat(height);
+  calculateFlexValue(value) {
+    // Check if the value is a number
+    if (!value) {
+      return 1
+    }
+
+    // Check if the value is in percentage
+    if (value.endsWith('%')) {
+      const percentage = parseFloat(value);
       return percentage / 10; // Converts 25% to 2.5 for flex
     }
     
-    // Check if the height is in pixels or numeric (assumed to be pixels)
-    if (height.endsWith('px') || /^\d+$/.test(height)) {
-      const pixels = parseFloat(height.endsWith('px') ? height : height + 'px');
-      return pixels / 100; // Adjust this divisor based on your layout needs
+    // Check if the value is in pixels
+    if (value.endsWith('px')) {
+      const pixels = parseFloat(value.endsWith('px') ? value : value + 'px');
+      return pixels / 100;
     }
 
-    // Check if the height is in em
-    if (height.endsWith('em')) {
-      const ems = parseFloat(height);
-      return ems * 16 / 100; // Assuming 1em = 16px for conversion, adjust as needed
+    // Check if the value is in em
+    if (value.endsWith('em')) {
+      const ems = parseFloat(value);
+      return ems * 16 / 100; // Assuming 1em = 16px for conversion
     }
 
-    // Default case if the height format is not recognized
-    return 1; // Fallback to a default flex value
+    // Default case if the value format is not recognized
+    return value;
   }
 
 }

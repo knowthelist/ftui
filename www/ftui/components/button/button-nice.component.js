@@ -22,7 +22,7 @@ export class FtuiButtonNice extends FtuiElement {
 
   template() {
     return `
-      <style> @import "themes/color-attributes.css"; </style>
+      <style> @import "../styles/colors.css"; </style>
       <ftui-button shape="circle" color="medium" 
           [value]="${this.get || this.reading}" 
           (value)="${this.set || this.get || this.reading}" 
