@@ -749,3 +749,4 @@ UPD 2024-09-06_22:45:43 3697 www/ftui/themes/mobile-dark-theme.css
 UPD 2024-09-06_22:45:43 4033 www/ftui/themes/mobile-theme.css
 UPD 2024-09-06_22:45:43 3520 www/ftui/themes/retro-theme.css
 UPD 2024-09-06_22:45:43 3469 www/ftui/themes/vivid-theme.css
+MOV www/ftui/themes/color-attributes.css unused
