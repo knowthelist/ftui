@@ -108,10 +108,10 @@ export class FtuiLabel extends FtuiElement {
         }
 
         break;
-      case 'top': this.style.top = isNumeric(value) ? value + 'px' : value; break;
-      case 'left': this.style.left = isNumeric(value) ? value + 'px' : value; break;
-      case 'width': this.style.width = isNumeric(value) ? value + 'px' : value; break;
-      case 'height': this.style.height = isNumeric(value) ? value + 'px' : value; break;
+      case 'top': this.style.top = isNumeric(value) ? value + 'em' : value; break;
+      case 'left': this.style.left = isNumeric(value) ? value + 'em' : value; break;
+      case 'width': this.style.width = isNumeric(value) ? value + 'em' : value; break;
+      case 'height': this.style.height = isNumeric(value) ? value + 'em' : value; break;
     }
   }
 

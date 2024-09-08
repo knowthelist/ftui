@@ -28,7 +28,7 @@ export class FtuiButton extends FtuiElement {
   template() {
     return `
       <style> @import "components/button/button.component.css"; </style>
-      <style>:host .button-inner { gap: ${isNumeric(this.gap) ? this.gap + 'px' : this.gap}; } </style>
+      <style>:host .button-inner { gap: ${isNumeric(this.gap) ? this.gap + 'em' : this.gap}; } </style>
       <span class="button-inner">
         <slot></slot>
       </span>

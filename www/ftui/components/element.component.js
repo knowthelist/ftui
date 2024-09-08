@@ -95,12 +95,12 @@ export class FtuiElement extends HTMLElement {
         break;
       case 'margin': {
         if (this.tagName !== 'FTUI-GRID') {
-          this.style.margin = isNumeric(newValue) ? newValue + 'px' : newValue;
+          this.style.margin = isNumeric(newValue) ? newValue + 'em' : newValue;
         }
         break;
       }
       case 'padding': {
-        this.style.padding = isNumeric(newValue) ? newValue + 'px' : newValue;
+        this.style.padding = isNumeric(newValue) ? newValue + 'em' : newValue;
         break;
       }
     }

@@ -74,7 +74,7 @@
       <ftui-grid-tile row="1" col="4" height="2" width="2"
                       [color]="AbfallView:t_001_daysleft  | step('0:alert, 1:warning, 2:ok')" height="1em">
         <ftui-label size="3" height="1.5em">Tonnen</ftui-label>
-        <ftui-icon name="trash-o" size="3"></ftui-icon>
+        <ftui-icon name="trash-o" size="4"></ftui-icon>
         <ftui-row width="80%" height="10%">
           <ftui-label [text]="AbfallView:t_001_summary | part(1)"></ftui-label>
           <ftui-label [text]="AbfallView:t_001_daysleftLong"></ftui-label>
@@ -87,14 +87,14 @@
         <ftui-label size="3" height="1.5em">Jalousien</ftui-label>
         <ftui-row height="45%">
           <ftui-button (value)="set AllJalousie fahren up" direction="vertical" color="current" fill="none"
-                       margin="-1em">
-            <ftui-icon name="angle-up" height="90%"></ftui-icon>
+                       height="3.5em" shape="circle" >
+            <ftui-icon name="angle-up" size="4"></ftui-icon>
             <ftui-label>Tag</ftui-label>
           </ftui-button>
-          <ftui-icon name="window-shutter" size="3"></ftui-icon>
+          <ftui-icon name="window-shutter" size="4"></ftui-icon>
           <ftui-button @click="sendFhem('{setJalousieNight()}')" direction="vertical" color="current" fill="none"
-                       margin="-1em">
-            <ftui-icon name="angle-down" height="90%"></ftui-icon>
+          height="3.5em" shape="circle">
+            <ftui-icon name="angle-down" size="4"></ftui-icon>
             <ftui-label>Nacht</ftui-label>
           </ftui-button>
         </ftui-row>
@@ -105,7 +105,7 @@
       <ftui-grid-tile row="1" col="8" height="2" width="2"
                       [color]="AlleFenster | map('closed:ok, `.*`:danger')">
         <ftui-label size="3" height="1.5em">Fenster</ftui-label>
-        <ftui-icon name="classic-window" size="3"></ftui-icon>
+        <ftui-icon name="classic-window" size="4"></ftui-icon>
         <ftui-label [text]="AllWindows:text 
           | replace('alle Fenster sind geschlossen.','alle geschlossen') 
           | replace('Kinderzimmer','Kind-')
@@ -119,7 +119,7 @@
       <ftui-grid-tile row="1" col="10" height="2" width="2" shape="round"
                       [color]="Eingangstuer:secure | map('locked: ok, closed:yellow, open:alert')" height="1em">
         <ftui-label size="3" height="1.5em">Tür</ftui-label>
-        <ftui-icon name="front-door" size="3">
+        <ftui-icon name="front-door" size="4">
           <ftui-icon name="lock" size="1em" top="-1em" right="-1.5em"
                      [hidden]="EingangstuerRiegel | map('open:true, `.*`:false')"></ftui-icon>
         </ftui-icon>
@@ -131,7 +131,7 @@
       <ftui-grid-tile row="1" col="12" height="2" width="2"
                       [color]="HerdSummeStromwert  | step('0:ok, 700:alert')">
         <ftui-label size="3" height="1.5em">Herd</ftui-label>
-        <ftui-icon name="cutlery" size="3"></ftui-icon>
+        <ftui-icon name="cutlery" size="4"></ftui-icon>
         <ftui-label [text]="HerdSummeStromwert" height="3em"></ftui-label>
       </ftui-grid-tile>
 
@@ -185,7 +185,7 @@
       <ftui-grid-tile row="3" col="10" height="2" width="2" shape="round"
                       [color]="AllLights:count | step('0: ok, 3:yellow, 8:alert')">
         <ftui-label size="3">Licht</ftui-label>
-        <ftui-icon size="3"
+        <ftui-icon size="4"
                    [name]="AllLights:count | step('0: lightbulb, 1: lightbulb-on')">
         </ftui-icon>
         <ftui-label [text]="AllLights:count"></ftui-label>

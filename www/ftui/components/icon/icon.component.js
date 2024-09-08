@@ -66,7 +66,7 @@ export class FtuiIcon extends FtuiElement {
       case 'left':
       case 'bottom':
       case 'right':
-        this.style[name] = isNumeric(newValue) ? newValue + 'px' : newValue;
+        this.style[name] = isNumeric(newValue) ? newValue + 'em' : newValue;
         break;
       case 'size':
         if (isNumeric(this.size)) {

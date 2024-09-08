@@ -65,22 +65,22 @@ export class FtuiCell extends FtuiElement {
         if (this.tagName === 'FTUI-COLUMN') {
           this.style.flex = `0 0 ${value}`;
         } else {
-          this.style.width = isNumeric(value) ? value + 'px' : value;
-          this.style.maxWidth = isNumeric(value) ? value + 'px' : value;
-          this.style.minWidth = isNumeric(value) ? value + 'px' : value;
+          this.style.width = isNumeric(value) ? value + 'em' : value;
+          this.style.maxWidth = isNumeric(value) ? value + 'em' : value;
+          this.style.minWidth = isNumeric(value) ? value + 'em' : value;
         }
         break;
       case 'height':
         if (this.tagName === 'FTUI-ROW') {
           this.style.flex = `0 0 ${value}`;
         } else {
-          this.style.height = isNumeric(value) ? value + 'px' : value;
-          this.style.maxHeight = isNumeric(value) ? value + 'px' : value;
-          this.style.minHeight = isNumeric(value) ? value + 'px' : value;
+          this.style.height = isNumeric(value) ? value + 'em' : value;
+          this.style.maxHeight = isNumeric(value) ? value + 'em' : value;
+          this.style.minHeight = isNumeric(value) ? value + 'em' : value;
         }
         break;
       case 'gap':
-        this.style.gap = isNumeric(value) ? value + 'px' : value;
+        this.style.gap = isNumeric(value) ? value + 'em' : value;
         break;
       case 'grow':
         this.style.flexGrow = this.calculateFlexValue(value);
@@ -102,7 +102,7 @@ export class FtuiCell extends FtuiElement {
     
     // Check if the value is in pixels
     if (value.endsWith('px')) {
-      const pixels = parseFloat(value.endsWith('px') ? value : value + 'px');
+      const pixels = parseFloat(value.endsWith('px') ? value : value + 'em');
       return pixels / 100;
     }
 
