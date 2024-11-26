@@ -137,6 +137,9 @@ export class FtuiElement extends HTMLElement {
       } else if (typeof properties[name] === 'number') {
         this.defineNumberProperty(name, attr);
         this.initAttribute(attr, defaultValue);
+      } else if (typeof properties[name] === 'object' && Array.isArray(properties[name])) {
+	this.defineArrayProperty(name, attr);
+	this.initAttribute(attr, defaultValue);
       } else {
         this.defineStringProperty(name, attr);
         this.initAttribute(attr, defaultValue);
@@ -185,4 +188,18 @@ export class FtuiElement extends HTMLElement {
       set(value) { this.setAttribute(attr, value); },
     });
   }
+  
+  defineArrayProperty(name, attr) {
+    Object.defineProperty(this, name, {
+      get() {
+	var attrValue = this.getAttribute(attr);
+	if(attrValue.match(/^\[.*\]$/)) {
+		return JSON.parse(attrValue);
+	}
+	return [];
+      },
+      set(value) { this.setAttribute(attr, JSON.stringify(value)); },
+    });
+  }
+  
 }
