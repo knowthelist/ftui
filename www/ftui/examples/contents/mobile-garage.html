@@ -1,0 +1,29 @@
+<ftui-view-toolbar>
+  <ftui-nav-link slot="start"></ftui-nav-link>
+  Garage
+</ftui-view-toolbar>
+
+<ftui-view-sheet shape="round">
+  Garage Door
+  <ftui-row height="60%">
+    <ftui-button (value)="set Garage close" direction="vertical" color="current" fill="none"
+                 margin="-1em">
+      <ftui-icon name="angle-up" class="size-1" height="90%"></ftui-icon>
+      <ftui-label>Open</ftui-label>
+    </ftui-button>
+    <ftui-cell>
+      <ftui-icon [name]="Garage:status | map('open:garage-open-variant, moving: garage-alert-variant, closed: garage-variant')"
+                 class="size-8"></ftui-icon>
+      <ftui-label [text]="Garage:status" color="medium"></ftui-label>
+    </ftui-cell>
+    <ftui-button (value)="set Garage open" direction="vertical" color="current" fill="none"
+                 margin="-1em">
+      <ftui-icon name="angle-down" class="size-1" height="90%"></ftui-icon>
+      <ftui-label>Close</ftui-label>
+    </ftui-button>
+  </ftui-row>
+</ftui-view-sheet>
+
+
+
+

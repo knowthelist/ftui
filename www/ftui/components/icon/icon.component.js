@@ -73,7 +73,7 @@ export class FtuiIcon extends FtuiElement {
           const size = Number(this.size);
           if (size !== 0 && size >= -4 && size <= 12) {
             this.style.fontSize = sizes[size + 4] + 'em';
-          } else if (size === 0 ) {
+          } else if (size === 0) {
             this.style.fontSize = null;
           }
         } else {

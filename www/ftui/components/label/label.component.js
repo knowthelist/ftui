@@ -39,7 +39,7 @@ export class FtuiLabel extends FtuiElement {
         :host(:empty:not([text])) slot[name="unit"],
         :host([text=""]) slot[name="unit"] { visibility: hidden; }
         :host slot[name="unit"] { margin-left: 0.15em; display: initial; }
-        :host([scroll]),:host([wrap]) { overflow: auto; white-space: normal; }
+        :host([scroll]),:host([wrap]) { overflow: auto; white-space: normal;align-self: self-start; }
         :host([bold]) { font-weight: bold; }
         :host([thin]) { font-weight: lighter; }
         :host(:empty[text=""][placeholder]) { display: inline-block;
@@ -93,7 +93,7 @@ export class FtuiLabel extends FtuiElement {
           const size = Number(this.size);
           if (size !== 0 && size >= -4 && size <= 12) {
             this.style.fontSize = sizes[size + 4] + 'em';
-          } else if (size === 0 ) {
+          } else if (size === 0) {
             this.style.fontSize = null;
           }
           if (size >= 6) {

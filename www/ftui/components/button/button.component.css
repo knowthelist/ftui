@@ -132,6 +132,6 @@
   border-color: var(--border-color);
 }
 
-::slotted(ftui-icon) {
+/* ::slotted(ftui-icon) {
   font-size: 0.75em;
-}
+} */

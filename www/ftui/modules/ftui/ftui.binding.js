@@ -36,6 +36,7 @@ const append = value => input => String(input) + value;
 const prepend = value => input => value + String(input);
 const sendCommand = value => () => send(value);
 const getHTML = value => () => send('get ' + value + ' html');
+const capitalize = () => input => ftuiHelper.capitalize(input);
 
 const pipe = (f1, ...fns) => (...args) => {
   return fns.reduce((res, fn) => fn(res), f1.apply(null, args));

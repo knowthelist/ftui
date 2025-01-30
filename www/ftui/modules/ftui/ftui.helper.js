@@ -206,6 +206,13 @@ export function toKebabCase(string) {
     .toLowerCase();
 }
 
+
+/**
+ * Capitalize the first letter of a string
+ *
+ * @param {string} s - String to capitalize
+ * @returns {string} Capitalized string
+ */
 export function capitalize(s) {
   if (typeof s !== 'string') return ''
   return s.charAt(0).toUpperCase() + s.slice(1);
@@ -249,7 +256,7 @@ export function dateFormat(date, format) {
   const months_de = ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'];
   const months = ['January', 'February', 'March;', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   const YYYY = date.getFullYear().toString();
-  const YY = date.getFullYear().toString().substring(-2);
+  const YY = date.getFullYear().toString().substring(2, 4);
   const month = date.getMonth();
   const MM = (month + 1).toString(); // getMonth() is zero-based
   const MMMM = (lang === 'de') ? months_de[month] : months[month];

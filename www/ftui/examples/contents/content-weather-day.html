@@ -3,13 +3,13 @@
     <ftui-column height="70%">
 
       <ftui-row align-items="bottom">
-        <ftui-label [text]="local:{{day}}_tempMin" size="5" unit="°C" class="thin"></ftui-label>
-        <ftui-label [text]="local:{{day}}_tempMax" size="5"><sup slot="end" class="size--1">°C</sup></ftui-label>
+        <ftui-label [text]="local:{{day}}_Tn" size="5" unit="°C" class="thin"></ftui-label>
+        <ftui-label [text]="local:{{day}}_Tx" size="5"><sup slot="end" class="size--1">°C</sup></ftui-label>
       </ftui-row>
       <ftui-row>
         <ftui-icon name="umbrella" size="1"></ftui-icon>
         <ftui-label [text]="local:{{day}}_rain" size="2" unit="mm"></ftui-label>
-        <ftui-label [text]="local:{{day}}_chOfRainDay" size="2" unit="%"></ftui-label>
+        <ftui-label [text]="local:{{day}}_Rh00" size="2" unit="%"></ftui-label>
       </ftui-row>
       
     </ftui-column>

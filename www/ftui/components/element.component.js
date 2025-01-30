@@ -50,8 +50,8 @@ export class FtuiElement extends HTMLElement {
       hidden: false,
       disabled: false,
       readonly: false,
-      margin: '0',
-      padding: '0',
+      margin: '',
+      padding: '',
     };
   }
 
@@ -64,6 +64,7 @@ export class FtuiElement extends HTMLElement {
   }
 
   connectedCallback() {
+    this.updateProperties();
     if (typeof this.onConnected === 'function') {
       // call the hook function of the instance
       this.onConnected();
@@ -82,16 +83,17 @@ export class FtuiElement extends HTMLElement {
       // call the hook function of the instance
       this.onAttributeChanged(name, newValue, oldValue);
     }
+    const hasValue = newValue !== null && newValue !== false;
     switch (name) {
       case 'hidden':
-        this.style.display = newValue !== null ? 'none' : '';
+        this.style.display = hasValue ? 'none' : '';
         break;
       case 'disabled':
-        this.style.filter = newValue !== null ? 'sepia(1) saturate(0) blur(1px)' : '';
-        this.style.pointerEvents = newValue !== null ? 'none' : '';
+        this.style.filter = hasValue ? 'sepia(1) saturate(0) blur(1px)' : '';
+        this.style.pointerEvents = hasValue ? 'none' : '';
         break;
       case 'readonly':
-        this.style.pointerEvents = newValue !== null ? 'none' : '';
+        this.style.pointerEvents = hasValue ? 'none' : '';
         break;
       case 'margin': {
         if (this.tagName !== 'FTUI-GRID') {
@@ -116,7 +118,7 @@ export class FtuiElement extends HTMLElement {
   submitChange(property, value) {
     this.isActiveChange[property] = true;
     this[property] = value;
-    this.emitChangeEvent(property, value );
+    this.emitChangeEvent(property, value);
   }
 
   emitChangeEvent(attribute, value) {
@@ -184,5 +186,22 @@ export class FtuiElement extends HTMLElement {
       get() { return this.getAttribute(attr); },
       set(value) { this.setAttribute(attr, value); },
     });
+  }
+
+  /**
+   * Updates all properties by calling attributeChangedCallback for each property,
+   * if the attribute has the default value.
+   *
+   * This function is called when the component is connected.
+   *
+   * @private
+   */
+  updateProperties() {
+    Object.entries(this.properties).forEach(([name, defaultValue]) => {
+      const attr = toKebabCase(name);
+      if (this.getAttribute(attr) === defaultValue) {
+        this.attributeChangedCallback(attr, null, defaultValue);
+      }
+    })
   }
 }

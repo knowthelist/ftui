@@ -64,7 +64,7 @@
 
     <ftui-grid-tile row="1" col="2" height="1" width="1" shape="round">
       <ftui-grid-header>Height</ftui-grid-header>
-      <ftui-weather size="6" icon-set="kleinklimaFHEM" [condition]="AgroWeather:fc2_weatherDay"></ftui-weather>
+      <ftui-weather size="6" icon-set="kleinklimaFHEM" [condition]="WeatherLocal:fc2_weatherDay"></ftui-weather>
     </ftui-grid-tile>
 
     <ftui-grid-tile row="1" col="5" height="1" width="1" shape="round">
@@ -77,39 +77,39 @@
       <ftui-row>
         <ftui-column>
           <label>Heute</label>
-          <ftui-weather size="4" [condition]="AgroWeather:fc0_weatherDay"></ftui-weather>
-          <ftui-label [text]="AgroWeather:fc0_weatherDay"></ftui-label>
-          <ftui-label [text]="AgroWeather:fc0_tempMax" unit="°C"></ftui-label>
+          <ftui-weather size="4" [condition]="WeatherLocal:fc0_weatherDay"></ftui-weather>
+          <ftui-label [text]="WeatherLocal:fc0_weatherDay"></ftui-label>
+          <ftui-label [text]="WeatherLocal:fc0_Tx" unit="°C"></ftui-label>
         </ftui-column>
         <ftui-column>
           <label>Morgen</label>
-          <ftui-weather size="4" [condition]="AgroWeather:fc1_weatherDay"></ftui-weather>
-          <ftui-label [text]="AgroWeather:fc1_weatherDay"></ftui-label>
-          <ftui-label [text]="AgroWeather:fc1_tempMax" unit="°C"></ftui-label>
+          <ftui-weather size="4" [condition]="WeatherLocal:fc1_weatherDay"></ftui-weather>
+          <ftui-label [text]="WeatherLocal:fc1_weatherDay"></ftui-label>
+          <ftui-label [text]="WeatherLocal:fc1_Tx" unit="°C"></ftui-label>
         </ftui-column>
         <ftui-column>
-          <ftui-label [text]="AgroWeather:fc2_date | toDate() | format('eeee')"></ftui-label>
-          <ftui-weather size="4" [condition]="AgroWeather:fc2_weatherDay"></ftui-weather>
-          <ftui-label [text]="AgroWeather:fc2_weatherDay"></ftui-label>
-          <ftui-label [text]="AgroWeather:fc2_tempMax" unit="°C"></ftui-label>
+          <ftui-label [text]="WeatherLocal:fc2_date | toDate() | format('eeee')"></ftui-label>
+          <ftui-weather size="4" [condition]="WeatherLocal:fc2_weatherDay"></ftui-weather>
+          <ftui-label [text]="WeatherLocal:fc2_weatherDay"></ftui-label>
+          <ftui-label [text]="WeatherLocal:fc2_Tx" unit="°C"></ftui-label>
         </ftui-column>
         <ftui-column>
-          <ftui-label [text]="AgroWeather:fc3_date | toDate() | format('eeee')"></ftui-label>
-          <ftui-weather size="4" [condition]="AgroWeather:fc3_weatherDay"></ftui-weather>
-          <ftui-label [text]="AgroWeather:fc3_weatherDay"></ftui-label>
-          <ftui-label [text]="AgroWeather:fc3_tempMax" unit="°C"></ftui-label>
+          <ftui-label [text]="WeatherLocal:fc3_date | toDate() | format('eeee')"></ftui-label>
+          <ftui-weather size="4" [condition]="WeatherLocal:fc3_weatherDay"></ftui-weather>
+          <ftui-label [text]="WeatherLocal:fc3_weatherDay"></ftui-label>
+          <ftui-label [text]="WeatherLocal:fc3_Tx" unit="°C"></ftui-label>
         </ftui-column>
         <ftui-column>
-          <ftui-label [text]="AgroWeather:fc4_date | toDate() | format('eeee')"></ftui-label>
-          <ftui-weather size="4" [condition]="AgroWeather:fc4_weatherDay"></ftui-weather>
-          <ftui-label [text]="AgroWeather:fc4_weatherDay"></ftui-label>
-          <ftui-label [text]="AgroWeather:fc4_tempMax" unit="°C"></ftui-label>
+          <ftui-label [text]="WeatherLocal:fc4_date | toDate() | format('eeee')"></ftui-label>
+          <ftui-weather size="4" [condition]="WeatherLocal:fc4_weatherDay"></ftui-weather>
+          <ftui-label [text]="WeatherLocal:fc4_weatherDay"></ftui-label>
+          <ftui-label [text]="WeatherLocal:fc4_Tx" unit="°C"></ftui-label>
         </ftui-column>
         <ftui-column>
-          <ftui-label [text]="AgroWeather:fc5_date | toDate() | format('eeee')"></ftui-label>
-          <ftui-weather size="4" [condition]="AgroWeather:fc5_weatherDay"></ftui-weather>
-          <ftui-label [text]="AgroWeather:fc5_weatherDay"></ftui-label>
-          <ftui-label [text]="AgroWeather:fc5_tempMax" unit="°C"></ftui-label>
+          <ftui-label [text]="WeatherLocal:fc5_date | toDate() | format('eeee')"></ftui-label>
+          <ftui-weather size="4" [condition]="WeatherLocal:fc5_weatherDay"></ftui-weather>
+          <ftui-label [text]="WeatherLocal:fc5_weatherDay"></ftui-label>
+          <ftui-label [text]="WeatherLocal:fc5_Tx" unit="°C"></ftui-label>
         </ftui-column>
       </ftui-row>
     </ftui-grid-tile>

@@ -45,7 +45,7 @@ export class FtuiButton extends FtuiElement {
       direction: 'horizontal',
       value: 'off',
       debounce: 0,
-      gap: 0,
+      gap: '0',
       height: null,
       width: null,
     };

@@ -45,7 +45,7 @@
 
     <ftui-grid-tile row="1" col="3" height="1" width="3">
       <ftui-grid-header>Original</ftui-grid-header>
-      <ftui-label [text]="AgroWeather:state"></ftui-label>
+      <ftui-label [text]="WeatherLocal:state"></ftui-label>
     </ftui-grid-tile>
 
     <ftui-grid-tile row="1" col="6" height="1" width="2">
@@ -67,17 +67,17 @@
 
     <ftui-grid-tile row="2" col="2" height="1" width="1">
       <ftui-grid-header>text part4</ftui-grid-header>
-      <ftui-label [text]="AgroWeather:state | part(4)"></ftui-label>
+      <ftui-label [text]="WeatherLocal:state | part(4)"></ftui-label>
     </ftui-grid-tile>
 
     <ftui-grid-tile row="2" col="3" height="1" width="2">
       <ftui-grid-header>time</ftui-grid-header>
-      <ftui-label [text]="AgroWeather:state:time"></ftui-label>
+      <ftui-label [text]="WeatherLocal:state:time"></ftui-label>
     </ftui-grid-tile>
 
     <ftui-grid-tile row="2" col="5" height="1" width="2">
       <ftui-grid-header>time min:sec</ftui-grid-header>
-      <ftui-label [text]="AgroWeather:state:time | toDate() | format('mm:ss')"></ftui-label>
+      <ftui-label [text]="WeatherLocal:state:time | toDate() | format('mm:ss')"></ftui-label>
     </ftui-grid-tile>
 
     <ftui-grid-tile row="2" col="7" height="1" width="2" shape="round">
@@ -104,7 +104,7 @@
 
     <ftui-grid-tile row="4" col="2" height="1" width="1">
       <ftui-grid-header>text pipe</ftui-grid-header>
-      <ftui-label [text]="AgroWeather:state | part(4) | toInt() | multiply(2) | round(1) "></ftui-label>
+      <ftui-label [text]="WeatherLocal:state | part(4) | toInt() | multiply(2) | round(1) "></ftui-label>
     </ftui-grid-tile>
 
     <ftui-grid-tile row="3" col="3" height="2" width="2" shape="round" color="green">
@@ -159,7 +159,7 @@
 
     <ftui-grid-tile row="1" col="2" height="1" width="1">
       <ftui-grid-header>text-filter regexec</ftui-grid-header>
-      <ftui-label [text]="AgroWeather:state | part('.*T:(.*)H:.*')"></ftui-label>
+      <ftui-label [text]="WeatherLocal:state | part('.*T:(.*)H:.*')"></ftui-label>
     </ftui-grid-tile>
 
     <ftui-grid-tile row="2" col="1" height="2" width="1">
@@ -169,12 +169,12 @@
 
     <ftui-grid-tile row="3" col="2" height="1" width="1">
       <ftui-grid-header>FIX</ftui-grid-header>
-      <ftui-label [text]="AgroWeather:wind | fix(2)" unit="°C"></ftui-label>
+      <ftui-label [text]="WeatherLocal:wind | fix(2)" unit="°C"></ftui-label>
     </ftui-grid-tile>
 
     <ftui-grid-tile row="3" col="2" height="1" width="1">
       <ftui-grid-header>REPLACE</ftui-grid-header>
-      <ftui-label [text]="AgroWeather:fc0_date | replace(/\./g, '/')"></ftui-label>
+      <ftui-label [text]="WeatherLocal:fc0_date | replace(/\./g, '/')"></ftui-label>
     </ftui-grid-tile>
 
     <ftui-grid-tile row="4" col="1" height="1" width="1">
@@ -233,8 +233,8 @@
 
     <ftui-grid-tile row="6" col="3" height="1" width="3">
       <ftui-grid-header>INTL DateFormat</ftui-grid-header>
-      <ftui-label [text]="AgroWeather:state:time | toDate() | myDateTimeFormat1()"></ftui-label>
-      <ftui-label [text]="AgroWeather:state:time | toDate() | myDateTimeFormat2()"></ftui-label>
+      <ftui-label [text]="WeatherLocal:state:time | toDate() | myDateTimeFormat1()"></ftui-label>
+      <ftui-label [text]="WeatherLocal:state:time | toDate() | myDateTimeFormat2()"></ftui-label>
     </ftui-grid-tile>
 
   </ftui-grid>

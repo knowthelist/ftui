@@ -23,6 +23,8 @@ export class FtuiGrid extends FtuiElement {
       margin: 8,
       resize: false,
       responsive: false,
+      columns: 0,
+      rows: 0,
     };
     super(properties);
 
@@ -33,7 +35,9 @@ export class FtuiGrid extends FtuiElement {
 
 
     if (this.responsive) {
-      this.configResponsiveGrid();
+      if ( this.columns === 0 && this.rows === 0) {
+        this.configResponsiveGrid();
+      }
     } else {
       if (this.resize) {
         if ('ResizeObserver' in window) {
@@ -64,7 +68,15 @@ export class FtuiGrid extends FtuiElement {
         height: 100%;
         margin: 0;
       }
-      :host([responsive]) {
+      :host([responsive][columns][rows]) {
+        display: grid;
+        grid-template-columns: repeat(${this.columns}, 1fr);
+        grid-template-rows: repeat(${this.rows}, 1fr);
+        grid-auto-flow: dense;
+        gap: ${this.margin}px;
+        margin: ${this.margin}px;
+      }
+      :host([responsive][columns="0"][rows="0"]) {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
         grid-template-rows: repeat(auto-fill, minmax(140px, 1fr));
@@ -75,7 +87,7 @@ export class FtuiGrid extends FtuiElement {
         margin: ${this.margin}px;
       }
       :host([shape="round"]) {
-        --grid-tile-border-radius: 1em;
+        --grid-tile-border-radius: 0.75em;
       }
     </style>
     <slot></slot>
@@ -84,6 +96,9 @@ export class FtuiGrid extends FtuiElement {
 
   onConnected() {
     //this.style.margin = 0;
+    if (this.responsive && this.columns > 0 && this.rows > 0) {
+      this.configResponsiveGrid2();
+    }
   }
 
   configResponsiveGrid() {
@@ -95,6 +110,15 @@ export class FtuiGrid extends FtuiElement {
     });
     this.style['grid-auto-rows'] = baseHeight + 'px';
     this.style['grid-auto-columns'] = baseWidth + 'px';
+  }
+  
+  configResponsiveGrid2() {
+    const baseWidth = (this.baseWidth > 0) ? this.baseWidth : 140;
+    const baseHeight = (this.baseHeight > 0) ? this.baseHeight : 140;
+    this.tiles.forEach(tile => {
+      tile.style['grid-row-end'] = 'span ' + Number(tile.getAttribute('height'));
+      tile.style['grid-column-end'] = 'span ' + tile.getAttribute('width');
+    });
   }
 
   configureGrid() {

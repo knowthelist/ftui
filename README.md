@@ -116,7 +116,7 @@ The FHEM reading is given as follow:
 
     [attribute]="DEVICE:READING:PROPERTY"
 
-DEVICE is the name of the FHEM device e.g. lamp1 or AgroWeather
+DEVICE is the name of the FHEM device e.g. lamp1 or WeatherLocal
 READING is the name of the reading e.g. state or temperature (default: STATE)
 PROPERTY is the property of the reading. Possible are: value, time, update, invalid (default: value)
 
@@ -127,7 +127,7 @@ invalid - is true if the reading doesn't exist in FHEM (anymore)
 
 Example to show the timestamp of a reading
 ```html
- <ftui-label [text]="AgroWeather:state:time | toDate() | format('mm:ss')"></ftui-label>
+ <ftui-label [text]="WeatherLocal:state:time | toDate() | format('mm:ss')"></ftui-label>
 ```
 
 - Attribute  binding:
@@ -215,7 +215,7 @@ Binding values can be pushed through piped functions to change the value. Follow
 Example for input (FHEM reading -> function() -> HTML attribute): 
 
 ```html
-<ftui-label [text]="AgroWeather:state | part(4) | toInt() | multiply(2) | round(1) "></ftui-label>
+<ftui-label [text]="WeatherLocal:state | part(4) | toInt() | multiply(2) | round(1) "></ftui-label>
 ```
 
 Example for output (HTML attribute -> function() -> FHEM reading): 

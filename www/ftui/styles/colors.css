@@ -94,8 +94,13 @@
   --color-base: currentColor;
 }
 
+[color="unreachable"] {
+  --color-base: #00000080;
+  --color-contrast: var(--light-contrast-color);
+}
+
 [color="grid"] {
-  --color-base: var(--grid-background-color);
+  --color-base: var(--grid-tile-background-color);
   --color-contrast: var(--dark-contrast-color);
 }
 

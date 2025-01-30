@@ -33,7 +33,7 @@ select {
 option {
   color: var(--dropdown-color, var(--text-color, #bfbfbf));
   background-color: var(--dropdown-background-color,
-      var(--grid-background-color, #333333));
+      var(--grid-tile-background-color, #333333));
 }
 
 :host([nochevron]) select {

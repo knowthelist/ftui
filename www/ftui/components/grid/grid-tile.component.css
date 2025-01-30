@@ -1,9 +1,9 @@
 :host([shape="round"]) {
-  --grid-tile-border-radius: 1em;
+  --grid-tile-border-radius: 0.5em;
 }
 
 :host {
-  --color-base: var(--grid-background-color, #333333);
+  --color-base: var(--grid-tile-background-color, #333333);
   background: var(--color-base);
   display: flex;
   flex-direction: column;
@@ -11,6 +11,7 @@
   justify-content: center;
   overflow: hidden;
   border-radius: var(--grid-tile-border-radius);
+  box-shadow: var(--grid-tile-box-shadow);
 }
 
 :host([align-items~=center]) { justify-content: center; }

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <base href="../" />
+  <script src="ftui.js"></script>
+  <link href="ftui.css" rel="stylesheet">
+  <link href="themes/mobile-ios.css" rel="stylesheet">
+  <link href="favicon.ico" rel="icon" type="image/x-icon" />
+
+  <meta name="viewport" content="width=device-width, user-scalable=no" />
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+
+  <meta name="debug" content="0">
+
+  <title>FTUI Grid Responsive Example</title>
+</head>
+
+<body>
+
+  <ftui-grid columns="8" rows="24" shape="round" margin="10" responsive>
+
+    <!-- Door -->
+    <ftui-grid-tile height="3" width="4" padding="10px">
+      <ftui-row align-items="stretch">
+        <ftui-icon name="front-door" color="primary" size="2"></ftui-icon>
+        <ftui-label [text]="Eingangstuer:secure | capitalize()" color="primary" size="1">
+      </ftui-row>
+      <ftui-column align-items="left">
+        <ftui-label bold>Door</ftui-label>
+        <ftui-label size="0.65em" color="gray"
+                    [text]="Eingangstuer:secure:time| toDate() | format('DD.MM&nbsp;&nbsp;hh:mm')"></ftui-label>
+      </ftui-column>
+    </ftui-grid-tile>
+
+    <!-- Windows -->
+    <ftui-grid-tile height="3" width="4" padding="10px">
+      <ftui-row align-items="stretch">
+        <ftui-icon name="classic-window" color="primary" size="2"></ftui-icon>
+        <ftui-label [text]="AllWindows" color="primary" size="1">
+      </ftui-row>
+      <ftui-column align-items="left">
+        <ftui-label bold>Windows</ftui-label>
+        <ftui-row align-items="stretch">
+          <ftui-label size="0.65em" color="gray"
+                      [text]="AllWindows:count:time| toDate() | format('DD.MM.&nbsp;&nbsp;hh:mm')"></ftui-label>
+          <ftui-label [text]="AllWindows:count" color="gray"></ftui-label>
+        </ftui-row>
+      </ftui-column>
+    </ftui-grid-tile>
+
+    <!-- Shutter -->
+    <ftui-grid-tile height="3" width="4" padding="10px">
+      <ftui-row align-items="stretch">
+        <ftui-icon name="window-shutter" color="primary" size="2"></ftui-icon>
+        <ftui-label [text]="AllJalousie:position | step('5:Up, 35:Halfway, 65:Down')" color="primary" size="1">
+      </ftui-row>
+      <ftui-column align-items="left">
+        <ftui-label bold size="0.95em">Shutter</ftui-label>
+        <ftui-row align-items="stretch">
+          <ftui-label size="0.65em" color="gray"
+                      [text]="AllJalousie:position:time| toDate() | format('DD.MM.&nbsp;&nbsp;hh:mm')"></ftui-label>
+          <ftui-label [text]="AllJalousie:position" unit="%" color="gray"></ftui-label>
+        </ftui-row>
+      </ftui-column>
+    </ftui-grid-tile>
+
+    <!-- WiFi -->
+    <ftui-grid-tile height="3" width="4" padding="10px">
+      <ftui-row align-items="stretch">
+        <ftui-icon name="wifi" color="primary" size="2"></ftui-icon>
+        <ftui-label [text]="FritzBox:box_dsl_downStream | step('0:Down,50:Ok')" color="primary" size="1">
+      </ftui-row>
+      <ftui-column align-items="left">
+        <ftui-label bold>WiFi</ftui-label>
+        <ftui-row align-items="stretch">
+          <ftui-label size="0.65em" color="gray"
+                      [text]="FritzBox:box_uptimeConnect | part('^.*=\\s(.*)$')"></ftui-label>
+          <ftui-label [text]="FritzBox:box_dsl_downStream" color="gray"></ftui-label>
+        </ftui-row>
+      </ftui-column>
+    </ftui-grid-tile>
+
+    <!-- Solar -->
+    <ftui-grid-tile height="3" width="4" padding="10px">
+      <ftui-row align-items="stretch">
+        <ftui-icon name="solar_icon" path="../images/fhemSVG" color="primary" size="2"></ftui-icon>
+        <ftui-label [text]="PVConverter:Pac1" unit="W" color="primary" size="1">
+      </ftui-row>
+      <ftui-column align-items="left">
+        <ftui-label bold>Solar</ftui-label>
+        <ftui-row align-items="stretch">
+          <ftui-label size="0.65em" color="gray"
+                      [text]="PVConverter:Pac1:time| toDate() | format('DD.MM.&nbsp;&nbsp;hh:mm')"></ftui-label>
+          <ftui-label [text]="PVConverter:Eac_today" unit="kWh" color="gray"></ftui-label>
+        </ftui-row>
+      </ftui-column>
+    </ftui-grid-tile>
+
+
+    <!-- Energy -->
+    <ftui-grid-tile height="3" width="4" padding="10px">
+      <ftui-row align-items="stretch">
+        <ftui-icon name="bolt" color="primary" size="2"></ftui-icon>
+        <ftui-label [text]="SmartMeter:GS303_Power_cur" unit="W" color="primary" size="1">
+      </ftui-row>
+      <ftui-column align-items="left">
+        <ftui-label bold>Energy</ftui-label>
+        <ftui-row align-items="stretch">
+          <ftui-label size="0.65em" color="gray"
+                      [text]="SmartMeter:GS303_Power_cur:time| toDate() | format('DD.MM.&nbsp;&nbsp;hh:mm')"></ftui-label>
+          <ftui-label [text]="StromRechnerIn:SmartMeter_GS303_Total_in_EnergyDay | fix(1)" unit="kWh"
+                      color="gray"></ftui-label>
+        </ftui-row>
+      </ftui-column>
+    </ftui-grid-tile>
+
+
+    <!-- Garage -->
+    <ftui-grid-tile height="3" width="4" padding="10px">
+      <ftui-row align-items="stretch">
+        <ftui-icon name="garage-variant" size="2" color="primary"
+                   [name]="Garage:status | map('open:garage-open-variant, moving: garage-alert-variant, closed: garage-variant')"></ftui-icon>
+        </ftui-icon>
+        <ftui-label [text]="Garage:status" color="primary" size="1">
+      </ftui-row>
+      <ftui-column align-items="left">
+        <ftui-label bold>Garage</ftui-label>
+        <ftui-row align-items="stretch">
+          <ftui-label size="0.65em" color="gray"
+                      [text]="Garage:status| toDate() | format('DD.MM.&nbsp;&nbsp;hh:mm')"></ftui-label> 
+          <ftui-label [text]="Garage:temp | fix(1)" unit="°C"
+                      color="gray"></ftui-label>                      
+        </ftui-row>
+      </ftui-column>
+    </ftui-grid-tile>
+
+
+    <!-- Lights -->
+    <ftui-grid-tile height="3" width="4" padding="10px">
+      <ftui-row align-items="stretch">
+        <ftui-icon size="2" color="primary"
+                   [name]="AllLights:count | step('0: lightbulb, 1: lightbulb-on')"> </ftui-icon>
+        <ftui-label [text]="AllLights:count" color="primary" size="1">
+      </ftui-row>
+      <ftui-column align-items="left">
+        <ftui-label bold>Lights</ftui-label>
+        <ftui-row align-items="stretch">
+          <ftui-label size="0.65em" color="gray"
+                      [text]="AllLights:count:time| toDate() | format('DD.MM.&nbsp;&nbsp;hh:mm')"></ftui-label>
+        </ftui-row>
+      </ftui-column>
+    </ftui-grid-tile>
+
+    <!-- Stove -->
+    <ftui-grid-tile height="3" width="4" padding="10px">
+      <ftui-row align-items="stretch">
+        <ftui-icon name="cutlery" color="primary" size="2"></ftui-icon>
+        <ftui-label [text]="HerdSummeStromwert  | step('0:Off, 700:On')" color="primary" size="1">
+      </ftui-row>
+      <ftui-column align-items="left">
+        <ftui-label bold>Stove</ftui-label> 
+        <ftui-row align-items="stretch">
+          <ftui-label size="0.65em" color="gray"
+                      [text]="HerdSummeStromwert:state:time| toDate() | format('DD.MM.&nbsp;&nbsp;hh:mm')"></ftui-label>
+          <ftui-label [text]="HerdSummeStromwert | part(1) | fix(0)" unit="mA" color="gray"></ftui-label>
+        </ftui-row>
+      </ftui-column>
+    </ftui-grid-tile>
+
+
+    <!-- CO² -->
+    <ftui-grid-tile height="3" width="4" padding="10px">
+      <ftui-row align-items="stretch">
+        <ftui-icon name="leaf" color="primary" size="2"></ftui-icon>
+        <ftui-label [text]="WCLuft | part(1) | toInt()" unit="ppm" color="primary" size="1">
+      </ftui-row>
+      <ftui-column align-items="left">
+        <ftui-label bold>Air</ftui-label>
+        <ftui-row align-items="stretch">
+          <ftui-label size="0.65em" color="gray"
+                      [text]="WCLuft:state:time| toDate() | format('DD.MM.&nbsp;&nbsp;hh:mm')"></ftui-label>
+          <ftui-label [text]="THSensorWZ:humidity" unit="%" color="gray"></ftui-label>
+        </ftui-row>
+      </ftui-column>
+    </ftui-grid-tile>
+
+  </ftui-grid>
+</body>
+
+</html>

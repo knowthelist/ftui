@@ -1,0 +1,262 @@
+@import "../styles/colors.css"; 
+
+:root {
+
+  --gray: #393939;
+  --gray10: #1a1a1a;
+  --gray15: #272727;
+  --gray20: #333333;
+  --gray25: #3f3f3f;
+  --gray33: #545454;
+  --gray50: #7f7f7f;
+  --gray55: #8c8c8c;
+  --gray75: #bfbfbf;
+  --gray80: #cccccc;
+  --gray85: #d8d8d8;
+  --gray90: #e5e5e5;
+  --gray95: #f2f2f2;
+
+  --yellow: #ffd84a;
+  --yellow-dark: #ffb716;
+  --red: #f06048;
+  --green: #55c594;
+  --green-light: #3caea3;
+  --green-dark: #365a38;
+  --blue: #007aff; 
+  --blue1: #20639b;
+  --blue2: #173f5f;
+  --orange: #f8b13e;
+  --blue-light: #66aaFF;
+
+  --white: #ffffff;
+  --black: #111111;
+  --black-dark: #000000;
+  --violet: #9400d3;
+  --transparent: transparent;
+
+  --primary-color: var(--blue);
+  --secondary-color: var(--blue2);
+
+  --success-color: var(--green-light);
+  --info-color: var(--ligthblue);
+  --warning-color: var(--yellow);
+  --danger-color: var(--red);
+  --light-color: var(--gray90);
+  --medium-color: var(--gray50);
+  --dark-color: var(--gray25);
+
+  --primary-contrast-color: var(--white);
+  --secondary-contrast-color: var(--white);
+  --primary-active-color: var(--medium-color);
+
+  --success-contrast-color: var(--white);
+  --info-contrast-color: var(--white);
+  --warning-contrast-color: var(--black);
+  --danger-contrast-color: var(--white);
+  --light-contrast-color: var(--black);
+  --medium-contrast-color: var(--white);
+  --dark-contrast-color: var(--white);
+
+  --text-color: var(--gray20);
+  --text-color-inactive: var(--gray55);
+
+  --view-toolbar-color: var(--gray15);
+  --view-toolbar-background-color: rgba(248, 248, 248, 0.9);
+  --view-content-color: var(--white);
+  --view-background-color: var(--gray95);
+  --view-footer-color: var(--white);
+  --view-item-background-color: var(--white);
+  --view-item-active-color: var(--gray75);
+  --view-border-color: rgb(200, 199, 204);
+  --view-section-header-color: var(--gray50);
+  --view-section-footer-color: var(--gray50);
+
+  --page-background-color: var(--light);
+
+  --grid-tile-background-color: var(--white);
+  --grid-header-color: var(--gray55);
+  --grid-header-background-color: var(--white);
+  --grid-tile-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
+  --tab-color: var(--medium-color);
+  --tab-contrast-color: var(--primary-contrast-color);
+  --tab-active-color: var(--primary-color);
+
+  --popup-color: var(--text-color);
+  --popup-background-color: var(--grid-tile-background-color);
+  --popup-overlay-color: rgba(0, 0, 0, 0.5);
+  --popup-header-color: var(--grid-header-color);
+  --popup-header-background-color: var(--grid-header-background-color);
+  
+  --circlemenu-overlay-color: var(--black-dark);
+
+  --chart-text-color: var(--medium-color);
+  --chart-text-active-color: var(--dark-color);
+  --chart-grid-line-color: var(--medium-color);
+  --chart-title-color: var(--medium-color);
+
+  --border-color: var(--light-color);
+
+  --switch-off-color: var(--light-color);
+  --checkbox-off-color: var(--light-color);
+
+  --slider-track-color: var(--light-color);
+  --slider-handle-shadow: 1px 1px 4px #ddd;
+  --slider-handle-border: 1px solid #f2f2f2;
+
+  --swiper-scrollbar-thumb: rgba(0, 0, 0, 0.5);
+  --swiper-scrollbar-track: var(--white);
+  --swiper-dot: var(--light-color);
+  --swiper-dot-active: var(--info-color);
+
+  --segments-background-color: var(--light-color);
+  --segments-separator-color: rgb(200, 199, 204);
+  --segments-selection-color: var(--primary-color);
+  --segments-selection-contrast-color: var(--primary-contrast-color);
+  --segments-hover-color: var(--medium-color);
+  --segments-text-color: var(--text-color);
+
+  --meter-background-color: var(--light-color);
+
+  --background-color: Canvas;
+
+  --icon-width: 1em;
+  --icon-height: 1em;
+  --icon-margin: 0 0 0.5em 0;
+
+  [invert][color] {
+    --color-contrast: var(--white);
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --cyan: #17a2b8;
+    --brown: #bf7a37;
+    --white: #fff;
+    --gray: #d6dde4;
+    --black: #050505;
+    --primary: #0a84ff; /* iOS blue */
+    --secondary: #6c757d;
+    --success: #34c759; /* iOS green */
+    --info: #17a2b8;
+    --warning: #ffcc00; /* iOS yellow */
+    --danger: #ff3b30; /* iOS red */
+    --light: #f8f9fa;
+    --medium: #d6dde4;
+    --dark: #343434;
+    --darker: #171719;
+  
+    --primary-color: var(--primary);
+    --secondary-color: var(--secondary);
+  
+    --success-color: var(--success);
+    --info-color: var(--info);
+    --warning-color: var(--warning);
+    --danger-color: var(--red);
+    --light-color: var(--light);
+    --medium-color: var(--medium);
+    --dark-color: var(--dark);
+    --darker-color: var(--darker);
+    --success-danger-color: var(--warning);
+  
+    --cold-color: var(--blue);
+    --hot-color: var(--red);
+    --cold-hot-mix-color: var(--indigo);
+  
+    --primary-contrast-color: var(--white);
+    --secondary-contrast-color: var(--white);
+    --primary-active-color: var(--white);
+  
+    --success-contrast-color: var(--white);
+    --info-contrast-color: var(--white);
+    --warning-contrast-color: var(--dark);
+    --danger-contrast-color: var(--white);
+    --light-contrast-color: var(--black);
+    --medium-contrast-color: var(--white);
+    --dark-contrast-color: var(--white);
+    
+    --text-color: var(--white);;
+    --text-color-inactive: var(--light-color);
+  
+    --view-toolbar-color: var(--light);
+    --view-toolbar-background-color: var(--dark);
+    --view-content-color: var(--white);
+    --view-background-color: var(--black);
+    --view-footer-color: var(--white);
+    --view-item-background-color: var(--darker);
+    --view-item-active-color: var(--dark);
+    --view-border-color: var(--dark);
+    --view-section-header-color: var(--medium);
+    --view-section-footer-color: var(--medium);
+  
+    --page-background-color: var(--darker-color);
+  
+    --grid-tile-background-color: var(--gray15);
+    --grid-header-color: var(--darker);
+    --grid-header-background-color: var(--gray15);
+    --grid-tile-border-radius: 0.5em;
+    --grid-tile-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+  
+    --tab-color: var(--dark);
+    --tab-contrast-color: var(--light);
+    --tab-active-color: var(--primary);
+  
+    --popup-color: var(--text-color);
+    --popup-background-color: var(--grid-tile-background-color);
+    --popup-overlay-color: var(--black);
+    --popup-header-color: var(--grid-header-color);
+    --popup-header-background-color: var(--grid-header-background-color);
+  
+    --circlemenu-overlay-color: var(--black);
+  
+    --chart-text-color: var(--light);
+    --chart-text-active-color: var(--primary);
+    --chart-grid-line-color: var(--gray);
+  
+    --border-color: var(--dark);
+  
+    --switch-off-color: var(--dark);
+    --checkbox-off-color: var(--light);
+  
+    --slider-track-color: var(--dark);
+    --slider-handle-shadow: none;
+    --slider-handle-border: none;
+  
+    --swiper-scrollbar-thumb: rgba(0, 0, 0, 0.5);
+    --swiper-scrollbar-track: transparent;
+    --swiper-dot: var(--medium);
+    --swiper-dot-active: var(--info);
+  
+    --segments-background-color: var(--dark);
+    --segments-separator-color: var(--gray);
+    --segments-selection-color: var(--primary);
+    --segments-selection-contrast-color: var(--primary-contrast-color);
+    --segments-hover-color: var(--light);
+    --segments-text-color: var(--text-color);
+  }
+}
+
+@supports (font: -apple-system-body) {
+  :root {
+  --text-font: -apple-system-body;
+  }
+}
+@supports not (font: -apple-system-body) {
+  :root {
+  --text-font: 14px -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Ubuntu', 'Helvetica Neue', sans-serif;  
+  }
+}
+
+body {
+  font: var(--text-font);
+  background: var(--page-background-color);
+  -webkit-font-smoothing: antialiased;
+  color: var(--text-color);
+  color-scheme: light dark;
+  position: fixed;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}
+

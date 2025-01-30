@@ -69,7 +69,12 @@
           <ftui-icon name="classic-window" color="blue" slot="start" invert></ftui-icon>
           Windows
           <ftui-label slot="end" color="medium" placeholder [text]="AlleFenster"></ftui-label>
+        </ftui-view-item>
 
+        <ftui-view-item target="viewGarage">
+          <ftui-icon name="garage-variant" color="blue" slot="start" invert></ftui-icon>
+          Garage
+          <ftui-label slot="end" color="medium" placeholder [text]="Garage:status"></ftui-label>
         </ftui-view-item>
 
         <ftui-view-item target="view-4">
@@ -411,6 +416,9 @@
         <ftui-view-item>Schrank
           <ftui-switch [(value)]="SchrankLicht_Sw" slot="end"></ftui-switch>
         </ftui-view-item>
+        <ftui-view-item>Weihnachtsbaum
+          <ftui-switch [(value)]="Weihnachtsbaum_Sw" slot="end"></ftui-switch>
+        </ftui-view-item>
         <ftui-view-item>Stehlampe
           <ftui-switch [value]="Stehlampe | map('on|dim.*: on, off|0: off')"
                        (value)="Stehlampe" slot="end"></ftui-switch>
@@ -467,6 +475,11 @@
       <ftui-content file="examples/contents/mobile-shutter.html" lazy></ftui-content>
     </ftui-view>
 
+    <!-- Garage View -->
+    <ftui-view id="viewGarage">
+      <ftui-content file="examples/contents/mobile-garage.html" lazy></ftui-content>
+    </ftui-view>
+
     <!-- Solar -->
     <ftui-view id="viewSolar">
       <ftui-content file="examples/contents/mobile-solar.html" lazy></ftui-content>
@@ -514,14 +527,14 @@
       </ftui-view-toolbar>
 
       <ftui-view-sheet shape="round">
-        <ftui-weather [condition]="AgroWeather:fc0_weatherDay" size="6" right="1rem" top="25%"></ftui-weather>
+        <ftui-weather [condition]="WeatherLocal:fc0_weatherDay" size="6" right="1rem" top="25%"></ftui-weather>
         <ftui-cell align-items="left" gap="0.5">
           <ftui-label color="medium" size="1">Temperature</ftui-label>
-          <ftui-label [text]="AgroWeather:temperature| fix(1)" unit="°" size="8" thin></ftui-label>
+          <ftui-label [text]="WeatherLocal:temperature| fix(1)" unit="°" size="8" thin></ftui-label>
         </ftui-cell>
         <ftui-cell align-items="left"  margin="1em 0 0" gap="0.5">
           <ftui-label color="medium" >Rain</ftui-label>
-          <ftui-label [text]="AgroWeather:fc0_rain" size="3" unit="mm" thin></ftui-label>
+          <ftui-label [text]="WeatherLocal:fc0_rain" size="3" unit="mm" thin></ftui-label>
         </ftui-cell>
 
       </ftui-view-sheet>

@@ -69,7 +69,7 @@
 
   --page-background-color: var(--black);
 
-  --grid-background-color: var(--darker);
+  --grid-tile-background-color: var(--darker);
   --grid-header-color: var(--light);
   --grid-header-background-color: var(--darkest);
 
@@ -78,7 +78,7 @@
   --tab-active-color: var(--primary-color);
 
   --popup-color: var(--text-color);
-  --popup-background-color: var(--grid-background-color);
+  --popup-background-color: var(--grid-tile-background-color);
   --popup-overlay-color: var(--black);
   --popup-header-color: var(--grid-header-color);
   --popup-header-background-color: var(--grid-header-background-color);

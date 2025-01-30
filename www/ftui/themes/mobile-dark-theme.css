@@ -72,7 +72,7 @@
 
   --page-background-color: var(--black);
 
-  --grid-background-color: var(--dark);
+  --grid-tile-background-color: var(--dark);
   --grid-header-color: var(--darker);
   --grid-header-background-color: var(--light);
 
@@ -81,7 +81,7 @@
   --tab-active-color: var(--primary);
 
   --popup-color: var(--text-color);
-  --popup-background-color: var(--grid-background-color);
+  --popup-background-color: var(--grid-tile-background-color);
   --popup-overlay-color: var(--black);
   --popup-header-color: var(--grid-header-color);
   --popup-header-background-color: var(--grid-header-background-color);
@@ -112,6 +112,8 @@
   --segments-selection-contrast-color: var(--primary-contrast-color);
   --segments-hover-color: var(--light);
   --segments-text-color: var(--text-color);
+
+  --icon-size: 1em;
 }
 
 @supports (font: -apple-system-body) {
@@ -121,7 +123,7 @@
 }
 @supports not (font: -apple-system-body) {
   :root {
-  --text-font: 1em -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Ubuntu', 'Helvetica Neue', sans-serif;  
+  --text-font: 1.35em -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Ubuntu', 'Helvetica Neue', sans-serif;  
   }
 }
 
@@ -130,4 +132,5 @@ body {
   color: var(--text-color);
   background: var(--page-background-color);
   -webkit-font-smoothing: antialiased;
+
 }
