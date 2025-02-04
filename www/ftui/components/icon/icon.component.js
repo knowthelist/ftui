@@ -53,7 +53,9 @@ export class FtuiIcon extends FtuiElement {
   onAttributeChanged(name, newValue) {
     switch (name) {
       case 'name':
-        this.loadIcon(`${this.path}/${newValue}.${this.type}`);
+        if (newValue && newValue !== '') {
+          this.loadIcon(`${this.path}/${newValue}.${this.type}`);
+        }
         break;
       case 'rgb':
         this.elementIcon.style.setProperty('--color-base', `${newValue ? '#' + newValue.replace('#', '') : ''}`);

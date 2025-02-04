@@ -32,6 +32,7 @@ export class FtuiCell extends FtuiElement {
         background: var(--color-base);
         color: var(--color-contrast);
         flex: 1;
+        overflow: hidden;
       }
       :host(:not(ftui-row)[align-items~=top])    { justify-content: start; }
       :host(:not(ftui-row)[align-items~=bottom]) { justify-content: end; }
@@ -62,22 +63,14 @@ export class FtuiCell extends FtuiElement {
   onAttributeChanged(name, value) {
     switch (name) {
       case 'width':
-        if (this.tagName === 'FTUI-COLUMN') {
-          this.style.flex = `0 0 ${value}`;
-        } else {
-          this.style.width = isNumeric(value) ? value + 'em' : value;
-          this.style.maxWidth = isNumeric(value) ? value + 'em' : value;
-          this.style.minWidth = isNumeric(value) ? value + 'em' : value;
-        }
+        this.style.width = isNumeric(value) ? value + 'em' : value;
+        this.style.maxWidth = isNumeric(value) ? value + 'em' : value;
+        this.style.minWidth = isNumeric(value) ? value + 'em' : value;
         break;
       case 'height':
-        if (this.tagName === 'FTUI-ROW') {
-          this.style.flex = `0 0 ${value}`;
-        } else {
-          this.style.height = isNumeric(value) ? value + 'em' : value;
-          this.style.maxHeight = isNumeric(value) ? value + 'em' : value;
-          this.style.minHeight = isNumeric(value) ? value + 'em' : value;
-        }
+        this.style.height = isNumeric(value) ? value + 'em' : value;
+        this.style.maxHeight = isNumeric(value) ? value + 'em' : value;
+        this.style.minHeight = isNumeric(value) ? value + 'em' : value;
         break;
       case 'gap':
         this.style.gap = isNumeric(value) ? value + 'em' : value;
@@ -99,7 +92,7 @@ export class FtuiCell extends FtuiElement {
       const percentage = parseFloat(value);
       return percentage / 10; // Converts 25% to 2.5 for flex
     }
-    
+
     // Check if the value is in pixels
     if (value.endsWith('px')) {
       const pixels = parseFloat(value.endsWith('px') ? value : value + 'em');

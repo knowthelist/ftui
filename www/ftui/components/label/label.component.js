@@ -79,11 +79,15 @@ export class FtuiLabel extends FtuiElement {
   onAttributeChanged(name, value) {
     switch (name) {
       case 'text':
-        this.mainSlotElement.innerHTML = value;
+        if (this.mainSlotElement) {
+          this.mainSlotElement.innerHTML = value;
+        }
         this.checkInterval();
         break;
       case 'unit':
-        this.unitSlotElement.textContent = this.unit;
+        if (this.unitSlotElement) {
+          this.unitSlotElement.textContent = this.unit;
+        }
         break;
       case 'interval':
         this.checkInterval();

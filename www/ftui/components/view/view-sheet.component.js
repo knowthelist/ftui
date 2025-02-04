@@ -29,7 +29,7 @@ export class FtuiViewSheet extends FtuiElement {
           width: 100%;
           display: flex;
           flex-direction: column;
-          justify-content: space-between;
+          justify-content: space-evenly;
           background-color: var(--view-item-background-color);
           align-items: flex-start;
           margin: 1em 1.5em;
