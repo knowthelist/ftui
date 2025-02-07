@@ -43,8 +43,8 @@ object-fit: none;
 }
 
 svg[viewBox="0 0 448 512"] {
-  width: calc( var(--size-base) * 112.5%);
-  height: calc( var(--size-base) * 112.5%);
+  width: calc( var(--size-base) * 1.125);
+  height: calc( var(--size-base) * 1.125);
 }
 
 :host([color]) svg {

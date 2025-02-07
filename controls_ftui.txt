@@ -25,7 +25,7 @@ UPD 2024-11-20_15:00:27 758 www/ftui/components/grid/grid-header.component.js
 UPD 2025-01-29_23:29:20 2131 www/ftui/components/grid/grid-tile.component.css
 UPD 2024-11-20_15:00:27 1074 www/ftui/components/grid/grid-tile.component.js
 UPD 2025-01-30_21:05:22 5181 www/ftui/components/grid/grid.component.js
-UPD 2025-01-29_22:10:00 1422 www/ftui/components/icon/icon.component.css
+UPD 2025-02-07_21:12:37 1420 www/ftui/components/icon/icon.component.css
 UPD 2025-02-04_18:18:07 3134 www/ftui/components/icon/icon.component.js
 UPD 2024-11-20_15:00:27 3277 www/ftui/components/image/image.component.js
 UPD 2024-11-20_15:00:27 8329 www/ftui/components/image/image_not_available.js
@@ -121,7 +121,7 @@ UPD 2025-02-04_18:15:32 5628 www/ftui/examples/dropdown.html
 UPD 2025-02-01_12:35:11 8481 www/ftui/examples/grid.html
 UPD 2024-11-20_15:00:28 988 www/ftui/examples/grid_resize.html
 UPD 2025-01-27_22:20:42 932 www/ftui/examples/grid_responsive.html
-UPD 2025-01-31_12:13:05 8205 www/ftui/examples/icon.html
+UPD 2025-02-07_21:24:16 8558 www/ftui/examples/icon.html
 UPD 2024-11-21_13:24:36 4341 www/ftui/examples/image.html
 UPD 2024-11-20_15:00:28 2268 www/ftui/examples/input.html
 UPD 2024-11-20_15:00:28 7013 www/ftui/examples/knob.html
@@ -138,7 +138,7 @@ UPD 2025-01-30_20:43:34 8102 www/ftui/examples/mobile_tiles.html
 UPD 2024-11-20_15:00:28 4965 www/ftui/examples/popup.html
 UPD 2024-11-20_15:00:28 3576 www/ftui/examples/rotor.html
 UPD 2024-11-20_15:00:28 2380 www/ftui/examples/segment.html
-UPD 2024-11-20_15:00:28 4943 www/ftui/examples/slider.html
+UPD 2025-02-04_21:54:29 5350 www/ftui/examples/slider.html
 UPD 2024-11-20_15:00:28 1293 www/ftui/examples/speak.html
 UPD 2024-11-21_13:28:45 20245 www/ftui/examples/swiper.html
 UPD 2024-11-20_15:00:28 1942 www/ftui/examples/switch.html
@@ -151,7 +151,7 @@ UPD 2024-11-20_15:00:28 4254 www/ftui/examples/themes.html
 UPD 2024-11-20_15:00:28 1648 www/ftui/examples/timeset.html
 UPD 2024-11-21_13:24:36 5076 www/ftui/examples/weather.html
 UPD 2024-11-20_15:00:29 15406 www/ftui/favicon.ico
-UPD 2024-11-20_15:00:29 10878 www/ftui/ftui.css
+UPD 2025-02-07_21:19:34 10924 www/ftui/ftui.css
 UPD 2024-11-20_15:00:26 1326 www/ftui/ftui.js
 UPD 2024-11-20_15:00:30 1881 www/ftui/icons/Celsius.svg
 UPD 2024-11-20_15:00:31 1097 www/ftui/icons/Fahrenheit.svg

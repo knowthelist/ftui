@@ -775,3 +775,7 @@ summary {
   margin: 0.5em;
   cursor: pointer;
 }
+
+a, a:visited, a:active {
+  color: #3a7999;
+}
