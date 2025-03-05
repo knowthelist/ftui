@@ -149,7 +149,7 @@ UPD 2024-11-20_15:00:28 2776 www/ftui/examples/tab-trans.html
 UPD 2024-11-20_15:00:28 2783 www/ftui/examples/tab.html
 UPD 2024-11-20_15:00:28 4254 www/ftui/examples/themes.html
 UPD 2024-11-20_15:00:28 1648 www/ftui/examples/timeset.html
-UPD 2024-11-21_13:24:36 5076 www/ftui/examples/weather.html
+UPD 2025-03-05_22:40:47 5562 www/ftui/examples/weather.html
 UPD 2024-11-20_15:00:29 15406 www/ftui/favicon.ico
 UPD 2025-02-07_21:19:34 10924 www/ftui/ftui.css
 UPD 2024-11-20_15:00:26 1326 www/ftui/ftui.js
