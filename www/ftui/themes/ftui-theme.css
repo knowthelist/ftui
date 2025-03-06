@@ -111,6 +111,8 @@
   --segments-text-color: var(--text-color);
 
   --meter-background-color: var(--dark);
+
+  --weather-bar-background-color: var(--medium);
 }
 
 body {

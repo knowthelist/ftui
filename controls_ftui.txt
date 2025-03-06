@@ -74,6 +74,8 @@ UPD 2024-11-20_15:00:27 2868 www/ftui/components/view/view-stage.component.js
 UPD 2024-11-20_15:00:27 1362 www/ftui/components/view/view-toolbar.component.css
 UPD 2024-11-20_15:00:27 893 www/ftui/components/view/view-toolbar.component.js
 UPD 2024-11-20_15:00:27 2399 www/ftui/components/view/view.component.js
+UPD 2025-03-06_13:27:54 573 www/ftui/components/weather/weather-bar.component.css
+UPD 2025-03-06_13:30:42 2282 www/ftui/components/weather/weather-bar.component.js
 UPD 2024-11-20_15:00:27 1277 www/ftui/components/weather/weather.component.js
 UPD 2025-01-27_21:53:21 20269 www/ftui/components/weather/weather.map.js
 UPD 2024-11-20_15:00:28 616 www/ftui/examples/_empty.html
@@ -149,7 +151,7 @@ UPD 2024-11-20_15:00:28 2776 www/ftui/examples/tab-trans.html
 UPD 2024-11-20_15:00:28 2783 www/ftui/examples/tab.html
 UPD 2024-11-20_15:00:28 4254 www/ftui/examples/themes.html
 UPD 2024-11-20_15:00:28 1648 www/ftui/examples/timeset.html
-UPD 2025-03-05_22:40:47 5562 www/ftui/examples/weather.html
+UPD 2025-03-06_13:16:51 6264 www/ftui/examples/weather.html
 UPD 2024-11-20_15:00:29 15406 www/ftui/favicon.ico
 UPD 2025-02-07_21:19:34 10924 www/ftui/ftui.css
 UPD 2024-11-20_15:00:26 1326 www/ftui/ftui.js
@@ -746,7 +748,7 @@ UPD 2024-11-20_15:00:29 6445 www/ftui/modules/vanilla-notify/vanilla-notify.js
 UPD 2024-11-20_15:00:29 3461 www/ftui/modules/vanilla-notify/vanilla-notify.min.js
 UPD 2025-01-29_23:29:20 4041 www/ftui/styles/colors.css
 UPD 2025-01-29_23:29:20 3524 www/ftui/themes/bright-theme.css
-UPD 2025-01-29_23:29:20 3438 www/ftui/themes/ftui-theme.css
+UPD 2025-03-06_13:28:22 3488 www/ftui/themes/ftui-theme.css
 UPD 2025-02-04_20:06:10 3729 www/ftui/themes/mobile-dark-theme.css
 UPD 2025-01-30_20:46:40 7714 www/ftui/themes/mobile-ios.css
 UPD 2025-01-29_23:29:20 4064 www/ftui/themes/mobile-theme.css
