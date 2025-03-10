@@ -64,7 +64,9 @@ export class FtuiChartData extends FtuiElement {
 
   fetch() {
     if (!this.isLoading) {
-      this.fetchLogItems(this.log, this.file, this.spec);
+      if (ftuiHelper.isVisible(this)){
+        this.fetchLogItems(this.log, this.file, this.spec);
+      }
     }
   }
 
