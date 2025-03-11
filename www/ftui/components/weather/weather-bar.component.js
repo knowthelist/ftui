@@ -9,8 +9,8 @@ class FtuiWeatherBar extends FtuiElement {
     this.minLabel = this.shadowRoot.querySelector('.min');
     this.maxLabel = this.shadowRoot.querySelector('.max');
     this.progress = this.shadowRoot.querySelector('.progress');
-    this.progress.style.width = this.width || '7em';
-    this.progress.style.height = this.height || '1em';
+    this.style.width = this.width || '12em';
+    this.style.height = this.height || '1em';
     this.progressBar = this.shadowRoot.querySelector('.progress-bar');
   }
 
@@ -57,8 +57,13 @@ class FtuiWeatherBar extends FtuiElement {
         lightblue 0%, 
         lightblue ${blueStop}%, 
         #bdbd79 ${blueStop * 2}%, 
-        #bdbd79 ${yellowStop}%, 
+        #bdbd79 ${yellowStop}%,
+        #f28383 ${yellowStop * 2}%, 
         #f28383 100%)`;
+if (this.maxTemp>20){
+  console.log(blueStop, yellowStop);
+}
+        
     // update labels
     this.minLabel.textContent = `${this.minTemp} ${this.unit}`;
     this.maxLabel.textContent = `${this.maxTemp} ${this.unit}`;

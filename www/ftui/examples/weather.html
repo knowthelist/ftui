@@ -73,21 +73,21 @@
     </ftui-grid-tile>
 
   <ftui-grid-tile row="1" col="6" height="1" width="1" shape="round">
-    <ftui-grid-header>Weather Bar</ftui-grid-header>
+    <ftui-grid-header>Weather Bar (fix vaules)</ftui-grid-header>
     <ftui-weather-bar min-temp="1" max-temp="10" ></ftui-weather-bar>
     <ftui-weather-bar min-temp="4" max-temp="12" ></ftui-weather-bar>
     <ftui-weather-bar min-temp="8" max-temp="16" ></ftui-weather-bar>
-    <ftui-weather-bar min-temp="10" max-temp="20" ></ftui-weather-bar>
+    <ftui-weather-bar min-temp="10" max-temp="27" ></ftui-weather-bar>
     <ftui-weather-bar min-temp="17" max-temp="29" ></ftui-weather-bar>
   </ftui-grid-tile>
 
   <ftui-grid-tile row="2" col="6" height="1" width="1" shape="round">
     <ftui-grid-header>Weather Bar</ftui-grid-header>
-    <ftui-weather-bar [min-temp]="WeatherLocal:fc0_Tn" [max-temp]="WeatherLocal:fc0_Tx" ></ftui-weather-bar>
-    <ftui-weather-bar [min-temp]="WeatherLocal:fc1_Tn" [max-temp]="WeatherLocal:fc1_Tx" ></ftui-weather-bar>
-    <ftui-weather-bar [min-temp]="WeatherLocal:fc2_Tn" [max-temp]="WeatherLocal:fc2_Tx" ></ftui-weather-bar>
-    <ftui-weather-bar [min-temp]="WeatherLocal:fc3_Tn" [max-temp]="WeatherLocal:fc3_Tx" ></ftui-weather-bar>
-    <ftui-weather-bar [min-temp]="WeatherLocal:fc4_Tn" [max-temp]="WeatherLocal:fc4_Tx" ></ftui-weather-bar>
+    <ftui-weather-bar [min-temp]="WeatherLocal:fc0_Tn | fix(0)" [max-temp]="WeatherLocal:fc0_Tx | fix(0)" min="-5" max="30"></ftui-weather-bar>
+    <ftui-weather-bar [min-temp]="WeatherLocal:fc1_Tn | fix(0)" [max-temp]="WeatherLocal:fc1_Tx | fix(0)" min="-5" max="30"></ftui-weather-bar>
+    <ftui-weather-bar [min-temp]="WeatherLocal:fc2_Tn | fix(0)" [max-temp]="WeatherLocal:fc2_Tx | fix(0)" min="-5" max="30"></ftui-weather-bar>
+    <ftui-weather-bar [min-temp]="WeatherLocal:fc3_Tn | fix(0)" [max-temp]="WeatherLocal:fc3_Tx | fix(0)" min="-5" max="30"></ftui-weather-bar>
+    <ftui-weather-bar [min-temp]="WeatherLocal:fc4_Tn | fix(0)" [max-temp]="WeatherLocal:fc4_Tx | fix(0)" min="-5" max="30"></ftui-weather-bar>
   </ftui-grid-tile>
   
 

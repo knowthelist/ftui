@@ -30,8 +30,18 @@
 }
 
 .min, .max {
-  font-size: 0.75em;
-  max-width: min-content;
-  padding: 1em;
+  font-size: 0.7em;
   white-space: nowrap;
+  width: 7em;
+  max-width: 7em;
+}
+
+.min {
+  text-align: right;
+  padding-right: 0.5em;
+}
+
+.max {
+  text-align: left;
+  padding-left: 0.5em;
 }
