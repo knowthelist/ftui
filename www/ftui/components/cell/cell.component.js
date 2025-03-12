@@ -39,6 +39,8 @@ export class FtuiCell extends FtuiElement {
       :host(:not(ftui-row)[align-items~=left])   { align-items: flex-start; }
       :host(:not(ftui-row)[align-items~=right])  { align-items: flex-end; }
       :host([align-items~=center]) { justify-content: center; }
+      :host([align-items~=space-between]) { justify-content: space-between; }
+      :host([align-items~=space-around]) { justify-content: space-around; }
       :host([align-items~=stretch]) { justify-content: space-between; }
       :host([align-items~=around]) { justify-content: space-around; }
       :host([align-items~=baseline])  { align-items: baseline; }

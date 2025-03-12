@@ -2,7 +2,7 @@ UPD 2024-11-20_15:00:27 1622 www/ftui/components/badge/badge.component.js
 UPD 2024-11-24_23:44:42 1384 www/ftui/components/button/button-nice.component.js
 UPD 2024-11-24_23:53:10 2866 www/ftui/components/button/button.component.css
 UPD 2024-11-20_15:00:27 2762 www/ftui/components/button/button.component.js
-UPD 2025-02-04_20:38:44 3297 www/ftui/components/cell/cell.component.js
+UPD 2025-03-12_23:39:27 3451 www/ftui/components/cell/cell.component.js
 UPD 2024-11-20_15:00:27 754 www/ftui/components/chart/chart-controls.component.css
 UPD 2024-11-20_15:00:27 3865 www/ftui/components/chart/chart-controls.component.js
 UPD 2024-11-20_15:00:27 5257 www/ftui/components/chart/chart-data.component.js
@@ -32,7 +32,7 @@ UPD 2024-11-20_15:00:27 8329 www/ftui/components/image/image_not_available.js
 UPD 2024-11-20_15:00:27 2660 www/ftui/components/input/input.component.js
 UPD 2024-11-20_15:00:26 1252 www/ftui/components/knob/knob.component.css
 UPD 2024-11-20_15:00:26 15141 www/ftui/components/knob/knob.component.js
-UPD 2025-02-04_18:15:31 4543 www/ftui/components/label/label.component.js
+UPD 2025-03-12_23:30:32 4543 www/ftui/components/label/label.component.js
 UPD 2024-11-20_15:00:27 1816 www/ftui/components/main/main.component.js
 UPD 2024-11-20_15:00:27 2265 www/ftui/components/map/map.component.js
 UPD 2024-11-20_15:00:27 180 www/ftui/components/medialist/album_icon.svg
@@ -134,7 +134,7 @@ UPD 2024-11-20_15:00:28 1946 www/ftui/examples/menu.html
 UPD 2024-11-20_15:00:28 2315 www/ftui/examples/menu2.html
 UPD 2024-11-20_15:00:28 3945 www/ftui/examples/meter.html
 UPD 2025-02-01_12:46:45 3187 www/ftui/examples/mobile.html
-UPD 2025-02-04_20:22:08 22221 www/ftui/examples/mobile_full.html
+UPD 2025-03-12_15:49:23 22247 www/ftui/examples/mobile_full.html
 UPD 2024-11-20_15:00:28 5457 www/ftui/examples/mobile_plain.html
 UPD 2025-01-30_20:43:34 8102 www/ftui/examples/mobile_tiles.html
 UPD 2024-11-20_15:00:28 4965 www/ftui/examples/popup.html
