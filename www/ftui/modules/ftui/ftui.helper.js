@@ -423,9 +423,18 @@ export function formatMoney(amount) {
 }
 
 export function scale(value, minIn, maxIn, minOut, maxOut) {
-  const slope = (minOut - maxOut) / (minIn - maxIn);
-  const intercept = slope * -(minIn) + minOut;
-  return value * slope + intercept;
+  if(value <= minIn) {
+	  return minOut;
+  }
+  else if(value >= maxIn) {
+	  return maxOut;
+  }
+  else
+  {	  
+	const slope = (minOut - maxOut) / (minIn - maxIn);
+	const intercept = slope * -(minIn) + minOut;
+	return value * slope + intercept;
+  }
 }
 
 export function limit(value, minIn, maxIn) {
