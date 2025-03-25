@@ -5,23 +5,27 @@
 
 <ftui-view-sheet shape="round">
   <ftui-chart width="300px" height="200px" y-label="Power in VA" x-min="6" x-max="20" y-min="0" y-max="900">
-    <ftui-chart-data fill log="FileLog_PVConverter" spec="4:PVConverter.Pac1" [update]="PVConverter:Pac1:time">
+    <ftui-chart-data fill log="FileLog_Zendure_Hub2000" spec="4:Zendure_Hub2000.SolarPower" 
+                  point-radius="1" [update]="Zendure_Hub2000:SolarPower:time">
     </ftui-chart-data>
     <ftui-chart-controls units="day, hour"></ftui-chart-controls>
   </ftui-chart>
 </ftui-view-sheet>
 
 <ftui-view-section>
-  <ftui-label slot="header" [text]="PVConverter:Eac_total:time"></ftui-label>
+  <ftui-label slot="header" [text]="StromRechnerSolarIn:SolarEnergy:time"></ftui-label>
 
   <ftui-view-item>Energy total
-    <ftui-label [text]="PVConverter:Eac_total" unit="KWh"></ftui-label>
+    <ftui-label [text]="Zendure_Hub2000:SolarEnergy | fix(0)" unit="KWh"></ftui-label>
   </ftui-view-item>
   <ftui-view-item>Energy today
-    <ftui-label [text]="PVConverter:Eac_today" unit="KWh"></ftui-label>
+    <ftui-label [text]="StromRechnerSolarIn:Zendure_Hub2000_SolarEnergy_EnergyDay|fix(1)" unit="KWh"></ftui-label>
   </ftui-view-item>
   <ftui-view-item>Energy Given Away
-    <ftui-label [text]="SmartMeter:GS303_Total_out | fix(1)"" unit="KWh"></ftui-label>
+    <ftui-label [text]="SmartMeter:Total_out | fix(0)" unit="KWh"></ftui-label>
+  </ftui-view-item>
+  <ftui-view-item>Energy Given Away today
+    <ftui-label [text]="StromRechnerOut:SmartMeter_Total_out_EnergyDay | fix(1)" unit="KWh"></ftui-label>
   </ftui-view-item>
 </ftui-view-section>
 
@@ -29,27 +33,50 @@
   <ftui-label slot="header">ac</ftui-label>
 
   <ftui-view-item>Power
-    <ftui-meter [value]="PVConverter:Pac1" max="600"></ftui-meter>
-    <ftui-label [text]="PVConverter:Pac1" unit="VA"></ftui-label>
+    <ftui-meter [value]="Zendure_Hub2000:properties_outputHomePower" max="750"></ftui-meter>
+    <ftui-label [text]="Zendure_Hub2000:properties_outputHomePower" unit="VA"></ftui-label>
   </ftui-view-item>
-  <ftui-view-item>Voltage
-    <ftui-label [text]="PVConverter:Vac1" unit="V"></ftui-label>
-  </ftui-view-item>
-  <ftui-view-item>Current
-    <ftui-label [text]="PVConverter:Iac1" unit="A"></ftui-label>
+  <ftui-view-item>Output Limit
+    <ftui-label [text]="Zendure_Hub2000:properties_outputLimit" unit="W"></ftui-label>
   </ftui-view-item>
 </ftui-view-section>
 
 <ftui-view-section>
   <ftui-label slot="header">pv</ftui-label>
 
-  <ftui-view-item>Power
-    <ftui-label [text]="PVConverter:Ppv1" unit="W"></ftui-label>
+  <ftui-view-item>Total Solar Power
+    <ftui-label [text]="Zendure_Hub2000:properties_solarInputPower" unit="W"></ftui-label>
   </ftui-view-item>
-  <ftui-view-item>Voltage
-    <ftui-label [text]="PVConverter:Vpv1" unit="V"></ftui-label>
+  <ftui-view-item>Solar Power 1
+    <ftui-label [text]="Zendure_Hub2000:properties_solarPower1" unit="W"></ftui-label>
   </ftui-view-item>
-  <ftui-view-item>Current
-    <ftui-label [text]="PVConverter:Ipv1" unit="A"></ftui-label>
+  <ftui-view-item>Solar Power 2
+    <ftui-label [text]="Zendure_Hub2000:properties_solarPower2" unit="W"></ftui-label>
+  </ftui-view-item>
+</ftui-view-section>
+
+<ftui-view-section>
+  <ftui-label slot="header">accu</ftui-label>
+
+  <ftui-view-item>SOC
+    <ftui-meter [value]="Zendure_Hub2000:properties_electricLevel" max="100"></ftui-meter>
+    <ftui-label [text]="Zendure_Hub2000:properties_electricLevel" unit="%"></ftui-label>
+  </ftui-view-item>
+  <ftui-view-item>State
+    <ftui-label [text]="Zendure_Hub2000:properties_packState | map('0:ByPass, 1:Charging, 2:Discharging')"></Discharging-label>
+  </ftui-view-item>
+  <ftui-view-item>Current 1
+    <ftui-label [text]="Zendure_Hub2000:packData_1_batcur | multiply(0.1) | fix(1)" unit="A"></ftui-label>
+  </ftui-view-item>
+</ftui-view-section>
+
+<ftui-view-section>
+  <ftui-label slot="header">temp</ftui-label>
+
+  <ftui-view-item>Hyper
+    <ftui-label [text]="Zendure_Hub2000:properties_hyperTmp | toNumber() | multiply(0.1) | add(-273.15) | fix(1)" unit="°C"></Discharging-label>
+  </ftui-view-item>
+  <ftui-view-item>Battery 1 Max
+    <ftui-label [text]="Zendure_Hub2000:packData_1_maxTemp | toNumber() | multiply(0.1) | add(-273.15) | fix(1)" unit="°C"></ftui-label>
   </ftui-view-item>
 </ftui-view-section>

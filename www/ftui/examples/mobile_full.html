@@ -122,7 +122,9 @@
           <ftui-icon name="sun" color="yellow" slot="start" invert></ftui-icon>
           Solar
           <ftui-label slot="end" color="medium" placeholder [text]="Zendure_Hub2000:properties_solarInputPower" Unit="W"></ftui-label>
-          <ftui-label slot="end" color="medium" placeholder [text]="StromRechnerSolar:SmartMeter_SolarUsed_EnergyDay | fix(1)" unit="kWh"></ftui-label>
+          <ftui-label slot="end" color="medium" placeholder [text]="StromRechnerSolarIn:Zendure_Hub2000_SolarEnergy_EnergyDay | fix(1)" unit="kWh"></ftui-label>
+          <ftui-label slot="end" color="medium" placeholder [text]="Zendure_Hub2000:properties_electricLevel" unit="%"></ftui-label>
+          
         </ftui-view-item>
 
         <ftui-view-item target="viewPower">

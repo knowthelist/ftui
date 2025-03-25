@@ -46,7 +46,7 @@ UPD 2024-11-20_15:00:27 2211 www/ftui/components/meter/meter.component.js
 UPD 2024-11-20_15:00:27 1084 www/ftui/components/nav/nav-link.component.js
 UPD 2024-11-20_15:00:26 763 www/ftui/components/popup/popup-header.component.js
 UPD 2024-11-20_15:00:26 1536 www/ftui/components/popup/popup.component.css
-UPD 2024-11-20_15:00:26 3408 www/ftui/components/popup/popup.component.js
+UPD 2025-03-25_22:06:30 3487 www/ftui/components/popup/popup.component.js
 UPD 2024-11-20_15:00:26 1347 www/ftui/components/rotor/rotor.component.css
 UPD 2024-11-20_15:00:26 2220 www/ftui/components/rotor/rotor.component.js
 UPD 2024-11-20_15:00:27 917 www/ftui/components/row/row.component.js
@@ -109,9 +109,9 @@ UPD 2024-11-21_13:28:46 782 www/ftui/examples/contents/content-weather-item.html
 UPD 2024-11-21_13:28:48 5255 www/ftui/examples/contents/content-weather.html
 UPD 2024-11-20_15:00:28 810 www/ftui/examples/contents/mobile-color.html
 UPD 2025-02-02_12:09:26 1011 www/ftui/examples/contents/mobile-garage.html
-UPD 2024-11-20_15:00:28 3656 www/ftui/examples/contents/mobile-power.html
+UPD 2025-03-15_21:27:27 3674 www/ftui/examples/contents/mobile-power.html
 UPD 2025-02-04_20:15:02 8803 www/ftui/examples/contents/mobile-shutter.html
-UPD 2024-11-20_15:00:28 1888 www/ftui/examples/contents/mobile-solar.html
+UPD 2025-03-25_11:14:11 3346 www/ftui/examples/contents/mobile-solar.html
 UPD 2024-11-20_15:00:28 3732 www/ftui/examples/contents/mobile-temp.html
 UPD 2024-11-20_15:00:28 3035 www/ftui/examples/contents/mobile-view-sonos.html
 UPD 2024-11-20_15:00:28 1323 www/ftui/examples/contents/mobile-view-vacuum.html
@@ -134,9 +134,9 @@ UPD 2024-11-20_15:00:28 1946 www/ftui/examples/menu.html
 UPD 2024-11-20_15:00:28 2315 www/ftui/examples/menu2.html
 UPD 2024-11-20_15:00:28 3945 www/ftui/examples/meter.html
 UPD 2025-02-01_12:46:45 3187 www/ftui/examples/mobile.html
-UPD 2025-03-12_15:49:23 22247 www/ftui/examples/mobile_full.html
+UPD 2025-03-16_09:05:12 22400 www/ftui/examples/mobile_full.html
 UPD 2024-11-20_15:00:28 5457 www/ftui/examples/mobile_plain.html
-UPD 2025-01-30_20:43:34 8102 www/ftui/examples/mobile_tiles.html
+UPD 2025-03-16_11:09:36 8384 www/ftui/examples/mobile_tiles.html
 UPD 2024-11-20_15:00:28 4965 www/ftui/examples/popup.html
 UPD 2024-11-20_15:00:28 3576 www/ftui/examples/rotor.html
 UPD 2024-11-20_15:00:28 2380 www/ftui/examples/segment.html

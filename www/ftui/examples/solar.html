@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!--FTUI3 starting base -->
+  <base href="../" />
+  <script src="ftui.js"></script>
+  <link href="ftui.css" rel="stylesheet">
+  <link href="themes/ftui-theme.css" rel="stylesheet">
+  <link href="favicon.ico" rel="icon" type="image/x-icon" />
+
+  <title>FTUI3 - Solar Example</title>
+</head>
+
+<body>
+
+  <ftui-grid>
+
+    <ftui-grid base-width="100" base-height="100" margin="1" shape="round">
+      <ftui-grid-tile row="1" col="1" height="6" width="4">
+        <ftui-grid-header>Flow</ftui-grid-header>
+        <ftui-solar-flow
+          solar-power="100"
+          soc="100"
+          home-power="100"
+          grid-power="200"></ftui-solar-flow>
+      </ftui-grid-tile>
+    </ftui-grid>
+
+</body>
+
+</html>

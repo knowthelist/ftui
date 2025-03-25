@@ -120,6 +120,8 @@ export class FtuiPopup extends FtuiElement {
       ftui.triggerEvent('ftuiVisibilityChanged');
       this.startTimeout();
     } else {
+      if (this.hasAttribute('hidden')) return;
+      clearTimeout(this.timer);
       this.setAttribute('hidden', '');
       this.emitEvent('close');
     }
