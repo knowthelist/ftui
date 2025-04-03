@@ -18,12 +18,19 @@
 
     <ftui-grid base-width="100" base-height="100" margin="1" shape="round">
       <ftui-grid-tile row="1" col="1" height="6" width="4">
-        <ftui-grid-header>Flow</ftui-grid-header>
+
+        <ftui-label [text]="StromRechnerSolarIn:Zendure_Hub2000_SolarEnergy_EnergyDay|fix(1)" unit="KWh"
+          size="3"></ftui-label>
         <ftui-solar-flow
-          solar-power="100"
-          soc="100"
-          home-power="100"
-          grid-power="200"></ftui-solar-flow>
+                         [solar-power]="Zendure_Hub2000:properties_solarInputPower"
+                         [soc]="Zendure_Hub2000:properties_electricLevel"
+                         [inverter-power]="Zendure_Hub2000:properties_outputHomePower"
+                         [home-power]="LeistungGesamt:state"
+                         [grid-power]="SmartMeter:GS303_Power_cur"
+                         [battery-current]="Zendure_Hub2000:BatCurrent"
+                         [grid-input-power]="Zendure_Hub2000:properties_gridInputPower"></ftui-solar-flow>
+      <ftui-label [text]="StromRechnerIn:SmartMeter_GS303_Total_in_EnergyDay| fix(1)" unit="&nbsp;KWh"
+      size="3"></ftui-label>
       </ftui-grid-tile>
     </ftui-grid>
 

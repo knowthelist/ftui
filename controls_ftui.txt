@@ -32,7 +32,7 @@ UPD 2024-11-20_15:00:27 8329 www/ftui/components/image/image_not_available.js
 UPD 2024-11-20_15:00:27 2660 www/ftui/components/input/input.component.js
 UPD 2024-11-20_15:00:26 1252 www/ftui/components/knob/knob.component.css
 UPD 2024-11-20_15:00:26 15141 www/ftui/components/knob/knob.component.js
-UPD 2025-03-12_23:30:32 4543 www/ftui/components/label/label.component.js
+UPD 2025-03-26_23:33:54 4520 www/ftui/components/label/label.component.js
 UPD 2024-11-20_15:00:27 1816 www/ftui/components/main/main.component.js
 UPD 2024-11-20_15:00:27 2265 www/ftui/components/map/map.component.js
 UPD 2024-11-20_15:00:27 180 www/ftui/components/medialist/album_icon.svg
@@ -55,6 +55,8 @@ UPD 2024-11-20_15:00:26 1066 www/ftui/components/segment/segment.component.css
 UPD 2024-11-20_15:00:26 2907 www/ftui/components/segment/segment.component.js
 UPD 2024-11-20_15:00:27 3698 www/ftui/components/slider/slider.component.css
 UPD 2024-11-20_15:00:27 3768 www/ftui/components/slider/slider.component.js
+UPD 2025-03-27_21:18:11 767 www/ftui/components/solar/solar-flow.component.css
+UPD 2025-03-28_14:59:57 16754 www/ftui/components/solar/solar-flow.component.js
 UPD 2024-11-20_15:00:27 2128 www/ftui/components/speak/speak.component.js
 UPD 2024-11-20_15:00:26 1269 www/ftui/components/swiper/swiper.component.css
 UPD 2024-11-20_15:00:26 5413 www/ftui/components/swiper/swiper.component.js
@@ -134,13 +136,14 @@ UPD 2024-11-20_15:00:28 1946 www/ftui/examples/menu.html
 UPD 2024-11-20_15:00:28 2315 www/ftui/examples/menu2.html
 UPD 2024-11-20_15:00:28 3945 www/ftui/examples/meter.html
 UPD 2025-02-01_12:46:45 3187 www/ftui/examples/mobile.html
-UPD 2025-03-16_09:05:12 22400 www/ftui/examples/mobile_full.html
+UPD 2025-03-26_23:34:47 22400 www/ftui/examples/mobile_full.html
 UPD 2024-11-20_15:00:28 5457 www/ftui/examples/mobile_plain.html
 UPD 2025-03-16_11:09:36 8384 www/ftui/examples/mobile_tiles.html
 UPD 2024-11-20_15:00:28 4965 www/ftui/examples/popup.html
 UPD 2024-11-20_15:00:28 3576 www/ftui/examples/rotor.html
 UPD 2024-11-20_15:00:28 2380 www/ftui/examples/segment.html
 UPD 2025-02-04_21:54:29 5350 www/ftui/examples/slider.html
+UPD 2025-03-28_14:32:10 1390 www/ftui/examples/solar.html
 UPD 2024-11-20_15:00:28 1293 www/ftui/examples/speak.html
 UPD 2024-11-21_13:28:45 20245 www/ftui/examples/swiper.html
 UPD 2024-11-20_15:00:28 1942 www/ftui/examples/switch.html

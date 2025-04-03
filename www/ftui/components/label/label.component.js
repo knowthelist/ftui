@@ -42,7 +42,7 @@ export class FtuiLabel extends FtuiElement {
         :host([scroll]),:host([wrap]) { overflow: auto; white-space: normal;align-self: self-start; }
         :host([bold]) { font-weight: bold; }
         :host([thin]) { font-weight: lighter; }
-        :host(:empty[text=""][placeholder]) { display: inline-block;
+        :host(:empty[text=""][placeholder]) {
           background-color: var(--medium-color);
           height: .75em; border-radius: 2em;
           opacity: .3; animation: fading 1.5s infinite;
