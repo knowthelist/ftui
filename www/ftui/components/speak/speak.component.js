@@ -8,7 +8,7 @@
 */
 
 import { FtuiElement } from '../element.component.js';
-import { fhemService } from '../../modules/ftui/fhem.service.js';
+import { backendService } from '../../modules/ftui/backend.service.js';
 import { isDefined } from '../../modules/ftui/ftui.helper.js';
 
 
@@ -43,7 +43,7 @@ export class FtuiSpeak extends FtuiElement {
         this.findVoice();
         break;
       case 'text': {
-        const readingData = fhemService.getReadingItem(this.readingName).data;
+        const readingData = backendService.getReadingItem(this.readingName).data;
         const isNewDate = readingData.time !== this.lastTextDate;
         if (!this.disabled && this.text !== '' && isNewDate) {
           this.lastTextDate = readingData.time;

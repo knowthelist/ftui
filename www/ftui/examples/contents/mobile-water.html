@@ -4,8 +4,8 @@
 </ftui-view-toolbar>
 
 <ftui-view-sheet shape="round">
-  <ftui-chart width="300px" height="200px" y-label="Humidity in %" y1-label="Temp in °C" y-min="40" y-max="90">
-    <ftui-chart-data fill log="FileLog_Bodenfeuchte" spec="4:Bodenfeuchte.Feuchte" [update]="Bodenfeuchte:Feuchte:time" point-radius="1">
+  <ftui-chart width="300px" height="200px" y-label="Humidity in %" y1-label="Temp in °C" y-min="80" y-max="100">
+    <ftui-chart-data log="FileLog_Bodenfeuchte" spec="4:Bodenfeuchte.Feuchte" [update]="Bodenfeuchte:Feuchte:time" point-radius="1">
     </ftui-chart-data>
     <ftui-chart-data log="FileLog_BodenTemp" spec="4:BodenTemp.temperature" [update]="BodenTemp:temperature:time" 
     color="alert" point-radius="1" y-axis-id="y1">

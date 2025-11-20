@@ -8,7 +8,7 @@
 */
 
 import { FtuiLabel } from '../label/label.component.js';
-import { fhemService } from '../../modules/ftui/fhem.service.js';
+import { backendService } from '../../modules/ftui/backend.service.js';
 import { dateFormat } from '../../modules/ftui/ftui.helper.js';
 
 export class FtuiClock extends FtuiLabel {
@@ -39,7 +39,7 @@ export class FtuiClock extends FtuiLabel {
 
   getFhemTime() {
     if (this.isFhemTime) {
-      fhemService.sendCommand('{localtime}', '1')
+      backendService.sendUpdate('{localtime} 1')
         .then(res => res.text())
         .then((result) => {
           const fhemTime = new Date(result);

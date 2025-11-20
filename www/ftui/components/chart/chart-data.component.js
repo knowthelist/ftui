@@ -8,7 +8,7 @@
 */
 
 import { FtuiElement } from '../element.component.js';
-import { fhemService } from '../../modules/ftui/fhem.service.js';
+import { backendService } from '../../modules/ftui/backend.service.js';
 import { Chart } from '../../modules/chart.js/chart.js';
 import * as ftuiHelper from '../../modules/ftui/ftui.helper.js';
 
@@ -79,8 +79,8 @@ export class FtuiChartData extends FtuiElement {
     this.rangeDate = endDate.getTime() - startDate.getTime();
     const cmd = 'get ' + log + ' ' + file + ' - ' + startDateFormatted + ' ' + endDateFormatted + ' ' + spec;
     //const cmd ="{getChartData()}";
-    fhemService.sendCommand(cmd)
-      .then(fhemService.checkText)
+    backendService.sendCommand(cmd)
+      .then(backendService.checkText)
       .then((response) => {
         const { labels, data } = this.parseLogItems(response);
         this.data = data;

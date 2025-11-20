@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!--FTUI3 starting base -->
+  <base href="../" />
+  <script src="ftui.js"></script>
+  <link href="ftui.css" rel="stylesheet">
+  <link href="themes/ftui-theme.css" rel="stylesheet">
+  <link href="favicon.ico" rel="icon" type="image/x-icon" />
+
+   <meta name='debug' content='0'>
+
+  <title>FTUI3</title>
+</head>
+
+<body>
+
+  <ftui-grid>
+
+    <ftui-grid base-width="100" base-height="100" margin="1" shape="round">
+      <ftui-grid-tile row="1" col="1" height="3" width="3">
+        <ftui-grid-header>FIRST</ftui-grid-header>
+       <ftui-label [text]="ha:sensor.tasmota_gs303_power_cur" size="3" unit="W"></ftui-label>
+         
+       <ftui-label [text]="SmartMeter:GS303_Power_cur" size="3" unit="W"></ftui-label>
+
+        <ftui-label [text]="ha:weather.forecast_home:temperature" size="3" unit="°C"></ftui-label>
+         
+        <ftui-label [text]="ha:weather.forecast_home:humidity" size="3" unit="%"></ftui-label>
+ 
+        <ftui-switch [(value)]="ha:light.extended_color_light_1"></ftui-switch>
+
+      </ftui-grid-tile>
+    </ftui-grid>
+
+</body>
+
+</html>

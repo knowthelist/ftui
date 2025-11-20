@@ -60,9 +60,6 @@ class FtuiWeatherBar extends FtuiElement {
         #bdbd79 ${yellowStop}%,
         #f28383 ${yellowStop * 2}%, 
         #f28383 100%)`;
-if (this.maxTemp>20){
-  console.log(blueStop, yellowStop);
-}
         
     // update labels
     this.minLabel.textContent = `${this.minTemp} ${this.unit}`;

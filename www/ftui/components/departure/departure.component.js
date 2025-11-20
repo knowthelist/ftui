@@ -11,7 +11,7 @@
 import { FtuiElement } from '../element.component.js';
 // eslint-disable-next-line no-unused-vars
 import { FtuiIcon } from '../icon/icon.component.js';
-import { fhemService } from '../../modules/ftui/fhem.service.js';
+import { backendService } from '../../modules/ftui/backend.service.js';
 import { dateFormat, dateFromString, getReadingID } from '../../modules/ftui/ftui.helper.js';
 
 export class FtuiDeparture extends FtuiElement {
@@ -210,7 +210,7 @@ export class FtuiDeparture extends FtuiElement {
   }
 
   requestUpdate() {
-    fhemService.sendCommand((this.get || this.set ? (this.get ? 'get '+this.get : 'set '+this.set) : 'get '+this.listAttr));
+    backendService.sendUpdate((this.get || this.set ? (this.get ? 'get '+this.get : 'set '+this.set) : 'get '+this.listAttr));
   }
 
   manGetRefresh(event) {
@@ -228,7 +228,7 @@ export class FtuiDeparture extends FtuiElement {
 
   fillList() {
     if (this.list) {
-      const refDate = ((this.listAttr[0]) ? dateFromString(fhemService.getReadingItem(getReadingID(this.listAttr.split(' ')[0], this.listAttr.split(' ')[1])).data.time) : new Date(this.timeNow));
+      const refDate = ((this.listAttr[0]) ? dateFromString(backendService.getReadingItem(getReadingID(this.listAttr.split(' ')[0], this.listAttr.split(' ')[1])).data.time) : new Date(this.timeNow));
       refDate.setSeconds(59);
       const currentTime = new Date();
       const nextDay = dateFormat(new Date(currentTime.setDate(currentTime.getDate() + 1)), 'ee');

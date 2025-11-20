@@ -9,7 +9,7 @@
 
 import { FtuiElement } from '../element.component.js';
 import { FtuiChartData } from './chart-data.component.js';
-import { fhemService } from '../../modules/ftui/fhem.service.js';
+import { backendService } from '../../modules/ftui/backend.service.js';
 import { Chart } from '../../modules/chart.js/chart.min.js';
 import { dateFormat, getStylePropertyValue, isVisible } from '../../modules/ftui/ftui.helper.js';
 import '../../modules/chart.js/chartjs-adapter-date-fns.bundle.min.js';
@@ -160,7 +160,7 @@ export class FtuiChart extends FtuiElement {
 
     document.addEventListener('ftuiVisibilityChanged', () => this.refresh());
 
-    fhemService.getReadingEvents('ftui-isDark').subscribe(() => this.onStyleChanged());
+    backendService.getBackendEvents('ftui-isDark').subscribe(() => this.onStyleChanged());
   }
 
   connectedCallback() {
