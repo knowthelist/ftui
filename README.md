@@ -28,6 +28,53 @@ mv /tmp/knowthelist-ftui-*/www/ftui /opt/fhem/www
  * change the example page 'index.html' according your needs
  * to open your new page call http://\<fhem-url\>:8083/fhem/ftui/index.html
 
+Home-Assistant Backend
+-----
+
+- Clone the code or download the ZIP
+- Copy the www/ftui folder as ftui_ha to your FHEM www folder
+- Adopt configs
+
+1. Add CORS settings to configuration.yaml in HA
+
+```
+http:
+  cors_allowed_origins:
+    - http://fhem.home.arpa:8083
+    - http://fhem:8083
+  use_x_forwarded_for: true
+  trusted_proxies:
+    - 172.168.101.0/24
+  ```
+
+2. Create a Access Token in HA
+   <User> > Security > Long-lived access tokens
+3. create a config.local.js or add your HA credentials into config.js in your FTUI installation
+```
+export const config = {
+    homeAssistant: {
+        url: 'http://homeassistant:8123', // Your HA URL here
+        token: 'HA_TOKEN', // Your HA Token here
+    },
+};
+```
+- Adopt the first HTML page
+  /opt/fhem/www/ftui_ha/examples/ha.html
+  FTUI components that communicate with HA require the prefix 'ha:'.
+```
+        <ftui-label [text]="ha:weather.forecast_home:temperature" size="3" unit="°C"></ftui-label>
+         
+        <ftui-label [text]="ha:weather.forecast_home:humidity" size="3" unit="%"></ftui-label>
+ 
+        <ftui-switch [(value)]="ha:light.extended_color_light_1"></ftui-switch>
+
+        <ftui-knob [value]="ha:sensor.esp32h21wire_aussen_temperatur"
+                   [color]="ha:sensor.esp32h21wire_aussen_temperatur | step('-99: blue, 10: ok, 20: warning, 25: danger')"
+                   width="130" offset-y="10"
+                   type="handle" min="-10" max="40" decimals="1" unit="°C" readonly has-value-text></ftui-knob>
+```
+- Open http://fhem:8083/fhem/ftui_ha/examples/ha.html
+
 Update
 ------
 call 
