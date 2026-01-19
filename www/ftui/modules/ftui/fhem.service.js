@@ -365,12 +365,12 @@ class FhemService {
 
   updateFhem(cmdLine) {
     if (!this.states.isOffline) {
-      this.sendCommand(cmdLine)
-        .then(response => log(3, response))
-        .catch(error => this.errorEvents.publish('<u>FHEM Command failed</u><br>' + error + '<br>cmd=' + cmdLine));
+      const promise = this.sendCommand(cmdLine)
       this.debugEvents.publish(cmdLine);
+      return promise;
     } else {
       this.errorEvents.publish('<u>App is offline</u><br>sendToFhem failed');
+      return Promise.reject(new Error('App is offline'));
     }
   }
 

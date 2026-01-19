@@ -83,6 +83,8 @@ class HomeAssistantService {
 
     this._serviceHandlers = {
       light: this._handleLightCommand.bind(this),
+      switch: this._handleSwitchCommand.bind(this),
+      media_player: this._handleMediaPlayerCommand.bind(this),
       number: this._handleNumberCommand.bind(this)
     };
   }
@@ -511,6 +513,76 @@ class HomeAssistantService {
     return { service: 'light', action, params };
   }
 
+  _handleSwitchCommand(entity, args) {
+    let action = 'turn_on';
+    const command = args[0] ? args[0].toLowerCase() : '';
+
+    switch (command) {
+      case 'off':
+        action = 'turn_off';
+        break;
+      case 'on':
+        action = 'turn_on';
+        break;
+      case 'toggle':
+        action = 'toggle';
+        break;
+      default:
+        action = 'turn_on';
+    }
+
+    return { service: 'switch', action, params: { entity_id: entity } };
+  }
+
+  _handleMediaPlayerCommand(entity, args) {
+    const command = args[0];
+    let action = 'turn_on';
+    let params = { entity_id: entity };
+
+    if (!command) {
+      return { service: 'media_player', action, params };
+    }
+
+    const lowerCommand = command.toLowerCase();
+    
+    // Check for standard media control commands
+    switch (lowerCommand) {
+      case 'off':
+      case 'turn_off':
+        action = 'turn_off';
+        break;
+      case 'on':
+      case 'turn_on':
+        action = 'turn_on';
+        break;
+      case 'play':
+        action = 'media_play';
+        break;
+      case 'pause':
+        action = 'media_pause';
+        break;
+      case 'stop':
+        action = 'media_stop';
+        break;
+      case 'next':
+      case 'next_track':
+        action = 'media_next_track';
+        break;
+      case 'previous':
+      case 'prev':
+      case 'previous_track':
+        action = 'media_previous_track';
+        break;
+      default:
+        // Assume it's a source selection
+        action = 'select_source';
+        params.source = command;
+        break;
+    }
+
+    return { service: 'media_player', action, params };
+  }
+
   _handleNumberCommand(entity, args) {
     return {
       service: 'number',
@@ -538,7 +610,7 @@ class HomeAssistantService {
       const handler = this._serviceHandlers[domain];
       if (handler) {
         const { service, action, params } = handler(entity, args);
-        return await this.sendCommand(service, action, params);
+        return await this.sendCommand(domain, action, params);
       }
 
       // Default parameter parsing for domains without specific handlers

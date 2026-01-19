@@ -19,7 +19,7 @@
   <ftui-grid>
 
     <ftui-grid base-width="100" base-height="100" margin="1" shape="round">
-      <ftui-grid-tile row="1" col="1" height="3" width="3">
+      <ftui-grid-tile row="1" col="1" height="2" width="3">
         <ftui-grid-header>FIRST</ftui-grid-header>
        <ftui-label [text]="ha:sensor.tasmota_gs303_power_cur" size="3" unit="W"></ftui-label>
          
@@ -30,6 +30,14 @@
         <ftui-label [text]="ha:weather.forecast_home:humidity" size="3" unit="%"></ftui-label>
  
         <ftui-switch [(value)]="ha:light.extended_color_light_1"></ftui-switch>
+
+      </ftui-grid-tile>
+      <ftui-grid-tile row="4" col="1" height="2" width="3">
+        <ftui-grid-header>FIRST</ftui-grid-header>
+
+        <ftui-label [text]="ha:media_player.marantz_cinema_70s:source" size="3"></ftui-label>
+
+        <ftui-button [(value)]="ha:media_player.marantz_cinema_70s" states="SAT,AppleTV"></ftui-button>
 
       </ftui-grid-tile>
     </ftui-grid>

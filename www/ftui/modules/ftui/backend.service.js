@@ -104,7 +104,7 @@ class BackendService {
 
     debouncedUpdateFhem(debounceTime, command) {
         const debouncedFn = debounce((cmd) => this.sendUpdate(cmd), this);
-        return debouncedFn(command, debounceTime);
+        return debouncedFn(debounceTime, command);
     }
 
     updateReadingItem(parameterId, newData) {
