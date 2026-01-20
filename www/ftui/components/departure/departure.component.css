@@ -214,7 +214,7 @@ table td, th {
 }
 
 :host([DB]) .table {
-  background: #F01414;
+  background: rgb(241 11 12);
 }
 
 :host([DB]) .table-body {

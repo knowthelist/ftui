@@ -54,7 +54,6 @@ export class FtuiDeparture extends FtuiElement {
   template() {
     return `
       <style> @import "components/departure/departure.component.css";</style>
-      <main>
         <div class="pos">
           <div class="size">
             <table class="table ${this.color}" border="0" cellspacing="0" celpadding="0">
@@ -82,7 +81,6 @@ export class FtuiDeparture extends FtuiElement {
             </table>
           </div>
         </div>
-      </main>
     `;
   }
 
@@ -139,6 +137,10 @@ export class FtuiDeparture extends FtuiElement {
         this.updateClock();
         break;
     }
+  }
+
+  connectedCallback() {
+      this.arrangeWindow();
   }
 
   arrangeWindow() {
@@ -256,18 +258,25 @@ export class FtuiDeparture extends FtuiElement {
             break;
           }
         }
+      } else {
+        // Convert string numbers to integers for numeric time format
+        for (let i = 0, l = json.length; i < l; i++) {
+          json[i][2] = parseInt(json[i][2]);
+        }
       }
 
       for (let idx = 0, len = json.length; idx < len; idx++) {
         n++;
         const line = json[idx];
         let when = parseInt(line[2]);
+        if (isNaN(when)) { when = 0; }  
         const depTime = dateFormat(new Date(currentTime.getTime() + when * 60 * 1000), 'hh:mm');
         const depMinTime = dateFormat(new Date(refDate.getTime() + when * 60 * 1000), 'hh:mm');
         const tsDep = when + tsMin - isTimeMin;
         if (!this.depMode) {
           this.depMode = (this.list.match(/:/g) ? 'deptime' : 'depmin');
         }
+
         if (this.depMode === 'deptime') {
           if (this.list.match(/:/g)) {
             when = (when >= 0 ? depTime : '--:--');
@@ -283,17 +292,11 @@ export class FtuiDeparture extends FtuiElement {
         } else {
           if (this.list.match(/:/g)) {
             when = (when >= 0 ? when : '-');
-            if (when > this.depminsize && !this.hasAttribute('deptime') && !this.hasAttribute('depmin')) {
-              when = depTime;
-            }
             if (line[2] > (1439 - isTimeMin) && this.hasAttribute('nextday')) {
               when = nextDay;//+', '+depTime;
             }
           } else {
             when = (tsDep >= 0 ? tsDep : '-');
-            if (tsDep > this.depminsize && !this.hasAttribute('deptime') && !this.hasAttribute('depmin')) {
-              when = depMinTime;
-            }
             if (tsDep > (1439 - isTimeMin) && this.hasAttribute('nextday')) {
               when = nextDay;//+', '+depMinTime;
             }
@@ -323,7 +326,7 @@ export class FtuiDeparture extends FtuiElement {
         this.shadowRoot.querySelector('.top').scrollIntoView({ block: 'start', behavior: 'smooth' })
       }
     } else {
-      this.dep.innerHTML = '<div style="text-align:center">' + 'keine Abfahrten vorhanden...' + '</div>';
+      //this.dep.innerHTML = '<div style="text-align:center">' + 'keine Abfahrten vorhanden...' + '</div>';
     }
   }
 }
