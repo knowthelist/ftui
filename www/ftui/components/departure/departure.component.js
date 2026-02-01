@@ -12,7 +12,7 @@ import { FtuiElement } from '../element.component.js';
 // eslint-disable-next-line no-unused-vars
 import { FtuiIcon } from '../icon/icon.component.js';
 import { backendService } from '../../modules/ftui/backend.service.js';
-import { dateFormat, dateFromString, getReadingID } from '../../modules/ftui/ftui.helper.js';
+import { dateFormat, dateFromString, getReadingID, isVisible } from '../../modules/ftui/ftui.helper.js';
 
 export class FtuiDeparture extends FtuiElement {
 
@@ -23,6 +23,7 @@ export class FtuiDeparture extends FtuiElement {
     this.timerUpdate = null;
     this.depMode = null;
     this.timeNow = new Date();
+    this.wasVisible = false;
     this.size = this.shadowRoot.querySelector('.size');
     this.bg = this.shadowRoot.querySelector('table');
     this.dep = this.shadowRoot.querySelector('tbody');
@@ -199,7 +200,26 @@ export class FtuiDeparture extends FtuiElement {
     clearInterval(this.timerUpdate);
     clearTimeout(this.timerUpdate);
     if (this.listAttr[0]) {
-      ((dateFormat(new Date(), 'ss') === '00') ? this.timerUpdate = setTimeout(() => this.startTimerUpdate(), this.getinterval * 1000) ? this.requestUpdate() : clearTimeout(this.timerUpdate) : this.timerUpdate = setInterval(() => this.startTimerUpdate(), 1000));
+      const isNowVisible = isVisible(this);
+      
+      // If component just became visible, update immediately
+      if (isNowVisible && !this.wasVisible) {
+        this.wasVisible = true;
+        this.requestUpdate();
+      }
+      
+      // If component became hidden, mark it
+      if (!isNowVisible) {
+        this.wasVisible = false;
+      }
+      
+      // Only schedule update if component is currently visible
+      if (isNowVisible) {
+        ((dateFormat(new Date(), 'ss') === '00') ? this.timerUpdate = setTimeout(() => this.startTimerUpdate(), this.getinterval * 1000) ? this.requestUpdate() : clearTimeout(this.timerUpdate) : this.timerUpdate = setInterval(() => this.startTimerUpdate(), 1000));
+      } else {
+        // If not visible, retry check after 1 second
+        this.timerUpdate = setInterval(() => this.startTimerUpdate(), 1000);
+      }
     }
   }
 

@@ -366,7 +366,9 @@ class FhemService {
   updateFhem(cmdLine) {
     if (!this.states.isOffline) {
       const promise = this.sendCommand(cmdLine)
-      this.debugEvents.publish(cmdLine);
+      if (this.config.debuglevel > 2) {
+        this.debugEvents.publish(cmdLine);
+      }
       return promise;
     } else {
       this.errorEvents.publish('<u>App is offline</u><br>sendToFhem failed');
