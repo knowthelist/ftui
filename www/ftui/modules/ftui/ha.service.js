@@ -29,6 +29,27 @@ import { config, initializeConfig } from '../../config.js';
 
 class HomeAssistantService {
   constructor() {
+
+    this.states = {
+      lastRefresh: 0,
+      haConnectionIsRestarting: false,
+      isOffline: false,
+      refresh: {
+        lastTimestamp: new Date(),
+        timer: null,
+        request: null,
+        result: null,
+      },
+      connection: {
+        lastEventTimestamp: new Date(),
+        timer: null,
+        result: null,
+      },
+    };
+    
+    this.statesMap = new Map();
+    this.messageId = 1;
+    this.subscriptionCallbacks = new Map();
     this.init();
   }
 
@@ -48,27 +69,6 @@ class HomeAssistantService {
     this.config.haUrl = config.homeAssistant.url;
     this.config.token = config.homeAssistant.token;
     this.pendingSubscriptions = new Set();
-
-    this.states = {
-      lastRefresh: 0,
-      haConnectionIsRestarting: false,
-      isOffline: false,
-      refresh: {
-        lastTimestamp: new Date(),
-        timer: null,
-        request: null,
-        result: null,
-      },
-      connection: {
-        lastEventTimestamp: new Date(),
-        timer: null,
-        result: null,
-      },
-    };
-
-    this.statesMap = new Map();
-    this.messageId = 1;
-    this.subscriptionCallbacks = new Map();
 
     // Helper methods for events
     this.debugEvents = {
