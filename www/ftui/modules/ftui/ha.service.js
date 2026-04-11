@@ -56,6 +56,9 @@ class HomeAssistantService {
   async init() {
 
     this.config = {
+      homeAssistantEnabled: false,
+      haUrl: '',
+      token: '',
       refresh: {
         filter: ''
       },
@@ -66,9 +69,9 @@ class HomeAssistantService {
 
     await initializeConfig();
 
-    this.config.haUrl = config.homeAssistant.url;
-    this.config.token = config.homeAssistant.token;
     this.pendingSubscriptions = new Set();
+    this.missingConfigWarningShown = false;
+    this.applyHomeAssistantConfig(config.homeAssistant);
 
     // Helper methods for events
     this.debugEvents = {
@@ -90,9 +93,20 @@ class HomeAssistantService {
   }
   
   setConfig(config) {
+    const homeAssistantConfig = config.homeAssistant || {};
+
     this.config = {
       ...this.config,
       ...config,
+      homeAssistantEnabled: typeof homeAssistantConfig.enabled === 'boolean'
+        ? homeAssistantConfig.enabled
+        : this.config.homeAssistantEnabled,
+      haUrl: typeof homeAssistantConfig.url === 'string'
+        ? homeAssistantConfig.url.trim()
+        : this.config.haUrl,
+      token: typeof homeAssistantConfig.token === 'string'
+        ? homeAssistantConfig.token.trim()
+        : this.config.token,
       refresh: {
         ...this.config.refresh,
         ...(config.refresh || {}),
@@ -102,6 +116,63 @@ class HomeAssistantService {
         ...(config.update || {}),
       }
     };
+  }
+
+  applyHomeAssistantConfig(homeAssistantConfig = {}) {
+    if (typeof homeAssistantConfig.enabled === 'boolean') {
+      this.config.homeAssistantEnabled = homeAssistantConfig.enabled;
+    }
+    if (typeof homeAssistantConfig.url === 'string') {
+      this.config.haUrl = homeAssistantConfig.url.trim();
+    }
+    if (typeof homeAssistantConfig.token === 'string') {
+      this.config.token = homeAssistantConfig.token.trim();
+    }
+  }
+
+  isHomeAssistantEnabled() {
+    return this.config.homeAssistantEnabled === true;
+  }
+
+  isHomeAssistantConfigured() {
+    return Boolean(
+      this.isHomeAssistantEnabled()
+      && this.config.haUrl
+      && this.config.token
+      && this.config.token !== 'HA_TOKEN'
+    );
+  }
+
+  hasHomeAssistantCredentials() {
+    return Boolean(
+      this.config.haUrl
+      && this.config.token
+      && this.config.token !== 'HA_TOKEN'
+    );
+  }
+
+  hasActiveSubscriptions() {
+    return Boolean(
+      (this.pendingSubscriptions && this.pendingSubscriptions.size > 0)
+      || Array.from(this.statesMap.values()).some(value => value.events.observers.length > 0)
+    );
+  }
+
+  shouldUseWebsocket() {
+    return this.hasActiveSubscriptions() && this.isHomeAssistantConfigured();
+  }
+
+  warnIfMisconfigured() {
+    if (this.missingConfigWarningShown || !this.hasActiveSubscriptions() || this.isHomeAssistantConfigured()) {
+      return;
+    }
+
+    this.missingConfigWarningShown = true;
+    this.errorEvents.publish(
+      this.isHomeAssistantEnabled() || this.hasHomeAssistantCredentials()
+        ? 'Home Assistant bindings are active but Home Assistant is not fully configured'
+        : 'Home Assistant bindings are active but Home Assistant support is disabled'
+    );
   }
 
   createFilterParameter() {
@@ -169,6 +240,11 @@ class HomeAssistantService {
       this.getStateItem(entityId);
     });
 
+    if (!this.isHomeAssistantConfigured()) {
+      this.warnIfMisconfigured();
+      return;
+    }
+
     // If we're not connected or authenticating, initiate connection
     if (!this.states.connection.websocket ||
       this.states.connection.websocket.readyState !== WebSocket.OPEN) {
@@ -182,7 +258,7 @@ class HomeAssistantService {
   }
 
   processPendingSubscriptions() {
-    if (this.pendingSubscriptions.size === 0) {
+    if (this.pendingSubscriptions.size === 0 || !this.shouldUseWebsocket()) {
       return;
     }
 
@@ -241,6 +317,11 @@ class HomeAssistantService {
   }
 
   connect() {
+    if (!this.shouldUseWebsocket()) {
+      this.warnIfMisconfigured();
+      return;
+    }
+
     if (this.states.connection.websocket) {
       log(3, '[websocket] a valid instance has been found - do not newly connect');
       return;
@@ -261,7 +342,7 @@ class HomeAssistantService {
 
     this.states.connection.websocket.onclose = (event) => {
       log(1, '[websocket] closed! - URL = ' + event.target.url);
-      if (event.target.url === url) {
+      if (event.target.url === url && this.shouldUseWebsocket()) {
         backendService.debugEvents.publish('Disconnected from Home Assistant<br>Retry in 5s');
         this.reconnect(5);
       }
@@ -669,6 +750,10 @@ class HomeAssistantService {
   }
 
   reconnect(delay = 5) {
+    if (!this.shouldUseWebsocket()) {
+      return;
+    }
+
     if (this.states.haConnectionIsRestarting) {
       log(2, '[websocket] reconnection already in progress');
       return;
@@ -698,6 +783,15 @@ class HomeAssistantService {
   async refresh() {
     if (this.states.isOffline) {
       this.errorEvents.publish('<u>App is offline</u><br>Refresh failed');
+      return;
+    }
+
+    if (!this.hasActiveSubscriptions()) {
+      return;
+    }
+
+    if (!this.isHomeAssistantConfigured()) {
+      this.warnIfMisconfigured();
       return;
     }
 
@@ -769,6 +863,11 @@ class HomeAssistantService {
   }
 
   disconnect() {
+    if (this.states.connection.timer) {
+      clearTimeout(this.states.connection.timer);
+      this.states.connection.timer = null;
+    }
+
     if (this.states.connection.websocket) {
       this.states.connection.websocket.close();
       this.states.connection.websocket = null;
@@ -776,6 +875,15 @@ class HomeAssistantService {
   }
 
   scheduleHealthCheck() {
+    if (!this.hasActiveSubscriptions()) {
+      return;
+    }
+
+    if (!this.isHomeAssistantConfigured()) {
+      this.warnIfMisconfigured();
+      return;
+    }
+
     // Check websocket connection health
     if (!this.states.connection.websocket ||
       this.states.connection.websocket.readyState !== WebSocket.OPEN) {
