@@ -1,7 +1,7 @@
-import { fhemService } from './fhem.service.js';
+import { backendService } from './backend.service.js';
 import { FtuiBinding } from './ftui.binding.js';
 import { vNotify } from '../vanilla-notify/vanilla-notify.min.js';
-import * as ftui from './ftui.helper.js'
+import * as ftui from './ftui.helper.js';
 
 
 class FtuiApp {
@@ -30,6 +30,8 @@ class FtuiApp {
   }
 
   async init() {
+
+    // read meta and build common config first
     this.config.meta = document.getElementsByTagName('META');
     this.config.refreshFilter = this.getMetaString('refresh_filter');
     this.config.updateFilter = this.getMetaString('update_filter');
@@ -45,9 +47,9 @@ class FtuiApp {
     // self path
     const fhemUrl = this.getMetaString('fhemweb_url');
     if (fhemUrl) {
-      this.config.fhemDir = new RegExp('^((?!http://|https://).)*$').test(fhemUrl) 
-      ? window.location.origin + '/' + fhemUrl + '/' 
-      : fhemUrl;
+      this.config.fhemDir = new RegExp('^((?!http://|https://).)*$').test(fhemUrl)
+        ? window.location.origin + '/' + fhemUrl + '/'
+        : fhemUrl;
     } else {
       this.config.fhemDir = window.location.origin + '/' + location.pathname.split('/')[1] + '/';
     }
@@ -60,20 +62,8 @@ class FtuiApp {
     this.config.username = this.getMetaString('username');
     this.config.password = this.getMetaString('password');
 
-    // init FhemService
-    fhemService.setConfig(this.config);
-    fhemService.debugEvents.subscribe(text => this.toast(text));
-    fhemService.errorEvents.subscribe(text => this.toast(text, 'error'));
-    this.fhemService = fhemService;
-
-    // init Page after CSFS Token has been retrieved
-    await fhemService.fetchCSrf()
-    this.initPage();
-
-    // call health check periodically
-    setInterval(() => {
-      this.checkConnection();
-    }, this.config.updateCheckInterval * 60 * 1000);
+    // initialize backend service
+    await this.initBackends();
   }
 
   async initPage() {
@@ -94,6 +84,25 @@ class FtuiApp {
 
     this.setTheme(window.matchMedia('(prefers-color-scheme: dark)').matches);
     document.body.classList.remove('loading');
+  }
+
+  // initialize backend services
+  async initBackends() {
+    try {
+      // Initialize backend service
+      backendService.setConfig(this.config);
+      backendService.debugEvents.subscribe(text => this.toast(text));
+      backendService.errorEvents.subscribe(text => this.toast(text, 'error'));
+
+      await this.initPage();
+
+      // call health check periodically
+      setInterval(() => {
+        this.checkConnection();
+      }, this.config.updateCheckInterval * 60 * 1000);
+    } catch (err) {
+      ftui.error('[ftuiApp] initBackends error - ' + err);
+    }
   }
 
   async initComponents(area) {
@@ -174,16 +183,13 @@ class FtuiApp {
       element.binding.isThirdPartyElement = true;
     });
 
-    fhemService.createFilterParameter();
+    backendService.createFilterParameter();
 
     const event = new CustomEvent('ftuiComponentsAdded', { detail: area });
     document.dispatchEvent(event);
 
-    // restart  connection
-    fhemService.reconnect(this.config.refreshDelay);
-
-    // start Refresh delayed
-    fhemService.startRefreshInterval(this.config.refreshDelay + 20);
+    // start Refresh delayed with both backends
+    backendService.startRefreshInterval(this.config.refreshDelay + 20);
 
     // trigger refreshes
     ftui.triggerEvent('changedSelection');
@@ -191,6 +197,14 @@ class FtuiApp {
 
   attachBinding(element) {
     element.binding = new FtuiBinding(element);
+  }
+
+  // return an observable/subject for a reading routed to the correct backend
+  getBackendEvents(reading) {
+    if (!reading) {
+      return { subscribe: () => { }, unsubscribe: () => { } };
+    }
+    return backendService.getBackendEvents(reading);
   }
 
   loadStyles() {
@@ -206,22 +220,21 @@ class FtuiApp {
     const now = Date.now() / 1000;
     ftui.log(2, 'setOnline', now, this.states.lastSetOnline);
     if ((now - this.states.lastSetOnline) > 3) {
-      //if (this.config.enableDebug) ftui.selectElements('FHEM connected');
       this.states.lastSetOnline = now;
       this.states.isOffline = false;
-      fhemService.forceRefresh();
+      backendService.forceRefresh();
       ftui.log(1, 'FTUI is online');
     }
   }
 
   setOffline() {
     this.states.isOffline = true;
-    fhemService.disconnect();
+    backendService.setOffline();
     ftui.log(1, 'FTUI is offline');
   }
 
   checkConnection() {
-    fhemService.scheduleHealthCheck();
+    backendService.checkConnection();
   }
 
   getMetaNumber(key, defaultVal) {
@@ -237,7 +250,7 @@ class FtuiApp {
 
   setTheme(isDark) {
     const now = ftui.dateFormat(new Date(), 'YYYY-MM-DD hh:mm:ss');
-    fhemService.updateReadingItem('ftui-isDark', {
+    backendService.updateReadingItem('ftui-isDark', {
       id: 'ftui-isDark',
       invalid: false,
       value: isDark,

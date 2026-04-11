@@ -1,53 +1,71 @@
 
 import {
-  Subject, debounce, parseReadingId, isDefined,
+  Subject, parseReadingId, isDefined,
   log, error,
   dateFormat,
   getReadingID,
-  triggerEvent, isAppVisible,
+  isAppVisible,
+  triggerEvent,
 } from './ftui.helper.js';
+import { backendService } from './backend.service.js';
 
 class FhemService {
   constructor() {
-
     this.config = {
-      enableDebug: false,
       fhemDir: '',
       csrf: '',
-      debuglevel: 0,
-      refreshInterval: 0,
-      refresh: {},
-      update: {
-        filter: '',
+      refresh: {
+        filter: ''
       },
+      update: {
+        filter: ''
+      }
     };
+    
     this.states = {
       lastRefresh: 0,
       fhemConnectionIsRestarting: false,
-      isOffline: false,
-      refresh: {
-        lastTimestamp: new Date(),
-        timer: null,
-        request: null,
-        result: null,
-      },
       connection: {
         lastEventTimestamp: new Date(),
         timer: null,
         result: null,
       },
+      refresh: {
+        lastTimestamp: new Date(),
+        timer: null,
+        request: null,
+        result: null,
+      }
     };
 
-    // define debounced function
-    this.debouncedUpdateFhem = debounce(this.updateFhem, this);
+    this.readingsMap = new Map();
 
+    // Initialize local event subjects
     this.debugEvents = new Subject();
     this.errorEvents = new Subject();
-    this.readingsMap = new Map();
+    
+    // Subscribe to backend service events after initialization
+    setTimeout(() => {
+      if (backendService) {
+        this.debugEvents.subscribe(msg => backendService.debugEvents.publish(msg));
+        this.errorEvents.subscribe(msg => backendService.errorEvents.publish(msg));
+      }
+    }, 0);
   }
 
   setConfig(config) {
-    Object.assign(this.config, config);
+    this.config = {
+      ...this.config,
+      ...config,
+      refresh: {
+        ...this.config.refresh,
+        ...(config.refresh || {}),
+      },
+      update: {
+        ...this.config.update,
+        ...(config.update || {}),
+      }
+    };
   }
 
   getReadingEvents(readingName) {
@@ -84,6 +102,11 @@ class FhemService {
   }
 
   createFilterParameter() {
+    if (!this.config.refresh || !this.config.update) {
+      this.config.refresh = { filter: '' };
+      this.config.update = { filter: '' };
+    }
+
     const readingsArray = Array.from(this.readingsMap.values())
       .filter(value => value.events.observers.length && value.device !== 'local');
     const devs = [... new Set(readingsArray.map(value => value.device))];
@@ -94,9 +117,8 @@ class FhemService {
     this.config.update.filter = this.config.updateFilter ? this.config.updateFilter : devicelist + ', ' + readinglist;
     this.config.refresh.filter = this.config.refreshFilter ? this.config.refreshFilter : devicelist + ' ' + readinglist;
 
-    // force Refresh
-    this.states.lastRefresh = 0;
-    log(2, '[fhemService] - created filter with ' + devs.length + ' devices')
+    log(2, '[fhemService] - created filter with ' + devs.length + ' devices');
+    return { devs, reads };
   }
 
   isFhemWebInternal(deviceName) {
@@ -343,12 +365,14 @@ class FhemService {
 
   updateFhem(cmdLine) {
     if (!this.states.isOffline) {
-      this.sendCommand(cmdLine)
-        .then(response => log(3, response))
-        .catch(error => this.errorEvents.publish('<u>FHEM Command failed</u><br>' + error + '<br>cmd=' + cmdLine));
-      this.debugEvents.publish(cmdLine);
+      const promise = this.sendCommand(cmdLine)
+      if (this.config.debuglevel > 2) {
+        this.debugEvents.publish(cmdLine);
+      }
+      return promise;
     } else {
       this.errorEvents.publish('<u>App is offline</u><br>sendToFhem failed');
+      return Promise.reject(new Error('App is offline'));
     }
   }
 
@@ -367,14 +391,6 @@ class FhemService {
     url.search = new URLSearchParams(params)
     log(1, '[fhemService] send to FHEM: ' + cmdline);
     return fetch(url, options);
-  }
-
-  checkText(response) {
-    if (response.status >= 200 && response.status <= 299) {
-      return response.text();
-    } else {
-      throw Error(response.statusText);
-    }
   }
 
   onUpdateDone() {
