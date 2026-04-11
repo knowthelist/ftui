@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <base href="../" />
+  <script src="ftui.js"></script>
+  <link href="ftui.css" rel="stylesheet">
+  <link href="themes/ftui-theme.css" rel="stylesheet">
+  <link href="favicon.ico" rel="icon" type="image/x-icon" />
+
+  <meta name='debug' content='0'>
+
+  <title>FTUI Home Assistant Basic Example</title>
+</head>
+
+<body>
+  <ftui-grid base-width="110" base-height="110" margin="1" shape="round">
+
+    <ftui-grid-tile row="1" col="1" width="3" height="2">
+      <ftui-grid-header>Weather</ftui-grid-header>
+      <ftui-weather [condition]="ha:weather.home:state" size="4"></ftui-weather>
+      <ftui-label [text]="ha:weather.home:temperature" unit="°C" size="3"></ftui-label>
+      <ftui-label [text]="ha:weather.home:humidity" unit="%" color="medium"></ftui-label>
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="1" col="4" width="3" height="2">
+      <ftui-grid-header>Light</ftui-grid-header>
+      <ftui-icon name="lightbulb-on" color="warning" size="3"></ftui-icon>
+      <ftui-switch [(value)]="ha:light.living_room"></ftui-switch>
+      <ftui-label [text]="ha:light.living_room:brightness | fix(0)" color="medium"></ftui-label>
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="3" col="1" width="3" height="2">
+      <ftui-grid-header>Temperature</ftui-grid-header>
+      <ftui-knob
+        [value]="ha:sensor.outdoor_temperature"
+        min="-10"
+        max="40"
+        decimals="1"
+        unit="°C"
+        readonly
+        type="handle"
+        has-value-text>
+      </ftui-knob>
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="3" col="4" width="3" height="2">
+      <ftui-grid-header>Media</ftui-grid-header>
+      <ftui-label [text]="ha:media_player.living_room:source" size="2"></ftui-label>
+      <ftui-button [(value)]="ha:media_player.living_room" states="TV,Spotify,Radio"></ftui-button>
+      <ftui-slider [(value)]="ha:media_player.living_room:volume_level" min="0" max="1" step="0.01"></ftui-slider>
+    </ftui-grid-tile>
+
+  </ftui-grid>
+</body>
+
+</html>

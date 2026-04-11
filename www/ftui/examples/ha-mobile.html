@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <base href="../" />
+  <script src="ftui.js"></script>
+  <link href="ftui.css" rel="stylesheet">
+  <link href="themes/mobile-dark-theme.css" rel="stylesheet">
+  <link href="themes/mobile-theme.css" rel="stylesheet">
+  <link href="favicon.ico" rel="icon" type="image/x-icon" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+  <title>FTUI Home Assistant Mobile Example</title>
+</head>
+
+<body>
+  <ftui-view-stage>
+    <ftui-view id="viewMain">
+
+      <ftui-view-toolbar>Home Assistant Demo</ftui-view-toolbar>
+
+      <ftui-view-section>
+        <ftui-label slot="header">Climate</ftui-label>
+
+        <ftui-view-item>
+          Outdoor Temperature
+          <ftui-label slot="end" [text]="ha:sensor.outdoor_temperature | fix(1)" unit="°C" color="medium"></ftui-label>
+        </ftui-view-item>
+
+        <ftui-view-item>
+          Humidity
+          <ftui-label slot="end" [text]="ha:sensor.outdoor_humidity | fix(0)" unit="%" color="medium"></ftui-label>
+        </ftui-view-item>
+
+        <ftui-view-item>
+          Weather
+          <ftui-weather slot="end" [condition]="ha:weather.home:state" size="2"></ftui-weather>
+        </ftui-view-item>
+      </ftui-view-section>
+
+      <ftui-view-section>
+        <ftui-label slot="header">Lights</ftui-label>
+
+        <ftui-view-item>
+          Living Room
+          <ftui-switch [(value)]="ha:light.living_room" slot="end"></ftui-switch>
+        </ftui-view-item>
+
+        <ftui-view-item>
+          Kitchen
+          <ftui-switch [(value)]="ha:light.kitchen" slot="end"></ftui-switch>
+        </ftui-view-item>
+      </ftui-view-section>
+
+      <ftui-view-section>
+        <ftui-label slot="header">Media</ftui-label>
+
+        <ftui-view-item>
+          Source
+          <ftui-label slot="end" [text]="ha:media_player.living_room:source" color="medium"></ftui-label>
+        </ftui-view-item>
+
+        <ftui-view-item>
+          Select Source
+          <ftui-button [(value)]="ha:media_player.living_room" states="TV,Spotify,Radio" slot="end"></ftui-button>
+        </ftui-view-item>
+      </ftui-view-section>
+
+    </ftui-view>
+  </ftui-view-stage>
+</body>
+
+</html>

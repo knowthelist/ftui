@@ -1,5 +1,5 @@
 import * as ftuiHelper from './ftui.helper.js';
-import { fhemService } from './fhem.service.js';
+import { backendService } from './backend.service.js';
 import { parseHocon } from '../hocon/hocon.min.js';
 
 /* eslint-disable no-unused-vars */
@@ -43,7 +43,7 @@ const pipe = (f1, ...fns) => (...args) => {
 };
 
 async function send(command) {
-  const result = await fhemService.sendCommand(command);
+  const result = await backendService.sendUpdate(command);
   return await result.text();
 }
 
@@ -65,9 +65,17 @@ export class FtuiBinding {
     };
     this.readAttributes(element.attributes);
 
-    // subscribe input events (from FHEM reading to component)
+    // subscribe input events (from backend reading to component)
     Object.keys(this.config.input.readings).forEach((reading) => {
-      fhemService.getReadingEvents(reading).subscribe(param => this.onReadingEvent(param));
+      try {
+        if (window.ftuiApp && typeof window.ftuiApp.getBackendEvents === 'function') {
+          window.ftuiApp.getBackendEvents(reading).subscribe(param => this.onReadingEvent(param));
+        } else {
+          backendService.getBackendEvents(reading).subscribe(param => this.onReadingEvent(param));
+        }
+      } catch (err) {
+        ftuiHelper.error('Subscription error for ' + reading + ' - ' + err);
+      }
     });
 
     // subscribe output events (from component to FHEM reading)
@@ -165,9 +173,9 @@ export class FtuiBinding {
 
       // notify FHEM
       if (this.element.debounce) {
-        fhemService.debouncedUpdateFhem(this.element.debounce, cmdLine);
+        backendService.debouncedUpdateFhem(this.element.debounce, cmdLine);
       } else {
-        fhemService.updateFhem(cmdLine);
+        backendService.sendUpdate(cmdLine);
       }
     });
   }
@@ -299,7 +307,7 @@ export class FtuiBinding {
     const [, cmd = 'set', device, reading = 'STATE', value = '$value'] =
       /^(?:(set|setreading|attr|trigger)\s)?((?:[^-:\s])*)(?:[-:\s]((?:(?!\$value)[^\s])*))?(?:\s(.*)?)?$/
         .exec(lastItem);
-
+    
     return {
       cmd,
       readingID: ftuiHelper.getReadingID(device, reading),
@@ -348,14 +356,14 @@ export class FtuiBinding {
   }
 
   updateReadingItem(parameterId, newData) {
-    fhemService.updateReadingItem(parameterId, newData);
+    backendService.updateReadingItem(parameterId, newData);
   }
 
   sendFhem(command) {
-    fhemService.updateFhem(command);
+    backendService.sendUpdate(command);
   }
 
   forceRefresh() {
-    fhemService.forceRefresh();
+    backendService.forceRefresh();
   }
 }
