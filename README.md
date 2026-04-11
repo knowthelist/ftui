@@ -65,6 +65,10 @@ FTUI supports two powerful backends that can be used independently or simultaneo
 
 FTUI works out-of-the-box with FHEM. Simply ensure your FHEM instance is running and accessible.
 
+Home Assistant support stays dormant unless FTUI sees valid Home Assistant configuration and actual HA bindings.
+
+If you are a FHEM-only user, leave `homeAssistant.enabled` at `false` or omit the `homeAssistant` block entirely in `config.local.js`.
+
 **Example usage:**
 ```html
 <ftui-label [text]="WeatherDevice:temperature" unit="°C"></ftui-label>
@@ -75,6 +79,12 @@ FTUI works out-of-the-box with FHEM. Simply ensure your FHEM instance is running
 ### Home Assistant Backend
 
 To connect FTUI to Home Assistant, you need to configure CORS and create an access token.
+
+Activation checklist:
+- Add `enabled: true` in `config.local.js`
+- Set a valid Home Assistant `url`
+- Set a valid long-lived `token`
+- Use `ha:` prefixed entities in your HTML
 
 #### Setup Steps:
 
@@ -100,17 +110,25 @@ To connect FTUI to Home Assistant, you need to configure CORS and create an acce
 
 3. **Configure FTUI**
 
-   Create a `config.local.js` file in your FTUI installation directory:
+  Create a `config.local.js` file in your FTUI installation directory (`www/ftui/config.local.js`):
    ```javascript
    export const config = {
        homeAssistant: {
-           url: 'http://homeassistant:8123',  // Your Home Assistant URL
+           enabled: true,
+           url: 'http://homeassistant:8123',
            token: 'YOUR_LONG_LIVED_ACCESS_TOKEN_HERE',
        },
    };
    ```
 
    > **Note:** You can also edit `config.js` directly, but using `config.local.js` is recommended to avoid conflicts during updates.
+  > After changing `config.local.js`, reload the browser page.
+
+   Required switches:
+   - `enabled: true` turns on Home Assistant support for pages that use `ha:` bindings.
+   - `url` must point to your Home Assistant instance.
+   - `token` must be a Home Assistant long-lived access token.
+   - Leave `enabled: false` for FHEM-only setups.
 
 4. **Use Home Assistant in HTML**
 
@@ -138,7 +156,13 @@ To connect FTUI to Home Assistant, you need to configure CORS and create an acce
    ```
 
 5. **Access Your Page:**
-   - Open: `http://fhem:8083/fhem/ftui/examples/ha.html`
+  - Open the dedicated HA example: `http://fhem:8083/fhem/ftui/examples/ha.html`
+  - Additional generic HA examples: `http://fhem:8083/fhem/ftui/examples/ha-basic.html` and `http://fhem:8083/fhem/ftui/examples/ha-mobile.html`
+  - Pages with `ha:` bindings require `enabled: true`, `url`, and `token`.
+  - Private local dashboards should use the underscore convention in the FTUI root, for example `http://fhem:8083/fhem/ftui/_mobile_full.html`.
+  - Private partials can also use underscore names, for example `_mobile-solar.html`.
+  - If you see `Home Assistant support is disabled`, then `enabled: true` is missing.
+  - If you see `Home Assistant is not fully configured`, then `url` or `token` is missing or invalid.
 
 ### Dual Backend Setup
 
@@ -149,6 +173,7 @@ FTUI can communicate with **both FHEM and Home Assistant simultaneously**! This 
 ```javascript
 export const config = {
     homeAssistant: {
+    enabled: true,
         url: 'http://homeassistant:8123',
         token: 'YOUR_HA_TOKEN_HERE',
     },
@@ -1130,7 +1155,12 @@ Explore the full capabilities of FTUI with these live examples:
 
 ### Mobile UIs
 - [**View (Plain)**](https://knowthelist.github.io/ftui/www/ftui/examples/mobile_plain.html) - Basic mobile interface
-- [**View (Full)**](https://knowthelist.github.io/ftui/www/ftui/examples/mobile_full.html) - Complete mobile UI
+- [**View (Full)**](https://knowthelist.github.io/ftui/www/ftui/examples/mobile_full.html) - Complete mobile UI (FHEM-only public example)
+- [**Home Assistant**](https://knowthelist.github.io/ftui/www/ftui/examples/ha.html) - Dedicated Home Assistant example
+- [**Home Assistant (Basic)**](https://knowthelist.github.io/ftui/www/ftui/examples/ha-basic.html) - Generic HA grid example
+- [**Home Assistant (Mobile)**](https://knowthelist.github.io/ftui/www/ftui/examples/ha-mobile.html) - Generic HA mobile example
+
+Files prefixed with `_` are private/local dashboard variants and are intentionally not part of the public example set.
 
 ### Theming
 - [**Colors**](https://knowthelist.github.io/ftui/www/ftui/examples/colors.html) - Color palette

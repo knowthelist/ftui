@@ -8,7 +8,7 @@
 */
 
 import { FtuiLabel } from '../label/label.component.js';
-import { fhemService } from '../../modules/ftui/fhem.service.js';
+import { backendService } from '../../modules/ftui/backend.service.js';
 import { dateFormat } from '../../modules/ftui/ftui.helper.js';
 
 export class FtuiClock extends FtuiLabel {
@@ -35,17 +35,35 @@ export class FtuiClock extends FtuiLabel {
     this.update();
     this.startInterval();
     this.getFhemTime();
+    this.scheduleDailyRefresh();
   }
 
   getFhemTime() {
     if (this.isFhemTime) {
-      fhemService.sendCommand('{localtime}', '1')
+      backendService.sendUpdate('{localtime}')
         .then(res => res.text())
         .then((result) => {
           const fhemTime = new Date(result);
           this.serverDiff = Date.now() - fhemTime.getTime();
         });
     }
+  }
+
+  scheduleDailyRefresh() {
+    // Calculate time until midnight
+    const now = new Date();
+    const tomorrow = new Date(now);
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    tomorrow.setHours(0, 0, 0, 0);
+    const timeUntilNextDay = tomorrow - now;
+
+    // Schedule first refresh at midnight, then daily thereafter
+    setTimeout(() => {
+      this.getFhemTime();
+      setInterval(() => {
+        this.getFhemTime();
+      }, 24 * 60 * 60 * 1000); // 24 hours
+    }, timeUntilNextDay);
   }
 
   update() {

@@ -1,7 +1,7 @@
 /*
 * Knob component for FTUI version 3
 *
-* Copyright (c) 2019-2021 Mario Stephan <mstephan@shared-files.de>
+* Copyright (c) 2019-2026 Mario Stephan <mstephan@shared-files.de>
 * Under MIT License (http://www.opensource.org/licenses/mit-license.php)
 *
 * https://github.com/knowthelist/ftui
@@ -33,9 +33,8 @@ export class FtuiKnob extends FtuiElement {
     this.radian = Math.PI / 180;
 
     this.NS = 'http://www.w3.org/2000/svg';
-
-    this.W = parseFloat(window.getComputedStyle(this.svg, null).getPropertyValue('width'));
-    this.H = parseFloat(window.getComputedStyle(this.svg, null).getPropertyValue('height'));
+    this.W = parseFloat(this.width) || 150;
+    this.H = parseFloat(this.height) || 150;
 
     // ~~(..) is a faster Math.floor
     this.centerX = ~~(this.W / 2);
@@ -46,13 +45,13 @@ export class FtuiKnob extends FtuiElement {
 
     const usePassive = supportsPassive();
 
-    this.svg.addEventListener('touchstart', (evt) => this.onPointerDownEvent(evt), usePassive ? { passive: true } : false);
-    this.svg.addEventListener('mousedown', (evt) => this.onPointerDownEvent(evt), usePassive ? { passive: true } : false);
-    this.svg.addEventListener('touchend', (evt) => this.onPointerOutEvent(evt), usePassive ? { passive: true } : false);
-    this.svg.addEventListener('mouseup', (evt) => this.onPointerOutEvent(evt), usePassive ? { passive: true } : false);
-    this.svg.addEventListener('mouseout', (evt) => this.onPointerOutEvent(evt), usePassive ? { passive: true } : false);
-    this.svg.addEventListener('touchmove', (evt) => this.onPointerMoveEvent(evt), usePassive ? { passive: true } : false);
-    this.svg.addEventListener('mousemove', (evt) => this.onPointerMoveEvent(evt), usePassive ? { passive: true } : false);
+    this.svg.addEventListener('touchstart', (evt) => this.onPointerDownEvent(evt), usePassive ? { passive: false } : false);
+    this.svg.addEventListener('mousedown', (evt) => this.onPointerDownEvent(evt), usePassive ? { passive: false } : false);
+    this.svg.addEventListener('touchend', (evt) => this.onPointerOutEvent(evt), usePassive ? { passive: false } : false);
+    this.svg.addEventListener('mouseup', (evt) => this.onPointerOutEvent(evt), usePassive ? { passive: false } : false);
+    this.svg.addEventListener('mouseout', (evt) => this.onPointerOutEvent(evt), usePassive ? { passive: false } : false);
+    this.svg.addEventListener('touchmove', (evt) => this.onPointerMoveEvent(evt), usePassive ? { passive: false } : false);
+    this.svg.addEventListener('mousemove', (evt) => this.onPointerMoveEvent(evt), usePassive ? { passive: false } : false);
 
     if (this.step < 0) {
       const range = Math.abs(this.max - this.min);
@@ -219,7 +218,7 @@ export class FtuiKnob extends FtuiElement {
         this.hideElement(this.outline);
       }
       if (this.hasValueText) {
-        this.drawValue(angle);
+        this.drawValue();
       }
       if (this.unit) {
         this.drawUnit();
@@ -334,7 +333,7 @@ export class FtuiKnob extends FtuiElement {
     this.desired.style.display = '';
   }
 
-  drawValue(angle) {
+  drawValue() {
     const scaleText = document.createElementNS(this.NS, 'text');
     const scaleTextObj = {
       class: 'value',
@@ -343,7 +342,9 @@ export class FtuiKnob extends FtuiElement {
       'alignment-baseline': 'middle',
     };
     this.setSVGAttributes(scaleText, scaleTextObj);
-    scaleText.textContent = this.angleToValue(angle).toFixed(this.valueDecimals);
+    // Display actual value, even if it exceeds max
+    const displayValue = !isNaN(this.value) ? parseFloat(this.value) : parseFloat(this.min);
+    scaleText.textContent = displayValue.toFixed(this.valueDecimals);
     scaleText.style.fontSize = this.valueSize;
     this.scale.appendChild(scaleText);
   }
