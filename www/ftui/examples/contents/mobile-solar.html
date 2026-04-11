@@ -78,14 +78,14 @@
     <ftui-label [text]="Zendure_Hub2000:properties_packState | map('0:ByPass, 1:Charging, 2:Discharging')"></Discharging-label>
   </ftui-view-item>
   <ftui-view-item>Battery 1
-    <ftui-label [text]="Zendure_Hub2000:packData_1_power | fix(0)" unit="W" color="medium"></ftui-label>
-    <ftui-label [text]="Zendure_Hub2000:packData_1_batcur | multiply(0.1) | fix(1)" unit="A" color="medium"></ftui-label>
-    <ftui-label [text]="Zendure_Hub2000:packData_1_socLevel | fix(0)" unit="%" slot="end"></ftui-label>
+    <ftui-label [text]="ha:sensor.solarflow_batterie_1_power | fix(0)" unit="W" color="medium"></ftui-label>
+    <ftui-label [text]="ha:sensor.solarflow_batterie_1_current | multiply(0.1) | fix(1)" unit="A" color="medium"></ftui-label>
+    <ftui-label [text]="ha:sensor.solarflow_batterie_1_soclevel | fix(0)" unit="%" slot="end"></ftui-label>
   </ftui-view-item>
   <ftui-view-item>Battery 2
-    <ftui-label [text]="Zendure_Hub2000:packData_2_power | fix(0)" unit="W" color="medium"></ftui-label>
-    <ftui-label [text]="Zendure_Hub2000:packData_2_batcur | multiply(0.1) | fix(1)" unit="A" color="medium"></ftui-label>
-    <ftui-label [text]="Zendure_Hub2000:packData_2_socLevel | fix(0)" unit="%" slot="end"></ftui-label>
+    <ftui-label [text]="ha:sensor.solarflow_batterie_2_power | fix(0)" unit="W" color="medium"></ftui-label>
+    <ftui-label [text]="ha:sensor.solarflow_batterie_2_current | multiply(0.1) | fix(1)" unit="A" color="medium"></ftui-label>
+    <ftui-label [text]="ha:sensor.solarflow_batterie_2_soclevel | fix(0)" unit="%" slot="end"></ftui-label>
   </ftui-view-item>
 </ftui-view-section>
 
