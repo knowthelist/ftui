@@ -4,7 +4,7 @@
 </ftui-view-toolbar>
 
 <ftui-view-sheet shape="round">
-  <ftui-chart width="300px" height="200px" y-label="Power in VA" x-min="6" x-max="21" y-min="0" y-max="900">
+  <ftui-chart width="300px" height="200px" y-label="Power in VA" x-min="6" x-max="20" y-min="0" y-max="900">
     <ftui-chart-data fill log="FileLog_Zendure_Hub2000" spec="4:Zendure_Hub2000.SolarPower" 
                   point-radius="1" [update]="Zendure_Hub2000:SolarPower:time">
     </ftui-chart-data>
@@ -15,29 +15,17 @@
 <ftui-view-section>
   <ftui-label slot="header" [text]="StromRechnerSolarIn:SolarEnergy:time"></ftui-label>
 
-  <ftui-view-item>Energy Today
-    <ftui-label [text]="StromRechnerUsed:autarchicDay|fix(0)" unit="%" color="medium"></ftui-label>
-    <ftui-label [text]="StromRechnerSolarIn:Zendure_Hub2000_SolarEnergy_EnergyDay|fix(1)" unit="KWh" slot="end"></ftui-label>
+  <ftui-view-item>Energy total
+    <ftui-label [text]="Zendure_Hub2000:SolarEnergy | fix(0)" unit="KWh"></ftui-label>
   </ftui-view-item>
-  <ftui-view-item>Energy Yesterday
-    <ftui-label [text]="StromRechnerUsed:autarchicDayLast|fix(0)" unit="%" color="medium"></ftui-label>
-    <ftui-label [text]="StromRechnerSolarIn:Zendure_Hub2000_SolarEnergy_EnergyDayLast|fix(1)" unit="KWh" slot="end"></ftui-label>
+  <ftui-view-item>Energy today
+    <ftui-label [text]="StromRechnerSolarIn:Zendure_Hub2000_SolarEnergy_EnergyDay|fix(1)" unit="KWh"></ftui-label>
   </ftui-view-item>
-  <ftui-view-item>Energy Month
-    <ftui-label [text]="StromRechnerUsed:autarchicMonth|fix(0)" unit="%" color="medium"></ftui-label>
-    <ftui-label [text]="StromRechnerSolarIn:Zendure_Hub2000_SolarEnergy_EnergyMonth|fix(0)" unit="KWh" slot="end"></ftui-label>
+  <ftui-view-item>Energy Given Away
+    <ftui-label [text]="SmartMeter:Total_out | fix(0)" unit="KWh"></ftui-label>
   </ftui-view-item>
-  <ftui-view-item>Energy Last Month
-    <ftui-label [text]="StromRechnerUsed:autarchicMonthLast|fix(0)" unit="%" color="medium"></ftui-label>
-    <ftui-label [text]="StromRechnerSolarIn:Zendure_Hub2000_SolarEnergy_EnergyMonthLast|fix(0)" unit="KWh" slot="end"></ftui-label>
-  </ftui-view-item>
-  <ftui-view-item>Energy Year
-    <ftui-label [text]="StromRechnerUsed:autarchicYear|fix(0)" unit="%" color="medium"></ftui-label>
-    <ftui-label [text]="StromRechnerSolarIn:Zendure_Hub2000_SolarEnergy_EnergyYear|fix(0)" unit="KWh" slot="end"></ftui-label>
-  </ftui-view-item>
-  <ftui-view-item>Energy Last Year
-    <ftui-label [text]="StromRechnerUsed:autarchicYearLast|fix(0)" unit="%" color="medium"></ftui-label>
-    <ftui-label [text]="StromRechnerSolarIn:Zendure_Hub2000_SolarEnergy_EnergyYearLast|fix(0)" unit="KWh" slot="end"></ftui-label>
+  <ftui-view-item>Energy Given Away today
+    <ftui-label [text]="StromRechnerOut:SmartMeter_Total_out_EnergyDay | fix(1)" unit="KWh"></ftui-label>
   </ftui-view-item>
 </ftui-view-section>
 
@@ -77,37 +65,18 @@
   <ftui-view-item>State
     <ftui-label [text]="Zendure_Hub2000:properties_packState | map('0:ByPass, 1:Charging, 2:Discharging')"></Discharging-label>
   </ftui-view-item>
-  <ftui-view-item>Battery 1
-    <ftui-label [text]="ha:sensor.solarflow_batterie_1_power | fix(0)" unit="W" color="medium"></ftui-label>
-    <ftui-label [text]="ha:sensor.solarflow_batterie_1_current | multiply(0.1) | fix(1)" unit="A" color="medium"></ftui-label>
-    <ftui-label [text]="ha:sensor.solarflow_batterie_1_soclevel | fix(0)" unit="%" slot="end"></ftui-label>
-  </ftui-view-item>
-  <ftui-view-item>Battery 2
-    <ftui-label [text]="ha:sensor.solarflow_batterie_2_power | fix(0)" unit="W" color="medium"></ftui-label>
-    <ftui-label [text]="ha:sensor.solarflow_batterie_2_current | multiply(0.1) | fix(1)" unit="A" color="medium"></ftui-label>
-    <ftui-label [text]="ha:sensor.solarflow_batterie_2_soclevel | fix(0)" unit="%" slot="end"></ftui-label>
+  <ftui-view-item>Current 1
+    <ftui-label [text]="Zendure_Hub2000:packData_1_batcur | multiply(0.1) | fix(1)" unit="A"></ftui-label>
   </ftui-view-item>
 </ftui-view-section>
-
-<ftui-view-sheet shape="round">
-  <ftui-chart width="300px" height="200px" y-label="Level in %" x-min="0" x-max="26" y-min="0" y-max="100">
-    <ftui-chart-data fill log="FileLog_Zendure_Hub2000" spec="4:Zendure_Hub2000.properties_electricLevel" 
-                  point-radius="1" [update]="Zendure_Hub2000:properties_electricLevel:time">
-    </ftui-chart-data>
-    <ftui-chart-controls units="day, hour"></ftui-chart-controls>
-  </ftui-chart>
-</ftui-view-sheet>
 
 <ftui-view-section>
   <ftui-label slot="header">temp</ftui-label>
 
   <ftui-view-item>Hyper
-    <ftui-label [text]="Zendure_Hub2000:properties_hyperTmp | toNumber() | multiply(0.1) | add(-273.15) | fix(0)" unit="°C"></Discharging-label>
+    <ftui-label [text]="Zendure_Hub2000:properties_hyperTmp | toNumber() | multiply(0.1) | add(-273.15) | fix(1)" unit="°C"></Discharging-label>
   </ftui-view-item>
   <ftui-view-item>Battery 1 Max
-    <ftui-label [text]="Zendure_Hub2000:packData_1_maxTemp | toNumber() | multiply(0.1) | add(-273.15) | fix(0)" unit="°C"></ftui-label>
-  </ftui-view-item>
-  <ftui-view-item>Battery 2 Max
-    <ftui-label [text]="Zendure_Hub2000:packData_2_maxTemp | toNumber() | multiply(0.1) | add(-273.15) | fix(0)" unit="°C"></ftui-label>
+    <ftui-label [text]="Zendure_Hub2000:packData_1_maxTemp | toNumber() | multiply(0.1) | add(-273.15) | fix(1)" unit="°C"></ftui-label>
   </ftui-view-item>
 </ftui-view-section>

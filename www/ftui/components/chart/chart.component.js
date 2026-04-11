@@ -31,44 +31,47 @@ export class FtuiChart extends FtuiElement {
         locale: window.ftuiApp ? ftuiApp.config.lang === 'de' ? 'de-DE' : 'en-US' : 'en-US',
         responsive: true,
         maintainAspectRatio: false,
-        title: {
-          padding: 0,
-          display: false,
-          text: '',
-        },
-        legend: {
-          labels: {
-            usePointStyle: true,
-            boxWidth: 6,
-            padding: 8,
+        plugins: {
+          title: {
+            padding: 0,
+            display: false,
+            text: '',
             font: {},
-            filter: item => item.text,
-            generateLabels: function (chart) {
-              const data = chart.data;
-              return Chart.helpers.isArray(data.datasets) ? data.datasets.map((dataset, i) => {
-                const values = dataset.data.map(i => i.y);
-                let resLabel = dataset.label;
-                if (resLabel && values && values.length) {
-                  resLabel = resLabel.replace(/\$min/g, Math.min(...values));
-                  resLabel = resLabel.replace(/\$max/g, Math.max(...values));
-                  resLabel = resLabel.replace(/\$sum/g, values.reduce((a, b) => a + b));
-                  resLabel = resLabel.replace(/\$avg/g, values.reduce((a, b) => a + b) / values.length);
-                  resLabel = resLabel.replace(/\$last/g, values[values.length - 1]);
-                }
-                return {
-                  text: resLabel,
-                  fillStyle: (!Chart.helpers.isArray(dataset.backgroundColor) ? dataset.backgroundColor : dataset.backgroundColor[0]),
-                  hidden: !chart.isDatasetVisible(i),
-                  lineCap: dataset.borderCapStyle,
-                  lineDash: dataset.borderDash,
-                  lineDashOffset: dataset.borderDashOffset,
-                  lineJoin: dataset.borderJoinStyle,
-                  lineWidth: dataset.borderWidth,
-                  strokeStyle: dataset.borderColor,
-                  pointStyle: dataset.pointStyle,
-                  datasetIndex: i,
-                };
-              }, this) : [];
+          },
+          legend: {
+            labels: {
+              usePointStyle: true,
+              boxWidth: 6,
+              padding: 8,
+              font: {},
+              filter: item => item.text,
+              generateLabels: function (chart) {
+                const data = chart.data;
+                return Array.isArray(data.datasets) ? data.datasets.map((dataset, i) => {
+                  const values = dataset.data.map(item => item.y);
+                  let resLabel = dataset.label;
+                  if (resLabel && values && values.length) {
+                    resLabel = resLabel.replace(/\$min/g, Math.min(...values));
+                    resLabel = resLabel.replace(/\$max/g, Math.max(...values));
+                    resLabel = resLabel.replace(/\$sum/g, values.reduce((a, b) => a + b));
+                    resLabel = resLabel.replace(/\$avg/g, values.reduce((a, b) => a + b) / values.length);
+                    resLabel = resLabel.replace(/\$last/g, values[values.length - 1]);
+                  }
+                  return {
+                    text: resLabel,
+                    fillStyle: (!Array.isArray(dataset.backgroundColor) ? dataset.backgroundColor : dataset.backgroundColor[0]),
+                    hidden: !chart.isDatasetVisible(i),
+                    lineCap: dataset.borderCapStyle,
+                    lineDash: dataset.borderDash,
+                    lineDashOffset: dataset.borderDashOffset,
+                    lineJoin: dataset.borderJoinStyle,
+                    lineWidth: dataset.borderWidth,
+                    strokeStyle: dataset.borderColor,
+                    pointStyle: dataset.pointStyle,
+                    datasetIndex: i,
+                  };
+                }, this) : [];
+              },
             },
           },
         },
@@ -82,7 +85,7 @@ export class FtuiChart extends FtuiElement {
               displayFormats: { millisecond: 'HH:mm:ss.SSS', second: 'HH:mm:ss', minute: 'HH:mm', hour: 'HH:mm', day: 'd. MMM', month: 'MMMM' },
               tooltipFormat: 'd.MM.yyyy HH:mm:ss',
             },
-            gridLines: {},
+            grid: {},
             ticks: {
               maxRotation: 0,
               autoSkip: true,
@@ -94,11 +97,11 @@ export class FtuiChart extends FtuiElement {
             stacked: this.stackedY,
             display: !this.noscale && !this.noY,
             position: 'left',
-            scaleLabel: {
+            title: {
               display: this.yLabel.length > 0,
-              labelString: this.yLabel,
+              text: this.yLabel,
             },
-            gridLines: {},
+            grid: {},
             ticks: {
               autoSkip: true,
               autoSkipPadding: 30,
@@ -110,11 +113,11 @@ export class FtuiChart extends FtuiElement {
             stacked: this.stackedY1,
             display: (!this.noscale && !this.noY1),
             position: 'right',
-            scaleLabel: {
+            title: {
               display: this.y1Label.length > 0,
-              labelString: this.y1Label,
+              text: this.y1Label,
             },
-            gridLines: {},
+            grid: {},
             ticks: {
               autoSkip: true,
               autoSkipPadding: 30,
@@ -133,7 +136,7 @@ export class FtuiChart extends FtuiElement {
       Chart.defaults.font.style = getStylePropertyValue('--chart-font-style', this)
     }
 
-    Chart.defaults.font.color = getStylePropertyValue('--chart-text-color', this);
+    Chart.defaults.color = getStylePropertyValue('--chart-text-color', this);
 
     this.controlsElement = this.querySelector('ftui-chart-controls');
     this.chartContainer = this.shadowRoot.querySelector('#container');
@@ -268,8 +271,8 @@ export class FtuiChart extends FtuiElement {
     const options = this.configuration.options;
     switch (name) {
       case 'title':
-        options.title.text = value;
-        options.title.display = (value && value.length > 0);
+        options.plugins.title.text = value;
+        options.plugins.title.display = (value && value.length > 0);
         this.chart.update();
         break;
       case 'type':
@@ -345,6 +348,36 @@ export class FtuiChart extends FtuiElement {
     }
   }
 
+  getTimeScaleUnit() {
+    switch (this.unit) {
+      case 'hour':
+        return 'minute';
+      case 'day':
+        if (this.xMin > 0 || this.xMax > 0) {
+          return 'hour';
+        }
+        return undefined;
+      case 'week':
+        return 'day';
+      case 'month':
+      case '30d':
+        return 'day';
+      case 'year':
+        return 'month';
+      case '24h':
+        return 'hour';
+      default:
+        return undefined;
+    }
+  }
+
+  updateTimeScale() {
+    const xScale = this.configuration.options.scales.x;
+    xScale.min = this.startDate;
+    xScale.max = this.endDate;
+    xScale.time.unit = this.getTimeScaleUnit();
+  }
+
   onDataChanged(event) {
     const dataElement = event.target
     const dataset = {};
@@ -358,37 +391,37 @@ export class FtuiChart extends FtuiElement {
     }
     this.configuration.data.datasets[dataElement.index] = dataset;
     this.configuration.data.labels = dataElement.labels;
-    this.configuration.options.scales.x.min = this.startDate;
-    this.configuration.options.scales.x.max = this.endDate;
+    this.updateTimeScale();
     this.configuration.options.scales.y1.display = this.hasY1Data && !this.noY1;
     dataElement.startDate = this.startDate;
     dataElement.endDate = this.endDate;
 
     this.updateControls();
     // run chart update async
-    Promise.resolve().then(this.chart.update());
+    Promise.resolve().then(() => this.chart.update());
     // disable animation after first update
+    this.configuration.options.animation = this.configuration.options.animation || {};
     this.configuration.options.animation.duration = 0;
   }
 
   onStyleChanged() {
     const options = this.configuration.options;
-    options.font.color = getStylePropertyValue('--chart-text-color', this);
+    options.color = getStylePropertyValue('--chart-text-color', this);
 
-    options.title.font.size = getStylePropertyValue('--chart-title-font-size', this) || 16;
-    options.title.font.style = getStylePropertyValue('--chart-title-font-style', this) || '500';
-    options.title.font.color = getStylePropertyValue('--chart-title-color', this);// || getStylePropertyValue('--chart-text-color', this);
+    options.plugins.title.font.size = getStylePropertyValue('--chart-title-font-size', this) || 16;
+    options.plugins.title.font.weight = getStylePropertyValue('--chart-title-font-style', this) || '500';
+    options.plugins.title.color = getStylePropertyValue('--chart-title-color', this);
 
-    options.legend.labels.font.size = getStylePropertyValue('--chart-legend-font-size', this) || 13;
-    options.legend.labels.font.color = getStylePropertyValue('--chart-legend-color', this) || getStylePropertyValue('--chart-text-color', this);
+    options.plugins.legend.labels.font.size = getStylePropertyValue('--chart-legend-font-size', this) || 13;
+    options.plugins.legend.labels.color = getStylePropertyValue('--chart-legend-color', this) || getStylePropertyValue('--chart-text-color', this);
 
-    options.scales.x.gridLines.color = getStylePropertyValue('--chart-grid-line-color', this) || getStylePropertyValue('--dark-color', this);
+    options.scales.x.grid.color = getStylePropertyValue('--chart-grid-line-color', this) || getStylePropertyValue('--dark-color', this);
     options.scales.x.ticks.font.size = getStylePropertyValue('--chart-tick-font-size', this) || 11;
 
-    options.scales.y.gridLines.color = getStylePropertyValue('--chart-grid-line-color', this) || getStylePropertyValue('--dark-color', this);
+    options.scales.y.grid.color = getStylePropertyValue('--chart-grid-line-color', this) || getStylePropertyValue('--dark-color', this);
     options.scales.y.ticks.font.size = getStylePropertyValue('--chart-tick-font-size', this) || 11;
 
-    options.scales.y1.gridLines.color = getStylePropertyValue('--chart-grid-line-color', this) || getStylePropertyValue('--dark-color', this);
+    options.scales.y1.grid.color = getStylePropertyValue('--chart-grid-line-color', this) || getStylePropertyValue('--dark-color', this);
     options.scales.y1.ticks.font.size = getStylePropertyValue('--chart-tick-font-size', this) || 11;
 
     this.chart.update();

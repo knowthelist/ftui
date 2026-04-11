@@ -133,20 +133,22 @@ class BackendService {
             // Update service filters
             const fhemFilters = fhemService.createFilterParameter();
             const haFilters = haService.createFilterParameter();
+            const haEntities = Array.isArray(haFilters)
+                ? haFilters.join(',')
+                : (haFilters && haFilters.entities) || '';
 
             // Combine filters if needed
             this.config.refresh.filter = [
                 this.config.refresh.filter,
                 // Check if fhemFilters exists before accessing .reads
                 (fhemFilters && fhemFilters.reads) || '',
-                // Check if haFilters exists before accessing .entities
-                (haFilters && haFilters.entities) || ''
+                haEntities
             ].filter(Boolean).join(',');
 
             this.config.update.filter = [
                 this.config.update.filter,
                 (fhemFilters && fhemFilters.devs) || '',
-                (haFilters && haFilters.entities) || ''
+                haEntities
             ].filter(Boolean).join(',');
 
             // Force refresh on next interval

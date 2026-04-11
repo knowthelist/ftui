@@ -6,6 +6,7 @@
 
 export const config = {
     homeAssistant: {
+        enabled: false,
         url: 'http://homeassistant:8123', // Your HA URL here
         token: 'HA_TOKEN', // Your HA Token here
     },

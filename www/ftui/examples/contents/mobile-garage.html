@@ -12,12 +12,9 @@
       <ftui-label>Open</ftui-label>
     </ftui-button>
     <ftui-cell>
-      <ftui-button (value)="set Garage" direction="vertical" color="current" fill="none"
-                   height="6em" states="stop">
-        <ftui-icon [name]="Garage:status | map('open:garage-open-variant, moving: garage-alert-variant, closed: garage-variant')"
-                   class="size-8"></ftui-icon>
-        <ftui-label [text]="Garage:status" color="medium"></ftui-label>
-      </ftui-button>
+      <ftui-icon [name]="Garage:status | map('open:garage-open-variant, moving: garage-alert-variant, closed: garage-variant')"
+                 class="size-8"></ftui-icon>
+      <ftui-label [text]="Garage:status" color="medium"></ftui-label>
     </ftui-cell>
     <ftui-button (value)="set Garage" direction="vertical" color="current" fill="none"
                  margin="-1em" states="close">
@@ -26,9 +23,3 @@
     </ftui-button>
   </ftui-row>
 </ftui-view-sheet>
-
-<ftui-view-section>
-  <ftui-view-item>Temperature
-    <ftui-label [text]="Garage:temp | fix(1)" unit="&nbsp;°C"></ftui-label>
-  </ftui-view-item>
-</ftui-view-section>

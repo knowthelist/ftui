@@ -12,6 +12,30 @@ import { backendService } from '../../modules/ftui/backend.service.js';
 import { Chart } from '../../modules/chart.js/chart.js';
 import * as ftuiHelper from '../../modules/ftui/ftui.helper.js';
 
+function toTransparentColor(color, alpha = 0.2) {
+  const context = document.createElement('canvas').getContext('2d');
+  context.fillStyle = color;
+
+  const normalized = context.fillStyle;
+  const rgbMatch = normalized.match(/^rgba?\(([^)]+)\)$/i);
+  if (rgbMatch) {
+    const [red, green, blue] = rgbMatch[1].split(',').slice(0, 3).map(part => Number.parseFloat(part.trim()));
+    return `rgba(${red}, ${green}, ${blue}, ${alpha})`;
+  }
+
+  const hexMatch = normalized.match(/^#([\da-f]{3}|[\da-f]{6})$/i);
+  if (hexMatch) {
+    const hex = hexMatch[1];
+    const [red, green, blue] = hex.length === 3
+      ? hex.split('').map(part => Number.parseInt(part + part, 16))
+      : [hex.slice(0, 2), hex.slice(2, 4), hex.slice(4, 6)].map(part => Number.parseInt(part, 16));
+
+    return `rgba(${red}, ${green}, ${blue}, ${alpha})`;
+  }
+
+  return normalized;
+}
+
 
 export class FtuiChartData extends FtuiElement {
   constructor(properties) {
@@ -153,7 +177,7 @@ export class FtuiChartData extends FtuiElement {
   updateColor() {
     this.borderColor = ftuiHelper.getStylePropertyValue('--color-base', this) || this.color;
     if (this.hasCalculatedBackgroundColor) {
-      this.backgroundColor = Chart.helpers.color(this.borderColor).alpha(0.2).rgbString();
+      this.backgroundColor = toTransparentColor(this.borderColor);
     }
     this.pointBackgroundColor = this.borderColor;
   }
