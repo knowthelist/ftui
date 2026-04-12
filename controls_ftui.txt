@@ -117,7 +117,7 @@ UPD 2025-11-29_13:17:06 8803 www/ftui/examples/contents/mobile-shutter.html
 UPD 2026-04-11_22:07:32 3346 www/ftui/examples/contents/mobile-solar.html
 UPD 2025-11-29_13:17:06 3732 www/ftui/examples/contents/mobile-temp.html
 UPD 2025-11-29_13:17:06 3035 www/ftui/examples/contents/mobile-view-sonos.html
-UPD 2025-11-29_13:17:06 1323 www/ftui/examples/contents/mobile-view-vacuum.html
+UPD 2026-04-12_13:27:19 1319 www/ftui/examples/contents/mobile-view-vacuum.html
 UPD 2025-11-29_13:17:06 189 www/ftui/examples/contents/mobile-view1.html
 UPD 2026-04-11_23:50:27 3263 www/ftui/examples/contents/mobile-water.html
 UPD 2025-11-29_13:17:06 4499 www/ftui/examples/contents/mobile-windows.html
@@ -160,6 +160,7 @@ UPD 2025-11-29_13:17:06 4254 www/ftui/examples/themes.html
 UPD 2025-11-29_13:17:06 1648 www/ftui/examples/timeset.html
 UPD 2025-11-29_13:17:06 6452 www/ftui/examples/weather.html
 UPD 2025-11-29_13:16:58 15406 www/ftui/favicon.ico
+UPD 2026-04-12_13:14:03 8107 www/ftui/ftui-snippet-tester.html
 UPD 2025-11-29_13:17:15 10924 www/ftui/ftui.css
 UPD 2025-11-29_13:17:15 1326 www/ftui/ftui.js
 UPD 2025-11-29_13:17:06 1881 www/ftui/icons/Celsius.svg
