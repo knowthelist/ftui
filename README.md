@@ -65,6 +65,29 @@ FTUI supports two powerful backends that can be used independently or simultaneo
 
 FTUI works out-of-the-box with FHEM. Simply ensure your FHEM instance is running and accessible.
 
+#### FHEMWEB Authentication
+
+If your FHEMWEB instance is protected by HTTP authentication and FTUI shows an error like `GET https://<servername>:8083/fhem/?XHR=1 401 (Authorization Required)`, then the browser is not authenticated for the FHEMWEB endpoint that FTUI is using.
+
+FTUI does not currently send a custom `Authorization` header for FHEM requests on its own. In practice that means one of these setups is required:
+
+1. Open the FHEMWEB URL in the browser first and complete the authentication challenge there, then load the FTUI page in the same browser session.
+2. Serve FTUI from the same authenticated FHEMWEB origin so the browser can reuse that authenticated session.
+3. Put FTUI/FHEMWEB behind a reverse proxy that handles authentication before the request reaches FTUI.
+4. Expose a dedicated FHEMWEB instance or path for FTUI that is reachable without HTTP auth but still protected appropriately at the network level.
+
+If FTUI should talk to a specific FHEMWEB path, set it explicitly in the page header:
+
+```html
+<meta name="fhemweb_url" content="https://servername:8083/fhem/">
+```
+
+Important notes:
+
+- The `fhemweb_url` value must point to the exact FHEMWEB endpoint FTUI should use.
+- A `401` on `?XHR=1` means the authentication step failed before FTUI could talk to FHEM.
+- If you use a reverse proxy, make sure WebSocket upgrade requests are forwarded as well, because FTUI also uses a WebSocket connection for updates.
+
 Home Assistant support stays dormant unless FTUI sees valid Home Assistant configuration and actual HA bindings.
 
 If you are a FHEM-only user, leave `homeAssistant.enabled` at `false` or omit the `homeAssistant` block entirely in `config.local.js`.
