@@ -12,7 +12,7 @@ import { FtuiElement } from '../element.component.js';
 // eslint-disable-next-line no-unused-vars
 import { FtuiIcon } from '../icon/icon.component.js';
 import { fhemService } from '../../modules/ftui/fhem.service.js';
-import { dateFormat, dateFromString, getReadingID } from '../../modules/ftui/ftui.helper.js';
+import { dateFormat, dateFromString, parseReadingId } from '../../modules/ftui/ftui.helper.js';
 
 export class FtuiDeparture extends FtuiElement {
 
@@ -36,8 +36,7 @@ export class FtuiDeparture extends FtuiElement {
     this.elementSwitch = this.shadowRoot.querySelector('.switch');
     this.elementSwitch.addEventListener('click', event => this.switchDepMode(event));
 
-    this.listAttr = this.binding.getReadingsOfAttribute('list');
-    if (this.listAttr[0]) { this.listAttr = this.listAttr[0].replace('-',' '); }
+    this.listReadingId = this.binding.getReadingsOfAttribute('list')[0] || '';
 
     if (!(this.hasAttribute('switch'))) { this.elementSwitch.style.display = 'none'; }
 
@@ -196,7 +195,7 @@ export class FtuiDeparture extends FtuiElement {
   startTimerUpdate() {
     clearInterval(this.timerUpdate);
     clearTimeout(this.timerUpdate);
-    if (this.listAttr[0]) {
+    if (this.listReadingId) {
       ((dateFormat(new Date(), 'ss') === '00') ? this.timerUpdate = setTimeout(() => this.startTimerUpdate(), this.getinterval * 1000) ? this.requestUpdate() : clearTimeout(this.timerUpdate) : this.timerUpdate = setInterval(() => this.startTimerUpdate(), 1000));
     }
   }
@@ -204,13 +203,27 @@ export class FtuiDeparture extends FtuiElement {
   startTimerRefreshList() {
     clearInterval(this.timerRefreshList);
     clearTimeout(this.timerRefreshList);
-    if (!this.listAttr[0]) {
+    if (!this.listReadingId) {
       ((dateFormat(new Date(), 'ss') === '00') ? this.timerRefreshList = setTimeout(() => this.startTimerRefreshList(), this.refreshlist * 1000) ? this.fillList() : clearTimeout(this.timerRefreshList) : this.timerRefreshList = setInterval(() => this.startTimerRefreshList(), 1000));
     }
   }
 
+  getListReadingInfo() {
+    return this.listReadingId ? parseReadingId(this.listReadingId) : ['', '', ''];
+  }
+
   requestUpdate() {
-    fhemService.sendCommand((this.get || this.set ? (this.get ? 'get '+this.get : 'set '+this.set) : 'get '+this.listAttr));
+    if (this.get || this.set) {
+      return fhemService.sendCommand(this.get ? 'get ' + this.get : 'set ' + this.set);
+    }
+
+    const [, deviceName, readingName] = this.getListReadingInfo();
+    if (!deviceName) {
+      return Promise.resolve();
+    }
+
+    const command = readingName ? 'get ' + deviceName + ' ' + readingName : 'get ' + deviceName;
+    return fhemService.sendCommand(command);
   }
 
   manGetRefresh(event) {
@@ -226,25 +239,70 @@ export class FtuiDeparture extends FtuiElement {
     this.fillList();
   }
 
+  ensureListElements() {
+    if (!this.dep.querySelector('tr')) {
+      this.dep.innerHTML = `
+        <tr>
+          <td name="id" class="id"></td>
+          <td name="dest" class="dest"></td>
+          <td name="time" class="time"></td>
+        </tr>
+      `;
+    }
+
+    this.elementId = this.shadowRoot.querySelector('td[name="id"]');
+    this.elementDest = this.shadowRoot.querySelector('td[name="dest"]');
+    this.elementTime = this.shadowRoot.querySelector('td[name="time"]');
+  }
+
+  showEmptyState() {
+    this.ensureListElements();
+    this.elementId.innerHTML = '';
+    this.elementDest.innerHTML = '<div style="text-align:center">keine Abfahrten vorhanden...</div>';
+    this.elementTime.innerHTML = '';
+  }
+
   fillList() {
+    console.log('fillList', this.list);
+    this.ensureListElements();
     if (this.list) {
-      const refDate = ((this.listAttr[0]) ? dateFromString(fhemService.getReadingItem(getReadingID(this.listAttr.split(' ')[0], this.listAttr.split(' ')[1])).data.time) : new Date(this.timeNow));
+      const [readingId] = this.getListReadingInfo();
+      const refTime = readingId
+        ? fhemService.getReadingItem(readingId).data.time
+        : null;
+      const parsedRefDate = refTime ? dateFromString(refTime) : null;
+      const hasValidRefDate = parsedRefDate && !Number.isNaN(parsedRefDate.getTime());
+      const refDate = hasValidRefDate ? parsedRefDate : new Date();
       refDate.setSeconds(59);
       const currentTime = new Date();
-      const nextDay = dateFormat(new Date(currentTime.setDate(currentTime.getDate() + 1)), 'ee');
-      const isTimeMin = currentTime.getHours() * 60 + currentTime.getMinutes();
-      const tsMin = refDate.getHours() * 60 + refDate.getMinutes();
+      const nextDay = dateFormat(new Date(currentTime.getTime() + 24 * 60 * 60 * 1000), 'ee');
+      const listIsTimeBased = this.list.includes(':');
+      const ageMinutes = hasValidRefDate
+        ? Math.floor((currentTime.getTime() - refDate.getTime()) / (60 * 1000))
+        : 0;
       let n = '';
       let text0 = '';
       let text1 = '';
       let text2 = '';
-      const json = JSON.parse(this.list);
+      let json;
+      try {
+        json = JSON.parse(this.list);
+      } catch (error) {
+        return;
+      }
+      if (!Array.isArray(json)) {
+        return;
+      }
       //times from this.list in min and min<=0 add 1440 for next Day from this.list end
-      if (this.list.match(/:/g)) {
+      if (listIsTimeBased) {
         for (let i = 0, l = json.length; i < l; i++) {
           const times = json[i];
+          if (!Array.isArray(times) || typeof times[2] !== 'string' || !times[2].includes(':')) {
+            continue;
+          }
           const [deph, depm] = times[2].split(':');
-          const isDepMins = deph * 60 + parseInt(depm) - isTimeMin;
+          const currentMinutes = currentTime.getHours() * 60 + currentTime.getMinutes();
+          const isDepMins = deph * 60 + parseInt(depm) - currentMinutes;
           times.splice(2, 1, isDepMins);
         }
         for (let i = json.length - 1; i >= 0; i--) {
@@ -261,40 +319,51 @@ export class FtuiDeparture extends FtuiElement {
       for (let idx = 0, len = json.length; idx < len; idx++) {
         n++;
         const line = json[idx];
-        let when = parseInt(line[2]);
-        const depTime = dateFormat(new Date(currentTime.getTime() + when * 60 * 1000), 'hh:mm');
-        const depMinTime = dateFormat(new Date(refDate.getTime() + when * 60 * 1000), 'hh:mm');
-        const tsDep = when + tsMin - isTimeMin;
+        if (!Array.isArray(line) || line.length < 3) {
+          continue;
+        }
+        const originalWhen = parseInt(line[2]);
+        let when = originalWhen;
+        if (Number.isNaN(when)) {
+          continue;
+        }
+        const remainingMinutes = listIsTimeBased ? when : when - Math.max(ageMinutes, 0);
+        const departureDate = listIsTimeBased
+          ? new Date(currentTime.getTime() + when * 60 * 1000)
+          : new Date(refDate.getTime() + originalWhen * 60 * 1000);
+        const depTime = dateFormat(departureDate, 'hh:mm');
+        const depMinTime = depTime;
+        const isNextDayDeparture = departureDate.toDateString() !== currentTime.toDateString();
         if (!this.depMode) {
-          this.depMode = (this.list.match(/:/g) ? 'deptime' : 'depmin');
+          this.depMode = (listIsTimeBased ? 'deptime' : 'depmin');
         }
         if (this.depMode === 'deptime') {
-          if (this.list.match(/:/g)) {
+          if (listIsTimeBased) {
             when = (when >= 0 ? depTime : '--:--');
-            if (line[2] > (1439 - isTimeMin) && this.hasAttribute('nextday')) {
+            if (isNextDayDeparture && this.hasAttribute('nextday')) {
               when = nextDay;//+', '+depTime;
             }
           } else {
-            when = (tsDep >= 0 ? depMinTime : '--:--');
-            if (tsDep > (1439 - isTimeMin) && this.hasAttribute('nextday')) {
+            when = (remainingMinutes >= 0 ? depMinTime : '--:--');
+            if (isNextDayDeparture && this.hasAttribute('nextday')) {
               when = nextDay;//+', '+depMinTime;
             }
           }
         } else {
-          if (this.list.match(/:/g)) {
+          if (listIsTimeBased) {
             when = (when >= 0 ? when : '-');
             if (when > this.depminsize && !this.hasAttribute('deptime') && !this.hasAttribute('depmin')) {
               when = depTime;
             }
-            if (line[2] > (1439 - isTimeMin) && this.hasAttribute('nextday')) {
+            if (isNextDayDeparture && this.hasAttribute('nextday')) {
               when = nextDay;//+', '+depTime;
             }
           } else {
-            when = (tsDep >= 0 ? tsDep : '-');
-            if (tsDep > this.depminsize && !this.hasAttribute('deptime') && !this.hasAttribute('depmin')) {
+            when = (remainingMinutes >= 0 ? remainingMinutes : '-');
+            if (remainingMinutes > this.depminsize && !this.hasAttribute('deptime') && !this.hasAttribute('depmin')) {
               when = depMinTime;
             }
-            if (tsDep > (1439 - isTimeMin) && this.hasAttribute('nextday')) {
+            if (isNextDayDeparture && this.hasAttribute('nextday')) {
               when = nextDay;//+', '+depMinTime;
             }
           }
@@ -309,7 +378,11 @@ export class FtuiDeparture extends FtuiElement {
       }
 
       this.elementId.innerHTML = text0;
-      ((!text1) ? this.dep.innerHTML = '<div style="text-align:center">' + 'keine Abfahrten vorhanden...' + '</div>' : this.elementDest.innerHTML = text1);
+      if (!text1) {
+        this.showEmptyState();
+      } else {
+        this.elementDest.innerHTML = text1;
+      }
       if (this.hasAttribute('depscroll') && this.shadowRoot.querySelector('.scrolltxt') !== null) {
         const scroll = this.shadowRoot.querySelectorAll('.scrolltxt');
         for (let i = 0; i < scroll.length; i++) {
@@ -323,7 +396,7 @@ export class FtuiDeparture extends FtuiElement {
         this.shadowRoot.querySelector('.top').scrollIntoView({ block: 'start', behavior: 'smooth' })
       }
     } else {
-      this.dep.innerHTML = '<div style="text-align:center">' + 'keine Abfahrten vorhanden...' + '</div>';
+      this.showEmptyState();
     }
   }
 }

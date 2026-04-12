@@ -16,7 +16,7 @@
 
 .dest {
   width: 100%;
-  max-width: 0px;
+  max-width: none;
   font-size: var(--departure-txtsize);
   white-space: nowrap;
   overflow: hidden;

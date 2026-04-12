@@ -9,7 +9,7 @@
 
 import { FtuiElement } from '../element.component.js';
 import { fhemService } from '../../modules/ftui/fhem.service.js';
-import { Chart } from '../../modules/chart.js/chart.js';
+import { Chart } from '../../modules/chart.js/chart.min.js';
 import * as ftuiHelper from '../../modules/ftui/ftui.helper.js';
 
 
@@ -80,7 +80,12 @@ export class FtuiChartData extends FtuiElement {
     const cmd = 'get ' + log + ' ' + file + ' - ' + startDateFormatted + ' ' + endDateFormatted + ' ' + spec;
     //const cmd ="{getChartData()}";
     fhemService.sendCommand(cmd)
-      .then(fhemService.checkText)
+      .then((response) => {
+        if (response.status >= 200 && response.status <= 299) {
+          return response.text();
+        }
+        throw new Error(response.statusText);
+      })
       .then((response) => {
         const { labels, data } = this.parseLogItems(response);
         this.data = data;

@@ -250,7 +250,7 @@ export function dateFormat(date, format) {
   const userLang = navigator.language || navigator.userLanguage;
   const lang = window.ftuiApp ? ftuiApp.config.lang : isDefined(userLang) ? userLang.split('-')[0] : 'de';
   let ret = String(format);
-  if (!date) { return ret; }
+  if (!date || typeof date.getTime !== 'function' || Number.isNaN(date.getTime())) { return ret; }
   const weekday_de = ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'];
   const weekday = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
   const months_de = ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'];
@@ -269,6 +269,7 @@ export function dateFormat(date, format) {
   const z = zzz.substring(0, 1);
   const d = date.getDay();
   const eeee = (lang === 'de') ? weekday_de[d] : weekday[d];
+  if (!eeee) { return ret; }
   const eee = eeee.substring(0, 3);
   const ee = eeee.substring(0, 2);
   ret = ret.replace('DD', (dd > 9) ? dd : '0' + dd);
