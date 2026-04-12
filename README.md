@@ -651,6 +651,7 @@ FTUI provides a rich set of web components for building interactive UIs.
 
 - **[Chart](#chart)** - Charts and graphs (powered by Chart.js)
 - **Medialist** - Media list display
+- **Solar Flow** - Energy flow visualization for solar, battery, grid, and home power
 
 ### Special Components
 
@@ -764,6 +765,31 @@ Display images with refresh capabilities.
     src="floorplan.png" 
     [refresh]="motion_sensor:state">
 </ftui-image>
+```
+
+---
+
+### Solar Flow
+
+Visualize power flow between solar input, battery, inverter, home, and grid.
+
+Use kebab-case HTML attributes for component properties. For example, `maxInverterPower` in the component is configured as `max-inverter-power` in markup, and `maxGridPower` is configured as `max-grid-power`.
+
+The `soc` attribute now renders correctly even when the value is exactly `100`, so no binding workaround like `| add(1)` is needed.
+
+**Example:**
+```html
+<ftui-solar-flow
+  [solar-power]="Zendure_Hub2000:properties_solarInputPower"
+  [soc]="Zendure_Hub2000:properties_electricLevel"
+  [inverter-power]="Zendure_Hub2000:properties_outputHomePower"
+  max-inverter-power="6000"
+  [home-power]="LeistungGesamt:state"
+  [grid-power]="SmartMeter:GS303_Power_cur"
+  max-grid-power="5000"
+  [battery-current]="Zendure_Hub2000:BatCurrent"
+  [grid-input-power]="Zendure_Hub2000:properties_gridInputPower">
+</ftui-solar-flow>
 ```
 
 ---

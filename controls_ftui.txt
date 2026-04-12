@@ -20,7 +20,7 @@ UPD 2026-04-12_11:04:13 4101 www/ftui/components/departure/departure.component.c
 UPD 2026-04-12_11:04:13 14529 www/ftui/components/departure/departure.component.js
 UPD 2025-11-29_13:17:15 950 www/ftui/components/dropdown/dropdown.component.css
 UPD 2025-11-29_13:17:15 3480 www/ftui/components/dropdown/dropdown.component.js
-UPD 2025-11-29_13:17:15 5711 www/ftui/components/element.component.js
+UPD 2026-04-12_11:51:33 5719 www/ftui/components/element.component.js
 UPD 2025-11-29_13:17:15 758 www/ftui/components/grid/grid-header.component.js
 UPD 2025-11-29_13:17:15 2131 www/ftui/components/grid/grid-tile.component.css
 UPD 2025-11-29_13:17:15 1074 www/ftui/components/grid/grid-tile.component.js
@@ -147,7 +147,7 @@ UPD 2025-11-29_13:17:06 4965 www/ftui/examples/popup.html
 UPD 2025-11-29_13:17:06 3576 www/ftui/examples/rotor.html
 UPD 2025-11-29_13:17:06 2380 www/ftui/examples/segment.html
 UPD 2025-11-29_13:17:06 5350 www/ftui/examples/slider.html
-UPD 2025-11-29_13:17:06 1390 www/ftui/examples/solar.html
+UPD 2026-04-12_11:51:33 1488 www/ftui/examples/solar.html
 UPD 2025-11-29_13:17:06 1293 www/ftui/examples/speak.html
 UPD 2025-11-29_13:17:06 20245 www/ftui/examples/swiper.html
 UPD 2025-11-29_13:17:06 1942 www/ftui/examples/switch.html

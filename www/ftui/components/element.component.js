@@ -199,7 +199,7 @@ export class FtuiElement extends HTMLElement {
   updateProperties() {
     Object.entries(this.properties).forEach(([name, defaultValue]) => {
       const attr = toKebabCase(name);
-      if (this.getAttribute(attr) === defaultValue) {
+      if (this.getAttribute(attr) === String(defaultValue)) {
         this.attributeChangedCallback(attr, null, defaultValue);
       }
     })
