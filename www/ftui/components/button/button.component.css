@@ -1,6 +1,8 @@
 :host {
   display: flex;
   --border-radius: 10px;
+  --border-width: 0;
+  --border-style: solid;
   --padding-top: 0;
   --padding-bottom: 0;
   --padding-start: 1em;
@@ -16,6 +18,9 @@
   min-height: var(--button-height);
   width: var(--button-width);
   min-width: var(--button-width);
+  --button-inner-background: transparent;
+  --button-inner-color: var(--color-base, #20639b);
+  --button-inner-shadow: none;
 }
 
 /* size */
@@ -57,9 +62,8 @@
   --border-width: 2px;
   --border-style: solid;
   --border-color: var(--color-base);
-  --background: transparent;
-  --color: var(--color-base);
-  --color-focused: var(--color-base);
+  --button-inner-background: transparent;
+  --button-inner-color: var(--color-base);
 }
 
 /* shape */
@@ -83,8 +87,8 @@
 }
 
 :host([fill="solid"]) .button-inner {
-  background: var(--color-base);
-  color: var(--color-contrast);
+  background: var(--button-solid-background, var(--color-base));
+  color: var(--button-solid-color, var(--color-contrast));
 }
 
 /* direction */
@@ -94,6 +98,8 @@
 
 :host(.activated) .button-inner {
   --color-base: var(--color-active);
+  background: var(--button-active-background, var(--button-inner-background));
+  opacity: var(--button-active-opacity, 1);
 }
 
 :host([fill="none"].activated) .button-inner {
@@ -122,6 +128,7 @@
   align-items: center;
   justify-content: space-evenly;
   width: 100%;
+  min-height: var(--button-height);
   border-radius: var(--border-radius);
   padding-left: unset;
   padding-right: unset;
@@ -130,6 +137,9 @@
   border-width: var(--border-width);
   border-style: var(--border-style);
   border-color: var(--border-color);
+  background: var(--button-inner-background);
+  color: var(--button-inner-color);
+  box-shadow: var(--button-inner-shadow);
 }
 
 /* ::slotted(ftui-icon) {

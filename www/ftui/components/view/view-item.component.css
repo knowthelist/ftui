@@ -83,6 +83,19 @@
   font: var(--text-font);
 }
 
+::slotted(ftui-button[slot=end]) {
+  --button-height: 1.85em;
+  --border-radius: 999px;
+  --border-width: 0;
+  --padding-start: 0.85em;
+  --padding-end: 0.85em;
+  --button-solid-background: transparent;
+  --button-solid-color: var(--primary-color);
+  --button-inner-color: var(--primary-color);
+  --button-active-background: color-mix(in srgb, var(--primary-color) 14%, transparent);
+  --button-active-opacity: 1;
+}
+
 ::slotted([slot=end]) {
   margin-inline-end: 0.5em;
   max-width: 60%;

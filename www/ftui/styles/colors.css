@@ -101,7 +101,7 @@
 
 [color="grid"] {
   --color-base: var(--grid-tile-background-color);
-  --color-contrast: var(--dark-contrast-color);
+  --color-contrast: var(--text-color);
 }
 
 [color="transparent"] {

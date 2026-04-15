@@ -8,7 +8,7 @@
 */
 
 import { FtuiElement } from '../element.component.js';
-import { fhemService } from '../../modules/ftui/fhem.service.js';
+import { backendService } from '../../modules/ftui/backend.service.js';
 import { isDefined } from '../../modules/ftui/ftui.helper.js';
 
 
@@ -20,7 +20,7 @@ export class FtuiSpeak extends FtuiElement {
       speechSynthesis.onvoiceschanged = this.findVoice.bind(this);
     }
 
-    this.readingName = this.binding.getReadingsOfAttribute('text')[0];
+    this.readingName = this.binding.getReadingsOfAttribute('text')[0] || null;
   }
 
   static get properties() {
@@ -37,17 +37,22 @@ export class FtuiSpeak extends FtuiElement {
     return [...this.convertToAttributes(FtuiSpeak.properties), ...super.observedAttributes];
   }
 
-  onAttributeChanged(name) {
+  onAttributeChanged(name, newValue, oldValue) {
     switch (name) {
       case 'lang':
         this.findVoice();
         break;
       case 'text': {
-        const readingData = fhemService.getReadingItem(this.readingName).data;
-        const isNewDate = readingData.time !== this.lastTextDate;
-        if (!this.disabled && this.text !== '' && isNewDate) {
-          this.lastTextDate = readingData.time;
-          this.speakText(this.text);
+        const readingData = this.readingName
+          ? backendService.getReadingItem(this.readingName).data
+          : null;
+        const readingTime = readingData && readingData.time;
+        const hasChanged = readingTime
+          ? readingTime !== this.lastTextToken
+          : newValue !== oldValue;
+        if (!this.disabled && newValue !== '' && hasChanged) {
+          this.lastTextToken = readingTime || null;
+          this.speakText(newValue);
         }
         break;
       }

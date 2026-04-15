@@ -221,13 +221,22 @@ export function capitalize(s) {
 // date functions
 
 export function dateFromString(str) {
-  const regex1 = /(\d+)-(\d+)-(\d+)[_\s](\d+):(\d+):(\d+).*/;
+  const regex1 = /(\d+)-(\d+)-(\d+)[T_\s](\d+):(\d+):(\d+).*/;
   const regex2 = /^(\d+)$/;
   const regex3 = /(\d\d).(\d\d).(\d\d\d\d)/;
   const regex4 = /(\d\d\d\d)-(\d\d)-(\d\d)/;
   const offset = new Date().getTimezoneOffset();
 
   let date = new Date();
+  const normalized = typeof str === 'string' ? str.trim() : '';
+
+  // Let the browser handle ISO-8601 timestamps from Home Assistant, including timezone offsets.
+  if (normalized && /T|Z$|[+-]\d\d:\d\d$/.test(normalized)) {
+    const nativeDate = new Date(normalized);
+    if (!Number.isNaN(nativeDate.getTime())) {
+      return nativeDate;
+    }
+  }
 
   if (regex1.test(str)) {
     const [, year, month, day, hours, minutes, seconds] = regex1.exec(str);
