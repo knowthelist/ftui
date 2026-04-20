@@ -169,7 +169,12 @@ export function isAppVisible() {
 }
 
 export function isVisible(element) {
-  return (element.offsetParent !== null);
+  const popupParent = element.closest('ftui-popup');
+  if (popupParent) {
+    return popupParent.offsetParent !== null && element.offsetParent !== null;
+  }
+
+  return element.offsetParent !== null;
 }
 
 export function isDefined(value) {

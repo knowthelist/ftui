@@ -5,7 +5,7 @@ UPD 2025-11-29_13:17:15 2762 www/ftui/components/button/button.component.js
 UPD 2025-11-29_13:17:15 3451 www/ftui/components/cell/cell.component.js
 UPD 2025-11-29_13:17:15 754 www/ftui/components/chart/chart-controls.component.css
 UPD 2025-11-29_13:17:15 3865 www/ftui/components/chart/chart-controls.component.js
-UPD 2026-04-12_00:18:44 5417 www/ftui/components/chart/chart-data.component.js
+UPD 2026-04-20_20:35:34 5447 www/ftui/components/chart/chart-data.component.js
 UPD 2025-11-29_13:17:15 231 www/ftui/components/chart/chart.component.css
 UPD 2026-04-11_23:50:25 13107 www/ftui/components/chart/chart.component.js
 UPD 2025-11-29_13:17:15 297 www/ftui/components/checkbox/checkbox.component.css
@@ -744,7 +744,7 @@ UPD 2026-04-11_21:20:28 6329 www/ftui/modules/ftui/backend.service.js
 UPD 2026-04-20_19:58:20 15790 www/ftui/modules/ftui/fhem.service.js
 UPD 2026-02-10_22:12:31 9008 www/ftui/modules/ftui/ftui.app.js
 UPD 2025-11-29_13:17:15 13473 www/ftui/modules/ftui/ftui.binding.js
-UPD 2026-04-12_13:53:13 15810 www/ftui/modules/ftui/ftui.helper.js
+UPD 2026-04-20_20:35:34 15966 www/ftui/modules/ftui/ftui.helper.js
 UPD 2026-04-11_22:07:32 26288 www/ftui/modules/ftui/ha.service.js
 UPD 2025-11-29_13:17:15 9326 www/ftui/modules/hocon/hocon.js
 UPD 2025-11-29_13:17:15 3199 www/ftui/modules/hocon/hocon.min.js
