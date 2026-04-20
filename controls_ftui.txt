@@ -1,6 +1,6 @@
 UPD 2025-11-29_13:17:15 1622 www/ftui/components/badge/badge.component.js
 UPD 2025-11-29_13:17:15 1384 www/ftui/components/button/button-nice.component.js
-UPD 2026-04-12_17:45:49 3367 www/ftui/components/button/button.component.css
+UPD 2026-04-20_22:29:53 3409 www/ftui/components/button/button.component.css
 UPD 2025-11-29_13:17:15 2762 www/ftui/components/button/button.component.js
 UPD 2025-11-29_13:17:15 3451 www/ftui/components/cell/cell.component.js
 UPD 2025-11-29_13:17:15 754 www/ftui/components/chart/chart-controls.component.css
