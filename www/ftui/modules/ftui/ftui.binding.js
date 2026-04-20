@@ -121,7 +121,7 @@ export class FtuiBinding {
               filteredValue = filteredValue.replace(/\$value/g, value);
             }
             if (String(this.element[attribute]) !== String(filteredValue)) {
-              ftuiHelper.log(1, `${this.element.id}  -  onReadingEvent: set this.${attribute}=${filteredValue}`);
+              ftuiHelper.log(5, `${this.element.id}  -  onReadingEvent: set this.${attribute}=${filteredValue}`);
               if (this.isThirdPartyElement || attribute.startsWith('attr.')) {
                 if (attribute.startsWith('attr.')) {
                   attribute = attribute.split('.')[1];

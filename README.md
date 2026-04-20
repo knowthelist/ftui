@@ -487,7 +487,7 @@ Binding values can be transformed using pipe functions. Multiple pipes can be ch
 | `map('in:out,...')` | Map values | `"on" \| map('on:green,off:red')` → `"green"` |
 | `filter('val,val,...')` | Filter matching values | `"test" \| filter('test,demo')` → `"test"` |
 | `step('val:out,...')` | Step-based mapping | `15 \| step('0:cold,10:ok,20:warm')` → `"ok"` |
-| `scale(minIn,maxIn,minOut,maxOut)` | Scale value range | `50 \| scale(0,100,0,255)` → `127.5` |
+| `scale(minIn,maxIn,minOut,maxOut)` | Scale value range, clamped to bounds | `50 \| scale(0,100,0,255)` → `127.5` |
 | `ago()` | Time ago | `timestamp \| ago()` → `"2 hours ago"` |
 | `till()` | Time until | `timestamp \| till()` → `"in 3 hours"` |
 | `timeFormat(format,inputMode,formatMode)` | Format time | `3661 \| timeFormat('HH:mm:ss')` → `"01:01:01"` |

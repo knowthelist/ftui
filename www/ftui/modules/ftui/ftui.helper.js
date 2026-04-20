@@ -438,9 +438,16 @@ export function formatMoney(amount) {
 }
 
 export function scale(value, minIn, maxIn, minOut, maxOut) {
+  if (minIn === maxIn) {
+    return minOut;
+  }
+
+  const lowerBound = Math.min(minIn, maxIn);
+  const upperBound = Math.max(minIn, maxIn);
+  const limitedValue = limit(value, lowerBound, upperBound);
   const slope = (minOut - maxOut) / (minIn - maxIn);
   const intercept = slope * -(minIn) + minOut;
-  return value * slope + intercept;
+  return limitedValue * slope + intercept;
 }
 
 export function limit(value, minIn, maxIn) {
