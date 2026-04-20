@@ -80,15 +80,37 @@ export class FtuiCircleMenu extends FtuiElement {
     }
   }
 
+  getOverflowParents() {
+    const selector = 'ftui-grid-tile, ftui-popup, ftui-cell, ftui-row, ftui-column';
+    const parents = [];
+    let parent = this.parentElement;
+
+    while (parent) {
+      if (parent.matches && parent.matches(selector)) {
+        parents.push(parent);
+      }
+      parent = parent.parentElement;
+    }
+
+    return parents;
+  }
+
   onClickOverlay() {
     this.circleMenu.close(true);
   }
 
   onOpen() {
-    const parent = this.closest('ftui-grid-tile, ftui-popup');
-    if (parent) {
-      parent.style.overflow = 'visible';
-    }
+    this.overflowParents = this.getOverflowParents().map(parent => {
+      return {
+        element: parent,
+        overflow: parent.style.overflow,
+      };
+    });
+
+    this.overflowParents.forEach(entry => {
+      entry.element.style.overflow = 'visible';
+    });
+
     this.elementOverlay.classList.add('fixed');
     if (!this.keepOpen) {
       setTimeout(() => this.circleMenu.close(true), this.timeout * 1000);
@@ -96,10 +118,9 @@ export class FtuiCircleMenu extends FtuiElement {
   }
 
   onClose() {
-    const parent = this.closest('ftui-grid-tile, ftui-popup');
-    if (parent) {
-      parent.style.overflow = 'hidden';
-    }
+    (this.overflowParents || []).forEach(entry => {
+      entry.element.style.overflow = entry.overflow || '';
+    });
     this.elementOverlay.classList.remove('fixed');
   }
 

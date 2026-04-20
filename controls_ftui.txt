@@ -10,7 +10,7 @@ UPD 2025-11-29_13:17:15 231 www/ftui/components/chart/chart.component.css
 UPD 2026-04-11_23:50:25 13107 www/ftui/components/chart/chart.component.js
 UPD 2025-11-29_13:17:15 297 www/ftui/components/checkbox/checkbox.component.css
 UPD 2025-11-29_13:17:15 2258 www/ftui/components/checkbox/checkbox.component.js
-UPD 2025-11-29_13:17:15 2556 www/ftui/components/circlemenu/circlemenu.component.js
+UPD 2026-04-20_22:50:41 3045 www/ftui/components/circlemenu/circlemenu.component.js
 UPD 2026-01-19_11:51:34 2261 www/ftui/components/clock/clock.component.js
 UPD 2025-11-29_13:17:15 3805 www/ftui/components/colorpicker/colorpicker.component.js
 UPD 2025-11-29_13:17:15 574 www/ftui/components/column/column.component.js
