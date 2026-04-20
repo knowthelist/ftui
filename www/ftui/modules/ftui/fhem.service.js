@@ -21,6 +21,8 @@ class FhemService {
         filter: ''
       }
     };
+
+    this.csrfRequest = null;
     
     this.states = {
       lastRefresh: 0,
@@ -54,6 +56,8 @@ class FhemService {
   }
 
   setConfig(config) {
+    const previousFhemDir = this.config.fhemDir;
+
     this.config = {
       ...this.config,
       ...config,
@@ -66,6 +70,11 @@ class FhemService {
         ...(config.update || {}),
       }
     };
+
+    if (config.fhemDir && config.fhemDir !== previousFhemDir) {
+      this.config.csrf = '';
+      this.csrfRequest = null;
+    }
   }
 
   getReadingEvents(readingName) {
@@ -377,20 +386,23 @@ class FhemService {
   }
 
   sendCommand(cmdline = '', async = '0') {
-    const url = new URL(this.config.fhemDir);
-    const params = {
-      cmd: cmdline,
-      asyncCmd: async,
-      fwcsrf: this.config.csrf,
-      XHR: '1',
-    };
-    const options = {
-      username: this.config.username,
-      password: this.config.password,
-    };
-    url.search = new URLSearchParams(params)
-    log(1, '[fhemService] send to FHEM: ' + cmdline);
-    return fetch(url, options);
+    return this.ensureCSrf()
+      .then(() => {
+        const url = new URL(this.config.fhemDir);
+        const params = {
+          cmd: cmdline,
+          asyncCmd: async,
+          fwcsrf: this.config.csrf,
+          XHR: '1',
+        };
+        const options = {
+          username: this.config.username,
+          password: this.config.password,
+        };
+        url.search = new URLSearchParams(params);
+        log(1, '[fhemService] send to FHEM: ' + cmdline);
+        return fetch(url, options);
+      });
   }
 
   onUpdateDone() {
@@ -408,13 +420,41 @@ class FhemService {
   }
 
   fetchCSrf() {
-    return fetch(this.config.fhemDir + '?XHR=1', {
+    if (!this.config.fhemDir) {
+      return Promise.reject(new Error('FHEM URL is not configured'));
+    }
+
+    if (this.config.csrf) {
+      return Promise.resolve(this.config.csrf);
+    }
+
+    if (this.csrfRequest) {
+      return this.csrfRequest;
+    }
+
+    this.csrfRequest = fetch(this.config.fhemDir + '?XHR=1', {
       cache: 'no-cache',
     })
       .then(response => {
         this.config.csrf = response.headers.get('X-FHEM-csrfToken');
         log(1, 'Got csrf from FHEM:' + this.config.csrf);
+        this.csrfRequest = null;
+        return this.config.csrf;
+      })
+      .catch(fetchError => {
+        this.csrfRequest = null;
+        throw fetchError;
       });
+
+    return this.csrfRequest;
+  }
+
+  ensureCSrf() {
+    if (this.config.csrf) {
+      return Promise.resolve(this.config.csrf);
+    }
+
+    return this.fetchCSrf();
   }
 
   scheduleHealthCheck() {
