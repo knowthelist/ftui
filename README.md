@@ -456,6 +456,14 @@ Components provide events that trigger on attribute changes. The `$event` object
 </ftui-dropdown>
 ```
 
+```html
+<ftui-dropdown
+  list="Living Room,Kitchen,Bedroom"
+  vallist="living,kitchen,bedroom"
+  value="kitchen">
+</ftui-dropdown>
+```
+
 Use events to communicate between components and trigger custom JavaScript.
 
 ---

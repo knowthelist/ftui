@@ -184,7 +184,17 @@
     <ftui-grid-tile row="4" col="1" height="1" width="1">
       <ftui-grid-header>Delimiter</ftui-grid-header>
       <ftui-dropdown [list]="dummy4:setList" [(value)]="dummy4" delimiter=","></ftui-dropdown>
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="4" col="2" height="1" width="1">
+      <ftui-grid-header>Separate Values</ftui-grid-header>
+      <ftui-dropdown
+        list="Living Room,Kitchen,Bedroom"
+        vallist="living,kitchen,bedroom"
+        value="kitchen"
+        width="12em">
       </ftui-dropdown>
+    </ftui-grid-tile>
 
   </ftui-grid>
 

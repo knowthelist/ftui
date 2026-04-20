@@ -36,6 +36,7 @@ export class FtuiDropdown extends FtuiElement {
   static get properties() {
     return {
       list: '',
+      vallist: '',
       value: '',
       delimiter: '', // optional, will be auto-detected if not set
       width: '',
@@ -56,6 +57,7 @@ export class FtuiDropdown extends FtuiElement {
   onAttributeChanged(name) {
     switch (name) {
       case 'list':
+      case 'vallist':
         this.fillList();
         break;
       case 'value':
@@ -69,13 +71,12 @@ export class FtuiDropdown extends FtuiElement {
   }
 
   fillList() {
-    this.options = []; // empty the list before filling it
-    const list = this.parseList();
-    this.options = list; // update the options array
+    this.options = [];
+    this.options = this.parseList();
     if (this.placeholder) {
       this.options.unshift({ value: '', text: this.placeholder });
     }
-    this.selectElement.innerHTML = ''; // clear the select element
+    this.selectElement.innerHTML = '';
     this.options.forEach(option => {
       const optionElement = document.createElement('option');
       optionElement.value = option.value;
@@ -83,44 +84,62 @@ export class FtuiDropdown extends FtuiElement {
       this.selectElement.appendChild(optionElement);
     });
 
-    this.selectElement.value = this.value; // Set the selected value
+    this.selectElement.value = this.value;
   }
 
   parseList() {
-    const list = this.list;
-    const delimiter = this.delimiter;
+    const textParts = this.splitList(this.list);
+    const valueParts = this.vallist ? this.splitList(this.vallist) : [];
+    const hasValueList = valueParts.length === textParts.length;
+    const listDelimiter = this.getDelimiter(String(this.list || ''));
 
-    if (delimiter) {
-      // use custom delimiter
-      const parts = list.split(delimiter);
-      return parts.map(part => {
-        if (part.includes(':')) {
-          const [value, text] = part.split(':');
-          return { value, text };
-        } else {
-          return { value: part, text: part };
-        }
-      });
-    } else {
-      // auto-detect delimiter
-      const delimiterRegex = /[,:;|]/; // common delimiters
-      const matches = list.match(delimiterRegex);
-      if (matches) {
-        const detectedDelimiter = matches[0];
-        const parts = list.split(detectedDelimiter);
-        return parts.map(part => {
-          if (part.includes(':')) {
-            const [value, text] = part.split(':');
-            return { value, text };
-          } else {
-            return { value: part, text: part };
-          }
-        });
-      } else {
-        // no delimiter detected, assume simple value list
-        return list.split(',').map(value => ({ value, text: value }));
+    return textParts.map((part, index) => {
+      const option = this.parseOption(part, listDelimiter);
+      if (hasValueList) {
+        option.value = valueParts[index];
       }
+
+      return option;
+    });
+  }
+
+  splitList(list) {
+    const source = String(list || '');
+    const delimiter = this.getDelimiter(source);
+    return source.split(delimiter).map(part => part.trim());
+  }
+
+  getDelimiter(list) {
+    if (this.delimiter) {
+      return this.delimiter;
     }
+
+    if (list.indexOf(',') > -1) {
+      return ',';
+    }
+    if (list.indexOf(';') > -1) {
+      return ';';
+    }
+    if (list.indexOf('|') > -1) {
+      return '|';
+    }
+    if (list.indexOf(':') > -1) {
+      return ':';
+    }
+
+    return ',';
+  }
+
+  parseOption(part, listDelimiter) {
+    const textSeparatorIndex = part.indexOf(':');
+    if (textSeparatorIndex > -1 && listDelimiter !== ':') {
+      return {
+        value: part.slice(0, textSeparatorIndex).trim(),
+        text: part.slice(textSeparatorIndex + 1).trim(),
+      };
+    }
+
+    return { value: part, text: part };
   }
 
 }

@@ -19,7 +19,7 @@ UPD 2025-11-29_13:17:15 2588 www/ftui/components/content/content.component.js
 UPD 2026-04-12_11:04:13 4101 www/ftui/components/departure/departure.component.css
 UPD 2026-04-12_11:04:13 14529 www/ftui/components/departure/departure.component.js
 UPD 2025-11-29_13:17:15 950 www/ftui/components/dropdown/dropdown.component.css
-UPD 2025-11-29_13:17:15 3480 www/ftui/components/dropdown/dropdown.component.js
+UPD 2026-04-20_21:51:25 3622 www/ftui/components/dropdown/dropdown.component.js
 UPD 2026-04-12_11:51:33 5719 www/ftui/components/element.component.js
 UPD 2025-11-29_13:17:15 758 www/ftui/components/grid/grid-header.component.js
 UPD 2025-11-29_13:17:15 2131 www/ftui/components/grid/grid-tile.component.css
@@ -122,7 +122,7 @@ UPD 2025-11-29_13:17:06 189 www/ftui/examples/contents/mobile-view1.html
 UPD 2026-04-11_23:50:27 3263 www/ftui/examples/contents/mobile-water.html
 UPD 2025-11-29_13:17:06 4499 www/ftui/examples/contents/mobile-windows.html
 UPD 2025-11-29_13:17:06 2787 www/ftui/examples/departure.html
-UPD 2025-11-29_13:17:06 5628 www/ftui/examples/dropdown.html
+UPD 2026-04-20_21:51:25 5941 www/ftui/examples/dropdown.html
 UPD 2025-11-29_13:17:06 8481 www/ftui/examples/grid.html
 UPD 2025-11-29_13:17:06 988 www/ftui/examples/grid_resize.html
 UPD 2025-11-29_13:17:06 932 www/ftui/examples/grid_responsive.html
@@ -744,7 +744,7 @@ UPD 2026-04-11_21:20:28 6329 www/ftui/modules/ftui/backend.service.js
 UPD 2026-04-20_19:58:20 15790 www/ftui/modules/ftui/fhem.service.js
 UPD 2026-02-10_22:12:31 9008 www/ftui/modules/ftui/ftui.app.js
 UPD 2026-04-20_21:21:42 13473 www/ftui/modules/ftui/ftui.binding.js
-UPD 2026-04-20_20:43:26 16173 www/ftui/modules/ftui/ftui.helper.js
+UPD 2026-04-20_21:33:50 16173 www/ftui/modules/ftui/ftui.helper.js
 UPD 2026-04-11_22:07:32 26288 www/ftui/modules/ftui/ha.service.js
 UPD 2025-11-29_13:17:15 9326 www/ftui/modules/hocon/hocon.js
 UPD 2025-11-29_13:17:15 3199 www/ftui/modules/hocon/hocon.min.js
