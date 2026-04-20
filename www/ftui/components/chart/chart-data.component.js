@@ -102,18 +102,31 @@ export class FtuiChartData extends FtuiElement {
     const data = [];
     const labels = [];
     const lines = response.split('\n').filter(l => l.length > 0 && !l.startsWith('#'));
+    if (lines.length === 0) {
+      return { labels, data };
+    }
+
     const timeStep = this.rangeDate / 150;
     let risingDate = this.startDate;
     const risingValue = this.offset + 1;
+    const lastLine = lines[lines.length - 1].split(' ');
+    const lastDate = lastLine[0];
+    const lastValue = lastLine[1];
+    const extendDate = this.getExtendDate(lastDate);
+
     if (this.type === 'bubble' && this.stepped) {
       // fill missing start and end points
       if (lines[0].split(' ')[1] === '0') {
         lines.unshift(this.startDate + ' 1');
       }
-      if (lines[lines.length-1].split(' ')[1] !== '0') {
-        lines.push(this.endDate + ' 0');
+      if (lastValue !== '0') {
+        const endMarkerDate = extendDate || this.endDate;
+        if (endMarkerDate !== lastDate) {
+          lines.push(endMarkerDate + ' 0');
+        }
       }
     }
+
     lines.forEach(line => {
       const [date, value] = line.split(' ');
       if (date && ftuiHelper.isNumeric(value)) {
@@ -138,10 +151,29 @@ export class FtuiChartData extends FtuiElement {
       }
     });
 
-    /*     if (value && this.extend && this.endDate > now) {
-      data.push({ 'x': now, 'y': parseFloat(value) + parseFloat(this.offset) });
-    } */
+    if (extendDate && this.type !== 'bubble' && ftuiHelper.isNumeric(lastValue)) {
+      data.push({ 'x': extendDate, 'y': parseFloat(lastValue) + parseFloat(this.offset) });
+      labels.push(extendDate);
+    }
+
     return { labels, data };
+  }
+
+  getExtendDate(lastDate) {
+    if (!this.extend || !lastDate) {
+      return null;
+    }
+
+    const endDate = ftuiHelper.dateFromString(this.endDate);
+    const now = new Date();
+    const targetDate = endDate.getTime() > now.getTime() ? now : endDate;
+    const lastTimestamp = ftuiHelper.dateFromString(lastDate).getTime();
+
+    if (targetDate.getTime() <= lastTimestamp) {
+      return null;
+    }
+
+    return ftuiHelper.dateFormat(targetDate, 'YYYY-MM-DD_hh:mm:ss');
   }
 
   onAttributeChanged(name) {

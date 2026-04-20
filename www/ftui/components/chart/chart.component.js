@@ -345,6 +345,20 @@ export class FtuiChart extends FtuiElement {
     }
   }
 
+  normalizeDataset(dataset) {
+    const datasetType = dataset.type || this.type;
+
+    if (datasetType !== 'line') {
+      dataset.stepped = false;
+    }
+
+    if (datasetType !== 'line' && datasetType !== 'radar') {
+      dataset.tension = 0;
+    }
+
+    return dataset;
+  }
+
   onDataChanged(event) {
     const dataElement = event.target
     const dataset = {};
@@ -353,6 +367,7 @@ export class FtuiChart extends FtuiElement {
     });
 
     dataset.data = dataElement.data;
+    this.normalizeDataset(dataset);
     if (dataElement.yAxisID === 'y1') {
       this.hasY1Data = true;
     }
@@ -366,7 +381,7 @@ export class FtuiChart extends FtuiElement {
 
     this.updateControls();
     // run chart update async
-    Promise.resolve().then(this.chart.update());
+    Promise.resolve().then(() => this.chart.update());
     // disable animation after first update
     this.configuration.options.animation.duration = 0;
   }

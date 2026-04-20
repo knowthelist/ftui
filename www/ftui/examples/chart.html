@@ -90,6 +90,33 @@
 
     </ftui-grid-tile>
 
+    <ftui-grid-tile row="5" col="1" height="2" width="3">
+      <ftui-grid-header>STEPPED EXTEND</ftui-grid-header>
+
+      <ftui-chart title="On/off state to now" y-label="State" y-min="0" y-max="4" unit="24h" extend>
+        <ftui-chart-data color="alert"
+                         log="FileLog_EingangstuerRiegel"
+                         label="locked"
+                         spec="4:EingangstuerRiegel::$fld[2]=~'closed'?1:0"
+                         offset="2"
+                         point-radius="0"
+                         border-width="2"
+                         stepped>
+        </ftui-chart-data>
+        <ftui-chart-data color="warning"
+                         log="FileLog_FlurAnwesenheit"
+                         label="presence"
+                         spec="4:FlurAnwesenheit.getG1::$fld[3]=~'on'?1:0"
+                         offset="1"
+                         point-radius="0"
+                         border-width="2"
+                         stepped>
+        </ftui-chart-data>
+        <ftui-chart-controls units="day, 24h, 30d"></ftui-chart-controls>
+      </ftui-chart>
+
+    </ftui-grid-tile>
+
   </ftui-grid>
 
 </body>

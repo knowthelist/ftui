@@ -5,9 +5,9 @@ UPD 2025-11-29_13:17:15 2762 www/ftui/components/button/button.component.js
 UPD 2025-11-29_13:17:15 3451 www/ftui/components/cell/cell.component.js
 UPD 2025-11-29_13:17:15 754 www/ftui/components/chart/chart-controls.component.css
 UPD 2025-11-29_13:17:15 3865 www/ftui/components/chart/chart-controls.component.js
-UPD 2026-04-20_20:35:34 5447 www/ftui/components/chart/chart-data.component.js
+UPD 2026-04-20_23:10:34 6322 www/ftui/components/chart/chart-data.component.js
 UPD 2025-11-29_13:17:15 231 www/ftui/components/chart/chart.component.css
-UPD 2026-04-11_23:50:25 13107 www/ftui/components/chart/chart.component.js
+UPD 2026-04-20_23:58:43 13423 www/ftui/components/chart/chart.component.js
 UPD 2025-11-29_13:17:15 297 www/ftui/components/checkbox/checkbox.component.css
 UPD 2025-11-29_13:17:15 2258 www/ftui/components/checkbox/checkbox.component.js
 UPD 2026-04-20_22:50:41 3045 www/ftui/components/circlemenu/circlemenu.component.js
@@ -86,8 +86,8 @@ UPD 2025-11-29_13:17:06 1995 www/ftui/examples/badge.html
 UPD 2025-11-29_13:17:06 1709 www/ftui/examples/binding.html
 UPD 2025-11-29_13:17:06 933 www/ftui/examples/button-nice.html
 UPD 2025-11-29_13:17:06 13409 www/ftui/examples/button.html
-UPD 2025-11-29_13:17:06 3408 www/ftui/examples/chart.html
-UPD 2025-11-29_13:17:06 2252 www/ftui/examples/chart2.html
+UPD 2026-04-20_23:52:16 4532 www/ftui/examples/chart.html
+UPD 2026-04-21_00:01:21 2252 www/ftui/examples/chart2.html
 UPD 2025-11-29_13:17:06 1828 www/ftui/examples/checkbox.html
 UPD 2025-11-29_13:17:06 9558 www/ftui/examples/circlemenu.html
 UPD 2025-11-29_13:17:06 1720 www/ftui/examples/clock.html
