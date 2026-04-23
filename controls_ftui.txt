@@ -7,7 +7,7 @@ UPD 2025-11-29_13:17:15 754 www/ftui/components/chart/chart-controls.component.c
 UPD 2025-11-29_13:17:15 3865 www/ftui/components/chart/chart-controls.component.js
 UPD 2026-04-20_23:10:34 6322 www/ftui/components/chart/chart-data.component.js
 UPD 2025-11-29_13:17:15 231 www/ftui/components/chart/chart.component.css
-UPD 2026-04-20_23:58:43 13423 www/ftui/components/chart/chart.component.js
+UPD 2026-04-21_00:08:01 13423 www/ftui/components/chart/chart.component.js
 UPD 2025-11-29_13:17:15 297 www/ftui/components/checkbox/checkbox.component.css
 UPD 2025-11-29_13:17:15 2258 www/ftui/components/checkbox/checkbox.component.js
 UPD 2026-04-20_22:50:41 3045 www/ftui/components/circlemenu/circlemenu.component.js
@@ -32,7 +32,7 @@ UPD 2025-11-29_13:17:15 8329 www/ftui/components/image/image_not_available.js
 UPD 2025-11-29_13:17:15 2660 www/ftui/components/input/input.component.js
 UPD 2025-11-29_13:17:15 1252 www/ftui/components/knob/knob.component.css
 UPD 2026-02-11_21:52:06 15174 www/ftui/components/knob/knob.component.js
-UPD 2025-11-29_13:17:15 4520 www/ftui/components/label/label.component.js
+UPD 2026-04-21_21:04:21 4520 www/ftui/components/label/label.component.js
 UPD 2025-11-29_13:17:15 1816 www/ftui/components/main/main.component.js
 UPD 2025-11-29_13:17:15 2265 www/ftui/components/map/map.component.js
 UPD 2025-11-29_13:17:15 180 www/ftui/components/medialist/album_icon.svg
@@ -54,7 +54,7 @@ UPD 2025-11-29_13:17:15 1479 www/ftui/components/segment/segment-button.componen
 UPD 2025-11-29_13:17:15 1066 www/ftui/components/segment/segment.component.css
 UPD 2025-11-29_13:17:15 2907 www/ftui/components/segment/segment.component.js
 UPD 2025-11-29_13:17:15 3698 www/ftui/components/slider/slider.component.css
-UPD 2025-11-29_13:17:15 3768 www/ftui/components/slider/slider.component.js
+UPD 2026-04-23_21:10:37 4308 www/ftui/components/slider/slider.component.js
 UPD 2025-11-29_13:17:15 767 www/ftui/components/solar/solar-flow.component.css
 UPD 2025-11-29_13:17:15 16754 www/ftui/components/solar/solar-flow.component.js
 UPD 2026-04-15_08:01:53 2330 www/ftui/components/speak/speak.component.js
@@ -86,7 +86,7 @@ UPD 2025-11-29_13:17:06 1995 www/ftui/examples/badge.html
 UPD 2025-11-29_13:17:06 1709 www/ftui/examples/binding.html
 UPD 2025-11-29_13:17:06 933 www/ftui/examples/button-nice.html
 UPD 2025-11-29_13:17:06 13409 www/ftui/examples/button.html
-UPD 2026-04-20_23:52:16 4532 www/ftui/examples/chart.html
+UPD 2026-04-21_00:08:01 4532 www/ftui/examples/chart.html
 UPD 2026-04-21_00:01:21 2252 www/ftui/examples/chart2.html
 UPD 2025-11-29_13:17:06 1828 www/ftui/examples/checkbox.html
 UPD 2025-11-29_13:17:06 9558 www/ftui/examples/circlemenu.html
@@ -745,7 +745,7 @@ UPD 2026-04-20_19:58:20 15790 www/ftui/modules/ftui/fhem.service.js
 UPD 2026-02-10_22:12:31 9008 www/ftui/modules/ftui/ftui.app.js
 UPD 2026-04-20_21:21:42 13473 www/ftui/modules/ftui/ftui.binding.js
 UPD 2026-04-20_21:33:50 16173 www/ftui/modules/ftui/ftui.helper.js
-UPD 2026-04-11_22:07:32 26288 www/ftui/modules/ftui/ha.service.js
+UPD 2026-04-22_21:59:24 29742 www/ftui/modules/ftui/ha.service.js
 UPD 2025-11-29_13:17:15 9326 www/ftui/modules/hocon/hocon.js
 UPD 2025-11-29_13:17:15 3199 www/ftui/modules/hocon/hocon.min.js
 UPD 2025-11-29_13:17:15 65090 www/ftui/modules/iro.js/iro.js

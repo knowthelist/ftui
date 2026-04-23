@@ -89,6 +89,8 @@ export class FtuiSlider extends FtuiElement {
       handle: 'default',
       type: 'single',
       color: 'primary',
+      width: '',
+      height: '',
     }
   }
 
@@ -96,7 +98,22 @@ export class FtuiSlider extends FtuiElement {
     return [...this.convertToAttributes(FtuiSlider.properties), ...super.observedAttributes];
   }
 
+  onConnected() {
+    var w = this.getAttribute('width');
+    var h = this.getAttribute('height');
+    if (w) { this.style.width = ftui.isNumeric(w) ? w + 'em' : w; }
+    if (h) { this.style.height = ftui.isNumeric(h) ? h + 'em' : h; }
+  }
+
   onAttributeChanged(name, newValue, oldValue) {
+    switch (name) {
+      case 'width':
+        this.style.width = ftui.isNumeric(newValue) ? newValue + 'em' : newValue;
+        return;
+      case 'height':
+        this.style.height = ftui.isNumeric(newValue) ? newValue + 'em' : newValue;
+        return;
+    }
     if (oldValue !== newValue && !this.isDragging) {
       this.updateRangable();
     }
