@@ -38,7 +38,7 @@ export class FtuiLabel extends FtuiElement {
         :host([align-items=baseline])  { align-items: baseline;}
         :host(:empty:not([text])) slot[name="unit"],
         :host([text=""]) slot[name="unit"] { visibility: hidden; }
-        :host slot[name="unit"] { margin-left: 0.15em; display: initial; }
+        :host slot[name="unit"] { margin-left: 0.05em; display: initial; }
         :host([scroll]),:host([wrap]) { overflow: auto; white-space: normal;align-self: self-start; }
         :host([bold]) { font-weight: bold; }
         :host([thin]) { font-weight: lighter; }

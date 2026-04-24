@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <base href="../" />
+  <script src="ftui.js"></script>
+  <link href="ftui.css" rel="stylesheet">
+  <link href="themes/ftui-theme.css" rel="stylesheet">
+  <link href="favicon.ico" rel="icon" type="image/x-icon" />
+
+  <meta name="debug" content="0">
+
+  <title>FTUI Example Mediaplayer (FHEM · Sonos)</title>
+</head>
+
+<body>
+
+  <ftui-grid base-width="125" base-height="105" margin="1" shape="round">
+
+    <ftui-grid-tile row="1" col="1" width="4" height="2">
+      <ftui-mediaplayer
+        currentplayer="Sonos_Play5"
+        label="Sonos Play5"
+        [title]="Sonos_Play5:currentTitle"
+        [subtitle]="Sonos_Play5:currentArtist"
+        [artwork]="Sonos_Play5:currentAlbumArtURL"
+        [state]="Sonos_Play5:state"
+        playerlist="Sonos_Play5:Play5:Play5"
+        (action)="set Sonos_Play5 $value">
+      </ftui-mediaplayer>
+    </ftui-grid-tile>
+
+    <ftui-grid-tile row="3" col="1" width="4" height="6">
+      <ftui-mediaplayer
+        variant="maxi"
+        currentplayer="Sonos_Play5"
+        label="Sonos Play5"
+        [title]="Sonos_Play5:currentTitle"
+        [subtitle]="Sonos_Play5:currentArtist"
+        [artwork]="Sonos_Play5:currentAlbumArtURL"
+        [state]="Sonos_Play5:state"
+        [volume]="Sonos_Play5:Volume"
+        volumemax="100"
+        volumestep="1"
+        [playerlist]="Sonos:AllPlayer"
+        (action)="Sonos_Play5 $value"
+        (volume)="Sonos_Play5 Volume $value"
+        [position]="Sonos_Play5:currentTrackPositionSec"
+        [duration]="Sonos_Play5:currentTrackDurationSec"
+        (seek)="Sonos_Play5 CurrentTrackPosition $value">
+      </ftui-mediaplayer>
+    </ftui-grid-tile>
+
+  </ftui-grid>
+
+</body>
+
+</html>

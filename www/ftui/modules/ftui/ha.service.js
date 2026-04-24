@@ -654,6 +654,27 @@ class HomeAssistantService {
       case 'previous_track':
         action = 'media_previous_track';
         break;
+      case 'volume_set':
+      case 'volume':
+        action = 'volume_set';
+        args.slice(1).forEach(function(arg) {
+          var parts = arg.split('=');
+          var key = parts[0];
+          var val = parts.slice(1).join('=');
+          params[key] = isNaN(val) ? val : Number(val);
+        });
+        break;
+      case 'group':
+      case 'sync':
+      case 'sync_group':
+        action = 'group';
+        break;
+      case 'join':
+        action = 'join';
+        break;
+      case 'unjoin':
+        action = 'unjoin';
+        break;
       default:
         // Assume it's a source selection
         action = 'select_source';
@@ -661,7 +682,81 @@ class HomeAssistantService {
         break;
     }
 
+    if (action === 'group' || action === 'join' || action === 'unjoin') {
+      args.slice(1).forEach(arg => {
+        const [key, ...valueParts] = arg.split('=');
+        const value = valueParts.join('=');
+
+        if (!key || !value) {
+          return;
+        }
+
+        if (key === 'group_members' || key === 'members') {
+          params.group_members = value.split(',').map(item => item.trim()).filter(Boolean);
+        } else {
+          params[key] = value === 'true' ? true :
+            value === 'false' ? false :
+            !isNaN(value) ? Number(value) :
+            value;
+        }
+      });
+    }
+
     return { service: 'media_player', action, params };
+  }
+
+  _normalizeEntityList(list) {
+    const entries = Array.isArray(list)
+      ? list.map(item => String(item || '').trim()).filter(Boolean)
+      : String(list || '')
+      .split(',')
+      .map(item => item.trim())
+      .filter(Boolean);
+
+    return entries.filter(function(item, index) {
+      return entries.indexOf(item) === index;
+    });
+  }
+
+  async _syncMediaPlayerGroup(entity, params = {}) {
+    console.log('Syncing media player group for entity:', entity, 'with params:', params)
+    const stateItem = this.getStateItem(entity);
+    console.log('Current state item for entity:', stateItem);
+    const attributes = stateItem && stateItem.data ? stateItem.data : {};
+    const currentMembers = this._normalizeEntityList(attributes.group_members);
+    const requestedMembers = this._normalizeEntityList(params.group_members);
+    console.log('Current members:', currentMembers, 'Requested members:', requestedMembers);
+    const currentFollowers = currentMembers.filter(member => member !== entity);
+    const hasCoordinator = requestedMembers.indexOf(entity) > -1;
+    const requestedFollowers = hasCoordinator
+      ? requestedMembers.filter(member => member !== entity)
+      : [];
+    const membersToAdd = requestedFollowers.filter(member => currentFollowers.indexOf(member) === -1);
+    const membersToRemove = currentFollowers.filter(member => requestedFollowers.indexOf(member) === -1);
+    const results = [];
+console.log('Members to add:', membersToAdd, 'Members to remove:', membersToRemove, 'Has coordinator:', hasCoordinator);
+    if (membersToRemove.length) {
+      results.push(await this.sendCommand('media_player', 'unjoin', {
+        entity_id: membersToRemove.length === 1 ? membersToRemove[0] : membersToRemove,
+      }));
+    }
+
+    if (hasCoordinator && membersToAdd.length) {
+      results.push(await this.sendCommand('media_player', 'join', {
+        entity_id: entity,
+        group_members: membersToAdd,
+      }));
+    }
+
+    if (!membersToRemove.length && !membersToAdd.length) {
+      this.debugEvents.publish(`No media_player group changes required for ${entity}`);
+    }
+
+    if (!hasCoordinator && requestedMembers.length) {
+      this.debugEvents.publish(`Ignored media_player group additions for ${entity} because the coordinator is not part of the requested group`);
+    }
+
+    return results;
   }
 
   _handleNumberCommand(entity, args) {
@@ -691,6 +786,11 @@ class HomeAssistantService {
       const handler = this._serviceHandlers[domain];
       if (handler) {
         const { service, action, params } = handler(entity, args);
+
+        if (domain === 'media_player' && (action === 'group' || ((action === 'join' || action === 'unjoin') && params.group_members))) {
+          return await this._syncMediaPlayerGroup(entity, params);
+        }
+
         return await this.sendCommand(domain, action, params);
       }
 
