@@ -19,7 +19,7 @@
 
     document.addEventListener('ftuiComponentsAdded', () => {
       mockData.forEach(([key, value]) => {
-        ftuiApp.fhemService.updateReadingItem(key, value.data);
+        ftuiApp.updateReadingItem(key, value.data);
       })
     });
 

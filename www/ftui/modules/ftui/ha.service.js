@@ -463,24 +463,35 @@ class HomeAssistantService {
     if (!(data.event && data.event.c)) {
       return false;
     }
-
     Object.entries(data.event.c).forEach(([entityId, change]) => {
       if (entityId.includes('.') && this.statesMap.has(entityId)) {
         const eventData = change['+'];
-        const timestamp = eventData.lc ?
+        const updateTimestamp = eventData.lu ?
+          dateFormat(new Date(eventData.lu * 1000), 'YYYY-MM-DD hh:mm:ss') :
+          null;
+        const creationTimestamp = eventData.lc ?
           dateFormat(new Date(eventData.lc * 1000), 'YYYY-MM-DD hh:mm:ss') :
           null;
 
+        // eventData.s may be absent when the event is attribute-only.
+        // In that case preserve the current stored state value.
+        const stateItem = this.getStateItem(entityId);
+        const currentState = stateItem.data ? stateItem.data.state : undefined;
+        const newState = eventData.s !== undefined ? eventData.s : currentState;
+
         const stateData = this.createStateData(
           entityId,
-          eventData.s,
-          timestamp,
+          newState,
+          updateTimestamp || creationTimestamp,
           eventData.a || {}
         );
 
-        log(3, '[websocket] State change for:', entityId, 'New value:', eventData.s);
+        log(3, '[websocket] State change for:', entityId, 'New value:', newState,
+          eventData.s === undefined ? '(attribute-only update)' : '');
         this.updateStateItem(entityId, stateData);
-        this.updateLastEvent(entityId, eventData.s, timestamp, eventData.c);
+        if (eventData.s !== undefined) {
+          this.updateLastEvent(entityId, newState, timestamp, eventData.c);
+        }
       }
     });
     return true;
@@ -488,7 +499,6 @@ class HomeAssistantService {
 
   handleHAEvent(data) {
     log(2, '[websocket] handleHAEvent', data);
-
     // Chain of responsibility pattern
     return this.handleAuthResult(data) ||
       this.handleGetStates(data) ||
@@ -675,6 +685,11 @@ class HomeAssistantService {
       case 'unjoin':
         action = 'unjoin';
         break;
+      case 'volume_mute':      
+      case 'mute':
+        action = 'volume_mute';
+        params.is_volume_muted = args[1];
+        break;
       default:
         // Assume it's a source selection
         action = 'select_source';
@@ -719,13 +734,10 @@ class HomeAssistantService {
   }
 
   async _syncMediaPlayerGroup(entity, params = {}) {
-    console.log('Syncing media player group for entity:', entity, 'with params:', params)
     const stateItem = this.getStateItem(entity);
-    console.log('Current state item for entity:', stateItem);
     const attributes = stateItem && stateItem.data ? stateItem.data : {};
     const currentMembers = this._normalizeEntityList(attributes.group_members);
     const requestedMembers = this._normalizeEntityList(params.group_members);
-    console.log('Current members:', currentMembers, 'Requested members:', requestedMembers);
     const currentFollowers = currentMembers.filter(member => member !== entity);
     const hasCoordinator = requestedMembers.indexOf(entity) > -1;
     const requestedFollowers = hasCoordinator
@@ -734,7 +746,6 @@ class HomeAssistantService {
     const membersToAdd = requestedFollowers.filter(member => currentFollowers.indexOf(member) === -1);
     const membersToRemove = currentFollowers.filter(member => requestedFollowers.indexOf(member) === -1);
     const results = [];
-console.log('Members to add:', membersToAdd, 'Members to remove:', membersToRemove, 'Has coordinator:', hasCoordinator);
     if (membersToRemove.length) {
       results.push(await this.sendCommand('media_player', 'unjoin', {
         entity_id: membersToRemove.length === 1 ? membersToRemove[0] : membersToRemove,

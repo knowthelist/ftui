@@ -27,7 +27,7 @@
 <script>
   setInterval(
     () => myout.innerText =
-      ftuiApp.fhemService.states.connection.lastEventTimestamp.toLocaleString(),
+      ftuiApp.lastEventTimestamp().toLocaleString(),
     60000
   );
 </script>

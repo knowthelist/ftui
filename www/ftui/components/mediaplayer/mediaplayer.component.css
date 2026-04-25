@@ -853,6 +853,69 @@
   color: var(--mediaplayer-muted);
 }
 
+/* mini: progress strip at bottom edge */
+.card:not([data-variant="maxi"]) .progress-row {
+  display: block;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.card:not([data-variant="maxi"]) .progress-times {
+  display: none;
+}
+
+.card:not([data-variant="maxi"]) .progress-input::-webkit-slider-thumb {
+  width: 0;
+  height: 0;
+  margin-top: 0;
+}
+
+.card:not([data-variant="maxi"]) .progress-input::-moz-range-thumb {
+  width: 0;
+  height: 0;
+}
+
+/* ── mute button ─────────────────────────────────────────── */
+
+.mute-button {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+
+.mute-button .icon-unmuted,
+.mute-button .icon-muted {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.mute-button .icon-muted {
+  display: none;
+}
+
+.card.is-muted .mute-button .icon-muted {
+  display: inline-flex;
+}
+
+.card.is-muted .mute-button .icon-unmuted {
+  display: none;
+}
+
+/* Hide footer mute button in maxi (volume-row mute button is used instead) */
+:host([variant="maxi"]) .footer-actions .mute-button,
+.card[data-variant="maxi"] .footer-actions .mute-button {
+  display: none;
+}
+
 :host([variant="maxi"]) .footer-actions,
 .card[data-variant="maxi"] .footer-actions {
   position: relative;

@@ -16,23 +16,26 @@
 <body>
   <ftui-grid base-width="125" base-height="105" margin="1" shape="round">
 
-    <ftui-grid-tile row="1" col="1" width="8" height="3">
+    <ftui-grid-tile row="1" col="1" width="4" height="2">
       <ftui-grid-header>Mini Player</ftui-grid-header>
-      <ftui-mediaplayer
-        label="Wohnzimmer"
-        [title]="ha:media_player.wohnzimmer:media_title"
-        [subtitle]="ha:media_player.wohnzimmer:media_artist"
-        [artwork]="ha:media_player.wohnzimmer:entity_picture"
-        [state]="ha:media_player.wohnzimmer"
-        currentplayer="media_player.wohnzimmer"
-        [selectedplayers]="ha:media_player.wohnzimmer:group_members"
-        playerlist="media_player.bad:Bad:Bathroom|media_player.wohnzimmer:Wohnzimmer:Living room|media_player.schlafzimmer:Schlafzimmer:Bedroom|media_player.wc:WC:WC"
-        (action)="set ha media_player.wohnzimmer $value"
-        (selectedplayers)="set ha media_player.wohnzimmer group group_members=$value">
-      </ftui-mediaplayer>
+        <ftui-mediaplayer
+          currentplayer="media_player.wc"
+          [label]="ha:media_player.wc:friendly_name"
+          [title]="ha:media_player.wc:media_title"
+          [subtitle]="ha:media_player.wc:media_artist"
+          [artwork]="ha:media_player.wc:entity_picture"
+          [state]="ha:media_player.wc"
+          [muted]="ha:media_player.wc:is_volume_muted"
+          (muted)="ha media_player.wc volume_mute $value"
+          [selectedplayers]="ha:media_player.wc:group_members"
+          playerlist="media_player.bad:Bad:Bathroom|media_player.wohnzimmer:Wohnzimmer:Living room|media_player.schlafzimmer:Schlafzimmer:Bedroom|media_player.wc:WC:WC"
+          (action)="set ha media_player.wc $value"
+          (selectedplayers)="set ha media_player.wc group group_members=$value">
+        </ftui-mediaplayer>
     </ftui-grid-tile>
 
-    <ftui-grid-tile row="4" col="5" width="5" height="5">
+    <ftui-grid-tile row="1" col="5" width="5" height="5">
+      <ftui-grid-header>Maxi Player</ftui-grid-header>
       <ftui-mediaplayer
         variant="maxi"
         label="Wohnzimmer"
@@ -55,7 +58,7 @@
         (seek)="ha media_player.wohnzimmer media_seek position=$value">
       </ftui-mediaplayer>
     </ftui-grid-tile>
-      <ftui-grid-tile row="4" col="1" width="4" height="3">
+      <ftui-grid-tile row="3" col="1" width="4" height="3">
         <ftui-mediaplayer
           currentplayer="media_player.wc"
           [label]="ha:media_player.wc:friendly_name"

@@ -26,6 +26,8 @@
         [artwork]="Sonos_Play5:currentAlbumArtURL"
         [state]="Sonos_Play5:state"
         playerlist="Sonos_Play5:Play5:Play5"
+        [position]="Sonos_Play5:currentTrackPositionSec"
+        [duration]="Sonos_Play5:currentTrackDurationSec"
         (action)="set Sonos_Play5 $value">
       </ftui-mediaplayer>
     </ftui-grid-tile>

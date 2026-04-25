@@ -24,6 +24,8 @@ export class FtuiSlider extends FtuiElement {
     this.maxElement = this.shadowRoot.querySelector('.numbers #max');
     this.tickCount = Math.ceil(Math.abs(this.max - this.min) / this.tick) + 1;
 
+    this.debouncedSubmit = ftui.debounce(this.submitChange, this);
+
     this.rangeable = new Rangeable(this.input, {
       vertical: this.isVertical,
       tooltips: this.tooltips,
@@ -126,7 +128,7 @@ export class FtuiSlider extends FtuiElement {
   onSliderChanged(value) {
     if (this.value !== null && this.value !== value) {
       if (this.isDragging) {
-        this.submitChange('value', value);
+        this.debouncedSubmit(this.debounce, 'value', value);
       }
     }
   }
@@ -134,7 +136,8 @@ export class FtuiSlider extends FtuiElement {
   onSliderEnd(value) {
     this.isDragging = false;
     if (this.value !== null && this.value !== value) {
-      this.submitChange('value', value);
+      // Cancel any pending debounced call and fire immediately
+      this.debouncedSubmit(0, 'value', value);
     }
   }
 

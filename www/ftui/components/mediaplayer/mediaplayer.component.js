@@ -8,7 +8,7 @@
 */
 import { FtuiElement } from '../element.component.js';
 import { config } from '../../config.js';
-import { getStylePropertyValue, debounce } from '../../modules/ftui/ftui.helper.js';
+import { getStylePropertyValue, debounce, isVisible } from '../../modules/ftui/ftui.helper.js';
 
 export class FtuiMediaplayer extends FtuiElement {
 
@@ -72,6 +72,13 @@ export class FtuiMediaplayer extends FtuiElement {
     this._positionTimestamp = 0;
     this._positionTicker = null;
     this.boundTickPosition = this._tickPosition.bind(this);
+
+    // force re-render if visible
+    document.addEventListener('ftuiVisibilityChanged', () => {
+      if (isVisible(this)) {
+        this.boundUpdateCardScale();
+      }
+    }, false);
   }
 
   template() {
@@ -147,14 +154,19 @@ export class FtuiMediaplayer extends FtuiElement {
         </div>
 
         <div class="volume-row">
-          <span class="volume-icon">
-            <svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 7.97v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg>
-          </span>
+          <button class="volume-icon mute-button" type="button" aria-label="Mute" data-action="mute">
+            <span class="icon-unmuted"><svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 7.97v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg></span>
+            <span class="icon-muted"><svg viewBox="0 0 24 24"><path d="M16.5 12A4.5 4.5 0 0 0 14 7.97v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51A8.8 8.8 0 0 0 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06a8.99 8.99 0 0 0 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg></span>
+          </button>
           <input class="volume-input" type="range" />
           <span class="volume-value"></span>
         </div>
 
         <div class="footer-actions">
+          <button class="footer-button mute-button" type="button" aria-label="Mute" data-action="mute">
+            <span class="icon-unmuted"><svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 7.97v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg></span>
+            <span class="icon-muted"><svg viewBox="0 0 24 24"><path d="M16.5 12A4.5 4.5 0 0 0 14 7.97v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51A8.8 8.8 0 0 0 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06a8.99 8.99 0 0 0 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg></span>
+          </button>
           <button class="footer-button picker-trigger" type="button" aria-label="Select players">
             <span class="selection-badge is-hidden"></span>
             <svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11A2.99 2.99 0 0 0 18 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81A2.99 2.99 0 0 0 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3 2.99 2.99 0 0 0 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92S19.61 16.08 18 16.08z"/></svg>
@@ -199,6 +211,7 @@ export class FtuiMediaplayer extends FtuiElement {
       position: 0,
       duration: 0,
       seek: 0,
+      muted: 'false',
       playerlist: '',
       selectedplayers: '',
       currentplayer: '',
@@ -232,6 +245,9 @@ export class FtuiMediaplayer extends FtuiElement {
       return;
     }
     if (name === 'volume' && this.isVolumeInteracting) {
+      return;
+    }
+    if (name === 'muted' && this.isMuteInteracting) {
       return;
     }
     if ((name === 'position' || name === 'duration') && this.isProgressInteracting) {
@@ -268,6 +284,25 @@ export class FtuiMediaplayer extends FtuiElement {
 
   onAction(action) {
     var targetAction = action;
+
+    if (action === 'mute') {
+      var muteVal = String(this.muted || '').toLowerCase();
+      var toUnmute = { 'on': 'off', '1': '0', 'true': 'false', 'yes': 'no', 'muted': 'unmuted' };
+      var toMute   = { 'off': 'on', '0': '1', 'false': 'true', 'no': 'yes', 'unmuted': 'muted' };
+      var newVal;
+      if (this.isMuted()) {
+        newVal = toUnmute.hasOwnProperty(muteVal) ? toUnmute[muteVal] : '0';
+      } else {
+        newVal = toMute.hasOwnProperty(muteVal) ? toMute[muteVal] : '1';
+      }
+      this.isMuteInteracting = true;
+      clearTimeout(this.muteInteractTimeout);
+      this.muteInteractTimeout = setTimeout(function() {
+        this.isMuteInteracting = false;
+      }.bind(this), 600);
+      this.submitChange('muted', newVal);
+      return;
+    }
 
     if (action === 'toggle') {
       targetAction = this.isPlaying() ? 'pause' : 'play';
@@ -370,7 +405,16 @@ export class FtuiMediaplayer extends FtuiElement {
 
   isPlaying() {
     var state = String(this.state || '').toLowerCase();
+    console.log('Playback state:', state);
     return ['playing', 'play', 'on', 'true', 'buffering', 'running'].indexOf(state) > -1;
+  }
+
+  isMuted() {
+    var val = String(this.muted || '').toLowerCase();
+    if (['off', '0', 'false', 'no', 'unmuted'].indexOf(val) > -1) {
+      return false;
+    }
+    return ['on', '1', 'true', 'yes', 'muted'].indexOf(val) > -1;
   }
 
   render() {
@@ -384,13 +428,18 @@ export class FtuiMediaplayer extends FtuiElement {
     var safeMax = volumeMax > volumeMin ? volumeMax : volumeMin + volumeStep;
     var clampedVolume = Math.max(volumeMin, Math.min(safeMax, volume));
     var isPlaying = this.isPlaying();
+    var isMuted = this.isMuted();
     var variant = this.variant === 'maxi' ? 'maxi' : 'mini';
     var resolvedArtworkUrl = this.resolveArtworkUrl(this.artwork);
     var hasPlayers = players.length > 0;
 
     this.cardElement.setAttribute('data-variant', variant);
     this.cardElement.classList.toggle('is-playing', isPlaying);
+    this.cardElement.classList.toggle('is-muted', isMuted);
     this.cardElement.classList.toggle('has-players', hasPlayers);
+    Array.from(this.shadowRoot.querySelectorAll('[data-action="mute"]')).forEach(function(button) {
+      button.setAttribute('aria-label', isMuted ? 'Unmute' : 'Mute');
+    });
 
     this.labelElement.textContent = this.label;
     this.titleElement.textContent = this.title;
@@ -446,7 +495,6 @@ export class FtuiMediaplayer extends FtuiElement {
 
     widthScale = rect.width / 320;
     heightScale = rect.height / 150;
-    console.log('Card size:',   heightScale.toFixed(2));
     scale = Math.min(2, heightScale);// Math.max(0.92, Math.min(1.45, Math.min(widthScale, heightScale)));
 
     this.style.setProperty('--mediaplayer-scale', scale.toFixed(3));

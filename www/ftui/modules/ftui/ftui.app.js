@@ -237,6 +237,18 @@ class FtuiApp {
     backendService.checkConnection();
   }
 
+  updateReadingItem(parameterId, newData) {
+    backendService.updateReadingItem(parameterId, newData);
+  }
+
+  getStates() {
+    return backendService.states;
+  }
+
+  lastEventTimestamp() {
+    return backendService.lastEventTimestamp();
+  }
+
   getMetaNumber(key, defaultVal) {
     return Number.parseInt(this.getMetaString(key, defaultVal));
   }

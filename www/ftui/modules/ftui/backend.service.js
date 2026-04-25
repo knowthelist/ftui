@@ -179,6 +179,14 @@ class BackendService {
         return fhemService.getReadingItem(readingId);
     }
 
+    lastEventTimestamp() {
+        const fhemTimestamp = fhemService.states.connection.lastEventTimestamp;
+        const haTimestamp = haService.states.connection.lastEventTimestamp;
+        
+        // Return the most recent timestamp
+        return new Date(Math.max(fhemTimestamp.getTime(), haTimestamp.getTime()));
+    }
+    
     stopRefreshInterval() {
         if (this.states.refresh.timer) {
             clearTimeout(this.states.refresh.timer);

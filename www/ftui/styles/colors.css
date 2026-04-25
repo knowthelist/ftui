@@ -40,6 +40,11 @@
   --color-contrast: var(--warning-contrast-color);
 }
 
+[color="info"] {
+  --color-base: var(--info-color);
+  --color-contrast: var(--info-contrast-color);
+}
+
 [color="danger"], [color="error"], [color="alert"] {
   --color-base: var(--danger-color);
   --color-contrast: var(--danger-contrast-color);
@@ -150,7 +155,7 @@
 }
 
 [color="ok-warning-alert"] {
-  --color-base: linear-gradient(90deg, var(--success-color) 30%, var(--warning-color) 70%, var(--danger-color) 90%);
+  --color-base: linear-gradient(90deg, var(--success-color) 20%, var(--warning-color) 50%, var(--danger-color) 80%);
   --color-min: var(--success-color);
   --color-max: var(--danger-color);
   --color-contrast: var(--black);
