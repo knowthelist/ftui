@@ -1,19 +1,2 @@
 2026-04-25  FTUI version 3
-feat(mediaplayer): enhance mini player with mute functionality and progress strip
-
-- Added CSS styles for mini player progress strip and mute button.
-- Updated mediaplayer component to handle mute actions and state changes.
-- Introduced new properties for muted state and updated rendering logic.
-- Modified HTML examples to demonstrate new mute functionality in mini and maxi players.
-
-fix(slider): debounce submitChange calls for smoother interaction
-
-- Implemented debounced submitChange in slider component to prevent excessive updates during dragging. Fix #68
-
-fix(ha.service): improve event handling and state updates
-
-- Enhanced Home Assistant service to handle volume mute actions and update last event timestamps correctly.
-
-refactor(colors): add info color support and adjust gradient definitions
-
-- Introduced new color variables for info state and adjusted existing gradient definitions for better visual representation.
+fix(ha.service): update timestamp handling in updateLastEvent method

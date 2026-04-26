@@ -490,7 +490,7 @@ class HomeAssistantService {
           eventData.s === undefined ? '(attribute-only update)' : '');
         this.updateStateItem(entityId, stateData);
         if (eventData.s !== undefined) {
-          this.updateLastEvent(entityId, newState, timestamp, eventData.c);
+            this.updateLastEvent(entityId, newState, updateTimestamp || creationTimestamp, eventData.c);
         }
       }
     });

@@ -405,7 +405,6 @@ export class FtuiMediaplayer extends FtuiElement {
 
   isPlaying() {
     var state = String(this.state || '').toLowerCase();
-    console.log('Playback state:', state);
     return ['playing', 'play', 'on', 'true', 'buffering', 'running'].indexOf(state) > -1;
   }
 
