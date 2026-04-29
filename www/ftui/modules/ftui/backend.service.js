@@ -212,6 +212,19 @@ class BackendService {
         fhemService.disconnect();
         haService.disconnect();
     }
+
+    // Kick off the CSRF handshake and WebSocket connection in the background so
+    // they are already resolved/open when the first real command is sent.
+    prefetchConnections() {
+        fhemService.ensureBackendAvailable()
+            .then(isAvailable => {
+                if (isAvailable) {
+                    return fhemService.fetchCSrf();
+                }
+                return null;
+            })
+            .catch(function () {});
+    }
 }
 
 export const backendService = new BackendService();

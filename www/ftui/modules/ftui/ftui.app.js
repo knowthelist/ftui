@@ -24,6 +24,12 @@ class FtuiApp {
       isOffline: false,
     };
 
+    // Debounced refresh used when content sub-areas finish loading.
+    // Collapses multiple parallel content loads into a single backend request.
+    this._debouncedRefresh = ftui.debounce(function () {
+      backendService.forceRefresh();
+    }, this);
+
     this.loadStyles();
 
     this.log = ftui.log;
@@ -93,6 +99,10 @@ class FtuiApp {
       backendService.setConfig(this.config);
       backendService.debugEvents.subscribe(text => this.toast(text));
       backendService.errorEvents.subscribe(text => this.toast(text, 'error'));
+
+      // Kick off CSRF handshake in the background now that fhemDir is known,
+      // so the first jsonlist2 request does not have to wait for it.
+      backendService.prefetchConnections();
 
       await this.initPage();
 
@@ -188,8 +198,16 @@ class FtuiApp {
     const event = new CustomEvent('ftuiComponentsAdded', { detail: area });
     document.dispatchEvent(event);
 
-    // start Refresh delayed with both backends
-    backendService.startRefreshInterval(this.config.refreshDelay + 20);
+    // For the top-level page init start the normal delayed refresh cycle.
+    // For content sub-areas use a short debounced refresh instead: this prevents
+    // 10+ parallel content loads from each resetting the startup timer, which
+    // was delaying the first FHEM data fetch by the full load time of all content.
+    if (area === document) {
+      backendService.startRefreshInterval(this.config.refreshDelay + 20);
+    } else {
+      // 300 ms debounce: fires once after the last content area finishes loading
+      this._debouncedRefresh(300);
+    }
 
     // trigger refreshes
     ftui.triggerEvent('changedSelection');

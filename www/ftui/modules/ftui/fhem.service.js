@@ -23,10 +23,13 @@ class FhemService {
     };
 
     this.csrfRequest = null;
+    this.availabilityRequest = null;
     
     this.states = {
       lastRefresh: 0,
       fhemConnectionIsRestarting: false,
+      backendAvailable: null,
+      backendAutoDisabled: false,
       connection: {
         lastEventTimestamp: new Date(),
         timer: null,
@@ -74,7 +77,100 @@ class FhemService {
     if (config.fhemDir && config.fhemDir !== previousFhemDir) {
       this.config.csrf = '';
       this.csrfRequest = null;
+      this.availabilityRequest = null;
+      this.states.backendAvailable = null;
+      this.states.backendAutoDisabled = false;
     }
+  }
+
+  hasActiveSubscriptions() {
+    return Array.from(this.readingsMap.values())
+      .some(value => value.events.observers.length && value.device !== 'local');
+  }
+
+  markBackendUnavailable(reason) {
+    this.states.backendAvailable = false;
+    this.states.backendAutoDisabled = true;
+    this.states.isOffline = true;
+    this.disconnect();
+    log(1, '[fhemService] backend unavailable, disabling FHEM runtime: ' + reason);
+  }
+
+  createUnavailableResponse() {
+    return {
+      status: 204,
+      statusText: 'FHEM backend unavailable',
+      text: function () { return Promise.resolve(''); },
+      json: function () { return Promise.resolve({ Results: [] }); },
+    };
+  }
+
+  detectBackendAvailability() {
+    if (!this.config.fhemDir) {
+      this.states.backendAvailable = false;
+      return Promise.resolve(false);
+    }
+
+    if (this.states.backendAutoDisabled) {
+      return Promise.resolve(false);
+    }
+
+    if (this.availabilityRequest) {
+      return this.availabilityRequest;
+    }
+
+    const url = new URL(this.config.fhemDir);
+    url.search = new URLSearchParams({
+      XHR: '1',
+    });
+
+    const options = {
+      cache: 'no-cache',
+      username: this.config.username,
+      password: this.config.password,
+    };
+
+    this.availabilityRequest = fetch(url, options)
+      .then(response => {
+        if (response.status < 200 || response.status > 299) {
+          throw new Error(response.statusText || 'FHEM endpoint returned non-OK status');
+        }
+        return Promise.all([
+          Promise.resolve(response.headers.get('X-FHEM-csrfToken')),
+          response.text(),
+        ]);
+      })
+      .then(result => {
+        const csrfToken = result[0];
+        const responseText = result[1];
+        const isHtmlResponse = /<html[\s>]/i.test(responseText);
+        const isAvailable = Boolean(csrfToken) || !isHtmlResponse;
+        this.states.backendAvailable = isAvailable;
+        this.states.backendAutoDisabled = !isAvailable;
+        if (!isAvailable) {
+          this.disconnect();
+          log(1, '[fhemService] backend check failed: endpoint did not look like FHEM');
+        }
+        this.availabilityRequest = null;
+        return isAvailable;
+      })
+      .catch(err => {
+        this.availabilityRequest = null;
+        this.markBackendUnavailable(err.message || err);
+        return false;
+      });
+
+    return this.availabilityRequest;
+  }
+
+  ensureBackendAvailable() {
+    if (this.states.backendAvailable === true && !this.states.backendAutoDisabled) {
+      return Promise.resolve(true);
+    }
+    if (this.states.backendAvailable === false && this.states.backendAutoDisabled) {
+      return Promise.resolve(false);
+    }
+    return this.detectBackendAvailability();
   }
 
   getReadingEvents(readingName) {
@@ -135,6 +231,9 @@ class FhemService {
   }
 
   forceRefresh() {
+    if (this.states.backendAutoDisabled) {
+      return;
+    }
     this.states.lastRefresh = 0;
     this.startRefreshInterval(1000);
     this.reconnect(5);
@@ -151,6 +250,19 @@ class FhemService {
   }
 
   refresh() {
+    if (this.states.backendAutoDisabled) {
+      return;
+    }
+
+    if (this.states.backendAvailable !== true) {
+      this.ensureBackendAvailable().then(isAvailable => {
+        if (isAvailable) {
+          this.refresh();
+        }
+      });
+      return;
+    }
+
     const now = Date.now() / 1000;
     if (
       !isAppVisible() ||
@@ -265,6 +377,19 @@ class FhemService {
   }
 
   connect() {
+    if (this.states.backendAutoDisabled) {
+      return;
+    }
+
+    if (this.states.backendAvailable !== true) {
+      this.ensureBackendAvailable().then(isAvailable => {
+        if (isAvailable) {
+          this.connect();
+        }
+      });
+      return;
+    }
+
     if (this.states.connection.websocket) {
       log(3, '[websocket] a valid instance has been found - do not newly connect');
       return;
@@ -321,6 +446,9 @@ class FhemService {
   }
 
   reconnect(delay = 0) {
+    if (this.states.backendAutoDisabled) {
+      return;
+    }
     if (isAppVisible()) {
       log(2, '[websocket] restart connection');
       clearTimeout(this.states.connection.timer);
@@ -373,6 +501,10 @@ class FhemService {
   }
 
   updateFhem(cmdLine) {
+    if (this.states.backendAutoDisabled) {
+      return Promise.resolve(this.createUnavailableResponse());
+    }
+
     if (!this.states.isOffline) {
       const promise = this.sendCommand(cmdLine)
       if (this.config.debuglevel > 2) {
@@ -386,6 +518,10 @@ class FhemService {
   }
 
   sendCommand(cmdline = '', async = '0') {
+    if (this.states.backendAutoDisabled) {
+      return Promise.resolve(this.createUnavailableResponse());
+    }
+
     return this.ensureCSrf()
       .then(() => {
         const url = new URL(this.config.fhemDir);
@@ -402,6 +538,12 @@ class FhemService {
         url.search = new URLSearchParams(params);
         log(1, '[fhemService] send to FHEM: ' + cmdline);
         return fetch(url, options);
+      })
+      .catch(err => {
+        if (this.states.backendAutoDisabled) {
+          return this.createUnavailableResponse();
+        }
+        throw err;
       });
   }
 
@@ -434,6 +576,8 @@ class FhemService {
 
     this.csrfRequest = fetch(this.config.fhemDir + '?XHR=1', {
       cache: 'no-cache',
+      username: this.config.username,
+      password: this.config.password,
     })
       .then(response => {
         this.config.csrf = response.headers.get('X-FHEM-csrfToken');
@@ -443,6 +587,7 @@ class FhemService {
       })
       .catch(fetchError => {
         this.csrfRequest = null;
+        this.markBackendUnavailable(fetchError.message || fetchError);
         throw fetchError;
       });
 
@@ -458,6 +603,9 @@ class FhemService {
   }
 
   scheduleHealthCheck() {
+    if (this.states.backendAutoDisabled) {
+      return;
+    }
     // request dummy fhem event
     if (this.states.connection.websocket &&
       this.states.connection.websocket.readyState === WebSocket.OPEN) {
