@@ -40,6 +40,11 @@
     <ftui-content file="examples/contents/content-view2.html" room="Room3" lazy></ftui-content>
   </ftui-tab-view>
 
+    <ftui-tab-view id="View4">
+    <!-- lazy loading: content will be loaded after tab becomes visible-->
+    <ftui-content file="examples/contents/content-view2.html" room="ftuitest" lazy></ftui-content>
+  </ftui-tab-view>
+
   <footer class="row fixed border-top">
     <ftui-tab fill="clear" direction="vertical" view="View1" [value]="dummy1 | map('Wert1:on, .*:off')" active>
       <ftui-icon name="home"></ftui-icon>
@@ -53,6 +58,9 @@
       <ftui-icon name="clock-o"></ftui-icon>
       <label class="small">Tab3</label>
     </ftui-tab>
+    <ftui-tab fill="clear" direction="vertical" view="View4" [value]="dummy1 | map('Wert4:on, .*:off')">
+      <ftui-icon name="star"></ftui-icon>
+      <label class="small">Tab4</label>
   </footer>
 
 </body>

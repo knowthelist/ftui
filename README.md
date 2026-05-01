@@ -913,6 +913,8 @@ Powerful charting component powered by [Chart.js](https://www.chartjs.org/).
 
 **Supported Chart Types:**
 - Line chart
+- Dashed line chart
+- Dotted line chart
 - Bar chart
 - Radar chart
 - Doughnut and Pie chart
@@ -943,29 +945,64 @@ Powerful charting component powered by [Chart.js](https://www.chartjs.org/).
 | **y1-max** | Y1-axis maximum | Number | `0` |
 | **y-label** | Y-axis label | String | `""` |
 | **y1-label** | Y1-axis label | String | `""` |
+| **grid-line-color** | Grid line color. Use any CSS color, or `transparent` to hide all grid lines. Falls back to `--chart-grid-line-color` CSS variable, then to `--dark-color` | Color | `""` |
 
 #### Child Component: `ftui-chart-data`
 
+> **Note on `color` vs `border-color`:** Use `color` as the primary way to set the line/series color. FTUI derives `borderColor` and `pointBackgroundColor` automatically from `color`. Setting `border-color` directly is overwritten internally when the data loads.
+
+##### Data source attributes
+
 | Attribute | Description | Type | Default |
 |-----------|-------------|------|---------|
-| **label** | Data series label | String | `""` |
-| **type** | Chart type override | String | `"line"` |
-| **fill** | Fill under line | Boolean | `false` |
-| **hidden** | Hide series | Boolean | `false` |
-| **background-color** | Fill color | Color | `""` |
-| **border-color** | Line/border color | Color | Primary color |
-| **border-width** | Line width | Number | `1.2` |
-| **point-radius** | Point size | Number | `2` |
-| **log** | FHEM DbLog device | String | `"-"` |
-| **file** | Log file type | String | `"-"` |
-| **spec** | Reading specification | String | `"4:.*"` |
-| **unit** | Data unit | String | `"°C"` |
-| **start-date** | Start date | Date | `""` |
-| **end-date** | End date | Date | `""` |
-| **update** | Update trigger | String | `""` |
-| **tension** | Line curve tension | Number | `0.0` |
-| **stepped** | Stepped line | Boolean | `false` |
-| **y-axis-id** | Y-axis assignment | Number | `0` |
+| **log** | FHEM DbLog device name | String | `"-"` |
+| **file** | Log file argument (typically `-`) | String | `"-"` |
+| **spec** | Column/reading specification | String | `"4:.*"` |
+| **start-date** | Override series start date | Date string | `""` |
+| **end-date** | Override series end date | Date string | `""` |
+| **prefetch** | Extra time range to fetch (seconds) | Number | `0` |
+| **extend** | Extend last known value to now/end | Boolean | `false` |
+| **update** | Reading whose change triggers a re-fetch | String | `""` |
+| **offset** | Add a numeric offset to every data value | Number | `0` |
+
+##### Series identity & layout
+
+| Attribute | Description | Type | Default |
+|-----------|-------------|------|---------|
+| **label** | Legend label. Supports `$min`, `$max`, `$avg`, `$last`, `$sum` placeholders | String | `""` |
+| **type** | Series type: `line`, `dashed`, `bar`, `bubble`, `radar` | String | `"line"` |
+| **y-axis-id** | Assign series to Y-axis: `y` (left) or `y1` (right) | `"y"` \| `"y1"` | `"y"` |
+| **stack** | Stack group ID. Series with the same ID are stacked | String | `""` |
+| **hidden** | Start with series hidden (toggle in legend) | Boolean | `false` |
+| **unit** | Unit string appended to values (informational only) | String | `""` |
+
+##### Line & fill appearance
+
+| Attribute | Description | Type | Default |
+|-----------|-------------|------|---------|
+| **color** | Primary series color — sets line, points and (calculated) fill | Color | Primary theme color |
+| **background-color** | Explicit fill/bar background color. When omitted FTUI calculates a semi-transparent version of `color` | Color | `""` |
+| **border-width** | Line width in pixels | Number | `1.2` |
+| **fill** | Fill the area below the line down to the x-axis | Boolean | `false` |
+| **tension** | Bezier curve tension. `0` = straight segments, `0.4` = smooth curve. Only for `line`/`dashed`/`radar` | Number | `0.0` |
+| **stepped** | Stepped line — connects points with horizontal/vertical steps instead of diagonals. Only for `line`/`dashed` | Boolean | `false` |
+
+##### Point appearance
+
+| Attribute | Description | Type | Default |
+|-----------|-------------|------|---------|
+| **point-radius** | Radius of data-point circles in pixels. `0` hides all points | Number | `2` |
+
+##### Type details
+
+| `type` value | Rendered as | Notes |
+|---|---|---|
+| `line` | Solid line | Default. Supports `tension`, `stepped`, `fill` |
+| `dashed` | Dashed line | Virtual type — rendered as `line` with dash pattern `[6, 4]`. Supports `tension`, `stepped`, `fill` |
+| `dotted` | Dotted line | Virtual type — rendered as `line` with dot pattern `[2, 4]`. Supports `tension`, `stepped`, `fill` |
+| `bar` | Bar chart | `tension` and `stepped` are disabled for bars |
+| `bubble` | Bubble chart | Y-value controls bubble vertical position; combine with `stepped` for Gantt-style blocks |
+| `radar` | Radar/spider chart | Supports `tension` |
 
 **Examples:**
 

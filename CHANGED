@@ -1,2 +1,2 @@
-2026-04-25  FTUI version 3
-fix(ha.service): update timestamp handling in updateLastEvent method
+2026-05-01  FTUI version 3
+feat(chart): add support for dashed and dotted line charts and update dataset normalization

@@ -205,6 +205,7 @@ export class FtuiChart extends FtuiElement {
       stackedX: false,
       stackedY: false,
       stackedY1: false,
+      gridLineColor: '',
     };
   }
 
@@ -348,11 +349,23 @@ export class FtuiChart extends FtuiElement {
   normalizeDataset(dataset) {
     const datasetType = dataset.type || this.type;
 
-    if (datasetType !== 'line') {
+    // 'dashed' is a virtual type that renders as a line with a dash pattern
+    if (datasetType === 'dashed') {
+      dataset.type = 'line';
+      dataset.borderDash = dataset.borderDash && dataset.borderDash.length ? dataset.borderDash : [6, 4];
+    }
+
+    // 'dotted' is a virtual type that renders as a line with a dot pattern
+    if (datasetType === 'dotted') {
+      dataset.type = 'line';
+      dataset.borderDash = dataset.borderDash && dataset.borderDash.length ? dataset.borderDash : [2, 4];
+    }
+
+    if (datasetType !== 'line' && datasetType !== 'dashed' && datasetType !== 'dotted') {
       dataset.stepped = false;
     }
 
-    if (datasetType !== 'line' && datasetType !== 'radar') {
+    if (datasetType !== 'line' && datasetType !== 'dashed' && datasetType !== 'dotted' && datasetType !== 'radar') {
       dataset.tension = 0;
     }
 
@@ -397,14 +410,20 @@ export class FtuiChart extends FtuiElement {
     options.legend.labels.font.size = getStylePropertyValue('--chart-legend-font-size', this) || 13;
     options.legend.labels.font.color = getStylePropertyValue('--chart-legend-color', this) || getStylePropertyValue('--chart-text-color', this);
 
-    options.scales.x.gridLines.color = getStylePropertyValue('--chart-grid-line-color', this) || getStylePropertyValue('--dark-color', this);
-    options.scales.x.ticks.font.size = getStylePropertyValue('--chart-tick-font-size', this) || 11;
+    var gridLineColor = this.gridLineColor || getStylePropertyValue('--chart-grid-line-color', this) || getStylePropertyValue('--dark-color', this);
+    var tickColor = getStylePropertyValue('--chart-text-color', this) || options.font.color;
+    var tickFontSize = getStylePropertyValue('--chart-tick-font-size', this) || 11;
+    options.scales.x.gridLines.color = gridLineColor;
+    options.scales.x.ticks.color = tickColor;
+    options.scales.x.ticks.font.size = tickFontSize;
 
-    options.scales.y.gridLines.color = getStylePropertyValue('--chart-grid-line-color', this) || getStylePropertyValue('--dark-color', this);
-    options.scales.y.ticks.font.size = getStylePropertyValue('--chart-tick-font-size', this) || 11;
+    options.scales.y.gridLines.color = gridLineColor;
+    options.scales.y.ticks.color = tickColor;
+    options.scales.y.ticks.font.size = tickFontSize;
 
-    options.scales.y1.gridLines.color = getStylePropertyValue('--chart-grid-line-color', this) || getStylePropertyValue('--dark-color', this);
-    options.scales.y1.ticks.font.size = getStylePropertyValue('--chart-tick-font-size', this) || 11;
+    options.scales.y1.gridLines.color = gridLineColor;
+    options.scales.y1.ticks.color = tickColor;
+    options.scales.y1.ticks.font.size = tickFontSize;
 
     this.chart.update();
   }

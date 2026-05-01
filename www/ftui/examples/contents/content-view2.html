@@ -23,4 +23,9 @@
     type="handle" has-value-text></ftui-knob>
   </ftui-view-item>
 
+  <ftui-view-item>
+    <ftui-label slot="start">Temperatur 2</ftui-label>
+    <ftui-label slot="end" size="1em" [text]="{{room}}:Temperature" [color]="{{room}}:Temperature | step('-20:blue, 19:info, 23:yellow, 26:red')"><span class="size--1" slot="unit">°C</span></ftui-label>
+  </ftui-view-item>
+
 </ftui-view>

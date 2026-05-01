@@ -7,7 +7,7 @@ UPD 2025-11-29_13:17:15 754 www/ftui/components/chart/chart-controls.component.c
 UPD 2025-11-29_13:17:15 3865 www/ftui/components/chart/chart-controls.component.js
 UPD 2026-04-20_23:10:34 6322 www/ftui/components/chart/chart-data.component.js
 UPD 2025-11-29_13:17:15 231 www/ftui/components/chart/chart.component.css
-UPD 2026-04-21_00:08:01 13423 www/ftui/components/chart/chart.component.js
+UPD 2026-05-01_12:21:37 14129 www/ftui/components/chart/chart.component.js
 UPD 2025-11-29_13:17:15 297 www/ftui/components/checkbox/checkbox.component.css
 UPD 2025-11-29_13:17:15 2258 www/ftui/components/checkbox/checkbox.component.js
 UPD 2026-04-20_22:50:41 3045 www/ftui/components/circlemenu/circlemenu.component.js
@@ -95,7 +95,7 @@ UPD 2025-11-29_13:17:06 9558 www/ftui/examples/circlemenu.html
 UPD 2025-11-29_13:17:06 1720 www/ftui/examples/clock.html
 UPD 2025-11-29_13:17:06 4325 www/ftui/examples/colorpicker.html
 UPD 2025-11-29_13:17:06 3972 www/ftui/examples/colors.html
-UPD 2025-11-29_13:17:06 1865 www/ftui/examples/content.html
+UPD 2026-05-01_10:07:42 2277 www/ftui/examples/content.html
 UPD 2025-11-29_13:17:06 939 www/ftui/examples/content2.html
 UPD 2025-11-29_13:17:06 277 www/ftui/examples/contents/content-components.html
 UPD 2025-11-29_13:17:06 268 www/ftui/examples/contents/content-components2.html
@@ -105,7 +105,7 @@ UPD 2025-11-29_13:17:06 445 www/ftui/examples/contents/content-popup.html
 UPD 2025-11-29_13:17:06 472 www/ftui/examples/contents/content-rows.html
 UPD 2025-11-29_13:17:06 819 www/ftui/examples/contents/content-view-grid.html
 UPD 2025-11-29_13:17:06 2608 www/ftui/examples/contents/content-view1.html
-UPD 2025-11-29_13:17:06 714 www/ftui/examples/contents/content-view2.html
+UPD 2026-05-01_10:08:37 1013 www/ftui/examples/contents/content-view2.html
 UPD 2025-11-29_13:17:06 643 www/ftui/examples/contents/content-view3.html
 UPD 2025-11-29_13:17:06 144 www/ftui/examples/contents/content-warn.html
 UPD 2025-11-29_13:17:06 1732 www/ftui/examples/contents/content-weather-2-day.html
@@ -744,8 +744,8 @@ UPD 2026-04-11_23:50:27 192031 www/ftui/modules/chart.js/chart.min.js
 UPD 2026-04-11_23:50:28 49580 www/ftui/modules/chart.js/chartjs-adapter-date-fns.bundle.min.js
 UPD 2025-11-29_13:17:15 8388 www/ftui/modules/circle-menu/circle-menu.js
 UPD 2025-11-29_13:17:15 5063 www/ftui/modules/circle-menu/circle-menu.min.js
-UPD 2026-04-29_21:40:54 7115 www/ftui/modules/ftui/backend.service.js
-UPD 2026-04-29_21:47:41 20003 www/ftui/modules/ftui/fhem.service.js
+UPD 2026-04-29_23:40:53 7115 www/ftui/modules/ftui/backend.service.js
+UPD 2026-04-29_23:40:53 20003 www/ftui/modules/ftui/fhem.service.js
 UPD 2026-04-28_22:24:13 10140 www/ftui/modules/ftui/ftui.app.js
 UPD 2026-04-20_21:21:42 13473 www/ftui/modules/ftui/ftui.binding.js
 UPD 2026-04-20_21:33:50 16173 www/ftui/modules/ftui/ftui.helper.js
