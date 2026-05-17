@@ -256,44 +256,50 @@ Enter this command in the FHEM command field of FHEMWEB.
 
 You can host FTUI on your own web server using Docker instead of via FHEMWEB.
 
-### Steps:
+### Option A – Build from source (recommended for this repo)
 
-1. **Pull the Docker image:**
-   ```bash
-   docker pull knowthelist/ftui
+```bash
+# Build and start
+docker compose up -d
+
+# Stop
+docker compose down
+```
+
+The included `docker-compose.yml` builds the image from the local source tree and mounts your `index.html` for easy customisation.
+
+### Option B – Use the pre-built Docker Hub image
+
+1. **Prepare your `index.html`:**
+   Add the FHEMWEB URL to the `<head>` section:
+   ```html
+   <meta name="fhemweb_url" content="http://<your_fhem_url>:8083/fhem/">
    ```
 
-2. **Prepare your index.html:**
-   - Place your customized `index.html` in an accessible location
-   - Add the FHEMWEB URL to the `<head>` section:
-     ```html
-     <meta name="fhemweb_url" content="http://<your_fhem_url>:8083/fhem/">
-     ```
-
-3. **Run the container:**
+2. **Run the container:**
    ```bash
    docker run -d \
      -p 8080:80 \
-     -v <path>/index.html:/usr/share/nginx/html/index.html \
-     --name ftui3 \
+     -v "$(pwd)/index.html:/usr/share/nginx/html/index.html:ro" \
+     --restart unless-stopped \
+     --name ftui \
      knowthelist/ftui
    ```
 
-4. **Access your UI:**
+3. **Access your UI:**
    - Open in browser: `http://<docker_host>:8080`
 
-### Docker Compose Example:
+### Docker Compose (pre-built image):
 
 ```yaml
-version: '3.8'
 services:
   ftui:
     image: knowthelist/ftui
-    container_name: ftui3
+    container_name: ftui
     ports:
       - "8080:80"
     volumes:
-      - ./index.html:/usr/share/nginx/html/index.html
+      - ./index.html:/usr/share/nginx/html/index.html:ro
     restart: unless-stopped
 ```
 

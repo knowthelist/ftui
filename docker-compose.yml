@@ -1,9 +1,11 @@
-version: '2'
 services:
-  fhem-tablet-ui:
+  ftui:
+    build: .
+    # To use the pre-built image from Docker Hub instead of building locally:
+    # image: knowthelist/ftui
     container_name: ftui
-    image: knowthelist/ftui:latest
-    volumes:
-      - ./ftui/index.html:/usr/share/nginx/html/ftui/index.html
     ports:
       - "8080:80"
+    volumes:
+      - ./www/ftui/index.html:/usr/share/nginx/html/index.html:ro
+    restart: unless-stopped

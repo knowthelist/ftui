@@ -5,7 +5,7 @@ UPD 2025-11-29_13:17:15 2762 www/ftui/components/button/button.component.js
 UPD 2025-11-29_13:17:15 3451 www/ftui/components/cell/cell.component.js
 UPD 2025-11-29_13:17:15 754 www/ftui/components/chart/chart-controls.component.css
 UPD 2025-11-29_13:17:15 3865 www/ftui/components/chart/chart-controls.component.js
-UPD 2026-04-20_23:10:34 6322 www/ftui/components/chart/chart-data.component.js
+UPD 2026-05-15_21:49:46 6545 www/ftui/components/chart/chart-data.component.js
 UPD 2025-11-29_13:17:15 231 www/ftui/components/chart/chart.component.css
 UPD 2026-05-01_12:21:37 14129 www/ftui/components/chart/chart.component.js
 UPD 2025-11-29_13:17:15 297 www/ftui/components/checkbox/checkbox.component.css

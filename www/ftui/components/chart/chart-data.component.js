@@ -63,7 +63,8 @@ export class FtuiChartData extends FtuiElement {
   }
 
   fetch() {
-    if (!this.isLoading && ftuiHelper.isVisible(this)) {
+    const chartElement = this.closest('ftui-chart');
+    if (!this.isLoading && ftuiHelper.isVisible(chartElement || this)) {
       this.fetchLogItems(this.log, this.file, this.spec);
     }
   }
@@ -183,6 +184,11 @@ export class FtuiChartData extends FtuiElement {
         break;
       case 'update':
         this.fetch();
+        break;
+      case 'hidden':
+        if (typeof this.data !== 'undefined') {
+          ftuiHelper.triggerEvent('ftuiDataChanged', this);
+        }
         break;
     }
   }
