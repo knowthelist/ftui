@@ -1,29 +1,32 @@
-#!/bin/bash   
+#!/bin/bash
+# Generates controls_ftui.txt for the FHEM update mechanism.
+# Run automatically via git pre-commit hook:
+#   git config core.hooksPath .githooks   (one-time setup)
 
-rm controls_ftui.txt
+> controls_ftui.txt
 
-git ls-files -z | while IFS= read -r -d '' f; 
-  do
-    if [[ $f != *.git* && $f != *.eslintrc* && $f == *www/ftui* ]]; then
+git ls-files -z | while IFS= read -r -d '' f; do
+  if [[ $f != *.git* && $f != *.eslintrc* && $f == *www/ftui* ]]; then
 
-      if [[ ! -f "${f}" ]]; then
-        echo MOV "${f}" unused >> controls_ftui.txt
+    if [[ ! -f "${f}" ]]; then
+      echo "MOV ${f} unused" >> controls_ftui.txt
+    else
+      if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+        read -r ts size <<< "$(stat -c '%Y %s' "$f")"
+        out="$(date -d "@${ts}" +'%F_%T') ${size} ${f}"
+      elif [[ "$OSTYPE" == "darwin"* ]]; then
+        out="$(stat -f "%Sm %z" -t "%Y-%m-%d_%T" "$f") ${f}"
       else
-        if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-          out="$(date -d "@$( stat -c '%Y' $f )" +'%F_%T') $(stat -c%s $f) ${f}"
-          #out="$(git log -1 --pretty="format:%ci" -- examples/badge.html | cut -f1-2 -d' ') $(stat -c%s $f) ${f}"
-        elif [[ "$OSTYPE" == "darwin"* ]]; then
-          out="$(stat -f "%Sm" -t "%Y-%m-%d_%T" $f) "$(stat -f%z $f)" ${f}"
-          #out="$(git log -1 --pretty="format:%ci" -- examples/badge.html | cut -f1-2 -d' ') $(stat -f%z $f) ${f}"
-        else
-          # other OSs needs to be added 
-          out="${f}"
-        fi
-        if [[ $f == *index.html* ]]; then
-          echo CRE ${out//.\//} >> controls_ftui.txt
-        else
-          echo UPD ${out//.\//} >> controls_ftui.txt
-        fi
-      fi 
-    fi 
-  done
+        # other OSs need to be added
+        out="${f}"
+      fi
+      if [[ $f == *index.html* ]]; then
+        echo "CRE ${out//.\//}" >> controls_ftui.txt
+      else
+        echo "UPD ${out//.\//}" >> controls_ftui.txt
+      fi
+    fi
+  fi
+done
+
+echo "controls_ftui.txt updated ($(wc -l < controls_ftui.txt | tr -d ' ') entries)"
