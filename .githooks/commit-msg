@@ -1,0 +1,23 @@
+#!/bin/bash
+# Prepend today's date + this commit's subject line to CHANGED.
+# $1 is the file containing the commit message.
+
+COMMIT_MSG_FILE="$1"
+SUBJECT=$(head -1 "$COMMIT_MSG_FILE")
+
+# Skip merge commits and empty messages
+if [[ -z "$SUBJECT" || "$SUBJECT" == Merge* ]]; then
+  exit 0
+fi
+
+DATE=$(date +'%Y-%m-%d')
+HEADER="${DATE}  FTUI version 3"
+
+# Prepend new entry (blank line separator if CHANGED already has content)
+if [[ -s CHANGED ]]; then
+  printf '%s\n%s\n\n' "$HEADER" "$SUBJECT" | cat - CHANGED > CHANGED.tmp && mv CHANGED.tmp CHANGED
+else
+  printf '%s\n%s\n' "$HEADER" "$SUBJECT" > CHANGED
+fi
+
+git add CHANGED
