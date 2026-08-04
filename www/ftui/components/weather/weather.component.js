@@ -34,9 +34,14 @@ class FtuiWeather extends FtuiIcon {
   onAttributeChanged(name, newValue) {
     switch (name) {
       case 'condition': {
-        const conditions = providerSet[this.provider] || {};
+        const provider = providerSet[this.provider];
         const icons = iconSet[this.iconSet] || {};
-        this.loadIcon(icons[conditions[newValue]] || 'icons/none.svg');
+
+        const condition = typeof provider === 'function'
+          ? provider(newValue)
+          : provider?.[newValue];
+
+        this.loadIcon(icons[condition] || 'icons/none.svg');
         break;
       }
       default:

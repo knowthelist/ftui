@@ -5,7 +5,95 @@
   SCATTERED_THUNDERSTORM, NA, CLEAR
 */
 
+/**
+ * Converts a six-digit Netatmo weather symbol into one of FTUI's
+ * 19 intermediate weather conditions.
+ *
+ * Digit layout:
+ * 1: celestial body (1 = sun, 2 = moon, 3 = neutral)
+ * 2: cloud intensity
+ * 3: rain intensity
+ * 4: snow intensity
+ * 5: hail intensity
+ * 6: special condition
+ */
+export function decodeNetatmoSymbol(value) {
+  const code = String(value ?? '').trim();
+
+  if (!/^\d{6}$/.test(code)) {
+    return 'NA';
+  }
+
+  const [
+    celestial,
+    clouds,
+    rain,
+    snow,
+    hail,
+    special,
+  ] = [...code].map(Number);
+
+  // Lightning has the highest priority.
+  if (special === 1) {
+    return 'THUNDERSTORM';
+  }
+
+  if (special === 3) {
+    return 'FOGGY';
+  }
+
+  // Warning and flood have no matching FTUI condition.
+  if (special === 2 || special === 5) {
+    return 'NA';
+  }
+
+  // Mixed rain and snow.
+  if (rain > 0 && snow > 0) {
+    return 'RAIN_SNOW';
+  }
+
+  // Snow and hail.
+  if (snow > 0 || hail > 0) {
+    return snow === 1 && hail === 0
+      ? 'SNOW_SHOWER'
+      : 'SNOW';
+  }
+
+  // Rain intensity.
+  if (rain === 1) {
+    return 'LIGHT_SHOWERS';
+  }
+
+  if (rain >= 2) {
+    return 'SHOWERS';
+  }
+
+  // Wind has no dedicated FTUI intermediate condition.
+  if (special === 4) {
+    return 'CLOUDY';
+  }
+
+  // Dry weather: map cloud intensity.
+  switch (clouds) {
+    case 0:
+      return celestial === 3 ? 'CLEAR' : 'CLOUDLESS';
+
+    case 1:
+      return celestial === 3 ? 'CLOUDY' : 'FAIR';
+
+    case 2:
+      return celestial === 3 ? 'CLOUDY' : 'PARTLY_CLOUDY';
+
+    case 3:
+      return celestial === 3 ? 'OVERCAST' : 'MOSTLY_CLOUDY';
+
+    default:
+      return 'NA';
+  }
+}
+
 export const providerSet = {
+  netatmo: decodeNetatmoSymbol,
   proplanta: {
     wolkenlos: 'CLOUDLESS',
     sonnig: 'SUNNY',
