@@ -749,7 +749,7 @@ UPD 2026-04-29_23:40:53 20003 www/ftui/modules/ftui/fhem.service.js
 UPD 2026-04-28_22:24:13 10140 www/ftui/modules/ftui/ftui.app.js
 UPD 2026-04-20_21:21:42 13473 www/ftui/modules/ftui/ftui.binding.js
 UPD 2026-04-20_21:33:50 16173 www/ftui/modules/ftui/ftui.helper.js
-UPD 2026-04-26_11:00:41 30454 www/ftui/modules/ftui/ha.service.js
+UPD 2026-08-07_11:51:59 32470 www/ftui/modules/ftui/ha.service.js
 UPD 2025-11-29_13:17:15 9326 www/ftui/modules/hocon/hocon.js
 UPD 2025-11-29_13:17:15 3199 www/ftui/modules/hocon/hocon.min.js
 UPD 2025-11-29_13:17:15 65090 www/ftui/modules/iro.js/iro.js

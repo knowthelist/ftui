@@ -43,6 +43,8 @@ class HomeAssistantService {
       connection: {
         lastEventTimestamp: new Date(),
         timer: null,
+        healthTimer: null,
+        pongTimer: null,
         result: null,
       },
     };
@@ -322,10 +324,13 @@ class HomeAssistantService {
       return;
     }
 
-    if (this.states.connection.websocket) {
+    if (this.states.connection.websocket &&
+      this.states.connection.websocket.readyState !== WebSocket.CLOSED) {
       log(3, '[websocket] a valid instance has been found - do not newly connect');
       return;
     }
+
+    this.states.connection.websocket = null;
 
     const auth = {
       type: 'auth',
@@ -334,28 +339,36 @@ class HomeAssistantService {
 
     const url = this.config.haUrl.replace(/^http/i, 'ws') + '/api/websocket';
     log(2, '[websocket] connecting to Home Assistant at ' + url);
-    this.states.connection.websocket = new WebSocket(url);
-    this.states.connection.websocket.onopen = () => {
+    const websocket = new WebSocket(url);
+    this.states.connection.websocket = websocket;
+    websocket.onopen = () => {
+      if (this.states.connection.websocket !== websocket) {
+        return;
+      }
       log(2, '[websocket] connected - send auth');
-      this.states.connection.websocket.send(JSON.stringify(auth));
+      websocket.send(JSON.stringify(auth));
     };
 
-    this.states.connection.websocket.onclose = (event) => {
+    websocket.onclose = (event) => {
       log(1, '[websocket] closed! - URL = ' + event.target.url);
+      if (this.states.connection.websocket === websocket) {
+        this.states.connection.websocket = null;
+        this.stopConnectionHealthCheck();
+      }
       if (event.target.url === url && this.shouldUseWebsocket()) {
         backendService.debugEvents.publish('Disconnected from Home Assistant<br>Retry in 5s');
         this.reconnect(5);
       }
     };
 
-    this.states.connection.websocket.onerror = (event) => {
+    websocket.onerror = (event) => {
       error(1, '[websocket] error event', event);
       if (this.config.debuglevel > 1) {
         backendService.errorEvents.publish('Error with Home Assistant connection');
       }
     };
 
-    this.states.connection.websocket.onmessage = (message) => {
+    websocket.onmessage = (message) => {
       const data = JSON.parse(message.data);
       log(2, '[websocket] message received', data);
       this.handleHAEvent(data);
@@ -392,6 +405,7 @@ class HomeAssistantService {
   handleAuthResult(data) {
     if (data.type === 'auth_ok') {
       log(2, '[websocket] Authentication successful');
+      this.startConnectionHealthCheck();
       this.resubscribeEntities();
       this.processPendingSubscriptions();
       return true;
@@ -510,6 +524,12 @@ class HomeAssistantService {
   handlePing(data) {
     if (data.type === 'pong') {
       log(3, '[websocket] Received pong response');
+      if (this.states.connection.pongTimer &&
+        data.id === this.states.connection.pingId) {
+        clearTimeout(this.states.connection.pongTimer);
+        this.states.connection.pongTimer = null;
+        this.states.connection.pingId = null;
+      }
       return true;
     }
     return false;
@@ -974,6 +994,7 @@ class HomeAssistantService {
   }
 
   disconnect() {
+    this.stopConnectionHealthCheck();
     if (this.states.connection.timer) {
       clearTimeout(this.states.connection.timer);
       this.states.connection.timer = null;
@@ -982,6 +1003,50 @@ class HomeAssistantService {
     if (this.states.connection.websocket) {
       this.states.connection.websocket.close();
       this.states.connection.websocket = null;
+    }
+  }
+
+  startConnectionHealthCheck() {
+    this.stopConnectionHealthCheck();
+    this.states.connection.healthTimer = setInterval(() => {
+      this.checkConnectionHealth();
+    }, 30000);
+    this.checkConnectionHealth();
+  }
+
+  stopConnectionHealthCheck() {
+    if (this.states.connection.healthTimer) {
+      clearInterval(this.states.connection.healthTimer);
+      this.states.connection.healthTimer = null;
+    }
+    if (this.states.connection.pongTimer) {
+      clearTimeout(this.states.connection.pongTimer);
+      this.states.connection.pongTimer = null;
+    }
+    this.states.connection.pingId = null;
+  }
+
+  checkConnectionHealth() {
+    const websocket = this.states.connection.websocket;
+    if (!websocket || websocket.readyState !== WebSocket.OPEN) {
+      return;
+    }
+
+    try {
+      const pingId = this.messageId++;
+      this.states.connection.pingId = pingId;
+      websocket.send(JSON.stringify({ id: pingId, type: 'ping' }));
+      this.states.connection.pongTimer = setTimeout(() => {
+        if (this.states.connection.websocket !== websocket ||
+          this.states.connection.pingId !== pingId) {
+          return;
+        }
+        error(1, '[ha] Health check timed out');
+        this.reconnect(5);
+      }, 10000);
+    } catch (err) {
+      error(1, '[ha] Health check failed:', err);
+      this.reconnect(5);
     }
   }
 

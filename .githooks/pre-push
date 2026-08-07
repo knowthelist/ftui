@@ -1,0 +1,15 @@
+#!/bin/bash
+# Ensure controls_ftui.txt matches the files being pushed.
+# Activate once with: git config core.hooksPath .githooks
+
+REPO_ROOT=$(git rev-parse --show-toplevel) || exit 1
+cd "$REPO_ROOT" || exit 1
+
+bash prepare_update.sh
+
+if ! git diff --quiet HEAD -- controls_ftui.txt; then
+  echo "controls_ftui.txt was regenerated and is not part of the commit being pushed." >&2
+  echo "Commit the generated file, then run git push again." >&2
+  git add controls_ftui.txt
+  exit 1
+fi

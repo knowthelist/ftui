@@ -327,6 +327,13 @@ For developers who want to contribute or customize FTUI:
    - Test components live: `http://<fhem-url>:8083/fhem/ftui_dev/ftui-snippet-tester.html`
    - Paste HTML snippets and see them rendered in real-time
 
+5. **Enable Git hooks:**
+  ```bash
+  git config core.hooksPath .githooks
+  ```
+  The pre-commit hook regenerates and stages `controls_ftui.txt`. The pre-push
+  hook checks for stale generated data and stops the push until it is committed.
+
 ---
 
 ## Usage
