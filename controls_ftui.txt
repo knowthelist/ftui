@@ -82,7 +82,7 @@ UPD 2025-11-29_13:17:15 670 www/ftui/components/weather/weather-bar.component.cs
 UPD 2026-04-11_23:50:26 2371 www/ftui/components/weather/weather-bar.component.js
 UPD 2025-11-29_13:17:15 1277 www/ftui/components/weather/weather.component.js
 UPD 2025-11-29_13:17:15 20269 www/ftui/components/weather/weather.map.js
-UPD 2026-04-13_20:00:17 989 www/ftui/config.js
+UPD 2026-08-17_11:13:29 1384 www/ftui/config.js
 UPD 2025-11-29_13:17:06 616 www/ftui/examples/_empty.html
 UPD 2025-11-29_13:17:06 1995 www/ftui/examples/badge.html
 UPD 2025-11-29_13:17:06 1709 www/ftui/examples/binding.html
@@ -135,6 +135,7 @@ UPD 2025-12-23_21:38:43 1429 www/ftui/examples/ha.html
 UPD 2025-11-29_13:17:06 8558 www/ftui/examples/icon.html
 UPD 2026-04-25_22:43:39 4313 www/ftui/examples/image.html
 UPD 2025-11-29_13:17:06 2268 www/ftui/examples/input.html
+UPD 2026-08-17_11:10:26 946 www/ftui/examples/io-basic.html
 UPD 2025-11-29_13:17:06 7013 www/ftui/examples/knob.html
 UPD 2025-11-29_13:17:06 11087 www/ftui/examples/label.html
 UPD 2025-11-29_13:17:06 1834 www/ftui/examples/map.html
@@ -744,12 +745,13 @@ UPD 2026-04-11_23:50:27 192031 www/ftui/modules/chart.js/chart.min.js
 UPD 2026-04-11_23:50:28 49580 www/ftui/modules/chart.js/chartjs-adapter-date-fns.bundle.min.js
 UPD 2025-11-29_13:17:15 8388 www/ftui/modules/circle-menu/circle-menu.js
 UPD 2025-11-29_13:17:15 5063 www/ftui/modules/circle-menu/circle-menu.min.js
-UPD 2026-04-29_23:40:53 7115 www/ftui/modules/ftui/backend.service.js
+UPD 2026-08-17_10:01:54 8374 www/ftui/modules/ftui/backend.service.js
 UPD 2026-04-29_23:40:53 20003 www/ftui/modules/ftui/fhem.service.js
 UPD 2026-04-28_22:24:13 10140 www/ftui/modules/ftui/ftui.app.js
 UPD 2026-04-20_21:21:42 13473 www/ftui/modules/ftui/ftui.binding.js
 UPD 2026-04-20_21:33:50 16173 www/ftui/modules/ftui/ftui.helper.js
 UPD 2026-08-07_11:51:59 32470 www/ftui/modules/ftui/ha.service.js
+UPD 2026-08-17_10:58:48 9209 www/ftui/modules/ftui/iobroker.service.js
 UPD 2025-11-29_13:17:15 9326 www/ftui/modules/hocon/hocon.js
 UPD 2025-11-29_13:17:15 3199 www/ftui/modules/hocon/hocon.min.js
 UPD 2025-11-29_13:17:15 65090 www/ftui/modules/iro.js/iro.js

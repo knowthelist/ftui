@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <base href="../" />
+  <script src="ftui.js"></script>
+  <link href="ftui.css" rel="stylesheet">
+  <link href="themes/ftui-theme.css" rel="stylesheet">
+  <link href="favicon.ico" rel="icon" type="image/x-icon" />
+
+  <meta name="debug" content="0">
+
+  <title>FTUI ioBroker Basic Example</title>
+</head>
+
+<body>
+  <ftui-grid base-width="110" base-height="110" margin="1" shape="round">
+    <ftui-grid-tile row="1" col="1" width="3" height="2">
+      <ftui-grid-header>Küche Essplatz</ftui-grid-header>
+      <ftui-icon name="lightbulb-on" color="warning" size="3"></ftui-icon>
+      <ftui-switch
+        states="false,true"
+        [(value)]="io:openknx.0.Licht.Schalten.Küche_Essplatz_schalten">
+      </ftui-switch>
+      <ftui-label
+        [text]="io:openknx.0.Licht.Schalten.Küche_Essplatz_schalten"
+        color="medium">
+      </ftui-label>
+    </ftui-grid-tile>
+  </ftui-grid>
+</body>
+
+</html>

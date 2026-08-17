@@ -1,4 +1,7 @@
 2026-08-17  FTUI version 3
+feat(ioBroker): add ioBroker backend support with configuration and example
+
+2026-08-17  FTUI version 3
 fix(icon): prevent older icon requests from overwriting current icon
 
 2026-08-07  FTUI version 3

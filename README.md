@@ -7,7 +7,7 @@ Built with a clear intention: **Keep it short and simple!**
 
 **Version 3** - Built with [Web Components](https://developer.mozilla.org/en-US/docs/Web/Web_Components) using pure ES2020 JavaScript.
 
-> **⚠️ Important Notes:**
+> ** Important Notes:**
 > - This version is **not compatible** with older FTUI versions (v1/v2)
 > - Supports multiple backends: **FHEM** and **Home Assistant**
 > - Active development - new features are continuously added
@@ -22,6 +22,7 @@ Built with a clear intention: **Keep it short and simple!**
 - [Backend Configuration](#backend-configuration)
   - [FHEM Backend](#fhem-backend)
   - [Home Assistant Backend](#home-assistant-backend)
+  - [ioBroker Backend](#iobroker-backend)
   - [Dual Backend Setup](#dual-backend-setup)
 - [Update](#update)
 - [Docker Setup](#docker-setup)
@@ -59,7 +60,7 @@ Built with a clear intention: **Keep it short and simple!**
 
 ## Backend Configuration
 
-FTUI supports two powerful backends that can be used independently or simultaneously:
+FTUI supports FHEM, Home Assistant, and ioBroker backends that can be used independently or simultaneously:
 
 ### FHEM Backend
 
@@ -235,10 +236,43 @@ export const config = {
 **Key Points:**
 - Use **no prefix** for FHEM devices: `devicename:reading`
 - Use **`ha:` prefix** for Home Assistant: `ha:entity.name`
-- Both backends update in real-time
+- All configured backends update through FTUI bindings
 - Pipes and bindings work with both backends
 
 ---
+
+### ioBroker Backend
+
+ioBroker support uses configurable HTTP endpoints and polling. For the official REST API adapter (typically port `8093`), add this to `www/ftui/config.local.js`:
+
+**Prerequisite:** Install and start a configured **REST API adapter instance** in ioBroker. The Admin UI at port `8081` does not provide these REST endpoints. Verify the adapter's configured port and use that port in `ioBroker.url`; `8093` is only the common default.
+
+```javascript
+export const config = {
+    ioBroker: {
+        enabled: true,
+        url: 'http://iobroker:8093',
+        username: '',
+        password: '',
+        token: '',
+        stateEndpoint: '/v1/command/getStates',
+        stateQueryParameter: 'pattern',
+        writeEndpoint: '/v1/state/{id}',
+        writeMethod: 'GET',
+        writePayload: null,
+        writeQueryParameters: { value: '$value' },
+    },
+};
+```
+
+Use the `io:` prefix for state IDs. The default state response accepts ioBroker's object-map format (`{ "state.id": { "val": ... } }`) and array format:
+
+```html
+<ftui-label [text]="io:shelly.0.temperature"></ftui-label>
+<ftui-switch [(value)]="io:javascript.0.light"></ftui-switch>
+```
+
+If the selected ioBroker API uses different paths, query parameters, authentication, write methods, or request bodies, change the corresponding options above. `$id` and `$value` are replaced with the state ID and value. Keep credentials in `config.local.js`; do not commit them.
 
 ## Update
 

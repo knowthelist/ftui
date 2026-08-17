@@ -9,6 +9,19 @@ export const config = {
         url: 'http://homeassistant:8123', // Your HA URL here
         token: 'HA_TOKEN', // Your HA Token here
     },
+    ioBroker: {
+        enabled: false,
+        url: 'http://iobroker:8093',
+        username: '',
+        password: '',
+        token: '',
+        stateEndpoint: '/states',
+        writeEndpoint: '/setState',
+        writeMethod: 'POST',
+        stateQueryParameter: 'pattern',
+        writePayload: { id: '$id', state: { val: '$value', ack: false } },
+        writeQueryParameters: {},
+    },
 };
 
 /**

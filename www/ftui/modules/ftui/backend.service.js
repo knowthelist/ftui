@@ -1,6 +1,7 @@
 import { Subject, debounce, log, error } from './ftui.helper.js';
 import { fhemService } from './fhem.service.js';
 import { haService } from './ha.service.js';
+import { ioBrokerService } from './iobroker.service.js';
 
 class BackendService {
     constructor() {
@@ -62,15 +63,24 @@ class BackendService {
             refresh: { ...this.config.refresh },
             update: { ...this.config.update },
         };
+        const ioBrokerConfig = {
+            ...config,
+            refresh: { ...this.config.refresh },
+            update: { ...this.config.update },
+        };
 
         fhemService.setConfig(fhemConfig);
         haService.setConfig(haConfig);
+        ioBrokerService.setConfig(ioBrokerConfig);
     }
 
     getBackendEvents(reading) {
         // Route to HA service if reading starts with 'ha-'
         if (reading.startsWith('ha-')) {
             return haService.getReadingEvents(reading.substring(3));
+        }
+        if (reading.startsWith('io-')) {
+            return ioBrokerService.getReadingEvents(reading.substring(3));
         }
         // Default to FHEM service
         return fhemService.getReadingEvents(reading);
@@ -82,6 +92,9 @@ class BackendService {
             const cleanCommand = command.substring(7).trim();
             return haService.parseAndSendCommand(cleanCommand);
         }
+        if (command.startsWith('set io ')) {
+            return ioBrokerService.sendCommand(command.substring(7).trim());
+        }
         return fhemService.updateFhem(command);
     }
 
@@ -90,6 +103,9 @@ class BackendService {
             // Route HA commands to HA service
             const cleanCommand = command.substring(7).trim();
             return haService.parseAndSendCommand(cleanCommand);
+        }
+        if (command.startsWith('set io ')) {
+            return ioBrokerService.sendCommand(command.substring(7).trim());
         }
         return fhemService.sendCommand(command);
     }
@@ -111,13 +127,17 @@ class BackendService {
         if (parameterId.startsWith('ha-')) {
             return haService.updateStateItem(parameterId.substring(3), newData);
         }
+        if (parameterId.startsWith('io-')) {
+            return ioBrokerService.updateStateItem(parameterId.substring(3), newData);
+        }
         return fhemService.updateReadingItem(parameterId, newData);
     }
 
     forceRefresh() {
-        // Refresh both backends
+        // Refresh all configured backends
         fhemService.forceRefresh();
         haService.forceRefresh();
+        ioBrokerService.forceRefresh();
     }
 
     createFilterParameter() {
@@ -136,6 +156,7 @@ class BackendService {
             const haEntities = Array.isArray(haFilters)
                 ? haFilters.join(',')
                 : (haFilters && haFilters.entities) || '';
+            ioBrokerService.createFilterParameter();
 
             // Combine filters if needed
             this.config.refresh.filter = [
@@ -176,15 +197,19 @@ class BackendService {
         if (readingId.startsWith('ha-')) {
             return haService.getStateItem(readingId.substring(3));
         }
+        if (readingId.startsWith('io-')) {
+            return ioBrokerService.getStateItem(readingId.substring(3));
+        }
         return fhemService.getReadingItem(readingId);
     }
 
     lastEventTimestamp() {
         const fhemTimestamp = fhemService.states.connection.lastEventTimestamp;
         const haTimestamp = haService.states.connection.lastEventTimestamp;
+        const ioTimestamp = new Date(ioBrokerService.states.lastRefresh * 1000);
         
         // Return the most recent timestamp
-        return new Date(Math.max(fhemTimestamp.getTime(), haTimestamp.getTime()));
+        return new Date(Math.max(fhemTimestamp.getTime(), haTimestamp.getTime(), ioTimestamp.getTime()));
     }
     
     stopRefreshInterval() {
@@ -200,17 +225,20 @@ class BackendService {
         // Notify both services
         fhemService.disconnect();
         haService.disconnect();
+        ioBrokerService.disconnect();
     }
 
     checkConnection() {
         // Check both services
         fhemService.scheduleHealthCheck();
         haService.scheduleHealthCheck();
+        ioBrokerService.scheduleHealthCheck();
     }
 
     disconnect() {
         fhemService.disconnect();
         haService.disconnect();
+        ioBrokerService.disconnect();
     }
 
     // Kick off the CSRF handshake and WebSocket connection in the background so
