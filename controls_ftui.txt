@@ -80,8 +80,8 @@ UPD 2025-11-29_13:17:15 893 www/ftui/components/view/view-toolbar.component.js
 UPD 2026-04-11_20:33:56 9180 www/ftui/components/view/view.component.js
 UPD 2025-11-29_13:17:15 670 www/ftui/components/weather/weather-bar.component.css
 UPD 2026-04-11_23:50:26 2371 www/ftui/components/weather/weather-bar.component.js
-UPD 2025-11-29_13:17:15 1277 www/ftui/components/weather/weather.component.js
-UPD 2025-11-29_13:17:15 20269 www/ftui/components/weather/weather.map.js
+UPD 2026-08-17_11:28:46 1382 www/ftui/components/weather/weather.component.js
+UPD 2026-08-17_11:28:46 21924 www/ftui/components/weather/weather.map.js
 UPD 2026-08-17_11:13:29 1384 www/ftui/config.js
 UPD 2025-11-29_13:17:06 616 www/ftui/examples/_empty.html
 UPD 2025-11-29_13:17:06 1995 www/ftui/examples/badge.html

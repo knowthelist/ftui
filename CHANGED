@@ -1,4 +1,7 @@
 2026-08-17  FTUI version 3
+fix(weather): update weather component and map with new timestamps
+
+2026-08-17  FTUI version 3
 feat(ioBroker): add ioBroker backend support with configuration and example
 
 2026-08-17  FTUI version 3
