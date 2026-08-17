@@ -1,5 +1,5 @@
 #!/bin/bash
-# Auto-regenerate controls_ftui.txt before every commit.
+# Auto-regenerate generated files before every commit.
 # Activate once with: git config core.hooksPath .githooks
 
 bash prepare_update.sh

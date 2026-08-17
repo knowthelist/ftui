@@ -1,0 +1,41 @@
+#!/bin/bash
+# Add the completed commit to CHANGED and amend it into the same commit.
+# This must run after the commit message is final; changing the index in
+# commit-msg is too late for Git to include the file in the commit tree.
+
+if [[ "${FTUI_CHANGED_AMEND:-}" == "1" ]]; then
+  exit 0
+fi
+
+SUBJECT=$(git log -1 --format=%s) || exit 1
+
+# Do not add release notes for merge commits.
+if [[ -z "$SUBJECT" || "$SUBJECT" == Merge* ]]; then
+  exit 0
+fi
+
+DATE=$(date +'%Y-%m-%d')
+HEADER="${DATE}  FTUI version 3"
+ENTRY="${HEADER}
+${SUBJECT}"
+
+CURRENT=$(git show HEAD:CHANGED 2>/dev/null || true)
+if [[ "$CURRENT" == "$ENTRY"* ]]; then
+  exit 0
+fi
+
+{
+  printf '%s\n\n' "$ENTRY"
+  if [[ -n "$CURRENT" ]]; then
+    printf '%s\n' "$CURRENT"
+  fi
+} > CHANGED.tmp || exit 1
+if [[ -e CHANGED ]]; then
+  cat CHANGED.tmp > CHANGED || exit 1
+  rm -f CHANGED.tmp
+else
+  mv CHANGED.tmp CHANGED || exit 1
+fi
+
+git add CHANGED || exit 1
+FTUI_CHANGED_AMEND=1 git commit --amend --no-edit --no-verify

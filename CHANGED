@@ -1,2 +1,8 @@
+2026-08-17  FTUI version 3
+fix(icon): prevent older icon requests from overwriting current icon
+
+2026-08-07  FTUI version 3
+feat: add connection health check and Git hooks for controls_ftui.txt management
+
 2026-05-01  FTUI version 3
 feat(chart): add support for dashed and dotted line charts and update dataset normalization

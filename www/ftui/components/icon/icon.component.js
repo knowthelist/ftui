@@ -92,10 +92,19 @@ export class FtuiIcon extends FtuiElement {
   }
 
   async loadIcon(url) {
+    const iconLoadId = (this.iconLoadId || 0) + 1;
+    this.iconLoadId = iconLoadId;
+    let content;
+
     if (url.endsWith('svg')) {
-      this.elementIcon.innerHTML = await this.fetchSvgIcon(url);
+      content = await this.fetchSvgIcon(url);
     } else {
-      this.elementIcon.innerHTML = `<img src="${url}"></img>`;
+      content = `<img src="${url}"></img>`;
+    }
+
+    // A slower request for an older icon must not overwrite the current one.
+    if (iconLoadId === this.iconLoadId && this.elementIcon) {
+      this.elementIcon.innerHTML = content;
     }
   }
 

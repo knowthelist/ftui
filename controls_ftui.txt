@@ -26,7 +26,7 @@ UPD 2025-11-29_13:17:15 2131 www/ftui/components/grid/grid-tile.component.css
 UPD 2025-11-29_13:17:15 1074 www/ftui/components/grid/grid-tile.component.js
 UPD 2025-11-29_13:17:15 5181 www/ftui/components/grid/grid.component.js
 UPD 2025-11-29_13:17:15 1420 www/ftui/components/icon/icon.component.css
-UPD 2025-11-29_13:17:15 3134 www/ftui/components/icon/icon.component.js
+UPD 2026-08-17_08:45:54 3390 www/ftui/components/icon/icon.component.js
 UPD 2025-11-29_13:17:15 3277 www/ftui/components/image/image.component.js
 UPD 2025-11-29_13:17:15 8329 www/ftui/components/image/image_not_available.js
 UPD 2025-11-29_13:17:15 2660 www/ftui/components/input/input.component.js
