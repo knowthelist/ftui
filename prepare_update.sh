@@ -3,13 +3,15 @@
 # Run automatically via git pre-commit hook:
 #   git config core.hooksPath .githooks   (one-time setup)
 
-> controls_ftui.txt
+CONTROLS_FILE=${CONTROLS_FILE:-controls_ftui.txt}
+
+> "$CONTROLS_FILE"
 
 git ls-files -z | while IFS= read -r -d '' f; do
   if [[ $f != *.git* && $f != *.eslintrc* && $f == *www/ftui* ]]; then
 
     if [[ ! -f "${f}" ]]; then
-      echo "MOV ${f} unused" >> controls_ftui.txt
+      echo "MOV ${f} unused" >> "$CONTROLS_FILE"
     else
       if [[ "$OSTYPE" == "linux-gnu"* ]]; then
         read -r ts size <<< "$(stat -c '%Y %s' "$f")"
@@ -21,12 +23,12 @@ git ls-files -z | while IFS= read -r -d '' f; do
         out="${f}"
       fi
       if [[ $f == *index.html* ]]; then
-        echo "CRE ${out//.\//}" >> controls_ftui.txt
+        echo "CRE ${out//.\//}" >> "$CONTROLS_FILE"
       else
-        echo "UPD ${out//.\//}" >> controls_ftui.txt
+        echo "UPD ${out//.\//}" >> "$CONTROLS_FILE"
       fi
     fi
   fi
 done
 
-echo "controls_ftui.txt updated ($(wc -l < controls_ftui.txt | tr -d ' ') entries)"
+echo "${CONTROLS_FILE} updated ($(wc -l < "$CONTROLS_FILE" | tr -d ' ') entries)"

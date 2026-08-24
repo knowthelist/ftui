@@ -1,4 +1,7 @@
 2026-08-24  FTUI version 3
+fix: improve pre-push hook to handle generated manifest files and normalize comparisons
+
+2026-08-24  FTUI version 3
 fix: enhance debug level handling and improve error reporting in ioBroker service style: adjust notification item width and add text wrapping in vanilla-notify CSS
 
 2026-08-24  FTUI version 3

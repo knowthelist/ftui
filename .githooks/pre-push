@@ -5,11 +5,24 @@
 REPO_ROOT=$(git rev-parse --show-toplevel) || exit 1
 cd "$REPO_ROOT" || exit 1
 
-bash prepare_update.sh
+GENERATED_MANIFEST=$(mktemp "${TMPDIR:-/tmp}/controls_ftui.XXXXXX") || exit 1
+COMMITTED_MANIFEST=$(mktemp "${TMPDIR:-/tmp}/controls_ftui.XXXXXX") || {
+  rm -f "$GENERATED_MANIFEST"
+  exit 1
+}
+trap 'rm -f "$GENERATED_MANIFEST" "$COMMITTED_MANIFEST"' EXIT
 
-if ! git diff --quiet HEAD -- controls_ftui.txt; then
-  echo "controls_ftui.txt was regenerated and is not part of the commit being pushed." >&2
-  echo "Commit the generated file, then run git push again." >&2
+CONTROLS_FILE="$GENERATED_MANIFEST" bash prepare_update.sh >/dev/null
+git show HEAD:controls_ftui.txt > "$COMMITTED_MANIFEST" || exit 1
+
+# File mtimes can change after checkout. Compare stable manifest data only.
+normalize_manifest() {
+  sed -E 's/^((CRE|UPD) )[0-9]{4}-[0-9]{2}-[0-9]{2}_[0-9]{2}:[0-9]{2}:[0-9]{2} /\1/' "$1"
+}
+
+if ! diff -u <(normalize_manifest "$COMMITTED_MANIFEST") <(normalize_manifest "$GENERATED_MANIFEST") >/dev/null; then
+  echo "controls_ftui.txt is stale in the commit being pushed." >&2
+  echo "Run 'git add controls_ftui.txt && git commit' before pushing again." >&2
   git add controls_ftui.txt
   exit 1
 fi
