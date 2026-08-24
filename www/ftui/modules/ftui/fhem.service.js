@@ -507,7 +507,7 @@ class FhemService {
 
     if (!this.states.isOffline) {
       const promise = this.sendCommand(cmdLine)
-      if (this.config.debuglevel > 2) {
+      if (this.config.debugLevel > 2) {
         this.debugEvents.publish(cmdLine);
       }
       return promise;

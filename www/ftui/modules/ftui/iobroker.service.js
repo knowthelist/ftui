@@ -227,7 +227,14 @@ class IoBrokerService {
       options.body = JSON.stringify(this.resolveWritePayload(this.config.writePayload, stateId, parsedValue));
     }
     const response = await fetch(url, options);
-    if (!response.ok) throw new Error(response.statusText || 'ioBroker command failed');
+    if (!response.ok) {
+      const responseText = await response.text();
+      const detail = responseText ? ': ' + responseText.slice(0, 300) : '';
+      const commandError = new Error((response.status + ' ' + (response.statusText || 'ioBroker command failed')) + detail);
+      this.errorEvents.publish('<u>ioBroker command failed</u><br>' + commandError);
+      throw commandError;
+    }
+    this.debugEvents.publish('ioBroker command sent: ' + stateId + ' = ' + parsedValue);
     return response;
   }
 

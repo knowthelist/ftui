@@ -46,8 +46,11 @@
       transform: rotate(-45deg); }
 
 .vnotify-item {
-  width: 20em;
+  width: calc(100vw - 30px);
+  max-width: 20em;
+  box-sizing: border-box;
   padding: 10px;
+  padding-right: 30px;
   position: relative;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
@@ -62,6 +65,10 @@
 
 .vnotify-title {
   font-weight: bold; }
+
+.vnotify-text {
+  overflow-wrap: break-word;
+  word-break: break-word; }
 
 .vnotify-info {
   background: #3498db;
