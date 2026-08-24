@@ -27,6 +27,18 @@
         color="medium">
       </ftui-label>
     </ftui-grid-tile>
+    <ftui-grid-tile row="1" col="4" width="3" height="2">
+      <ftui-grid-header>Terrasse Licht</ftui-grid-header>
+      <ftui-icon name="lightbulb-on" color="warning" size="3"></ftui-icon>
+      <ftui-switch
+        states="false,true"
+        [(value)]="io:openknx.0.Licht.Schalten.Terrasse___Balkon_Wandleuchte_Strasse_schalten">
+      </ftui-switch>
+      <ftui-label
+        [text]="io:openknx.0.Licht.Schalten.Terrasse___Balkon_Wandleuchte_Strasse_schalten"
+        color="medium">
+      </ftui-label>
+    </ftui-grid-tile>
   </ftui-grid>
 </body>
 

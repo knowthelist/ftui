@@ -172,25 +172,37 @@ class IoBrokerService {
       }
       return;
     }
+    if (this.states.refresh.request) return this.states.refresh.request;
+
     const ids = this.createFilterParameter();
     if (!ids.length) return;
-    try {
-      const url = new URL(this.endpoint(this.config.stateEndpoint));
-      if (this.config.stateQueryParameter) {
-        url.searchParams.set(this.config.stateQueryParameter, ids.join(','));
-      }
-      const response = await fetch(url, this.requestOptions());
-      if (!response.ok) throw new Error(response.statusText || 'ioBroker request failed');
-      const payload = await response.json();
-      this.normalizeStates(payload).forEach(([stateId, state]) => {
+    this.states.refresh.request = (async () => {
+      const stateIds = this.config.stateQueryParameter === 'pattern' ? ids : [ids.join(',')];
+      const payloads = await Promise.all(stateIds.map(async stateId => {
+        const url = new URL(this.endpoint(this.config.stateEndpoint));
+        if (this.config.stateQueryParameter) {
+          url.searchParams.set(this.config.stateQueryParameter, stateId);
+        }
+        const response = await fetch(url, this.requestOptions());
+        if (!response.ok) {
+          const responseText = await response.text();
+          const detail = responseText ? ': ' + responseText.slice(0, 300) : '';
+          throw new Error((response.status + ' ' + (response.statusText || 'ioBroker request failed')) + detail);
+        }
+        return response.json();
+      }));
+      payloads.forEach(payload => this.normalizeStates(payload).forEach(([stateId, state]) => {
         if (this.statesMap.has(stateId)) this.updateStateItem(stateId, this.parseState(stateId, state));
-      });
+      }));
       this.states.lastRefresh = Date.now() / 1000;
       this.debugEvents.publish('ioBroker refresh completed');
-    } catch (refreshError) {
+    })().catch(refreshError => {
       this.errorEvents.publish('<u>ioBroker refresh failed</u><br>' + refreshError);
       error(1, '[ioBroker] refresh failed', refreshError);
-    }
+    }).finally(() => {
+      this.states.refresh.request = null;
+    });
+    return this.states.refresh.request;
   }
 
   async sendCommand(command) {

@@ -46,8 +46,12 @@ class FtuiApp {
     this.config.updateCheckInterval = this.getMetaNumber('update_check_interval', 5);
     this.config.enableDebug = (this.config.debugLevel > 0);
     this.config.enableToast = this.getMetaNumber('toast', 5); // 1,2,3...= n Toast-Messages, 0: No Toast-Messages
-    this.config.toastDuration = this.getMetaString('toast_duration', 5);
-    this.config.toastPosition = this.getMetaString('toast_position', this.config.toastPosition);
+    this.config.toastDuration = this.getMetaNumber('toast_duration', 5);
+    const toastPositions = ['topLeft', 'topRight', 'bottomLeft', 'bottomRight', 'topCenter', 'center'];
+    const toastPosition = this.getMetaString('toast_position', this.config.toastPosition);
+    this.config.toastPosition = toastPositions.includes(toastPosition)
+      ? toastPosition
+      : 'bottomLeft';
     this.config.refreshInterval = this.getMetaNumber('refresh_interval', 15 * 60); // 15 minutes
     this.config.refreshDelay = this.getMetaString('refresh_restart_delay', 3);
     // self path
@@ -268,7 +272,8 @@ class FtuiApp {
   }
 
   getMetaNumber(key, defaultVal) {
-    return Number.parseInt(this.getMetaString(key, defaultVal));
+    const value = Number.parseInt(this.getMetaString(key, defaultVal), 10);
+    return Number.isNaN(value) ? defaultVal : value;
   }
 
   getMetaString(name, defaultVal) {
@@ -292,7 +297,7 @@ class FtuiApp {
   toast(text, level = 'debug') {
     // https://github.com/MLaritz/Vanilla-Notify
 
-    if (this.config.enableToast !== 0 && window.vNotify) {
+    if (this.config.enableToast !== 0) {
       if (level === 'error') {
         return vNotify.error({
           text: text,
@@ -309,7 +314,7 @@ class FtuiApp {
       else {
         return vNotify.notify({
           text: text,
-          visibleDuration: this.config.toastDuration * 1000 || 5000,
+          visibleDuration: this.config.toastDuration > 0 ? this.config.toastDuration * 1000 : 5000,
           position: this.config.toastPosition,
         });
       }

@@ -996,7 +996,7 @@ Powerful charting component powered by [Chart.js](https://www.chartjs.org/).
 | Attribute | Description | Type | Default |
 |-----------|-------------|------|---------|
 | **log** | FHEM DbLog device name | String | `"-"` |
-| **file** | Log file argument (typically `-`) | String | `"-"` |
+| **file** | Log file argument (`-` = current file, `CURRENT` = file(s) matching the requested date range) | String | `"-"` |
 | **spec** | Column/reading specification | String | `"4:.*"` |
 | **start-date** | Override series start date | Date string | `""` |
 | **end-date** | Override series end date | Date string | `""` |
@@ -1004,6 +1004,20 @@ Powerful charting component powered by [Chart.js](https://www.chartjs.org/).
 | **extend** | Extend last known value to now/end | Boolean | `false` |
 | **update** | Reading whose change triggers a re-fetch | String | `""` |
 | **offset** | Add a numeric offset to every data value | Number | `0` |
+
+For FHEM `FileLog` devices with date-based rotation (for example
+`Heizoel-%Y.log`), use `file="CURRENT"` instead of the default `file="-"`.
+To plot a range spanning multiple log files, enable FHEM's
+`createGluedFile` attribute on the `FileLog` device:
+
+```html
+<ftui-chart-data log="FileLog_Heizoel" file="CURRENT"
+                 spec="4:.*"></ftui-chart-data>
+```
+
+`file="-"` deliberately reads only the currently open log file. The
+`createGluedFile` setting is evaluated by FHEM for `CURRENT` requests; it is
+not used for `-`.
 
 ##### Series identity & layout
 
