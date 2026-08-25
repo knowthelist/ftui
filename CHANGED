@@ -1,3 +1,6 @@
+2026-08-25  FTUI version 3
+fix: enhance debugging and notification handling across services
+
 2026-08-24  FTUI version 3
 fix: improve pre-push hook to handle generated manifest files and normalize comparisons
 

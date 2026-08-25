@@ -62,6 +62,24 @@ Built with a clear intention: **Keep it short and simple!**
 
 FTUI supports FHEM, Home Assistant, and ioBroker backends that can be used independently or simultaneously:
 
+### Notifications and Debugging
+
+Notifications and console debugging are controlled independently in the page header:
+
+```html
+<meta name="toast" content="1">
+<meta name="debug" content="0">
+```
+
+The `toast` value is a maximum notification level:
+
+- `0`: no toast notifications
+- `1`: important status changes and errors, such as connection changes
+- `2`: level 1 plus sent backend commands
+- `3`: level 2 plus refresh and incoming backend diagnostics; these disappear quickly
+
+The `debug` value controls only verbose console output. It does not enable or disable toast notifications. `toast_duration` controls the normal toast duration in seconds, and `toast_position` controls its position.
+
 ### FHEM Backend
 
 FTUI works out-of-the-box with FHEM. Simply ensure your FHEM instance is running and accessible.

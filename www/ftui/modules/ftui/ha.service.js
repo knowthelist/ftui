@@ -356,16 +356,17 @@ class HomeAssistantService {
         this.stopConnectionHealthCheck();
       }
       if (event.target.url === url && this.shouldUseWebsocket()) {
-        backendService.debugEvents.publish('Disconnected from Home Assistant<br>Retry in 5s');
+        backendService.debugEvents.publish({
+          text: 'Disconnected from Home Assistant<br>Retry in 5s',
+          level: 1,
+        });
         this.reconnect(5);
       }
     };
 
     websocket.onerror = (event) => {
       error(1, '[websocket] error event', event);
-      if (this.config.debuglevel > 1) {
-        backendService.errorEvents.publish('Error with Home Assistant connection');
-      }
+      backendService.errorEvents.publish('Error with Home Assistant connection');
     };
 
     websocket.onmessage = (message) => {
@@ -441,7 +442,7 @@ class HomeAssistantService {
       });
 
     log(2, '[refresh] Completed refresh of ' + data.result.length + ' entities');
-    this.debugEvents.publish('Refresh completed');
+    this.debugEvents.publish({ text: 'Refresh completed', level: 3 });
     return true;
   }
 
@@ -577,7 +578,10 @@ class HomeAssistantService {
       }
 
       const result = await response.json();
-      this.debugEvents.publish(`Called ${domain}.${service} with ${JSON.stringify(data)}`);
+      this.debugEvents.publish({
+        text: `Called ${domain}.${service} with ${JSON.stringify(data)}`,
+        level: 2,
+      });
       return result;
     } catch (error) {
       this.errorEvents.publish('<u>HA Command failed</u><br>' + error);
@@ -780,11 +784,17 @@ class HomeAssistantService {
     }
 
     if (!membersToRemove.length && !membersToAdd.length) {
-      this.debugEvents.publish(`No media_player group changes required for ${entity}`);
+      this.debugEvents.publish({
+        text: `No media_player group changes required for ${entity}`,
+        level: 3,
+      });
     }
 
     if (!hasCoordinator && requestedMembers.length) {
-      this.debugEvents.publish(`Ignored media_player group additions for ${entity} because the coordinator is not part of the requested group`);
+      this.debugEvents.publish({
+        text: `Ignored media_player group additions for ${entity} because the coordinator is not part of the requested group`,
+        level: 3,
+      });
     }
 
     return results;
@@ -873,7 +883,7 @@ class HomeAssistantService {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
 
-      this.debugEvents.publish(`Updated ${entityId} to ${state}`);
+      this.debugEvents.publish({ text: `Updated ${entityId} to ${state}`, level: 2 });
     } catch (error) {
       this.errorEvents.publish('<u>HA Command failed</u><br>' + error);
       throw error;
@@ -963,7 +973,7 @@ class HomeAssistantService {
       this.states.lastRefresh = now;
 
       log(2, '[HA Service] Refresh completed, updated ' + this.statesMap.size + ' entities');
-      this.debugEvents.publish('Refresh completed');
+      this.debugEvents.publish({ text: 'Refresh completed', level: 3 });
     } catch (error) {
       this.errorEvents.publish('<u>Refresh failed</u><br>' + error);
       log(1, '[HA Service] Refresh error:', error);

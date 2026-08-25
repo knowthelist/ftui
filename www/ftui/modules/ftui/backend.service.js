@@ -6,7 +6,7 @@ import { ioBrokerService } from './iobroker.service.js';
 class BackendService {
     constructor() {
         this.config = {
-            debuglevel: 0,
+            debugLevel: 0,
             refreshInterval: 0,
             refreshFilter: '',
             updateFilter: '',

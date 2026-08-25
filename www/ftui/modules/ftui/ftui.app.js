@@ -11,6 +11,7 @@ class FtuiApp {
       enableDebug: false,
       fhemDir: '',
       debugLevel: 0,
+      toastLevel: 1,
       lang: 'de',
       refreshDelay: 0,
       toastPosition: 'bottomLeft',
@@ -45,7 +46,7 @@ class FtuiApp {
     this.config.debugLevel = this.getMetaNumber('debug', 0);
     this.config.updateCheckInterval = this.getMetaNumber('update_check_interval', 5);
     this.config.enableDebug = (this.config.debugLevel > 0);
-    this.config.enableToast = this.getMetaNumber('toast', 5); // 1,2,3...= n Toast-Messages, 0: No Toast-Messages
+    this.config.toastLevel = Math.min(3, Math.max(0, this.getMetaNumber('toast', 1)));
     this.config.toastDuration = this.getMetaNumber('toast_duration', 5);
     const toastPositions = ['topLeft', 'topRight', 'bottomLeft', 'bottomRight', 'topCenter', 'center'];
     const toastPosition = this.getMetaString('toast_position', this.config.toastPosition);
@@ -89,7 +90,6 @@ class FtuiApp {
     window.performance.mark('end initPage');
     window.performance.measure('initPage', 'start initPage', 'end initPage');
     const dur = 'initPage done after ' + (new Date() - this.states.startTime) + 'ms';
-    if (this.config.debugLevel > 1) this.toast(dur);
     ftui.log(1, '[ftuiApp] ' + dur);
 
     this.setTheme(window.matchMedia('(prefers-color-scheme: dark)').matches);
@@ -101,7 +101,7 @@ class FtuiApp {
     try {
       // Initialize backend service
       backendService.setConfig(this.config);
-      backendService.debugEvents.subscribe(text => this.toast(text));
+      backendService.debugEvents.subscribe(event => this.toast(event));
       backendService.errorEvents.subscribe(text => this.toast(text, 'error'));
 
       // Kick off CSRF handshake in the background now that fhemDir is known,
@@ -294,31 +294,27 @@ class FtuiApp {
     });
   }
 
-  toast(text, level = 'debug') {
+  toast(event, level = 'debug') {
     // https://github.com/MLaritz/Vanilla-Notify
 
-    if (this.config.enableToast !== 0) {
-      if (level === 'error') {
-        return vNotify.error({
-          text: text,
-          visibleDuration: 20000, // in milliseconds
-          position: this.config.toastPosition,
-        });
-      } else if (level === 'info') {
-        return vNotify.info({
-          text: text,
-          visibleDuration: 5000, // in milliseconds
-          position: this.config.toastPosition,
-        });
-      }
-      else {
-        return vNotify.notify({
-          text: text,
-          visibleDuration: this.config.toastDuration > 0 ? this.config.toastDuration * 1000 : 5000,
-          position: this.config.toastPosition,
-        });
-      }
+    const toast = event && typeof event === 'object' ? event : { text: event, level };
+    const toastLevel = toast.level === 'error' || toast.level === 'info'
+      ? 1 : Number(toast.level) || 3;
+    if (this.config.toastLevel === 0 || toastLevel > this.config.toastLevel || !toast.text) {
+      return;
     }
+    if (toast.level === 'error') {
+      return vNotify.error({
+        text: toast.text,
+        visibleDuration: 20000, // in milliseconds
+        position: this.config.toastPosition,
+      });
+    }
+    return vNotify.info({
+      text: toast.text,
+      visibleDuration: toastLevel >= 3 ? 3000 : 5000,
+      position: this.config.toastPosition,
+    });
   }
 
 }

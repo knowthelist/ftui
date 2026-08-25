@@ -280,7 +280,7 @@ class FhemService {
     this.states.refresh.request =
       this.sendCommand('jsonlist2 ' + this.config.refresh.filter)
         .then(res => res.json())
-        .catch(error => this.debugEvents.publish('<u>FHEM Command failed</u><br>' + error))
+        .catch(error => this.errorEvents.publish('<u>FHEM Command failed</u><br>' + error))
         .then(fhemJSON => this.parseRefreshResult(fhemJSON),
         );
   }
@@ -304,12 +304,11 @@ class FhemService {
       window.performance.mark('end refresh');
       window.performance.measure('refresh', 'start refresh', 'end refresh');
       const duration = window.performance.getEntriesByName('refresh', 'measure')[0].duration;
-      if (this.config.debuglevel > 1) {
-        const paramCount = fhemJSON.Results.length;
-        this.debugEvents.publish('Full refresh done in ' +
-          duration.toFixed(0) + 'ms for ' +
-          paramCount + ' parameter(s)');
-      }
+      const paramCount = fhemJSON.Results.length;
+      this.debugEvents.publish({
+        text: 'Full refresh done in ' + duration.toFixed(0) + 'ms for ' + paramCount + ' parameter(s)',
+        level: 3,
+      });
       log(1, '[refresh] done');
       this.states.refresh.duration = duration * 1000;
       this.states.refresh.lastTimestamp = new Date();
@@ -327,20 +326,18 @@ class FhemService {
       const err = 'request failed: Result is null';
       error(1, '[refresh] error ' + err);
       this.states.refresh.result = err;
-      this.debugEvents.publish('<u>Refresh ' + err + ' </u><br>');
+      this.errorEvents.publish('<u>Refresh ' + err + ' </u><br>');
 
     }
     window.performance.mark('end read jsonlist2');
     window.performance.measure('read jsonlist2', 'start read jsonlist2', 'end read jsonlist2');
-    if (this.config.debuglevel > 1) {
-      let performance = '';
-      window.performance.getEntriesByType('measure').forEach(entry => {
-        performance += [entry.name, ':', entry.duration.toFixed(0), 'ms', '<br>'].join(' ');
-      })
-      window.performance.clearMeasures();
-      window.performance.clearMarks();
-      this.debugEvents.publish(performance);
-    }
+    let performance = '';
+    window.performance.getEntriesByType('measure').forEach(entry => {
+      performance += [entry.name, ':', entry.duration.toFixed(0), 'ms', '<br>'].join(' ');
+    })
+    window.performance.clearMeasures();
+    window.performance.clearMarks();
+    this.debugEvents.publish({ text: performance, level: 3 });
   }
 
   parseRefreshResultSection(device, section) {
@@ -394,9 +391,7 @@ class FhemService {
       log(3, '[websocket] a valid instance has been found - do not newly connect');
       return;
     }
-    if (this.config.debuglevel > 1) {
-      this.debugEvents.publish('FHEM connection started');
-    }
+    this.debugEvents.publish({ text: 'FHEM connection started', level: 1 });
     this.states.connection.URL = this.config.fhemDir.replace(/^http/i, 'ws') + '?XHR=1&inform=type=status;filter=' +
       this.config.update.filter + ';since=' + this.states.connection.lastEventTimestamp.getTime() + ';fmt=JSON' +
       '&timestamp=' + Date.now();
@@ -413,14 +408,17 @@ class FhemService {
       log(1, '[websocket] closed! reason=' + reason + ' - URL = ' + event.target.url);
       // if current socket closes then restart websocket
       if (event.target.url === this.states.connection.URL) {
-        this.debugEvents.publish('Disconnected from FHEM<br>' + reason + '<br>Retry in 5s');
+        this.debugEvents.publish({
+          text: 'Disconnected from FHEM<br>' + reason + '<br>Retry in 5s',
+          level: 1,
+        });
         log(2, '[websocket] disconnected - retry to connect');
         this.reconnect(5);
       }
     };
     this.states.connection.websocket.onerror = (event) => {
       error(1, '[websocket] error event', event);
-      if (this.config.debuglevel > 1 && event.target.url === this.states.connection.URL) {
+      if (event.target.url === this.states.connection.URL) {
         this.errorEvents.publish('Error with fhem connection');
       }
 
@@ -507,9 +505,7 @@ class FhemService {
 
     if (!this.states.isOffline) {
       const promise = this.sendCommand(cmdLine)
-      if (this.config.debugLevel > 2) {
-        this.debugEvents.publish(cmdLine);
-      }
+      this.debugEvents.publish({ text: cmdLine, level: 2 });
       return promise;
     } else {
       this.errorEvents.publish('<u>App is offline</u><br>sendToFhem failed');

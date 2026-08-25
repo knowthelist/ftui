@@ -195,7 +195,7 @@ class IoBrokerService {
         if (this.statesMap.has(stateId)) this.updateStateItem(stateId, this.parseState(stateId, state));
       }));
       this.states.lastRefresh = Date.now() / 1000;
-      this.debugEvents.publish('ioBroker refresh completed');
+      this.debugEvents.publish({ text: 'ioBroker refresh completed', level: 3 });
     })().catch(refreshError => {
       this.errorEvents.publish('<u>ioBroker refresh failed</u><br>' + refreshError);
       error(1, '[ioBroker] refresh failed', refreshError);
@@ -234,7 +234,10 @@ class IoBrokerService {
       this.errorEvents.publish('<u>ioBroker command failed</u><br>' + commandError);
       throw commandError;
     }
-    this.debugEvents.publish('ioBroker command sent: ' + stateId + ' = ' + parsedValue);
+    this.debugEvents.publish({
+      text: 'ioBroker command sent: ' + stateId + ' = ' + parsedValue,
+      level: 2,
+    });
     return response;
   }
 
