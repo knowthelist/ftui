@@ -135,7 +135,7 @@ UPD 2025-12-23_21:38:43 1429 www/ftui/examples/ha.html
 UPD 2025-11-29_13:17:06 8558 www/ftui/examples/icon.html
 UPD 2026-04-25_22:43:39 4313 www/ftui/examples/image.html
 UPD 2025-11-29_13:17:06 2268 www/ftui/examples/input.html
-UPD 2026-08-24_21:08:44 1477 www/ftui/examples/io-basic.html
+UPD 2026-08-25_09:57:06 1511 www/ftui/examples/io-basic.html
 UPD 2025-11-29_13:17:06 7013 www/ftui/examples/knob.html
 UPD 2025-11-29_13:17:06 11087 www/ftui/examples/label.html
 UPD 2025-11-29_13:17:06 1834 www/ftui/examples/map.html
@@ -745,13 +745,13 @@ UPD 2026-04-11_23:50:27 192031 www/ftui/modules/chart.js/chart.min.js
 UPD 2026-04-11_23:50:28 49580 www/ftui/modules/chart.js/chartjs-adapter-date-fns.bundle.min.js
 UPD 2025-11-29_13:17:15 8388 www/ftui/modules/circle-menu/circle-menu.js
 UPD 2025-11-29_13:17:15 5063 www/ftui/modules/circle-menu/circle-menu.min.js
-UPD 2026-08-25_09:49:52 8374 www/ftui/modules/ftui/backend.service.js
-UPD 2026-08-25_09:48:18 19899 www/ftui/modules/ftui/fhem.service.js
-UPD 2026-08-25_09:49:52 10358 www/ftui/modules/ftui/ftui.app.js
+UPD 2026-08-25_09:53:34 8374 www/ftui/modules/ftui/backend.service.js
+UPD 2026-08-25_10:07:20 20103 www/ftui/modules/ftui/fhem.service.js
+UPD 2026-08-25_09:53:34 10358 www/ftui/modules/ftui/ftui.app.js
 UPD 2026-04-20_21:21:42 13473 www/ftui/modules/ftui/ftui.binding.js
 UPD 2026-04-20_21:33:50 16173 www/ftui/modules/ftui/ftui.helper.js
-UPD 2026-08-25_09:49:19 32658 www/ftui/modules/ftui/ha.service.js
-UPD 2026-08-25_09:49:19 10275 www/ftui/modules/ftui/iobroker.service.js
+UPD 2026-08-25_09:53:34 32658 www/ftui/modules/ftui/ha.service.js
+UPD 2026-08-25_09:53:34 10275 www/ftui/modules/ftui/iobroker.service.js
 UPD 2025-11-29_13:17:15 9326 www/ftui/modules/hocon/hocon.js
 UPD 2025-11-29_13:17:15 3199 www/ftui/modules/hocon/hocon.min.js
 UPD 2025-11-29_13:17:15 65090 www/ftui/modules/iro.js/iro.js

@@ -28,6 +28,7 @@ class FhemService {
     this.states = {
       lastRefresh: 0,
       fhemConnectionIsRestarting: false,
+      lastConnectionStartNotification: 0,
       backendAvailable: null,
       backendAutoDisabled: false,
       connection: {
@@ -391,7 +392,11 @@ class FhemService {
       log(3, '[websocket] a valid instance has been found - do not newly connect');
       return;
     }
-    this.debugEvents.publish({ text: 'FHEM connection started', level: 1 });
+    const now = Date.now();
+    if (now - this.states.lastConnectionStartNotification > 10000) {
+      this.debugEvents.publish({ text: 'FHEM connection started', level: 1 });
+      this.states.lastConnectionStartNotification = now;
+    }
     this.states.connection.URL = this.config.fhemDir.replace(/^http/i, 'ws') + '?XHR=1&inform=type=status;filter=' +
       this.config.update.filter + ';since=' + this.states.connection.lastEventTimestamp.getTime() + ';fmt=JSON' +
       '&timestamp=' + Date.now();

@@ -1,4 +1,7 @@
 2026-08-25  FTUI version 3
+fix: update debug level handling and add connection start notification throttling
+
+2026-08-25  FTUI version 3
 fix: enhance debugging and notification handling across services
 
 2026-08-24  FTUI version 3
