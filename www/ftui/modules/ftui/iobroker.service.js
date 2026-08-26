@@ -7,6 +7,7 @@ class IoBrokerService {
     this.config = {
       ioBrokerEnabled: false,
       ioBrokerUrl: '',
+      websocketUrl: '',
       username: '',
       password: '',
       token: '',
@@ -24,6 +25,12 @@ class IoBrokerService {
       lastRefresh: 0,
       isOffline: false,
       refresh: { timer: null, request: null },
+      websocket: {
+        socket: null,
+        connecting: null,
+        reconnectTimer: null,
+        intentionalClose: false,
+      },
     };
     this.missingConfigWarningShown = false;
     this.debugEvents = { publish: () => {} };
@@ -34,6 +41,7 @@ class IoBrokerService {
   async init() {
     await initializeConfig();
     this.applyConfig(config.ioBroker);
+    this.connectWebsocket();
     this.debugEvents = { publish: message => backendService.debugEvents.publish(message) };
     this.errorEvents = { publish: message => backendService.errorEvents.publish(message) };
   }
@@ -47,6 +55,8 @@ class IoBrokerService {
         ? serviceConfig.enabled : this.config.ioBrokerEnabled,
       ioBrokerUrl: typeof serviceConfig.url === 'string'
         ? serviceConfig.url.trim().replace(/\/$/, '') : this.config.ioBrokerUrl,
+      websocketUrl: typeof serviceConfig.websocketUrl === 'string'
+        ? serviceConfig.websocketUrl.trim().replace(/\/$/, '') : this.config.websocketUrl,
       username: typeof serviceConfig.username === 'string' ? serviceConfig.username : this.config.username,
       password: typeof serviceConfig.password === 'string' ? serviceConfig.password : this.config.password,
       token: typeof serviceConfig.token === 'string' ? serviceConfig.token.trim() : this.config.token,
@@ -79,7 +89,12 @@ class IoBrokerService {
 
   getReadingEvents(stateId) {
     if (!isDefined(stateId)) return { subscribe: () => {}, unsubscribe: () => {} };
-    return this.getStateItem(stateId).events;
+    const events = this.getStateItem(stateId).events;
+    this.connectWebsocket();
+    if (this.states.websocket.socket && this.states.websocket.socket.connected) {
+      this.subscribeWebsocketStates();
+    }
+    return events;
   }
 
   getStateItem(stateId) {
@@ -133,6 +148,104 @@ class IoBrokerService {
   endpoint(path, stateId) {
     const resolved = String(path || '').replace('{id}', encodeURIComponent(stateId || ''));
     return this.config.ioBrokerUrl + (resolved.charAt(0) === '/' ? resolved : '/' + resolved);
+  }
+
+  isWebsocketConfigured() {
+    return this.config.ioBrokerEnabled === true && Boolean(this.config.websocketUrl);
+  }
+
+  loadWebsocketClient() {
+    if (window.io && typeof window.io.connect === 'function') return Promise.resolve();
+    if (this.websocketClientRequest) return this.websocketClientRequest;
+
+    this.websocketClientRequest = new Promise((resolve, reject) => {
+      const script = document.createElement('script');
+      script.src = this.config.websocketUrl + '/socket.io/socket.io.js';
+      script.onload = () => {
+        if (window.io && typeof window.io.connect === 'function') {
+          resolve();
+        } else {
+          reject(new Error('ioBroker websocket client did not load'));
+        }
+      };
+      script.onerror = () => reject(new Error('Cannot load ioBroker websocket client'));
+      document.head.appendChild(script);
+    }).catch(loadError => {
+      this.websocketClientRequest = null;
+      throw loadError;
+    });
+    return this.websocketClientRequest;
+  }
+
+  subscribeWebsocketStates() {
+    const socket = this.states.websocket.socket;
+    if (!socket || !socket.connected) return;
+    const stateIds = Array.from(this.statesMap.keys());
+    if (stateIds.length) socket.emit('subscribe', stateIds);
+  }
+
+  scheduleWebsocketReconnect() {
+    if (this.states.websocket.intentionalClose || this.states.websocket.reconnectTimer) return;
+    this.states.websocket.reconnectTimer = setTimeout(() => {
+      this.states.websocket.reconnectTimer = null;
+      this.connectWebsocket();
+    }, 5000);
+  }
+
+  connectWebsocket() {
+    if (!this.isWebsocketConfigured() || !this.statesMap.size
+      || this.states.websocket.socket || this.states.websocket.connecting) return;
+
+    this.states.websocket.intentionalClose = false;
+    this.states.websocket.connecting = this.loadWebsocketClient().then(() => {
+      if (this.states.websocket.socket) return;
+      const socket = window.io.connect(this.config.websocketUrl, {
+        path: '/socket.io',
+        query: 'ws=true',
+        name: 'ftui',
+        token: this.config.token || undefined,
+        transports: ['websocket'],
+        reconnection: false,
+      });
+      this.states.websocket.socket = socket;
+
+      const authenticate = () => {
+        socket.emit('authenticate', (isAuthenticated) => {
+          if (!isAuthenticated) {
+            this.errorEvents.publish('ioBroker websocket authentication failed');
+            return;
+          }
+          this.debugEvents.publish({ text: 'ioBroker websocket connected', level: 1 });
+          this.subscribeWebsocketStates();
+        });
+      };
+
+      socket.on('connect', authenticate);
+      socket.on('reauthenticate', authenticate);
+      socket.on('stateChange', (stateId, state) => {
+        if (this.statesMap.has(stateId)) {
+          this.updateStateItem(stateId, this.parseState(stateId, state));
+        }
+      });
+      socket.on('disconnect', () => {
+        this.states.websocket.socket = null;
+        if (!this.states.websocket.intentionalClose) {
+          this.debugEvents.publish({ text: 'ioBroker websocket disconnected<br>Retry in 5s', level: 1 });
+          this.scheduleWebsocketReconnect();
+        }
+      });
+      socket.on('connect_error', connectionError => {
+        error(1, '[ioBroker] websocket connection failed', connectionError);
+      });
+      socket.on('error', socketError => {
+        error(1, '[ioBroker] websocket error', socketError);
+      });
+    }).catch(connectionError => {
+      error(1, '[ioBroker] websocket setup failed', connectionError);
+      this.scheduleWebsocketReconnect();
+    }).finally(() => {
+      this.states.websocket.connecting = null;
+    });
   }
 
   normalizeStates(payload) {
@@ -242,7 +355,15 @@ class IoBrokerService {
   }
 
   forceRefresh() { return this.refresh(); }
-  disconnect() {}
+  disconnect() {
+    this.states.websocket.intentionalClose = true;
+    clearTimeout(this.states.websocket.reconnectTimer);
+    this.states.websocket.reconnectTimer = null;
+    if (this.states.websocket.socket) {
+      this.states.websocket.socket.close();
+      this.states.websocket.socket = null;
+    }
+  }
   scheduleHealthCheck() {}
 }
 

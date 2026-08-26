@@ -261,7 +261,7 @@ export const config = {
 
 ### ioBroker Backend
 
-ioBroker support uses configurable HTTP endpoints and polling. For the official REST API adapter (typically port `8093`), add this to `www/ftui/config.local.js`:
+ioBroker support uses configurable HTTP endpoints and can receive live updates through the official `ioBroker.ws` adapter. For the REST API adapter (typically port `8093`), add this to `www/ftui/config.local.js`:
 
 **Prerequisite:** Install and start a configured **REST API adapter instance** in ioBroker. The Admin UI at port `8081` does not provide these REST endpoints. Verify the adapter's configured port and use that port in `ioBroker.url`; `8093` is only the common default.
 
@@ -270,6 +270,7 @@ export const config = {
     ioBroker: {
         enabled: true,
         url: 'http://iobroker:8093',
+        websocketUrl: 'http://iobroker:8084',
         username: '',
         password: '',
         token: '',
@@ -282,6 +283,8 @@ export const config = {
     },
 };
 ```
+
+`websocketUrl` is optional. When configured, FTUI loads the pure-WebSocket client from `<websocketUrl>/socket.io/socket.io.js`, authenticates, subscribes to the `io:` state IDs, and applies `stateChange` events immediately. REST remains the initial-state and fallback transport. Install and enable the **ioBroker.ws** adapter, usually on port `8084`; this is not the old Socket.IO adapter. If authentication is enabled, provide an ioBroker access token or an authenticated browser session. The REST username/password settings are not used as WebSocket Basic Authentication.
 
 Use the `io:` prefix for state IDs. The default state response accepts ioBroker's object-map format (`{ "state.id": { "val": ... } }`) and array format:
 

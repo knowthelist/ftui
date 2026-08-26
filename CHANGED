@@ -1,3 +1,6 @@
+2026-08-26  FTUI version 3
+fix: enhance ioBroker websocket support and configuration handling
+
 2026-08-25  FTUI version 3
 fix: update debug level handling and add connection start notification throttling
 

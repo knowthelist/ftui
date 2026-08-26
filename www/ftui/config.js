@@ -21,6 +21,7 @@ export const config = {
         stateQueryParameter: 'pattern',
         writePayload: { id: '$id', state: { val: '$value', ack: false } },
         writeQueryParameters: {},
+        websocketUrl: '',
     },
 };
 
