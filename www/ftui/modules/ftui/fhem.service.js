@@ -388,9 +388,16 @@ class FhemService {
       return;
     }
 
-    if (this.states.connection.websocket) {
+    if (this.states.connection.websocket &&
+      (this.states.connection.websocket.readyState === WebSocket.OPEN ||
+        this.states.connection.websocket.readyState === WebSocket.CONNECTING)) {
       log(3, '[websocket] a valid instance has been found - do not newly connect');
       return;
+    }
+
+    if (this.states.connection.websocket) {
+      this.states.connection.websocket.close();
+      this.states.connection.websocket = null;
     }
     const now = Date.now();
     if (now - this.states.lastConnectionStartNotification > 10000) {
@@ -459,7 +466,7 @@ class FhemService {
 
       this.states.connection.timer = setTimeout(() => {
         this.connect();
-      }, delay);
+      }, delay * 1000);
     } else {
       log(2, '[websocket] app is not visible => do not restart connection');
     }

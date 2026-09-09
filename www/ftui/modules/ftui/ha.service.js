@@ -325,11 +325,15 @@ class HomeAssistantService {
     }
 
     if (this.states.connection.websocket &&
-      this.states.connection.websocket.readyState !== WebSocket.CLOSED) {
+      (this.states.connection.websocket.readyState === WebSocket.OPEN ||
+        this.states.connection.websocket.readyState === WebSocket.CONNECTING)) {
       log(3, '[websocket] a valid instance has been found - do not newly connect');
       return;
     }
 
+    if (this.states.connection.websocket) {
+      this.states.connection.websocket.close();
+    }
     this.states.connection.websocket = null;
 
     const auth = {
