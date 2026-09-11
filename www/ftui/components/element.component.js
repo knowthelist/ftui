@@ -64,10 +64,22 @@ export class FtuiElement extends HTMLElement {
   }
 
   connectedCallback() {
+    if (this.binding && typeof this.binding.connect === 'function') {
+      this.binding.connect();
+    }
     this.updateProperties();
     if (typeof this.onConnected === 'function') {
       // call the hook function of the instance
       this.onConnected();
+    }
+  }
+
+  disconnectedCallback() {
+    if (this.binding && typeof this.binding.disconnect === 'function') {
+      this.binding.disconnect();
+    }
+    if (typeof this.onDisconnected === 'function') {
+      this.onDisconnected();
     }
   }
 

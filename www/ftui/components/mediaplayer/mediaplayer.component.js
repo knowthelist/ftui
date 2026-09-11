@@ -233,6 +233,7 @@ export class FtuiMediaplayer extends FtuiElement {
   }
 
   disconnectedCallback() {
+    super.disconnectedCallback();
     window.removeEventListener('resize', this.boundUpdateCardScale);
     window.removeEventListener('resize', this.boundUpdatePickerPosition);
     window.removeEventListener('scroll', this.boundUpdatePickerPosition, true);

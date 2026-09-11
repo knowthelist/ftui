@@ -100,6 +100,7 @@ class FhemService {
   createUnavailableResponse() {
     return {
       status: 204,
+      ok: true,
       statusText: 'FHEM backend unavailable',
       text: function () { return Promise.resolve(''); },
       json: function () { return Promise.resolve({ Results: [] }); },
@@ -280,10 +281,17 @@ class FhemService {
     window.performance.mark('start get jsonlist2');
     this.states.refresh.request =
       this.sendCommand('jsonlist2 ' + this.config.refresh.filter)
-        .then(res => res.json())
-        .catch(error => this.errorEvents.publish('<u>FHEM Command failed</u><br>' + error))
-        .then(fhemJSON => this.parseRefreshResult(fhemJSON),
-        );
+        .then(res => {
+          if (!res.ok) {
+            throw new Error(res.statusText || 'FHEM refresh returned a non-OK status');
+          }
+          return res.json();
+        })
+        .then(fhemJSON => this.parseRefreshResult(fhemJSON))
+        .catch(refreshError => {
+          this.states.refresh.result = refreshError.message || String(refreshError);
+          this.errorEvents.publish('<u>FHEM Command failed</u><br>' + refreshError);
+        });
   }
 
   parseRefreshResult(fhemJSON = {}) {
@@ -476,34 +484,39 @@ class FhemService {
   handleFhemEvent(data) {
     data.split(/\n/).forEach(line => {
       if (isDefined(line) && line !== '' && line.endsWith(']') && !this.isFhemWebInternal(line)) {
-        const [id, value, html] = JSON.parse(line);
-        const isTimestamp = id.match(/-ts$/);
-        const parameterId = isTimestamp ? id.replace(/-ts$/, '') : id;
-        if (this.readingsMap.has(parameterId)) {
-          const parameterData = this.readingsMap.get(parameterId).data;
-          const isSTATE = (value !== html);
-          const isTrigger = (value === '' && html === '');
-          const doPublish = (isTimestamp || isSTATE || isTrigger);
+        try {
+          const [id, value, html] = JSON.parse(line);
+          const isTimestamp = id.match(/-ts$/);
+          const parameterId = isTimestamp ? id.replace(/-ts$/, '') : id;
+          if (this.readingsMap.has(parameterId)) {
+            const parameterData = this.readingsMap.get(parameterId).data;
+            const isSTATE = (value !== html);
+            const isTrigger = (value === '' && html === '');
+            const doPublish = (isTimestamp || isSTATE || isTrigger);
 
-          parameterData.update = dateFormat(new Date(), 'YYYY-MM-DD hh:mm:ss');
-          parameterData.id = parameterId;
-          parameterData.invalid = false;
-          if (isTimestamp) {
-            parameterData.time = value;
-          } else if (isSTATE) {
-            parameterData.time = parameterData.update;
-            parameterData.value = value;
-          } else if (!isTimestamp) {
-            parameterData.value = value;
+            parameterData.update = dateFormat(new Date(), 'YYYY-MM-DD hh:mm:ss');
+            parameterData.id = parameterId;
+            parameterData.invalid = false;
+            if (isTimestamp) {
+              parameterData.time = value;
+            } else if (isSTATE) {
+              parameterData.time = parameterData.update;
+              parameterData.value = value;
+            } else if (!isTimestamp) {
+              parameterData.value = value;
+            }
+            this.updateReadingItem(parameterId, parameterData, doPublish);
+            this.updateReadingItem('ftui-lastEvent', {
+              invalid: false,
+              name: parameterData.id,
+              value: parameterData.value,
+              time: parameterData.time,
+              update: parameterData.update,
+            });
           }
-          this.updateReadingItem(parameterId, parameterData, doPublish);
-          this.updateReadingItem('ftui-lastEvent', {
-            invalid: false,
-            name: parameterData.id,
-            value: parameterData.value,
-            time: parameterData.time,
-            update: parameterData.update,
-          });
+        } catch (parseError) {
+          error(1, '[websocket] invalid FHEM message', parseError);
+          this.errorEvents.publish('Invalid message from FHEM');
         }
       }
     });

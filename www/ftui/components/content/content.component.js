@@ -60,6 +60,14 @@ export class FtuiContent extends FtuiElement {
     }
   }
 
+  onDisconnected() {
+    document.removeEventListener('ftuiPageInitialized', this.onPageInitialized);
+    if (this.observer) {
+      this.observer.disconnect();
+      this.observer = null;
+    }
+  }
+
 
   initInViewportObserver() {
     this.observer = new IntersectionObserver(
@@ -82,9 +90,16 @@ export class FtuiContent extends FtuiElement {
     if (this.lazy) {
       this.observer.unobserve(this.container);
     }
-    const result = await fetch(this.file);
-    this.rawText = await result.text();
-    this.initContent();
+    try {
+      const result = await fetch(this.file);
+      if (!result.ok) {
+        throw new Error(result.statusText || 'Content request failed');
+      }
+      this.rawText = await result.text();
+      this.initContent();
+    } catch (loadError) {
+      ftui.error('[FtuiContent] failed to load content: ' + loadError);
+    }
   }
 
   initContent() {

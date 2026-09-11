@@ -19,6 +19,8 @@ class FtuiSwiper extends FtuiElement {
     this.container = this.shadowRoot.querySelector('.slides');
     this.slotMain = this.shadowRoot.querySelector('slot');
     this.slotDots = this.shadowRoot.querySelector('slot[name=dots]');
+    this.intersectionObservers = [];
+    this.mutationObservers = [];
   }
 
 
@@ -70,6 +72,7 @@ class FtuiSwiper extends FtuiElement {
         trackVisibility: true,
       });
     observer.observe(elem);
+    this.intersectionObservers.push(observer);
   }
 
   initMutationObserver(elem) {
@@ -80,6 +83,7 @@ class FtuiSwiper extends FtuiElement {
         attributes: true,
         attributeFilter: ['hidden'],
       });
+    this.mutationObservers.push(observer);
   }
 
   onIntersectionChange(entries) {
@@ -201,6 +205,14 @@ class FtuiSwiper extends FtuiElement {
     if (this.interval && this.autoPlay) {
       this.intervalTimer = setInterval(() => this.next(), this.interval * 1000);
     }
+  }
+
+  onDisconnected() {
+    clearInterval(this.intervalTimer);
+    this.intersectionObservers.forEach(observer => observer.disconnect());
+    this.mutationObservers.forEach(observer => observer.disconnect());
+    this.intersectionObservers = [];
+    this.mutationObservers = [];
   }
 
 }

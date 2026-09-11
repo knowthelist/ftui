@@ -374,9 +374,14 @@ class HomeAssistantService {
     };
 
     websocket.onmessage = (message) => {
-      const data = JSON.parse(message.data);
-      log(2, '[websocket] message received', data);
-      this.handleHAEvent(data);
+      try {
+        const data = JSON.parse(message.data);
+        log(2, '[websocket] message received', data);
+        this.handleHAEvent(data);
+      } catch (parseError) {
+        error(1, '[websocket] invalid Home Assistant message', parseError);
+        this.errorEvents.publish('Invalid message from Home Assistant');
+      }
     };
   }
 

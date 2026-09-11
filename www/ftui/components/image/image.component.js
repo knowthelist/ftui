@@ -18,8 +18,9 @@ export class FtuiImage extends FtuiElement {
     super(Object.assign(FtuiImage.properties, properties));
 
     this.imageElement = this.shadowRoot.querySelector('img');
+    this.onVisibilityChanged = this.updateImage.bind(this);
+    this.objectUrl = null;
     this.updateImage();
-    document.addEventListener('ftuiVisibilityChanged', () => this.updateImage());
   }
 
   template() {
@@ -66,6 +67,7 @@ export class FtuiImage extends FtuiElement {
   }
 
   onConnected() {
+    document.addEventListener('ftuiVisibilityChanged', this.onVisibilityChanged);
     this.imageElement.style.width = this.width;
     this.imageElement.style.height = this.height;
     this.checkInterval();
@@ -94,8 +96,22 @@ export class FtuiImage extends FtuiElement {
   }
 
   onError() {
+    this.revokeObjectUrl();
     this.imageElement.src = notAvailable;
     this.imageElement.onerror = null;
+  }
+
+  onDisconnected() {
+    document.removeEventListener('ftuiVisibilityChanged', this.onVisibilityChanged);
+    clearInterval(this.intervalTimer);
+    this.revokeObjectUrl();
+  }
+
+  revokeObjectUrl() {
+    if (this.objectUrl) {
+      URL.revokeObjectURL(this.objectUrl);
+      this.objectUrl = null;
+    }
   }
 
   async updateImage() {
@@ -114,8 +130,13 @@ export class FtuiImage extends FtuiElement {
         password: this.pass,
       };
       const result = await fetch(src, options);
+      if (!result.ok) {
+        throw new Error(result.statusText || 'Image request failed');
+      }
       const content = await result.blob();
-      return URL.createObjectURL(content);
+      this.revokeObjectUrl();
+      this.objectUrl = URL.createObjectURL(content);
+      return this.objectUrl;
     } else {
       if (src && (this.hasAttribute('nocache') || this.refresh)) {
         const url = new URL(src);

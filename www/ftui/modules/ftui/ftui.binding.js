@@ -55,6 +55,9 @@ export class FtuiBinding {
       config: '',
       outputAttributes: new Set(),
       observer: null,
+      subscriptions: [],
+      eventListeners: [],
+      connected: false,
     }
 
     this.element = element;
@@ -65,17 +68,31 @@ export class FtuiBinding {
     };
     this.readAttributes(element.attributes);
 
+    this.connect();
+  }
+
+  connect() {
+    if (this.private.connected) {
+      return;
+    }
+    this.private.connected = true;
+
     // subscribe input events (from backend reading to component)
     Object.keys(this.config.input.readings).forEach((reading) => {
       try {
-        if (window.ftuiApp && typeof window.ftuiApp.getBackendEvents === 'function') {
-          window.ftuiApp.getBackendEvents(reading).subscribe(param => this.onReadingEvent(param));
-        } else {
-          backendService.getBackendEvents(reading).subscribe(param => this.onReadingEvent(param));
-        }
+        const events = window.ftuiApp && typeof window.ftuiApp.getBackendEvents === 'function'
+          ? window.ftuiApp.getBackendEvents(reading)
+          : backendService.getBackendEvents(reading);
+        const callback = param => this.onReadingEvent(param);
+        events.subscribe(callback);
+        this.private.subscriptions.push({ events, callback });
       } catch (err) {
         ftuiHelper.error('Subscription error for ' + reading + ' - ' + err);
       }
+    });
+
+    this.private.eventListeners.forEach(({ name, callback }) => {
+      this.element.addEventListener(name, callback);
     });
 
     // subscribe output events (from component to FHEM reading)
@@ -96,6 +113,27 @@ export class FtuiBinding {
       this.private.observer.observe(this.element, {
         attributeFilter: this.outputAttributes,
       });
+    }
+  }
+
+  disconnect() {
+    if (!this.private.connected) {
+      return;
+    }
+    this.private.connected = false;
+
+    this.private.subscriptions.forEach(({ events, callback }) => {
+      events.unsubscribe(callback);
+    });
+    this.private.subscriptions = [];
+
+    this.private.eventListeners.forEach(({ name, callback }) => {
+      this.element.removeEventListener(name, callback);
+    });
+
+    if (this.private.observer) {
+      this.private.observer.disconnect();
+      this.private.observer = null;
     }
   }
 
@@ -214,9 +252,8 @@ export class FtuiBinding {
 
   initEventListener(attribute, targetAttributeName) {
     const name = ftuiHelper.toCamelCase(targetAttributeName);
-    this.element.addEventListener(name,
-      this.evalInContext.bind(this.element, attribute.value),
-    );
+    const callback = this.evalInContext.bind(this.element, attribute.value);
+    this.private.eventListeners.push({ name, callback });
   }
 
   readAttributes(attributes) {

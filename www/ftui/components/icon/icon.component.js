@@ -111,9 +111,16 @@ export class FtuiIcon extends FtuiElement {
   async fetchSvgIcon(url) {
     if (!cache[url]) {
       cache[url] = fetch(url)
-        .then(response => response.clone().text())
-        .then(svg => svg)
-        .catch(error => console.error(error));
+        .then(response => {
+          if (!response.ok) {
+            throw new Error(response.statusText || 'Icon request failed');
+          }
+          return response.text();
+        })
+        .catch(error => {
+          delete cache[url];
+          throw error;
+        });
     }
     return cache[url]
   }
