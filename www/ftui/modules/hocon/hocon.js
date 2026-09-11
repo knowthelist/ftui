@@ -326,7 +326,7 @@ export function parseHocon(text, ignoreDots = false) {
     } else if (typeof intermidiateObj === 'string') {
       const match = /^\$\{(.+?)\}$/.exec(intermidiateObj);
       if (match && match.length == 2) {
-        const val = eval('mainObj.' + match[1]);
+        const val = resolveHoconPath(mainObj, match[1]);
         if (typeof val === 'undefined')
           return null;
         return handleSubstitutions(mainObj, val, loops + 1);
@@ -339,6 +339,29 @@ export function parseHocon(text, ignoreDots = false) {
     }
 
     return intermidiateObj;
+  }
+
+  function resolveHoconPath(root, path) {
+    const forbidden = ['__proto__', 'prototype', 'constructor'];
+    const segments = path.split('.');
+    let current = root;
+
+    for (let segment of segments) {
+      segment = segment.trim();
+      const match = /^([A-Za-z_$][\w$-]*|\d+)(?:\[(\d+)\])?$/.exec(segment);
+      if (!match || forbidden.indexOf(match[1]) !== -1 || current == null ||
+        !Object.prototype.hasOwnProperty.call(current, match[1])) {
+        return undefined;
+      }
+      current = current[match[1]];
+      if (match[2] !== undefined) {
+        if (!Array.isArray(current) || Number(match[2]) >= current.length) {
+          return undefined;
+        }
+        current = current[Number(match[2])];
+      }
+    }
+    return current;
   }
 
   function extend() {

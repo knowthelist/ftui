@@ -142,43 +142,43 @@ export class FtuiBinding {
   }
 
   // received events from FHEM
-  onReadingEvent(readingData) {
+  async onReadingEvent(readingData) {
     if (!this.config.input.readings[readingData.id]) {
       return;
     }
     const readingAttributeMap = this.config.input.readings[readingData.id].attributes;
-    Object.entries(readingAttributeMap)
-      .forEach(async ([attribute, options]) => {
-        // update marker to avoid infinity loops
-        this.element.isActiveChange[attribute] = false;
-        const value = readingData[options.property];
-        if (ftuiHelper.isDefined(value)) {
-          let filteredValue = await this.filterValue(value, options.filter);
-          if (ftuiHelper.isDefined(filteredValue)) {
-            if (typeof filteredValue === 'string') {
-              filteredValue = filteredValue.replace(/\$value/g, value);
-            }
-            if (String(this.element[attribute]) !== String(filteredValue)) {
-              ftuiHelper.log(5, `${this.element.id}  -  onReadingEvent: set this.${attribute}=${filteredValue}`);
-              if (this.isThirdPartyElement || attribute.startsWith('attr.')) {
-                if (attribute.startsWith('attr.')) {
-                  attribute = attribute.split('.')[1];
-                }
-                attribute = ftuiHelper.toKebabCase(attribute);
-                // change element's attribute "attribute binding"
-                if (typeof filteredValue === 'boolean' && filteredValue === false) {
-                  this.element.removeAttribute(attribute);
-                } else {
-                  this.element.setAttribute(attribute, filteredValue);
-                }
-              } else {
-                // change element's property "property binding"
-                this.element[attribute] = filteredValue;
+    for (const [configuredAttribute, options] of Object.entries(readingAttributeMap)) {
+      let attribute = configuredAttribute;
+      // update marker to avoid infinity loops
+      this.element.isActiveChange[attribute] = false;
+      const value = readingData[options.property];
+      if (ftuiHelper.isDefined(value)) {
+        let filteredValue = await this.filterValue(value, options.filter);
+        if (ftuiHelper.isDefined(filteredValue)) {
+          if (typeof filteredValue === 'string') {
+            filteredValue = filteredValue.replace(/\$value/g, value);
+          }
+          if (String(this.element[attribute]) !== String(filteredValue)) {
+            ftuiHelper.log(5, `${this.element.id}  -  onReadingEvent: set this.${attribute}=${filteredValue}`);
+            if (this.isThirdPartyElement || attribute.startsWith('attr.')) {
+              if (attribute.startsWith('attr.')) {
+                attribute = attribute.split('.')[1];
               }
+              attribute = ftuiHelper.toKebabCase(attribute);
+              // change element's attribute "attribute binding"
+              if (typeof filteredValue === 'boolean' && filteredValue === false) {
+                this.element.removeAttribute(attribute);
+              } else {
+                this.element.setAttribute(attribute, filteredValue);
+              }
+            } else {
+              // change element's property "property binding"
+              this.element[attribute] = filteredValue;
             }
           }
         }
-      });
+      }
+    }
   }
 
   /**

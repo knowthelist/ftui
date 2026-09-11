@@ -16,6 +16,9 @@ export class FtuiClock extends FtuiLabel {
   constructor() {
 
     super(FtuiClock.properties);
+    this.clockTimer = null;
+    this.dailyRefreshTimeout = null;
+    this.dailyRefreshInterval = null;
   }
 
   static get properties() {
@@ -50,6 +53,9 @@ export class FtuiClock extends FtuiLabel {
   }
 
   scheduleDailyRefresh() {
+    clearTimeout(this.dailyRefreshTimeout);
+    clearInterval(this.dailyRefreshInterval);
+
     // Calculate time until midnight
     const now = new Date();
     const tomorrow = new Date(now);
@@ -58,9 +64,9 @@ export class FtuiClock extends FtuiLabel {
     const timeUntilNextDay = tomorrow - now;
 
     // Schedule first refresh at midnight, then daily thereafter
-    setTimeout(() => {
+    this.dailyRefreshTimeout = setTimeout(() => {
       this.getFhemTime();
-      setInterval(() => {
+      this.dailyRefreshInterval = setInterval(() => {
         this.getFhemTime();
       }, 24 * 60 * 60 * 1000); // 24 hours
     }, timeUntilNextDay);
@@ -75,14 +81,21 @@ export class FtuiClock extends FtuiLabel {
   }
 
   startInterval() {
+    clearTimeout(this.clockTimer);
     const now = this.getDateTime();
     const s = now.getSeconds();
     const ms = now.getMilliseconds();
     const waitMs = this.format.includes('s') ? 1000 - ms * 1 : 60000 - s * 1000 - ms * 1;
-    setTimeout(() => {
+    this.clockTimer = setTimeout(() => {
       this.update();
       this.startInterval();
     }, waitMs);
+  }
+
+  disconnectedCallback() {
+    clearTimeout(this.clockTimer);
+    clearTimeout(this.dailyRefreshTimeout);
+    clearInterval(this.dailyRefreshInterval);
   }
 
 }

@@ -192,7 +192,6 @@ export class FtuiSolarFlow extends FtuiElement {
     switch (name) {
       case 'width':
       case 'height':
-        console.log('setting', name, 'to', value);
         this.style[name] = value;
         break;
       case 'solar-power':
@@ -227,7 +226,6 @@ export class FtuiSolarFlow extends FtuiElement {
       case 'grid-input-power':
         // grid > inverter
         if (this.gridPower > 0) {
-          console.log('------------- grind in', value);
           this.updateAnimation('grid', value);
         }
         break;
@@ -269,10 +267,8 @@ export class FtuiSolarFlow extends FtuiElement {
           pathElement.setAttribute('href', `#path-${type}-in`);
         }
       }
-      console.log('type', type, 'value', value, 'maxValue', maxValue, 'percent', percent, 'duration', duration);
       if (value !== 0) {
         if (!animation.parentElement.classList.contains('animated')) {
-          console.log('beginning animation for ', type);
           // start animation
           animation.parentElement.classList.add('animated');
           animation.beginElement();
@@ -280,7 +276,6 @@ export class FtuiSolarFlow extends FtuiElement {
           
         }
       } else {
-        console.log('ending animation for ', type);
         // end animation
         animation.setAttribute('repeatCount', '0');
         animation.parentElement.classList.remove('animated');

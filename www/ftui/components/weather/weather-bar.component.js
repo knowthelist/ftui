@@ -61,7 +61,6 @@ class FtuiWeatherBar extends FtuiElement {
         #f28383 ${yellowStop * 2}%, 
         #f28383 100%)`;
 if (this.maxTemp>20){
-  console.log(blueStop, yellowStop);
 }
         
     // update labels

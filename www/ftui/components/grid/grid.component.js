@@ -29,6 +29,10 @@ export class FtuiGrid extends FtuiElement {
     super(properties);
 
     this.debouncedResize = debounce(this.configureGrid, this);
+    this.resizeObserver = null;
+    this.onWindowResize = () => this.debouncedResize(500);
+    this.onVisibilityChanged = () => this.configureGrid();
+    this.onComponentsAdded = () => this.configureGrid();
 
     this.windowWidth = 0;
     this.tiles = this.querySelectorAll(`#${this.id} ftui-grid-tile, #${this.id} [data-grid-tile]`);
@@ -41,22 +45,36 @@ export class FtuiGrid extends FtuiElement {
     } else {
       if (this.resize) {
         if ('ResizeObserver' in window) {
-          const resize_ob = new ResizeObserver(() => {
-            this.debouncedResize(500);
-          });
-
-          resize_ob.observe(document.body);
-        } else {
-          window.addEventListener('resize', () => {
+          this.resizeObserver = new ResizeObserver(() => {
             this.debouncedResize(500);
           });
         }
 
       }
       this.configureGrid();
-      document.addEventListener('ftuiVisibilityChanged', () => this.configureGrid());
-      document.addEventListener('ftuiComponentsAdded', () => this.configureGrid());
     }
+  }
+
+  onConnected() {
+    if (this.responsive) {
+      return;
+    }
+    if (this.resizeObserver) {
+      this.resizeObserver.observe(document.body);
+    } else if (this.resize) {
+      window.addEventListener('resize', this.onWindowResize);
+    }
+    document.addEventListener('ftuiVisibilityChanged', this.onVisibilityChanged);
+    document.addEventListener('ftuiComponentsAdded', this.onComponentsAdded);
+  }
+
+  onDisconnected() {
+    if (this.resizeObserver) {
+      this.resizeObserver.disconnect();
+    }
+    window.removeEventListener('resize', this.onWindowResize);
+    document.removeEventListener('ftuiVisibilityChanged', this.onVisibilityChanged);
+    document.removeEventListener('ftuiComponentsAdded', this.onComponentsAdded);
   }
 
   template() {

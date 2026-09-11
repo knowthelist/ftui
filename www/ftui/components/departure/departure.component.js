@@ -47,7 +47,6 @@ export class FtuiDeparture extends FtuiElement {
       this.depMode = 'deptime';
     }
     this.arrangeWindow();
-    this.startTimerClock();
   }
 
   template() {
@@ -111,6 +110,21 @@ export class FtuiDeparture extends FtuiElement {
 
   static get observedAttributes() {
     return [...this.convertToAttributes(FtuiDeparture.properties), ...super.observedAttributes];
+  }
+
+  onConnected() {
+    this.startTimerClock();
+    this.startTimerUpdate();
+    this.startTimerRefreshList();
+  }
+
+  onDisconnected() {
+    clearInterval(this.timerClock);
+    clearTimeout(this.timerClock);
+    clearInterval(this.timerUpdate);
+    clearTimeout(this.timerUpdate);
+    clearInterval(this.timerRefreshList);
+    clearTimeout(this.timerRefreshList);
   }
 
   onAttributeChanged(name) {
@@ -263,7 +277,6 @@ export class FtuiDeparture extends FtuiElement {
   }
 
   fillList() {
-    console.log('fillList', this.list);
     this.ensureListElements();
     if (this.list) {
       const [readingId] = this.getListReadingInfo();

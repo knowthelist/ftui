@@ -1,4 +1,7 @@
 2026-09-11  FTUI version 3
+fix: enhance component lifecycle management and improve timer handling across various components
+
+2026-09-11  FTUI version 3
 fix: enhance error handling and cleanup in various components and services
 
 2026-09-09  FTUI version 3

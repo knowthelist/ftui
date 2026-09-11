@@ -25,6 +25,12 @@ export class FtuiSlider extends FtuiElement {
     this.tickCount = Math.ceil(Math.abs(this.max - this.min) / this.tick) + 1;
 
     this.debouncedSubmit = ftui.debounce(this.submitChange, this);
+    this.onVisibilityChanged = () => {
+      if (ftui.isVisible(this)) {
+        this.rangeable.update();
+      }
+    };
+    this.resizeObserver = null;
 
     this.rangeable = new Rangeable(this.input, {
       vertical: this.isVertical,
@@ -41,21 +47,27 @@ export class FtuiSlider extends FtuiElement {
     this.drawTicks();
 
     // force re-render if visible
-    document.addEventListener('ftuiVisibilityChanged', () => {
-      if (ftui.isVisible(this)) {
-        this.rangeable.update();
-      }
-    }, false);
-
     // force re-render when resize
     if ('ResizeObserver' in window) {
-      const resize_ob = new ResizeObserver(() => {
+      this.resizeObserver = new ResizeObserver(() => {
         requestAnimationFrame(() => {
           this.updateRangable();
         });
       });
+    }
+  }
 
-      resize_ob.observe(this.input);
+  onConnected() {
+    document.addEventListener('ftuiVisibilityChanged', this.onVisibilityChanged, false);
+    if (this.resizeObserver) {
+      this.resizeObserver.observe(this.input);
+    }
+  }
+
+  onDisconnected() {
+    document.removeEventListener('ftuiVisibilityChanged', this.onVisibilityChanged, false);
+    if (this.resizeObserver) {
+      this.resizeObserver.disconnect();
     }
   }
 
