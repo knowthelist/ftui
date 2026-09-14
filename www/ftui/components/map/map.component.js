@@ -20,15 +20,20 @@ export class FtuiMap extends FtuiElement {
     this.map = {};
     this.canvas = this.shadowRoot.querySelector('#map-canvas');
 
-    document.addEventListener('ftuiVisibilityChanged', () => {
+    this.onVisibilityChanged = () => {
       if (isVisible(this)) {
         this.refresh();
       }
-    }, false);
+    };
+    document.addEventListener('ftuiVisibilityChanged', this.onVisibilityChanged, false);
 
     if (isVisible(this)) {
       this.refresh();
     }
+  }
+
+  onDisconnected() {
+    document.removeEventListener('ftuiVisibilityChanged', this.onVisibilityChanged, false);
   }
 
   template() {

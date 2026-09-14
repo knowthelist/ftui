@@ -18,11 +18,13 @@ export class FtuiDropdown extends FtuiElement {
     if (this.list.length > 0) {
       this.fillList();
     }
-    this.shadowRoot.addEventListener('slotchange', () => {
+    this.onSlotChange = () => {
       const node = this.querySelector('option')
       node && this.selectElement.append(node)
-    })
-    this.selectElement.addEventListener('change', () => this.onChange());
+    };
+    this.onSelectChange = () => this.onChange();
+    this.shadowRoot.addEventListener('slotchange', this.onSlotChange);
+    this.selectElement.addEventListener('change', this.onSelectChange);
   }
 
   template() {
@@ -101,6 +103,11 @@ export class FtuiDropdown extends FtuiElement {
 
       return option;
     });
+  }
+
+  onDisconnected() {
+    this.shadowRoot.removeEventListener('slotchange', this.onSlotChange);
+    this.selectElement.removeEventListener('change', this.onSelectChange);
   }
 
   splitList(list) {

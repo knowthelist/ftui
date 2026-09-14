@@ -17,7 +17,8 @@ export class FtuiMenu extends FtuiElement {
     super(FtuiMenu.properties);
 
     this.element = this.shadowRoot.querySelector('.box-menu');
-    this.addEventListener('click', () => { this.open = false; });
+    this.onMenuClick = () => { this.open = false; };
+    this.addEventListener('click', this.onMenuClick);
   }
 
   template() {
@@ -62,6 +63,11 @@ export class FtuiMenu extends FtuiElement {
     if (this.timeout) {
       this.timer = setTimeout(() => this.open = false, this.timeout * 1000);
     }
+  }
+
+  onDisconnected() {
+    this.removeEventListener('click', this.onMenuClick);
+    clearTimeout(this.timer);
   }
 }
 

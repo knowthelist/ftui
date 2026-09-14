@@ -16,6 +16,7 @@ export class FtuiButton extends FtuiElement {
     super(Object.assign(FtuiButton.properties, properties));
 
     const usePassive = supportsPassive();
+    this.effectTimer = null;
 
     this.addEventListener('touchstart', this.onDownEvent, usePassive ? { passive: true } : false);
     this.addEventListener('mousedown', this.onDownEvent);
@@ -72,7 +73,8 @@ export class FtuiButton extends FtuiElement {
   }
 
   onUpEvent() {
-    setTimeout(() => {
+    clearTimeout(this.effectTimer);
+    this.effectTimer = setTimeout(() => {
       this.classList.remove('activated');
     }, 300)
     clearTimeout(this.longPressTimer);
@@ -93,9 +95,15 @@ export class FtuiButton extends FtuiElement {
 
   playEffect() {
     this.onDownEvent();
-    setTimeout(() => {
+    clearTimeout(this.effectTimer);
+    this.effectTimer = setTimeout(() => {
       this.onUpEvent();
     }, 100);
+  }
+
+  onDisconnected() {
+    clearTimeout(this.longPressTimer);
+    clearTimeout(this.effectTimer);
   }
 }
 

@@ -129,6 +129,14 @@ export class FtuiLabel extends FtuiElement {
   refresh() {
     this.binding && this.binding.forceUpdate('text');
   }
+
+  onConnected() {
+    this.checkInterval();
+  }
+
+  onDisconnected() {
+    clearInterval(this.intervalTimer);
+  }
 }
 
 window.customElements.define('ftui-label', FtuiLabel);

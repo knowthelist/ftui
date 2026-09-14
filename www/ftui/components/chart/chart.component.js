@@ -158,7 +158,8 @@ export class FtuiChart extends FtuiElement {
     this.chart.update();
     this.onStyleChanged();
 
-    document.addEventListener('ftuiVisibilityChanged', () => this.refresh());
+    this.onVisibilityChanged = () => this.refresh();
+    document.addEventListener('ftuiVisibilityChanged', this.onVisibilityChanged);
 
     fhemService.getReadingEvents('ftui-isDark').subscribe(() => this.onStyleChanged());
   }
@@ -167,6 +168,11 @@ export class FtuiChart extends FtuiElement {
     window.requestAnimationFrame(() => {
       this.refresh();
     })
+  }
+
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    document.removeEventListener('ftuiVisibilityChanged', this.onVisibilityChanged);
   }
 
   template() {

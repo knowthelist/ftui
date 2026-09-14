@@ -89,6 +89,10 @@ class FtuiRotor extends FtuiElement {
       this.intervalTimer = setInterval(() => this.showNext(), this.interval * 1000);
     }
   }
+
+  onDisconnected() {
+    clearInterval(this.intervalTimer);
+  }
 }
 
 window.customElements.define('ftui-rotor', FtuiRotor);

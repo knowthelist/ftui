@@ -20,8 +20,10 @@ export class FtuiPopup extends FtuiElement {
     const header = this.querySelector('header, ftui-popup-header');
     header && header.setAttribute('slot', 'header');
     // check for popup-close attribute
-    this.window.addEventListener('click', event => this.onClickInside(event));
-    this.overlay.addEventListener('click', event => this.onClickOverlay(event));
+    this.onWindowClick = event => this.onClickInside(event);
+    this.onOverlayClick = event => this.onClickOverlay(event);
+    this.window.addEventListener('click', this.onWindowClick);
+    this.overlay.addEventListener('click', this.onOverlayClick);
 
     this.arrangeWindow();
   }
@@ -140,6 +142,12 @@ export class FtuiPopup extends FtuiElement {
     if (this.timeout) {
       this.timer = setTimeout(() => this.setState(false), this.timeout * 1000);
     }
+  }
+
+  onDisconnected() {
+    this.window.removeEventListener('click', this.onWindowClick);
+    this.overlay.removeEventListener('click', this.onOverlayClick);
+    clearTimeout(this.timer);
   }
 }
 

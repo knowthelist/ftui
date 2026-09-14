@@ -16,7 +16,9 @@ export class FtuiCircleMenu extends FtuiElement {
 
     super(Object.assign(FtuiCircleMenu.properties, properties));
     this.elementOverlay = this.shadowRoot.querySelector('.overlay');
-    this.elementOverlay.addEventListener('click', this.onClickOverlay.bind(this));
+    this.onOverlayClick = this.onClickOverlay.bind(this);
+    this.elementOverlay.addEventListener('click', this.onOverlayClick);
+    this.closeTimer = null;
 
     this.circleMenu = new CircleMenu(this, {
       trigger: 'click',
@@ -113,7 +115,8 @@ export class FtuiCircleMenu extends FtuiElement {
 
     this.elementOverlay.classList.add('fixed');
     if (!this.keepOpen) {
-      setTimeout(() => this.circleMenu.close(true), this.timeout * 1000);
+      clearTimeout(this.closeTimer);
+      this.closeTimer = setTimeout(() => this.circleMenu.close(true), this.timeout * 1000);
     }
   }
 
@@ -122,6 +125,12 @@ export class FtuiCircleMenu extends FtuiElement {
       entry.element.style.overflow = entry.overflow || '';
     });
     this.elementOverlay.classList.remove('fixed');
+  }
+
+  onDisconnected() {
+    this.elementOverlay.removeEventListener('click', this.onOverlayClick);
+    clearTimeout(this.closeTimer);
+    this.circleMenu.close(true);
   }
 
 }

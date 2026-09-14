@@ -21,8 +21,10 @@ class FtuiSegment extends FtuiElement {
     this.selector = this.shadowRoot.querySelector('.selection');
     this.slotMain = this.shadowRoot.querySelector('slot');
 
-    this.slotMain.addEventListener('click', this.onClick.bind(this));
-    document.addEventListener('ftuiVisibilityChanged', () => this.update());
+    this.onSegmentClick = this.onClick.bind(this);
+    this.onVisibilityChanged = () => this.update();
+    this.slotMain.addEventListener('click', this.onSegmentClick);
+    document.addEventListener('ftuiVisibilityChanged', this.onVisibilityChanged);
   }
 
   template() {
@@ -46,6 +48,11 @@ class FtuiSegment extends FtuiElement {
 
   onConnected() {
     this.update();
+  }
+
+  onDisconnected() {
+    this.slotMain.removeEventListener('click', this.onSegmentClick);
+    document.removeEventListener('ftuiVisibilityChanged', this.onVisibilityChanged);
   }
 
   onAttributeChanged(name, newValue, oldValue) {

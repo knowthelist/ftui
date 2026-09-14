@@ -16,7 +16,8 @@ export class FtuiCheckbox extends FtuiElement {
     super(Object.assign(FtuiCheckbox.properties, properties));
 
     this.elementCheckbox = this.shadowRoot.querySelector('.checkbox');
-    this.elementCheckbox.addEventListener('click', this.onClicked.bind(this));
+    this.onCheckboxClick = this.onClicked.bind(this);
+    this.elementCheckbox.addEventListener('click', this.onCheckboxClick);
   }
 
   template() {
@@ -81,6 +82,10 @@ export class FtuiCheckbox extends FtuiElement {
 
   getStates() {
     return this.states.split(/[;,:]/).map(item => item.trim());
+  }
+
+  onDisconnected() {
+    this.elementCheckbox.removeEventListener('click', this.onCheckboxClick);
   }
 }
 

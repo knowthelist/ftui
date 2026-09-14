@@ -44,14 +44,19 @@ export class FtuiKnob extends FtuiElement {
     this.isDragging = false;
 
     const usePassive = supportsPassive();
+    this.pointerHandlers = {
+      down: evt => this.onPointerDownEvent(evt),
+      out: evt => this.onPointerOutEvent(evt),
+      move: evt => this.onPointerMoveEvent(evt),
+    };
 
-    this.svg.addEventListener('touchstart', (evt) => this.onPointerDownEvent(evt), usePassive ? { passive: false } : false);
-    this.svg.addEventListener('mousedown', (evt) => this.onPointerDownEvent(evt), usePassive ? { passive: false } : false);
-    this.svg.addEventListener('touchend', (evt) => this.onPointerOutEvent(evt), usePassive ? { passive: false } : false);
-    this.svg.addEventListener('mouseup', (evt) => this.onPointerOutEvent(evt), usePassive ? { passive: false } : false);
-    this.svg.addEventListener('mouseout', (evt) => this.onPointerOutEvent(evt), usePassive ? { passive: false } : false);
-    this.svg.addEventListener('touchmove', (evt) => this.onPointerMoveEvent(evt), usePassive ? { passive: false } : false);
-    this.svg.addEventListener('mousemove', (evt) => this.onPointerMoveEvent(evt), usePassive ? { passive: false } : false);
+    this.svg.addEventListener('touchstart', this.pointerHandlers.down, usePassive ? { passive: false } : false);
+    this.svg.addEventListener('mousedown', this.pointerHandlers.down);
+    this.svg.addEventListener('touchend', this.pointerHandlers.out, usePassive ? { passive: false } : false);
+    this.svg.addEventListener('mouseup', this.pointerHandlers.out);
+    this.svg.addEventListener('mouseout', this.pointerHandlers.out);
+    this.svg.addEventListener('touchmove', this.pointerHandlers.move, usePassive ? { passive: false } : false);
+    this.svg.addEventListener('mousemove', this.pointerHandlers.move);
 
     if (this.step < 0) {
       const range = Math.abs(this.max - this.min);
@@ -433,6 +438,17 @@ export class FtuiKnob extends FtuiElement {
 
   hideElement(node) {
     node.style.display = 'none';
+  }
+
+  onDisconnected() {
+    const usePassive = supportsPassive();
+    this.svg.removeEventListener('touchstart', this.pointerHandlers.down, usePassive ? { passive: false } : false);
+    this.svg.removeEventListener('mousedown', this.pointerHandlers.down);
+    this.svg.removeEventListener('touchend', this.pointerHandlers.out, usePassive ? { passive: false } : false);
+    this.svg.removeEventListener('mouseup', this.pointerHandlers.out);
+    this.svg.removeEventListener('mouseout', this.pointerHandlers.out);
+    this.svg.removeEventListener('touchmove', this.pointerHandlers.move, usePassive ? { passive: false } : false);
+    this.svg.removeEventListener('mousemove', this.pointerHandlers.move);
   }
 
   setSVGAttributes(elem, oAtt) {

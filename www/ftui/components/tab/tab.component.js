@@ -133,6 +133,10 @@ class FtuiTab extends FtuiButton {
       this.timer = setTimeout(() => this.goHome(), this.timeout * 1000);
     }
   }
+
+  onDisconnected() {
+    this.clearTimeout();
+  }
 }
 
 window.customElements.define('ftui-tab', FtuiTab);
