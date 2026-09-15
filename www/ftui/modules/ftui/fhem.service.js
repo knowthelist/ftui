@@ -34,6 +34,7 @@ class FhemService {
       connection: {
         lastEventTimestamp: new Date(),
         timer: null,
+        availabilityTimer: null,
         result: null,
       },
       refresh: {
@@ -91,10 +92,26 @@ class FhemService {
 
   markBackendUnavailable(reason) {
     this.states.backendAvailable = false;
-    this.states.backendAutoDisabled = true;
     this.states.isOffline = true;
     this.disconnect();
-    log(1, '[fhemService] backend unavailable, disabling FHEM runtime: ' + reason);
+    log(1, '[fhemService] backend unavailable, retrying: ' + reason);
+    this.scheduleAvailabilityRetry();
+  }
+
+  scheduleAvailabilityRetry(delay = 5) {
+    if (this.states.backendAutoDisabled || this.states.connection.availabilityTimer) {
+      return;
+    }
+    this.states.connection.availabilityTimer = setTimeout(() => {
+      this.states.connection.availabilityTimer = null;
+      this.ensureBackendAvailable().then(isAvailable => {
+        if (isAvailable) {
+          this.states.isOffline = false;
+          this.refresh();
+          this.connect();
+        }
+      });
+    }, delay * 1000);
   }
 
   createUnavailableResponse() {
@@ -149,6 +166,9 @@ class FhemService {
         const isAvailable = Boolean(csrfToken) || !isHtmlResponse;
         this.states.backendAvailable = isAvailable;
         this.states.backendAutoDisabled = !isAvailable;
+        if (isAvailable) {
+          this.states.isOffline = false;
+        }
         if (!isAvailable) {
           this.disconnect();
           log(1, '[fhemService] backend check failed: endpoint did not look like FHEM');
@@ -158,7 +178,9 @@ class FhemService {
       })
       .catch(err => {
         this.availabilityRequest = null;
-        this.markBackendUnavailable(err.message || err);
+        this.states.backendAvailable = false;
+        this.scheduleAvailabilityRetry();
+        log(1, '[fhemService] backend availability check failed: ' + (err.message || err));
         return false;
       });
 
@@ -419,15 +441,17 @@ class FhemService {
     log(1, '[websocket] create new connection - URL = ' + this.states.connection.URL);
     this.states.connection.lastEventTimestamp = new Date();
 
-    this.states.connection.websocket = new WebSocket(this.states.connection.URL);
-    this.states.connection.websocket.onclose = (event) => {
+    const websocket = new WebSocket(this.states.connection.URL);
+    this.states.connection.websocket = websocket;
+    websocket.onclose = (event) => {
       let reason;
       if (event.code == 1006) {
         reason = 'The connection was closed abnormally, e.g., without sending or receiving a Close control frame';
       } else { reason = 'Unknown reason'; }
       log(1, '[websocket] closed! reason=' + reason + ' - URL = ' + event.target.url);
       // if current socket closes then restart websocket
-      if (event.target.url === this.states.connection.URL) {
+      if (this.states.connection.websocket === websocket) {
+        this.states.connection.websocket = null;
         this.debugEvents.publish({
           text: 'Disconnected from FHEM<br>' + reason + '<br>Retry in 5s',
           level: 1,
@@ -436,14 +460,14 @@ class FhemService {
         this.reconnect(5);
       }
     };
-    this.states.connection.websocket.onerror = (event) => {
+    websocket.onerror = (event) => {
       error(1, '[websocket] error event', event);
-      if (event.target.url === this.states.connection.URL) {
+      if (this.states.connection.websocket === websocket) {
         this.errorEvents.publish('Error with fhem connection');
       }
 
     };
-    this.states.connection.websocket.onmessage = (msg) => {
+    websocket.onmessage = (msg) => {
       this.handleFhemEvent(msg.data);
     };
     log(2, '[websocket] created');
@@ -453,7 +477,8 @@ class FhemService {
     log(2, '[websocket] try to stop connection');
     clearInterval(this.states.connection.timer);
     if (this.states.connection.websocket) {
-      if (this.states.connection.websocket.readyState === WebSocket.OPEN) {
+      if (this.states.connection.websocket.readyState === WebSocket.OPEN ||
+        this.states.connection.websocket.readyState === WebSocket.CONNECTING) {
         this.states.connection.websocket.close();
       }
       this.states.connection.websocket = null;
@@ -560,6 +585,16 @@ class FhemService {
         log(1, '[fhemService] send to FHEM: ' + cmdline);
         return fetch(url, options);
       })
+      .then(response => {
+        if (!response.ok) {
+          if (response.status === 400) {
+            this.config.csrf = '';
+            this.markBackendUnavailable('FHEM command returned HTTP 400');
+          }
+          throw new Error(response.statusText || 'FHEM command returned a non-OK status');
+        }
+        return response;
+      })
       .catch(err => {
         if (this.states.backendAutoDisabled) {
           return this.createUnavailableResponse();
@@ -601,6 +636,9 @@ class FhemService {
       password: this.config.password,
     })
       .then(response => {
+        if (!response.ok) {
+          throw new Error(response.statusText || 'FHEM CSRF request returned a non-OK status');
+        }
         this.config.csrf = response.headers.get('X-FHEM-csrfToken');
         log(1, 'Got csrf from FHEM:' + this.config.csrf);
         this.csrfRequest = null;
@@ -608,6 +646,7 @@ class FhemService {
       })
       .catch(fetchError => {
         this.csrfRequest = null;
+        this.config.csrf = '';
         this.markBackendUnavailable(fetchError.message || fetchError);
         throw fetchError;
       });

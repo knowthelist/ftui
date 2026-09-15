@@ -35,6 +35,7 @@ export class FtuiClock extends FtuiLabel {
   }
 
   connectedCallback() {
+    super.connectedCallback();
     this.update();
     this.startInterval();
     this.getFhemTime();
@@ -47,7 +48,12 @@ export class FtuiClock extends FtuiLabel {
         .then(res => res.text())
         .then((result) => {
           const fhemTime = new Date(result);
-          this.serverDiff = Date.now() - fhemTime.getTime();
+          if (!Number.isNaN(fhemTime.getTime())) {
+            this.serverDiff = Date.now() - fhemTime.getTime();
+          }
+        })
+        .catch(() => {
+          // Keep the local clock when FHEM is restarting or unavailable.
         });
     }
   }
@@ -93,6 +99,7 @@ export class FtuiClock extends FtuiLabel {
   }
 
   disconnectedCallback() {
+    super.disconnectedCallback();
     clearTimeout(this.clockTimer);
     clearTimeout(this.dailyRefreshTimeout);
     clearInterval(this.dailyRefreshInterval);
