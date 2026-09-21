@@ -1,4 +1,7 @@
 2026-09-21  FTUI version 3
+fix: onConnected logic for better responsiveness
+
+2026-09-21  FTUI version 3
 fix: enhance toast management by limiting the maximum number of visible toasts
 
 2026-09-15  FTUI version 3

@@ -1,7 +1,7 @@
 /*
 * Grid component for FTUI version 3
 *
-* Copyright (c) 2019-2022 Mario Stephan <mstephan@shared-files.de>
+* Copyright (c) 2019-2026 Mario Stephan <mstephan@shared-files.de>
 * Under MIT License (http://www.opensource.org/licenses/mit-license.php)
 *
 * https://github.com/knowthelist/ftui
@@ -56,16 +56,18 @@ export class FtuiGrid extends FtuiElement {
   }
 
   onConnected() {
-    if (this.responsive) {
-      return;
+    if (!this.responsive) {
+      if (this.resizeObserver) {
+        this.resizeObserver.observe(this);
+      }
+      if (this.resize) {
+        window.addEventListener('resize', this.onWindowResize);
+      }
+      document.addEventListener('ftuiVisibilityChanged', this.onVisibilityChanged);
+      document.addEventListener('ftuiComponentsAdded', this.onComponentsAdded);
+    } else if (this.columns > 0 && this.rows > 0) {
+      this.configResponsiveGrid2();
     }
-    if (this.resizeObserver) {
-      this.resizeObserver.observe(document.body);
-    } else if (this.resize) {
-      window.addEventListener('resize', this.onWindowResize);
-    }
-    document.addEventListener('ftuiVisibilityChanged', this.onVisibilityChanged);
-    document.addEventListener('ftuiComponentsAdded', this.onComponentsAdded);
   }
 
   onDisconnected() {
@@ -110,13 +112,6 @@ export class FtuiGrid extends FtuiElement {
     </style>
     <slot></slot>
     `;
-  }
-
-  onConnected() {
-    //this.style.margin = 0;
-    if (this.responsive && this.columns > 0 && this.rows > 0) {
-      this.configResponsiveGrid2();
-    }
   }
 
   configResponsiveGrid() {
