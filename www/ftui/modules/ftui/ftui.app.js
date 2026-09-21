@@ -12,6 +12,7 @@ class FtuiApp {
       fhemDir: '',
       debugLevel: 0,
       toastLevel: 1,
+      toastMax: 5,
       lang: 'de',
       refreshDelay: 0,
       toastPosition: 'bottomLeft',
@@ -47,6 +48,7 @@ class FtuiApp {
     this.config.updateCheckInterval = this.getMetaNumber('update_check_interval', 5);
     this.config.enableDebug = (this.config.debugLevel > 0);
     this.config.toastLevel = Math.min(3, Math.max(0, this.getMetaNumber('toast', 1)));
+    this.config.toastMax = Math.min(50, Math.max(1, this.getMetaNumber('toast_max', 5)));
     this.config.toastDuration = this.getMetaNumber('toast_duration', 5);
     const toastPositions = ['topLeft', 'topRight', 'bottomLeft', 'bottomRight', 'topCenter', 'center'];
     const toastPosition = this.getMetaString('toast_position', this.config.toastPosition);
@@ -302,6 +304,17 @@ class FtuiApp {
       ? 1 : Number(toast.level) || 3;
     if (this.config.toastLevel === 0 || toastLevel > this.config.toastLevel || !toast.text) {
       return;
+    }
+    const visibleToasts = [...document.querySelectorAll('.vnotify-item')]
+      .filter(item => item.style.display !== 'none');
+    while (visibleToasts.length >= this.config.toastMax) {
+      const oldestToast = visibleToasts.shift();
+      const closeButton = oldestToast.querySelector('.vn-close');
+      if (closeButton) {
+        closeButton.click();
+      } else {
+        oldestToast.style.display = 'none';
+      }
     }
     if (toast.level === 'error') {
       return vNotify.error({
