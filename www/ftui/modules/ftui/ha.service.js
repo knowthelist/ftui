@@ -415,6 +415,7 @@ class HomeAssistantService {
   handleAuthResult(data) {
     if (data.type === 'auth_ok') {
       log(2, '[websocket] Authentication successful');
+      this.debugEvents.publish({ backend: 'ha', connectionStatus: 'connected' });
       this.startConnectionHealthCheck();
       this.resubscribeEntities();
       this.processPendingSubscriptions();

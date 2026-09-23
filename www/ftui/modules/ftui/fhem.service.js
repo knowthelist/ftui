@@ -443,6 +443,11 @@ class FhemService {
 
     const websocket = new WebSocket(this.states.connection.URL);
     this.states.connection.websocket = websocket;
+    websocket.onopen = () => {
+      if (this.states.connection.websocket === websocket) {
+        this.debugEvents.publish({ backend: 'fhem', connectionStatus: 'connected' });
+      }
+    };
     websocket.onclose = (event) => {
       let reason;
       if (event.code == 1006) {

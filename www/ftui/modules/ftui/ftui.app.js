@@ -25,6 +25,11 @@ class FtuiApp {
       lastSetOnline: 0,
       isOffline: false,
     };
+    this.connectionErrorToasts = {
+      fhem: [],
+      ha: [],
+      io: [],
+    };
 
     // Debounced refresh used when content sub-areas finish loading.
     // Collapses multiple parallel content loads into a single backend request.
@@ -90,7 +95,10 @@ class FtuiApp {
     const event = new CustomEvent('ftuiPageInitialized');
     document.dispatchEvent(event);
     window.performance.mark('end initPage');
-    window.performance.measure('initPage', 'start initPage', 'end initPage');
+    const startMark = window.performance.getEntriesByName('start initPage', 'mark');
+    if (startMark.length > 0) {
+      window.performance.measure('initPage', 'start initPage', 'end initPage');
+    }
     const dur = 'initPage done after ' + (new Date() - this.states.startTime) + 'ms';
     ftui.log(1, '[ftuiApp] ' + dur);
 
@@ -103,7 +111,13 @@ class FtuiApp {
     try {
       // Initialize backend service
       backendService.setConfig(this.config);
-      backendService.debugEvents.subscribe(event => this.toast(event));
+      backendService.debugEvents.subscribe(event => {
+        if (event && event.connectionStatus === 'connected') {
+          this.dismissConnectionErrors(event.backend);
+        } else {
+          this.toast(event);
+        }
+      });
       backendService.errorEvents.subscribe(text => this.toast(text, 'error'));
 
       // Kick off CSRF handshake in the background now that fhemDir is known,
@@ -317,17 +331,53 @@ class FtuiApp {
       }
     }
     if (toast.level === 'error') {
-      return vNotify.error({
+      const notification = vNotify.error({
         text: toast.text,
         visibleDuration: 20000, // in milliseconds
         position: this.config.toastPosition,
       });
+      const backend = this.getConnectionBackend(toast.text);
+      if (backend && notification) {
+        this.connectionErrorToasts[backend] = this.connectionErrorToasts[backend]
+          .filter(item => item.style.display !== 'none');
+        this.connectionErrorToasts[backend].push(notification);
+      }
+      return notification;
     }
     return vNotify.info({
       text: toast.text,
       visibleDuration: toastLevel >= 3 ? 3000 : 5000,
       position: this.config.toastPosition,
     });
+  }
+
+  getConnectionBackend(text) {
+    if (!/(connect|disconnect|lost|offline)/i.test(text)) {
+      return null;
+    }
+    if (/iobroker|io broker/i.test(text)) {
+      return 'io';
+    }
+    if (/fhem/i.test(text)) {
+      return 'fhem';
+    }
+    if (/home assistant|\bha\b/i.test(text)) {
+      return 'ha';
+    }
+    return null;
+  }
+
+  dismissConnectionErrors(backend) {
+    const notifications = this.connectionErrorToasts[backend];
+    if (!notifications) {
+      return;
+    }
+    notifications.forEach(notification => {
+      clearTimeout(notification.interval);
+      clearInterval(notification.fadeInterval);
+      notification.style.display = 'none';
+    });
+    this.connectionErrorToasts[backend] = [];
   }
 
 }

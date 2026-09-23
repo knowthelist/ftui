@@ -215,6 +215,7 @@ class IoBrokerService {
             this.errorEvents.publish('ioBroker websocket authentication failed');
             return;
           }
+          this.debugEvents.publish({ backend: 'io', connectionStatus: 'connected' });
           this.debugEvents.publish({ text: 'ioBroker websocket connected', level: 1 });
           this.subscribeWebsocketStates();
         });
