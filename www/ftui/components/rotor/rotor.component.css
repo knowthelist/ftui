@@ -43,6 +43,22 @@
   animation: fade-out 4s;
 }
 
+:host([animation=shift]) ::slotted(*) {
+  transform: unset;
+}
+
+:host([animation=shift]) ::slotted(.is-visible) {
+  position: relative;
+  opacity: 1;
+  animation: shift-in 0.6s ease;
+}
+
+:host([animation=shift]) ::slotted(.is-hidden) {
+  opacity: 0;
+  transform: translateX(-100%);
+  animation: shift-out 0.6s ease;
+}
+
 @keyframes fade-in {
   0% {opacity: 0;}
   25% {opcaity: 0.25;}
@@ -68,4 +84,14 @@
   35% { transform: rotateX(-40deg); opacity: 1;}
   65% { opacity: 0;}
   100% { transform: rotateX(180deg); opacity: 0; }
+}
+
+@keyframes shift-in {
+  0% { transform: translateX(100%); opacity: 0; }
+  100% { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes shift-out {
+  0% { transform: translateX(0); opacity: 1; }
+  100% { transform: translateX(-100%); opacity: 0; }
 }

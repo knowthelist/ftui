@@ -9,6 +9,7 @@
 
 import { FtuiElement } from '../element.component.js';
 import { fhemService } from '../../modules/ftui/fhem.service.js';
+import { haService } from '../../modules/ftui/ha.service.js';
 import { Chart } from '../../modules/chart.js/chart.min.js';
 import * as ftuiHelper from '../../modules/ftui/ftui.helper.js';
 
@@ -42,6 +43,7 @@ export class FtuiChartData extends FtuiElement {
       pointRadius: 2,
       title: '-',
       log: '-',
+      entity: '',
       file: '-',
       spec: '4:.*',
       unit: '',
@@ -65,8 +67,109 @@ export class FtuiChartData extends FtuiElement {
   fetch() {
     const chartElement = this.closest('ftui-chart');
     if (!this.isLoading && ftuiHelper.isVisible(chartElement || this)) {
-      this.fetchLogItems(this.log, this.file, this.spec);
+      if (this.entity) {
+        this.fetchHAHistory(this.entity);
+      } else {
+        this.fetchLogItems(this.log, this.file, this.spec);
+      }
     }
+  }
+
+  fetchHAHistory(entityId) {
+    this.isLoading = true;
+    const startDate = ftuiHelper.dateFromString(this.startDate);
+    const endDate = ftuiHelper.dateFromString(this.endDate);
+    const requestStart = new Date(startDate.getTime());
+    requestStart.setSeconds(requestStart.getSeconds() - this.prefetch);
+    const requestEnd = new Date(endDate.getTime());
+    requestEnd.setSeconds(requestEnd.getSeconds() + this.prefetch);
+
+    haService.getHistory(entityId, requestStart.toISOString(), requestEnd.toISOString())
+      .then(history => {
+        const states = history && history[0] ? history[0] : [];
+        const { labels, data } = this.parseHAHistory(states, startDate, endDate);
+        this.data = data;
+        this.labels = labels;
+        this.updateColor();
+        ftuiHelper.triggerEvent('ftuiDataChanged', this);
+        this.isLoading = false;
+      }).catch(() => {
+        this.isLoading = false;
+      });
+  }
+
+  parseHAHistory(states, startDate, endDate) {
+    const labels = [];
+    const data = [];
+    const startTime = startDate.getTime();
+    const endTime = Math.min(endDate.getTime(), Date.now());
+    const sortedStates = states.slice().sort((first, second) => {
+      const firstTime = ftuiHelper.dateFromString(first.last_changed || first.last_updated).getTime();
+      const secondTime = ftuiHelper.dateFromString(second.last_changed || second.last_updated).getTime();
+      return firstTime - secondTime;
+    });
+    const chartElement = this.closest('ftui-chart');
+    const monthly = chartElement && chartElement.unit === 'year';
+    const buckets = {};
+    let cursor = startTime;
+    let currentState = '';
+    let hasStartingState = false;
+
+    const addDuration = (from, to) => {
+      let segmentStart = from;
+      while (segmentStart < to) {
+        const bucketStart = new Date(segmentStart);
+        bucketStart.setHours(0, 0, 0, 0);
+        if (monthly) {
+          bucketStart.setDate(1);
+        }
+        const bucketKey = ftuiHelper.dateFormat(bucketStart, 'YYYY-MM-DD_hh:mm:ss');
+        const bucketEnd = new Date(bucketStart.getTime());
+        if (monthly) {
+          bucketEnd.setMonth(bucketEnd.getMonth() + 1);
+        } else {
+          bucketEnd.setDate(bucketEnd.getDate() + 1);
+        }
+        const segmentEnd = Math.min(to, bucketEnd.getTime());
+
+        buckets[bucketKey] = buckets[bucketKey] || 0;
+        if (currentState === 'on') {
+          buckets[bucketKey] += (segmentEnd - segmentStart) / 3600000;
+        }
+        segmentStart = segmentEnd;
+      }
+    };
+
+    sortedStates.forEach(state => {
+      const changedAt = ftuiHelper.dateFromString(state.last_changed || state.last_updated).getTime();
+      if (!Number.isFinite(changedAt)) {
+        return;
+      }
+      if (changedAt <= startTime) {
+        currentState = state.state;
+        hasStartingState = true;
+        return;
+      }
+      if (!hasStartingState) {
+        cursor = changedAt;
+        hasStartingState = true;
+      } else {
+        addDuration(cursor, Math.min(changedAt, endTime));
+        cursor = changedAt;
+      }
+      currentState = state.state;
+    });
+
+    if (hasStartingState && cursor < endTime) {
+      addDuration(cursor, endTime);
+    }
+
+    Object.keys(buckets).sort().forEach(bucketKey => {
+      labels.push(bucketKey);
+      data.push({ x: bucketKey, y: Number(buckets[bucketKey].toFixed(2)) });
+    });
+
+    return { labels, data };
   }
 
   fetchLogItems(log, file, spec) {

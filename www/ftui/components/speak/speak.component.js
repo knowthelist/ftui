@@ -21,6 +21,7 @@ export class FtuiSpeak extends FtuiElement {
     }
 
     this.readingName = this.binding.getReadingsOfAttribute('text')[0] || null;
+    this.hasInitialReadingValue = false;
   }
 
   static get properties() {
@@ -43,6 +44,14 @@ export class FtuiSpeak extends FtuiElement {
         this.findVoice();
         break;
       case 'text': {
+        if (this.readingName && !this.hasInitialReadingValue) {
+          if (newValue !== '') {
+            const readingData = backendService.getReadingItem(this.readingName).data;
+            this.lastTextToken = readingData && readingData.time || null;
+            this.hasInitialReadingValue = true;
+          }
+          break;
+        }
         const readingData = this.readingName
           ? backendService.getReadingItem(this.readingName).data
           : null;

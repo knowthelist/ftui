@@ -5,7 +5,7 @@ UPD 2026-09-14_07:37:33 3002 www/ftui/components/button/button.component.js
 UPD 2025-11-29_13:17:15 3451 www/ftui/components/cell/cell.component.js
 UPD 2025-11-29_13:17:15 754 www/ftui/components/chart/chart-controls.component.css
 UPD 2025-11-29_13:17:15 3865 www/ftui/components/chart/chart-controls.component.js
-UPD 2026-05-15_21:49:46 6545 www/ftui/components/chart/chart-data.component.js
+UPD 2026-11-01_21:54:01 10130 www/ftui/components/chart/chart-data.component.js
 UPD 2025-11-29_13:17:15 231 www/ftui/components/chart/chart.component.css
 UPD 2026-09-14_07:37:33 14337 www/ftui/components/chart/chart.component.js
 UPD 2025-11-29_13:17:15 297 www/ftui/components/checkbox/checkbox.component.css
@@ -49,7 +49,7 @@ UPD 2025-11-29_13:17:15 1084 www/ftui/components/nav/nav-link.component.js
 UPD 2025-11-29_13:17:15 763 www/ftui/components/popup/popup-header.component.js
 UPD 2025-11-29_13:17:15 1536 www/ftui/components/popup/popup.component.css
 UPD 2026-09-14_07:37:33 3769 www/ftui/components/popup/popup.component.js
-UPD 2025-11-29_13:17:15 1347 www/ftui/components/rotor/rotor.component.css
+UPD 2026-11-01_21:54:01 1914 www/ftui/components/rotor/rotor.component.css
 UPD 2026-09-14_07:37:33 2285 www/ftui/components/rotor/rotor.component.js
 UPD 2026-04-13_21:19:37 2086 www/ftui/components/row/row.component.js
 UPD 2025-11-29_13:17:15 1479 www/ftui/components/segment/segment-button.component.js
@@ -59,9 +59,9 @@ UPD 2025-11-29_13:17:15 3698 www/ftui/components/slider/slider.component.css
 UPD 2026-09-11_12:16:01 4820 www/ftui/components/slider/slider.component.js
 UPD 2025-11-29_13:17:15 767 www/ftui/components/solar/solar-flow.component.css
 UPD 2026-09-11_12:16:01 16425 www/ftui/components/solar/solar-flow.component.js
-UPD 2026-04-15_08:01:53 2330 www/ftui/components/speak/speak.component.js
-UPD 2025-11-29_13:17:15 1269 www/ftui/components/swiper/swiper.component.css
-UPD 2026-09-11_12:09:12 5854 www/ftui/components/swiper/swiper.component.js
+UPD 2026-11-01_21:54:01 2715 www/ftui/components/speak/speak.component.js
+UPD 2026-11-01_21:54:01 1269 www/ftui/components/swiper/swiper.component.css
+UPD 2026-11-01_21:54:01 6022 www/ftui/components/swiper/swiper.component.js
 UPD 2025-11-29_13:17:15 1324 www/ftui/components/switch/switch.component.css
 UPD 2025-11-29_13:17:15 1091 www/ftui/components/switch/switch.component.js
 UPD 2025-11-29_13:17:15 668 www/ftui/components/tab/tab-title.component.js
@@ -117,7 +117,7 @@ UPD 2026-04-11_23:50:26 1011 www/ftui/examples/contents/mobile-garage.html
 UPD 2025-11-29_13:17:06 3674 www/ftui/examples/contents/mobile-power.html
 UPD 2025-11-29_13:17:06 8803 www/ftui/examples/contents/mobile-shutter.html
 UPD 2026-04-11_22:07:32 3346 www/ftui/examples/contents/mobile-solar.html
-UPD 2025-11-29_13:17:06 3732 www/ftui/examples/contents/mobile-temp.html
+UPD 2026-11-01_21:54:01 4226 www/ftui/examples/contents/mobile-temp.html
 UPD 2025-11-29_13:17:06 3035 www/ftui/examples/contents/mobile-view-sonos.html
 UPD 2026-04-12_13:27:19 1319 www/ftui/examples/contents/mobile-view-vacuum.html
 UPD 2025-11-29_13:17:06 189 www/ftui/examples/contents/mobile-view1.html
@@ -319,6 +319,7 @@ UPD 2025-11-29_13:16:58 999 www/ftui/icons/comments.svg
 UPD 2025-11-29_13:17:06 509 www/ftui/icons/compass.svg
 UPD 2025-11-29_13:17:06 920 www/ftui/icons/compress.svg
 UPD 2025-11-29_13:17:06 2995 www/ftui/icons/connectdevelop.svg
+UPD 2026-11-01_21:54:01 703 www/ftui/icons/cooking-top.svg
 UPD 2025-11-29_13:17:06 823 www/ftui/icons/copy.svg
 UPD 2025-11-29_13:16:58 472 www/ftui/icons/credit-card-alt.svg
 UPD 2025-11-29_13:16:58 645 www/ftui/icons/credit-card.svg
@@ -343,6 +344,7 @@ UPD 2025-11-29_13:17:06 968 www/ftui/icons/download.svg
 UPD 2025-11-29_13:16:58 1439 www/ftui/icons/drivers-license-o.svg
 UPD 2025-11-29_13:17:06 1444 www/ftui/icons/drivers-license.svg
 UPD 2025-11-29_13:16:58 543 www/ftui/icons/dropbox.svg
+UPD 2026-11-01_21:54:01 697 www/ftui/icons/dryer.svg
 UPD 2025-11-29_13:17:06 1146 www/ftui/icons/edit.svg
 UPD 2025-11-29_13:17:06 500 www/ftui/icons/eject.svg
 UPD 2025-11-29_13:16:58 688 www/ftui/icons/ellipsis-h.svg
@@ -748,9 +750,9 @@ UPD 2025-11-29_13:17:15 5063 www/ftui/modules/circle-menu/circle-menu.min.js
 UPD 2026-08-25_09:53:34 8374 www/ftui/modules/ftui/backend.service.js
 UPD 2026-09-23_19:32:20 22445 www/ftui/modules/ftui/fhem.service.js
 UPD 2026-09-23_19:32:20 12343 www/ftui/modules/ftui/ftui.app.js
-UPD 2026-09-11_12:19:52 14379 www/ftui/modules/ftui/ftui.binding.js
+UPD 2026-11-01_21:54:01 14414 www/ftui/modules/ftui/ftui.binding.js
 UPD 2026-04-20_21:33:50 16173 www/ftui/modules/ftui/ftui.helper.js
-UPD 2026-09-23_19:32:20 33122 www/ftui/modules/ftui/ha.service.js
+UPD 2026-11-01_21:54:01 33763 www/ftui/modules/ftui/ha.service.js
 UPD 2026-09-23_19:32:20 14857 www/ftui/modules/ftui/iobroker.service.js
 UPD 2026-09-11_12:16:01 10098 www/ftui/modules/hocon/hocon.js
 UPD 2026-09-11_12:12:12 2955 www/ftui/modules/hocon/hocon.min.js
@@ -763,7 +765,7 @@ UPD 2026-08-24_21:13:42 2078 www/ftui/modules/vanilla-notify/vanilla-notify.css
 UPD 2025-11-29_13:17:15 6445 www/ftui/modules/vanilla-notify/vanilla-notify.js
 UPD 2025-11-29_13:17:15 3461 www/ftui/modules/vanilla-notify/vanilla-notify.min.js
 UPD 2026-04-24_21:33:04 4135 www/ftui/styles/colors.css
-UPD 2025-11-29_13:17:15 3524 www/ftui/themes/bright-theme.css
+UPD 2026-11-01_21:54:01 3529 www/ftui/themes/bright-theme.css
 UPD 2025-11-29_13:17:15 3488 www/ftui/themes/ftui-theme.css
 UPD 2025-11-29_13:17:15 3729 www/ftui/themes/mobile-dark-theme.css
 UPD 2025-11-29_13:17:15 7714 www/ftui/themes/mobile-ios.css

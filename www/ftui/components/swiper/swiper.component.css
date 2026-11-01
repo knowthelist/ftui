@@ -62,7 +62,7 @@ slot[name=dots] {
 
 ::slotted(*) {
   scroll-snap-align: start;
-  flex-shrink: 0;
+  flex: 0 0 100%;
   width: 100%;
   height: 100%;
   margin-right: 50px;

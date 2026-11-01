@@ -53,6 +53,12 @@ class FtuiSwiper extends FtuiElement {
   }
 
   onConnected() {
+    this.slides.forEach((item, index) => {
+      if (!item.id) {
+        item.id = `${this.id}-slide-${index + 1}`;
+      }
+      item.style.flex = '0 0 100%';
+    });
     this.createDots();
     this.checkInterval();
     this.initObservers();

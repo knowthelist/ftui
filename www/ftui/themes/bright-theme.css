@@ -107,7 +107,7 @@
   --segments-separator-color: rgb(200, 199, 204);
   --segments-selection-color: var(--primary);
   --segments-selection-contrast-color: var(--primary-contrast-color);
-  --segments-hover-color: var(--light);
+  --segments-hover-color: var(--text-color);
   --segments-text-color: var(--text-color);
 
   --knob-outline-color: var(--light);

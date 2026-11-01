@@ -26,45 +26,54 @@
     <ftui-label width="4em">Living</ftui-label>
     <ftui-cell>
       <ftui-label size="80%" color="medium">Valve:</ftui-label>
-      <ftui-label [text]="KuechenHeizung:stellgroesse-get" color="medium"></ftui-label>
+      <ftui-label [text]="ha:climate.wz_heizung:command_value" color="medium"></ftui-label>
     </ftui-cell>
-    <ftui-label [text]="KuechenHeizung:ist-get | part(1) | toNumber() | fix(1)" unit="°C" slot="end" size="1"></ftui-label>
+    <ftui-label [text]="ha:climate.wz_heizung:current_temperature | fix(1)" unit="°C" slot="end" size="1"></ftui-label>
+  </ftui-view-item>
+
+  <ftui-view-item>
+    <ftui-label width="4em">Kitchen</ftui-label>
+    <ftui-cell>
+      <ftui-label size="80%" color="medium">Valve:</ftui-label>
+      <ftui-label [text]="ha:climate.kuchen_thermostat:command_value" color="medium"></ftui-label>
+    </ftui-cell>
+    <ftui-label [text]="ha:climate.kuchen_thermostat:current_temperature | fix(1)" unit="°C" slot="end" size="1"></ftui-label>
   </ftui-view-item>
 
   <ftui-view-item>
     <ftui-label width="4em">Sleep</ftui-label>
     <ftui-cell>
       <ftui-label size="80%" color="medium">Valve:</ftui-label>
-      <ftui-label [text]="SchlafzimmerHeizung:stellgroesse-get" color="medium" ></ftui-label>
+      <ftui-label [text]="ha:climate.schlafzimmer_heizung:command_value" color="medium"></ftui-label>
     </ftui-cell>
-    <ftui-label [text]="SchlafzimmerHeizung:ist-get | part(1) | toNumber() | fix(1)" unit="°C" slot="end" size="1"></ftui-label>
+    <ftui-label [text]="ha:climate.schlafzimmer_heizung:current_temperature | fix(1)" unit="°C" slot="end" size="1"></ftui-label>
   </ftui-view-item>
 
   <ftui-view-item>
     <ftui-label width="4em">Kid</ftui-label>
     <ftui-cell>
       <ftui-label size="80%" color="medium">Valve:</ftui-label>
-      <ftui-label [text]="KinderzimmerHeizung:stellgroesse-get" color="medium" ></ftui-label>
+      <ftui-label [text]="ha:climate.kinderzimmer_heizung:command_value" color="medium"></ftui-label>
     </ftui-cell>
-    <ftui-label [text]="KinderzimmerHeizung:ist-get | part(1) | toNumber() | fix(1)" unit="°C" slot="end" size="1"></ftui-label>
+    <ftui-label [text]="ha:climate.kinderzimmer_heizung:current_temperature | fix(1)" unit="°C" slot="end" size="1"></ftui-label>
   </ftui-view-item>
 
   <ftui-view-item>
     <ftui-label width="4em">Guest</ftui-label>
     <ftui-cell>
       <ftui-label size="80%" color="medium">Valve:</ftui-label>
-      <ftui-label [text]="GaestezimmerHeizung:stellgroesse-get" color="medium"></ftui-label>
+      <ftui-label [text]="ha:climate.gastezimmer_heizung:command_value" color="medium"></ftui-label>
     </ftui-cell>
-    <ftui-label [text]="GaestezimmerHeizung:ist-get | part(1) | toNumber() | fix(1)" unit="°C" slot="end" size="1"></ftui-label>
+    <ftui-label [text]="ha:climate.gastezimmer_heizung:current_temperature | fix(1)" unit="°C" slot="end" size="1"></ftui-label>
   </ftui-view-item>
 
   <ftui-view-item>
     <ftui-label width="4em">WC</ftui-label>
     <ftui-cell>
       <ftui-label size="80%" color="medium">Valve:</ftui-label>
-      <ftui-label [text]="WCHeizung:stellgroesse-get" color="medium" ></ftui-label>
+      <ftui-label [text]="ha:climate.wc_heizung:command_value" color="medium"></ftui-label>
     </ftui-cell>
-    <ftui-label [text]="WCHeizung:ist-get | part(1) | toNumber() | fix(1)" unit="°C" slot="end" size="1"></ftui-label>
+    <ftui-label [text]="ha:climate.wc_heizung:current_temperature | fix(1)" unit="°C" slot="end" size="1"></ftui-label>
   </ftui-view-item>
 </ftui-view-section>
 
@@ -84,8 +93,8 @@
     <ftui-label width="4em">Bath</ftui-label>
     <ftui-cell>
       <ftui-label size="80%" color="medium">Humidity:</ftui-label>
-      <ftui-label [text]="BadLuftfeuchte" color="medium"></ftui-label>
+      <ftui-label [text]="ha:sensor.bad_handtuchheizung_humidity_2 | fix(0)" unit="%" color="medium"></ftui-label>
     </ftui-cell>
-    <ftui-label [text]="BadHeizung:ist-get | part(1) | toNumber()| fix(1)" unit="°C" slot="end" size="1"></ftui-label>
+    <ftui-label [text]="ha:climate.bad_heizung:current_temperature | fix(1)" unit="°C" slot="end" size="1"></ftui-label>
   </ftui-view-item>
 </ftui-view-section>

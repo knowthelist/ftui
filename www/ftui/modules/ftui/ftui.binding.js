@@ -11,7 +11,7 @@ const toNumber = () => input => parseFloat(input, 10);
 const format = value => input => ftuiHelper.dateFormat(input, value);
 const humanized = () => input => ftuiHelper.durationHumanized(input);
 const round = value => input => ftuiHelper.round(input, value);
-const fix = value => input => Number(input).toFixed(value);
+const fix = value => input => ftuiHelper.isNumeric(input) ? Number(input).toFixed(value) : '';
 const roundMoney = () => input => ftuiHelper.formatMoney(Number(input));
 const slice = (start, end)  => input => String(input).slice(start, end);
 const encode = () => input => encodeURI(input);

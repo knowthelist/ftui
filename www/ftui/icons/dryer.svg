@@ -1,0 +1,8 @@
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+<title>dryer</title>
+<path fill-rule="evenodd" d="M8 2.667h16c1.467 0 2.667 1.2 2.667 2.667v21.333c0 1.467-1.2 2.667-2.667 2.667h-16c-1.467 0-2.667-1.2-2.667-2.667v-21.333c0-1.467 1.2-2.667 2.667-2.667zM23.5 19a7.5 7.5 0 1 1-15 0a7.5 7.5 0 1 1 15 0z"/>
+<circle cx="9.333" cy="6.667" r="1.333"/>
+<circle cx="13.333" cy="6.667" r="1.333"/>
+<circle cx="16" cy="19" r="6.6" fill="none" stroke="currentColor" stroke-width="1.2"/>
+<path d="M13.5 21c1-1.2 1-2.4 0-3.6m2.5 3.6c1-1.2 1-2.4 0-3.6m2.5 3.6c1-1.2 1-2.4 0-3.6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.2"/>
+</svg>

@@ -599,6 +599,25 @@ class HomeAssistantService {
     }
   }
 
+  async getHistory(entityId, startDate, endDate) {
+    if (!this.hasHomeAssistantCredentials()) {
+      throw new Error('Home Assistant is not configured');
+    }
+
+    const url = `${this.config.haUrl}/api/history/period/${encodeURIComponent(startDate)}?end_time=${encodeURIComponent(endDate)}&filter_entity_id=${encodeURIComponent(entityId)}&minimal_response`;
+    const response = await fetch(url, {
+      headers: {
+        'Authorization': `Bearer ${this.config.token}`,
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(`Home Assistant history request failed: ${response.status}`);
+    }
+
+    return response.json();
+  }
+
   _hexToRgb(hex) {
     hex = hex.replace(/^#/, '');
     const bigint = parseInt(hex, 16);
