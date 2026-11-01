@@ -171,7 +171,7 @@ export function isAppVisible() {
 export function isVisible(element) {
   const popupParent = element.closest('ftui-popup');
   if (popupParent) {
-    return popupParent.offsetParent !== null && element.offsetParent !== null;
+    return !popupParent.hasAttribute('hidden') && element.getClientRects().length > 0;
   }
 
   return element.offsetParent !== null;
