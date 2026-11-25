@@ -1,4 +1,7 @@
 2026-11-25  FTUI version 3
+feat: add HA button support in button.html and implement button command handling in HomeAssistantService
+
+2026-11-25  FTUI version 3
 feat: enhance color picker options and functionality with new properties and event handling
 
 2026-11-01  FTUI version 3

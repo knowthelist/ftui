@@ -89,6 +89,8 @@ class HomeAssistantService {
     this._serviceHandlers = {
       light: this._handleLightCommand.bind(this),
       switch: this._handleSwitchCommand.bind(this),
+      button: this._handleButtonCommand.bind(this),
+      input_button: this._handleButtonCommand.bind(this),
       media_player: this._handleMediaPlayerCommand.bind(this),
       number: this._handleNumberCommand.bind(this)
     };
@@ -676,6 +678,10 @@ class HomeAssistantService {
     }
 
     return { service: 'switch', action, params: { entity_id: entity } };
+  }
+
+  _handleButtonCommand(entity) {
+    return { action: 'press', params: { entity_id: entity } };
   }
 
   _handleMediaPlayerCommand(entity, args) {
