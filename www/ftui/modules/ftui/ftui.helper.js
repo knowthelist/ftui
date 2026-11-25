@@ -450,6 +450,17 @@ export function scale(value, minIn, maxIn, minOut, maxOut) {
   return limitedValue * slope + intercept;
 }
 
+export function rgbToHex(input) {
+  const channels = Array.isArray(input) ? input : String(input).match(/\d+(?:\.\d+)?/g);
+  if (!channels || channels.length < 3) {
+    return '';
+  }
+  return '#' + channels.slice(0, 3).map(channel => {
+    const value = Math.max(0, Math.min(255, Math.round(Number(channel))));
+    return ('0' + value.toString(16)).slice(-2);
+  }).join('');
+}
+
 export function limit(value, minIn, maxIn) {
   return value < minIn ? minIn
     : value > maxIn ? maxIn : value;

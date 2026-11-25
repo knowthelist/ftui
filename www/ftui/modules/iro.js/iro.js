@@ -866,7 +866,7 @@ function getSliderGradient(props, color) {
   const hsv = color.hsv;
   const rgb = color.rgb;
 
-  switch (props.sliderType) {
+  switch (props.gradientType || props.sliderType) {
     case 'red':
       return [[0, 'rgb(' + 0 + ',' + rgb.g + ',' + rgb.b + ')'], [100, 'rgb(' + 255 + ',' + rgb.g + ',' + rgb.b + ')']];
 
@@ -1315,20 +1315,33 @@ function IroSlider(props) {
   const radius = ref.radius;
   const handlePos = getSliderHandlePosition(props, activeColor);
   const gradient = getSliderGradient(props, activeColor);
+  const sliderLabels = {
+    hue: 'Hue',
+    value: 'Brightness (value)',
+    saturation: 'Saturation',
+    red: 'Red',
+    green: 'Green',
+    blue: 'Blue',
+    alpha: 'Opacity',
+    kelvin: 'Color temperature'
+  };
+  const sliderLabel = sliderLabels[props.sliderType] || props.sliderType;
   function handleInput(x, y, type) {
     const value = getSliderValueFromInput(props, x, y);
     props.parent.inputActive = true;
     activeColor[props.sliderType] = value;
     props.onInput(type, props.id);
   }
-  return (h(IroComponentWrapper, Object.assign({}, props, { onInput: handleInput }), function (uid, rootProps, rootStyles) { return (h('div', Object.assign({}, rootProps, { className: 'IroSlider', style: Object.assign({}, {position: 'relative',
+  return (h(IroComponentWrapper, Object.assign({}, props, { onInput: handleInput }), function (uid, rootProps, rootStyles) { return (h('div', { className: 'IroSliderControl', style: rootStyles },
+  props.sliderLabels && h('div', { className: 'IroSliderLabel', style: { fontSize: '12px', lineHeight: '16px', marginBottom: '4px' } }, sliderLabel),
+  h('div', Object.assign({}, rootProps, { className: 'IroSlider', 'aria-label': sliderLabel, style: Object.assign({}, {position: 'relative',
     width: cssValue(width),
     height: cssValue(height),
     borderRadius: cssValue(radius),
     // checkered bg to represent alpha
     background: 'conic-gradient(#ccc 25%, #fff 0 50%, #ccc 0 75%, #fff 0)',
     backgroundSize: '8px 8px'},
-  rootStyles) }),
+  {}) }),
   h('div', { className: 'IroSliderGradient', style: Object.assign({}, {position: 'absolute',
     top: 0,
     left: 0,
@@ -1337,7 +1350,7 @@ function IroSlider(props) {
     borderRadius: cssValue(radius),
     background: cssGradient('linear', props.layoutDirection === 'horizontal' ? 'to top' : 'to right', gradient)},
   cssBorderStyles(props)) }),
-  h(IroHandle, { isActive: true, index: activeColor.index, r: props.handleRadius, url: props.handleSvg, props: props.handleProps, x: handlePos.x, y: handlePos.y }))); }));
+  h(IroHandle, { isActive: true, index: activeColor.index, r: props.handleRadius, url: props.handleSvg, props: props.handleProps, x: handlePos.x, y: handlePos.y })))); }));
 }
 IroSlider.defaultProps = Object.assign({}, sliderDefaultOptions);
 

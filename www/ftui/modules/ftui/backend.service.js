@@ -32,6 +32,7 @@ class BackendService {
         // Initialize event subjects for all services to use
         this.debugEvents = new Subject();
         this.errorEvents = new Subject();
+        this.debouncedUpdates = new Map();
     }
     
     setConfig(config) {
@@ -118,9 +119,11 @@ class BackendService {
       }
     }
 
-    debouncedUpdateFhem(debounceTime, command) {
-        const debouncedFn = debounce((cmd) => this.sendUpdate(cmd), this);
-        return debouncedFn(debounceTime, command);
+    debouncedUpdateFhem(debounceTime, command, key = 'default') {
+        if (!this.debouncedUpdates.has(key)) {
+            this.debouncedUpdates.set(key, debounce((cmd) => this.sendUpdate(cmd), this));
+        }
+        return this.debouncedUpdates.get(key)(debounceTime, command);
     }
 
     updateReadingItem(parameterId, newData) {

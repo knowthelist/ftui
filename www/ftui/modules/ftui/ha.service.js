@@ -848,41 +848,43 @@ class HomeAssistantService {
    * @param {string} command - Command string in format "domain.service key1=value1 key2=value2"
    */
   async parseAndSendCommand(command) {
+     let entity;
+     let args;
+     let domain;
+     let handler;
+     let action;
+     let params;
+
     try {
-      const [entity, ...args] = command.split(' ');
-      const domain = entity.split('.')[0];  // e.g., 'light' from 'light.kitchen'
-
-      // Get the appropriate service handler or use default parameter parsing
-      const handler = this._serviceHandlers[domain];
+       [entity, ...args] = command.trim().split(/\s+/);
+       domain = entity.split('.')[0];  // e.g., 'light' from 'light.kitchen'
+       handler = this._serviceHandlers[domain];
       if (handler) {
-        const { service, action, params } = handler(entity, args);
+         ({ action, params } = handler(entity, args));
+       } else {
+         // Default parameter parsing for domains without specific handlers
+         // Format: domain.entity action param1=value1 param2=value2
+         action = args[0];
+         params = { entity_id: entity };
 
-        if (domain === 'media_player' && (action === 'group' || ((action === 'join' || action === 'unjoin') && params.group_members))) {
-          return await this._syncMediaPlayerGroup(entity, params);
-        }
-
-        return await this.sendCommand(domain, action, params);
-      }
-
-      // Default parameter parsing for domains without specific handlers
-      // Format: domain.entity action param1=value1 param2=value2
-      const action = args[0];
-      const params = { entity_id: entity };
-      
-      // Parse any additional parameters
-      args.slice(1).forEach(param => {
-        const [key, value] = param.split('=');
-        params[key] = value === 'true' ? true :
-          value === 'false' ? false :
-          !isNaN(value) ? Number(value) :
-          value;
-      });
-
-      return await this.sendCommand(domain, action, params);
+         args.slice(1).forEach(param => {
+           const [key, value] = param.split('=');
+           params[key] = value === 'true' ? true :
+             value === 'false' ? false :
+             !isNaN(value) ? Number(value) :
+             value;
+         });
+       }
     } catch (error) {
       this.errorEvents.publish('<u>Invalid command format</u><br>' + error);
       throw error;
     }
+
+     if (domain === 'media_player' && (action === 'group' || ((action === 'join' || action === 'unjoin') && params.group_members))) {
+       return await this._syncMediaPlayerGroup(entity, params);
+     }
+
+     return await this.sendCommand(domain, action, params);
   }
 
   /**

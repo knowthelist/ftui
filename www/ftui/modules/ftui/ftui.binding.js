@@ -19,6 +19,7 @@ const add = value => input => Number(input) + value;
 const multiply = value => input => Number(input) * value;
 const divide = value => input => Number(input) / value;
 const replace = (find, replace) => input => String(input).replace(find, replace);
+const rgbToHex = () => input => ftuiHelper.rgbToHex(input);
 const map = value => input => ftuiHelper.getMatchingValue(parseHocon(value, true), input);
 const filter = value => input => ftuiHelper.filter((value).split(','), input);
 const step = value => input => ftuiHelper.getStepValue(parseHocon(value, true), input);
@@ -197,21 +198,26 @@ export class FtuiBinding {
       const [parameterId, deviceName, readingName] = ftuiHelper.parseReadingId(readingId);
       const cmdLine = [options.cmd, deviceName, readingName, value].join(' ');
 
-      // update storage
-      const now = ftuiHelper.dateFormat(new Date(), 'YYYY-MM-DD hh:mm:ss');
-      this.updateReadingItem(parameterId, {
-        id: parameterId,
-        invalid: false,
-        value,
-        time: now,
-        update: now,
-      });
+      // Avoid publishing a scalar output as a different input property (e.g. hex as rgb_color).
+      const inputAttribute = this.config.input.readings[readingId]
+        && this.config.input.readings[readingId].attributes[attributeName];
+      if (!inputAttribute || inputAttribute.property === 'value') {
+        const now = ftuiHelper.dateFormat(new Date(), 'YYYY-MM-DD hh:mm:ss');
+        this.updateReadingItem(parameterId, {
+          id: parameterId,
+          invalid: false,
+          value,
+          time: now,
+          update: now,
+        });
+      }
 
       if (deviceName === 'local') { return }
 
       // notify FHEM
       if (this.element.debounce) {
-        backendService.debouncedUpdateFhem(this.element.debounce, cmdLine);
+        const debounceKey = [this.element.id, attributeName, readingId].join(':');
+        backendService.debouncedUpdateFhem(this.element.debounce, cmdLine, debounceKey);
       } else {
         backendService.sendUpdate(cmdLine);
       }
